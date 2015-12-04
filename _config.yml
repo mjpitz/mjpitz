@@ -1,0 +1,27 @@
+markdown: kramdown
+highlighter: pygments
+permalink: /posts/:year/:month/:day/:title/
+excerpt_separator: ""
+
+google_analytics_id: UA-39314903-5
+
+repository: https://github.com/jpitz/jpitz.github.io
+
+name: "jpitz: something something something"
+url: http://jpitz.github.io
+author:
+  name: Jeremy Pitzeruse
+  email: jpitzeruse@gmail.com
+
+exclude: [
+  jpitz.github.io.iml, Gemfile, Gemfile.lock
+]
+
+keep_files: [
+  statics
+]
+
+gems: [
+  jekyll-feed,
+  jekyll-watch
+]
