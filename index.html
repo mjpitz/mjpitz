@@ -1,6 +1,16 @@
 ---
-title: "jpitz: something something something"
+title: ""
 layout: default
 ---
 
-<h1>Hello World!</h1>
+{% for post in paginator.posts %}
+<div>
+    <a href="{{ post.url }}">
+        <h2>{{ post.title }}</h2>
+    </a>
+
+    <div>
+        {{ post.content }}
+    </div>
+</div>
+{% endfor %}
