@@ -1,6 +1,6 @@
 markdown: kramdown
-highlighter: pygments
-excerpt_separator: ""
+highlighter: rouge
+excerpt_separator: "<!--more-->"
 permalink: /blog/:year/:month/:day/:title/
 paginate_path: /blog/page:num/
 paginate: 5
@@ -9,7 +9,7 @@ google_analytics_id: UA-39314903-5
 
 repository: https://github.com/jpitz/jpitz.github.io
 
-name: "microsrc"
+name: "jpitz: building bigger software smaller"
 url: http://jpitz.github.io
 author:
   name: Jeremy Pitzeruse
