@@ -1,14 +1,26 @@
-nav.navbar a {
+div.nav a {
     text-decoration: none;
 }
 
-nav.navbar a i {
+div.nav a i {
     font-size: 29px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    margin-left: 16px;
 }
 
-nav.navbar a i span {
+div.nav a i span {
     display: none;
+}
+
+div.post .post-date {
+    border-left: 2px solid #ccc;
+    color: #ccc;
+    padding-left: 10px;
+}
+
+div.post .post-content {
+    margin-top: 28px;
+}
+
+div.post .post-footer {
+    margin-top: 28px;
+    margin-bottom: 28px;
 }

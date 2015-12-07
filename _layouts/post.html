@@ -3,7 +3,25 @@ layout: default
 date: YYYY-MM-DD
 ---
 
-<h1>{{ page.title }}</h1>
-<p>{{ page.date | date: '%B %d, %Y' }}</p>
+<div class="post">
+    <h1 class="post-title">{{ page.title }}</h1>
+    <p class="post-date">Posted on {{ page.date | date: '%B %d, %Y' }}</p>
 
-{{ content }}
+    <div class="post-content">
+        {{ content }}
+    </div>
+
+    <div class="post-footer row">
+        <div class="col-sm-6 text-left">
+            {% if page.next %}
+                <a class="btn btn-default" href="{{ page.next.url }}">&laquo; Next</a>
+            {% endif %}
+        </div>
+
+        <div class="col-sm-6 text-right">
+            {% if page.previous %}
+                <a class="btn btn-default" href="{{ page.previous.url }}">Previous &raquo;</a>
+            {% endif %}
+        </div>
+    </div>
+</div>

@@ -1,6 +1,15 @@
-<div style="margin-top:100px">
+<div style="margin:100px 0 50px">
     <div>
         {% include analytics.html %}
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+        <script>
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip();
+            });
+        </script>
     </div>
     <div class="text-center">
         <div>Copyright &copy; {{ site.time | date: '%Y' }}</div>

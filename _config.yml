@@ -24,7 +24,25 @@ keep_files: [
 ]
 
 gems: [
+  jekyll-archives,
   jekyll-feed,
-  jekyll-watch,
-  jekyll-paginate
+  jekyll-paginate,
+  jekyll-sitemap,
+  jekyll-watch
 ]
+
+jekyll-archives:
+  enabled: [
+    year,
+    month,
+    tags
+  ]
+  permalinks:
+    year: '/archive/:year/'
+    month: '/archive/:year/:month/'
+    day: '/archive/:year/:month/:day/'
+    tag: '/archive/tag/:name/'
+    category: '/archive/category/:name/'
+
+jekyll-sitemap:
+  source: '_site'
