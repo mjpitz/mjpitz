@@ -24,3 +24,13 @@ div.post .post-footer {
     margin-top: 28px;
     margin-bottom: 28px;
 }
+
+.panel {
+    border: none;
+}
+
+.panel-heading {
+    border: 1px solid transparent;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
