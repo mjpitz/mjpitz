@@ -27,6 +27,7 @@ div.post .post-footer {
 
 .panel {
     border: none;
+    box-shadow: none;
 }
 
 .panel-heading {
