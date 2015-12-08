@@ -13,14 +13,14 @@ date: YYYY-MM-DD
 
     <div class="post-footer row">
         <div class="col-sm-6 text-left">
-            {% if page.next %}
-                <a class="btn btn-default" href="{{ page.next.url }}">&laquo; Next</a>
+            {% if page.previous %}
+                <a class="btn btn-default" href="{{ page.previous.url }}">&laquo; Previous</a>
             {% endif %}
         </div>
 
         <div class="col-sm-6 text-right">
-            {% if page.previous %}
-                <a class="btn btn-default" href="{{ page.previous.url }}">Previous &raquo;</a>
+            {% if page.next %}
+            <a class="btn btn-default" href="{{ page.next.url }}">Next &raquo;</a>
             {% endif %}
         </div>
     </div>
