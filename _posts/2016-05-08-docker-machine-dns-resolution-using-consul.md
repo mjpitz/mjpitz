@@ -17,9 +17,12 @@ In this blog post, I will cover some of the basics that allowed me to enable thi
 
 To start, I want to explain the main differences between my workflow and the [Indeed] workflow.
 I started using [docker-machine] and [docker-compose] as soon as I could.
-The power behind multi-machine tooling and simplicity of defining containers through inheritance.
+These tools are still early on in their development and many people have yet to adopt the technology.
+I saw power behind multi-machine tooling and the simplicity of defining containers through inheritance.
+This has allowed me to build out some complex services quickly.
 Additionally, I installed [dnsmasq] to set up a local development domain.
-
+Since I only develop on an OSX machine at home, I needed a way to provide a multitude of domains quickly with very little configuration.
+dnsmasq allows me to do this quickly and with very few lines of code.
 
 ### Install Dependencies
 
