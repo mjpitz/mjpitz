@@ -26,7 +26,8 @@ dnsmasq allows me to do this quickly and with very few lines of code.
 
 ### Install Dependencies
 
-In order to be able to follow the examples and tutorial below, first insure that you have [docker-machine] and [docker-compose] installed on your machine.
+In order to be able to follow the examples and tutorial below, first insure that you have [docker-machine] installed on your machine.
+Optionally, you can install [docker-compose] as it allows for machines to be created through definition inheritance rather than requiring a local docker registry.
 I have provided the versions that are currently running on my box for each below.
 
 ```
