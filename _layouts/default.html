@@ -15,7 +15,12 @@
             {% endif %}
         </title>
 
-        <link rel="canonical" href="http://jpitz.com"/>
+        {% if page.redirect %}
+            <meta http-equiv="refresh" content="0; url={{ page.redirect }}">
+            <link rel="canonical" href="{{ page.redirect }}" />
+            <script>window.location.href="{{ page.redirect }}";</script>
+        {% endif %}
+
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="/statics/css/main.css"/>
