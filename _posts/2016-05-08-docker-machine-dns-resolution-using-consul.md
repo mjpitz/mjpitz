@@ -13,6 +13,13 @@ In this blog post, I will cover some of the basics that allowed me to enable thi
 
 <!--more-->
 
+<br/>
+<div class="alert alert-success">
+<b>Note:</b> I recently moved all of these utilities out into a separate code repository to make every ones lives easier.
+<a href="https://github.com/jpitz/docker-utils">https://github.com/jpitz/docker-utils</a>
+</div>
+<br/>
+
 ## Getting Started
 
 To start, I want to explain the main differences between my workflow and the [Indeed] workflow.
