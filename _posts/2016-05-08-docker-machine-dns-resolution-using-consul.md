@@ -122,7 +122,7 @@ Another application of this DNS resolution is it's integration with [consul-temp
 ### Container-to-Container Communication
 
 A popular approach to making containers able to communicate with each other is through linking.
-This is considered the 'legacy' way to do things and requires additional overhead for each container that must endure.
+This is considered the 'legacy' way to do things as it requires additional overhead.
 A better approach would be to use the DNS to resolve dependencies.
 It removes the overhead and offers a more fluent approach to building software in a local development mode and in a production environment.
 Say we have application requires a [MongoDB] and a [MySQL].
