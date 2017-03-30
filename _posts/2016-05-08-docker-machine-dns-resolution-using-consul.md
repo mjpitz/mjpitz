@@ -15,7 +15,7 @@ In this blog post, I will cover some of the basics that allowed me to enable thi
 
 <br/>
 <div class="alert alert-success">
-<b>Note:</b> I recently moved all of these utilities out into a separate code repository to make every ones lives easier.
+<b>Note:</b> I recently moved all of these utilities out into a separate code repository to make lives easier.
 <a href="https://github.com/jpitz/docker-utils">https://github.com/jpitz/docker-utils</a>
 </div>
 <br/>
