@@ -1,6 +1,9 @@
 ---
 layout: post
 title: "Docker Machine DNS Resolution using Consul"
+tags:
+  - docker
+
 ---
 
 Developers at [Indeed] have _recently_ switched over to using docker for local development.

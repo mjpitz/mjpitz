@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Introducing LAAS"
+
 ---
 
 [LAAS][] is an abbreviation for [LevelDB][] as a service.

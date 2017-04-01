@@ -2,6 +2,9 @@
 layout: post
 title: "Gracefully Degrading Functionality Using Status"
 redirect: http://engineering.indeedblog.com/blog/2017/01/degrade-functionality/
+tags:
+  - indeed
+
 ---
 
 In a previous blog post, we described how to use our Status library to create a robust health check for your applications. 
