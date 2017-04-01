@@ -3,11 +3,11 @@ layout: post
 title: "Docker Machine DNS Resolution using Consul"
 ---
 
-Developers at [Indeed] have _recently_ switched over to using docker for their local development.
+Developers at [Indeed] have _recently_ switched over to using docker for local development.
 Being one of the earlier adopters, I fell in love with the type of workflow that it enabled.
 It allowed me to create seamless environments between both my desktop and portable workstation.
 The tooling did this by allowing you to resolve container names as hosts in your web browser.
-For example, if I had a webapp named indigo running on port 4000, I could go to http://indigo:4000 to access that application.
+For example, if I had a web application named **indigo** running on port 4000, I could go to http://indigo:4000 to access that application.
 After a few weeks of enjoying the simplicity of this development workflow, I craved a similar type of environment for some of the larger scale projects that I do at home.
 In this blog post, I will cover some of the basics that allowed me to enable this type of development.
 
