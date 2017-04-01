@@ -31,6 +31,11 @@ gems: [
   jekyll-watch
 ]
 
+tags:
+ docker: "Docker"
+ indeed: "Indeed"
+ spring-bad-practices: "Spring Bad Practices"
+
 jekyll-archives:
   enabled: [
     year,
