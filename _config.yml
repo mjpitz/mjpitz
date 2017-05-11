@@ -19,6 +19,10 @@ exclude: [
   jpitz.github.io.iml, Gemfile, Gemfile.lock
 ]
 
+include: [
+  pages
+]
+
 keep_files: [
   statics
 ]
