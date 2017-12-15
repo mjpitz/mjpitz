@@ -12,7 +12,7 @@ repository: https://github.com/jpitz/jpitz.github.io
 name: "jpitz: building better software"
 url: http://jpitz.github.io
 author:
-  name: Jeremy Pitzeruse
+  name: Jaye Pitzeruse
   email: jpitzeruse@gmail.com
 
 exclude: [
