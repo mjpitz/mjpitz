@@ -1,0 +1,64 @@
+---
+title: "Open Source Contributions"
+layout: default
+---
+
+
+<div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h3><a href="https://github.com/square/okhttp">square/okhttp</a></h3>
+
+            <p>OkHttp is a well known HTTP + HTTP/2 client for Android and Java based systems.</p>
+
+            <div>
+                <h4><a href="https://github.com/square/okhttp/pull/3873">Implemented prior knowledge approach to H2C</a></h4>
+                <div style="padding-bottom: 10px"><i>February 26, 2018</i></div>
+
+                <p>
+                    Prior to this change, the client lacked support for the cleartext solution for HTTP/2.
+                    This made it difficult to build out a performant, transparent TLS solution via a service mesh.
+                    I noticed some earlier attempts to this change and figured there had to be a simpler way.
+                    The RFC for HTTP/2 contains a section on starting a cleartext connection using prior knowledge.
+                    Using this approach, I was easily able to add the functionality into the OkHttp library.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h3><a href="https://github.com/oracle/opengrok">oracle/opengrok</a></h3>
+
+            <p>OpenGrok is a fast and usable source code search and cross reference engine</p>
+
+            <div>
+                <h5><a href="https://github.com/oracle/opengrok/pull/1715">Added support for paginating the JSONSearchServlet</a></h5>
+                <div style="padding-bottom: 10px"><i>August 2, 2017</i></div>
+
+                <p>
+                    Prior to this change, the JSONSearchServlet did not support paginating requests.
+                    As your company grows, your code tends to grow along with it.
+                    OpenGrok makes it easy to search across your entire code base.
+                    Now, you can write tooling and process appropriately sized pages with this change.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h3><a href="https://github.com/timols/java-gitlab-api">timols/java-gitlab-api</a></h3>
+
+            <p>Simple Java wrapper for the Gitlab HTTP API.</p>
+
+            <div>
+                <h4>Minor Bug Fixes</h4>
+                <ul>
+                    <li><a href="https://github.com/timols/java-gitlab-api/pull/274">Fixed raw blob uri to use new api v4 syntax</a></li>
+                    <li><a href="https://github.com/timols/java-gitlab-api/pull/281">Propagate exceptions as a RuntimeException instead of java.lang.Error</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
