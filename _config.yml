@@ -16,7 +16,7 @@ author:
   email: jpitzeruse@gmail.com
 
 exclude: [
-  jpitz.github.io.iml, Gemfile, Gemfile.lock
+  jpitz.github.io.iml, Gemfile, Gemfile.lock, s3_website.yml, deploy.sh
 ]
 
 include: [
