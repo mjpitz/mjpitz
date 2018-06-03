@@ -1,3 +1,14 @@
+.mjpitz-content {
+    /*border-right: 1px solid #ccc;*/
+    /*border-bottom: 1px solid #ccc;*/
+    /*border-left: 1px solid #ccc;*/
+    padding-top: 10px;
+}
+
+.mjpitz-header {
+    padding-top: 53px;
+}
+
 div.nav a {
     text-decoration: none;
 }
