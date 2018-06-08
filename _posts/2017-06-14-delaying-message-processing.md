@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: redirect
 title: "Delaying Asynchronous Message Processing"
 redirect: http://engineering.indeedblog.com/blog/2017/06/delaying-messages/
 tags:

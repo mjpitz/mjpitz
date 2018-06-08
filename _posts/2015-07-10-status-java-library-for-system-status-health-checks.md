@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: redirect
 title: "Status: A Java Library For Robust System Status Health Checks"
 redirect: http://engineering.indeedblog.com/blog/2015/07/status-java-library-for-system-status-health-checks/
 tags:
