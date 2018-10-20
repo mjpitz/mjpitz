@@ -7,7 +7,7 @@ paginate: 5
 
 google_analytics_id: UA-39314903-5
 
-repository: https://github.com/jpitz/jpitz.github.io
+repository: https://github.com/mjpitz/mjpitz.com
 
 name: "Mya Jaye Pitzeruse"
 url: https://www.mjpitz.com
@@ -16,7 +16,7 @@ author:
   email: j.mya.pitz@gmail.com
 
 exclude: [
-  jpitz.github.io.iml, Gemfile, Gemfile.lock, s3_website.yml, deploy.sh
+  mjpitz.com.iml, Gemfile, Gemfile.lock, s3_website.yml, deploy.sh
 ]
 
 include: [

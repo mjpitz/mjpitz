@@ -1,0 +1,16 @@
+version: "3"
+
+volumes:
+  cache:
+
+services:
+  http:
+    volumes:
+      - cache:/usr/local/bundle
+      - .:/srv/jekyll
+    ports:
+      - 4000:4000
+      - 35729:35729
+      - 3000:3000
+    image: jekyll/jekyll:3.8
+    command: jekyll serve
