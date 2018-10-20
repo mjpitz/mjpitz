@@ -1,3 +1,13 @@
+#mjpitz-header-banner {
+    background-color: #a28ad2;
+    height: 48px;
+}
+
+#mjpitz-footer-banner {
+    background-color: #a28ad2;
+    color: #DDD;
+}
+
 .mjpitz-content {
     /*border-right: 1px solid #ccc;*/
     /*border-bottom: 1px solid #ccc;*/
@@ -7,6 +17,14 @@
 
 .mjpitz-header {
     padding-top: 53px;
+}
+
+a {
+    color: #8067b2;
+}
+
+a:focus, a:hover {
+    color: #8067b2;
 }
 
 div.nav a {
