@@ -43,7 +43,6 @@ tags:
 jekyll-archives:
   enabled: [
     year,
-    month,
     tags
   ]
   permalinks:

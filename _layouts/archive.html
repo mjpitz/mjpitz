@@ -5,14 +5,31 @@ title: Archive
 
 <div class="panel panel-default">
     <div class="panel-body">
-        <h1>Archive of posts with {{ page.type }}</h1>
-        <ul class="posts">
+        <div class="post">
+            {% if page.type == 'tag' %}
+            <h1>Posts tagged with '{{ page.title }}'</h1>
+            {% else %}
+            <h1>Posts from {{ page.date | date: '%Y' }}</h1>
+            {% endif %}
+
             {% for post in page.posts %}
-            <li>
-                <span class="post-date">{{ post.date | date: "%B %-d, %Y" }}</span>
-                <a class="post-link" href="{{ post.url }}">{{ post.title }}</a>
-            </li>
+            <div style="padding: 15px 0;">
+                <a href="{{ post.url }}">
+                    <h2>{{ post.title }}</h2>
+                </a>
+                <div>
+                    <p>{{ post.date | date: '%B %d, %Y' }}</p>
+                </div>
+
+                <div>
+                    {{ post.excerpt }}
+                </div>
+
+                <p style="text-align: right">
+                    <a href="{{ post.url }}">Read More &raquo;</a>
+                </p>
+            </div>
             {% endfor %}
-        </ul>
+        </div>
     </div>
 </div>

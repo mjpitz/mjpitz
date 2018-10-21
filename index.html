@@ -3,43 +3,45 @@ title: ""
 layout: default
 ---
 
-{% for post in paginator.posts %}
 <div class="panel panel-default">
     <div class="panel-body">
-        <a href="{{ post.url }}">
-            <h2>{{ post.title }}</h2>
-        </a>
-        <div>
-            <p>{{ post.date | date: '%B %d, %Y' }}</p>
-        </div>
+        <div class="post">
+            {% for post in paginator.posts %}
+            <div style="padding: 15px 0">
+                <a href="{{ post.url }}">
+                    <h2>{{ post.title }}</h2>
+                </a>
+                <div>
+                    <p>{{ post.date | date: '%B %d, %Y' }}</p>
+                </div>
 
-        <div>
-            {{ post.excerpt }}
-        </div>
+                <div>
+                    {{ post.excerpt }}
+                </div>
 
-        <p style="text-align: right">
-            <a href="{{ post.url }}">Read More &raquo;</a>
-        </p>
+                <p style="text-align: right">
+                    <a href="{{ post.url }}">Read More &raquo;</a>
+                </p>
+            </div>
+            {% endfor %}
+
+            {% if paginator.total_pages > 1 %}
+            <!--<div class="panel panel-default">-->
+                <!--<div class="panel-body">-->
+            <div class="row" style="padding: 15px">
+                <div class="col-sm-6 text-left">
+                    {% if paginator.previous_page %}
+                    <a class="btn btn-default" href="{{ paginator.previous_page_path }}">&laquo; Previous</a>
+                    {% endif %}
+                </div>
+
+                <div class="col-sm-6 text-right">
+                    {% if paginator.next_page %}
+                    <a class="btn btn-default" href="{{ paginator.next_page_path }}">Next &raquo;</a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+        </div>
     </div>
 </div>
-{% endfor %}
-
-{% if paginator.total_pages > 1 %}
-<div class="panel panel-default">
-    <div class="panel-body">
-        <div class="row">
-            <div class="col-sm-6 text-left">
-                {% if paginator.previous_page %}
-                <a href="{{ paginator.previous_page_path }}">&laquo; Previous Page</a>
-                {% endif %}
-            </div>
-
-            <div class="col-sm-6 text-right">
-                {% if paginator.next_page %}
-                <a href="{{ paginator.next_page_path }}">Next Page &raquo;</a>
-                {% endif %}
-            </div>
-        </div>
-    </div>
-</div>
-{% endif %}
