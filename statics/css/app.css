@@ -1,3 +1,17 @@
+body {
+    background-color: #eee;
+}
+
+@media (min-width: 1200px) {
+    .container {
+        width: 1344px;
+    }
+}
+
+.container {
+    max-width: 1344px;
+}
+
 #mjpitz-header-banner {
     background-color: #a28ad2;
     height: 48px;
@@ -5,13 +19,10 @@
 
 #mjpitz-footer-banner {
     background-color: #a28ad2;
-    color: #EEE;
+    color: #eee;
 }
 
 .mjpitz-content {
-    /*border-right: 1px solid #ccc;*/
-    /*border-bottom: 1px solid #ccc;*/
-    /*border-left: 1px solid #ccc;*/
     padding-top: 10px;
 }
 
@@ -27,6 +38,11 @@ a:focus, a:hover {
     color: #8067b2;
 }
 
+.nav>li>a:focus, .nav>li>a:hover {
+    text-decoration: underline;
+    background-color: transparent;
+}
+
 div.nav a {
     text-decoration: none;
 }
@@ -37,6 +53,10 @@ div.nav a i {
 
 div.nav a i span {
     display: none;
+}
+
+div.post {
+    padding: 20px
 }
 
 div.post .post-date {
