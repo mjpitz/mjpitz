@@ -6,11 +6,7 @@ volumes:
 services:
   http:
     volumes:
-      - cache:/usr/local/bundle
-      - .:/srv/jekyll
+      - ./_site:/usr/local/apache2/htdocs/
     ports:
-      - 4000:4000
-      - 35729:35729
-      - 3000:3000
-    image: jekyll/jekyll:3.8
-    command: jekyll serve
+      - 4000:80
+    image: httpd:2.4
