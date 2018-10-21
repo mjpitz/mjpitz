@@ -16,7 +16,7 @@ author:
   email: j.mya.pitz@gmail.com
 
 exclude: [
-  mjpitz.com.iml, Gemfile, Gemfile.lock, s3_website.yml, deploy.sh
+  docker-compose.yml, mjpitz.com.iml, Gemfile, Gemfile.lock, s3_website.yml, deploy.sh
 ]
 
 include: [
