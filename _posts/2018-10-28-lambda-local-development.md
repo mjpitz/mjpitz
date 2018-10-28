@@ -19,10 +19,22 @@ A few of my co-workers pointed me at [serverless-offline](https://www.npmjs.com/
 This system works by standing up an http proxy, constructing the expected data payload, and executing `sls invoke local` under the hood.
 This approach enabled testing of functions locally with little effort, but didn’t enable service to service testing.
 
+<br/>
+<div style="text-align:center">
+    <img src="/statics/img/localstack.png" alt="localstack" title="Localstack Header" />
+</div>
+<br/>
+
 Next I considered [localstack](https://github.com/localstack/localstack). 
 Localstack offers a wide range of mock AWS services for testing or developing locally. 
 While I was able to get localstack up and running, I wasn’t able to deploy my lambda functions. 
 After a fair bit of digging around, I filed a bug with what I was able to find and moved onto locating another option.
+
+<br/>
+<div style="text-align:center">
+    <img src="/statics/img/serverless.png" alt="serverless" title="Serverless" />
+</div>
+<br/>
 
 Finally, I came across [serverless-plugin-simulate](https://www.npmjs.com/package/serverless-plugin-simulate).
 This did a great job separating the lambda execution environment from the API gateway.
