@@ -91,7 +91,10 @@ When a request comes in, Lambda attempts to pull from it’s pool of existing co
 If we were able to find an existing container, then it is used to service the current request. 
 If we were unable to find an existing container, then we spin up a new one to service the current request (cold start). 
 When a request completes, its container is returned to the pool for reuse.
-After some idle time, containers are shut down to keep resources to a minimum. 
+After some idle time, containers are shut down to keep resources to a minimum.
+In practice, this process is distributed across a cluster of machines so that there is no single point of failure.
 
 From an engineering standpoint, this means that we can write lambda functions a lot like how we write your typical HTTP server.
-Services that load some data at start up can benefit from doing that once and then re-using the loaded data.
+Services that load some data at start up can continue to benefit by doing that once and then re-using the loaded data for subsequent requests.
+Many of our reliability patterns can continue to be applied, such as circuit breaking, persistent connections, and distributed tracing.
+All in all, working in AWS Lambda isn't all that different from your typical application development.
