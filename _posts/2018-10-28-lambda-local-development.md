@@ -1,7 +1,12 @@
 ---
 layout: post
 title: "AWS Lambda - Local Development"
-
+tags:
+  - aws
+  - lambda
+  - dosh
+  - serverless
+  
 ---
 
 While working at Dosh, I had pretty heavy exposure to managing NodeJS services running in AWS Lambda.
@@ -10,8 +15,7 @@ Some of these lessons may influence how you write services but can also give you
 It’s important to note that some of the behaviors that I observed about AWS Lambda may not apply to other serverless technologies.
 
 <!--more-->
-
-# AWS Lambda - Local Development
+<hr/>
 
 Developing locally enables engineers to test their changes before sending it off to a cloud.
 Running on AWS Lambda, I found myself wondering just how you might test lambda HTTP endpoints locally.

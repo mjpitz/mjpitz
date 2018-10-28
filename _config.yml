@@ -43,6 +43,10 @@ tags:
  docker: "Docker"
  indeed: "Indeed"
  spring-bad-practices: "Spring Bad Practices"
+ dosh: "Dosh"
+ aws: "Amazon Web Services"
+ lambda: "AWS Lambda"
+ serverless: "Serverless"
 
 jekyll-archives:
   enabled:
