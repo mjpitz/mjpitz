@@ -11,32 +11,33 @@ repository: https://github.com/mjpitz/mjpitz.com
 
 env: production
 
-name: "Mya Jaye Pitzeruse"
+name: "Mya Pitzeruse"
 url: https://www.mjpitz.com
 author:
-  name: Mya Jaye Pitzeruse
+  name: Mya Pitzeruse
   email: j.mya.pitz@gmail.com
 
-exclude: [
-  docker-compose.yml, mjpitz.com.iml, Gemfile, Gemfile.lock, s3_website.yml, deploy.sh
-]
+exclude:
+  - .idea
+  - docker-compose.yml
+  - mjpitz.com.iml
+  - Gemfile
+  - Gemfile.lock
+  - s3_website.yml
+  - deploy.sh
 
-include: [
-  pages
-]
+include:
+  - pages
 
-keep_files: [
-  statics
-]
+keep_files:
+  - statics
 
-gems: [
-  jekyll-archives,
-  jekyll-feed,
-  jekyll-paginate,
-  jekyll-sitemap,
-  jekyll-watch,
-  octopress-minify-html
-]
+gems:
+  - jekyll-archives
+  - jekyll-feed
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-watch
 
 tags:
  docker: "Docker"
@@ -44,10 +45,9 @@ tags:
  spring-bad-practices: "Spring Bad Practices"
 
 jekyll-archives:
-  enabled: [
-    year,
-    tags
-  ]
+  enabled:
+    - year
+    - tags
   permalinks:
     year: '/archive/:year/'
     month: '/archive/:year/:month/'
