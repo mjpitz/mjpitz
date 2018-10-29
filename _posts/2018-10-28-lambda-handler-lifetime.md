@@ -98,3 +98,15 @@ From an engineering standpoint, this means that we can write lambda functions a 
 Services that load some data at start up can continue to benefit by doing that once and then re-using the loaded data for subsequent requests.
 Many of our reliability patterns can continue to be applied, such as circuit breaking, persistent connections, and distributed tracing.
 All in all, working in AWS Lambda isn't all that different from your typical application development.
+
+_Update: 2018-10-29_
+
+I went and took a look at some larger windows of time.
+Over a 24 hour window, I found some lambda's running all day and even all night.
+The image below shows a provisioned lambda running from 9pm to 2am US Central Time.
+
+<div class="row">
+    <div style="text-align:center">
+        <img src="/statics/img/long-running-lambda.png" alt="Executions/Instance" title="Executions/Instance"/>
+    </div>
+</div>
