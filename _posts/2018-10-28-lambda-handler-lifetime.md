@@ -85,8 +85,8 @@ Instead of seeing one instanceId per request, we saw many requests being handled
 <br/>
 What this meant was that the application container for a Lambda function was spun up and reused to service **multiple** requests.
 This was the first bit of insight into how AWS makes Lambda functions work efficiently.
-One way I’ve been able to think about the underlying infrastructure was equating it to an elastic thread pool. 
-Lambda (or the thread pool), maintains some minimum number of provisioned instances (or threads) responsible for servicing traffic.
+One way I’ve been able to think about the underlying infrastructure was equating it to an elastic container pool. 
+Lambda (or the container pool), maintains some minimum number of provisioned instances responsible for servicing traffic.
 When a request comes in, Lambda attempts to pull from it’s pool of existing containers.
 If we were able to find an existing container, then it is used to service the current request. 
 If we were unable to find an existing container, then we spin up a new one to service the current request (cold start). 
