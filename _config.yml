@@ -32,7 +32,7 @@ include:
 keep_files:
   - statics
 
-gems:
+plugins:
   - jekyll-archives
   - jekyll-feed
   - jekyll-paginate
