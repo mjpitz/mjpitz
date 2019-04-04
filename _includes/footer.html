@@ -1,4 +1,4 @@
-<div id="mjpitz-footer-banner" style="padding:25px 0; margin-top: 50px;">
+<div style="padding:25px 0; margin-top: 50px;">
     <div>
         {% include analytics.html %}
 
@@ -7,13 +7,9 @@
 
         <script>
             $(function () {
-                $('[data-toggle="tooltip"]').tooltip();
+                //$('[data-toggle="tooltip"]').tooltip();
+                $('.collapse').collapse({ toggle: false })
             });
         </script>
-    </div>
-    <div class="text-center">
-        <div>Copyright &copy; {{ site.time | date: '%Y' }}</div>
-        <div>Mya Pitzeruse</div>
-        <div>All rights reserved</div>
     </div>
 </div>

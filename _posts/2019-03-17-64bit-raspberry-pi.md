@@ -1,15 +1,19 @@
 ---
 layout: post
-title: "3 Steps to a 64bit Raspberry Pi 3 B/B+"
+title: "Easy Steps to a 64bit Raspberry Pi 3 B/B+"
+tags:
+  - iot
+  - raspberrypi
 
 ---
 
 I was quite surprised to see how under documented installing a 64 bit operating system onto a Raspberry Pi is.
-Many articles out there talk about needing to compile linux, which sounds oh-so-pleasant.
-One day, I stumbled across a 64bit OpenSUSE version that was compatible, but the installation instructions required a linux OS to be done properly.
+Many articles out there talk about needing to compile Linux, which sounds oh-so-pleasant.
+One day, I stumbled across a 64bit OpenSUSE version that was compatible, but the installation instructions required a Linux OS to be done properly.
 Since I primarily work on OSX, this presented yet another barrier.
 
 After a lot of searching around, I finally found a straight forward and simple way to do it.
+<!--more-->
 I remember hearing about Ubuntu's active support for ARM.
 I went to the [18.04 release page](http://cdimage.ubuntu.com/ubuntu/releases/bionic/release/) and looked at what they offer out of box.
 They not only included the ARM server images, but they also provide an image built specifically for the Raspberry Pi.
@@ -29,5 +33,5 @@ Quite often, it's referenced as an installation method for creating bootable med
 That's it!
 The default hostname, username and password are `ubuntu`.
 One of the immediate differences you'll probably notice is that the node will not be resolvable via `ubuntu.local`.
-(This presumes that your router supports network level hostnames).
+(This presumes that your router supports network level host names).
 You'll need to get the IP address through your router's management console or by grabbing it from the Pi directly.

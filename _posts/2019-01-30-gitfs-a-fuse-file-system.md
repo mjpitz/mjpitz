@@ -1,6 +1,9 @@
 ---
 layout: post
 title: "gitfs - A FUSE File System"
+tags:
+  - golang
+  - fuse
 
 ---
 
@@ -122,7 +125,7 @@ But it was a lot.
 
 In many cases, the error logs were enough to understand what went wrong.
 To reduce the volume in the typical case, I implemented a `DEBUG` mode.
-By default, the info log is supressed.
+By default, the info log is suppressed.
 When `DEBUG` is set to `true`, the info log and the additional details are logged to stdout.
 Since debugging now requires restarting the file system, I needed to understand reproduction steps before restarting.
 By understanding the reproduction steps well, I am able to reproduce the issue quickly, keeping the debug log short and easy to read.

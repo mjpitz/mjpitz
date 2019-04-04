@@ -22,7 +22,6 @@
         {% endif %}
 
         <link rel="stylesheet" href="/statics/libs/bootstrap-3.3.7/css/bootstrap.min.css" />
-        <!--<link rel="stylesheet" href="/statics/libs/font-awesome-4.7.0/css/font-awesome.min.css">-->
         <link rel="stylesheet" href="/statics/libs/font-awesome-5.4.1/css/all.min.css">
         <link rel="stylesheet" href="/statics/css/syntax-highlighting.css"/>
         <link rel="stylesheet" href="/statics/css/app.css"/>
@@ -39,17 +38,97 @@
         <meta name="theme-color" content="#eeeeee">
     </head>
     <body>
-        <div id="mjpitz-header-banner" class="jumbotron"></div>
-
-        <div class="container">
-            <div class="row">
-                <div class="mjpitz-content col-sm-12 col-md-9 col-lg-8" role="main">
-                    {{ content }}
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="navbar-brand">@mjpitz</div>
                 </div>
-                <div class="mjpitz-header col-sm-12 col-md-3 col-lg-4">
-                    {% include header.html %}
+
+                <div class="collapse navbar-collapse" id="menu">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="/">
+                                <i class="fas fa-home" title="Home" data-toggle="tooltip" data-placement="bottom">
+                                    <span>Home</span>
+                                </i>
+                                Home
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/pages/oss">
+                                <i class="fab fa-osi" title="Open Source" data-toggle="tooltip" data-placement="bottom">
+                                    <span>Open Source</span>
+                                </i>
+                                Open Source
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="http://www.github.com/mjpitz">
+                                <i class="fab fa-github" title="GitHub" data-toggle="tooltip" data-placement="bottom">
+                                    <span>GitHub</span>
+                                </i>
+                                GitHub
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="http://www.twitter.com/_mjpitz_">
+                                <i class="fab fa-twitter" title="Twitter" data-toggle="tooltip" data-placement="bottom">
+                                    <span>Twitter</span>
+                                </i>
+                                Twitter
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="http://www.linkedin.com/in/mjpitz">
+                                <i class="fab fa-linkedin" title="LinkedIn" data-toggle="tooltip" data-placement="bottom">
+                                    <span>LinkedIn</span>
+                                </i>
+                                LinkedIn
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://resumes.indeed.com/resume/4ca3a3918eee0c97">
+                                <i class="far fa-file-alt" title="Resume" data-toggle="tooltip" data-placement="bottom">
+                                    <span>Resume</span>
+                                </i>
+                                Resume
+                            </a>
+                        </li>
+
+                        <!-- <li>
+                            <a href="https://www.upwork.com/o/profiles/users/_~012da5a76c04648a88/">
+                                <i class="fab fa-hire-a-helper" title="Freelancing" data-toggle="tooltip" data-placement="bottom">
+                                    <span>Freelancing</span>
+                                </i>
+                            </a>
+                        </li> -->
+
+                        <li>
+                            <a href="/feed.xml">
+                                <i class="fas fa-rss" title="Feed" data-toggle="tooltip" data-placement="bottom">
+                                    <span>Feed</span>
+                                </i>
+                                Feed
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
+        </nav>
+
+        <div class="container mjpitz-content" style="margin-top:82px">
+            {{ content }}
         </div>
         {% include footer.html %}
     </body>
