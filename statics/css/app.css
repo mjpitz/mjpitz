@@ -99,3 +99,7 @@ div.post .post-footer {
     border:none;
     box-shadow:none;
 }
+
+p {
+    margin-bottom: 28px
+}
