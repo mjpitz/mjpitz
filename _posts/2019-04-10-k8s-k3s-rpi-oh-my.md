@@ -9,34 +9,36 @@ tags:
 
 ---
 
-Over the last several days, I've been planning around with spinning up [Kubernetes](https://kubernetes.io) on my cluster of Raspberry Pis.
+Over the last few days, I've been playing [Kubernetes](https://kubernetes.io) on my cluster of Raspberry Pis.
 I hope to share what I learned in the process and some of the tooling that I discovered along the way.
 
 <!--more-->
 
-When I first sat down to install Kubernetes, I wanted to start with something simpler first.
-Using [docker-machine](https://docs.docker.com/machine/), I was able to quickly put together a [Swarm](https://docs.docker.com/engine/swarm/) cluster.
-From there, I figured I'd start in on Kubernetes.
-I don't recall what guide I was following at the time, so it's hard to say where things went wrong.
-All I can remember was spending several hours working on it to only end up with a partially functional cluster.
-As a result, I threw everything out and decided to give [Nomad](https://www.nomadproject.io) a shot instead.
+When I first sat down to install Kubernetes, I wanted to start with something easier first.
+Using [docker-machine](https://docs.docker.com/machine/), I was able to quickly put together a [swarm](https://docs.docker.com/engine/swarm/) cluster.
+Once I had that running for a while, I started in on Kubernetes.
+I don't recall what guide I was following, so it's hard to say where things went wrong.
+All I can remember was spending several hours working on it, only to end up with a partially functional cluster.
+As a result, I threw everything out and decided to try [Nomad](https://www.nomadproject.io).
 Running both [Consul](https://www.consul.io/) and Nomad wound up taking a fraction of that time.
-They required a bit more provisioning compared to the docker-swarm cluster, but it was all easy to automate.
+They required more provisioning compared to the docker-swarm cluster, but it was easy to automate.
 
 <div class="row text-center">
-  <div class="col-xs-6">
+  <div class="col-xs-12 col-sm-1"></div>
+  <div class="col-xs-6 col-sm-5">
     <img title="Consul" alt="Consul" src="/statics/img/consul.png">
   </div>
-  <div class="col-xs-6">
+  <div class="col-xs-6 col-sm-5">
     <img title="Nomad" alt="Nomad" src="/statics/img/nomad.png">
   </div>
+  <div class="col-xs-12 col-sm-1"></div>
 </div>
 <p></p>
 
-Since then, I've discovered several new tools.
-First is [Rancher's RKE](https://github.com/rancher/rke) command line tool.
+After working with swarm and nomad for a few months, I took a look to see what was new for k8s.
+First, I came across [Rancher's RKE](https://github.com/rancher/rke) command line tool.
 It makes provisioning production-ready Kubernetes clusters quick and painless.
-In seeing this, I decided to give it a try and see how it runs on my Raspberry Pis.
+Since it was configuration drive, I decided to give it a try and see how it ran on the Raspberry Pis.
 I was impressed with how easy it was to get everything up.
 I was able to connect to the cluster without an issue, and perform various commands.
 One of it's biggest downsides though was the overhead of some of the integrations.
@@ -48,16 +50,18 @@ Many of my nodes, were already consuming half their memory, and I needed dedicat
 <p></p>
 
 The second tool was [k3s](https://k3s.io/).
-k3s is a lightweight Kubernetes distribution that targets IOT devices.
-k3s is intended to be deployed similarly to k8s so it follows similar architectural principles.
+k3s is a lightweight distribution of kubernetes that targets IOT devices.
+k3s is intended to be deployed similarly to k8s so it follows a similar deployment.
 Where as a solution like [MicroK8s](https://microk8s.io) is more intended to be used as a single node, running on an IOT device.
-A portable kubernetes cluster if you will.
-Given I was looking for something closer to native kubernetes, I decided to give k3s a spin.
+A pocket kubernetes cluster if you will.
+Given I was looking for something closer to native k8s, I decided to give k3s a spin.
 
 ### Starting the control plane
 
-After seeing how RKE worked under the hood as well as some other common usages, I decided to try running all components in docker containers.
+I decided to try running all components in docker containers.
 Typically, I run these processes in systemd but I wanted to consider other alternatives.
+This came out of seeing how RKE provisioned resources under the hood.
+
 k3s requires a docker volume to store the server data.
 Once the volume is created, we can run the k3s server process.
 Note that in the run command below, I'm explicitly disabling the agent.
