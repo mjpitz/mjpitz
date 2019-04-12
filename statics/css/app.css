@@ -1,6 +1,7 @@
 body {
-    background-color: #eee;
+    background-color: #fdfdfd;
     font-size: 14pt;
+    line-height: 1.75em;
 }
 
 /* @media (min-width: 1200px) {
@@ -78,6 +79,13 @@ nav.navbar ul.nav a i span {
 
 div.post {
     padding: 20px
+}
+
+div.panel {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    -webkit-box-shadow: none;
 }
 
 div.post .post-date {

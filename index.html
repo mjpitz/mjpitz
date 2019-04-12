@@ -31,13 +31,13 @@ layout: default
             <div class="row" style="padding: 15px">
                 <div class="col-sm-6 text-left">
                     {% if paginator.previous_page %}
-                    <a class="btn btn-default" href="{{ paginator.previous_page_path }}">&laquo; Previous</a>
+                    <a class="btn btn-default" href="{{ paginator.previous_page_path }}">&laquo; Previous Page</a>
                     {% endif %}
                 </div>
 
                 <div class="col-sm-6 text-right">
                     {% if paginator.next_page %}
-                    <a class="btn btn-default" href="{{ paginator.next_page_path }}">Next &raquo;</a>
+                    <a class="btn btn-default" href="{{ paginator.next_page_path }}">Next Page &raquo;</a>
                     {% endif %}
                 </div>
             </div>
