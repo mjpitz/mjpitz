@@ -30,7 +30,7 @@ Some of them were well documented, but I tended to resort to compiling it myself
 Many people in the ARM community have been waiting for support upstream.
 
 <center>
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Have we finally got upstream official Docker images for Prometheus on ARM? I&#39;ve been having to maintain one for several years...</p>&mdash; Alex Ellis (@alexellisuk) <a href="https://twitter.com/alexellisuk/status/1104361839813640193?ref_src=twsrc%5Etfw">March 9, 2019</a></blockquote><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">This should be available soon hopefully<a href="https://t.co/3TXc4SjIug">https://t.co/3TXc4SjIug</a></p>&mdash; Simon P (@SimonHiker) <a href="https://twitter.com/SimonHiker/status/1104430227785244672?ref_src=twsrc%5Etfw">March 9, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </center>
 
 6 days ago, [Prometheus](https://prometheus.io) merged in support for [ARM based architectures](https://github.com/prometheus/prometheus/pull/5031).
