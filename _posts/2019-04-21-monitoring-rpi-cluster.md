@@ -5,7 +5,6 @@ tags:
   - iot
   - raspberrypi
   - docker
-  - docker-machine
   - monitoring
   - prometheus
 
