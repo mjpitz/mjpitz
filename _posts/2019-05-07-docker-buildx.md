@@ -72,7 +72,7 @@ $ docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t ${PROJE
 ```
 
 What this means is that when a user wants to run your project on an ARM system, they no longer need to reference an architecture specific image or tag.
-Instead, they are able to use the same image and the same tag that they would use on your typical desktop machine.
+Instead, they are able to use the same image ref and the same tag that they would use on your typical desktop machine.
 Once you're satisfied with your build, you can append the `--push` option to the `buildx` command to push the images and manifest list upstream.
 
 ```bash
