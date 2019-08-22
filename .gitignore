@@ -1,7 +1,7 @@
 /.idea
 /*.iml
 /_site
+/vendor
 
-Gemfile.lock
 .jekyll-metadata
 deploy.sh
