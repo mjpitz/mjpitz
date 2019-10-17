@@ -25,6 +25,7 @@ exclude:
   - Gemfile.lock
   - s3_website.yml
   - deploy.sh
+  - vendor
 
 include:
   - pages
