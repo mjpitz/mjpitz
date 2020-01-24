@@ -111,3 +111,11 @@ div.post .post-footer {
 p {
     margin-bottom: 28px
 }
+
+ul.nav-social {
+    float: right !important;
+}
+
+ul.nav-social > li {
+    display: inline-block;
+}
