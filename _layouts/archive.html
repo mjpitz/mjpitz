@@ -1,0 +1,36 @@
+---
+layout: default
+title: Archive
+
+---
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="post">
+            {% if page.type == 'tag' %}
+            <h1>Posts tagged with '{{ page.title }}'</h1>
+            {% else %}
+            <h1>Posts from {{ page.date | date: '%Y' }}</h1>
+            {% endif %}
+
+            {% for post in page.posts %}
+            <div style="padding: 15px 0;">
+                <a href="{{ post.url }}">
+                    <h2>{{ post.title }}</h2>
+                </a>
+                <div>
+                    <p>{{ post.date | date: '%B %d, %Y' }}</p>
+                </div>
+
+                <div>
+                    {{ post.excerpt }}
+                </div>
+
+                <p style="text-align: right">
+                    <a href="{{ post.url }}">Read More &raquo;</a>
+                </p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
