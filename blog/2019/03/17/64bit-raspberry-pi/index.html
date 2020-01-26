@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link type="application/atom+xml" rel="alternate" href="https://www.mjpitz.com/feed.xml" title="Mya Pitzeruse" />
+        <meta name="author" content="Mya Pitzeruse">
+
+        <title>
+            
+                Easy Steps to a 64bit Raspberry Pi 3 B/B+
+            
+        </title>
+
+        
+
+        <link rel="stylesheet" href="/statics/libs/bootstrap-3.3.7/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="/statics/libs/font-awesome-5.4.1/css/all.min.css">
+        <link rel="stylesheet" href="/statics/css/syntax-highlighting.css"/>
+        <link rel="stylesheet" href="/statics/css/app.css"/>
+
+        <link rel="apple-touch-icon" sizes="180x180" href="/statics/img/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/statics/img/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/statics/img/favicon-16x16.png">
+        <link rel="manifest" href="/statics/img/site.webmanifest">
+        <link rel="mask-icon" href="/statics/img/safari-pinned-tab.svg" color="#a28ad2">
+        <link rel="shortcut icon" href="/statics/img/favicon.ico">
+        <link rel="icon" href="/statics/img/favicon.ico" type="image/x-icon">
+        <meta name="msapplication-TileColor" content="#eeeeee">
+        <meta name="msapplication-config" content="/statics/img/browserconfig.xml">
+        <meta name="theme-color" content="#eeeeee">
+    </head>
+    <body>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="navbar-brand">@mjpitz</div>
+                </div>
+
+                <div class="collapse navbar-collapse" id="menu">
+                    <ul class="nav navbar-nav mr-auto">
+                        <li>
+                            <a href="/">
+                                <i class="fas fa-home" title="Blog" data-toggle="tooltip" data-placement="bottom">
+                                    <span>Blog</span>
+                                </i>
+                                Blog
+                            </a>
+                        </li>
+                    </ul>
+                    
+                    <ul class="nav navbar-nav nav-social">
+                        <li>
+                            <a href="http://www.github.com/mjpitz">
+                                <i class="fab fa-github" title="GitHub" data-toggle="tooltip" data-placement="bottom">
+                                    <span>GitHub</span>
+                                </i>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://hub.docker.com/u/mjpitz">
+                                <i class="fab fa-docker" title="Docker" data-toggle="tooltip" data-placement="bottom">
+                                    <span>Docker</span>
+                                </i>
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="http://www.twitter.com/_mjpitz_">
+                                <i class="fab fa-twitter" title="Twitter" data-toggle="tooltip" data-placement="bottom">
+                                    <span>Twitter</span>
+                                </i>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="http://www.linkedin.com/in/mjpitz">
+                                <i class="fab fa-linkedin" title="LinkedIn" data-toggle="tooltip" data-placement="bottom">
+                                    <span>LinkedIn</span>
+                                </i>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/feed.xml">
+                                <i class="fas fa-rss" title="Feed" data-toggle="tooltip" data-placement="bottom">
+                                    <span>Feed</span>
+                                </i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container mjpitz-content" style="margin-top:82px">
+            <div class="panel panel-default">
+    <div class="panel-body">
+        <div class="post">
+            <h1 class="post-title">Easy Steps to a 64bit Raspberry Pi 3 B/B+</h1>
+            <p class="post-date">Posted on March 17, 2019</p>
+
+            <div class="post-content">
+                <p>I was quite surprised to see how under documented installing a 64 bit operating system onto a Raspberry Pi is.
+Many articles out there talk about needing to compile Linux, which sounds oh-so-pleasant.
+One day, I stumbled across a 64bit OpenSUSE version that was compatible, but the installation instructions required a Linux OS to be done properly.
+Since I primarily work on OSX, this presented yet another barrier.</p>
+
+<p>After a lot of searching around, I finally found a straight forward and simple way to do it.
+<!--more-->
+I remember hearing about Ubuntu’s active support for ARM.
+I went to the <a href="http://cdimage.ubuntu.com/ubuntu/releases/bionic/release/">18.04 release page</a> and looked at what they offer out of box.
+They not only included the ARM server images, but they also provide an image built specifically for the Raspberry Pi.</p>
+
+<p><img src="/statics/img/ubuntu-downloads.png" alt="Ubuntu Downloads" /></p>
+
+<p>The reason I really liked this option is because the image that is produced by Ubuntu is compatible with <a href="https://www.balena.io/etcher/">Balena Etcher</a>.
+Etcher is a rather popular tool used to quickly flash SD cards with new operating systems.
+Quite often, it’s referenced as an installation method for creating bootable media.</p>
+
+<ol>
+  <li>Download and install Balena Etcher from their site.</li>
+  <li>Download <a href="http://cdimage.ubuntu.com/ubuntu/releases/bionic/release/ubuntu-18.04.2-preinstalled-server-arm64+raspi3.img.xz">Ubuntu 18.04 for Raspberry Pi 3</a></li>
+  <li>Flash downloaded ubuntu.img.xz onto your flash drives using Etcher</li>
+  <li>Once complete, eject the flash drive and insert into your Raspberry Pi.</li>
+  <li>Connect your pi to the network and a power source.</li>
+</ol>
+
+<p>That’s it!
+The default hostname, username and password are <code class="highlighter-rouge">ubuntu</code>.
+One of the immediate differences you’ll probably notice is that the node will not be resolvable via <code class="highlighter-rouge">ubuntu.local</code>.
+(This presumes that your router supports network level host names).
+You’ll need to get the IP address through your router’s management console or by grabbing it from the Pi directly.</p>
+
+            </div>
+
+            <div class="text-center">
+    <br/>
+    <br/>
+    <p><i>Share this article on</i></p>
+
+    <div style="font-size: 36px;">
+        <a rel="nofollow" target="_blank" href="https://facebook.com/sharer.php?u=https://www.mjpitz.com/blog/2019/03/17/64bit-raspberry-pi/">
+            <i class="fab fa-facebook" title="Facebook" data-toggle="tooltip" data-placement="bottom"></i></a>
+        &nbsp;
+        <a rel="nofollow" target="_blank" href="https://twitter.com/intent/tweet?text=Easy Steps to a 64bit Raspberry Pi 3 B/B+&url=https://www.mjpitz.com/blog/2019/03/17/64bit-raspberry-pi/&via=&related=">
+            <i class="fab fa-twitter" title="Twitter" data-toggle="tooltip" data-placement="bottom"></i></a>
+        &nbsp;
+        <a rel="nofollow" target="_blank" href="http://www.linkedin.com/sharing/share-offsite/?url=https://www.mjpitz.com/blog/2019/03/17/64bit-raspberry-pi/">
+            <i class="fab fa-linkedin" title="LinkedIn" data-toggle="tooltip" data-placement="bottom"></i></a>
+    </div>
+</div>
+
+
+            <div class="post-footer row">
+                <div class="col-sm-6 text-left">
+                    
+                        <a class="btn btn-default" href="/blog/2019/01/30/gitfs-a-fuse-file-system/">&laquo; Previous Post</a>
+                    
+                </div>
+
+                <div class="col-sm-6 text-right">
+                    
+                    <a class="btn btn-default" href="/blog/2019/04/10/k8s-k3s-rpi-oh-my/">Next Post &raquo;</a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        </div>
+        <div style="padding:25px 0; margin-top: 50px;">
+    <div>
+        
+<!-- Google Analytics (http://google.com/analytics) -->
+<script>
+    !function(j,e,k,y,l,L){j.GoogleAnalyticsObject=y,j[y]||(j[y]=function(){
+        (j[y].q=j[y].q||[]).push(arguments)}),j[y].l=+new Date,l=e.createElement(k),
+            L=e.getElementsByTagName(k)[0],l.src='//www.google-analytics.com/analytics.js',
+            L.parentNode.insertBefore(l,L)}(window,document,'script','ga');
+    ga('create', 'UA-39314903-5', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+        <script src="/statics/libs/jquery-2.1.4/jquery.min.js"></script>
+        <script src="/statics/libs/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+
+        <script>
+            $(function () {
+                //$('[data-toggle="tooltip"]').tooltip();
+                $('.collapse').collapse({ toggle: false })
+            });
+        </script>
+    </div>
+</div>
+    </body>
+</html>

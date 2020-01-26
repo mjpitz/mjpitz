@@ -1,7 +1,0 @@
-/.idea
-/*.iml
-/_site
-/vendor
-
-.jekyll-metadata
-deploy.sh

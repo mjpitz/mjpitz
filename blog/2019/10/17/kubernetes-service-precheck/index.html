@@ -9,7 +9,7 @@
 
         <title>
             
-                Mya Pitzeruse
+                Checking Service Dependencies in Kubernetes
             
         </title>
 
@@ -105,39 +105,11 @@
             <div class="panel panel-default">
     <div class="panel-body">
         <div class="post">
-            
-            <div style="padding: 15px 0">
-                <a href="/blog/2020/01/24/building-depscloud/">
-                    <h2>Building deps.cloud</h2>
-                </a>
-                <div>
-                    <p>January 24, 2020</p>
-                </div>
+            <h1 class="post-title">Checking Service Dependencies in Kubernetes</h1>
+            <p class="post-date">Posted on October 17, 2019</p>
 
-                <div>
-                    <p>Over the last year, I’ve been heavily working on <a href="https://deps.cloud">deps.cloud</a>.
-deps.cloud draws it’s inspiration from a project that I worked on at <a href="https://indeed.com">Indeed.com</a>.
-Since it’s original inception, there had been a heavy push to move it into the open source space.
-In this post, I’ll discuss the process and rationale I applied as I rewrote this project in the open.</p>
-
-
-                </div>
-
-                <p style="text-align: right">
-                    <a href="/blog/2020/01/24/building-depscloud/">Read More &raquo;</a>
-                </p>
-            </div>
-            
-            <div style="padding: 15px 0">
-                <a href="/blog/2019/10/17/kubernetes-service-precheck/">
-                    <h2>Checking Service Dependencies in Kubernetes</h2>
-                </a>
-                <div>
-                    <p>October 17, 2019</p>
-                </div>
-
-                <div>
-                    <p>Back in July, I found myself needing to better coordinate deployments of my applications to <a href="https://kubernetes.io/">Kubernetes</a>.
+            <div class="post-content">
+                <p>Back in July, I found myself needing to better coordinate deployments of my applications to <a href="https://kubernetes.io/">Kubernetes</a>.
 After searching around, I found many ways that people where trying to solve this problem.
 Some used shell scripts to apply multiple YAML files with a fixed time sleep between them.
 Others used shell scripts and tailed the rollout using <code class="highlighter-rouge">kubectl rollout status -w</code>.
@@ -152,112 +124,103 @@ The second was to enable services to be checked, independent of the application.
 
 <p>In this post, I’ll demonstrate how to use my <a href="https://hub.docker.com/r/mjpitz/service-precheck">service-precheck</a> initialization container (built off of the Alibaba blog post) to ensure upstream systems are up before attempting to start a downstream system.</p>
 
+<!--more-->
 
-                </div>
+<h2 id="concepts">Concepts</h2>
 
-                <p style="text-align: right">
-                    <a href="/blog/2019/10/17/kubernetes-service-precheck/">Read More &raquo;</a>
-                </p>
+<p>Before reading this blog post, it would be helpful to familiarize yourself with some Kubernetes concepts (if you don’t already know them).</p>
+
+<p><a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/">Liveness and readiness probes</a> are used to ensure your applications is live and ready. 
+Readiness probes are used to determine when an application is ready and able to start receiving traffic. 
+While liveness probes are used to check if the application is alive and running. 
+A key difference here is that readiness probes control a pods entry in DNS. 
+When a pod’s readiness probe is failing, no DNS entry will be available for the pod.</p>
+
+<p>A <a href="https://kubernetes.io/docs/concepts/services-networking/service/#headless-services">headless service</a> is one who does not expose a <code class="highlighter-rouge">clusterIP</code>, and instead exposes the endpoints of a service as entries in DNS (when using a selector).</p>
+
+<p><a href="https://kubernetes.io/docs/concepts/workloads/pods/init-containers/">initContainers</a> are a set of containers within a pod that run before all other containers. 
+These containers tend to be relatively short-lived and are typically used to complete some work before the primary process. 
+Examples include preparing temporary file systems, initializing some data on disk, as well as probing required services.</p>
+
+<h2 id="use-case-mysql-primary-and-replica">Use Case: MySQL Primary and Replica</h2>
+
+<p>Consider the case laid out in the Alababa blog post using MySQL. 
+Many applications expect to have both read-write and read-only connections. 
+These connection strings often have two different targets. 
+To ensure these connection strings resolve, simply pass the list of addresses as arguments to the precheck container.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      <span class="na">initContainers</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">service-precheck</span>
+        <span class="na">image</span><span class="pi">:</span> <span class="s">mjpitz/service-precheck:latest</span>
+        <span class="na">imagePullPolicy</span><span class="pi">:</span> <span class="s">IfNotPresent</span>
+        <span class="na">args</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s2">"</span><span class="s">mysql-0.mysql.namespace"</span>
+        <span class="pi">-</span> <span class="s2">"</span><span class="s">mysql-read.namespace"</span>
+</code></pre></div></div>
+
+<p>This will ensure that the <code class="highlighter-rouge">nslookup</code> for <code class="highlighter-rouge">mysql-0.mysql.namespace</code> and <code class="highlighter-rouge">mysql-read.namespace</code> return entries before exiting successfully.</p>
+
+<h2 id="use-case-zookeeper-quorum">Use Case: Zookeeper Quorum</h2>
+
+<p>Another popular use case is ensuring quorum amongst a coordinating service, like Zookeeper and etcd. 
+A recent example where I’ve needed to add this precheck in was in some exploration with <a href="https://github.com/apache-spark-on-k8s/kubernetes-HDFS">HDFS on Kubernetes</a>. 
+All the components of HDFS leverage Zookeeper for service discovery and leader election. 
+Until Zookeeper is fully initializied, the namenodes, journalnodes, and datanodes will crash loop looking for the Zookeeper entries. 
+With the addition of a service-precheck definition, the namenodes, journalnodes, and datanodes were all able to wait for Zookeeper before starting up.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      <span class="na">initContainers</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">service-precheck</span>
+        <span class="na">image</span><span class="pi">:</span> <span class="s">mjpitz/service-precheck:latest</span>
+        <span class="na">imagePullPolicy</span><span class="pi">:</span> <span class="s">IfNotPresent</span>
+        <span class="na">args</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s2">"</span><span class="s">zookeeper-0.zookeeper-headless.namespace"</span>
+        <span class="pi">-</span> <span class="s2">"</span><span class="s">zookeeper-1.zookeeper-headless.namespace"</span>
+        <span class="pi">-</span> <span class="s2">"</span><span class="s">zookeeper-2.zookeeper-headless.namespace"</span>
+</code></pre></div></div>
+
+<p>While letting a pod crash loop until it fixes itself is an option, it tends to come at a cost. 
+The container engine on that host needs to continually restart the pod. 
+More pod events means more load on your control plane. 
+By using service-precheck, I’ve been able to better manage my cluster deployments using GitOps.</p>
+
+<p>Check it out on <a href="https://github.com/mjpitz/service-precheck">GitHub</a> and <a href="https://hub.docker.com/r/mjpitz/service-precheck">Docker Hub</a>.</p>
+
             </div>
-            
-            <div style="padding: 15px 0">
-                <a href="/blog/2019/05/07/docker-buildx/">
-                    <h2>Using docker-buildx for Multi-architecture Containers</h2>
-                </a>
-                <div>
-                    <p>May 07, 2019</p>
-                </div>
 
-                <div>
-                    <p>When you build a container image, it’s typically only built for one platform (<code class="highlighter-rouge">linux</code>) and one architecture (<code class="highlighter-rouge">amd64</code>).
-As the Internet of Things continues to grow, the demand for more <code class="highlighter-rouge">arm</code> images increased as well.
-Traditionally, in order to produce an <code class="highlighter-rouge">arm</code> image, you need an <code class="highlighter-rouge">arm</code> device to do the build on.
-As a result, most projects wind up missing <code class="highlighter-rouge">arm</code> support.</p>
+            <div class="text-center">
+    <br/>
+    <br/>
+    <p><i>Share this article on</i></p>
 
-<p><a href="https://github.com/moby/buildkit">BuildKit</a> provides emulation capabilities that support multi-architecture builds.
-With BuildKit, you build container images across multiple architectures concurrently.
-This core utility backs <code class="highlighter-rouge">docker buildx</code>, a multi-architecture build utility for docker.
-In this post, I’ll discuss why you should produce multi-architecture container images and demonstrate how to use <code class="highlighter-rouge">docker buildx</code> to do it.</p>
+    <div style="font-size: 36px;">
+        <a rel="nofollow" target="_blank" href="https://facebook.com/sharer.php?u=https://www.mjpitz.com/blog/2019/10/17/kubernetes-service-precheck/">
+            <i class="fab fa-facebook" title="Facebook" data-toggle="tooltip" data-placement="bottom"></i></a>
+        &nbsp;
+        <a rel="nofollow" target="_blank" href="https://twitter.com/intent/tweet?text=Checking Service Dependencies in Kubernetes&url=https://www.mjpitz.com/blog/2019/10/17/kubernetes-service-precheck/&via=&related=">
+            <i class="fab fa-twitter" title="Twitter" data-toggle="tooltip" data-placement="bottom"></i></a>
+        &nbsp;
+        <a rel="nofollow" target="_blank" href="http://www.linkedin.com/sharing/share-offsite/?url=https://www.mjpitz.com/blog/2019/10/17/kubernetes-service-precheck/">
+            <i class="fab fa-linkedin" title="LinkedIn" data-toggle="tooltip" data-placement="bottom"></i></a>
+    </div>
+</div>
 
 
-                </div>
-
-                <p style="text-align: right">
-                    <a href="/blog/2019/05/07/docker-buildx/">Read More &raquo;</a>
-                </p>
-            </div>
-            
-            <div style="padding: 15px 0">
-                <a href="/blog/2019/05/02/from-apache2-to-mit/">
-                    <h2>Moving Licenses - Apache 2.0 to MIT</h2>
-                </a>
-                <div>
-                    <p>May 02, 2019</p>
-                </div>
-
-                <div>
-                    <p>Yesterday, I decided to switch the license that I apply to my personal projects.
-Many open source projects use the Apache 2.0 license.
-After reading through it a few times, I liked the level of coverage that it provided.
-It was however a bit wordy in my opinion.
-These were often simple little side projects that I was hacking on in my free time.</p>
-
-<p>After some discussion with others in the community and a few podcasts, I decided to make a switch.
-I wanted to preserve a lot of what the Apache license granted, but simplify the wording quite a bit.
-The MIT license enables many of the same grants, while reducing the verbiage used to describe them.
-As an Engineer, I understand MIT much more than I understand the Apache license.
-From discussions, the MIT license often presents a lower barrier to entry when compared to Apache.
-This was exactly what I was looking for on my side projects.</p>
-
-                </div>
-
-                <p style="text-align: right">
-                    <a href="/blog/2019/05/02/from-apache2-to-mit/">Read More &raquo;</a>
-                </p>
-            </div>
-            
-            <div style="padding: 15px 0">
-                <a href="/blog/2019/04/21/monitoring-rpi-cluster/">
-                    <h2>Raspberry Pi Cluster Monitoring</h2>
-                </a>
-                <div>
-                    <p>April 21, 2019</p>
-                </div>
-
-                <div>
-                    <p>In my last few posts, I talked a bit about my at home development cluster.
-Due to the flexibility of my cluster, I wanted to provide a monitoring solution that was valuable across each technology I use.
-In this post, I discuss how monitoring is setup on my cluster.
-I’ll walk through setting up each node, the Prometheus server, and the Graphana UI.</p>
-
-
-                </div>
-
-                <p style="text-align: right">
-                    <a href="/blog/2019/04/21/monitoring-rpi-cluster/">Read More &raquo;</a>
-                </p>
-            </div>
-            
-
-            
-            <!--<div class="panel panel-default">-->
-                <!--<div class="panel-body">-->
-            <div class="row" style="padding: 15px">
+            <div class="post-footer row">
                 <div class="col-sm-6 text-left">
+                    
+                        <a class="btn btn-default" href="/blog/2019/05/07/docker-buildx/">&laquo; Previous Post</a>
                     
                 </div>
 
                 <div class="col-sm-6 text-right">
                     
-                    <a class="btn btn-default" href="/blog/page/2/">Next Page &raquo;</a>
+                    <a class="btn btn-default" href="/blog/2020/01/24/building-depscloud/">Next Post &raquo;</a>
                     
                 </div>
             </div>
-            
         </div>
     </div>
 </div>
-
         </div>
         <div style="padding:25px 0; margin-top: 50px;">
     <div>

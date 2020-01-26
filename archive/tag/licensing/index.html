@@ -9,7 +9,7 @@
 
         <title>
             
-                Mya Pitzeruse
+                licensing
             
         </title>
 
@@ -106,88 +106,11 @@
     <div class="panel-body">
         <div class="post">
             
-            <div style="padding: 15px 0">
-                <a href="/blog/2020/01/24/building-depscloud/">
-                    <h2>Building deps.cloud</h2>
-                </a>
-                <div>
-                    <p>January 24, 2020</p>
-                </div>
-
-                <div>
-                    <p>Over the last year, I’ve been heavily working on <a href="https://deps.cloud">deps.cloud</a>.
-deps.cloud draws it’s inspiration from a project that I worked on at <a href="https://indeed.com">Indeed.com</a>.
-Since it’s original inception, there had been a heavy push to move it into the open source space.
-In this post, I’ll discuss the process and rationale I applied as I rewrote this project in the open.</p>
-
-
-                </div>
-
-                <p style="text-align: right">
-                    <a href="/blog/2020/01/24/building-depscloud/">Read More &raquo;</a>
-                </p>
-            </div>
+            <h1>Posts tagged with 'licensing'</h1>
             
-            <div style="padding: 15px 0">
-                <a href="/blog/2019/10/17/kubernetes-service-precheck/">
-                    <h2>Checking Service Dependencies in Kubernetes</h2>
-                </a>
-                <div>
-                    <p>October 17, 2019</p>
-                </div>
 
-                <div>
-                    <p>Back in July, I found myself needing to better coordinate deployments of my applications to <a href="https://kubernetes.io/">Kubernetes</a>.
-After searching around, I found many ways that people where trying to solve this problem.
-Some used shell scripts to apply multiple YAML files with a fixed time sleep between them.
-Others used shell scripts and tailed the rollout using <code class="highlighter-rouge">kubectl rollout status -w</code>.
-Now, I manage a lot of my deployments using <a href="https://www.weave.works/technologies/gitops/">GitOps</a> and <a href="https://github.com/fluxcd/flux">Flux</a>.
-So leveraging these shell scripts to manage my rollouts into clusters wasn’t really an option.</p>
-
-<p>It wasn’t until I came across <a href="https://us.alibabacloud.com">Alibaba Cloud’s</a> blog post on <a href="https://www.alibabacloud.com/blog/kubernetes-demystified-solving-service-dependencies_594110">solving service dependencies</a> that I felt like I had something to work with.
-The article described two techniques. 
-The first was inspecting dependencies within the application itself. 
-At Indeed, we leverage our <a href="http://github.com/indeedeng/status">status</a> library to do this. 
-The second was to enable services to be checked, independent of the application.</p>
-
-<p>In this post, I’ll demonstrate how to use my <a href="https://hub.docker.com/r/mjpitz/service-precheck">service-precheck</a> initialization container (built off of the Alibaba blog post) to ensure upstream systems are up before attempting to start a downstream system.</p>
-
-
-                </div>
-
-                <p style="text-align: right">
-                    <a href="/blog/2019/10/17/kubernetes-service-precheck/">Read More &raquo;</a>
-                </p>
-            </div>
             
-            <div style="padding: 15px 0">
-                <a href="/blog/2019/05/07/docker-buildx/">
-                    <h2>Using docker-buildx for Multi-architecture Containers</h2>
-                </a>
-                <div>
-                    <p>May 07, 2019</p>
-                </div>
-
-                <div>
-                    <p>When you build a container image, it’s typically only built for one platform (<code class="highlighter-rouge">linux</code>) and one architecture (<code class="highlighter-rouge">amd64</code>).
-As the Internet of Things continues to grow, the demand for more <code class="highlighter-rouge">arm</code> images increased as well.
-Traditionally, in order to produce an <code class="highlighter-rouge">arm</code> image, you need an <code class="highlighter-rouge">arm</code> device to do the build on.
-As a result, most projects wind up missing <code class="highlighter-rouge">arm</code> support.</p>
-
-<p><a href="https://github.com/moby/buildkit">BuildKit</a> provides emulation capabilities that support multi-architecture builds.
-With BuildKit, you build container images across multiple architectures concurrently.
-This core utility backs <code class="highlighter-rouge">docker buildx</code>, a multi-architecture build utility for docker.
-In this post, I’ll discuss why you should produce multi-architecture container images and demonstrate how to use <code class="highlighter-rouge">docker buildx</code> to do it.</p>
-
-
-                </div>
-
-                <p style="text-align: right">
-                    <a href="/blog/2019/05/07/docker-buildx/">Read More &raquo;</a>
-                </p>
-            </div>
-            
-            <div style="padding: 15px 0">
+            <div style="padding: 15px 0;">
                 <a href="/blog/2019/05/02/from-apache2-to-mit/">
                     <h2>Moving Licenses - Apache 2.0 to MIT</h2>
                 </a>
@@ -214,44 +137,6 @@ This was exactly what I was looking for on my side projects.</p>
                 <p style="text-align: right">
                     <a href="/blog/2019/05/02/from-apache2-to-mit/">Read More &raquo;</a>
                 </p>
-            </div>
-            
-            <div style="padding: 15px 0">
-                <a href="/blog/2019/04/21/monitoring-rpi-cluster/">
-                    <h2>Raspberry Pi Cluster Monitoring</h2>
-                </a>
-                <div>
-                    <p>April 21, 2019</p>
-                </div>
-
-                <div>
-                    <p>In my last few posts, I talked a bit about my at home development cluster.
-Due to the flexibility of my cluster, I wanted to provide a monitoring solution that was valuable across each technology I use.
-In this post, I discuss how monitoring is setup on my cluster.
-I’ll walk through setting up each node, the Prometheus server, and the Graphana UI.</p>
-
-
-                </div>
-
-                <p style="text-align: right">
-                    <a href="/blog/2019/04/21/monitoring-rpi-cluster/">Read More &raquo;</a>
-                </p>
-            </div>
-            
-
-            
-            <!--<div class="panel panel-default">-->
-                <!--<div class="panel-body">-->
-            <div class="row" style="padding: 15px">
-                <div class="col-sm-6 text-left">
-                    
-                </div>
-
-                <div class="col-sm-6 text-right">
-                    
-                    <a class="btn btn-default" href="/blog/page/2/">Next Page &raquo;</a>
-                    
-                </div>
             </div>
             
         </div>

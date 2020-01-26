@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link type="application/atom+xml" rel="alternate" href="https://www.mjpitz.com/feed.xml" title="Mya Pitzeruse" />
+        <meta name="author" content="Mya Pitzeruse">
+
+        <title>
+            
+                Introducing LAAS
+            
+        </title>
+
+        
+
+        <link rel="stylesheet" href="/statics/libs/bootstrap-3.3.7/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="/statics/libs/font-awesome-5.4.1/css/all.min.css">
+        <link rel="stylesheet" href="/statics/css/syntax-highlighting.css"/>
+        <link rel="stylesheet" href="/statics/css/app.css"/>
+
+        <link rel="apple-touch-icon" sizes="180x180" href="/statics/img/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/statics/img/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/statics/img/favicon-16x16.png">
+        <link rel="manifest" href="/statics/img/site.webmanifest">
+        <link rel="mask-icon" href="/statics/img/safari-pinned-tab.svg" color="#a28ad2">
+        <link rel="shortcut icon" href="/statics/img/favicon.ico">
+        <link rel="icon" href="/statics/img/favicon.ico" type="image/x-icon">
+        <meta name="msapplication-TileColor" content="#eeeeee">
+        <meta name="msapplication-config" content="/statics/img/browserconfig.xml">
+        <meta name="theme-color" content="#eeeeee">
+    </head>
+    <body>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="navbar-brand">@mjpitz</div>
+                </div>
+
+                <div class="collapse navbar-collapse" id="menu">
+                    <ul class="nav navbar-nav mr-auto">
+                        <li>
+                            <a href="/">
+                                <i class="fas fa-home" title="Blog" data-toggle="tooltip" data-placement="bottom">
+                                    <span>Blog</span>
+                                </i>
+                                Blog
+                            </a>
+                        </li>
+                    </ul>
+                    
+                    <ul class="nav navbar-nav nav-social">
+                        <li>
+                            <a href="http://www.github.com/mjpitz">
+                                <i class="fab fa-github" title="GitHub" data-toggle="tooltip" data-placement="bottom">
+                                    <span>GitHub</span>
+                                </i>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://hub.docker.com/u/mjpitz">
+                                <i class="fab fa-docker" title="Docker" data-toggle="tooltip" data-placement="bottom">
+                                    <span>Docker</span>
+                                </i>
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="http://www.twitter.com/_mjpitz_">
+                                <i class="fab fa-twitter" title="Twitter" data-toggle="tooltip" data-placement="bottom">
+                                    <span>Twitter</span>
+                                </i>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="http://www.linkedin.com/in/mjpitz">
+                                <i class="fab fa-linkedin" title="LinkedIn" data-toggle="tooltip" data-placement="bottom">
+                                    <span>LinkedIn</span>
+                                </i>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/feed.xml">
+                                <i class="fas fa-rss" title="Feed" data-toggle="tooltip" data-placement="bottom">
+                                    <span>Feed</span>
+                                </i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container mjpitz-content" style="margin-top:82px">
+            <div class="panel panel-default">
+    <div class="panel-body">
+        <div class="post">
+            <h1 class="post-title">Introducing LAAS</h1>
+            <p class="post-date">Posted on December 05, 2015</p>
+
+            <div class="post-content">
+                <p><a href="https://github.com/jpitz/laas">LAAS</a> is an abbreviation for <a href="http://leveldb.org/">LevelDB</a> as a service.
+<a href="http://leveldb.org/">LevelDB</a> is an implementation of a <a href="https://en.wikipedia.org/wiki/Log-structured_merge-tree">log structured merge tree</a> (LSMTree) provided by Google.
+This data structure aimed at providing a high write throughput.
+When attempting to use <a href="http://leveldb.org/">LevelDB</a>, I found it difficult to track down supported libraries in different languages.
+Additionally, the fact that it’s labeled as a database and doesn’t provide a service was troublesome.
+I wrote <a href="https://github.com/jpitz/laas">LAAS</a> to make the adoption of <a href="http://leveldb.org/">LevelDB</a> easy for any language.
+It does this by introducing a RESTful API to the underlying functionality.
+HTTP request libraries are a dime a dozen, which drove the choice for a RESTful implementation.</p>
+
+<!--more-->
+
+<h2 id="getting-started">Getting Started</h2>
+
+<p>The easiest way to get started with <a href="https://github.com/jpitz/laas">LAAS</a> is to install it globally with <a href="https://docs.npmjs.com/getting-started/installing-node">NPM</a>.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">npm <span class="nb">install</span> <span class="nt">-g</span> laas</code></pre></figure>
+
+<p>After executing this command, you should have access to the <code class="highlighter-rouge">laas</code> command.
+This command provides a range of functionality, the core of which is to manage the service layer.
+By executing <code class="highlighter-rouge">laas start</code>, you can start the service running in the background on port 6931.
+You can verify that the service is running by executing the <code class="highlighter-rouge">laas status</code> command.</p>
+
+<p>For more information, check out:</p>
+
+<ul>
+  <li><a href="https://github.com/jpitz/laas/blob/master/docs/api-docs.md">API Documentation</a></li>
+  <li><a href="https://github.com/jpitz/laas/blob/master/docs/cli-docs.md">CLI Documentation</a></li>
+  <li><a href="https://github.com/jpitz/laas/blob/master/README.md">Project README</a></li>
+</ul>
+
+<h2 id="features-in-107">Features in 1.0.7</h2>
+
+<ul>
+  <li>Databases
+    <ul>
+      <li>create</li>
+      <li>list available</li>
+    </ul>
+  </li>
+  <li>Documents
+    <ul>
+      <li>insert (Single/Batch)</li>
+      <li>read (Single/Batch)</li>
+      <li>delete (Single/Batch)</li>
+    </ul>
+  </li>
+  <li>Statistics
+    <ul>
+      <li>per database</li>
+    </ul>
+  </li>
+</ul>
+
+
+            </div>
+
+            <div class="text-center">
+    <br/>
+    <br/>
+    <p><i>Share this article on</i></p>
+
+    <div style="font-size: 36px;">
+        <a rel="nofollow" target="_blank" href="https://facebook.com/sharer.php?u=https://www.mjpitz.com/blog/2015/12/05/introducing-laas/">
+            <i class="fab fa-facebook" title="Facebook" data-toggle="tooltip" data-placement="bottom"></i></a>
+        &nbsp;
+        <a rel="nofollow" target="_blank" href="https://twitter.com/intent/tweet?text=Introducing LAAS&url=https://www.mjpitz.com/blog/2015/12/05/introducing-laas/&via=&related=">
+            <i class="fab fa-twitter" title="Twitter" data-toggle="tooltip" data-placement="bottom"></i></a>
+        &nbsp;
+        <a rel="nofollow" target="_blank" href="http://www.linkedin.com/sharing/share-offsite/?url=https://www.mjpitz.com/blog/2015/12/05/introducing-laas/">
+            <i class="fab fa-linkedin" title="LinkedIn" data-toggle="tooltip" data-placement="bottom"></i></a>
+    </div>
+</div>
+
+
+            <div class="post-footer row">
+                <div class="col-sm-6 text-left">
+                    
+                        <a class="btn btn-default" href="/blog/2015/07/10/status-java-library-for-system-status-health-checks/">&laquo; Previous Post</a>
+                    
+                </div>
+
+                <div class="col-sm-6 text-right">
+                    
+                    <a class="btn btn-default" href="/blog/2016/05/08/docker-machine-dns-resolution-using-consul/">Next Post &raquo;</a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        </div>
+        <div style="padding:25px 0; margin-top: 50px;">
+    <div>
+        
+<!-- Google Analytics (http://google.com/analytics) -->
+<script>
+    !function(j,e,k,y,l,L){j.GoogleAnalyticsObject=y,j[y]||(j[y]=function(){
+        (j[y].q=j[y].q||[]).push(arguments)}),j[y].l=+new Date,l=e.createElement(k),
+            L=e.getElementsByTagName(k)[0],l.src='//www.google-analytics.com/analytics.js',
+            L.parentNode.insertBefore(l,L)}(window,document,'script','ga');
+    ga('create', 'UA-39314903-5', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+        <script src="/statics/libs/jquery-2.1.4/jquery.min.js"></script>
+        <script src="/statics/libs/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+
+        <script>
+            $(function () {
+                //$('[data-toggle="tooltip"]').tooltip();
+                $('.collapse').collapse({ toggle: false })
+            });
+        </script>
+    </div>
+</div>
+    </body>
+</html>

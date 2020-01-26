@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link type="application/atom+xml" rel="alternate" href="https://www.mjpitz.com/feed.xml" title="Mya Pitzeruse" />
+        <meta name="author" content="Mya Pitzeruse">
+
+        <title>
+            
+                Spring Bean Method Invocation
+            
+        </title>
+
+        
+
+        <link rel="stylesheet" href="/statics/libs/bootstrap-3.3.7/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="/statics/libs/font-awesome-5.4.1/css/all.min.css">
+        <link rel="stylesheet" href="/statics/css/syntax-highlighting.css"/>
+        <link rel="stylesheet" href="/statics/css/app.css"/>
+
+        <link rel="apple-touch-icon" sizes="180x180" href="/statics/img/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/statics/img/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/statics/img/favicon-16x16.png">
+        <link rel="manifest" href="/statics/img/site.webmanifest">
+        <link rel="mask-icon" href="/statics/img/safari-pinned-tab.svg" color="#a28ad2">
+        <link rel="shortcut icon" href="/statics/img/favicon.ico">
+        <link rel="icon" href="/statics/img/favicon.ico" type="image/x-icon">
+        <meta name="msapplication-TileColor" content="#eeeeee">
+        <meta name="msapplication-config" content="/statics/img/browserconfig.xml">
+        <meta name="theme-color" content="#eeeeee">
+    </head>
+    <body>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="navbar-brand">@mjpitz</div>
+                </div>
+
+                <div class="collapse navbar-collapse" id="menu">
+                    <ul class="nav navbar-nav mr-auto">
+                        <li>
+                            <a href="/">
+                                <i class="fas fa-home" title="Blog" data-toggle="tooltip" data-placement="bottom">
+                                    <span>Blog</span>
+                                </i>
+                                Blog
+                            </a>
+                        </li>
+                    </ul>
+                    
+                    <ul class="nav navbar-nav nav-social">
+                        <li>
+                            <a href="http://www.github.com/mjpitz">
+                                <i class="fab fa-github" title="GitHub" data-toggle="tooltip" data-placement="bottom">
+                                    <span>GitHub</span>
+                                </i>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://hub.docker.com/u/mjpitz">
+                                <i class="fab fa-docker" title="Docker" data-toggle="tooltip" data-placement="bottom">
+                                    <span>Docker</span>
+                                </i>
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="http://www.twitter.com/_mjpitz_">
+                                <i class="fab fa-twitter" title="Twitter" data-toggle="tooltip" data-placement="bottom">
+                                    <span>Twitter</span>
+                                </i>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="http://www.linkedin.com/in/mjpitz">
+                                <i class="fab fa-linkedin" title="LinkedIn" data-toggle="tooltip" data-placement="bottom">
+                                    <span>LinkedIn</span>
+                                </i>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/feed.xml">
+                                <i class="fas fa-rss" title="Feed" data-toggle="tooltip" data-placement="bottom">
+                                    <span>Feed</span>
+                                </i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container mjpitz-content" style="margin-top:82px">
+            <div class="panel panel-default">
+    <div class="panel-body">
+        <div class="post">
+            <h1 class="post-title">Spring Bean Method Invocation</h1>
+            <p class="post-date">Posted on April 01, 2017</p>
+
+            <div class="post-content">
+                <p>In my day to day development, I spend a fair bit of time working with <a href="https://spring.io/">Spring</a> since it offers a lot of scaffolding to get a project off the ground.
+At <a href="https://www.indeed.com/">Indeed</a>, I spent a fair bit of time upgrading us from Spring 3 to Spring 4 and came across many good uses of Spring and many bad ones too.
+In this <em>Bad Practices</em> series, I will talk about some of these bad practices, why they should be avoided, and what you can do instead.</p>
+
+<!--more-->
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyConfig</span> <span class="o">{</span>
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="nc">Service</span> <span class="nf">myService</span><span class="o">()</span> <span class="o">{</span>
+        <span class="o">...</span>
+    <span class="o">}</span>
+    
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="nc">ServiceCacheWrapper</span> <span class="nf">myServiceCache</span><span class="o">()</span> <span class="o">{</span>
+        <span class="o">...</span>
+        <span class="n">myService</span><span class="o">();</span>    <span class="c1">// bad!</span>
+        <span class="o">...</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>This is generally considered a bad practice because it hides edges in the dependency graph from Spring during the pre processing step.
+While much easier for developers to understand where beans are coming from, this approach has some downfalls when it comes to runtime.
+With a missing edge in the dependency graph, your application is more prone to a variety of start up failures.</p>
+
+<h3 id="instead-inject-through-method-signature">Instead: Inject through Method Signature</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyConfig</span> <span class="o">{</span>
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="nc">Service</span> <span class="nf">myService</span><span class="o">()</span> <span class="o">{</span>
+        <span class="o">...</span>
+    <span class="o">}</span>
+    
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="nc">ServiceCacheWrapper</span> <span class="nf">myServiceCache</span><span class="o">(</span>
+        <span class="kd">final</span> <span class="nc">Service</span> <span class="n">myService</span>
+    <span class="o">)</span> <span class="o">{</span>
+        <span class="o">...</span> <span class="o">=</span> <span class="n">myService</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Spring uses reflection at runtime to inspect annotated method signatures and construct the dependency graph of your application.
+From the signature, Spring will:</p>
+
+<ul>
+  <li>infer the name of the method as the bean name if one is not provided in the <a href="http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/Bean.html">@Bean</a> annotation.</li>
+  <li>interpret the return type as the type to match on constructors / methods where no <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/beans/factory/annotation/Qualifier.html">@Qualifier</a> is provided on the designated parameter.</li>
+  <li>Use the parameter types as the accepted class that should be wired in.
+    <ul>
+      <li><strong>Note</strong> that Spring cannot use parameter names as the name of the beans since those are re-written by the compiler.</li>
+      <li>To clarify which of the many beans you may have defined in your dependency graph, you can use the <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/beans/factory/annotation/Qualifier.html">@Qualifier</a> annotation.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>With this information, it’s able to:
+know about all the nodes;
+know about all the edges;
+reliably build the complete dependency graph.</p>
+
+<!--Recently, I came across a talk that spoke of a powerful optimization that will speed up application start up.-->
+<!--It can do this by pre-processing the dependency graph and writing it out to an artifact during compilation.-->
+<!--This artifact can then be read in at startup and processed without needing to re-scan all the dependant jar files.-->
+
+
+            </div>
+
+            <div class="text-center">
+    <br/>
+    <br/>
+    <p><i>Share this article on</i></p>
+
+    <div style="font-size: 36px;">
+        <a rel="nofollow" target="_blank" href="https://facebook.com/sharer.php?u=https://www.mjpitz.com/blog/2017/04/01/spring-bean-method-invocation/">
+            <i class="fab fa-facebook" title="Facebook" data-toggle="tooltip" data-placement="bottom"></i></a>
+        &nbsp;
+        <a rel="nofollow" target="_blank" href="https://twitter.com/intent/tweet?text=Spring Bean Method Invocation&url=https://www.mjpitz.com/blog/2017/04/01/spring-bean-method-invocation/&via=&related=">
+            <i class="fab fa-twitter" title="Twitter" data-toggle="tooltip" data-placement="bottom"></i></a>
+        &nbsp;
+        <a rel="nofollow" target="_blank" href="http://www.linkedin.com/sharing/share-offsite/?url=https://www.mjpitz.com/blog/2017/04/01/spring-bean-method-invocation/">
+            <i class="fab fa-linkedin" title="LinkedIn" data-toggle="tooltip" data-placement="bottom"></i></a>
+    </div>
+</div>
+
+
+            <div class="post-footer row">
+                <div class="col-sm-6 text-left">
+                    
+                        <a class="btn btn-default" href="/blog/2017/01/19/gracefully-degrading-functionality-using-status/">&laquo; Previous Post</a>
+                    
+                </div>
+
+                <div class="col-sm-6 text-right">
+                    
+                    <a class="btn btn-default" href="/blog/2017/04/18/spring-component-scanning/">Next Post &raquo;</a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        </div>
+        <div style="padding:25px 0; margin-top: 50px;">
+    <div>
+        
+<!-- Google Analytics (http://google.com/analytics) -->
+<script>
+    !function(j,e,k,y,l,L){j.GoogleAnalyticsObject=y,j[y]||(j[y]=function(){
+        (j[y].q=j[y].q||[]).push(arguments)}),j[y].l=+new Date,l=e.createElement(k),
+            L=e.getElementsByTagName(k)[0],l.src='//www.google-analytics.com/analytics.js',
+            L.parentNode.insertBefore(l,L)}(window,document,'script','ga');
+    ga('create', 'UA-39314903-5', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+        <script src="/statics/libs/jquery-2.1.4/jquery.min.js"></script>
+        <script src="/statics/libs/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+
+        <script>
+            $(function () {
+                //$('[data-toggle="tooltip"]').tooltip();
+                $('.collapse').collapse({ toggle: false })
+            });
+        </script>
+    </div>
+</div>
+    </body>
+</html>

@@ -9,7 +9,7 @@
 
         <title>
             
-                Mya Pitzeruse
+                kubernetes
             
         </title>
 
@@ -106,7 +106,11 @@
     <div class="panel-body">
         <div class="post">
             
-            <div style="padding: 15px 0">
+            <h1>Posts tagged with 'kubernetes'</h1>
+            
+
+            
+            <div style="padding: 15px 0;">
                 <a href="/blog/2020/01/24/building-depscloud/">
                     <h2>Building deps.cloud</h2>
                 </a>
@@ -128,7 +132,7 @@ In this post, I’ll discuss the process and rationale I applied as I rewrote th
                 </p>
             </div>
             
-            <div style="padding: 15px 0">
+            <div style="padding: 15px 0;">
                 <a href="/blog/2019/10/17/kubernetes-service-precheck/">
                     <h2>Checking Service Dependencies in Kubernetes</h2>
                 </a>
@@ -160,98 +164,24 @@ The second was to enable services to be checked, independent of the application.
                 </p>
             </div>
             
-            <div style="padding: 15px 0">
-                <a href="/blog/2019/05/07/docker-buildx/">
-                    <h2>Using docker-buildx for Multi-architecture Containers</h2>
+            <div style="padding: 15px 0;">
+                <a href="/blog/2019/04/10/k8s-k3s-rpi-oh-my/">
+                    <h2>k3s on Raspberry Pi</h2>
                 </a>
                 <div>
-                    <p>May 07, 2019</p>
+                    <p>April 10, 2019</p>
                 </div>
 
                 <div>
-                    <p>When you build a container image, it’s typically only built for one platform (<code class="highlighter-rouge">linux</code>) and one architecture (<code class="highlighter-rouge">amd64</code>).
-As the Internet of Things continues to grow, the demand for more <code class="highlighter-rouge">arm</code> images increased as well.
-Traditionally, in order to produce an <code class="highlighter-rouge">arm</code> image, you need an <code class="highlighter-rouge">arm</code> device to do the build on.
-As a result, most projects wind up missing <code class="highlighter-rouge">arm</code> support.</p>
-
-<p><a href="https://github.com/moby/buildkit">BuildKit</a> provides emulation capabilities that support multi-architecture builds.
-With BuildKit, you build container images across multiple architectures concurrently.
-This core utility backs <code class="highlighter-rouge">docker buildx</code>, a multi-architecture build utility for docker.
-In this post, I’ll discuss why you should produce multi-architecture container images and demonstrate how to use <code class="highlighter-rouge">docker buildx</code> to do it.</p>
+                    <p>Over the last few days, I’ve been revisiting <a href="https://kubernetes.io">Kubernetes</a> on my Raspberry Pi cluster.
+I hope to share what I learned in the process and some of the tooling that I discovered along the way.</p>
 
 
                 </div>
 
                 <p style="text-align: right">
-                    <a href="/blog/2019/05/07/docker-buildx/">Read More &raquo;</a>
+                    <a href="/blog/2019/04/10/k8s-k3s-rpi-oh-my/">Read More &raquo;</a>
                 </p>
-            </div>
-            
-            <div style="padding: 15px 0">
-                <a href="/blog/2019/05/02/from-apache2-to-mit/">
-                    <h2>Moving Licenses - Apache 2.0 to MIT</h2>
-                </a>
-                <div>
-                    <p>May 02, 2019</p>
-                </div>
-
-                <div>
-                    <p>Yesterday, I decided to switch the license that I apply to my personal projects.
-Many open source projects use the Apache 2.0 license.
-After reading through it a few times, I liked the level of coverage that it provided.
-It was however a bit wordy in my opinion.
-These were often simple little side projects that I was hacking on in my free time.</p>
-
-<p>After some discussion with others in the community and a few podcasts, I decided to make a switch.
-I wanted to preserve a lot of what the Apache license granted, but simplify the wording quite a bit.
-The MIT license enables many of the same grants, while reducing the verbiage used to describe them.
-As an Engineer, I understand MIT much more than I understand the Apache license.
-From discussions, the MIT license often presents a lower barrier to entry when compared to Apache.
-This was exactly what I was looking for on my side projects.</p>
-
-                </div>
-
-                <p style="text-align: right">
-                    <a href="/blog/2019/05/02/from-apache2-to-mit/">Read More &raquo;</a>
-                </p>
-            </div>
-            
-            <div style="padding: 15px 0">
-                <a href="/blog/2019/04/21/monitoring-rpi-cluster/">
-                    <h2>Raspberry Pi Cluster Monitoring</h2>
-                </a>
-                <div>
-                    <p>April 21, 2019</p>
-                </div>
-
-                <div>
-                    <p>In my last few posts, I talked a bit about my at home development cluster.
-Due to the flexibility of my cluster, I wanted to provide a monitoring solution that was valuable across each technology I use.
-In this post, I discuss how monitoring is setup on my cluster.
-I’ll walk through setting up each node, the Prometheus server, and the Graphana UI.</p>
-
-
-                </div>
-
-                <p style="text-align: right">
-                    <a href="/blog/2019/04/21/monitoring-rpi-cluster/">Read More &raquo;</a>
-                </p>
-            </div>
-            
-
-            
-            <!--<div class="panel panel-default">-->
-                <!--<div class="panel-body">-->
-            <div class="row" style="padding: 15px">
-                <div class="col-sm-6 text-left">
-                    
-                </div>
-
-                <div class="col-sm-6 text-right">
-                    
-                    <a class="btn btn-default" href="/blog/page/2/">Next Page &raquo;</a>
-                    
-                </div>
             </div>
             
         </div>

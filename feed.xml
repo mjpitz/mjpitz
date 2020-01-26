@@ -1,0 +1,986 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="https://www.mjpitz.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://www.mjpitz.com/" rel="alternate" type="text/html" /><updated>2020-01-26T17:55:51+00:00</updated><id>https://www.mjpitz.com/feed.xml</id><title type="html">Mya Pitzeruse</title><author><name>Mya Pitzeruse</name><email>j.mya.pitz@gmail.com</email></author><entry><title type="html">Building deps.cloud</title><link href="https://www.mjpitz.com/blog/2020/01/24/building-depscloud/" rel="alternate" type="text/html" title="Building deps.cloud" /><published>2020-01-24T00:00:00+00:00</published><updated>2020-01-24T00:00:00+00:00</updated><id>https://www.mjpitz.com/blog/2020/01/24/building-depscloud</id><content type="html" xml:base="https://www.mjpitz.com/blog/2020/01/24/building-depscloud/">&lt;p&gt;Over the last year, I’ve been heavily working on &lt;a href=&quot;https://deps.cloud&quot;&gt;deps.cloud&lt;/a&gt;.
+deps.cloud draws it’s inspiration from a project that I worked on at &lt;a href=&quot;https://indeed.com&quot;&gt;Indeed.com&lt;/a&gt;.
+Since it’s original inception, there had been a heavy push to move it into the open source space.
+In this post, I’ll discuss the process and rationale I applied as I rewrote this project in the open.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h2 id=&quot;v1---origin&quot;&gt;V1 - Origin&lt;/h2&gt;
+
+&lt;p&gt;At Indeed, I had built and prototyped the process internally known as Darwin (not to be confused with &lt;a href=&quot;https://en.wikipedia.org/wiki/Darwin_(operating_system)&quot;&gt;Apple’s Darwin&lt;/a&gt;).
+I named it this way as it was intended to help evolve Indeed’s projects and libraries.
+It facilitated many operations that could be automated across our ecosystem.
+Such operations included (but were not limited to):&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Evaluating risk of library upgrades across our infrastructure&lt;/li&gt;
+  &lt;li&gt;Perform on the fly API compatibility checks&lt;/li&gt;
+  &lt;li&gt;Apply patches and open pull requests to affected repositories&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;There were many downsides with the way that this system was originally written.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Only supported &lt;a href=&quot;https://ant.apache.org/ivy/&quot;&gt;Apache Ivy&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Long start up time with no backing store (kept all information in memory)&lt;/li&gt;
+  &lt;li&gt;Inability to expand support to other languages&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Even over time, I needed to expand this system to be able to start up faster and reduce load on our version control system.
+This inevitably created a tight coupling with our &lt;a href=&quot;https://www.youtube.com/watch?v=lDXdf5q8Yw8&quot;&gt;Resilient Artifact Distribution&lt;/a&gt;.
+As time went on, this system became increasingly more difficult to open source.&lt;/p&gt;
+
+&lt;h2 id=&quot;v2---private-gitlab&quot;&gt;V2 - Private GitLab&lt;/h2&gt;
+
+&lt;p&gt;During my hiatus from Indeed in 2018, I decided to try and rewrite the system.
+I found myself really wanting the set of tooling I built and all the automation that came with it.
+Given I worked at a small start up at the time, I decided to keep the code closed source.
+To do so, I started a single monorepo in GitLab.&lt;/p&gt;
+
+&lt;p&gt;As I began the first rewrite, I wanted to work with a more flexible language.
+The original system was written in Java which made interacting with arbitrary structures rather difficult.
+To reduce the cognitive load, I decided to work with &lt;a href=&quot;https://www.typescriptlang.org/&quot;&gt;TypeScript&lt;/a&gt;.
+It had given me the best of both worlds: being able to have static and duck types when needed.&lt;/p&gt;
+
+&lt;p&gt;After having this iteration done, I started to run several tests.
+What I found was that the TypeScript solution worked well for a subset of operations, but did not scale for others.
+After learning this, I went back to the drawing board.&lt;/p&gt;
+
+&lt;h2 id=&quot;v3---public-github&quot;&gt;V3 - Public GitHub&lt;/h2&gt;
+
+&lt;p&gt;In late 2018, I returned to Indeed to work on our Kubernetes related efforts.
+Around the same time, I had started to port some of the code from closed to open source.
+It all started out under my user, just hacking on few different ideas.
+Having recently been thrown into the &lt;a href=&quot;https://golang.org/&quot;&gt;Golang&lt;/a&gt; ecosystem, I decided to give it a try.
+I quickly found Golang provided much more efficient solution over the previous TypeScript solution.
+But like Java, it lacked the flexibility I needed in some places.&lt;/p&gt;
+
+&lt;p&gt;One thing I was able to adapt from the closed source model was the &lt;a href=&quot;https://grpc.io/&quot;&gt;gRPC&lt;/a&gt; interfaces.
+gRPC does a really good job of enabling multi-language systems by providing a standard RPC mechanism. 
+Having put some good service interfaces in place, I was able to leverage part of the V2 solution.
+In the end, I wound up with a good chunk of the services being written in Golang and a single service written in TypeScript.&lt;/p&gt;
+
+&lt;h2 id=&quot;get-started&quot;&gt;Get Started&lt;/h2&gt;
+
+&lt;p&gt;Once the open sourced code base was in a stable position, I wanted to focus on making the system easy to run.
+I had seen many similar solutions starting to arise in open source.
+Many of them, like &lt;a href=&quot;https://tidelift.com/&quot;&gt;Tidelift&lt;/a&gt; and &lt;a href=&quot;https://snyk.io/&quot;&gt;Snyk&lt;/a&gt;, require you to leverage their cloud hosted solution which comes at a cost.
+I wanted to meet companies where they were, no matter their size.
+This inspired me to focus on &lt;a href=&quot;https://www.docker.com/&quot;&gt;Docker&lt;/a&gt; support first and foremost.
+Then, I was able to quickly follow that with &lt;a href=&quot;http://kubernetes.io/&quot;&gt;Kubernetes&lt;/a&gt; and &lt;a href=&quot;https://helm.sh/&quot;&gt;Helm&lt;/a&gt; support.&lt;/p&gt;
+
+&lt;p&gt;For more information on how to get started, see our &lt;a href=&quot;https://deps.cloud/docs/&quot;&gt;documentation&lt;/a&gt;.
+Cheers!&lt;/p&gt;</content><author><name>Mya Pitzeruse</name><email>j.mya.pitz@gmail.com</email></author><category term="docker" /><category term="kubernetes" /><category term="microservices" /><category term="dependencies" /><summary type="html">Over the last year, I’ve been heavily working on deps.cloud. deps.cloud draws it’s inspiration from a project that I worked on at Indeed.com. Since it’s original inception, there had been a heavy push to move it into the open source space. In this post, I’ll discuss the process and rationale I applied as I rewrote this project in the open.</summary></entry><entry><title type="html">Checking Service Dependencies in Kubernetes</title><link href="https://www.mjpitz.com/blog/2019/10/17/kubernetes-service-precheck/" rel="alternate" type="text/html" title="Checking Service Dependencies in Kubernetes" /><published>2019-10-17T00:00:00+00:00</published><updated>2019-10-17T00:00:00+00:00</updated><id>https://www.mjpitz.com/blog/2019/10/17/kubernetes-service-precheck</id><content type="html" xml:base="https://www.mjpitz.com/blog/2019/10/17/kubernetes-service-precheck/">&lt;p&gt;Back in July, I found myself needing to better coordinate deployments of my applications to &lt;a href=&quot;https://kubernetes.io/&quot;&gt;Kubernetes&lt;/a&gt;.
+After searching around, I found many ways that people where trying to solve this problem.
+Some used shell scripts to apply multiple YAML files with a fixed time sleep between them.
+Others used shell scripts and tailed the rollout using &lt;code class=&quot;highlighter-rouge&quot;&gt;kubectl rollout status -w&lt;/code&gt;.
+Now, I manage a lot of my deployments using &lt;a href=&quot;https://www.weave.works/technologies/gitops/&quot;&gt;GitOps&lt;/a&gt; and &lt;a href=&quot;https://github.com/fluxcd/flux&quot;&gt;Flux&lt;/a&gt;.
+So leveraging these shell scripts to manage my rollouts into clusters wasn’t really an option.&lt;/p&gt;
+
+&lt;p&gt;It wasn’t until I came across &lt;a href=&quot;https://us.alibabacloud.com&quot;&gt;Alibaba Cloud’s&lt;/a&gt; blog post on &lt;a href=&quot;https://www.alibabacloud.com/blog/kubernetes-demystified-solving-service-dependencies_594110&quot;&gt;solving service dependencies&lt;/a&gt; that I felt like I had something to work with.
+The article described two techniques. 
+The first was inspecting dependencies within the application itself. 
+At Indeed, we leverage our &lt;a href=&quot;http://github.com/indeedeng/status&quot;&gt;status&lt;/a&gt; library to do this. 
+The second was to enable services to be checked, independent of the application.&lt;/p&gt;
+
+&lt;p&gt;In this post, I’ll demonstrate how to use my &lt;a href=&quot;https://hub.docker.com/r/mjpitz/service-precheck&quot;&gt;service-precheck&lt;/a&gt; initialization container (built off of the Alibaba blog post) to ensure upstream systems are up before attempting to start a downstream system.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h2 id=&quot;concepts&quot;&gt;Concepts&lt;/h2&gt;
+
+&lt;p&gt;Before reading this blog post, it would be helpful to familiarize yourself with some Kubernetes concepts (if you don’t already know them).&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/&quot;&gt;Liveness and readiness probes&lt;/a&gt; are used to ensure your applications is live and ready. 
+Readiness probes are used to determine when an application is ready and able to start receiving traffic. 
+While liveness probes are used to check if the application is alive and running. 
+A key difference here is that readiness probes control a pods entry in DNS. 
+When a pod’s readiness probe is failing, no DNS entry will be available for the pod.&lt;/p&gt;
+
+&lt;p&gt;A &lt;a href=&quot;https://kubernetes.io/docs/concepts/services-networking/service/#headless-services&quot;&gt;headless service&lt;/a&gt; is one who does not expose a &lt;code class=&quot;highlighter-rouge&quot;&gt;clusterIP&lt;/code&gt;, and instead exposes the endpoints of a service as entries in DNS (when using a selector).&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://kubernetes.io/docs/concepts/workloads/pods/init-containers/&quot;&gt;initContainers&lt;/a&gt; are a set of containers within a pod that run before all other containers. 
+These containers tend to be relatively short-lived and are typically used to complete some work before the primary process. 
+Examples include preparing temporary file systems, initializing some data on disk, as well as probing required services.&lt;/p&gt;
+
+&lt;h2 id=&quot;use-case-mysql-primary-and-replica&quot;&gt;Use Case: MySQL Primary and Replica&lt;/h2&gt;
+
+&lt;p&gt;Consider the case laid out in the Alababa blog post using MySQL. 
+Many applications expect to have both read-write and read-only connections. 
+These connection strings often have two different targets. 
+To ensure these connection strings resolve, simply pass the list of addresses as arguments to the precheck container.&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;      &lt;span class=&quot;na&quot;&gt;initContainers&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;service-precheck&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;mjpitz/service-precheck:latest&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;imagePullPolicy&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;IfNotPresent&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;mysql-0.mysql.namespace&quot;&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;mysql-read.namespace&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This will ensure that the &lt;code class=&quot;highlighter-rouge&quot;&gt;nslookup&lt;/code&gt; for &lt;code class=&quot;highlighter-rouge&quot;&gt;mysql-0.mysql.namespace&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;mysql-read.namespace&lt;/code&gt; return entries before exiting successfully.&lt;/p&gt;
+
+&lt;h2 id=&quot;use-case-zookeeper-quorum&quot;&gt;Use Case: Zookeeper Quorum&lt;/h2&gt;
+
+&lt;p&gt;Another popular use case is ensuring quorum amongst a coordinating service, like Zookeeper and etcd. 
+A recent example where I’ve needed to add this precheck in was in some exploration with &lt;a href=&quot;https://github.com/apache-spark-on-k8s/kubernetes-HDFS&quot;&gt;HDFS on Kubernetes&lt;/a&gt;. 
+All the components of HDFS leverage Zookeeper for service discovery and leader election. 
+Until Zookeeper is fully initializied, the namenodes, journalnodes, and datanodes will crash loop looking for the Zookeeper entries. 
+With the addition of a service-precheck definition, the namenodes, journalnodes, and datanodes were all able to wait for Zookeeper before starting up.&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;      &lt;span class=&quot;na&quot;&gt;initContainers&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;service-precheck&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;mjpitz/service-precheck:latest&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;imagePullPolicy&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;IfNotPresent&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;zookeeper-0.zookeeper-headless.namespace&quot;&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;zookeeper-1.zookeeper-headless.namespace&quot;&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;zookeeper-2.zookeeper-headless.namespace&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;While letting a pod crash loop until it fixes itself is an option, it tends to come at a cost. 
+The container engine on that host needs to continually restart the pod. 
+More pod events means more load on your control plane. 
+By using service-precheck, I’ve been able to better manage my cluster deployments using GitOps.&lt;/p&gt;
+
+&lt;p&gt;Check it out on &lt;a href=&quot;https://github.com/mjpitz/service-precheck&quot;&gt;GitHub&lt;/a&gt; and &lt;a href=&quot;https://hub.docker.com/r/mjpitz/service-precheck&quot;&gt;Docker Hub&lt;/a&gt;.&lt;/p&gt;</content><author><name>Mya Pitzeruse</name><email>j.mya.pitz@gmail.com</email></author><category term="docker" /><category term="kubernetes" /><category term="microservices" /><category term="dependencies" /><summary type="html">Back in July, I found myself needing to better coordinate deployments of my applications to Kubernetes. After searching around, I found many ways that people where trying to solve this problem. Some used shell scripts to apply multiple YAML files with a fixed time sleep between them. Others used shell scripts and tailed the rollout using kubectl rollout status -w. Now, I manage a lot of my deployments using GitOps and Flux. So leveraging these shell scripts to manage my rollouts into clusters wasn’t really an option. It wasn’t until I came across Alibaba Cloud’s blog post on solving service dependencies that I felt like I had something to work with. The article described two techniques. The first was inspecting dependencies within the application itself. At Indeed, we leverage our status library to do this. The second was to enable services to be checked, independent of the application. In this post, I’ll demonstrate how to use my service-precheck initialization container (built off of the Alibaba blog post) to ensure upstream systems are up before attempting to start a downstream system.</summary></entry><entry><title type="html">Using docker-buildx for Multi-architecture Containers</title><link href="https://www.mjpitz.com/blog/2019/05/07/docker-buildx/" rel="alternate" type="text/html" title="Using docker-buildx for Multi-architecture Containers" /><published>2019-05-07T00:00:00+00:00</published><updated>2019-05-07T00:00:00+00:00</updated><id>https://www.mjpitz.com/blog/2019/05/07/docker-buildx</id><content type="html" xml:base="https://www.mjpitz.com/blog/2019/05/07/docker-buildx/">&lt;p&gt;When you build a container image, it’s typically only built for one platform (&lt;code class=&quot;highlighter-rouge&quot;&gt;linux&lt;/code&gt;) and one architecture (&lt;code class=&quot;highlighter-rouge&quot;&gt;amd64&lt;/code&gt;).
+As the Internet of Things continues to grow, the demand for more &lt;code class=&quot;highlighter-rouge&quot;&gt;arm&lt;/code&gt; images increased as well.
+Traditionally, in order to produce an &lt;code class=&quot;highlighter-rouge&quot;&gt;arm&lt;/code&gt; image, you need an &lt;code class=&quot;highlighter-rouge&quot;&gt;arm&lt;/code&gt; device to do the build on.
+As a result, most projects wind up missing &lt;code class=&quot;highlighter-rouge&quot;&gt;arm&lt;/code&gt; support.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/moby/buildkit&quot;&gt;BuildKit&lt;/a&gt; provides emulation capabilities that support multi-architecture builds.
+With BuildKit, you build container images across multiple architectures concurrently.
+This core utility backs &lt;code class=&quot;highlighter-rouge&quot;&gt;docker buildx&lt;/code&gt;, a multi-architecture build utility for docker.
+In this post, I’ll discuss why you should produce multi-architecture container images and demonstrate how to use &lt;code class=&quot;highlighter-rouge&quot;&gt;docker buildx&lt;/code&gt; to do it.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h2 id=&quot;why-build-multiple-architectures&quot;&gt;Why build multiple architectures?&lt;/h2&gt;
+
+&lt;p&gt;There are many good reasons why you should build multi-architecture images for your project.
+One of the biggest being that it improves your users experience.
+As someone who works across both &lt;code class=&quot;highlighter-rouge&quot;&gt;amd64&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;arm64&lt;/code&gt;, I often struggle to find images supported across both architectures.
+As a result, I wind up needing to create my own or rebuilding another to be able to run the system on my cluster.&lt;/p&gt;
+
+&lt;p&gt;This makes it more difficult to get started with projects.
+Instead of running that &lt;code class=&quot;highlighter-rouge&quot;&gt;kubectl apply -f&lt;/code&gt; command I found on the web, I first need to consider:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Do the referenced images run on &lt;code class=&quot;highlighter-rouge&quot;&gt;arm64&lt;/code&gt;?&lt;/li&gt;
+  &lt;li&gt;If they don’t, has someone already ported them?&lt;/li&gt;
+  &lt;li&gt;If someone hasn’t ported them, has anyone requested support?&lt;/li&gt;
+  &lt;li&gt;If someone hasn’t request support, what happens when I try to compile them?&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;And the list of goes on.
+By cross compiling images and leveraging manifest lists, you can create a much better experience for developers on a different architectures.&lt;/p&gt;
+
+&lt;h2 id=&quot;working-with-buildx&quot;&gt;Working with buildx&lt;/h2&gt;
+
+&lt;p&gt;In order to get started with &lt;code class=&quot;highlighter-rouge&quot;&gt;buildx&lt;/code&gt;, you’ll need to install the latest edge version of Docker.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.docker.com/docker-for-mac/edge-release-notes/&quot;&gt;Docker Edge for Mac&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.docker.com/docker-for-windows/edge-release-notes/&quot;&gt;Docker Edge for Windows&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Once the edge version of Docker has been installed, you’ll be able to interact with the &lt;code class=&quot;highlighter-rouge&quot;&gt;buildx&lt;/code&gt; command.
+The first thing you will want to do is create a context for your project.
+This acts as a workspace for your current build states.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker buildx create &lt;span class=&quot;nt&quot;&gt;--name&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PROJECT&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Once the context has been created, you’ll want to switch to using it.
+You can either use the &lt;code class=&quot;highlighter-rouge&quot;&gt;--use&lt;/code&gt; option on the &lt;code class=&quot;highlighter-rouge&quot;&gt;create&lt;/code&gt; command or explicitly switch contexts using &lt;code class=&quot;highlighter-rouge&quot;&gt;use&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker buildx use &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PROJECT&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;After activating the environment, you’re ready to build your image across multiple architectures.
+Below, I have provided a simple build command.
+This will cause 3 builds to happen: one for &lt;code class=&quot;highlighter-rouge&quot;&gt;linux/amd64&lt;/code&gt;, one for &lt;code class=&quot;highlighter-rouge&quot;&gt;linux/arm64&lt;/code&gt;, and one for &lt;code class=&quot;highlighter-rouge&quot;&gt;linux/arm/v7&lt;/code&gt;.
+In addition to that, by providing the &lt;code class=&quot;highlighter-rouge&quot;&gt;-t&lt;/code&gt; option, &lt;code class=&quot;highlighter-rouge&quot;&gt;buildx&lt;/code&gt; will produce a manifest list containing the layer references for each corresponding architectures.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker buildx build &lt;span class=&quot;nt&quot;&gt;--platform&lt;/span&gt; linux/amd64,linux/arm64,linux/arm/v7 &lt;span class=&quot;nt&quot;&gt;-t&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PROJECT&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;:&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;VERSION&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;What this means is that when a user wants to run your project on an ARM system, they no longer need to reference an architecture specific image or tag.
+Instead, they are able to use the same image ref and the same tag that they would use on a typical desktop machine.
+Once you’re satisfied with your build, you can append the &lt;code class=&quot;highlighter-rouge&quot;&gt;--push&lt;/code&gt; option to the &lt;code class=&quot;highlighter-rouge&quot;&gt;buildx&lt;/code&gt; command to push the images and manifest list upstream.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker buildx build &lt;span class=&quot;nt&quot;&gt;--platform&lt;/span&gt; linux/amd64,linux/arm64,linux/arm/v7 &lt;span class=&quot;nt&quot;&gt;-t&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PROJECT&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;:&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;VERSION&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--push&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;After your images have been successfully pushed, you can see the supported architectures on the tags page of the docker repository.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/statics/img/multiarch-container-image.png&quot; alt=&quot;multiarch-container-image.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;One thing that I’ve found frustrating from hub.docker.com is that they don’t do a good job calling out to the supported architectures on the public tags page.
+This means that image producers need to call out to this support in their README files.
+At least for now.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/statics/img/multiarch-container-public.png&quot; alt=&quot;multiarch-container-public.png&quot; /&gt;&lt;/p&gt;</content><author><name>Mya Pitzeruse</name><email>j.mya.pitz@gmail.com</email></author><category term="docker" /><category term="multiarch" /><category term="arm" /><category term="arm64" /><category term="buildx" /><summary type="html">When you build a container image, it’s typically only built for one platform (linux) and one architecture (amd64). As the Internet of Things continues to grow, the demand for more arm images increased as well. Traditionally, in order to produce an arm image, you need an arm device to do the build on. As a result, most projects wind up missing arm support. BuildKit provides emulation capabilities that support multi-architecture builds. With BuildKit, you build container images across multiple architectures concurrently. This core utility backs docker buildx, a multi-architecture build utility for docker. In this post, I’ll discuss why you should produce multi-architecture container images and demonstrate how to use docker buildx to do it.</summary></entry><entry><title type="html">Moving Licenses - Apache 2.0 to MIT</title><link href="https://www.mjpitz.com/blog/2019/05/02/from-apache2-to-mit/" rel="alternate" type="text/html" title="Moving Licenses - Apache 2.0 to MIT" /><published>2019-05-02T00:00:00+00:00</published><updated>2019-05-02T00:00:00+00:00</updated><id>https://www.mjpitz.com/blog/2019/05/02/from-apache2-to-mit</id><content type="html" xml:base="https://www.mjpitz.com/blog/2019/05/02/from-apache2-to-mit/">&lt;p&gt;Yesterday, I decided to switch the license that I apply to my personal projects.
+Many open source projects use the Apache 2.0 license.
+After reading through it a few times, I liked the level of coverage that it provided.
+It was however a bit wordy in my opinion.
+These were often simple little side projects that I was hacking on in my free time.&lt;/p&gt;
+
+&lt;p&gt;After some discussion with others in the community and a few podcasts, I decided to make a switch.
+I wanted to preserve a lot of what the Apache license granted, but simplify the wording quite a bit.
+The MIT license enables many of the same grants, while reducing the verbiage used to describe them.
+As an Engineer, I understand MIT much more than I understand the Apache license.
+From discussions, the MIT license often presents a lower barrier to entry when compared to Apache.
+This was exactly what I was looking for on my side projects.&lt;/p&gt;</content><author><name>Mya Pitzeruse</name><email>j.mya.pitz@gmail.com</email></author><category term="software" /><category term="licensing" /><category term="apache" /><category term="mit" /><summary type="html">Yesterday, I decided to switch the license that I apply to my personal projects. Many open source projects use the Apache 2.0 license. After reading through it a few times, I liked the level of coverage that it provided. It was however a bit wordy in my opinion. These were often simple little side projects that I was hacking on in my free time. After some discussion with others in the community and a few podcasts, I decided to make a switch. I wanted to preserve a lot of what the Apache license granted, but simplify the wording quite a bit. The MIT license enables many of the same grants, while reducing the verbiage used to describe them. As an Engineer, I understand MIT much more than I understand the Apache license. From discussions, the MIT license often presents a lower barrier to entry when compared to Apache. This was exactly what I was looking for on my side projects.</summary></entry><entry><title type="html">Raspberry Pi Cluster Monitoring</title><link href="https://www.mjpitz.com/blog/2019/04/21/monitoring-rpi-cluster/" rel="alternate" type="text/html" title="Raspberry Pi Cluster Monitoring" /><published>2019-04-21T00:00:00+00:00</published><updated>2019-04-21T00:00:00+00:00</updated><id>https://www.mjpitz.com/blog/2019/04/21/monitoring-rpi-cluster</id><content type="html" xml:base="https://www.mjpitz.com/blog/2019/04/21/monitoring-rpi-cluster/">&lt;p&gt;In my last few posts, I talked a bit about my at home development cluster.
+Due to the flexibility of my cluster, I wanted to provide a monitoring solution that was valuable across each technology I use.
+In this post, I discuss how monitoring is setup on my cluster.
+I’ll walk through setting up each node, the Prometheus server, and the Graphana UI.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;First, if you haven’t read my previous posts, I suggest going back and giving them a quick read.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;/blog/2019/03/17/64bit-raspberry-pi&quot;&gt;Easy Steps to a 64bit Raspberry Pi 3 B/B+&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/blog/2019/04/10/k8s-k3s-rpi-oh-my&quot;&gt;k3s on Raspberry Pi&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/blog/2019/04/12/rpi-cluster-setup&quot;&gt;Raspberry Pi Cluster Setup&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Historically, I haven’t put much monitoring in beyond the basic orchestrator level tooling.
+This was due to the lack of native ARM support on the Prometheus project.
+Sure there were a couple personal forks running out on the web.
+Some of them were well documented, but I tended to resort to compiling it myself.
+Many people in the ARM community have been waiting for support upstream.&lt;/p&gt;
+
+&lt;center&gt;
+&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;This should be available soon hopefully&lt;a href=&quot;https://t.co/3TXc4SjIug&quot;&gt;https://t.co/3TXc4SjIug&lt;/a&gt;&lt;/p&gt;&amp;mdash; Simon P (@SimonHiker) &lt;a href=&quot;https://twitter.com/SimonHiker/status/1104430227785244672?ref_src=twsrc%5Etfw&quot;&gt;March 9, 2019&lt;/a&gt;&lt;/blockquote&gt; &lt;script async=&quot;&quot; src=&quot;https://platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+&lt;/center&gt;
+
+&lt;p&gt;6 days ago, &lt;a href=&quot;https://prometheus.io&quot;&gt;Prometheus&lt;/a&gt; merged in support for &lt;a href=&quot;https://github.com/prometheus/prometheus/pull/5031&quot;&gt;ARM based architectures&lt;/a&gt;.
+I briefly stumbled across a tweet this week where someone mentioned that native support was now offered upstream.
+Unfortunately, I managed to misplace that tweet.
+With some free time on my hands, I decided to go looking for the images and get a solution running on my cluster at home.&lt;/p&gt;
+
+&lt;h2 id=&quot;running-node_exporter-on-each-node&quot;&gt;Running node_exporter on each node&lt;/h2&gt;
+
+&lt;p&gt;node_exporter is a project from the Prometheus team.
+It provides host level information such as cpu, memory, and disk usage.
+It also provides more detailed information such as open and max file descriptor counts, memory swap, cpu steal, etc.
+In order to get started with the project, you either had to use the container image or go out and compile your own binary.
+With the recent introduction of the ARM image, running this has become a bit easier.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker run &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--name&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;node-exporter&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--network&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;host&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--pid&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;host&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--restart&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;always&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;/:/host:ro,rslave&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    prom/node-exporter-linux-arm64:master &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--path&lt;/span&gt;.rootfs /host
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You can verify that this process started up successfully by curling the metrics endpoint of the process.
+Over time, this page will be updated based on the current usage of the system.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;curl http://&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;ip_address&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;:9100/metrics
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Repeat this process for each node within your cluster.&lt;/p&gt;
+
+&lt;h2 id=&quot;picking-a-monitoring-node&quot;&gt;Picking a monitoring node&lt;/h2&gt;
+
+&lt;p&gt;I want to explicitly call out to the “monitoring” node aspect of this section.
+A monitoring node in this case is simply a node who has a large amount of disk space.
+Prometheus works by aggregating data from different exporters.
+Since it collects all this information in one place, you will need to ensure you have enough storage.
+Alternatively, you can leverage an attachable storage solution, like &lt;a href=&quot;https://ceph.com/&quot;&gt;Ceph&lt;/a&gt;.
+Since my setup is rather minimum, I run this on my laptop during times of experimentation.&lt;/p&gt;
+
+&lt;h2 id=&quot;running-prometheus-and-graphana&quot;&gt;Running Prometheus and Graphana&lt;/h2&gt;
+
+&lt;p&gt;Before starting the Prometheus server, you need a configuration file.
+This file tells Prometheus where it can gather metrics from.
+In this case, we use a static_config that points at every node in the cluster.&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;global&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;scrape_interval&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;1m&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;scrape_timeout&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;10s&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;evaluation_interval&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;1m&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;scrape_configs&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;job_name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;node-exporter&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;static_configs&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;targets&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;192.168.1.100:9100&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;192.168.1.101:9100&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;192.168.1.102:9100&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;192.168.1.103:9100&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;192.168.1.104:9100&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;192.168.1.105:9100&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;192.168.1.106:9100&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;192.168.1.107:9100&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;192.168.1.108:9100&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;192.168.1.109:9100&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Once the configuration file is defined, I started to look into how to deploy this setup.
+I wound up finding docker-compose files to be the best way to managed this.
+By using something like &lt;code class=&quot;highlighter-rouge&quot;&gt;docker stack deploy&lt;/code&gt;, we’re able to leverage the &lt;code class=&quot;highlighter-rouge&quot;&gt;configs&lt;/code&gt; semantic.&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;3.7&quot;&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;prometheus-data&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;graphana-data&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;configs&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;prometheus-config&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;./prometheus.yaml&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;prometheus&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;hostname&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;prometheus&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;configs&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;source&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;prometheus-config&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/prometheus.yaml&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;prometheus-data:/prometheus&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;9090:9090&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;prom/prometheus&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;
+      &lt;span class=&quot;nv&quot;&gt;--config.file&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;/prometheus.yaml&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;nv&quot;&gt;--storage.tsdb.path&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;/prometheus&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
+
+  &lt;span class=&quot;na&quot;&gt;graphana&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;hostname&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;graphana&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;graphana-data:/var/lib/grafana&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;3000:3000&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;grafana/grafana&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Alternatively leverage the &lt;code class=&quot;highlighter-rouge&quot;&gt;docker run&lt;/code&gt; command similar to node_exporter, but using a local volume mount instead of a config.
+Once these two processes are up and running you should be able to navigate to the UI in the browser.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;open http://&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;ip_address&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;:9090   &lt;span class=&quot;c&quot;&gt;# prometheus&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;open http://&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;ip_address&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;:3000   &lt;span class=&quot;c&quot;&gt;# graphana&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;## on linux, this will be &quot;xdg-open&quot; instead of &quot;open&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;adding-prometheus-as-a-data-source-to-graphana&quot;&gt;Adding Prometheus as a data source to Graphana&lt;/h3&gt;
+
+&lt;p&gt;Once you have the Graphana interface open, you’ll need to configure a data source.
+Graphana supports Prometheus as a data source out of box, so connecting them is easy.
+In the address line, you’ll want to point it at your Prometheus server.
+For me, this was &lt;code class=&quot;highlighter-rouge&quot;&gt;http://prometheus:9090&lt;/code&gt;.
+By default, docker sets up an overlay network across containers in a compose file.
+This means that we’re able to connect services on the same network using their &lt;code class=&quot;highlighter-rouge&quot;&gt;hostname&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;adding-dashboards&quot;&gt;Adding dashboards&lt;/h3&gt;
+
+&lt;p&gt;Once the data source has been configured, you can start adding dashboards to Graphana.
+Graphana offers tons of &lt;a href=&quot;https://grafana.com/dashboards&quot;&gt;pre-built dashboards&lt;/a&gt;.
+They’re mostly community driven, so finding a well maintained dashboard can be difficult.
+The first dashboard I found extremely useful is the &lt;a href=&quot;https://grafana.com/dashboards/1860&quot;&gt;full export of all node_exporter&lt;/a&gt; metrics.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/statics/img/rpi-mon-node-exporter-full.png&quot; alt=&quot;Node Exporter Full&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Using this dashboard, I’m able to get a detailed view of each node.
+It encapsulates all metrics emitted by node_exporter into a single dashboard.
+While this might seem overwhelming, the dashboard collapses the more detailed panels.
+This makes it easy to get a high level view of a node, and then dive in.&lt;/p&gt;
+
+&lt;p&gt;One thing that this dashboard did not enable was a complete overview of all nodes in the cluster.
+In the past, this kind of dashboard has been extremely useful when investigating capacity constraints.
+In Datadog, this was a rather easy thing to setup:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/statics/img/rpi-mon-dd.jpg&quot; alt=&quot;Datadog Host Map&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;After looking around for a bit, I wasn’t able to find a rough equivalent.
+So I started to build and prototype my own.
+First, I started with a few of the queries from the Node Exporter Full dashboard.
+With a few modifications, I was able to get something started.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/statics/img/rpi-mon-cluster-overview.png&quot; alt=&quot;Cluster Overview&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;While it may not look as nice as the host map in Datadog, I was able to get the same view of information.
+First, I look for the capacity of the cluster as a whole.
+The three gauges along the top monitor the current clusters usage across all nodes.
+The 3 heat maps along the bottom show the same usage broken down by each instance in the cluster, over time.
+This allows me to be able to track drastic changes in compute, memory, or disk back to an originating point.&lt;/p&gt;
+
+&lt;p&gt;Using the combination of these dashboard, I can quickly get an idea of what my cluster is doing at any given time.
+Should I require more orchestrator related information, then I can follow up with their supplied monitoring.
+For Docker, I use &lt;a href=&quot;https://portainer.io&quot;&gt;portainer&lt;/a&gt;.
+For Kubernetes and K3s, I use the &lt;a href=&quot;https://github.com/kubernetes/dashboard&quot;&gt;kubernetes-dashboard&lt;/a&gt;.
+In Nomad, I’ll use the &lt;a href=&quot;https://www.nomadproject.io/&quot;&gt;Nomad&lt;/a&gt; and &lt;a href=&quot;https://www.consul.io/&quot;&gt;Consul&lt;/a&gt; views.&lt;/p&gt;</content><author><name>Mya Pitzeruse</name><email>j.mya.pitz@gmail.com</email></author><category term="iot" /><category term="raspberrypi" /><category term="docker" /><category term="monitoring" /><category term="prometheus" /><summary type="html">In my last few posts, I talked a bit about my at home development cluster. Due to the flexibility of my cluster, I wanted to provide a monitoring solution that was valuable across each technology I use. In this post, I discuss how monitoring is setup on my cluster. I’ll walk through setting up each node, the Prometheus server, and the Graphana UI.</summary></entry><entry><title type="html">Raspberry Pi Cluster Setup</title><link href="https://www.mjpitz.com/blog/2019/04/12/rpi-cluster-setup/" rel="alternate" type="text/html" title="Raspberry Pi Cluster Setup" /><published>2019-04-12T00:00:00+00:00</published><updated>2019-04-12T00:00:00+00:00</updated><id>https://www.mjpitz.com/blog/2019/04/12/rpi-cluster-setup</id><content type="html" xml:base="https://www.mjpitz.com/blog/2019/04/12/rpi-cluster-setup/">&lt;p&gt;Previously, I talked about the different orchestration technologies that I’ve run on my Raspberry Pi cluster.
+That post was rather high level and only contained details relating to k3s.
+In this post, we’ll take a more in depth look at my cluster setup and my management process around it.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;The diagram below roughly shows how I have my home network setup.
+I have 2 racks of 5 nodes.
+Each rack is independently powered.
+Each Raspberry Pi runs &lt;a href=&quot;/blog/2019/03/17/64bit-raspberry-pi/&quot;&gt;Ubuntu 18.04&lt;/a&gt;, has cgroups enabled, and is assigned a static IP.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/statics/img/private-cloud.png&quot; alt=&quot;Private Cloud&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;For easy access to each node, I copy my ssh key to each Pi.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ssh-copy-id ubuntu@${ip_address}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;Then, I use &lt;a href=&quot;https://docs.docker.com/machine/overview/&quot;&gt;docker-machine&lt;/a&gt; to setup and configure docker on each node.
+To setup a Raspberry Pi this way, you’ll want to use the &lt;code class=&quot;highlighter-rouge&quot;&gt;generic&lt;/code&gt; machine driver.
+The driver requires an IP address, ssh user, ssh key, and a name.
+Note that docker-machine will set the hostname of the remote IP to be the name of the machine.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker-machine create \
+  --driver generic \
+  --generic-ip-address ${ip_address} \
+  --generic-ssh-user ubuntu \
+  --generic-ssh-key ~/.ssh/id_rsa \
+  ${name}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;By leveraging docker-machine, I’m now able to treat my laptop as a remote control to my cluster.
+I can see the status of all my machines without any additional monitoring or setup.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ docker-machine ls
+NAME        ACTIVE   DRIVER    STATE     URL                        SWARM   DOCKER     ERRORS
+myriad-1    *        generic   Running   tcp://192.168.1.100:2376           v18.09.4   
+myriad-2    -        generic   Running   tcp://192.168.1.101:2376           v18.09.4   
+myriad-3    -        generic   Running   tcp://192.168.1.102:2376           v18.09.3   
+myriad-4    -        generic   Running   tcp://192.168.1.103:2376           v18.09.3   
+myriad-5    -        generic   Running   tcp://192.168.1.104:2376           v18.09.3   
+myriad-6    -        generic   Running   tcp://192.168.1.105:2376           v18.09.3   
+myriad-7    -        generic   Running   tcp://192.168.1.106:2376           v18.09.3   
+myriad-8    -        generic   Running   tcp://192.168.1.107:2376           v18.09.3   
+myriad-9    -        generic   Running   tcp://192.168.1.108:2376           v18.09.3   
+myriad-10   -        generic   Running   tcp://192.168.1.109:2376           v18.09.3   
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;Using &lt;code class=&quot;highlighter-rouge&quot;&gt;docker-machine env&lt;/code&gt;, I can configure my laptop’s shell to point to specific nodes in the cluster.
+This makes it easy to run, interact with, or extract contents from remote docker containers.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ eval $(docker-machine env myriad-1)
+
+$ docker ps -a
+CONTAINER ID        IMAGE                      COMMAND                  CREATED             STATUS              PORTS               NAMES
+c5ba1248a881        rancher/k3s:v0.3.0-arm64   &quot;/bin/k3s agent&quot;         3 days ago          Up 3 days                               k3s-exec
+85aa7d46da72        rancher/k3s:v0.3.0-arm64   &quot;/bin/k3s server --d…&quot;   3 days ago          Up 3 days                               k3s-control
+
+$ docker cp k3s-control:/etc/rancher/k3s/k3s.yaml ~/.kube/k3s
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;As a result, I’m now able to write some rather simple &lt;a href=&quot;https://github.com/mjpitz/terraform-rpi/tree/master/scripts&quot;&gt;scripts&lt;/a&gt; for automating cluster management.
+Beyond that, there really isn’t much.
+I’ve found working with this setup at home to be really nice as I can easily debug remote issues quickly.&lt;/p&gt;</content><author><name>Mya Pitzeruse</name><email>j.mya.pitz@gmail.com</email></author><category term="iot" /><category term="raspberrypi" /><category term="docker" /><category term="docker-machine" /><category term="k3s" /><summary type="html">Previously, I talked about the different orchestration technologies that I’ve run on my Raspberry Pi cluster. That post was rather high level and only contained details relating to k3s. In this post, we’ll take a more in depth look at my cluster setup and my management process around it.</summary></entry><entry><title type="html">k3s on Raspberry Pi</title><link href="https://www.mjpitz.com/blog/2019/04/10/k8s-k3s-rpi-oh-my/" rel="alternate" type="text/html" title="k3s on Raspberry Pi" /><published>2019-04-10T00:00:00+00:00</published><updated>2019-04-10T00:00:00+00:00</updated><id>https://www.mjpitz.com/blog/2019/04/10/k8s-k3s-rpi-oh-my</id><content type="html" xml:base="https://www.mjpitz.com/blog/2019/04/10/k8s-k3s-rpi-oh-my/">&lt;p&gt;Over the last few days, I’ve been revisiting &lt;a href=&quot;https://kubernetes.io&quot;&gt;Kubernetes&lt;/a&gt; on my Raspberry Pi cluster.
+I hope to share what I learned in the process and some of the tooling that I discovered along the way.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;I first sat down to experiment with Kubernetes back when I first built my cluster.
+I don’t recall what guide I was following, so it’s hard to say where things went wrong.
+All I can remember was spending several hours working on it, only to end up with a partially functional cluster.
+As a result, I threw everything out and switched to running &lt;a href=&quot;https://www.nomadproject.io&quot;&gt;Nomad&lt;/a&gt;.
+Running both &lt;a href=&quot;https://www.consul.io/&quot;&gt;Consul&lt;/a&gt; and Nomad wound up taking a fraction of the time.
+They required more provisioning compared to Docker Swarm, but it was easy to automate.&lt;/p&gt;
+
+&lt;div class=&quot;row text-center&quot;&gt;
+  &lt;div class=&quot;col-xs-12 col-sm-1&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;col-xs-6 col-sm-5&quot;&gt;
+    &lt;img title=&quot;Consul&quot; alt=&quot;Consul&quot; src=&quot;/statics/img/consul.png&quot; /&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;col-xs-6 col-sm-5&quot;&gt;
+    &lt;img title=&quot;Nomad&quot; alt=&quot;Nomad&quot; src=&quot;/statics/img/nomad.png&quot; /&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;col-xs-12 col-sm-1&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;After working with Swarm and Nomad for a few months, I took a look to see what was new for k8s.
+First, I came across &lt;a href=&quot;https://github.com/rancher/rke&quot;&gt;Rancher’s RKE&lt;/a&gt; command line tool.
+It makes provisioning production-ready Kubernetes clusters quick and painless.
+Since it was configuration driven, I decided to give it a try and see how it ran on the Raspberry Pis.
+I was impressed with how easy it was to get everything up and running.
+I was able to connect to and interact wtih the cluster without an issue.
+One downside was the overhead of some of the integrations.
+Many of my nodes were already consuming half their memory, and I needed dedicated etcd and control plane nodes.&lt;/p&gt;
+
+&lt;div class=&quot;text-center&quot;&gt;
+  &lt;img title=&quot;rancher&quot; alt=&quot;Rancher&quot; src=&quot;/statics/img/rancher.png&quot; /&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;I also came across &lt;a href=&quot;https://k3s.io/&quot;&gt;k3s&lt;/a&gt;.
+k3s is a lightweight distribution of kubernetes that targets IOT devices.
+This was appealing because it is intended to be deployed similar to k8s.
+&lt;a href=&quot;https://microk8s.io&quot;&gt;MicroK8s&lt;/a&gt; presented another alternative, but it was intended to run as a single node.
+A pocket kubernetes cluster if you will.
+Given I was looking for something closer to native k8s, I decided to give k3s a spin.&lt;/p&gt;
+
+&lt;h3 id=&quot;starting-the-control-plane&quot;&gt;Starting the control plane&lt;/h3&gt;
+
+&lt;p&gt;After seeing how RKE deployed k8s to the cluster, I decided to try running k3s out of docker.
+Typically, I run these processes in systemd but I wanted to consider other alternatives.&lt;/p&gt;
+
+&lt;p&gt;k3s control plane requires a docker volume to store the server data.
+Once the volume is created, we can run the k3s server process.
+Note that in the run command below, I explicitly disable the agent.
+The agent requires the &lt;code class=&quot;highlighter-rouge&quot;&gt;--priviledged&lt;/code&gt; flag in order to run processes on the host.
+The control plane doesn’t require this permission.
+As a result, I decided to run them as separate processes.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ docker volume create k3s-control
+
+$ docker run -d \
+    --name &quot;k3s-control&quot; \
+    --network &quot;host&quot; \
+    --restart &quot;always&quot; \
+    -e &quot;K3S_CLUSTER_SECRET=&amp;lt;YOUR_SECRET_HERE&amp;gt;&quot; \
+    -v &quot;k3s-control:/var/lib/rancher/k3s&quot; \
+    -p &quot;6443:6443&quot; \
+    rancher/k3s:v0.3.0-arm64 \
+    server --disable-agent
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;After about 30 seconds, the control plane should be running.
+As a part of it’s setup, it writes the kubeconfg out to &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/rancher/k3s/k3s.yaml&lt;/code&gt;.
+Using the following &lt;code class=&quot;highlighter-rouge&quot;&gt;docker cp&lt;/code&gt; command, you can copy the file from the container and into your local &lt;code class=&quot;highlighter-rouge&quot;&gt;.kube&lt;/code&gt; directory.
+Once copied, you’ll want to export it so that &lt;code class=&quot;highlighter-rouge&quot;&gt;kubectl&lt;/code&gt; can easily interact with the remote control plane.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ docker cp k3s-control:/etc/rancher/k3s/k3s.yaml ~/.kube/k3s
+$ export KUBECONFIG=~/.kube/k3s
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;NOTE: you will need to modify the extracted kubeconfig file and change “https://localhost:6443” to point to the proper host.&lt;/em&gt;
+&lt;em&gt;In my case, this was “https://192.168.1.100:6443”.&lt;/em&gt;
+&lt;em&gt;If you do not change this, kubectl cannot communicate with the api-server.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;starting-the-agents&quot;&gt;Starting the agents&lt;/h3&gt;
+
+&lt;p&gt;Once the control plane is up and running, we need to add the agents.
+Agents are the component of the stack that are responsible for managing the processes running on the host.
+As a result, they need to be privileged to spin up containers where needed.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ docker run -d \
+    --name &quot;k3s-exec&quot; \
+    --network &quot;host&quot; \
+    --restart &quot;always&quot; \
+    -e &quot;K3S_CLUSTER_SECRET=&amp;lt;YOUR_SECRET_HERE&amp;gt;&quot; \
+    -e &quot;K3S_URL=https://&amp;lt;CONTROL_IP&amp;gt;:6443&quot; \
+    --privileged \
+    --tmpfs /run \
+    --tmpfs /var/run \
+    rancher/k3s:v0.3.0-arm64
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;The agents should start up quicker compared to the control plane.
+You can verify that they connected successfully using kubectl.
+Remember, you’ll need to have the &lt;code class=&quot;highlighter-rouge&quot;&gt;KUBECONFIG&lt;/code&gt; environment variable exported.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ kubectl get node
+NAME        STATUS    ROLES     AGE       VERSION
+myriad-1    Ready     &amp;lt;none&amp;gt;    1d        v1.13.5-k3s.1
+myriad-10   Ready     &amp;lt;none&amp;gt;    1d        v1.13.5-k3s.1
+myriad-2    Ready     &amp;lt;none&amp;gt;    1d        v1.13.5-k3s.1
+myriad-3    Ready     &amp;lt;none&amp;gt;    1d        v1.13.5-k3s.1
+myriad-4    Ready     &amp;lt;none&amp;gt;    1d        v1.13.5-k3s.1
+myriad-5    Ready     &amp;lt;none&amp;gt;    1d        v1.13.5-k3s.1
+myriad-6    Ready     &amp;lt;none&amp;gt;    1d        v1.13.5-k3s.1
+myriad-7    Ready     &amp;lt;none&amp;gt;    1d        v1.13.5-k3s.1
+myriad-8    Ready     &amp;lt;none&amp;gt;    1d        v1.13.5-k3s.1
+myriad-9    Ready     &amp;lt;none&amp;gt;    1d        v1.13.5-k3s.1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;setup-details&quot;&gt;Setup Details&lt;/h3&gt;
+
+&lt;p&gt;There are a few key details about this setup that are worth noting.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;--network &quot;host&quot;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;This flag tells the docker container to leverage the hosts network instead of the bridge provided by docker.
+(&lt;a href=&quot;https://docs.docker.com/engine/reference/run/#network-settings&quot;&gt;Documentation&lt;/a&gt;)&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;--restart &quot;always&quot;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;This flag tells the docker daemon to restart the process regardless of it’s exit status.
+For this kind of process, I’d use either &lt;code class=&quot;highlighter-rouge&quot;&gt;always&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;unless-stopped&lt;/code&gt;.
+In practice, the container is either present and running or removed so I tend to lean towards &lt;code class=&quot;highlighter-rouge&quot;&gt;always&lt;/code&gt;.
+(&lt;a href=&quot;https://docs.docker.com/engine/reference/run/#restart-policies---restart&quot;&gt;Documentation&lt;/a&gt;)&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;-e &quot;K3S_CLUSTER_SECRET=&amp;lt;YOUR_SECRET_HERE&amp;gt;&quot;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;This is the shared secret that is used to bootstrap the cluster.
+Alternatively, you can set the &lt;code class=&quot;highlighter-rouge&quot;&gt;K3S_TOKEN&lt;/code&gt; which is generated by the control plane.
+For a quick start, I suggest the cluster secret.
+If you’re looking to be able to dynamically add nodes to the cluster, the token is a bit better.&lt;/p&gt;
+
+&lt;h2 id=&quot;resources&quot;&gt;Resources&lt;/h2&gt;
+&lt;p&gt;In &lt;a href=&quot;/blog/2019/03/17/64bit-raspberry-pi/&quot;&gt;Easy Steps to a 64bit Raspberry Pi 3 B/B+&lt;/a&gt;, I talk about how easy it is to get a 64bit Raspberry Pi up and running.&lt;/p&gt;
+
+&lt;p&gt;Since starting my cluster, I’ve been committing the scripts I used to manage it to a &lt;a href=&quot;https://github.com/mjpitz/terraform-rpi&quot;&gt;repository&lt;/a&gt;.
+This repository has taken on a few different shapes, but it can be a good reference point for how all of this gets stood up.&lt;/p&gt;</content><author><name>Mya Pitzeruse</name><email>j.mya.pitz@gmail.com</email></author><category term="iot" /><category term="raspberrypi" /><category term="kubernetes" /><category term="k3s" /><summary type="html">Over the last few days, I’ve been revisiting Kubernetes on my Raspberry Pi cluster. I hope to share what I learned in the process and some of the tooling that I discovered along the way.</summary></entry><entry><title type="html">Easy Steps to a 64bit Raspberry Pi 3 B/B+</title><link href="https://www.mjpitz.com/blog/2019/03/17/64bit-raspberry-pi/" rel="alternate" type="text/html" title="Easy Steps to a 64bit Raspberry Pi 3 B/B+" /><published>2019-03-17T00:00:00+00:00</published><updated>2019-03-17T00:00:00+00:00</updated><id>https://www.mjpitz.com/blog/2019/03/17/64bit-raspberry-pi</id><content type="html" xml:base="https://www.mjpitz.com/blog/2019/03/17/64bit-raspberry-pi/">&lt;p&gt;I was quite surprised to see how under documented installing a 64 bit operating system onto a Raspberry Pi is.
+Many articles out there talk about needing to compile Linux, which sounds oh-so-pleasant.
+One day, I stumbled across a 64bit OpenSUSE version that was compatible, but the installation instructions required a Linux OS to be done properly.
+Since I primarily work on OSX, this presented yet another barrier.&lt;/p&gt;
+
+&lt;p&gt;After a lot of searching around, I finally found a straight forward and simple way to do it.
+&lt;!--more--&gt;
+I remember hearing about Ubuntu’s active support for ARM.
+I went to the &lt;a href=&quot;http://cdimage.ubuntu.com/ubuntu/releases/bionic/release/&quot;&gt;18.04 release page&lt;/a&gt; and looked at what they offer out of box.
+They not only included the ARM server images, but they also provide an image built specifically for the Raspberry Pi.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/statics/img/ubuntu-downloads.png&quot; alt=&quot;Ubuntu Downloads&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The reason I really liked this option is because the image that is produced by Ubuntu is compatible with &lt;a href=&quot;https://www.balena.io/etcher/&quot;&gt;Balena Etcher&lt;/a&gt;.
+Etcher is a rather popular tool used to quickly flash SD cards with new operating systems.
+Quite often, it’s referenced as an installation method for creating bootable media.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Download and install Balena Etcher from their site.&lt;/li&gt;
+  &lt;li&gt;Download &lt;a href=&quot;http://cdimage.ubuntu.com/ubuntu/releases/bionic/release/ubuntu-18.04.2-preinstalled-server-arm64+raspi3.img.xz&quot;&gt;Ubuntu 18.04 for Raspberry Pi 3&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Flash downloaded ubuntu.img.xz onto your flash drives using Etcher&lt;/li&gt;
+  &lt;li&gt;Once complete, eject the flash drive and insert into your Raspberry Pi.&lt;/li&gt;
+  &lt;li&gt;Connect your pi to the network and a power source.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;That’s it!
+The default hostname, username and password are &lt;code class=&quot;highlighter-rouge&quot;&gt;ubuntu&lt;/code&gt;.
+One of the immediate differences you’ll probably notice is that the node will not be resolvable via &lt;code class=&quot;highlighter-rouge&quot;&gt;ubuntu.local&lt;/code&gt;.
+(This presumes that your router supports network level host names).
+You’ll need to get the IP address through your router’s management console or by grabbing it from the Pi directly.&lt;/p&gt;</content><author><name>Mya Pitzeruse</name><email>j.mya.pitz@gmail.com</email></author><category term="iot" /><category term="raspberrypi" /><summary type="html">I was quite surprised to see how under documented installing a 64 bit operating system onto a Raspberry Pi is. Many articles out there talk about needing to compile Linux, which sounds oh-so-pleasant. One day, I stumbled across a 64bit OpenSUSE version that was compatible, but the installation instructions required a Linux OS to be done properly. Since I primarily work on OSX, this presented yet another barrier. After a lot of searching around, I finally found a straight forward and simple way to do it.</summary></entry><entry><title type="html">gitfs - A FUSE File System</title><link href="https://www.mjpitz.com/blog/2019/01/30/gitfs-a-fuse-file-system/" rel="alternate" type="text/html" title="gitfs - A FUSE File System" /><published>2019-01-30T00:00:00+00:00</published><updated>2019-01-30T00:00:00+00:00</updated><id>https://www.mjpitz.com/blog/2019/01/30/gitfs-a-fuse-file-system</id><content type="html" xml:base="https://www.mjpitz.com/blog/2019/01/30/gitfs-a-fuse-file-system/">&lt;p&gt;During my first employment at Indeed, I cloned every repository down to my machine.
+This approach worked for a while when the number of repositories was small.
+As the organization has grown, the solution quickly became unmanageable.
+While many people do not work across every repository, many are familiar with the pain of setting up a new machine.
+I wrote &lt;a href=&quot;https://github.com/mjpitz/gitfs&quot;&gt;gitfs&lt;/a&gt; for a few reasons.
+First, to reduce the time spent setting up a new development environment.
+Second, to remove the need to figure out where all my projects need to be cloned.
+In this post, I discuss some challenges faced and lessons learned in writing my first file system.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h2 id=&quot;gitfs-in-action&quot;&gt;gitfs in Action&lt;/h2&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;gitfs&lt;/code&gt; is a &lt;a href=&quot;https://github.com/libfuse/libfuse&quot;&gt;FUSE&lt;/a&gt; file system that helps reduce the management of git repositories.
+It works by connecting to well defined api’s (GitHub, Bitbucket, and Gitlab) and fetching repository urls associated with the user.
+These urls are parsed into a virutal directory structure that can be navigated via the terminal on linux or osx.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[mjpitz@mjpitz ~/Development/code 1/1]
+$ ls
+github.com
+
+[mjpitz@mjpitz ~/Development/code 1/1]
+$ cd github.com/
+
+[mjpitz@mjpitz ~/Development/code/github.com 1/1]
+$ ls
+indeedeng  indeedeng-alpha  mjpitz
+
+[mjpitz@mjpitz ~/Development/code/github.com 1/1]
+$ cd mjpitz/
+
+[mjpitz@mjpitz ~/Development/code/github.com/mjpitz 1/1]
+$ ls
+OpenGrok           gitfs            jgrapht     proto2-3
+consul-api         grpc-java        laas        rpi
+docker-clickhouse  grpc.github.io   mjpitz.com  seo-portal
+docker-utils       grpcsh           mp          serverless-plugin-simulate
+dotfiles           hbase-docker     okhttp      simple-daemon-node
+envoy              idea-framework   proctor     spring-config-repo
+generator-idea     java-gitlab-api  proctorjs
+
+[mjpitz@mjpitz ~/Development/code/github.com/mjpitz 1/1]
+$ cd mjpitz.com/
+
+[mjpitz@mjpitz ~/Development/code/github.com/mjpitz/mjpitz.com master 1/1]
+$ ls
+Gemfile       _drafts    _posts              go              statics
+Gemfile.lock  _includes  _site               index.html
+_config.yml   _layouts   docker-compose.yml  pages
+_data         _plugins   error.html          s3_website.yml
+
+[mjpitz@mjpitz ~/Development/code/github.com/mjpitz/mjpitz.com master 1/1]
+$
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;challenge-1---finding-a-complete-example&quot;&gt;Challenge 1 - Finding a complete example&lt;/h2&gt;
+
+&lt;p&gt;The first big challenge that I encountered was finding a complete working example.
+I chose the &lt;a href=&quot;https://github.com/bazil/fuse&quot;&gt;bazil/fuse&lt;/a&gt; library since it provided a clean low level implementation.
+Using a few basic tutorials, I was able to implement a read-only version of the file system.
+Unfortunately, the tutorials often only implemented a couple of interfaces from the library.
+And finding a complete example proved to be very difficult.
+Eventually, I stumbled across &lt;a href=&quot;https://github.com/cockroachdb/examples-go/blob/master/filesystem/node.go&quot;&gt;cockroachdb/examples-go&lt;/a&gt; which provides a good example to work off of.&lt;/p&gt;
+
+&lt;p&gt;Using this reference, I implemented 2 structures.
+One that represented a file and one that represented a directory.
+As the project progressed, having the logic in two separate files became difficult to manage.
+Eventually, these implementations collapsed into a single INode structure.
+This made it easy to keep a lot of business logic in one place.
+For portability, I added an interface for quick reference detailing which methods need to be implemented.&lt;/p&gt;
+
+&lt;div class=&quot;language-golang highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;filesystem&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;bazil.org/fuse/fs&quot;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;INode&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;// common node functions&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NodeSetattrer&lt;/span&gt;
+
+	&lt;span class=&quot;c&quot;&gt;// directory functions&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NodeStringLookuper&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HandleReadDirAller&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NodeMkdirer&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NodeCreater&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NodeRemover&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NodeRenamer&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NodeSymlinker&lt;/span&gt;
+
+	&lt;span class=&quot;c&quot;&gt;// handle functions&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NodeOpener&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HandleWriter&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HandleReader&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NodeFsyncer&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HandleFlusher&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HandleReleaser&lt;/span&gt;
+
+	&lt;span class=&quot;c&quot;&gt;// symlink functions&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NodeReadlinker&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;challenge-2---debugging&quot;&gt;Challenge 2 - Debugging&lt;/h2&gt;
+
+&lt;p&gt;Debugging a file system can be intense.
+Since many operations happen in such a short period of time, a full set of logs can quickly fill your disk.
+First, I started by only logging errors.
+That solution was insufficient.
+In many cases, context from the request and wrapping structure would’ve helped debug issues.
+After iterating on the log a few times, I wound up adding an info log at the start of the method.
+It included details about the request, details about the structure, as well as what method was being invoked.
+From this, I was able to see the full sequence of operations on the file system.
+But it was a lot.&lt;/p&gt;
+
+&lt;p&gt;In many cases, the error logs were enough to understand what went wrong.
+To reduce the volume in the typical case, I implemented a &lt;code class=&quot;highlighter-rouge&quot;&gt;DEBUG&lt;/code&gt; mode.
+By default, the info log is suppressed.
+When &lt;code class=&quot;highlighter-rouge&quot;&gt;DEBUG&lt;/code&gt; is set to &lt;code class=&quot;highlighter-rouge&quot;&gt;true&lt;/code&gt;, the info log and the additional details are logged to stdout.
+Since debugging now requires restarting the file system, I needed to understand reproduction steps before restarting.
+By understanding the reproduction steps well, I am able to reproduce the issue quickly, keeping the debug log short and easy to read.&lt;/p&gt;</content><author><name>Mya Pitzeruse</name><email>j.mya.pitz@gmail.com</email></author><category term="golang" /><category term="fuse" /><summary type="html">During my first employment at Indeed, I cloned every repository down to my machine. This approach worked for a while when the number of repositories was small. As the organization has grown, the solution quickly became unmanageable. While many people do not work across every repository, many are familiar with the pain of setting up a new machine. I wrote gitfs for a few reasons. First, to reduce the time spent setting up a new development environment. Second, to remove the need to figure out where all my projects need to be cloned. In this post, I discuss some challenges faced and lessons learned in writing my first file system.</summary></entry><entry><title type="html">Reflecting on Past Projects - JavaScript</title><link href="https://www.mjpitz.com/blog/2018/10/31/past-project-reflections-javascript/" rel="alternate" type="text/html" title="Reflecting on Past Projects - JavaScript" /><published>2018-10-31T00:00:00+00:00</published><updated>2018-10-31T00:00:00+00:00</updated><id>https://www.mjpitz.com/blog/2018/10/31/past-project-reflections-javascript</id><content type="html" xml:base="https://www.mjpitz.com/blog/2018/10/31/past-project-reflections-javascript/">&lt;p&gt;Every now and then, a friend of mine reaches out and discuss previous projects we had worked on together.
+As we looked back at code, there was some obvious lessons that we took away from the project.
+In this post, I reflect on several JavaScript projects that I have worked on over the course of my career.
+In each project, I will try to provide:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;technologies used and rough size of project&lt;/li&gt;
+  &lt;li&gt;an overview of the project&lt;/li&gt;
+  &lt;li&gt;a critique about the approach taken to manage the project&lt;/li&gt;
+  &lt;li&gt;what I would’ve done differently&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--more--&gt;
+
+&lt;h2 id=&quot;rochester-institute-of-technology&quot;&gt;Rochester Institute of Technology&lt;/h2&gt;
+
+&lt;h3 id=&quot;educational-design-resources&quot;&gt;Educational Design Resources&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;October 2009 - September - 2012&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Core Technologies: Windows IIS, JavaScript, jQuery&lt;/p&gt;
+
+&lt;p&gt;Lines of Code: unknown&lt;/p&gt;
+
+&lt;p&gt;During my college career, I worked for a small development shop on campus.
+We built applications that facilitated the education of deaf and hard of hearing students.
+One of our platforms enabled students to submit assignments in a manner more familiar to them, using sign language.
+We did this by providing live video streaming and video recording functionality in a browser.
+At the time, services like Youtube were young and lacked support for private channels.
+Due to the lack of access restrictions, we had to build our own video hosting platform.&lt;/p&gt;
+
+&lt;p&gt;Pros:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;full stack JavaScript for easy code reuse&lt;/li&gt;
+  &lt;li&gt;mono-repo, easy to make cross-cutting changes&lt;/li&gt;
+  &lt;li&gt;delegated functionality to external services (Wowza Media Server for storage)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Cons:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;use of slow IIS JavaScript Runtime&lt;/li&gt;
+  &lt;li&gt;no dependency management&lt;/li&gt;
+  &lt;li&gt;required tribal knowledge to be effective&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In the end, the system worked but was a nightmare to maintain.
+Looking back, there are many things that I would have done differently.
+Technology has certainly progressed since then .
+Keep in mind, many of the modern tool sets available to you today may not have been available then.&lt;/p&gt;
+
+&lt;h2 id=&quot;indeed&quot;&gt;Indeed&lt;/h2&gt;
+
+&lt;h3 id=&quot;employer-products&quot;&gt;Employer Products&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;June 2013 - December 2015&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Core Technologies: Java, JavaScript, Closure, jsdoc-typed&lt;/p&gt;
+
+&lt;p&gt;Lines of Code: 20K+&lt;/p&gt;
+
+&lt;p&gt;I joined Indeed working on the employer products.
+This application allowed employers to post a job directly on our site and manage all candidates that apply.
+We built the product targeting small to medium sized businesses.
+Many larger systems were difficult for these smaller companies to get started.
+Indeed sought to make the experience better.&lt;/p&gt;
+
+&lt;p&gt;Pros:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;static type checking via the Closure Linter&lt;/li&gt;
+  &lt;li&gt;wholistic tool chain provided by Closure&lt;/li&gt;
+  &lt;li&gt;able to apply object oriented principles to frontend application development&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Cons:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;not widely used, making it difficult to find support&lt;/li&gt;
+  &lt;li&gt;few internal experts on the framework&lt;/li&gt;
+  &lt;li&gt;dependency management of frontend dependencies coupled to backend&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The biggest critique I had about this system was how it grew.
+Instead of refactoring and pulling parts out into their own system, we added more and more to the single system.
+We took a prototype, continued to iterate on it, and pushed it through to production.
+The biggest lesson I took away from this project was that sometimes, it’s ok to slow down and refactor.
+Every now and then, this is a necessity.&lt;/p&gt;
+
+&lt;h3 id=&quot;eclair&quot;&gt;Eclair&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;June 2016 - April 2018&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Core Technologies: Java, JavaScript, NodeJS, jsdoc-typed&lt;/p&gt;
+
+&lt;p&gt;Lines of Code: &amp;lt; 5K&lt;/p&gt;
+
+&lt;p&gt;Eclair is a process I wrote to facilitate upgrading Spring from version 3 to 4 at Indeed.
+Major library upgrades come with a fair amount of risk involved.
+Classes that are deprecated are often cleaned up.
+Components move between packages.
+In the end, you have a set of changes that must be applied to your code base.
+Before getting into the details of the library upgrade, I first build Darwin.
+This service parsed dependency management files and maintained a queryable graph of dependencies.
+Eclair used this API to apply the set of changes to every project that was impacted by the upgrade.&lt;/p&gt;
+
+&lt;p&gt;Pros:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;NPM made managing dependencies really easy&lt;/li&gt;
+  &lt;li&gt;worked on the command line and was easy to trace through&lt;/li&gt;
+  &lt;li&gt;system ran quickly and was easy to grow over time&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Cons:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;use of jsdoc types proved to be cumbersome&lt;/li&gt;
+  &lt;li&gt;jsdoc types didn’t work well for things that weren’t imported directly&lt;/li&gt;
+  &lt;li&gt;using wrong node version caused some events to be emitted differently&lt;/li&gt;
+  &lt;li&gt;lack of included logging made it difficult to track down problems&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This being one of my first independent code bases, it’s hard to sit and critique it.
+First, I would have baked in a better troubleshooting feature.
+This would help facilitate investigations when other engineers were attempting to run the program. 
+Another thing I would have done differently was build in reporting from the start.
+Often times, we wanted to have a cohesive report of the state of the world before the change set was applied, and after.&lt;/p&gt;
+
+&lt;h2 id=&quot;dosh&quot;&gt;Dosh&lt;/h2&gt;
+
+&lt;h3 id=&quot;graphql&quot;&gt;GraphQL&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;May 2018 - November 2018&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Core Technologies: AWS Lambda, JavaScript, NodeJS, flow-typed&lt;/p&gt;
+
+&lt;p&gt;Lines of Code: ~ 13K&lt;/p&gt;
+
+&lt;p&gt;After Indeed, I wanted to vary up some of the technical experience that I had exposure to.
+A colleague of mine had recently gone and joined Dosh, a cash back app.
+Their backend systems were going through a large rewrite of some of their system components.
+Upon joining, I was assigned to build out our new graphql layer.
+Much of the schema was already specified and it was my job to glue the remote service calls into place.
+It gave me great exposure to all the backing systems which drove our front end and running on AWS Lambda.&lt;/p&gt;
+
+&lt;p&gt;Pros:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;flow finally started bringing some static type analysis to JavaScript&lt;/li&gt;
+  &lt;li&gt;code base was sectioned by level of authentication, making exposure levels clear&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Cons:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;flow’s opt-in model became difficult to work with on a largely untyped code base&lt;/li&gt;
+  &lt;li&gt;flow types aren’t preserved across library boundaries&lt;/li&gt;
+  &lt;li&gt;supporting compilation and flow meant adding babel and tons of plugins to support&lt;/li&gt;
+  &lt;li&gt;result in a lot of development toil needing to track down the right plugin for the right job&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;All in all, I really liked this project.
+While working with flow and babel was painful at times, it wound up saving a lot of headaches.
+The biggest thing I would do differently was use a types file to declare service contracts.
+By using something like a &lt;code class=&quot;highlighter-rouge&quot;&gt;.d.ts&lt;/code&gt;, you would be able to attach the types to the package.
+Those types are then shipped along with the client when users install via npm.&lt;/p&gt;
+
+&lt;h2 id=&quot;at-home&quot;&gt;At Home&lt;/h2&gt;
+
+&lt;h3 id=&quot;finch&quot;&gt;Finch&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;May 2018 - Present&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Core Technologies: Docker, TypeScript, NodeJS&lt;/p&gt;
+
+&lt;p&gt;Lines of Code: ~ 5K&lt;/p&gt;
+
+&lt;p&gt;The last project I wanted to talk about was a recent project I started after leaving Indeed.
+This project was intended to be the evolution of the Darwin process I wrote at Indeed.
+Darwin was written to accomplish a single task.
+It turned into a system that proved promising to automate a good portion of process.
+And so I started working on Finch in my free time.
+Finch is a process composed of 3 parts: a crawler, a web interface, and a service.
+Since this system was largely handling parsing and normalizing of XML and JSON data, I chose to write it in JavaScript.
+Instead of using Flow, I decided to take TypeScript for a bigger spin.
+In the past, I played around with TypeScript a bit in the past and it seemed really promising.
+With this project, I finally had an opportunity to use it in a larger scale project.
+I instantly fell in love with the simplicity and reduced toolchain that came with it.&lt;/p&gt;
+
+&lt;p&gt;Pros:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;reduced toolchain, making development straight forward&lt;/li&gt;
+  &lt;li&gt;works with existing NodeJS ecosystem&lt;/li&gt;
+  &lt;li&gt;establishing abstractions and integration points becomes intuitive&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Cons:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;migrating to lerna is proving to be difficult, but not impossible&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In retrospect, I really wish I figured out the multi-package story.
+When I started the project, I did try to incorporate lerna.
+But that only seemed to hinder the process of developing the proof of concept.
+So I decided to shelve the multi-package story.
+Instead, I isolated components using packaging and establishing rules between them.
+In the end, I still found myself wanting the distinct independent packages.&lt;/p&gt;</content><author><name>Mya Pitzeruse</name><email>j.mya.pitz@gmail.com</email></author><summary type="html">Every now and then, a friend of mine reaches out and discuss previous projects we had worked on together. As we looked back at code, there was some obvious lessons that we took away from the project. In this post, I reflect on several JavaScript projects that I have worked on over the course of my career. In each project, I will try to provide: technologies used and rough size of project an overview of the project a critique about the approach taken to manage the project what I would’ve done differently</summary></entry></feed>

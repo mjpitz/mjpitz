@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link type="application/atom+xml" rel="alternate" href="https://www.mjpitz.com/feed.xml" title="Mya Pitzeruse" />
+        <meta name="author" content="Mya Pitzeruse">
+
+        <title>
+            
+                Using docker-buildx for Multi-architecture Containers
+            
+        </title>
+
+        
+
+        <link rel="stylesheet" href="/statics/libs/bootstrap-3.3.7/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="/statics/libs/font-awesome-5.4.1/css/all.min.css">
+        <link rel="stylesheet" href="/statics/css/syntax-highlighting.css"/>
+        <link rel="stylesheet" href="/statics/css/app.css"/>
+
+        <link rel="apple-touch-icon" sizes="180x180" href="/statics/img/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/statics/img/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/statics/img/favicon-16x16.png">
+        <link rel="manifest" href="/statics/img/site.webmanifest">
+        <link rel="mask-icon" href="/statics/img/safari-pinned-tab.svg" color="#a28ad2">
+        <link rel="shortcut icon" href="/statics/img/favicon.ico">
+        <link rel="icon" href="/statics/img/favicon.ico" type="image/x-icon">
+        <meta name="msapplication-TileColor" content="#eeeeee">
+        <meta name="msapplication-config" content="/statics/img/browserconfig.xml">
+        <meta name="theme-color" content="#eeeeee">
+    </head>
+    <body>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="navbar-brand">@mjpitz</div>
+                </div>
+
+                <div class="collapse navbar-collapse" id="menu">
+                    <ul class="nav navbar-nav mr-auto">
+                        <li>
+                            <a href="/">
+                                <i class="fas fa-home" title="Blog" data-toggle="tooltip" data-placement="bottom">
+                                    <span>Blog</span>
+                                </i>
+                                Blog
+                            </a>
+                        </li>
+                    </ul>
+                    
+                    <ul class="nav navbar-nav nav-social">
+                        <li>
+                            <a href="http://www.github.com/mjpitz">
+                                <i class="fab fa-github" title="GitHub" data-toggle="tooltip" data-placement="bottom">
+                                    <span>GitHub</span>
+                                </i>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://hub.docker.com/u/mjpitz">
+                                <i class="fab fa-docker" title="Docker" data-toggle="tooltip" data-placement="bottom">
+                                    <span>Docker</span>
+                                </i>
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="http://www.twitter.com/_mjpitz_">
+                                <i class="fab fa-twitter" title="Twitter" data-toggle="tooltip" data-placement="bottom">
+                                    <span>Twitter</span>
+                                </i>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="http://www.linkedin.com/in/mjpitz">
+                                <i class="fab fa-linkedin" title="LinkedIn" data-toggle="tooltip" data-placement="bottom">
+                                    <span>LinkedIn</span>
+                                </i>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/feed.xml">
+                                <i class="fas fa-rss" title="Feed" data-toggle="tooltip" data-placement="bottom">
+                                    <span>Feed</span>
+                                </i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container mjpitz-content" style="margin-top:82px">
+            <div class="panel panel-default">
+    <div class="panel-body">
+        <div class="post">
+            <h1 class="post-title">Using docker-buildx for Multi-architecture Containers</h1>
+            <p class="post-date">Posted on May 07, 2019</p>
+
+            <div class="post-content">
+                <p>When you build a container image, it’s typically only built for one platform (<code class="highlighter-rouge">linux</code>) and one architecture (<code class="highlighter-rouge">amd64</code>).
+As the Internet of Things continues to grow, the demand for more <code class="highlighter-rouge">arm</code> images increased as well.
+Traditionally, in order to produce an <code class="highlighter-rouge">arm</code> image, you need an <code class="highlighter-rouge">arm</code> device to do the build on.
+As a result, most projects wind up missing <code class="highlighter-rouge">arm</code> support.</p>
+
+<p><a href="https://github.com/moby/buildkit">BuildKit</a> provides emulation capabilities that support multi-architecture builds.
+With BuildKit, you build container images across multiple architectures concurrently.
+This core utility backs <code class="highlighter-rouge">docker buildx</code>, a multi-architecture build utility for docker.
+In this post, I’ll discuss why you should produce multi-architecture container images and demonstrate how to use <code class="highlighter-rouge">docker buildx</code> to do it.</p>
+
+<!--more-->
+
+<h2 id="why-build-multiple-architectures">Why build multiple architectures?</h2>
+
+<p>There are many good reasons why you should build multi-architecture images for your project.
+One of the biggest being that it improves your users experience.
+As someone who works across both <code class="highlighter-rouge">amd64</code> and <code class="highlighter-rouge">arm64</code>, I often struggle to find images supported across both architectures.
+As a result, I wind up needing to create my own or rebuilding another to be able to run the system on my cluster.</p>
+
+<p>This makes it more difficult to get started with projects.
+Instead of running that <code class="highlighter-rouge">kubectl apply -f</code> command I found on the web, I first need to consider:</p>
+
+<ol>
+  <li>Do the referenced images run on <code class="highlighter-rouge">arm64</code>?</li>
+  <li>If they don’t, has someone already ported them?</li>
+  <li>If someone hasn’t ported them, has anyone requested support?</li>
+  <li>If someone hasn’t request support, what happens when I try to compile them?</li>
+</ol>
+
+<p>And the list of goes on.
+By cross compiling images and leveraging manifest lists, you can create a much better experience for developers on a different architectures.</p>
+
+<h2 id="working-with-buildx">Working with buildx</h2>
+
+<p>In order to get started with <code class="highlighter-rouge">buildx</code>, you’ll need to install the latest edge version of Docker.</p>
+
+<ul>
+  <li><a href="https://docs.docker.com/docker-for-mac/edge-release-notes/">Docker Edge for Mac</a></li>
+  <li><a href="https://docs.docker.com/docker-for-windows/edge-release-notes/">Docker Edge for Windows</a></li>
+</ul>
+
+<p>Once the edge version of Docker has been installed, you’ll be able to interact with the <code class="highlighter-rouge">buildx</code> command.
+The first thing you will want to do is create a context for your project.
+This acts as a workspace for your current build states.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker buildx create <span class="nt">--name</span> <span class="k">${</span><span class="nv">PROJECT</span><span class="k">}</span>
+</code></pre></div></div>
+
+<p>Once the context has been created, you’ll want to switch to using it.
+You can either use the <code class="highlighter-rouge">--use</code> option on the <code class="highlighter-rouge">create</code> command or explicitly switch contexts using <code class="highlighter-rouge">use</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker buildx use <span class="k">${</span><span class="nv">PROJECT</span><span class="k">}</span>
+</code></pre></div></div>
+
+<p>After activating the environment, you’re ready to build your image across multiple architectures.
+Below, I have provided a simple build command.
+This will cause 3 builds to happen: one for <code class="highlighter-rouge">linux/amd64</code>, one for <code class="highlighter-rouge">linux/arm64</code>, and one for <code class="highlighter-rouge">linux/arm/v7</code>.
+In addition to that, by providing the <code class="highlighter-rouge">-t</code> option, <code class="highlighter-rouge">buildx</code> will produce a manifest list containing the layer references for each corresponding architectures.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker buildx build <span class="nt">--platform</span> linux/amd64,linux/arm64,linux/arm/v7 <span class="nt">-t</span> <span class="k">${</span><span class="nv">PROJECT</span><span class="k">}</span>:<span class="k">${</span><span class="nv">VERSION</span><span class="k">}</span> <span class="nb">.</span>
+</code></pre></div></div>
+
+<p>What this means is that when a user wants to run your project on an ARM system, they no longer need to reference an architecture specific image or tag.
+Instead, they are able to use the same image ref and the same tag that they would use on a typical desktop machine.
+Once you’re satisfied with your build, you can append the <code class="highlighter-rouge">--push</code> option to the <code class="highlighter-rouge">buildx</code> command to push the images and manifest list upstream.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker buildx build <span class="nt">--platform</span> linux/amd64,linux/arm64,linux/arm/v7 <span class="nt">-t</span> <span class="k">${</span><span class="nv">PROJECT</span><span class="k">}</span>:<span class="k">${</span><span class="nv">VERSION</span><span class="k">}</span> <span class="nb">.</span> <span class="nt">--push</span>
+</code></pre></div></div>
+
+<p>After your images have been successfully pushed, you can see the supported architectures on the tags page of the docker repository.</p>
+
+<p><img src="/statics/img/multiarch-container-image.png" alt="multiarch-container-image.png" /></p>
+
+<p>One thing that I’ve found frustrating from hub.docker.com is that they don’t do a good job calling out to the supported architectures on the public tags page.
+This means that image producers need to call out to this support in their README files.
+At least for now.</p>
+
+<p><img src="/statics/img/multiarch-container-public.png" alt="multiarch-container-public.png" /></p>
+
+
+            </div>
+
+            <div class="text-center">
+    <br/>
+    <br/>
+    <p><i>Share this article on</i></p>
+
+    <div style="font-size: 36px;">
+        <a rel="nofollow" target="_blank" href="https://facebook.com/sharer.php?u=https://www.mjpitz.com/blog/2019/05/07/docker-buildx/">
+            <i class="fab fa-facebook" title="Facebook" data-toggle="tooltip" data-placement="bottom"></i></a>
+        &nbsp;
+        <a rel="nofollow" target="_blank" href="https://twitter.com/intent/tweet?text=Using docker-buildx for Multi-architecture Containers&url=https://www.mjpitz.com/blog/2019/05/07/docker-buildx/&via=&related=">
+            <i class="fab fa-twitter" title="Twitter" data-toggle="tooltip" data-placement="bottom"></i></a>
+        &nbsp;
+        <a rel="nofollow" target="_blank" href="http://www.linkedin.com/sharing/share-offsite/?url=https://www.mjpitz.com/blog/2019/05/07/docker-buildx/">
+            <i class="fab fa-linkedin" title="LinkedIn" data-toggle="tooltip" data-placement="bottom"></i></a>
+    </div>
+</div>
+
+
+            <div class="post-footer row">
+                <div class="col-sm-6 text-left">
+                    
+                        <a class="btn btn-default" href="/blog/2019/05/02/from-apache2-to-mit/">&laquo; Previous Post</a>
+                    
+                </div>
+
+                <div class="col-sm-6 text-right">
+                    
+                    <a class="btn btn-default" href="/blog/2019/10/17/kubernetes-service-precheck/">Next Post &raquo;</a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        </div>
+        <div style="padding:25px 0; margin-top: 50px;">
+    <div>
+        
+<!-- Google Analytics (http://google.com/analytics) -->
+<script>
+    !function(j,e,k,y,l,L){j.GoogleAnalyticsObject=y,j[y]||(j[y]=function(){
+        (j[y].q=j[y].q||[]).push(arguments)}),j[y].l=+new Date,l=e.createElement(k),
+            L=e.getElementsByTagName(k)[0],l.src='//www.google-analytics.com/analytics.js',
+            L.parentNode.insertBefore(l,L)}(window,document,'script','ga');
+    ga('create', 'UA-39314903-5', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+        <script src="/statics/libs/jquery-2.1.4/jquery.min.js"></script>
+        <script src="/statics/libs/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+
+        <script>
+            $(function () {
+                //$('[data-toggle="tooltip"]').tooltip();
+                $('.collapse').collapse({ toggle: false })
+            });
+        </script>
+    </div>
+</div>
+    </body>
+</html>

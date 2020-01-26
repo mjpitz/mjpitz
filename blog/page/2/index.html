@@ -107,134 +107,122 @@
         <div class="post">
             
             <div style="padding: 15px 0">
-                <a href="/blog/2020/01/24/building-depscloud/">
-                    <h2>Building deps.cloud</h2>
+                <a href="/blog/2019/04/12/rpi-cluster-setup/">
+                    <h2>Raspberry Pi Cluster Setup</h2>
                 </a>
                 <div>
-                    <p>January 24, 2020</p>
+                    <p>April 12, 2019</p>
                 </div>
 
                 <div>
-                    <p>Over the last year, I’ve been heavily working on <a href="https://deps.cloud">deps.cloud</a>.
-deps.cloud draws it’s inspiration from a project that I worked on at <a href="https://indeed.com">Indeed.com</a>.
-Since it’s original inception, there had been a heavy push to move it into the open source space.
-In this post, I’ll discuss the process and rationale I applied as I rewrote this project in the open.</p>
+                    <p>Previously, I talked about the different orchestration technologies that I’ve run on my Raspberry Pi cluster.
+That post was rather high level and only contained details relating to k3s.
+In this post, we’ll take a more in depth look at my cluster setup and my management process around it.</p>
 
 
                 </div>
 
                 <p style="text-align: right">
-                    <a href="/blog/2020/01/24/building-depscloud/">Read More &raquo;</a>
+                    <a href="/blog/2019/04/12/rpi-cluster-setup/">Read More &raquo;</a>
                 </p>
             </div>
             
             <div style="padding: 15px 0">
-                <a href="/blog/2019/10/17/kubernetes-service-precheck/">
-                    <h2>Checking Service Dependencies in Kubernetes</h2>
+                <a href="/blog/2019/04/10/k8s-k3s-rpi-oh-my/">
+                    <h2>k3s on Raspberry Pi</h2>
                 </a>
                 <div>
-                    <p>October 17, 2019</p>
+                    <p>April 10, 2019</p>
                 </div>
 
                 <div>
-                    <p>Back in July, I found myself needing to better coordinate deployments of my applications to <a href="https://kubernetes.io/">Kubernetes</a>.
-After searching around, I found many ways that people where trying to solve this problem.
-Some used shell scripts to apply multiple YAML files with a fixed time sleep between them.
-Others used shell scripts and tailed the rollout using <code class="highlighter-rouge">kubectl rollout status -w</code>.
-Now, I manage a lot of my deployments using <a href="https://www.weave.works/technologies/gitops/">GitOps</a> and <a href="https://github.com/fluxcd/flux">Flux</a>.
-So leveraging these shell scripts to manage my rollouts into clusters wasn’t really an option.</p>
-
-<p>It wasn’t until I came across <a href="https://us.alibabacloud.com">Alibaba Cloud’s</a> blog post on <a href="https://www.alibabacloud.com/blog/kubernetes-demystified-solving-service-dependencies_594110">solving service dependencies</a> that I felt like I had something to work with.
-The article described two techniques. 
-The first was inspecting dependencies within the application itself. 
-At Indeed, we leverage our <a href="http://github.com/indeedeng/status">status</a> library to do this. 
-The second was to enable services to be checked, independent of the application.</p>
-
-<p>In this post, I’ll demonstrate how to use my <a href="https://hub.docker.com/r/mjpitz/service-precheck">service-precheck</a> initialization container (built off of the Alibaba blog post) to ensure upstream systems are up before attempting to start a downstream system.</p>
+                    <p>Over the last few days, I’ve been revisiting <a href="https://kubernetes.io">Kubernetes</a> on my Raspberry Pi cluster.
+I hope to share what I learned in the process and some of the tooling that I discovered along the way.</p>
 
 
                 </div>
 
                 <p style="text-align: right">
-                    <a href="/blog/2019/10/17/kubernetes-service-precheck/">Read More &raquo;</a>
+                    <a href="/blog/2019/04/10/k8s-k3s-rpi-oh-my/">Read More &raquo;</a>
                 </p>
             </div>
             
             <div style="padding: 15px 0">
-                <a href="/blog/2019/05/07/docker-buildx/">
-                    <h2>Using docker-buildx for Multi-architecture Containers</h2>
+                <a href="/blog/2019/03/17/64bit-raspberry-pi/">
+                    <h2>Easy Steps to a 64bit Raspberry Pi 3 B/B+</h2>
                 </a>
                 <div>
-                    <p>May 07, 2019</p>
+                    <p>March 17, 2019</p>
                 </div>
 
                 <div>
-                    <p>When you build a container image, it’s typically only built for one platform (<code class="highlighter-rouge">linux</code>) and one architecture (<code class="highlighter-rouge">amd64</code>).
-As the Internet of Things continues to grow, the demand for more <code class="highlighter-rouge">arm</code> images increased as well.
-Traditionally, in order to produce an <code class="highlighter-rouge">arm</code> image, you need an <code class="highlighter-rouge">arm</code> device to do the build on.
-As a result, most projects wind up missing <code class="highlighter-rouge">arm</code> support.</p>
+                    <p>I was quite surprised to see how under documented installing a 64 bit operating system onto a Raspberry Pi is.
+Many articles out there talk about needing to compile Linux, which sounds oh-so-pleasant.
+One day, I stumbled across a 64bit OpenSUSE version that was compatible, but the installation instructions required a Linux OS to be done properly.
+Since I primarily work on OSX, this presented yet another barrier.</p>
 
-<p><a href="https://github.com/moby/buildkit">BuildKit</a> provides emulation capabilities that support multi-architecture builds.
-With BuildKit, you build container images across multiple architectures concurrently.
-This core utility backs <code class="highlighter-rouge">docker buildx</code>, a multi-architecture build utility for docker.
-In this post, I’ll discuss why you should produce multi-architecture container images and demonstrate how to use <code class="highlighter-rouge">docker buildx</code> to do it.</p>
+<p>After a lot of searching around, I finally found a straight forward and simple way to do it.</p>
 
 
                 </div>
 
                 <p style="text-align: right">
-                    <a href="/blog/2019/05/07/docker-buildx/">Read More &raquo;</a>
+                    <a href="/blog/2019/03/17/64bit-raspberry-pi/">Read More &raquo;</a>
                 </p>
             </div>
             
             <div style="padding: 15px 0">
-                <a href="/blog/2019/05/02/from-apache2-to-mit/">
-                    <h2>Moving Licenses - Apache 2.0 to MIT</h2>
+                <a href="/blog/2019/01/30/gitfs-a-fuse-file-system/">
+                    <h2>gitfs - A FUSE File System</h2>
                 </a>
                 <div>
-                    <p>May 02, 2019</p>
+                    <p>January 30, 2019</p>
                 </div>
 
                 <div>
-                    <p>Yesterday, I decided to switch the license that I apply to my personal projects.
-Many open source projects use the Apache 2.0 license.
-After reading through it a few times, I liked the level of coverage that it provided.
-It was however a bit wordy in my opinion.
-These were often simple little side projects that I was hacking on in my free time.</p>
+                    <p>During my first employment at Indeed, I cloned every repository down to my machine.
+This approach worked for a while when the number of repositories was small.
+As the organization has grown, the solution quickly became unmanageable.
+While many people do not work across every repository, many are familiar with the pain of setting up a new machine.
+I wrote <a href="https://github.com/mjpitz/gitfs">gitfs</a> for a few reasons.
+First, to reduce the time spent setting up a new development environment.
+Second, to remove the need to figure out where all my projects need to be cloned.
+In this post, I discuss some challenges faced and lessons learned in writing my first file system.</p>
 
-<p>After some discussion with others in the community and a few podcasts, I decided to make a switch.
-I wanted to preserve a lot of what the Apache license granted, but simplify the wording quite a bit.
-The MIT license enables many of the same grants, while reducing the verbiage used to describe them.
-As an Engineer, I understand MIT much more than I understand the Apache license.
-From discussions, the MIT license often presents a lower barrier to entry when compared to Apache.
-This was exactly what I was looking for on my side projects.</p>
 
                 </div>
 
                 <p style="text-align: right">
-                    <a href="/blog/2019/05/02/from-apache2-to-mit/">Read More &raquo;</a>
+                    <a href="/blog/2019/01/30/gitfs-a-fuse-file-system/">Read More &raquo;</a>
                 </p>
             </div>
             
             <div style="padding: 15px 0">
-                <a href="/blog/2019/04/21/monitoring-rpi-cluster/">
-                    <h2>Raspberry Pi Cluster Monitoring</h2>
+                <a href="/blog/2018/10/31/past-project-reflections-javascript/">
+                    <h2>Reflecting on Past Projects - JavaScript</h2>
                 </a>
                 <div>
-                    <p>April 21, 2019</p>
+                    <p>October 31, 2018</p>
                 </div>
 
                 <div>
-                    <p>In my last few posts, I talked a bit about my at home development cluster.
-Due to the flexibility of my cluster, I wanted to provide a monitoring solution that was valuable across each technology I use.
-In this post, I discuss how monitoring is setup on my cluster.
-I’ll walk through setting up each node, the Prometheus server, and the Graphana UI.</p>
+                    <p>Every now and then, a friend of mine reaches out and discuss previous projects we had worked on together.
+As we looked back at code, there was some obvious lessons that we took away from the project.
+In this post, I reflect on several JavaScript projects that I have worked on over the course of my career.
+In each project, I will try to provide:</p>
+
+<ul>
+  <li>technologies used and rough size of project</li>
+  <li>an overview of the project</li>
+  <li>a critique about the approach taken to manage the project</li>
+  <li>what I would’ve done differently</li>
+</ul>
 
 
                 </div>
 
                 <p style="text-align: right">
-                    <a href="/blog/2019/04/21/monitoring-rpi-cluster/">Read More &raquo;</a>
+                    <a href="/blog/2018/10/31/past-project-reflections-javascript/">Read More &raquo;</a>
                 </p>
             </div>
             
@@ -245,11 +233,13 @@ I’ll walk through setting up each node, the Prometheus server, and the Graphan
             <div class="row" style="padding: 15px">
                 <div class="col-sm-6 text-left">
                     
+                    <a class="btn btn-default" href="/">&laquo; Previous Page</a>
+                    
                 </div>
 
                 <div class="col-sm-6 text-right">
                     
-                    <a class="btn btn-default" href="/blog/page/2/">Next Page &raquo;</a>
+                    <a class="btn btn-default" href="/blog/page/3/">Next Page &raquo;</a>
                     
                 </div>
             </div>

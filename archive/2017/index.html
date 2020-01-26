@@ -9,7 +9,7 @@
 
         <title>
             
-                Mya Pitzeruse
+                
             
         </title>
 
@@ -106,152 +106,99 @@
     <div class="panel-body">
         <div class="post">
             
-            <div style="padding: 15px 0">
-                <a href="/blog/2020/01/24/building-depscloud/">
-                    <h2>Building deps.cloud</h2>
+            <h1>Posts from 2017</h1>
+            
+
+            
+            <div style="padding: 15px 0;">
+                <a href="/blog/2017/06/14/delaying-message-processing/">
+                    <h2>Delaying Asynchronous Message Processing</h2>
                 </a>
                 <div>
-                    <p>January 24, 2020</p>
+                    <p>June 14, 2017</p>
                 </div>
 
                 <div>
-                    <p>Over the last year, I’ve been heavily working on <a href="https://deps.cloud">deps.cloud</a>.
-deps.cloud draws it’s inspiration from a project that I worked on at <a href="https://indeed.com">Indeed.com</a>.
-Since it’s original inception, there had been a heavy push to move it into the open source space.
-In this post, I’ll discuss the process and rationale I applied as I rewrote this project in the open.</p>
+                    <p>At Indeed, we always consider what’s best for the job seeker.
+When a job seeker applies for a job, we want them to have every opportunity to be hired. 
+It is unacceptable for a job seeker to miss an employment opportunity because their application was waiting to be processed while the employer makes a hire. 
+The team responsible for handling applies to jobs posted on Indeed maintains service level objectives (SLOs) for application processing time. 
+We constantly consider better solutions for processing applications and scaling this system.</p>
 
 
                 </div>
 
                 <p style="text-align: right">
-                    <a href="/blog/2020/01/24/building-depscloud/">Read More &raquo;</a>
+                    <a href="/blog/2017/06/14/delaying-message-processing/">Read More &raquo;</a>
                 </p>
             </div>
             
-            <div style="padding: 15px 0">
-                <a href="/blog/2019/10/17/kubernetes-service-precheck/">
-                    <h2>Checking Service Dependencies in Kubernetes</h2>
+            <div style="padding: 15px 0;">
+                <a href="/blog/2017/04/18/spring-component-scanning/">
+                    <h2>Component Scanning Library Code</h2>
                 </a>
                 <div>
-                    <p>October 17, 2019</p>
+                    <p>April 18, 2017</p>
                 </div>
 
                 <div>
-                    <p>Back in July, I found myself needing to better coordinate deployments of my applications to <a href="https://kubernetes.io/">Kubernetes</a>.
-After searching around, I found many ways that people where trying to solve this problem.
-Some used shell scripts to apply multiple YAML files with a fixed time sleep between them.
-Others used shell scripts and tailed the rollout using <code class="highlighter-rouge">kubectl rollout status -w</code>.
-Now, I manage a lot of my deployments using <a href="https://www.weave.works/technologies/gitops/">GitOps</a> and <a href="https://github.com/fluxcd/flux">Flux</a>.
-So leveraging these shell scripts to manage my rollouts into clusters wasn’t really an option.</p>
-
-<p>It wasn’t until I came across <a href="https://us.alibabacloud.com">Alibaba Cloud’s</a> blog post on <a href="https://www.alibabacloud.com/blog/kubernetes-demystified-solving-service-dependencies_594110">solving service dependencies</a> that I felt like I had something to work with.
-The article described two techniques. 
-The first was inspecting dependencies within the application itself. 
-At Indeed, we leverage our <a href="http://github.com/indeedeng/status">status</a> library to do this. 
-The second was to enable services to be checked, independent of the application.</p>
-
-<p>In this post, I’ll demonstrate how to use my <a href="https://hub.docker.com/r/mjpitz/service-precheck">service-precheck</a> initialization container (built off of the Alibaba blog post) to ensure upstream systems are up before attempting to start a downstream system.</p>
+                    <p>Component scanning packages can be both your best friend and worst nightmare.
+In this post, I will cover several bad practices when it comes to component scanning.
+In detailing a few of these anti-patterns, I will also offer a few better patterns that are much cleaner to use.</p>
 
 
                 </div>
 
                 <p style="text-align: right">
-                    <a href="/blog/2019/10/17/kubernetes-service-precheck/">Read More &raquo;</a>
+                    <a href="/blog/2017/04/18/spring-component-scanning/">Read More &raquo;</a>
                 </p>
             </div>
             
-            <div style="padding: 15px 0">
-                <a href="/blog/2019/05/07/docker-buildx/">
-                    <h2>Using docker-buildx for Multi-architecture Containers</h2>
+            <div style="padding: 15px 0;">
+                <a href="/blog/2017/04/01/spring-bean-method-invocation/">
+                    <h2>Spring Bean Method Invocation</h2>
                 </a>
                 <div>
-                    <p>May 07, 2019</p>
+                    <p>April 01, 2017</p>
                 </div>
 
                 <div>
-                    <p>When you build a container image, it’s typically only built for one platform (<code class="highlighter-rouge">linux</code>) and one architecture (<code class="highlighter-rouge">amd64</code>).
-As the Internet of Things continues to grow, the demand for more <code class="highlighter-rouge">arm</code> images increased as well.
-Traditionally, in order to produce an <code class="highlighter-rouge">arm</code> image, you need an <code class="highlighter-rouge">arm</code> device to do the build on.
-As a result, most projects wind up missing <code class="highlighter-rouge">arm</code> support.</p>
-
-<p><a href="https://github.com/moby/buildkit">BuildKit</a> provides emulation capabilities that support multi-architecture builds.
-With BuildKit, you build container images across multiple architectures concurrently.
-This core utility backs <code class="highlighter-rouge">docker buildx</code>, a multi-architecture build utility for docker.
-In this post, I’ll discuss why you should produce multi-architecture container images and demonstrate how to use <code class="highlighter-rouge">docker buildx</code> to do it.</p>
+                    <p>In my day to day development, I spend a fair bit of time working with <a href="https://spring.io/">Spring</a> since it offers a lot of scaffolding to get a project off the ground.
+At <a href="https://www.indeed.com/">Indeed</a>, I spent a fair bit of time upgrading us from Spring 3 to Spring 4 and came across many good uses of Spring and many bad ones too.
+In this <em>Bad Practices</em> series, I will talk about some of these bad practices, why they should be avoided, and what you can do instead.</p>
 
 
                 </div>
 
                 <p style="text-align: right">
-                    <a href="/blog/2019/05/07/docker-buildx/">Read More &raquo;</a>
+                    <a href="/blog/2017/04/01/spring-bean-method-invocation/">Read More &raquo;</a>
                 </p>
             </div>
             
-            <div style="padding: 15px 0">
-                <a href="/blog/2019/05/02/from-apache2-to-mit/">
-                    <h2>Moving Licenses - Apache 2.0 to MIT</h2>
+            <div style="padding: 15px 0;">
+                <a href="/blog/2017/01/19/gracefully-degrading-functionality-using-status/">
+                    <h2>Gracefully Degrading Functionality Using Status</h2>
                 </a>
                 <div>
-                    <p>May 02, 2019</p>
+                    <p>January 19, 2017</p>
                 </div>
 
                 <div>
-                    <p>Yesterday, I decided to switch the license that I apply to my personal projects.
-Many open source projects use the Apache 2.0 license.
-After reading through it a few times, I liked the level of coverage that it provided.
-It was however a bit wordy in my opinion.
-These were often simple little side projects that I was hacking on in my free time.</p>
+                    <p>In a previous blog post, we described how to use our Status library to create a robust health check for your applications. 
+In this follow-up, we show how you can check and degrade your application during an outage by:</p>
 
-<p>After some discussion with others in the community and a few podcasts, I decided to make a switch.
-I wanted to preserve a lot of what the Apache license granted, but simplify the wording quite a bit.
-The MIT license enables many of the same grants, while reducing the verbiage used to describe them.
-As an Engineer, I understand MIT much more than I understand the Apache license.
-From discussions, the MIT license often presents a lower barrier to entry when compared to Apache.
-This was exactly what I was looking for on my side projects.</p>
-
-                </div>
-
-                <p style="text-align: right">
-                    <a href="/blog/2019/05/02/from-apache2-to-mit/">Read More &raquo;</a>
-                </p>
-            </div>
-            
-            <div style="padding: 15px 0">
-                <a href="/blog/2019/04/21/monitoring-rpi-cluster/">
-                    <h2>Raspberry Pi Cluster Monitoring</h2>
-                </a>
-                <div>
-                    <p>April 21, 2019</p>
-                </div>
-
-                <div>
-                    <p>In my last few posts, I talked a bit about my at home development cluster.
-Due to the flexibility of my cluster, I wanted to provide a monitoring solution that was valuable across each technology I use.
-In this post, I discuss how monitoring is setup on my cluster.
-I’ll walk through setting up each node, the Prometheus server, and the Graphana UI.</p>
+<ul>
+  <li>short-circuiting code paths of your application</li>
+  <li>removing a single application instance from a data center load balancer</li>
+  <li>removing an entire data center from rotation at the DNS level</li>
+</ul>
 
 
                 </div>
 
                 <p style="text-align: right">
-                    <a href="/blog/2019/04/21/monitoring-rpi-cluster/">Read More &raquo;</a>
+                    <a href="/blog/2017/01/19/gracefully-degrading-functionality-using-status/">Read More &raquo;</a>
                 </p>
-            </div>
-            
-
-            
-            <!--<div class="panel panel-default">-->
-                <!--<div class="panel-body">-->
-            <div class="row" style="padding: 15px">
-                <div class="col-sm-6 text-left">
-                    
-                </div>
-
-                <div class="col-sm-6 text-right">
-                    
-                    <a class="btn btn-default" href="/blog/page/2/">Next Page &raquo;</a>
-                    
-                </div>
             </div>
             
         </div>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link type="application/atom+xml" rel="alternate" href="https://www.mjpitz.com/feed.xml" title="Mya Pitzeruse" />
+        <meta name="author" content="Mya Pitzeruse">
+
+        <title>
+            
+                Component Scanning Library Code
+            
+        </title>
+
+        
+
+        <link rel="stylesheet" href="/statics/libs/bootstrap-3.3.7/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="/statics/libs/font-awesome-5.4.1/css/all.min.css">
+        <link rel="stylesheet" href="/statics/css/syntax-highlighting.css"/>
+        <link rel="stylesheet" href="/statics/css/app.css"/>
+
+        <link rel="apple-touch-icon" sizes="180x180" href="/statics/img/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/statics/img/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/statics/img/favicon-16x16.png">
+        <link rel="manifest" href="/statics/img/site.webmanifest">
+        <link rel="mask-icon" href="/statics/img/safari-pinned-tab.svg" color="#a28ad2">
+        <link rel="shortcut icon" href="/statics/img/favicon.ico">
+        <link rel="icon" href="/statics/img/favicon.ico" type="image/x-icon">
+        <meta name="msapplication-TileColor" content="#eeeeee">
+        <meta name="msapplication-config" content="/statics/img/browserconfig.xml">
+        <meta name="theme-color" content="#eeeeee">
+    </head>
+    <body>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="navbar-brand">@mjpitz</div>
+                </div>
+
+                <div class="collapse navbar-collapse" id="menu">
+                    <ul class="nav navbar-nav mr-auto">
+                        <li>
+                            <a href="/">
+                                <i class="fas fa-home" title="Blog" data-toggle="tooltip" data-placement="bottom">
+                                    <span>Blog</span>
+                                </i>
+                                Blog
+                            </a>
+                        </li>
+                    </ul>
+                    
+                    <ul class="nav navbar-nav nav-social">
+                        <li>
+                            <a href="http://www.github.com/mjpitz">
+                                <i class="fab fa-github" title="GitHub" data-toggle="tooltip" data-placement="bottom">
+                                    <span>GitHub</span>
+                                </i>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://hub.docker.com/u/mjpitz">
+                                <i class="fab fa-docker" title="Docker" data-toggle="tooltip" data-placement="bottom">
+                                    <span>Docker</span>
+                                </i>
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="http://www.twitter.com/_mjpitz_">
+                                <i class="fab fa-twitter" title="Twitter" data-toggle="tooltip" data-placement="bottom">
+                                    <span>Twitter</span>
+                                </i>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="http://www.linkedin.com/in/mjpitz">
+                                <i class="fab fa-linkedin" title="LinkedIn" data-toggle="tooltip" data-placement="bottom">
+                                    <span>LinkedIn</span>
+                                </i>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/feed.xml">
+                                <i class="fas fa-rss" title="Feed" data-toggle="tooltip" data-placement="bottom">
+                                    <span>Feed</span>
+                                </i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container mjpitz-content" style="margin-top:82px">
+            <div class="panel panel-default">
+    <div class="panel-body">
+        <div class="post">
+            <h1 class="post-title">Component Scanning Library Code</h1>
+            <p class="post-date">Posted on April 18, 2017</p>
+
+            <div class="post-content">
+                <p>Component scanning packages can be both your best friend and worst nightmare.
+In this post, I will cover several bad practices when it comes to component scanning.
+In detailing a few of these anti-patterns, I will also offer a few better patterns that are much cleaner to use.</p>
+
+<!--more-->
+
+<h2 id="abuse-of-componentscanfilter">Abuse of ComponentScan.Filter</h2>
+
+<p><a href="http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/context/annotation/ComponentScan.Filter.html">@ComponentScan.Filter</a> has its uses, but I often find it used incorrectly.
+One case where I’ve seen this used is when they don’t want to pull in <a href="https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/stereotype/Controller.html">@Controller</a>’s.
+This usually happens when someone wants to pull code into a background daemon or cronjob.
+In these types of applications, you may not have a web server running for the controllers to bind to.
+To better handle this pattern, the library can offer two different <a href="http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/Configuration.html">@Configuration</a> classes.
+One for the non-web context, and one for the web.
+This offers a few benefits over component scanning.</p>
+
+<ol>
+  <li>The library has complete control over the configuration class and can add <a href="http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/Bean.html">@Bean</a>s as they need to.</li>
+  <li>The importing application know exactly what <a href="http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/Bean.html">@Bean</a>s they are importing.</li>
+  <li>It is much more obvious what to do to start using the library. They import the configuration, and then move on with their day.</li>
+</ol>
+
+<p>Another way to address this filtering problem is to better structure the target package to better support scanning.
+One way I’ve found to better support this, is by offering a <code class="highlighter-rouge">core</code> and <code class="highlighter-rouge">web</code> package.
+This makes it clear that all the web components should belong to the <code class="highlighter-rouge">web</code> package, while all other components should be in the <code class="highlighter-rouge">core</code> package.
+This approach has an added benefit.
+Suppose that one day in the future, your web package has grown and now you need to break it out into it’s own library.
+This happens for a variety of reasons, one of the most common being to slim down transitive dependencies.
+With this package structure, you can now split out the web code with very little effort.</p>
+
+<h2 id="component-scanning-library-code">Component Scanning Library Code</h2>
+
+<p>This is another pattern that I’ve see used in a few different cases.
+The biggest downside to this approach is that by scanning a single package, you open yourself up to all the beans that come along with it.
+Keep in mind, that often times packages become split across several libraries.
+That means that one day your may be pulling in only 10 beans, but the next you may add a new project dependency and now be pulling in 100.
+Now if the package space that you are defining is specific enough to a single project, then scan away.
+My general line in the sand is to not component scan outside the context of the project that I’m working on.
+Additionally, I abide to the former principle of ensuring that all projects have a specific namespace.
+I’ve found this to be a pretty practical practice both within library and application code.</p>
+
+<h2 id="componentscanusedefaultfilters">ComponentScan#useDefaultFilters</h2>
+
+<p>The documentation around this code is a little misleading.</p>
+
+<p>From <a href="http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/context/annotation/ComponentScan.html#useDefaultFilters--">@ComponentScan#useDefaultFilters</a>:</p>
+
+<blockquote>
+  <p>Indicates whether automatic detection of classes annotated with @Component @Repository, @Service, or @Controller should be enabled.</p>
+</blockquote>
+
+<p>Many people read this and assume that <a href="http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/Configuration.html">@Configuration</a> classes aren’t picked up in the scan.
+As a result, they often add an include <a href="http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/context/annotation/ComponentScan.Filter.html">@ComponentScan.Filter</a> to be extra sure they are pulling in configurations.
+It’s important to note that without the addition of the filter, <a href="https://spring.io/">Spring</a> would still wire up the configuration into the context.
+This is because the <a href="http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/Configuration.html">@Configuration</a> class is a specialization of <a href="http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Component.html">@Component</a>.
+In looking at the source code, you can see it is annotated with <a href="http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Component.html">@Component</a>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Target</span><span class="o">(</span><span class="nc">ElementType</span><span class="o">.</span><span class="na">TYPE</span><span class="o">)</span>
+<span class="nd">@Retention</span><span class="o">(</span><span class="nc">RetentionPolicy</span><span class="o">.</span><span class="na">RUNTIME</span><span class="o">)</span>
+<span class="nd">@Documented</span>
+<span class="nd">@Component</span>
+<span class="kd">public</span> <span class="nd">@interface</span> <span class="nc">Configuration</span> <span class="o">{</span>
+</code></pre></div></div>
+
+<p><a href="https://github.com/spring-projects/spring-framework/blob/master/spring-context/src/main/java/org/springframework/context/annotation/Configuration.java#L404">source</a></p>
+
+
+            </div>
+
+            <div class="text-center">
+    <br/>
+    <br/>
+    <p><i>Share this article on</i></p>
+
+    <div style="font-size: 36px;">
+        <a rel="nofollow" target="_blank" href="https://facebook.com/sharer.php?u=https://www.mjpitz.com/blog/2017/04/18/spring-component-scanning/">
+            <i class="fab fa-facebook" title="Facebook" data-toggle="tooltip" data-placement="bottom"></i></a>
+        &nbsp;
+        <a rel="nofollow" target="_blank" href="https://twitter.com/intent/tweet?text=Component Scanning Library Code&url=https://www.mjpitz.com/blog/2017/04/18/spring-component-scanning/&via=&related=">
+            <i class="fab fa-twitter" title="Twitter" data-toggle="tooltip" data-placement="bottom"></i></a>
+        &nbsp;
+        <a rel="nofollow" target="_blank" href="http://www.linkedin.com/sharing/share-offsite/?url=https://www.mjpitz.com/blog/2017/04/18/spring-component-scanning/">
+            <i class="fab fa-linkedin" title="LinkedIn" data-toggle="tooltip" data-placement="bottom"></i></a>
+    </div>
+</div>
+
+
+            <div class="post-footer row">
+                <div class="col-sm-6 text-left">
+                    
+                        <a class="btn btn-default" href="/blog/2017/04/01/spring-bean-method-invocation/">&laquo; Previous Post</a>
+                    
+                </div>
+
+                <div class="col-sm-6 text-right">
+                    
+                    <a class="btn btn-default" href="/blog/2017/06/14/delaying-message-processing/">Next Post &raquo;</a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        </div>
+        <div style="padding:25px 0; margin-top: 50px;">
+    <div>
+        
+<!-- Google Analytics (http://google.com/analytics) -->
+<script>
+    !function(j,e,k,y,l,L){j.GoogleAnalyticsObject=y,j[y]||(j[y]=function(){
+        (j[y].q=j[y].q||[]).push(arguments)}),j[y].l=+new Date,l=e.createElement(k),
+            L=e.getElementsByTagName(k)[0],l.src='//www.google-analytics.com/analytics.js',
+            L.parentNode.insertBefore(l,L)}(window,document,'script','ga');
+    ga('create', 'UA-39314903-5', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+        <script src="/statics/libs/jquery-2.1.4/jquery.min.js"></script>
+        <script src="/statics/libs/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+
+        <script>
+            $(function () {
+                //$('[data-toggle="tooltip"]').tooltip();
+                $('.collapse').collapse({ toggle: false })
+            });
+        </script>
+    </div>
+</div>
+    </body>
+</html>
