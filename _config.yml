@@ -27,7 +27,6 @@ exclude:
   - deploy.sh
   - vendor
   - Makefile
-  - CNAME
 
 include:
   - pages
