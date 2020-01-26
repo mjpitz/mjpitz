@@ -26,6 +26,8 @@ exclude:
   - s3_website.yml
   - deploy.sh
   - vendor
+  - Makefile
+  - CNAME
 
 include:
   - pages

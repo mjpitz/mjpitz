@@ -19,9 +19,9 @@ I'll walk through setting up each node, the Prometheus server, and the Graphana 
 
 First, if you haven't read my previous posts, I suggest going back and giving them a quick read.
 
-* [Easy Steps to a 64bit Raspberry Pi 3 B/B+](/2019/03/17/64bit-raspberry-pi)
-* [k3s on Raspberry Pi](/2019/04/10/k8s-k3s-rpi-oh-my)
-* [Raspberry Pi Cluster Setup](/2019/04/12/rpi-cluster-setup)
+* [Easy Steps to a 64bit Raspberry Pi 3 B/B+](/blog/2019/03/17/64bit-raspberry-pi)
+* [k3s on Raspberry Pi](/blog/2019/04/10/k8s-k3s-rpi-oh-my)
+* [Raspberry Pi Cluster Setup](/blog/2019/04/12/rpi-cluster-setup)
 
 Historically, I haven't put much monitoring in beyond the basic orchestrator level tooling.
 This was due to the lack of native ARM support on the Prometheus project.
