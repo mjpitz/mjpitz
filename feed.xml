@@ -1,4 +1,37 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="https://www.mjpitz.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://www.mjpitz.com/" rel="alternate" type="text/html" /><updated>2020-01-26T18:00:13+00:00</updated><id>https://www.mjpitz.com/feed.xml</id><title type="html">Mya Pitzeruse</title><author><name>Mya Pitzeruse</name><email>j.mya.pitz@gmail.com</email></author><entry><title type="html">Building deps.cloud</title><link href="https://www.mjpitz.com/blog/2020/01/24/building-depscloud/" rel="alternate" type="text/html" title="Building deps.cloud" /><published>2020-01-24T00:00:00+00:00</published><updated>2020-01-24T00:00:00+00:00</updated><id>https://www.mjpitz.com/blog/2020/01/24/building-depscloud</id><content type="html" xml:base="https://www.mjpitz.com/blog/2020/01/24/building-depscloud/">&lt;p&gt;Over the last year, I’ve been heavily working on &lt;a href=&quot;https://deps.cloud&quot;&gt;deps.cloud&lt;/a&gt;.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="https://www.mjpitz.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://www.mjpitz.com/" rel="alternate" type="text/html" /><updated>2020-01-28T02:45:40+00:00</updated><id>https://www.mjpitz.com/feed.xml</id><title type="html">Mya Pitzeruse</title><author><name>Mya Pitzeruse</name><email>j.mya.pitz@gmail.com</email></author><entry><title type="html">Returning to Indeed</title><link href="https://www.mjpitz.com/blog/2020/01/27/returning-to-indeed/" rel="alternate" type="text/html" title="Returning to Indeed" /><published>2020-01-27T00:00:00+00:00</published><updated>2020-01-27T00:00:00+00:00</updated><id>https://www.mjpitz.com/blog/2020/01/27/returning-to-indeed</id><content type="html" xml:base="https://www.mjpitz.com/blog/2020/01/27/returning-to-indeed/">&lt;p&gt;In November 2018, I decided to return to &lt;a href=&quot;https://indeed.com&quot;&gt;Indeed.com&lt;/a&gt;.
+The decision to return did not come easy.
+Since then, I have frequently been asked about my reasons for rejoining.
+In this post, I hope to cover my interviewing process and some reasons that I had for returning.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;One of the easiest decisions I had to make at the time was to begin interviewing again.
+&lt;a href=&quot;http://dosh.cash/&quot;&gt;Dosh&lt;/a&gt; was not working out, for many reasons.
+I won’t dive into my reasons here, but you can get the gist from &lt;a href=&quot;https://www.glassdoor.com/Reviews/Dosh-Reviews-E1519109.htm&quot;&gt;Glassdoor&lt;/a&gt;.
+After deciding to leave 3 months into the new job, I needed to figure out what to pursue.&lt;/p&gt;
+
+&lt;p&gt;For the most part, I focused on Senior Software Engineer roles (the role I had at the time).
+After a month on the hunt, one of my friends had also decided to leave Indeed.
+Despite knowing there were bound to be some “fun” conversations, I went to their going away party.
+Sure enough, I had run into a former director who asked about how things were going.
+In the course of our conversation, the topic about returning to Indeed had come up.&lt;/p&gt;
+
+&lt;p&gt;Over the next few months, my interviews progressed well.
+At the same time, I followed up with the director to continue our conversation.
+While we continued our conversation, I learned about many of the things that were ongoing.
+Namely their efforts to move to &lt;a href=&quot;http://kubernetes.io&quot;&gt;Kubernetes&lt;/a&gt; and adoption of cloud native practices.&lt;/p&gt;
+
+&lt;p&gt;After being on the interview train for three months, I was ready to be done with it all.
+The hour and a half drive to Bee Cave was unbearable for the little work that I was doing.
+Having taken all the leads into consideration, the one that was most promising was rejoining Indeed.&lt;/p&gt;
+
+&lt;p&gt;Now here we are, one year later.
+I’ve rotated through on a few of our infrastructure teams.
+I’ve lead our efforts toward a unified runtime platform.
+I’ve been promoted to a Principal Engineer.
+And for the most part, I’ve found rejoining the company to be all too familiar.
+There have been several moments where I’ve needed to consult with or involve HR. 
+But most people have been receptive upon my return.&lt;/p&gt;</content><author><name>Mya Pitzeruse</name><email>j.mya.pitz@gmail.com</email></author><summary type="html">In November 2018, I decided to return to Indeed.com. The decision to return did not come easy. Since then, I have frequently been asked about my reasons for rejoining. In this post, I hope to cover my interviewing process and some reasons that I had for returning.</summary></entry><entry><title type="html">Building deps.cloud</title><link href="https://www.mjpitz.com/blog/2020/01/24/building-depscloud/" rel="alternate" type="text/html" title="Building deps.cloud" /><published>2020-01-24T00:00:00+00:00</published><updated>2020-01-24T00:00:00+00:00</updated><id>https://www.mjpitz.com/blog/2020/01/24/building-depscloud</id><content type="html" xml:base="https://www.mjpitz.com/blog/2020/01/24/building-depscloud/">&lt;p&gt;Over the last year, I’ve been heavily working on &lt;a href=&quot;https://deps.cloud&quot;&gt;deps.cloud&lt;/a&gt;.
 deps.cloud draws it’s inspiration from a project that I worked on at &lt;a href=&quot;https://indeed.com&quot;&gt;Indeed.com&lt;/a&gt;.
 Since it’s original inception, there had been a heavy push to move it into the open source space.
 In this post, I’ll discuss the process and rationale I applied as I rewrote this project in the open.&lt;/p&gt;
@@ -783,204 +816,4 @@ To reduce the volume in the typical case, I implemented a &lt;code class=&quot;h
 By default, the info log is suppressed.
 When &lt;code class=&quot;highlighter-rouge&quot;&gt;DEBUG&lt;/code&gt; is set to &lt;code class=&quot;highlighter-rouge&quot;&gt;true&lt;/code&gt;, the info log and the additional details are logged to stdout.
 Since debugging now requires restarting the file system, I needed to understand reproduction steps before restarting.
-By understanding the reproduction steps well, I am able to reproduce the issue quickly, keeping the debug log short and easy to read.&lt;/p&gt;</content><author><name>Mya Pitzeruse</name><email>j.mya.pitz@gmail.com</email></author><category term="golang" /><category term="fuse" /><summary type="html">During my first employment at Indeed, I cloned every repository down to my machine. This approach worked for a while when the number of repositories was small. As the organization has grown, the solution quickly became unmanageable. While many people do not work across every repository, many are familiar with the pain of setting up a new machine. I wrote gitfs for a few reasons. First, to reduce the time spent setting up a new development environment. Second, to remove the need to figure out where all my projects need to be cloned. In this post, I discuss some challenges faced and lessons learned in writing my first file system.</summary></entry><entry><title type="html">Reflecting on Past Projects - JavaScript</title><link href="https://www.mjpitz.com/blog/2018/10/31/past-project-reflections-javascript/" rel="alternate" type="text/html" title="Reflecting on Past Projects - JavaScript" /><published>2018-10-31T00:00:00+00:00</published><updated>2018-10-31T00:00:00+00:00</updated><id>https://www.mjpitz.com/blog/2018/10/31/past-project-reflections-javascript</id><content type="html" xml:base="https://www.mjpitz.com/blog/2018/10/31/past-project-reflections-javascript/">&lt;p&gt;Every now and then, a friend of mine reaches out and discuss previous projects we had worked on together.
-As we looked back at code, there was some obvious lessons that we took away from the project.
-In this post, I reflect on several JavaScript projects that I have worked on over the course of my career.
-In each project, I will try to provide:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;technologies used and rough size of project&lt;/li&gt;
-  &lt;li&gt;an overview of the project&lt;/li&gt;
-  &lt;li&gt;a critique about the approach taken to manage the project&lt;/li&gt;
-  &lt;li&gt;what I would’ve done differently&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;!--more--&gt;
-
-&lt;h2 id=&quot;rochester-institute-of-technology&quot;&gt;Rochester Institute of Technology&lt;/h2&gt;
-
-&lt;h3 id=&quot;educational-design-resources&quot;&gt;Educational Design Resources&lt;/h3&gt;
-
-&lt;p&gt;&lt;em&gt;October 2009 - September - 2012&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Core Technologies: Windows IIS, JavaScript, jQuery&lt;/p&gt;
-
-&lt;p&gt;Lines of Code: unknown&lt;/p&gt;
-
-&lt;p&gt;During my college career, I worked for a small development shop on campus.
-We built applications that facilitated the education of deaf and hard of hearing students.
-One of our platforms enabled students to submit assignments in a manner more familiar to them, using sign language.
-We did this by providing live video streaming and video recording functionality in a browser.
-At the time, services like Youtube were young and lacked support for private channels.
-Due to the lack of access restrictions, we had to build our own video hosting platform.&lt;/p&gt;
-
-&lt;p&gt;Pros:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;full stack JavaScript for easy code reuse&lt;/li&gt;
-  &lt;li&gt;mono-repo, easy to make cross-cutting changes&lt;/li&gt;
-  &lt;li&gt;delegated functionality to external services (Wowza Media Server for storage)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Cons:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;use of slow IIS JavaScript Runtime&lt;/li&gt;
-  &lt;li&gt;no dependency management&lt;/li&gt;
-  &lt;li&gt;required tribal knowledge to be effective&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;In the end, the system worked but was a nightmare to maintain.
-Looking back, there are many things that I would have done differently.
-Technology has certainly progressed since then .
-Keep in mind, many of the modern tool sets available to you today may not have been available then.&lt;/p&gt;
-
-&lt;h2 id=&quot;indeed&quot;&gt;Indeed&lt;/h2&gt;
-
-&lt;h3 id=&quot;employer-products&quot;&gt;Employer Products&lt;/h3&gt;
-
-&lt;p&gt;&lt;em&gt;June 2013 - December 2015&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Core Technologies: Java, JavaScript, Closure, jsdoc-typed&lt;/p&gt;
-
-&lt;p&gt;Lines of Code: 20K+&lt;/p&gt;
-
-&lt;p&gt;I joined Indeed working on the employer products.
-This application allowed employers to post a job directly on our site and manage all candidates that apply.
-We built the product targeting small to medium sized businesses.
-Many larger systems were difficult for these smaller companies to get started.
-Indeed sought to make the experience better.&lt;/p&gt;
-
-&lt;p&gt;Pros:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;static type checking via the Closure Linter&lt;/li&gt;
-  &lt;li&gt;wholistic tool chain provided by Closure&lt;/li&gt;
-  &lt;li&gt;able to apply object oriented principles to frontend application development&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Cons:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;not widely used, making it difficult to find support&lt;/li&gt;
-  &lt;li&gt;few internal experts on the framework&lt;/li&gt;
-  &lt;li&gt;dependency management of frontend dependencies coupled to backend&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;The biggest critique I had about this system was how it grew.
-Instead of refactoring and pulling parts out into their own system, we added more and more to the single system.
-We took a prototype, continued to iterate on it, and pushed it through to production.
-The biggest lesson I took away from this project was that sometimes, it’s ok to slow down and refactor.
-Every now and then, this is a necessity.&lt;/p&gt;
-
-&lt;h3 id=&quot;eclair&quot;&gt;Eclair&lt;/h3&gt;
-
-&lt;p&gt;&lt;em&gt;June 2016 - April 2018&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Core Technologies: Java, JavaScript, NodeJS, jsdoc-typed&lt;/p&gt;
-
-&lt;p&gt;Lines of Code: &amp;lt; 5K&lt;/p&gt;
-
-&lt;p&gt;Eclair is a process I wrote to facilitate upgrading Spring from version 3 to 4 at Indeed.
-Major library upgrades come with a fair amount of risk involved.
-Classes that are deprecated are often cleaned up.
-Components move between packages.
-In the end, you have a set of changes that must be applied to your code base.
-Before getting into the details of the library upgrade, I first build Darwin.
-This service parsed dependency management files and maintained a queryable graph of dependencies.
-Eclair used this API to apply the set of changes to every project that was impacted by the upgrade.&lt;/p&gt;
-
-&lt;p&gt;Pros:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;NPM made managing dependencies really easy&lt;/li&gt;
-  &lt;li&gt;worked on the command line and was easy to trace through&lt;/li&gt;
-  &lt;li&gt;system ran quickly and was easy to grow over time&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Cons:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;use of jsdoc types proved to be cumbersome&lt;/li&gt;
-  &lt;li&gt;jsdoc types didn’t work well for things that weren’t imported directly&lt;/li&gt;
-  &lt;li&gt;using wrong node version caused some events to be emitted differently&lt;/li&gt;
-  &lt;li&gt;lack of included logging made it difficult to track down problems&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;This being one of my first independent code bases, it’s hard to sit and critique it.
-First, I would have baked in a better troubleshooting feature.
-This would help facilitate investigations when other engineers were attempting to run the program. 
-Another thing I would have done differently was build in reporting from the start.
-Often times, we wanted to have a cohesive report of the state of the world before the change set was applied, and after.&lt;/p&gt;
-
-&lt;h2 id=&quot;dosh&quot;&gt;Dosh&lt;/h2&gt;
-
-&lt;h3 id=&quot;graphql&quot;&gt;GraphQL&lt;/h3&gt;
-
-&lt;p&gt;&lt;em&gt;May 2018 - November 2018&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Core Technologies: AWS Lambda, JavaScript, NodeJS, flow-typed&lt;/p&gt;
-
-&lt;p&gt;Lines of Code: ~ 13K&lt;/p&gt;
-
-&lt;p&gt;After Indeed, I wanted to vary up some of the technical experience that I had exposure to.
-A colleague of mine had recently gone and joined Dosh, a cash back app.
-Their backend systems were going through a large rewrite of some of their system components.
-Upon joining, I was assigned to build out our new graphql layer.
-Much of the schema was already specified and it was my job to glue the remote service calls into place.
-It gave me great exposure to all the backing systems which drove our front end and running on AWS Lambda.&lt;/p&gt;
-
-&lt;p&gt;Pros:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;flow finally started bringing some static type analysis to JavaScript&lt;/li&gt;
-  &lt;li&gt;code base was sectioned by level of authentication, making exposure levels clear&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Cons:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;flow’s opt-in model became difficult to work with on a largely untyped code base&lt;/li&gt;
-  &lt;li&gt;flow types aren’t preserved across library boundaries&lt;/li&gt;
-  &lt;li&gt;supporting compilation and flow meant adding babel and tons of plugins to support&lt;/li&gt;
-  &lt;li&gt;result in a lot of development toil needing to track down the right plugin for the right job&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;All in all, I really liked this project.
-While working with flow and babel was painful at times, it wound up saving a lot of headaches.
-The biggest thing I would do differently was use a types file to declare service contracts.
-By using something like a &lt;code class=&quot;highlighter-rouge&quot;&gt;.d.ts&lt;/code&gt;, you would be able to attach the types to the package.
-Those types are then shipped along with the client when users install via npm.&lt;/p&gt;
-
-&lt;h2 id=&quot;at-home&quot;&gt;At Home&lt;/h2&gt;
-
-&lt;h3 id=&quot;finch&quot;&gt;Finch&lt;/h3&gt;
-
-&lt;p&gt;&lt;em&gt;May 2018 - Present&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Core Technologies: Docker, TypeScript, NodeJS&lt;/p&gt;
-
-&lt;p&gt;Lines of Code: ~ 5K&lt;/p&gt;
-
-&lt;p&gt;The last project I wanted to talk about was a recent project I started after leaving Indeed.
-This project was intended to be the evolution of the Darwin process I wrote at Indeed.
-Darwin was written to accomplish a single task.
-It turned into a system that proved promising to automate a good portion of process.
-And so I started working on Finch in my free time.
-Finch is a process composed of 3 parts: a crawler, a web interface, and a service.
-Since this system was largely handling parsing and normalizing of XML and JSON data, I chose to write it in JavaScript.
-Instead of using Flow, I decided to take TypeScript for a bigger spin.
-In the past, I played around with TypeScript a bit in the past and it seemed really promising.
-With this project, I finally had an opportunity to use it in a larger scale project.
-I instantly fell in love with the simplicity and reduced toolchain that came with it.&lt;/p&gt;
-
-&lt;p&gt;Pros:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;reduced toolchain, making development straight forward&lt;/li&gt;
-  &lt;li&gt;works with existing NodeJS ecosystem&lt;/li&gt;
-  &lt;li&gt;establishing abstractions and integration points becomes intuitive&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Cons:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;migrating to lerna is proving to be difficult, but not impossible&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;In retrospect, I really wish I figured out the multi-package story.
-When I started the project, I did try to incorporate lerna.
-But that only seemed to hinder the process of developing the proof of concept.
-So I decided to shelve the multi-package story.
-Instead, I isolated components using packaging and establishing rules between them.
-In the end, I still found myself wanting the distinct independent packages.&lt;/p&gt;</content><author><name>Mya Pitzeruse</name><email>j.mya.pitz@gmail.com</email></author><summary type="html">Every now and then, a friend of mine reaches out and discuss previous projects we had worked on together. As we looked back at code, there was some obvious lessons that we took away from the project. In this post, I reflect on several JavaScript projects that I have worked on over the course of my career. In each project, I will try to provide: technologies used and rough size of project an overview of the project a critique about the approach taken to manage the project what I would’ve done differently</summary></entry></feed>
+By understanding the reproduction steps well, I am able to reproduce the issue quickly, keeping the debug log short and easy to read.&lt;/p&gt;</content><author><name>Mya Pitzeruse</name><email>j.mya.pitz@gmail.com</email></author><category term="golang" /><category term="fuse" /><summary type="html">During my first employment at Indeed, I cloned every repository down to my machine. This approach worked for a while when the number of repositories was small. As the organization has grown, the solution quickly became unmanageable. While many people do not work across every repository, many are familiar with the pain of setting up a new machine. I wrote gitfs for a few reasons. First, to reduce the time spent setting up a new development environment. Second, to remove the need to figure out where all my projects need to be cloned. In this post, I discuss some challenges faced and lessons learned in writing my first file system.</summary></entry></feed>
