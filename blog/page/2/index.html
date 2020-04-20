@@ -115,6 +115,35 @@
         <div class="post">
             
             <div style="padding: 15px 0">
+                <a href="/blog/2019/05/02/from-apache2-to-mit/">
+                    <h2>Moving Licenses - Apache 2.0 to MIT</h2>
+                </a>
+                <div>
+                    <p>May 02, 2019</p>
+                </div>
+
+                <div>
+                    <p>Yesterday, I decided to switch the license that I apply to my personal projects.
+Many open source projects use the Apache 2.0 license.
+After reading through it a few times, I liked the level of coverage that it provided.
+It was however a bit wordy in my opinion.
+These were often simple little side projects that I was hacking on in my free time.</p>
+
+<p>After some discussion with others in the community and a few podcasts, I decided to make a switch.
+I wanted to preserve a lot of what the Apache license granted, but simplify the wording quite a bit.
+The MIT license enables many of the same grants, while reducing the verbiage used to describe them.
+As an Engineer, I understand MIT much more than I understand the Apache license.
+From discussions, the MIT license often presents a lower barrier to entry when compared to Apache.
+This was exactly what I was looking for on my side projects.</p>
+
+                </div>
+
+                <p style="text-align: right">
+                    <a href="/blog/2019/05/02/from-apache2-to-mit/">Read More &raquo;</a>
+                </p>
+            </div>
+            
+            <div style="padding: 15px 0">
                 <a href="/blog/2019/04/21/monitoring-rpi-cluster/">
                     <h2>Raspberry Pi Cluster Monitoring</h2>
                 </a>
@@ -201,32 +230,6 @@ Since I primarily work on OSX, this presented yet another barrier.</p>
                 </p>
             </div>
             
-            <div style="padding: 15px 0">
-                <a href="/blog/2019/01/30/gitfs-a-fuse-file-system/">
-                    <h2>gitfs - A FUSE File System</h2>
-                </a>
-                <div>
-                    <p>January 30, 2019</p>
-                </div>
-
-                <div>
-                    <p>During my first employment at Indeed, I cloned every repository down to my machine.
-This approach worked for a while when the number of repositories was small.
-As the organization has grown, the solution quickly became unmanageable.
-While many people do not work across every repository, many are familiar with the pain of setting up a new machine.
-I wrote <a href="https://github.com/mjpitz/gitfs">gitfs</a> for a few reasons.
-First, to reduce the time spent setting up a new development environment.
-Second, to remove the need to figure out where all my projects need to be cloned.
-In this post, I discuss some challenges faced and lessons learned in writing my first file system.</p>
-
-
-                </div>
-
-                <p style="text-align: right">
-                    <a href="/blog/2019/01/30/gitfs-a-fuse-file-system/">Read More &raquo;</a>
-                </p>
-            </div>
-            
 
             
             <!--<div class="panel panel-default">-->
@@ -267,14 +270,23 @@ In this post, I discuss some challenges faced and lessons learned in writing my 
 
         <script src="/statics/libs/jquery-2.1.4/jquery.min.js"></script>
         <script src="/statics/libs/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+        <script src="/statics/libs/mermaid-8.5.0/mermaid.min.js"></script>
 
         <script>
+            mermaid.initialize({
+                startOnLoad:true,
+                flowchart: {
+                    useMaxWidth: true,
+                }
+            });
+
             $(function () {
-                //$('[data-toggle="tooltip"]').tooltip();
-                $('.collapse').collapse({ toggle: false })
+                $('[data-toggle="tooltip"]').tooltip();
+                $('.collapse').collapse({ toggle: false });
             });
         </script>
     </div>
 </div>
+
     </body>
 </html>

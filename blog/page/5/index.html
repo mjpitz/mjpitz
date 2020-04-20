@@ -115,6 +115,32 @@
         <div class="post">
             
             <div style="padding: 15px 0">
+                <a href="/blog/2015/12/05/introducing-laas/">
+                    <h2>Introducing LAAS</h2>
+                </a>
+                <div>
+                    <p>December 05, 2015</p>
+                </div>
+
+                <div>
+                    <p><a href="https://github.com/jpitz/laas">LAAS</a> is an abbreviation for <a href="http://leveldb.org/">LevelDB</a> as a service.
+<a href="http://leveldb.org/">LevelDB</a> is an implementation of a <a href="https://en.wikipedia.org/wiki/Log-structured_merge-tree">log structured merge tree</a> (LSMTree) provided by Google.
+This data structure aimed at providing a high write throughput.
+When attempting to use <a href="http://leveldb.org/">LevelDB</a>, I found it difficult to track down supported libraries in different languages.
+Additionally, the fact that it’s labeled as a database and doesn’t provide a service was troublesome.
+I wrote <a href="https://github.com/jpitz/laas">LAAS</a> to make the adoption of <a href="http://leveldb.org/">LevelDB</a> easy for any language.
+It does this by introducing a RESTful API to the underlying functionality.
+HTTP request libraries are a dime a dozen, which drove the choice for a RESTful implementation.</p>
+
+
+                </div>
+
+                <p style="text-align: right">
+                    <a href="/blog/2015/12/05/introducing-laas/">Read More &raquo;</a>
+                </p>
+            </div>
+            
+            <div style="padding: 15px 0">
                 <a href="/blog/2015/07/10/status-java-library-for-system-status-health-checks/">
                     <h2>Status: A Java Library For Robust System Status Health Checks</h2>
                 </a>
@@ -173,14 +199,23 @@ In this post, we will show how to add health checks to your applications.</p>
 
         <script src="/statics/libs/jquery-2.1.4/jquery.min.js"></script>
         <script src="/statics/libs/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+        <script src="/statics/libs/mermaid-8.5.0/mermaid.min.js"></script>
 
         <script>
+            mermaid.initialize({
+                startOnLoad:true,
+                flowchart: {
+                    useMaxWidth: true,
+                }
+            });
+
             $(function () {
-                //$('[data-toggle="tooltip"]').tooltip();
-                $('.collapse').collapse({ toggle: false })
+                $('[data-toggle="tooltip"]').tooltip();
+                $('.collapse').collapse({ toggle: false });
             });
         </script>
     </div>
 </div>
+
     </body>
 </html>

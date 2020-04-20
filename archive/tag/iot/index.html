@@ -119,6 +119,28 @@
 
             
             <div style="padding: 15px 0;">
+                <a href="/blog/2020/04/20/k3s-rpi-year1/">
+                    <h2>Home Lab: 1 year later</h2>
+                </a>
+                <div>
+                    <p>April 20, 2020</p>
+                </div>
+
+                <div>
+                    <p>Last year, I wrote a series of blog posts covering the set-up of my home lab.
+The <a href="/blog/2019/04/10/k8s-k3s-rpi-oh-my/">first</a> post was on my decision to run <a href="https://k3s.io/">Rancher’s k3s</a> on my <a href="https://www.raspberrypi.org/">Raspberry Pis</a>.
+Since then, I’ve made a few modifications to how its all managed. 
+In this post, I discuss some of these changes I made over the last year.</p>
+
+
+                </div>
+
+                <p style="text-align: right">
+                    <a href="/blog/2020/04/20/k3s-rpi-year1/">Read More &raquo;</a>
+                </p>
+            </div>
+            
+            <div style="padding: 15px 0;">
                 <a href="/blog/2019/04/21/monitoring-rpi-cluster/">
                     <h2>Raspberry Pi Cluster Monitoring</h2>
                 </a>
@@ -227,14 +249,23 @@ Since I primarily work on OSX, this presented yet another barrier.</p>
 
         <script src="/statics/libs/jquery-2.1.4/jquery.min.js"></script>
         <script src="/statics/libs/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+        <script src="/statics/libs/mermaid-8.5.0/mermaid.min.js"></script>
 
         <script>
+            mermaid.initialize({
+                startOnLoad:true,
+                flowchart: {
+                    useMaxWidth: true,
+                }
+            });
+
             $(function () {
-                //$('[data-toggle="tooltip"]').tooltip();
-                $('.collapse').collapse({ toggle: false })
+                $('[data-toggle="tooltip"]').tooltip();
+                $('.collapse').collapse({ toggle: false });
             });
         </script>
     </div>
 </div>
+
     </body>
 </html>

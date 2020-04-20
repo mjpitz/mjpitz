@@ -1,4 +1,102 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="https://www.mjpitz.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://www.mjpitz.com/" rel="alternate" type="text/html" /><updated>2020-03-04T21:54:00+00:00</updated><id>https://www.mjpitz.com/feed.xml</id><title type="html">Mya Pitzeruse</title><author><name>Mya Pitzeruse</name><email>j.mya.pitz@gmail.com</email></author><entry><title type="html">Returning to Indeed</title><link href="https://www.mjpitz.com/blog/2020/01/27/returning-to-indeed/" rel="alternate" type="text/html" title="Returning to Indeed" /><published>2020-01-27T00:00:00+00:00</published><updated>2020-01-27T00:00:00+00:00</updated><id>https://www.mjpitz.com/blog/2020/01/27/returning-to-indeed</id><content type="html" xml:base="https://www.mjpitz.com/blog/2020/01/27/returning-to-indeed/">&lt;p&gt;In November 2018, I decided to return to &lt;a href=&quot;https://indeed.com&quot;&gt;Indeed.com&lt;/a&gt;.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="https://www.mjpitz.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://www.mjpitz.com/" rel="alternate" type="text/html" /><updated>2020-04-20T22:16:53+00:00</updated><id>https://www.mjpitz.com/feed.xml</id><title type="html">Mya Pitzeruse</title><author><name>Mya Pitzeruse</name><email>j.mya.pitz@gmail.com</email></author><entry><title type="html">Home Lab: 1 year later</title><link href="https://www.mjpitz.com/blog/2020/04/20/k3s-rpi-year1/" rel="alternate" type="text/html" title="Home Lab: 1 year later" /><published>2020-04-20T00:00:00+00:00</published><updated>2020-04-20T00:00:00+00:00</updated><id>https://www.mjpitz.com/blog/2020/04/20/k3s-rpi-year1</id><content type="html" xml:base="https://www.mjpitz.com/blog/2020/04/20/k3s-rpi-year1/">&lt;p&gt;Last year, I wrote a series of blog posts covering the set-up of my home lab.
+The &lt;a href=&quot;/blog/2019/04/10/k8s-k3s-rpi-oh-my/&quot;&gt;first&lt;/a&gt; post was on my decision to run &lt;a href=&quot;https://k3s.io/&quot;&gt;Rancher’s k3s&lt;/a&gt; on my &lt;a href=&quot;https://www.raspberrypi.org/&quot;&gt;Raspberry Pis&lt;/a&gt;.
+Since then, I’ve made a few modifications to how its all managed. 
+In this post, I discuss some of these changes I made over the last year.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h2 id=&quot;from-terraform-to-cloud-init&quot;&gt;From terraform to cloud-init&lt;/h2&gt;
+
+&lt;p&gt;I used to use terraform to manage my raspberry pis.
+While it accomplished the job, I felt it was overkill for what I needed it to do.
+In this pass, I started by looking at the &lt;code class=&quot;highlighter-rouge&quot;&gt;system-boot&lt;/code&gt; partition of an Ubuntu install.
+It was in there, that I found ways to hook into things like Netplan and cloud-init.
+This gave me a great step forward to codifying my home lab set-up with a declarative model.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/mjpitz/rpi-cloud-init&quot;&gt;https://github.com/mjpitz/rpi-cloud-init&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;no-more-pets&quot;&gt;No more pets&lt;/h2&gt;
+
+&lt;p&gt;I used to name my clusters something cute, usually based off of a synonym.
+Gone are the days of &lt;code class=&quot;highlighter-rouge&quot;&gt;myriad&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;horde&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;hive&lt;/code&gt;, and &lt;code class=&quot;highlighter-rouge&quot;&gt;hub&lt;/code&gt;.
+Now, I use hostnames that resemble the AWS convention.
+That is, &lt;code class=&quot;highlighter-rouge&quot;&gt;ip-192-168-1-xyz&lt;/code&gt; for the &lt;code class=&quot;highlighter-rouge&quot;&gt;192.168.1.0/24&lt;/code&gt; range.&lt;/p&gt;
+
+&lt;p&gt;I still wrangle all of my machines using &lt;code class=&quot;highlighter-rouge&quot;&gt;docker-machine&lt;/code&gt;.
+It affords me a few conveniences.
+One, I can easily connect to remote docker agents using &lt;code class=&quot;highlighter-rouge&quot;&gt;docker-machine env&lt;/code&gt;.
+This allows me to inspect containers without needing to jump to the box.
+Should further inspection be needed, I can easily jump to the host using &lt;code class=&quot;highlighter-rouge&quot;&gt;docker-machine ssh&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;mermaid text-center&quot;&gt;
+  graph LR
+  Laptop ---|connect via docker-machine| ip-192-168-1-xyz
+&lt;/div&gt;
+
+&lt;h2 id=&quot;home-cloud&quot;&gt;Home cloud&lt;/h2&gt;
+
+&lt;p&gt;To make the most out of my set-up, I wanted to structure it based on a cloud.
+While I can’t have the exact set-up as a cloud provider, I can get pretty close.
+Each “availability zone” consists of:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;an independent power supply&lt;/li&gt;
+  &lt;li&gt;a single, raspberry pi 4 (control plane)&lt;/li&gt;
+  &lt;li&gt;four, raspberry pi 3b+ (worker)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Three of these “availability zones” compose a single “region”.
+Since I’m based out of us-central, I figured it would be a good starting point.&lt;/p&gt;
+
+&lt;div class=&quot;mermaid text-center&quot;&gt;
+  graph TD
+  us-central-1[region:us-central-1]
+  us-central-1a[zone:us-central-1a]
+  us-central-1b[zone:us-central-1b]
+  us-central-1c[zone:us-central-1c]
+  
+  us-central-1 --&amp;gt; us-central-1a
+  us-central-1 --&amp;gt; us-central-1b
+  us-central-1 --&amp;gt; us-central-1c 
+&lt;/div&gt;
+
+&lt;p&gt;For simplicity, each zone is allocated a designated CIDR block.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;us-central-1a&lt;/code&gt; is allocated &lt;code class=&quot;highlighter-rouge&quot;&gt;192.168.1.50/29&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;us-central-1b&lt;/code&gt; is allocated &lt;code class=&quot;highlighter-rouge&quot;&gt;192.168.1.60/29&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;us-central-1c&lt;/code&gt; is allocated &lt;code class=&quot;highlighter-rouge&quot;&gt;192.168.1.70/29&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;deploying-k3s&quot;&gt;Deploying k3s&lt;/h2&gt;
+
+&lt;p&gt;Ever since switching to k3s, I haven’t needed any other tool.
+My deployment of it hasn’t changed too much.
+I continue to run the k3s agent through docker.
+One thing I do differently is pass in the appropriate topology flags.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  docker run &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    ... &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--node-label&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;node.kubernetes.io/instance-type=rpi-4&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--node-label&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;topology.kubernetes.io/region=us-central-1&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--node-label&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;topology.kubernetes.io/zone=us-central-1a&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;From a development standpoint, there is a lot of benefit to having this information surfaced. 
+You can test the spread of stateful workloads, enforce communication between services and geographical boundaries. 
+One thing it affords me is the ability to test and leverage &lt;a href=&quot;https://imroc.io/posts/kubernetes/service-topology-en/&quot;&gt;topology-aware service routing&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;leveraging-gitops&quot;&gt;Leveraging GitOps&lt;/h2&gt;
+
+&lt;p&gt;The last big change that I’ve made has been moving to a declarative deployment model for common elements.
+Instead of running my monitoring infrastructure outside of the cluster, I now run it inside of it.
+I do this through the use of a GitOps based deployment model.
+GitOps has become a popular way to perform declarative deployments using a Git repository as a source of truth.&lt;/p&gt;
+
+&lt;p&gt;To get started, I configured a repository with some common infrastructural elements.
+This repository is then synchronized with the cluster using tools like &lt;a href=&quot;https://github.com/fluxcd/flux&quot;&gt;Flux&lt;/a&gt;.
+To simplify the manifests deployed to the cluster, I leverage the &lt;a href=&quot;https://github.com/fluxcd/helm-operator&quot;&gt;helm-operator&lt;/a&gt;.
+This allows me to easily deploy &lt;a href=&quot;https://helm.sh/&quot;&gt;Helm&lt;/a&gt; charts into the cluster with the use of a single custom resource.&lt;/p&gt;</content><author><name>Mya Pitzeruse</name><email>j.mya.pitz@gmail.com</email></author><category term="iot" /><category term="raspberrypi" /><category term="kubernetes" /><category term="k3s" /><summary type="html">Last year, I wrote a series of blog posts covering the set-up of my home lab. The first post was on my decision to run Rancher’s k3s on my Raspberry Pis. Since then, I’ve made a few modifications to how its all managed. In this post, I discuss some of these changes I made over the last year.</summary></entry><entry><title type="html">Returning to Indeed</title><link href="https://www.mjpitz.com/blog/2020/01/27/returning-to-indeed/" rel="alternate" type="text/html" title="Returning to Indeed" /><published>2020-01-27T00:00:00+00:00</published><updated>2020-01-27T00:00:00+00:00</updated><id>https://www.mjpitz.com/blog/2020/01/27/returning-to-indeed</id><content type="html" xml:base="https://www.mjpitz.com/blog/2020/01/27/returning-to-indeed/">&lt;p&gt;In November 2018, I decided to return to &lt;a href=&quot;https://indeed.com&quot;&gt;Indeed.com&lt;/a&gt;.
 The decision to return did not come easy.
 Since then, I have frequently been asked about my reasons for rejoining.
 In this post, I hope to cover my interviewing process and some reasons that I had for returning.&lt;/p&gt;
@@ -697,123 +795,4 @@ Quite often, it’s referenced as an installation method for creating bootable m
 The default hostname, username and password are &lt;code class=&quot;highlighter-rouge&quot;&gt;ubuntu&lt;/code&gt;.
 One of the immediate differences you’ll probably notice is that the node will not be resolvable via &lt;code class=&quot;highlighter-rouge&quot;&gt;ubuntu.local&lt;/code&gt;.
 (This presumes that your router supports network level host names).
-You’ll need to get the IP address through your router’s management console or by grabbing it from the Pi directly.&lt;/p&gt;</content><author><name>Mya Pitzeruse</name><email>j.mya.pitz@gmail.com</email></author><category term="iot" /><category term="raspberrypi" /><summary type="html">I was quite surprised to see how under documented installing a 64 bit operating system onto a Raspberry Pi is. Many articles out there talk about needing to compile Linux, which sounds oh-so-pleasant. One day, I stumbled across a 64bit OpenSUSE version that was compatible, but the installation instructions required a Linux OS to be done properly. Since I primarily work on OSX, this presented yet another barrier. After a lot of searching around, I finally found a straight forward and simple way to do it.</summary></entry><entry><title type="html">gitfs - A FUSE File System</title><link href="https://www.mjpitz.com/blog/2019/01/30/gitfs-a-fuse-file-system/" rel="alternate" type="text/html" title="gitfs - A FUSE File System" /><published>2019-01-30T00:00:00+00:00</published><updated>2019-01-30T00:00:00+00:00</updated><id>https://www.mjpitz.com/blog/2019/01/30/gitfs-a-fuse-file-system</id><content type="html" xml:base="https://www.mjpitz.com/blog/2019/01/30/gitfs-a-fuse-file-system/">&lt;p&gt;During my first employment at Indeed, I cloned every repository down to my machine.
-This approach worked for a while when the number of repositories was small.
-As the organization has grown, the solution quickly became unmanageable.
-While many people do not work across every repository, many are familiar with the pain of setting up a new machine.
-I wrote &lt;a href=&quot;https://github.com/mjpitz/gitfs&quot;&gt;gitfs&lt;/a&gt; for a few reasons.
-First, to reduce the time spent setting up a new development environment.
-Second, to remove the need to figure out where all my projects need to be cloned.
-In this post, I discuss some challenges faced and lessons learned in writing my first file system.&lt;/p&gt;
-
-&lt;!--more--&gt;
-
-&lt;h2 id=&quot;gitfs-in-action&quot;&gt;gitfs in Action&lt;/h2&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;gitfs&lt;/code&gt; is a &lt;a href=&quot;https://github.com/libfuse/libfuse&quot;&gt;FUSE&lt;/a&gt; file system that helps reduce the management of git repositories.
-It works by connecting to well defined api’s (GitHub, Bitbucket, and Gitlab) and fetching repository urls associated with the user.
-These urls are parsed into a virutal directory structure that can be navigated via the terminal on linux or osx.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[mjpitz@mjpitz ~/Development/code 1/1]
-$ ls
-github.com
-
-[mjpitz@mjpitz ~/Development/code 1/1]
-$ cd github.com/
-
-[mjpitz@mjpitz ~/Development/code/github.com 1/1]
-$ ls
-indeedeng  indeedeng-alpha  mjpitz
-
-[mjpitz@mjpitz ~/Development/code/github.com 1/1]
-$ cd mjpitz/
-
-[mjpitz@mjpitz ~/Development/code/github.com/mjpitz 1/1]
-$ ls
-OpenGrok           gitfs            jgrapht     proto2-3
-consul-api         grpc-java        laas        rpi
-docker-clickhouse  grpc.github.io   mjpitz.com  seo-portal
-docker-utils       grpcsh           mp          serverless-plugin-simulate
-dotfiles           hbase-docker     okhttp      simple-daemon-node
-envoy              idea-framework   proctor     spring-config-repo
-generator-idea     java-gitlab-api  proctorjs
-
-[mjpitz@mjpitz ~/Development/code/github.com/mjpitz 1/1]
-$ cd mjpitz.com/
-
-[mjpitz@mjpitz ~/Development/code/github.com/mjpitz/mjpitz.com master 1/1]
-$ ls
-Gemfile       _drafts    _posts              go              statics
-Gemfile.lock  _includes  _site               index.html
-_config.yml   _layouts   docker-compose.yml  pages
-_data         _plugins   error.html          s3_website.yml
-
-[mjpitz@mjpitz ~/Development/code/github.com/mjpitz/mjpitz.com master 1/1]
-$
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;challenge-1---finding-a-complete-example&quot;&gt;Challenge 1 - Finding a complete example&lt;/h2&gt;
-
-&lt;p&gt;The first big challenge that I encountered was finding a complete working example.
-I chose the &lt;a href=&quot;https://github.com/bazil/fuse&quot;&gt;bazil/fuse&lt;/a&gt; library since it provided a clean low level implementation.
-Using a few basic tutorials, I was able to implement a read-only version of the file system.
-Unfortunately, the tutorials often only implemented a couple of interfaces from the library.
-And finding a complete example proved to be very difficult.
-Eventually, I stumbled across &lt;a href=&quot;https://github.com/cockroachdb/examples-go/blob/master/filesystem/node.go&quot;&gt;cockroachdb/examples-go&lt;/a&gt; which provides a good example to work off of.&lt;/p&gt;
-
-&lt;p&gt;Using this reference, I implemented 2 structures.
-One that represented a file and one that represented a directory.
-As the project progressed, having the logic in two separate files became difficult to manage.
-Eventually, these implementations collapsed into a single INode structure.
-This made it easy to keep a lot of business logic in one place.
-For portability, I added an interface for quick reference detailing which methods need to be implemented.&lt;/p&gt;
-
-&lt;div class=&quot;language-golang highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;filesystem&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;bazil.org/fuse/fs&quot;&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;INode&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;c&quot;&gt;// common node functions&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NodeSetattrer&lt;/span&gt;
-
-	&lt;span class=&quot;c&quot;&gt;// directory functions&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NodeStringLookuper&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HandleReadDirAller&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NodeMkdirer&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NodeCreater&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NodeRemover&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NodeRenamer&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NodeSymlinker&lt;/span&gt;
-
-	&lt;span class=&quot;c&quot;&gt;// handle functions&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NodeOpener&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HandleWriter&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HandleReader&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NodeFsyncer&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HandleFlusher&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HandleReleaser&lt;/span&gt;
-
-	&lt;span class=&quot;c&quot;&gt;// symlink functions&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NodeReadlinker&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;challenge-2---debugging&quot;&gt;Challenge 2 - Debugging&lt;/h2&gt;
-
-&lt;p&gt;Debugging a file system can be intense.
-Since many operations happen in such a short period of time, a full set of logs can quickly fill your disk.
-First, I started by only logging errors.
-That solution was insufficient.
-In many cases, context from the request and wrapping structure would’ve helped debug issues.
-After iterating on the log a few times, I wound up adding an info log at the start of the method.
-It included details about the request, details about the structure, as well as what method was being invoked.
-From this, I was able to see the full sequence of operations on the file system.
-But it was a lot.&lt;/p&gt;
-
-&lt;p&gt;In many cases, the error logs were enough to understand what went wrong.
-To reduce the volume in the typical case, I implemented a &lt;code class=&quot;highlighter-rouge&quot;&gt;DEBUG&lt;/code&gt; mode.
-By default, the info log is suppressed.
-When &lt;code class=&quot;highlighter-rouge&quot;&gt;DEBUG&lt;/code&gt; is set to &lt;code class=&quot;highlighter-rouge&quot;&gt;true&lt;/code&gt;, the info log and the additional details are logged to stdout.
-Since debugging now requires restarting the file system, I needed to understand reproduction steps before restarting.
-By understanding the reproduction steps well, I am able to reproduce the issue quickly, keeping the debug log short and easy to read.&lt;/p&gt;</content><author><name>Mya Pitzeruse</name><email>j.mya.pitz@gmail.com</email></author><category term="golang" /><category term="fuse" /><summary type="html">During my first employment at Indeed, I cloned every repository down to my machine. This approach worked for a while when the number of repositories was small. As the organization has grown, the solution quickly became unmanageable. While many people do not work across every repository, many are familiar with the pain of setting up a new machine. I wrote gitfs for a few reasons. First, to reduce the time spent setting up a new development environment. Second, to remove the need to figure out where all my projects need to be cloned. In this post, I discuss some challenges faced and lessons learned in writing my first file system.</summary></entry></feed>
+You’ll need to get the IP address through your router’s management console or by grabbing it from the Pi directly.&lt;/p&gt;</content><author><name>Mya Pitzeruse</name><email>j.mya.pitz@gmail.com</email></author><category term="iot" /><category term="raspberrypi" /><summary type="html">I was quite surprised to see how under documented installing a 64 bit operating system onto a Raspberry Pi is. Many articles out there talk about needing to compile Linux, which sounds oh-so-pleasant. One day, I stumbled across a 64bit OpenSUSE version that was compatible, but the installation instructions required a Linux OS to be done properly. Since I primarily work on OSX, this presented yet another barrier. After a lot of searching around, I finally found a straight forward and simple way to do it.</summary></entry></feed>

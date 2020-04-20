@@ -161,14 +161,23 @@ In this post, we’ll take a more in depth look at my cluster setup and my manag
 
         <script src="/statics/libs/jquery-2.1.4/jquery.min.js"></script>
         <script src="/statics/libs/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+        <script src="/statics/libs/mermaid-8.5.0/mermaid.min.js"></script>
 
         <script>
+            mermaid.initialize({
+                startOnLoad:true,
+                flowchart: {
+                    useMaxWidth: true,
+                }
+            });
+
             $(function () {
-                //$('[data-toggle="tooltip"]').tooltip();
-                $('.collapse').collapse({ toggle: false })
+                $('[data-toggle="tooltip"]').tooltip();
+                $('.collapse').collapse({ toggle: false });
             });
         </script>
     </div>
 </div>
+
     </body>
 </html>

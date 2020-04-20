@@ -9,7 +9,7 @@
 
         <title>
             
-                Building deps.cloud
+                Home Lab: 1 year later
             
         </title>
 
@@ -113,83 +113,110 @@
             <div class="panel panel-default">
     <div class="panel-body">
         <div class="post">
-            <h1 class="post-title">Building deps.cloud</h1>
-            <p class="post-date">Posted on January 24, 2020</p>
+            <h1 class="post-title">Home Lab: 1 year later</h1>
+            <p class="post-date">Posted on April 20, 2020</p>
 
             <div class="post-content">
-                <p>Over the last year, I’ve been heavily working on <a href="https://deps.cloud">deps.cloud</a>.
-deps.cloud draws it’s inspiration from a project that I worked on at <a href="https://indeed.com">Indeed.com</a>.
-Since it’s original inception, there had been a heavy push to move it into the open source space.
-In this post, I’ll discuss the process and rationale I applied as I rewrote this project in the open.</p>
+                <p>Last year, I wrote a series of blog posts covering the set-up of my home lab.
+The <a href="/blog/2019/04/10/k8s-k3s-rpi-oh-my/">first</a> post was on my decision to run <a href="https://k3s.io/">Rancher’s k3s</a> on my <a href="https://www.raspberrypi.org/">Raspberry Pis</a>.
+Since then, I’ve made a few modifications to how its all managed. 
+In this post, I discuss some of these changes I made over the last year.</p>
 
 <!--more-->
 
-<h2 id="v1---origin">V1 - Origin</h2>
+<h2 id="from-terraform-to-cloud-init">From terraform to cloud-init</h2>
 
-<p>At Indeed, I had built and prototyped the process internally known as Darwin (not to be confused with <a href="https://en.wikipedia.org/wiki/Darwin_(operating_system)">Apple’s Darwin</a>).
-I named it this way as it was intended to help evolve Indeed’s projects and libraries.
-It facilitated many operations that could be automated across our ecosystem.
-Such operations included (but were not limited to):</p>
+<p>I used to use terraform to manage my raspberry pis.
+While it accomplished the job, I felt it was overkill for what I needed it to do.
+In this pass, I started by looking at the <code class="highlighter-rouge">system-boot</code> partition of an Ubuntu install.
+It was in there, that I found ways to hook into things like Netplan and cloud-init.
+This gave me a great step forward to codifying my home lab set-up with a declarative model.</p>
+
+<p><a href="https://github.com/mjpitz/rpi-cloud-init">https://github.com/mjpitz/rpi-cloud-init</a></p>
+
+<h2 id="no-more-pets">No more pets</h2>
+
+<p>I used to name my clusters something cute, usually based off of a synonym.
+Gone are the days of <code class="highlighter-rouge">myriad</code>, <code class="highlighter-rouge">horde</code>, <code class="highlighter-rouge">hive</code>, and <code class="highlighter-rouge">hub</code>.
+Now, I use hostnames that resemble the AWS convention.
+That is, <code class="highlighter-rouge">ip-192-168-1-xyz</code> for the <code class="highlighter-rouge">192.168.1.0/24</code> range.</p>
+
+<p>I still wrangle all of my machines using <code class="highlighter-rouge">docker-machine</code>.
+It affords me a few conveniences.
+One, I can easily connect to remote docker agents using <code class="highlighter-rouge">docker-machine env</code>.
+This allows me to inspect containers without needing to jump to the box.
+Should further inspection be needed, I can easily jump to the host using <code class="highlighter-rouge">docker-machine ssh</code>.</p>
+
+<div class="mermaid text-center">
+  graph LR
+  Laptop ---|connect via docker-machine| ip-192-168-1-xyz
+</div>
+
+<h2 id="home-cloud">Home cloud</h2>
+
+<p>To make the most out of my set-up, I wanted to structure it based on a cloud.
+While I can’t have the exact set-up as a cloud provider, I can get pretty close.
+Each “availability zone” consists of:</p>
 
 <ul>
-  <li>Evaluating risk of library upgrades across our infrastructure</li>
-  <li>Perform on the fly API compatibility checks</li>
-  <li>Apply patches and open pull requests to affected repositories</li>
+  <li>an independent power supply</li>
+  <li>a single, raspberry pi 4 (control plane)</li>
+  <li>four, raspberry pi 3b+ (worker)</li>
 </ul>
 
-<p>There were many downsides with the way that this system was originally written.</p>
+<p>Three of these “availability zones” compose a single “region”.
+Since I’m based out of us-central, I figured it would be a good starting point.</p>
+
+<div class="mermaid text-center">
+  graph TD
+  us-central-1[region:us-central-1]
+  us-central-1a[zone:us-central-1a]
+  us-central-1b[zone:us-central-1b]
+  us-central-1c[zone:us-central-1c]
+  
+  us-central-1 --&gt; us-central-1a
+  us-central-1 --&gt; us-central-1b
+  us-central-1 --&gt; us-central-1c 
+</div>
+
+<p>For simplicity, each zone is allocated a designated CIDR block.</p>
 
 <ul>
-  <li>Only supported <a href="https://ant.apache.org/ivy/">Apache Ivy</a></li>
-  <li>Long start up time with no backing store (kept all information in memory)</li>
-  <li>Inability to expand support to other languages</li>
+  <li><code class="highlighter-rouge">us-central-1a</code> is allocated <code class="highlighter-rouge">192.168.1.50/29</code></li>
+  <li><code class="highlighter-rouge">us-central-1b</code> is allocated <code class="highlighter-rouge">192.168.1.60/29</code></li>
+  <li><code class="highlighter-rouge">us-central-1c</code> is allocated <code class="highlighter-rouge">192.168.1.70/29</code></li>
 </ul>
 
-<p>Even over time, I needed to expand this system to be able to start up faster and reduce load on our version control system.
-This inevitably created a tight coupling with our <a href="https://www.youtube.com/watch?v=lDXdf5q8Yw8">Resilient Artifact Distribution</a>.
-As time went on, this system became increasingly more difficult to open source.</p>
+<h2 id="deploying-k3s">Deploying k3s</h2>
 
-<h2 id="v2---private-gitlab">V2 - Private GitLab</h2>
+<p>Ever since switching to k3s, I haven’t needed any other tool.
+My deployment of it hasn’t changed too much.
+I continue to run the k3s agent through docker.
+One thing I do differently is pass in the appropriate topology flags.</p>
 
-<p>During my hiatus from Indeed in 2018, I decided to try and rewrite the system.
-I found myself really wanting the set of tooling I built and all the automation that came with it.
-Given I worked at a small start up at the time, I decided to keep the code closed source.
-To do so, I started a single monorepo in GitLab.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  docker run <span class="nt">-d</span> <span class="se">\</span>
+    ... <span class="se">\</span>
+    <span class="nt">--node-label</span> <span class="s2">"node.kubernetes.io/instance-type=rpi-4"</span> <span class="se">\ </span>
+    <span class="nt">--node-label</span> <span class="s2">"topology.kubernetes.io/region=us-central-1"</span> <span class="se">\</span>
+    <span class="nt">--node-label</span> <span class="s2">"topology.kubernetes.io/zone=us-central-1a"</span>
+</code></pre></div></div>
 
-<p>As I began the first rewrite, I wanted to work with a more flexible language.
-The original system was written in Java which made interacting with arbitrary structures rather difficult.
-To reduce the cognitive load, I decided to work with <a href="https://www.typescriptlang.org/">TypeScript</a>.
-It had given me the best of both worlds: being able to have static and duck types when needed.</p>
+<p>From a development standpoint, there is a lot of benefit to having this information surfaced. 
+You can test the spread of stateful workloads, enforce communication between services and geographical boundaries. 
+One thing it affords me is the ability to test and leverage <a href="https://imroc.io/posts/kubernetes/service-topology-en/">topology-aware service routing</a>.</p>
 
-<p>After having this iteration done, I started to run several tests.
-What I found was that the TypeScript solution worked well for a subset of operations, but did not scale for others.
-After learning this, I went back to the drawing board.</p>
+<h2 id="leveraging-gitops">Leveraging GitOps</h2>
 
-<h2 id="v3---public-github">V3 - Public GitHub</h2>
+<p>The last big change that I’ve made has been moving to a declarative deployment model for common elements.
+Instead of running my monitoring infrastructure outside of the cluster, I now run it inside of it.
+I do this through the use of a GitOps based deployment model.
+GitOps has become a popular way to perform declarative deployments using a Git repository as a source of truth.</p>
 
-<p>In late 2018, I returned to Indeed to work on our Kubernetes related efforts.
-Around the same time, I had started to port some of the code from closed to open source.
-It all started out under my user, just hacking on few different ideas.
-Having recently been thrown into the <a href="https://golang.org/">Golang</a> ecosystem, I decided to give it a try.
-I quickly found Golang provided much more efficient solution over the previous TypeScript solution.
-But like Java, it lacked the flexibility I needed in some places.</p>
+<p>To get started, I configured a repository with some common infrastructural elements.
+This repository is then synchronized with the cluster using tools like <a href="https://github.com/fluxcd/flux">Flux</a>.
+To simplify the manifests deployed to the cluster, I leverage the <a href="https://github.com/fluxcd/helm-operator">helm-operator</a>.
+This allows me to easily deploy <a href="https://helm.sh/">Helm</a> charts into the cluster with the use of a single custom resource.</p>
 
-<p>One thing I was able to adapt from the closed source model was the <a href="https://grpc.io/">gRPC</a> interfaces.
-gRPC does a really good job of enabling multi-language systems by providing a standard RPC mechanism. 
-Having put some good service interfaces in place, I was able to leverage part of the V2 solution.
-In the end, I wound up with a good chunk of the services being written in Golang and a single service written in TypeScript.</p>
-
-<h2 id="get-started">Get Started</h2>
-
-<p>Once the open sourced code base was in a stable position, I wanted to focus on making the system easy to run.
-I had seen many similar solutions starting to arise in open source.
-Many of them, like <a href="https://tidelift.com/">Tidelift</a> and <a href="https://snyk.io/">Snyk</a>, require you to leverage their cloud hosted solution which comes at a cost.
-I wanted to meet companies where they were, no matter their size.
-This inspired me to focus on <a href="https://www.docker.com/">Docker</a> support first and foremost.
-Then, I was able to quickly follow that with <a href="http://kubernetes.io/">Kubernetes</a> and <a href="https://helm.sh/">Helm</a> support.</p>
-
-<p>For more information on how to get started, see our <a href="https://deps.cloud/docs/">documentation</a>.
-Cheers!</p>
 
             </div>
 
@@ -199,13 +226,13 @@ Cheers!</p>
     <p><i>Share this article on</i></p>
 
     <div style="font-size: 36px;">
-        <a rel="nofollow" target="_blank" href="https://facebook.com/sharer.php?u=https://www.mjpitz.com/blog/2020/01/24/building-depscloud/">
+        <a rel="nofollow" target="_blank" href="https://facebook.com/sharer.php?u=https://www.mjpitz.com/blog/2020/04/20/k3s-rpi-year1/">
             <i class="fab fa-facebook" title="Facebook" data-toggle="tooltip" data-placement="bottom"></i></a>
         &nbsp;
-        <a rel="nofollow" target="_blank" href="https://twitter.com/intent/tweet?text=Building deps.cloud&url=https://www.mjpitz.com/blog/2020/01/24/building-depscloud/&via=&related=">
+        <a rel="nofollow" target="_blank" href="https://twitter.com/intent/tweet?text=Home Lab: 1 year later&url=https://www.mjpitz.com/blog/2020/04/20/k3s-rpi-year1/&via=&related=">
             <i class="fab fa-twitter" title="Twitter" data-toggle="tooltip" data-placement="bottom"></i></a>
         &nbsp;
-        <a rel="nofollow" target="_blank" href="http://www.linkedin.com/sharing/share-offsite/?url=https://www.mjpitz.com/blog/2020/01/24/building-depscloud/">
+        <a rel="nofollow" target="_blank" href="http://www.linkedin.com/sharing/share-offsite/?url=https://www.mjpitz.com/blog/2020/04/20/k3s-rpi-year1/">
             <i class="fab fa-linkedin" title="LinkedIn" data-toggle="tooltip" data-placement="bottom"></i></a>
     </div>
 </div>
@@ -214,13 +241,11 @@ Cheers!</p>
             <div class="post-footer row">
                 <div class="col-sm-6 text-left">
                     
-                        <a class="btn btn-default" href="/blog/2019/10/17/kubernetes-service-precheck/">&laquo; Previous Post</a>
+                        <a class="btn btn-default" href="/blog/2020/01/27/returning-to-indeed/">&laquo; Previous Post</a>
                     
                 </div>
 
                 <div class="col-sm-6 text-right">
-                    
-                    <a class="btn btn-default" href="/blog/2020/01/27/returning-to-indeed/">Next Post &raquo;</a>
                     
                 </div>
             </div>
