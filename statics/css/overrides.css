@@ -1,3 +1,15 @@
 .post .post-content img {
     max-width: 800px;
 }
+
+.post {
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 30px;
+}
+
+.list-with-title {
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 30px;
+}
