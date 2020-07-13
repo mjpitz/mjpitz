@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<html lang="{{- site.Language.Lang -}}">
+    <head>
+        <meta http-equiv="refresh" content="0; url={{ .Params.redirect }}">
+        <script>window.location.href="{{ .Params.redirect }}";</script>
+    </head>
+    <body>{{ .Content }}</body>
+</html>
