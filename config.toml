@@ -4,11 +4,11 @@ title = "Mya Pitzeruse"
 theme = "anatole"
 enableRobotsTXT = true
 
+# Google Analytics
+googleAnalytics = "UA-39314903-5"
+
 [permalinks]
 blog = "/blog/:year/:month/:day/:slug/"
-
-# Google Analytics
-#googleAnalytics = "UA-123-45"
 
 [params]
 title = "Mya Pitzeruse"
@@ -26,10 +26,6 @@ enable = false  # options: true, false. Enable math support globally, default: f
 use = "katex"  # options: "katex", "mathjax". default is "katex".
 
 ## Social links
-[[params.socialIcons]]
-icon = "fa-linkedin"
-title = "LinkedIn"
-url = "https://www.linkedin.com/in/mjpitz/"
 
 [[params.socialIcons]]
 icon = "fa-github"
@@ -40,6 +36,16 @@ url = "https://github.com/mjpitz"
 icon = "fa-twitter"
 title = "Twitter"
 url = "https://twitter.com/_mjpitz_"
+
+[[params.socialIcons]]
+icon = "fa-linkedin"
+title = "LinkedIn"
+url = "https://www.linkedin.com/in/mjpitz/"
+
+[[params.socialIcons]]
+icon = "fa-rss"
+title = "Feed"
+url = "/index.xml"
 
 ## Menu items
 

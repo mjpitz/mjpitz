@@ -10,6 +10,7 @@ deps: build-deps
 
 build:
 	hugo
+	cp public/index.xml public/feed.xml
 
 test:
 	bin/htmltest
