@@ -1,8 +1,6 @@
 ---
 slug: 64bit-raspberry-pi
 date: 2019-03-17
-
-layout: post
 title: "Easy Steps to a 64bit Raspberry Pi 3 B/B+"
 tags:
   - iot

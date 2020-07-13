@@ -1,8 +1,6 @@
 ---
 slug: nodejs-grpc-code-reference
 date: 2018-05-07
-
-layout: post
 title: "NodeJS gRPC Code Reference"
 
 ---

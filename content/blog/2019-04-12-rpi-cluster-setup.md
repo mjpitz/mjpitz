@@ -1,8 +1,6 @@
 ---
 slug: rpi-cluster-setup
 date: 2019-04-12
-
-layout: post
 title: "Raspberry Pi Cluster Setup"
 tags:
   - iot

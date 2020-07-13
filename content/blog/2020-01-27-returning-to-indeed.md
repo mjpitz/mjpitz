@@ -1,8 +1,6 @@
 ---
 slug: returning-to-indeed
 date: 2020-01-27
-
-layout: post
 title: "Returning to Indeed"
 
 ---

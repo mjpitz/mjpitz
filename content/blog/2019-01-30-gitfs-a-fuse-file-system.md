@@ -1,8 +1,6 @@
 ---
 slug: gitfs-a-fuse-file-system
 date: 2019-01-30
-
-layout: post
 title: "gitfs - A FUSE File System"
 tags:
   - golang

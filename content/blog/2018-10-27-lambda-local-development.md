@@ -1,8 +1,6 @@
 ---
 slug: lambda-local-development
 date: 2018-10-27
-
-layout: post
 title: "AWS Lambda - Local Development"
 tags:
   - aws

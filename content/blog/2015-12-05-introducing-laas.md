@@ -1,8 +1,6 @@
 ---
 slug: introducing-laas
 date: 2015-12-05
-
-layout: post
 title: "Introducing LAAS"
 
 ---

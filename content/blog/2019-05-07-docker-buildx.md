@@ -1,8 +1,6 @@
 ---
 slug: docker-buildx
 date: 2019-05-07
-
-layout: post
 title: "Using docker-buildx for Multi-architecture Containers"
 tags:
   - docker

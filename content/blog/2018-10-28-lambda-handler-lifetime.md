@@ -1,8 +1,6 @@
 ---
 slug: lambda-handler-lifetime
 date: 2018-10-28
-
-layout: post
 title: "AWS Lambda - Handler Lifetime"
 tags:
   - aws

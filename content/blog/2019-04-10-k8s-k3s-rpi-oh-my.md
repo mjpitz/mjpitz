@@ -1,8 +1,6 @@
 ---
 slug: k8s-k3s-rpi-oh-my
 date: 2019-04-10
-
-layout: post
 title: "k3s on Raspberry Pi"
 tags:
   - iot

@@ -1,8 +1,6 @@
 ---
 slug: building-depscloud
 date: 2020-01-24
-
-layout: post
 title: "Building deps.cloud"
 tags:
   - docker

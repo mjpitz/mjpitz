@@ -1,8 +1,6 @@
 ---
 slug: docker-machine-dns-resolution-using-consul
 date: 2016-05-08
-
-layout: post
 title: "Docker Machine DNS Resolution using Consul"
 tags:
   - docker

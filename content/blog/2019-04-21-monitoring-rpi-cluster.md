@@ -1,8 +1,6 @@
 ---
 slug: monitoring-rpi-cluster
 date: 2019-04-21
-
-layout: post
 title: "Raspberry Pi Cluster Monitoring"
 tags:
   - iot
