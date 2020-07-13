@@ -1,0 +1,6 @@
+DirectoryPath: public
+IgnoreDirectoryMissingTrailingSlash: true
+IgnoreAltMissing: true
+IgnoreURLs:
+  - ^https://mjpitz.com/.*$
+  - ^https://linkedin.com/.*$

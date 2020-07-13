@@ -112,7 +112,7 @@ The process can be broken down to four simple steps.
 3. Update the routing table to point requests to 172.30.254.0 through gateway $(docker-machine ip default)
 4. Restart dnsmasq to pick of new DNS configurations
 
-Using your web browser you should now be able to resolve [http://consul:8500/ui/]().
+Using your web browser you should now be able to resolve [http://consul:8500/ui/](http://consul:8500/ui/).
 And that's it!
 Anytime, you start a new docker container, simply re-run the `docker-dns-register ${container-name}` command and you will be able to access it using `http://${container_name}:${your_port}/`.
 
