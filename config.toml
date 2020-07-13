@@ -14,12 +14,11 @@ blog = "/blog/:year/:month/:day/:slug/"
 title = "Mya Pitzeruse"
 author = "Mya Pitzeruse"
 description = ""
-profilePicture = "images/profile.jpg"
+profilePicture = "/statics/img/mjpitz.jpeg"
 keywords = ""
-favicon = "favicons/"
-customCss = []
-mainSections = ["post"]
-images = ["images/site-feature-image.png"]
+favicon = "statics/img/"
+customCss = [ "statics/css/overrides.css" ]
+mainSections = ["blog"]
 
 ## Math settings
 [params.math]
@@ -53,7 +52,7 @@ url = "https://twitter.com/_mjpitz_"
   url = "/"
 
   [[menu.main]]
-  name = "Blog"
+  name = "Archive"
   weight = 200
   identifier = "blog"
   url = "/blog/"
