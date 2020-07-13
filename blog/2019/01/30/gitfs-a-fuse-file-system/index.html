@@ -1,123 +1,108 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link type="application/atom+xml" rel="alternate" href="https://www.mjpitz.com/feed.xml" title="Mya Pitzeruse" />
-        <meta name="author" content="Mya Pitzeruse">
+<html lang="en" data-theme="light"><head>
+    <title> Mya Pitzeruse | gitfs - A FUSE File System </title>
+    <meta charset="utf-8"><meta name="generator" content="Hugo 0.69.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="description" content="">
+    
+    <link rel="stylesheet" href="https://mjpitz.com/css/style.min.67cd718c0a3c8009c771494d381fb7128246a454bd0518fed97cb65d257db948.css" integrity="sha256-Z81xjAo8gAnHcUlNOB&#43;3EoJGpFS9BRj&#43;2Xy2XSV9uUg=" crossorigin="anonymous" type="text/css">
+    <link rel="stylesheet" href="https://mjpitz.com/statics/css/overrides.css" type="text/css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    
+    <link rel="shortcut icon" href="https://mjpitz.com/statics/img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://mjpitz.com/statics/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://mjpitz.com/statics/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://mjpitz.com/statics/img/favicon-16x16.png">
+    <link rel="canonical" href="https://mjpitz.com/blog/2019/01/30/gitfs-a-fuse-file-system/">
+    
+    
+    <script type="text/javascript" src="https://mjpitz.com/js/anatole-header.min.c275265a259296f3dd50e8236a77fcbcadb1dbb9597d3045c675dcc2c7c58a93.js" integrity="sha256-wnUmWiWSlvPdUOgjanf8vK2x27lZfTBFxnXcwsfFipM=" crossorigin="anonymous"></script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="gitfs - A FUSE File System"/>
+<meta name="twitter:description" content="During my first employment at Indeed, I cloned every repository down to my machine.
+This approach worked for a while when the number of repositories was small.
+As the organization has grown, the solution quickly became unmanageable.
+While many people do not work across every repository, many are familiar with the pain of setting up a new machine.
+I wrote gitfs for a few reasons.
+First, to reduce the time spent setting up a new development environment.
+Second, to remove the need to figure out where all my projects need to be cloned.
+In this post, I discuss some challenges faced and lessons learned in writing my first file system."/>
 
-        <title>
-            
-                gitfs - A FUSE File System
-            
-        </title>
+</head><body><div class="sidebar animated fadeInDown">
+    <div class="logo-title">
+      <div class="title">
+        <img src="https://mjpitz.com/statics/img/mjpitz.jpeg" alt="profile picture">
+        <h3 title=""><a href="/">Mya Pitzeruse</a></h3>
+        <div class="description">
+          <p></p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
+        
+        <li>
+        <a href="https://github.com/mjpitz" rel="me" aria-label="GitHub">
+          <i class="fa fa-2x fa-github" aria-hidden="true"></i>
+        </a>          
+        </li>
 
         
+        <li>
+        <a href="https://twitter.com/_mjpitz_" rel="me" aria-label="Twitter">
+          <i class="fa fa-2x fa-twitter" aria-hidden="true"></i>
+        </a>          
+        </li>
 
-        <link rel="stylesheet" href="/statics/libs/bootstrap-3.3.7/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="/statics/libs/font-awesome-5.4.1/css/all.min.css">
-        <link rel="stylesheet" href="/statics/css/syntax-highlighting.css"/>
-        <link rel="stylesheet" href="/statics/css/app.css"/>
+        
+        <li>
+        <a href="https://www.linkedin.com/in/mjpitz/" rel="me" aria-label="LinkedIn">
+          <i class="fa fa-2x fa-linkedin" aria-hidden="true"></i>
+        </a>          
+        </li>
 
-        <link rel="apple-touch-icon" sizes="180x180" href="/statics/img/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/statics/img/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/statics/img/favicon-16x16.png">
-        <link rel="manifest" href="/statics/img/site.webmanifest">
-        <link rel="mask-icon" href="/statics/img/safari-pinned-tab.svg" color="#a28ad2">
-        <link rel="shortcut icon" href="/statics/img/favicon.ico">
-        <link rel="icon" href="/statics/img/favicon.ico" type="image/x-icon">
-        <meta name="msapplication-TileColor" content="#eeeeee">
-        <meta name="msapplication-config" content="/statics/img/browserconfig.xml">
-        <meta name="theme-color" content="#eeeeee">
-    </head>
-    <body>
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <div class="navbar-brand">@mjpitz</div>
-                </div>
+        
+        <li>
+        <a href="/index.xml" rel="me" aria-label="Feed">
+          <i class="fa fa-2x fa-rss" aria-hidden="true"></i>
+        </a>          
+        </li>
 
-                <div class="collapse navbar-collapse" id="menu">
-                    <ul class="nav navbar-nav mr-auto">
-                        <li>
-                            <a href="/">
-                                <i class="fas fa-home" title="Blog" data-toggle="tooltip" data-placement="bottom">
-                                    <span>Blog</span>
-                                </i>
-                                Blog
-                            </a>
-                        </li>
-                    </ul>
-                    
-                    <ul class="nav navbar-nav nav-social">
-                        <li>
-                            <a href="https://medium.com/@mjpitz">
-                                <i class="fab fa-medium" title="Medium" data-toggle="tooltip" data-placement="bottom">
-                                    <span>Medium</span>
-                                </i>
-                            </a>
-                        </li>
-                        
-                        <li>
-                            <a href="http://www.github.com/mjpitz">
-                                <i class="fab fa-github" title="GitHub" data-toggle="tooltip" data-placement="bottom">
-                                    <span>GitHub</span>
-                                </i>
-                            </a>
-                        </li>
+        
+    </ul>
+    <div class="footer">
+        <div class="by_farbox">&copy; Mya Pitzeruse 2020 </div>
+      </div>
+    </div>
+</div><div class="main">
+            <div class="page-top animated fadeInDown">
+    <ul class="nav">
+        
+        
+        
+        <li><a  href="/" title="">Home</a></li>
+        
+        
+        <li><a  href="/blog/" title="">Archive</a></li>
+        
+    </ul>
+    <div class="themeswitcher">
+        <a class="theme-switch" title="Switch Theme">
+            <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+        </a>
+    </div>
+</div>
 
-                        <li>
-                            <a href="https://hub.docker.com/u/mjpitz">
-                                <i class="fab fa-docker" title="Docker" data-toggle="tooltip" data-placement="bottom">
-                                    <span>Docker</span>
-                                </i>
-                            </a>
-                        </li>
-                        
-                        <li>
-                            <a href="http://www.twitter.com/_mjpitz_">
-                                <i class="fab fa-twitter" title="Twitter" data-toggle="tooltip" data-placement="bottom">
-                                    <span>Twitter</span>
-                                </i>
-                            </a>
-                        </li>
+            <div class="autopagerize_page_element">
+                <div class="content">
+<div class="post animated fadeInDown">
+    <div class="post-content">
 
-                        <li>
-                            <a href="http://www.linkedin.com/in/mjpitz">
-                                <i class="fab fa-linkedin" title="LinkedIn" data-toggle="tooltip" data-placement="bottom">
-                                    <span>LinkedIn</span>
-                                </i>
-                            </a>
-                        </li>
+      <div class="post-title">
+        <h3>gitfs - A FUSE File System
+        </h3>
+        
+        </div>
 
-                        <li>
-                            <a href="/feed.xml">
-                                <i class="fas fa-rss" title="Feed" data-toggle="tooltip" data-placement="bottom">
-                                    <span>Feed</span>
-                                </i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <div class="container mjpitz-content" style="margin-top:82px">
-            <div class="panel panel-default">
-    <div class="panel-body">
-        <div class="post">
-            <h1 class="post-title">gitfs - A FUSE File System</h1>
-            <p class="post-date">Posted on January 30, 2019</p>
-
-            <div class="post-content">
-                <p>During my first employment at Indeed, I cloned every repository down to my machine.
+    <p>During my first employment at Indeed, I cloned every repository down to my machine.
 This approach worked for a while when the number of repositories was small.
 As the organization has grown, the solution quickly became unmanageable.
 While many people do not work across every repository, many are familiar with the pain of setting up a new machine.
@@ -125,16 +110,11 @@ I wrote <a href="https://github.com/mjpitz/gitfs">gitfs</a> for a few reasons.
 First, to reduce the time spent setting up a new development environment.
 Second, to remove the need to figure out where all my projects need to be cloned.
 In this post, I discuss some challenges faced and lessons learned in writing my first file system.</p>
-
-<!--more-->
-
 <h2 id="gitfs-in-action">gitfs in Action</h2>
-
-<p><code class="highlighter-rouge">gitfs</code> is a <a href="https://github.com/libfuse/libfuse">FUSE</a> file system that helps reduce the management of git repositories.
-It works by connecting to well defined api’s (GitHub, Bitbucket, and Gitlab) and fetching repository urls associated with the user.
+<p><code>gitfs</code> is a <a href="https://github.com/libfuse/libfuse">FUSE</a> file system that helps reduce the management of git repositories.
+It works by connecting to well defined api&rsquo;s (GitHub, Bitbucket, and Gitlab) and fetching repository urls associated with the user.
 These urls are parsed into a virutal directory structure that can be navigated via the terminal on linux or osx.</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[mjpitz@mjpitz ~/Development/code 1/1]
+<pre><code>[mjpitz@mjpitz ~/Development/code 1/1]
 $ ls
 github.com
 
@@ -170,145 +150,103 @@ _data         _plugins   error.html          s3_website.yml
 
 [mjpitz@mjpitz ~/Development/code/github.com/mjpitz/mjpitz.com master 1/1]
 $
-</code></pre></div></div>
-
-<h2 id="challenge-1---finding-a-complete-example">Challenge 1 - Finding a complete example</h2>
-
+</code></pre><h2 id="challenge-1---finding-a-complete-example">Challenge 1 - Finding a complete example</h2>
 <p>The first big challenge that I encountered was finding a complete working example.
 I chose the <a href="https://github.com/bazil/fuse">bazil/fuse</a> library since it provided a clean low level implementation.
 Using a few basic tutorials, I was able to implement a read-only version of the file system.
 Unfortunately, the tutorials often only implemented a couple of interfaces from the library.
 And finding a complete example proved to be very difficult.
 Eventually, I stumbled across <a href="https://github.com/cockroachdb/examples-go/blob/master/filesystem/node.go">cockroachdb/examples-go</a> which provides a good example to work off of.</p>
-
 <p>Using this reference, I implemented 2 structures.
 One that represented a file and one that represented a directory.
 As the project progressed, having the logic in two separate files became difficult to manage.
 Eventually, these implementations collapsed into a single INode structure.
 This made it easy to keep a lot of business logic in one place.
 For portability, I added an interface for quick reference detailing which methods need to be implemented.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#f92672">package</span> <span style="color:#a6e22e">filesystem</span>
 
-<div class="language-golang highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="n">filesystem</span>
+<span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;bazil.org/fuse/fs&#34;</span>
 
-<span class="k">import</span> <span class="s">"bazil.org/fuse/fs"</span>
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">INode</span> <span style="color:#66d9ef">interface</span> {
+	<span style="color:#75715e">// common node functions
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">Node</span>
+	<span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">NodeSetattrer</span>
 
-<span class="k">type</span> <span class="n">INode</span> <span class="k">interface</span> <span class="p">{</span>
-	<span class="c">// common node functions</span>
-	<span class="n">fs</span><span class="o">.</span><span class="n">Node</span>
-	<span class="n">fs</span><span class="o">.</span><span class="n">NodeSetattrer</span>
+	<span style="color:#75715e">// directory functions
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">NodeStringLookuper</span>
+	<span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">HandleReadDirAller</span>
+	<span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">NodeMkdirer</span>
+	<span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">NodeCreater</span>
+	<span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">NodeRemover</span>
+	<span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">NodeRenamer</span>
+	<span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">NodeSymlinker</span>
 
-	<span class="c">// directory functions</span>
-	<span class="n">fs</span><span class="o">.</span><span class="n">NodeStringLookuper</span>
-	<span class="n">fs</span><span class="o">.</span><span class="n">HandleReadDirAller</span>
-	<span class="n">fs</span><span class="o">.</span><span class="n">NodeMkdirer</span>
-	<span class="n">fs</span><span class="o">.</span><span class="n">NodeCreater</span>
-	<span class="n">fs</span><span class="o">.</span><span class="n">NodeRemover</span>
-	<span class="n">fs</span><span class="o">.</span><span class="n">NodeRenamer</span>
-	<span class="n">fs</span><span class="o">.</span><span class="n">NodeSymlinker</span>
+	<span style="color:#75715e">// handle functions
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">NodeOpener</span>
+	<span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">HandleWriter</span>
+	<span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">HandleReader</span>
+	<span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">NodeFsyncer</span>
+	<span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">HandleFlusher</span>
+	<span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">HandleReleaser</span>
 
-	<span class="c">// handle functions</span>
-	<span class="n">fs</span><span class="o">.</span><span class="n">NodeOpener</span>
-	<span class="n">fs</span><span class="o">.</span><span class="n">HandleWriter</span>
-	<span class="n">fs</span><span class="o">.</span><span class="n">HandleReader</span>
-	<span class="n">fs</span><span class="o">.</span><span class="n">NodeFsyncer</span>
-	<span class="n">fs</span><span class="o">.</span><span class="n">HandleFlusher</span>
-	<span class="n">fs</span><span class="o">.</span><span class="n">HandleReleaser</span>
-
-	<span class="c">// symlink functions</span>
-	<span class="n">fs</span><span class="o">.</span><span class="n">NodeReadlinker</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<h2 id="challenge-2---debugging">Challenge 2 - Debugging</h2>
-
+	<span style="color:#75715e">// symlink functions
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">NodeReadlinker</span>
+}
+</code></pre></div><h2 id="challenge-2---debugging">Challenge 2 - Debugging</h2>
 <p>Debugging a file system can be intense.
 Since many operations happen in such a short period of time, a full set of logs can quickly fill your disk.
 First, I started by only logging errors.
 That solution was insufficient.
-In many cases, context from the request and wrapping structure would’ve helped debug issues.
+In many cases, context from the request and wrapping structure would&rsquo;ve helped debug issues.
 After iterating on the log a few times, I wound up adding an info log at the start of the method.
 It included details about the request, details about the structure, as well as what method was being invoked.
 From this, I was able to see the full sequence of operations on the file system.
 But it was a lot.</p>
-
 <p>In many cases, the error logs were enough to understand what went wrong.
-To reduce the volume in the typical case, I implemented a <code class="highlighter-rouge">DEBUG</code> mode.
+To reduce the volume in the typical case, I implemented a <code>DEBUG</code> mode.
 By default, the info log is suppressed.
-When <code class="highlighter-rouge">DEBUG</code> is set to <code class="highlighter-rouge">true</code>, the info log and the additional details are logged to stdout.
+When <code>DEBUG</code> is set to <code>true</code>, the info log and the additional details are logged to stdout.
 Since debugging now requires restarting the file system, I needed to understand reproduction steps before restarting.
 By understanding the reproduction steps well, I am able to reproduce the issue quickly, keeping the debug log short and easy to read.</p>
-
-            </div>
-
-            <div class="text-center">
-    <br/>
-    <br/>
-    <p><i>Share this article on</i></p>
-
-    <div style="font-size: 36px;">
-        <a rel="nofollow" target="_blank" href="https://facebook.com/sharer.php?u=https://www.mjpitz.com/blog/2019/01/30/gitfs-a-fuse-file-system/">
-            <i class="fab fa-facebook" title="Facebook" data-toggle="tooltip" data-placement="bottom"></i></a>
-        &nbsp;
-        <a rel="nofollow" target="_blank" href="https://twitter.com/intent/tweet?text=gitfs - A FUSE File System&url=https://www.mjpitz.com/blog/2019/01/30/gitfs-a-fuse-file-system/&via=&related=">
-            <i class="fab fa-twitter" title="Twitter" data-toggle="tooltip" data-placement="bottom"></i></a>
-        &nbsp;
-        <a rel="nofollow" target="_blank" href="http://www.linkedin.com/sharing/share-offsite/?url=https://www.mjpitz.com/blog/2019/01/30/gitfs-a-fuse-file-system/">
-            <i class="fab fa-linkedin" title="LinkedIn" data-toggle="tooltip" data-placement="bottom"></i></a>
     </div>
-</div>
-
-
-            <div class="post-footer row">
-                <div class="col-sm-6 text-left">
-                    
-                        <a class="btn btn-default" href="/blog/2018/10/31/past-project-reflections-javascript/">&laquo; Previous Post</a>
-                    
-                </div>
-
-                <div class="col-sm-6 text-right">
-                    
-                    <a class="btn btn-default" href="/blog/2019/03/17/64bit-raspberry-pi/">Next Post &raquo;</a>
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-        </div>
-        <div style="padding:25px 0; margin-top: 50px;">
-    <div>
+    <div class="post-footer">
+      <div class="info">
         
-<!-- Google Analytics (http://google.com/analytics) -->
-<script>
-    !function(j,e,k,y,l,L){j.GoogleAnalyticsObject=y,j[y]||(j[y]=function(){
-        (j[y].q=j[y].q||[]).push(arguments)}),j[y].l=+new Date,l=e.createElement(k),
-            L=e.getElementsByTagName(k)[0],l.src='//www.google-analytics.com/analytics.js',
-            L.parentNode.insertBefore(l,L)}(window,document,'script','ga');
-    ga('create', 'UA-39314903-5', 'auto');
-    ga('send', 'pageview');
-</script>
+        
+    <span class="separator"><a class="tag" href="/tags/golang/">golang</a><a class="tag" href="/tags/fuse/">fuse</a></span>
 
-
-
-        <script src="/statics/libs/jquery-2.1.4/jquery.min.js"></script>
-        <script src="/statics/libs/bootstrap-3.3.7/js/bootstrap.min.js"></script>
-        <script src="/statics/libs/mermaid-8.5.0/mermaid.min.js"></script>
-
-        <script>
-            mermaid.initialize({
-                startOnLoad:true,
-                flowchart: {
-                    useMaxWidth: true,
-                }
-            });
-
-            $(function () {
-                $('[data-toggle="tooltip"]').tooltip();
-                $('.collapse').collapse({ toggle: false });
-            });
-        </script>
+      </div>
     </div>
+
+    
 </div>
 
-    </body>
+
+                </div>
+            </div>
+        </div>
+</body>
+
+
+
+<script type="text/javascript" src="https://mjpitz.com/js/jquery.min.86b1e8f819ee2d9099a783e50b49dff24282545fc40773861f9126b921532e4c.js" integrity="sha256-hrHo&#43;BnuLZCZp4PlC0nf8kKCVF/EB3OGH5EmuSFTLkw=" crossorigin="anonymous"></script>
+
+
+
+
+<script type="text/javascript" src="https://mjpitz.com/js/bundle.min.0f9c74cb78f13d1f15f33daff4037c70354f98acfbb97a6f61708966675c3cae.js" integrity="sha256-D5x0y3jxPR8V8z2v9AN8cDVPmKz7uXpvYXCJZmdcPK4=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://mjpitz.com/js/medium-zoom.min.92f21c856129f84aeb719459b3e6ac621a3032fd7b180a18c04e1d12083f8aba.js" integrity="sha256-kvIchWEp&#43;ErrcZRZs&#43;asYhowMv17GAoYwE4dEgg/iro=" crossorigin="anonymous"></script>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-39314903-5', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</html></body>
+
 </html>

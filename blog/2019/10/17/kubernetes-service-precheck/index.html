@@ -1,269 +1,205 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link type="application/atom+xml" rel="alternate" href="https://www.mjpitz.com/feed.xml" title="Mya Pitzeruse" />
-        <meta name="author" content="Mya Pitzeruse">
-
-        <title>
-            
-                Checking Service Dependencies in Kubernetes
-            
-        </title>
-
-        
-
-        <link rel="stylesheet" href="/statics/libs/bootstrap-3.3.7/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="/statics/libs/font-awesome-5.4.1/css/all.min.css">
-        <link rel="stylesheet" href="/statics/css/syntax-highlighting.css"/>
-        <link rel="stylesheet" href="/statics/css/app.css"/>
-
-        <link rel="apple-touch-icon" sizes="180x180" href="/statics/img/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/statics/img/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/statics/img/favicon-16x16.png">
-        <link rel="manifest" href="/statics/img/site.webmanifest">
-        <link rel="mask-icon" href="/statics/img/safari-pinned-tab.svg" color="#a28ad2">
-        <link rel="shortcut icon" href="/statics/img/favicon.ico">
-        <link rel="icon" href="/statics/img/favicon.ico" type="image/x-icon">
-        <meta name="msapplication-TileColor" content="#eeeeee">
-        <meta name="msapplication-config" content="/statics/img/browserconfig.xml">
-        <meta name="theme-color" content="#eeeeee">
-    </head>
-    <body>
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <div class="navbar-brand">@mjpitz</div>
-                </div>
-
-                <div class="collapse navbar-collapse" id="menu">
-                    <ul class="nav navbar-nav mr-auto">
-                        <li>
-                            <a href="/">
-                                <i class="fas fa-home" title="Blog" data-toggle="tooltip" data-placement="bottom">
-                                    <span>Blog</span>
-                                </i>
-                                Blog
-                            </a>
-                        </li>
-                    </ul>
-                    
-                    <ul class="nav navbar-nav nav-social">
-                        <li>
-                            <a href="https://medium.com/@mjpitz">
-                                <i class="fab fa-medium" title="Medium" data-toggle="tooltip" data-placement="bottom">
-                                    <span>Medium</span>
-                                </i>
-                            </a>
-                        </li>
-                        
-                        <li>
-                            <a href="http://www.github.com/mjpitz">
-                                <i class="fab fa-github" title="GitHub" data-toggle="tooltip" data-placement="bottom">
-                                    <span>GitHub</span>
-                                </i>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="https://hub.docker.com/u/mjpitz">
-                                <i class="fab fa-docker" title="Docker" data-toggle="tooltip" data-placement="bottom">
-                                    <span>Docker</span>
-                                </i>
-                            </a>
-                        </li>
-                        
-                        <li>
-                            <a href="http://www.twitter.com/_mjpitz_">
-                                <i class="fab fa-twitter" title="Twitter" data-toggle="tooltip" data-placement="bottom">
-                                    <span>Twitter</span>
-                                </i>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="http://www.linkedin.com/in/mjpitz">
-                                <i class="fab fa-linkedin" title="LinkedIn" data-toggle="tooltip" data-placement="bottom">
-                                    <span>LinkedIn</span>
-                                </i>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="/feed.xml">
-                                <i class="fas fa-rss" title="Feed" data-toggle="tooltip" data-placement="bottom">
-                                    <span>Feed</span>
-                                </i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <div class="container mjpitz-content" style="margin-top:82px">
-            <div class="panel panel-default">
-    <div class="panel-body">
-        <div class="post">
-            <h1 class="post-title">Checking Service Dependencies in Kubernetes</h1>
-            <p class="post-date">Posted on October 17, 2019</p>
-
-            <div class="post-content">
-                <p>Back in July, I found myself needing to better coordinate deployments of my applications to <a href="https://kubernetes.io/">Kubernetes</a>.
+<html lang="en" data-theme="light"><head>
+    <title> Mya Pitzeruse | Checking Service Dependencies in Kubernetes </title>
+    <meta charset="utf-8"><meta name="generator" content="Hugo 0.69.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="description" content="">
+    
+    <link rel="stylesheet" href="https://mjpitz.com/css/style.min.67cd718c0a3c8009c771494d381fb7128246a454bd0518fed97cb65d257db948.css" integrity="sha256-Z81xjAo8gAnHcUlNOB&#43;3EoJGpFS9BRj&#43;2Xy2XSV9uUg=" crossorigin="anonymous" type="text/css">
+    <link rel="stylesheet" href="https://mjpitz.com/statics/css/overrides.css" type="text/css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    
+    <link rel="shortcut icon" href="https://mjpitz.com/statics/img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://mjpitz.com/statics/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://mjpitz.com/statics/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://mjpitz.com/statics/img/favicon-16x16.png">
+    <link rel="canonical" href="https://mjpitz.com/blog/2019/10/17/kubernetes-service-precheck/">
+    
+    
+    <script type="text/javascript" src="https://mjpitz.com/js/anatole-header.min.c275265a259296f3dd50e8236a77fcbcadb1dbb9597d3045c675dcc2c7c58a93.js" integrity="sha256-wnUmWiWSlvPdUOgjanf8vK2x27lZfTBFxnXcwsfFipM=" crossorigin="anonymous"></script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Checking Service Dependencies in Kubernetes"/>
+<meta name="twitter:description" content="Back in July, I found myself needing to better coordinate deployments of my applications to Kubernetes.
 After searching around, I found many ways that people where trying to solve this problem.
 Some used shell scripts to apply multiple YAML files with a fixed time sleep between them.
-Others used shell scripts and tailed the rollout using <code class="highlighter-rouge">kubectl rollout status -w</code>.
-Now, I manage a lot of my deployments using <a href="https://www.weave.works/technologies/gitops/">GitOps</a> and <a href="https://github.com/fluxcd/flux">Flux</a>.
-So leveraging these shell scripts to manage my rollouts into clusters wasn’t really an option.</p>
+Others used shell scripts and tailed the rollout using kubectl rollout status -w.
+Now, I manage a lot of my deployments using GitOps and Flux.
+So leveraging these shell scripts to manage my rollouts into clusters wasn&rsquo;t really an option.
+It wasn&rsquo;t until I came across Alibaba Cloud&rsquo;s blog post on solving service dependencies that I felt like I had something to work with.
+The article described two techniques.
+The first was inspecting dependencies within the application itself.
+At Indeed, we leverage our status library to do this.
+The second was to enable services to be checked, independent of the application.
+In this post, I’ll demonstrate how to use my service-precheck initialization container (built off of the Alibaba blog post) to ensure upstream systems are up before attempting to start a downstream system."/>
 
-<p>It wasn’t until I came across <a href="https://us.alibabacloud.com">Alibaba Cloud’s</a> blog post on <a href="https://www.alibabacloud.com/blog/kubernetes-demystified-solving-service-dependencies_594110">solving service dependencies</a> that I felt like I had something to work with.
-The article described two techniques. 
-The first was inspecting dependencies within the application itself. 
-At Indeed, we leverage our <a href="http://github.com/indeedeng/status">status</a> library to do this. 
-The second was to enable services to be checked, independent of the application.</p>
-
-<p>In this post, I’ll demonstrate how to use my <a href="https://hub.docker.com/r/mjpitz/service-precheck">service-precheck</a> initialization container (built off of the Alibaba blog post) to ensure upstream systems are up before attempting to start a downstream system.</p>
-
-<!--more-->
-
-<h2 id="concepts">Concepts</h2>
-
-<p>Before reading this blog post, it would be helpful to familiarize yourself with some Kubernetes concepts (if you don’t already know them).</p>
-
-<p><a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/">Liveness and readiness probes</a> are used to ensure your applications is live and ready. 
-Readiness probes are used to determine when an application is ready and able to start receiving traffic. 
-While liveness probes are used to check if the application is alive and running. 
-A key difference here is that readiness probes control a pods entry in DNS. 
-When a pod’s readiness probe is failing, no DNS entry will be available for the pod.</p>
-
-<p>A <a href="https://kubernetes.io/docs/concepts/services-networking/service/#headless-services">headless service</a> is one who does not expose a <code class="highlighter-rouge">clusterIP</code>, and instead exposes the endpoints of a service as entries in DNS (when using a selector).</p>
-
-<p><a href="https://kubernetes.io/docs/concepts/workloads/pods/init-containers/">initContainers</a> are a set of containers within a pod that run before all other containers. 
-These containers tend to be relatively short-lived and are typically used to complete some work before the primary process. 
-Examples include preparing temporary file systems, initializing some data on disk, as well as probing required services.</p>
-
-<h2 id="use-case-mysql-primary-and-replica">Use Case: MySQL Primary and Replica</h2>
-
-<p>Consider the case laid out in the Alababa blog post using MySQL. 
-Many applications expect to have both read-write and read-only connections. 
-These connection strings often have two different targets. 
-To ensure these connection strings resolve, simply pass the list of addresses as arguments to the precheck container.</p>
-
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      <span class="na">initContainers</span><span class="pi">:</span>
-      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">service-precheck</span>
-        <span class="na">image</span><span class="pi">:</span> <span class="s">mjpitz/service-precheck:latest</span>
-        <span class="na">imagePullPolicy</span><span class="pi">:</span> <span class="s">IfNotPresent</span>
-        <span class="na">args</span><span class="pi">:</span>
-        <span class="pi">-</span> <span class="s2">"</span><span class="s">mysql-0.mysql.namespace"</span>
-        <span class="pi">-</span> <span class="s2">"</span><span class="s">mysql-read.namespace"</span>
-</code></pre></div></div>
-
-<p>This will ensure that the <code class="highlighter-rouge">nslookup</code> for <code class="highlighter-rouge">mysql-0.mysql.namespace</code> and <code class="highlighter-rouge">mysql-read.namespace</code> return entries before exiting successfully.</p>
-
-<h2 id="use-case-zookeeper-quorum">Use Case: Zookeeper Quorum</h2>
-
-<p>Another popular use case is ensuring quorum amongst a coordinating service, like Zookeeper and etcd. 
-A recent example where I’ve needed to add this precheck in was in some exploration with <a href="https://github.com/apache-spark-on-k8s/kubernetes-HDFS">HDFS on Kubernetes</a>. 
-All the components of HDFS leverage Zookeeper for service discovery and leader election. 
-Until Zookeeper is fully initializied, the namenodes, journalnodes, and datanodes will crash loop looking for the Zookeeper entries. 
-With the addition of a service-precheck definition, the namenodes, journalnodes, and datanodes were all able to wait for Zookeeper before starting up.</p>
-
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      <span class="na">initContainers</span><span class="pi">:</span>
-      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">service-precheck</span>
-        <span class="na">image</span><span class="pi">:</span> <span class="s">mjpitz/service-precheck:latest</span>
-        <span class="na">imagePullPolicy</span><span class="pi">:</span> <span class="s">IfNotPresent</span>
-        <span class="na">args</span><span class="pi">:</span>
-        <span class="pi">-</span> <span class="s2">"</span><span class="s">zookeeper-0.zookeeper-headless.namespace"</span>
-        <span class="pi">-</span> <span class="s2">"</span><span class="s">zookeeper-1.zookeeper-headless.namespace"</span>
-        <span class="pi">-</span> <span class="s2">"</span><span class="s">zookeeper-2.zookeeper-headless.namespace"</span>
-</code></pre></div></div>
-
-<p>While letting a pod crash loop until it fixes itself is an option, it tends to come at a cost. 
-The container engine on that host needs to continually restart the pod. 
-More pod events means more load on your control plane. 
-By using service-precheck, I’ve been able to better manage my cluster deployments using GitOps.</p>
-
-<p>Check it out on <a href="https://github.com/mjpitz/service-precheck">GitHub</a> and <a href="https://hub.docker.com/r/mjpitz/service-precheck">Docker Hub</a>.</p>
-
-            </div>
-
-            <div class="text-center">
-    <br/>
-    <br/>
-    <p><i>Share this article on</i></p>
-
-    <div style="font-size: 36px;">
-        <a rel="nofollow" target="_blank" href="https://facebook.com/sharer.php?u=https://www.mjpitz.com/blog/2019/10/17/kubernetes-service-precheck/">
-            <i class="fab fa-facebook" title="Facebook" data-toggle="tooltip" data-placement="bottom"></i></a>
-        &nbsp;
-        <a rel="nofollow" target="_blank" href="https://twitter.com/intent/tweet?text=Checking Service Dependencies in Kubernetes&url=https://www.mjpitz.com/blog/2019/10/17/kubernetes-service-precheck/&via=&related=">
-            <i class="fab fa-twitter" title="Twitter" data-toggle="tooltip" data-placement="bottom"></i></a>
-        &nbsp;
-        <a rel="nofollow" target="_blank" href="http://www.linkedin.com/sharing/share-offsite/?url=https://www.mjpitz.com/blog/2019/10/17/kubernetes-service-precheck/">
-            <i class="fab fa-linkedin" title="LinkedIn" data-toggle="tooltip" data-placement="bottom"></i></a>
-    </div>
-</div>
-
-
-            <div class="post-footer row">
-                <div class="col-sm-6 text-left">
-                    
-                        <a class="btn btn-default" href="/blog/2019/05/07/docker-buildx/">&laquo; Previous Post</a>
-                    
-                </div>
-
-                <div class="col-sm-6 text-right">
-                    
-                    <a class="btn btn-default" href="/blog/2020/01/24/building-depscloud/">Next Post &raquo;</a>
-                    
-                </div>
-            </div>
+</head><body><div class="sidebar animated fadeInDown">
+    <div class="logo-title">
+      <div class="title">
+        <img src="https://mjpitz.com/statics/img/mjpitz.jpeg" alt="profile picture">
+        <h3 title=""><a href="/">Mya Pitzeruse</a></h3>
+        <div class="description">
+          <p></p>
         </div>
+      </div>
     </div>
-</div>
-        </div>
-        <div style="padding:25px 0; margin-top: 50px;">
-    <div>
+    <ul class="social-links">
         
-<!-- Google Analytics (http://google.com/analytics) -->
-<script>
-    !function(j,e,k,y,l,L){j.GoogleAnalyticsObject=y,j[y]||(j[y]=function(){
-        (j[y].q=j[y].q||[]).push(arguments)}),j[y].l=+new Date,l=e.createElement(k),
-            L=e.getElementsByTagName(k)[0],l.src='//www.google-analytics.com/analytics.js',
-            L.parentNode.insertBefore(l,L)}(window,document,'script','ga');
-    ga('create', 'UA-39314903-5', 'auto');
-    ga('send', 'pageview');
-</script>
+        <li>
+        <a href="https://github.com/mjpitz" rel="me" aria-label="GitHub">
+          <i class="fa fa-2x fa-github" aria-hidden="true"></i>
+        </a>          
+        </li>
 
+        
+        <li>
+        <a href="https://twitter.com/_mjpitz_" rel="me" aria-label="Twitter">
+          <i class="fa fa-2x fa-twitter" aria-hidden="true"></i>
+        </a>          
+        </li>
 
+        
+        <li>
+        <a href="https://www.linkedin.com/in/mjpitz/" rel="me" aria-label="LinkedIn">
+          <i class="fa fa-2x fa-linkedin" aria-hidden="true"></i>
+        </a>          
+        </li>
 
-        <script src="/statics/libs/jquery-2.1.4/jquery.min.js"></script>
-        <script src="/statics/libs/bootstrap-3.3.7/js/bootstrap.min.js"></script>
-        <script src="/statics/libs/mermaid-8.5.0/mermaid.min.js"></script>
+        
+        <li>
+        <a href="/index.xml" rel="me" aria-label="Feed">
+          <i class="fa fa-2x fa-rss" aria-hidden="true"></i>
+        </a>          
+        </li>
 
-        <script>
-            mermaid.initialize({
-                startOnLoad:true,
-                flowchart: {
-                    useMaxWidth: true,
-                }
-            });
-
-            $(function () {
-                $('[data-toggle="tooltip"]').tooltip();
-                $('.collapse').collapse({ toggle: false });
-            });
-        </script>
+        
+    </ul>
+    <div class="footer">
+        <div class="by_farbox">&copy; Mya Pitzeruse 2020 </div>
+      </div>
+    </div>
+</div><div class="main">
+            <div class="page-top animated fadeInDown">
+    <ul class="nav">
+        
+        
+        
+        <li><a  href="/" title="">Home</a></li>
+        
+        
+        <li><a  href="/blog/" title="">Archive</a></li>
+        
+    </ul>
+    <div class="themeswitcher">
+        <a class="theme-switch" title="Switch Theme">
+            <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+        </a>
     </div>
 </div>
 
-    </body>
+            <div class="autopagerize_page_element">
+                <div class="content">
+<div class="post animated fadeInDown">
+    <div class="post-content">
+
+      <div class="post-title">
+        <h3>Checking Service Dependencies in Kubernetes
+        </h3>
+        
+        </div>
+
+    <p>Back in July, I found myself needing to better coordinate deployments of my applications to <a href="https://kubernetes.io/">Kubernetes</a>.
+After searching around, I found many ways that people where trying to solve this problem.
+Some used shell scripts to apply multiple YAML files with a fixed time sleep between them.
+Others used shell scripts and tailed the rollout using <code>kubectl rollout status -w</code>.
+Now, I manage a lot of my deployments using <a href="https://www.weave.works/technologies/gitops/">GitOps</a> and <a href="https://github.com/fluxcd/flux">Flux</a>.
+So leveraging these shell scripts to manage my rollouts into clusters wasn&rsquo;t really an option.</p>
+<p>It wasn&rsquo;t until I came across <a href="https://us.alibabacloud.com">Alibaba Cloud&rsquo;s</a> blog post on <a href="https://www.alibabacloud.com/blog/kubernetes-demystified-solving-service-dependencies_594110">solving service dependencies</a> that I felt like I had something to work with.
+The article described two techniques.
+The first was inspecting dependencies within the application itself.
+At Indeed, we leverage our <a href="http://github.com/indeedeng/status">status</a> library to do this.
+The second was to enable services to be checked, independent of the application.</p>
+<p>In this post, I’ll demonstrate how to use my <a href="https://hub.docker.com/r/mjpitz/service-precheck">service-precheck</a> initialization container (built off of the Alibaba blog post) to ensure upstream systems are up before attempting to start a downstream system.</p>
+<h2 id="concepts">Concepts</h2>
+<p>Before reading this blog post, it would be helpful to familiarize yourself with some Kubernetes concepts (if you don’t already know them).</p>
+<p><a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/">Liveness and readiness probes</a> are used to ensure your applications is live and ready.
+Readiness probes are used to determine when an application is ready and able to start receiving traffic.
+While liveness probes are used to check if the application is alive and running.
+A key difference here is that readiness probes control a pods entry in DNS.
+When a pod’s readiness probe is failing, no DNS entry will be available for the pod.</p>
+<p>A <a href="https://kubernetes.io/docs/concepts/services-networking/service/#headless-services">headless service</a> is one who does not expose a <code>clusterIP</code>, and instead exposes the endpoints of a service as entries in DNS (when using a selector).</p>
+<p><a href="https://kubernetes.io/docs/concepts/workloads/pods/init-containers/">initContainers</a> are a set of containers within a pod that run before all other containers.
+These containers tend to be relatively short-lived and are typically used to complete some work before the primary process.
+Examples include preparing temporary file systems, initializing some data on disk, as well as probing required services.</p>
+<h2 id="use-case-mysql-primary-and-replica">Use Case: MySQL Primary and Replica</h2>
+<p>Consider the case laid out in the Alababa blog post using MySQL.
+Many applications expect to have both read-write and read-only connections.
+These connection strings often have two different targets.
+To ensure these connection strings resolve, simply pass the list of addresses as arguments to the precheck container.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">      <span style="color:#66d9ef">initContainers</span>:
+      - <span style="color:#66d9ef">name</span>: service-precheck
+        <span style="color:#66d9ef">image</span>: mjpitz/service-precheck:latest
+        <span style="color:#66d9ef">imagePullPolicy</span>: IfNotPresent
+        <span style="color:#66d9ef">args</span>:
+        - <span style="color:#e6db74">&#34;mysql-0.mysql.namespace&#34;</span>
+        - <span style="color:#e6db74">&#34;mysql-read.namespace&#34;</span>
+</code></pre></div><p>This will ensure that the <code>nslookup</code> for <code>mysql-0.mysql.namespace</code> and <code>mysql-read.namespace</code> return entries before exiting successfully.</p>
+<h2 id="use-case-zookeeper-quorum">Use Case: Zookeeper Quorum</h2>
+<p>Another popular use case is ensuring quorum amongst a coordinating service, like Zookeeper and etcd.
+A recent example where I’ve needed to add this precheck in was in some exploration with <a href="https://github.com/apache-spark-on-k8s/kubernetes-HDFS">HDFS on Kubernetes</a>.
+All the components of HDFS leverage Zookeeper for service discovery and leader election.
+Until Zookeeper is fully initializied, the namenodes, journalnodes, and datanodes will crash loop looking for the Zookeeper entries.
+With the addition of a service-precheck definition, the namenodes, journalnodes, and datanodes were all able to wait for Zookeeper before starting up.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">      <span style="color:#66d9ef">initContainers</span>:
+      - <span style="color:#66d9ef">name</span>: service-precheck
+        <span style="color:#66d9ef">image</span>: mjpitz/service-precheck:latest
+        <span style="color:#66d9ef">imagePullPolicy</span>: IfNotPresent
+        <span style="color:#66d9ef">args</span>:
+        - <span style="color:#e6db74">&#34;zookeeper-0.zookeeper-headless.namespace&#34;</span>
+        - <span style="color:#e6db74">&#34;zookeeper-1.zookeeper-headless.namespace&#34;</span>
+        - <span style="color:#e6db74">&#34;zookeeper-2.zookeeper-headless.namespace&#34;</span>
+</code></pre></div><p>While letting a pod crash loop until it fixes itself is an option, it tends to come at a cost.
+The container engine on that host needs to continually restart the pod.
+More pod events means more load on your control plane.
+By using service-precheck, I’ve been able to better manage my cluster deployments using GitOps.</p>
+<p>Check it out on <a href="https://github.com/mjpitz/service-precheck">GitHub</a> and <a href="https://hub.docker.com/r/mjpitz/service-precheck">Docker Hub</a>.</p>
+    </div>
+    <div class="post-footer">
+      <div class="info">
+        
+        
+    <span class="separator"><a class="tag" href="/tags/docker/">docker</a><a class="tag" href="/tags/kubernetes/">kubernetes</a><a class="tag" href="/tags/microservices/">microservices</a><a class="tag" href="/tags/dependencies/">dependencies</a></span>
+
+      </div>
+    </div>
+
+    
+</div>
+
+
+                </div>
+            </div>
+        </div>
+</body>
+
+
+
+<script type="text/javascript" src="https://mjpitz.com/js/jquery.min.86b1e8f819ee2d9099a783e50b49dff24282545fc40773861f9126b921532e4c.js" integrity="sha256-hrHo&#43;BnuLZCZp4PlC0nf8kKCVF/EB3OGH5EmuSFTLkw=" crossorigin="anonymous"></script>
+
+
+
+
+<script type="text/javascript" src="https://mjpitz.com/js/bundle.min.0f9c74cb78f13d1f15f33daff4037c70354f98acfbb97a6f61708966675c3cae.js" integrity="sha256-D5x0y3jxPR8V8z2v9AN8cDVPmKz7uXpvYXCJZmdcPK4=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://mjpitz.com/js/medium-zoom.min.92f21c856129f84aeb719459b3e6ac621a3032fd7b180a18c04e1d12083f8aba.js" integrity="sha256-kvIchWEp&#43;ErrcZRZs&#43;asYhowMv17GAoYwE4dEgg/iro=" crossorigin="anonymous"></script>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-39314903-5', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</html></body>
+
 </html>

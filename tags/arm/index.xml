@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>arm on Mya Pitzeruse</title>
+    <link>https://mjpitz.com/tags/arm/</link>
+    <description>Recent content in arm on Mya Pitzeruse</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 07 May 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://mjpitz.com/tags/arm/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Using docker-buildx for Multi-architecture Containers</title>
+      <link>https://mjpitz.com/blog/2019/05/07/docker-buildx/</link>
+      <pubDate>Tue, 07 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/blog/2019/05/07/docker-buildx/</guid>
+      <description>&lt;p&gt;When you build a container image, it&amp;rsquo;s typically only built for one platform (&lt;code&gt;linux&lt;/code&gt;) and one architecture (&lt;code&gt;amd64&lt;/code&gt;).
+As the Internet of Things continues to grow, the demand for more &lt;code&gt;arm&lt;/code&gt; images increased as well.
+Traditionally, in order to produce an &lt;code&gt;arm&lt;/code&gt; image, you need an &lt;code&gt;arm&lt;/code&gt; device to do the build on.
+As a result, most projects wind up missing &lt;code&gt;arm&lt;/code&gt; support.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/moby/buildkit&#34;&gt;BuildKit&lt;/a&gt; provides emulation capabilities that support multi-architecture builds.
+With BuildKit, you build container images across multiple architectures concurrently.
+This core utility backs &lt;code&gt;docker buildx&lt;/code&gt;, a multi-architecture build utility for docker.
+In this post, I&amp;rsquo;ll discuss why you should produce multi-architecture container images and demonstrate how to use &lt;code&gt;docker buildx&lt;/code&gt; to do it.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

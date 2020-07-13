@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>golang on Mya Pitzeruse</title>
+    <link>https://mjpitz.com/tags/golang/</link>
+    <description>Recent content in golang on Mya Pitzeruse</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 30 Jan 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://mjpitz.com/tags/golang/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>gitfs - A FUSE File System</title>
+      <link>https://mjpitz.com/blog/2019/01/30/gitfs-a-fuse-file-system/</link>
+      <pubDate>Wed, 30 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/blog/2019/01/30/gitfs-a-fuse-file-system/</guid>
+      <description>&lt;p&gt;During my first employment at Indeed, I cloned every repository down to my machine.
+This approach worked for a while when the number of repositories was small.
+As the organization has grown, the solution quickly became unmanageable.
+While many people do not work across every repository, many are familiar with the pain of setting up a new machine.
+I wrote &lt;a href=&#34;https://github.com/mjpitz/gitfs&#34;&gt;gitfs&lt;/a&gt; for a few reasons.
+First, to reduce the time spent setting up a new development environment.
+Second, to remove the need to figure out where all my projects need to be cloned.
+In this post, I discuss some challenges faced and lessons learned in writing my first file system.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,292 +1,208 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link type="application/atom+xml" rel="alternate" href="https://www.mjpitz.com/feed.xml" title="Mya Pitzeruse" />
-        <meta name="author" content="Mya Pitzeruse">
+<html lang="en" data-theme="light"><head>
+    <title> Mya Pitzeruse | Home Lab: 1 year later </title>
+    <meta charset="utf-8"><meta name="generator" content="Hugo 0.69.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="description" content="">
+    
+    <link rel="stylesheet" href="https://mjpitz.com/css/style.min.67cd718c0a3c8009c771494d381fb7128246a454bd0518fed97cb65d257db948.css" integrity="sha256-Z81xjAo8gAnHcUlNOB&#43;3EoJGpFS9BRj&#43;2Xy2XSV9uUg=" crossorigin="anonymous" type="text/css">
+    <link rel="stylesheet" href="https://mjpitz.com/statics/css/overrides.css" type="text/css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    
+    <link rel="shortcut icon" href="https://mjpitz.com/statics/img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://mjpitz.com/statics/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://mjpitz.com/statics/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://mjpitz.com/statics/img/favicon-16x16.png">
+    <link rel="canonical" href="https://mjpitz.com/blog/2020/04/20/k3s-rpi-year1/">
+    
+    
+    <script type="text/javascript" src="https://mjpitz.com/js/anatole-header.min.c275265a259296f3dd50e8236a77fcbcadb1dbb9597d3045c675dcc2c7c58a93.js" integrity="sha256-wnUmWiWSlvPdUOgjanf8vK2x27lZfTBFxnXcwsfFipM=" crossorigin="anonymous"></script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Home Lab: 1 year later"/>
+<meta name="twitter:description" content="Last year, I wrote a series of blog posts covering the set-up of my home lab.
+The first post was on my decision to run Rancher&rsquo;s k3s on my Raspberry Pis.
+Since then, I&rsquo;ve made a few modifications to how its all managed.
+In this post, I discuss some of these changes I made over the last year."/>
 
-        <title>
-            
-                Home Lab: 1 year later
-            
-        </title>
+</head><body><div class="sidebar animated fadeInDown">
+    <div class="logo-title">
+      <div class="title">
+        <img src="https://mjpitz.com/statics/img/mjpitz.jpeg" alt="profile picture">
+        <h3 title=""><a href="/">Mya Pitzeruse</a></h3>
+        <div class="description">
+          <p></p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
+        
+        <li>
+        <a href="https://github.com/mjpitz" rel="me" aria-label="GitHub">
+          <i class="fa fa-2x fa-github" aria-hidden="true"></i>
+        </a>          
+        </li>
 
         
+        <li>
+        <a href="https://twitter.com/_mjpitz_" rel="me" aria-label="Twitter">
+          <i class="fa fa-2x fa-twitter" aria-hidden="true"></i>
+        </a>          
+        </li>
 
-        <link rel="stylesheet" href="/statics/libs/bootstrap-3.3.7/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="/statics/libs/font-awesome-5.4.1/css/all.min.css">
-        <link rel="stylesheet" href="/statics/css/syntax-highlighting.css"/>
-        <link rel="stylesheet" href="/statics/css/app.css"/>
+        
+        <li>
+        <a href="https://www.linkedin.com/in/mjpitz/" rel="me" aria-label="LinkedIn">
+          <i class="fa fa-2x fa-linkedin" aria-hidden="true"></i>
+        </a>          
+        </li>
 
-        <link rel="apple-touch-icon" sizes="180x180" href="/statics/img/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/statics/img/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/statics/img/favicon-16x16.png">
-        <link rel="manifest" href="/statics/img/site.webmanifest">
-        <link rel="mask-icon" href="/statics/img/safari-pinned-tab.svg" color="#a28ad2">
-        <link rel="shortcut icon" href="/statics/img/favicon.ico">
-        <link rel="icon" href="/statics/img/favicon.ico" type="image/x-icon">
-        <meta name="msapplication-TileColor" content="#eeeeee">
-        <meta name="msapplication-config" content="/statics/img/browserconfig.xml">
-        <meta name="theme-color" content="#eeeeee">
-    </head>
-    <body>
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <div class="navbar-brand">@mjpitz</div>
-                </div>
+        
+        <li>
+        <a href="/index.xml" rel="me" aria-label="Feed">
+          <i class="fa fa-2x fa-rss" aria-hidden="true"></i>
+        </a>          
+        </li>
 
-                <div class="collapse navbar-collapse" id="menu">
-                    <ul class="nav navbar-nav mr-auto">
-                        <li>
-                            <a href="/">
-                                <i class="fas fa-home" title="Blog" data-toggle="tooltip" data-placement="bottom">
-                                    <span>Blog</span>
-                                </i>
-                                Blog
-                            </a>
-                        </li>
-                    </ul>
-                    
-                    <ul class="nav navbar-nav nav-social">
-                        <li>
-                            <a href="https://medium.com/@mjpitz">
-                                <i class="fab fa-medium" title="Medium" data-toggle="tooltip" data-placement="bottom">
-                                    <span>Medium</span>
-                                </i>
-                            </a>
-                        </li>
-                        
-                        <li>
-                            <a href="http://www.github.com/mjpitz">
-                                <i class="fab fa-github" title="GitHub" data-toggle="tooltip" data-placement="bottom">
-                                    <span>GitHub</span>
-                                </i>
-                            </a>
-                        </li>
+        
+    </ul>
+    <div class="footer">
+        <div class="by_farbox">&copy; Mya Pitzeruse 2020 </div>
+      </div>
+    </div>
+</div><div class="main">
+            <div class="page-top animated fadeInDown">
+    <ul class="nav">
+        
+        
+        
+        <li><a  href="/" title="">Home</a></li>
+        
+        
+        <li><a  href="/blog/" title="">Archive</a></li>
+        
+    </ul>
+    <div class="themeswitcher">
+        <a class="theme-switch" title="Switch Theme">
+            <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+        </a>
+    </div>
+</div>
 
-                        <li>
-                            <a href="https://hub.docker.com/u/mjpitz">
-                                <i class="fab fa-docker" title="Docker" data-toggle="tooltip" data-placement="bottom">
-                                    <span>Docker</span>
-                                </i>
-                            </a>
-                        </li>
-                        
-                        <li>
-                            <a href="http://www.twitter.com/_mjpitz_">
-                                <i class="fab fa-twitter" title="Twitter" data-toggle="tooltip" data-placement="bottom">
-                                    <span>Twitter</span>
-                                </i>
-                            </a>
-                        </li>
+            <div class="autopagerize_page_element">
+                <div class="content">
+<div class="post animated fadeInDown">
+    <div class="post-content">
 
-                        <li>
-                            <a href="http://www.linkedin.com/in/mjpitz">
-                                <i class="fab fa-linkedin" title="LinkedIn" data-toggle="tooltip" data-placement="bottom">
-                                    <span>LinkedIn</span>
-                                </i>
-                            </a>
-                        </li>
+      <div class="post-title">
+        <h3>Home Lab: 1 year later
+        </h3>
+        
+        </div>
 
-                        <li>
-                            <a href="/feed.xml">
-                                <i class="fas fa-rss" title="Feed" data-toggle="tooltip" data-placement="bottom">
-                                    <span>Feed</span>
-                                </i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <div class="container mjpitz-content" style="margin-top:82px">
-            <div class="panel panel-default">
-    <div class="panel-body">
-        <div class="post">
-            <h1 class="post-title">Home Lab: 1 year later</h1>
-            <p class="post-date">Posted on April 20, 2020</p>
-
-            <div class="post-content">
-                <p>Last year, I wrote a series of blog posts covering the set-up of my home lab.
-The <a href="/blog/2019/04/10/k8s-k3s-rpi-oh-my/">first</a> post was on my decision to run <a href="https://k3s.io/">Rancher’s k3s</a> on my <a href="https://www.raspberrypi.org/">Raspberry Pis</a>.
-Since then, I’ve made a few modifications to how its all managed. 
+    <p>Last year, I wrote a series of blog posts covering the set-up of my home lab.
+The <a href="/blog/2019/04/10/k8s-k3s-rpi-oh-my/">first</a> post was on my decision to run <a href="https://k3s.io/">Rancher&rsquo;s k3s</a> on my <a href="https://www.raspberrypi.org/">Raspberry Pis</a>.
+Since then, I&rsquo;ve made a few modifications to how its all managed.
 In this post, I discuss some of these changes I made over the last year.</p>
-
-<!--more-->
-
 <h2 id="from-terraform-to-cloud-init">From terraform to cloud-init</h2>
-
 <p>I used to use terraform to manage my raspberry pis.
 While it accomplished the job, I felt it was overkill for what I needed it to do.
-In this pass, I started by looking at the <code class="highlighter-rouge">system-boot</code> partition of an Ubuntu install.
+In this pass, I started by looking at the <code>system-boot</code> partition of an Ubuntu install.
 It was in there, that I found ways to hook into things like Netplan and cloud-init.
 This gave me a great step forward to codifying my home lab set-up with a declarative model.</p>
-
 <p><a href="https://github.com/mjpitz/rpi-cloud-init">https://github.com/mjpitz/rpi-cloud-init</a></p>
-
 <h2 id="no-more-pets">No more pets</h2>
-
 <p>I used to name my clusters something cute, usually based off of a synonym.
-Gone are the days of <code class="highlighter-rouge">myriad</code>, <code class="highlighter-rouge">horde</code>, <code class="highlighter-rouge">hive</code>, and <code class="highlighter-rouge">hub</code>.
+Gone are the days of <code>myriad</code>, <code>horde</code>, <code>hive</code>, and <code>hub</code>.
 Now, I use hostnames that resemble the AWS convention.
-That is, <code class="highlighter-rouge">ip-192-168-1-xyz</code> for the <code class="highlighter-rouge">192.168.1.0/24</code> range.</p>
-
-<p>I still wrangle all of my machines using <code class="highlighter-rouge">docker-machine</code>.
+That is, <code>ip-192-168-1-xyz</code> for the <code>192.168.1.0/24</code> range.</p>
+<p>I still wrangle all of my machines using <code>docker-machine</code>.
 It affords me a few conveniences.
-One, I can easily connect to remote docker agents using <code class="highlighter-rouge">docker-machine env</code>.
+One, I can easily connect to remote docker agents using <code>docker-machine env</code>.
 This allows me to inspect containers without needing to jump to the box.
-Should further inspection be needed, I can easily jump to the host using <code class="highlighter-rouge">docker-machine ssh</code>.</p>
-
-<div class="mermaid text-center">
-  graph LR
-  Laptop ---|connect via docker-machine| ip-192-168-1-xyz
-</div>
-
+Should further inspection be needed, I can easily jump to the host using <code>docker-machine ssh</code>.</p>
+<!-- raw HTML omitted -->
 <h2 id="home-cloud">Home cloud</h2>
-
 <p>To make the most out of my set-up, I wanted to structure it based on a cloud.
-While I can’t have the exact set-up as a cloud provider, I can get pretty close.
-Each “availability zone” consists of:</p>
-
+While I can&rsquo;t have the exact set-up as a cloud provider, I can get pretty close.
+Each &ldquo;availability zone&rdquo; consists of:</p>
 <ul>
-  <li>an independent power supply</li>
-  <li>a single, raspberry pi 4 (control plane)</li>
-  <li>four, raspberry pi 3b+ (worker)</li>
+<li>an independent power supply</li>
+<li>a single, raspberry pi 4 (control plane)</li>
+<li>four, raspberry pi 3b+ (worker)</li>
 </ul>
-
-<p>Three of these “availability zones” compose a single “region”.
-Since I’m based out of us-central, I figured it would be a good starting point.</p>
-
-<div class="mermaid text-center">
-  graph TD
-  us-central-1[region:us-central-1]
-  us-central-1a[zone:us-central-1a]
-  us-central-1b[zone:us-central-1b]
-  us-central-1c[zone:us-central-1c]
-  
-  us-central-1 --&gt; us-central-1a
-  us-central-1 --&gt; us-central-1b
-  us-central-1 --&gt; us-central-1c 
-</div>
-
+<p>Three of these &ldquo;availability zones&rdquo; compose a single &ldquo;region&rdquo;.
+Since I&rsquo;m based out of us-central, I figured it would be a good starting point.</p>
+<!-- raw HTML omitted -->
+<p>us-central-1 &ndash;&gt; us-central-1a
+us-central-1 &ndash;&gt; us-central-1b
+us-central-1 &ndash;&gt; us-central-1c</p>
+<!-- raw HTML omitted -->
 <p>For simplicity, each zone is allocated a designated CIDR block.</p>
-
 <ul>
-  <li><code class="highlighter-rouge">us-central-1a</code> is allocated <code class="highlighter-rouge">192.168.1.50/29</code></li>
-  <li><code class="highlighter-rouge">us-central-1b</code> is allocated <code class="highlighter-rouge">192.168.1.60/29</code></li>
-  <li><code class="highlighter-rouge">us-central-1c</code> is allocated <code class="highlighter-rouge">192.168.1.70/29</code></li>
+<li><code>us-central-1a</code> is allocated <code>192.168.1.50/29</code></li>
+<li><code>us-central-1b</code> is allocated <code>192.168.1.60/29</code></li>
+<li><code>us-central-1c</code> is allocated <code>192.168.1.70/29</code></li>
 </ul>
-
 <h2 id="deploying-k3s">Deploying k3s</h2>
-
-<p>Ever since switching to k3s, I haven’t needed any other tool.
-My deployment of it hasn’t changed too much.
+<p>Ever since switching to k3s, I haven&rsquo;t needed any other tool.
+My deployment of it hasn&rsquo;t changed too much.
 I continue to run the k3s agent through docker.
 One thing I do differently is pass in the appropriate topology flags.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  docker run <span class="nt">-d</span> <span class="se">\</span>
-    ... <span class="se">\</span>
-    <span class="nt">--node-label</span> <span class="s2">"node.kubernetes.io/instance-type=rpi-4"</span> <span class="se">\ </span>
-    <span class="nt">--node-label</span> <span class="s2">"topology.kubernetes.io/region=us-central-1"</span> <span class="se">\</span>
-    <span class="nt">--node-label</span> <span class="s2">"topology.kubernetes.io/zone=us-central-1a"</span>
-</code></pre></div></div>
-
-<p>From a development standpoint, there is a lot of benefit to having this information surfaced. 
-You can test the spread of stateful workloads, enforce communication between services and geographical boundaries. 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">  docker run -d <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    ... <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --node-label <span style="color:#e6db74">&#34;node.kubernetes.io/instance-type=rpi-4&#34;</span> <span style="color:#ae81ff">\ </span>
+    --node-label <span style="color:#e6db74">&#34;topology.kubernetes.io/region=us-central-1&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --node-label <span style="color:#e6db74">&#34;topology.kubernetes.io/zone=us-central-1a&#34;</span>
+</code></pre></div><p>From a development standpoint, there is a lot of benefit to having this information surfaced.
+You can test the spread of stateful workloads, enforce communication between services and geographical boundaries.
 One thing it affords me is the ability to test and leverage <a href="https://imroc.io/posts/kubernetes/service-topology-en/">topology-aware service routing</a>.</p>
-
 <h2 id="leveraging-gitops">Leveraging GitOps</h2>
-
-<p>The last big change that I’ve made has been moving to a declarative deployment model for common elements.
+<p>The last big change that I&rsquo;ve made has been moving to a declarative deployment model for common elements.
 Instead of running my monitoring infrastructure outside of the cluster, I now run it inside of it.
 I do this through the use of a GitOps based deployment model.
 GitOps has become a popular way to perform declarative deployments using a Git repository as a source of truth.</p>
-
 <p>To get started, I configured a repository with some common infrastructural elements.
 This repository is then synchronized with the cluster using tools like <a href="https://github.com/fluxcd/flux">Flux</a>.
 To simplify the manifests deployed to the cluster, I leverage the <a href="https://github.com/fluxcd/helm-operator">helm-operator</a>.
 This allows me to easily deploy <a href="https://helm.sh/">Helm</a> charts into the cluster with the use of a single custom resource.</p>
-
-
-            </div>
-
-            <div class="text-center">
-    <br/>
-    <br/>
-    <p><i>Share this article on</i></p>
-
-    <div style="font-size: 36px;">
-        <a rel="nofollow" target="_blank" href="https://facebook.com/sharer.php?u=https://www.mjpitz.com/blog/2020/04/20/k3s-rpi-year1/">
-            <i class="fab fa-facebook" title="Facebook" data-toggle="tooltip" data-placement="bottom"></i></a>
-        &nbsp;
-        <a rel="nofollow" target="_blank" href="https://twitter.com/intent/tweet?text=Home Lab: 1 year later&url=https://www.mjpitz.com/blog/2020/04/20/k3s-rpi-year1/&via=&related=">
-            <i class="fab fa-twitter" title="Twitter" data-toggle="tooltip" data-placement="bottom"></i></a>
-        &nbsp;
-        <a rel="nofollow" target="_blank" href="http://www.linkedin.com/sharing/share-offsite/?url=https://www.mjpitz.com/blog/2020/04/20/k3s-rpi-year1/">
-            <i class="fab fa-linkedin" title="LinkedIn" data-toggle="tooltip" data-placement="bottom"></i></a>
     </div>
-</div>
-
-
-            <div class="post-footer row">
-                <div class="col-sm-6 text-left">
-                    
-                        <a class="btn btn-default" href="/blog/2020/01/27/returning-to-indeed/">&laquo; Previous Post</a>
-                    
-                </div>
-
-                <div class="col-sm-6 text-right">
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-        </div>
-        <div style="padding:25px 0; margin-top: 50px;">
-    <div>
+    <div class="post-footer">
+      <div class="info">
         
-<!-- Google Analytics (http://google.com/analytics) -->
-<script>
-    !function(j,e,k,y,l,L){j.GoogleAnalyticsObject=y,j[y]||(j[y]=function(){
-        (j[y].q=j[y].q||[]).push(arguments)}),j[y].l=+new Date,l=e.createElement(k),
-            L=e.getElementsByTagName(k)[0],l.src='//www.google-analytics.com/analytics.js',
-            L.parentNode.insertBefore(l,L)}(window,document,'script','ga');
-    ga('create', 'UA-39314903-5', 'auto');
-    ga('send', 'pageview');
-</script>
+        
+    <span class="separator"><a class="tag" href="/tags/iot/">iot</a><a class="tag" href="/tags/raspberrypi/">raspberrypi</a><a class="tag" href="/tags/kubernetes/">kubernetes</a><a class="tag" href="/tags/k3s/">k3s</a></span>
 
-
-
-        <script src="/statics/libs/jquery-2.1.4/jquery.min.js"></script>
-        <script src="/statics/libs/bootstrap-3.3.7/js/bootstrap.min.js"></script>
-        <script src="/statics/libs/mermaid-8.5.0/mermaid.min.js"></script>
-
-        <script>
-            mermaid.initialize({
-                startOnLoad:true,
-                flowchart: {
-                    useMaxWidth: true,
-                }
-            });
-
-            $(function () {
-                $('[data-toggle="tooltip"]').tooltip();
-                $('.collapse').collapse({ toggle: false });
-            });
-        </script>
+      </div>
     </div>
+
+    
 </div>
 
-    </body>
+
+                </div>
+            </div>
+        </div>
+</body>
+
+
+
+<script type="text/javascript" src="https://mjpitz.com/js/jquery.min.86b1e8f819ee2d9099a783e50b49dff24282545fc40773861f9126b921532e4c.js" integrity="sha256-hrHo&#43;BnuLZCZp4PlC0nf8kKCVF/EB3OGH5EmuSFTLkw=" crossorigin="anonymous"></script>
+
+
+
+
+<script type="text/javascript" src="https://mjpitz.com/js/bundle.min.0f9c74cb78f13d1f15f33daff4037c70354f98acfbb97a6f61708966675c3cae.js" integrity="sha256-D5x0y3jxPR8V8z2v9AN8cDVPmKz7uXpvYXCJZmdcPK4=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://mjpitz.com/js/medium-zoom.min.92f21c856129f84aeb719459b3e6ac621a3032fd7b180a18c04e1d12083f8aba.js" integrity="sha256-kvIchWEp&#43;ErrcZRZs&#43;asYhowMv17GAoYwE4dEgg/iro=" crossorigin="anonymous"></script>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-39314903-5', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</html></body>
+
 </html>

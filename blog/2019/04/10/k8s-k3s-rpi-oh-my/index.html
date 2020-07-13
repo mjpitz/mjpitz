@@ -1,231 +1,175 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link type="application/atom+xml" rel="alternate" href="https://www.mjpitz.com/feed.xml" title="Mya Pitzeruse" />
-        <meta name="author" content="Mya Pitzeruse">
+<html lang="en" data-theme="light"><head>
+    <title> Mya Pitzeruse | k3s on Raspberry Pi </title>
+    <meta charset="utf-8"><meta name="generator" content="Hugo 0.69.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="description" content="">
+    
+    <link rel="stylesheet" href="https://mjpitz.com/css/style.min.67cd718c0a3c8009c771494d381fb7128246a454bd0518fed97cb65d257db948.css" integrity="sha256-Z81xjAo8gAnHcUlNOB&#43;3EoJGpFS9BRj&#43;2Xy2XSV9uUg=" crossorigin="anonymous" type="text/css">
+    <link rel="stylesheet" href="https://mjpitz.com/statics/css/overrides.css" type="text/css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    
+    <link rel="shortcut icon" href="https://mjpitz.com/statics/img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://mjpitz.com/statics/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://mjpitz.com/statics/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://mjpitz.com/statics/img/favicon-16x16.png">
+    <link rel="canonical" href="https://mjpitz.com/blog/2019/04/10/k8s-k3s-rpi-oh-my/">
+    
+    
+    <script type="text/javascript" src="https://mjpitz.com/js/anatole-header.min.c275265a259296f3dd50e8236a77fcbcadb1dbb9597d3045c675dcc2c7c58a93.js" integrity="sha256-wnUmWiWSlvPdUOgjanf8vK2x27lZfTBFxnXcwsfFipM=" crossorigin="anonymous"></script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="k3s on Raspberry Pi"/>
+<meta name="twitter:description" content="Over the last few days, I&rsquo;ve been revisiting Kubernetes on my Raspberry Pi cluster.
+I hope to share what I learned in the process and some of the tooling that I discovered along the way."/>
 
-        <title>
-            
-                k3s on Raspberry Pi
-            
-        </title>
+</head><body><div class="sidebar animated fadeInDown">
+    <div class="logo-title">
+      <div class="title">
+        <img src="https://mjpitz.com/statics/img/mjpitz.jpeg" alt="profile picture">
+        <h3 title=""><a href="/">Mya Pitzeruse</a></h3>
+        <div class="description">
+          <p></p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
+        
+        <li>
+        <a href="https://github.com/mjpitz" rel="me" aria-label="GitHub">
+          <i class="fa fa-2x fa-github" aria-hidden="true"></i>
+        </a>          
+        </li>
 
         
+        <li>
+        <a href="https://twitter.com/_mjpitz_" rel="me" aria-label="Twitter">
+          <i class="fa fa-2x fa-twitter" aria-hidden="true"></i>
+        </a>          
+        </li>
 
-        <link rel="stylesheet" href="/statics/libs/bootstrap-3.3.7/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="/statics/libs/font-awesome-5.4.1/css/all.min.css">
-        <link rel="stylesheet" href="/statics/css/syntax-highlighting.css"/>
-        <link rel="stylesheet" href="/statics/css/app.css"/>
+        
+        <li>
+        <a href="https://www.linkedin.com/in/mjpitz/" rel="me" aria-label="LinkedIn">
+          <i class="fa fa-2x fa-linkedin" aria-hidden="true"></i>
+        </a>          
+        </li>
 
-        <link rel="apple-touch-icon" sizes="180x180" href="/statics/img/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/statics/img/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/statics/img/favicon-16x16.png">
-        <link rel="manifest" href="/statics/img/site.webmanifest">
-        <link rel="mask-icon" href="/statics/img/safari-pinned-tab.svg" color="#a28ad2">
-        <link rel="shortcut icon" href="/statics/img/favicon.ico">
-        <link rel="icon" href="/statics/img/favicon.ico" type="image/x-icon">
-        <meta name="msapplication-TileColor" content="#eeeeee">
-        <meta name="msapplication-config" content="/statics/img/browserconfig.xml">
-        <meta name="theme-color" content="#eeeeee">
-    </head>
-    <body>
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <div class="navbar-brand">@mjpitz</div>
-                </div>
+        
+        <li>
+        <a href="/index.xml" rel="me" aria-label="Feed">
+          <i class="fa fa-2x fa-rss" aria-hidden="true"></i>
+        </a>          
+        </li>
 
-                <div class="collapse navbar-collapse" id="menu">
-                    <ul class="nav navbar-nav mr-auto">
-                        <li>
-                            <a href="/">
-                                <i class="fas fa-home" title="Blog" data-toggle="tooltip" data-placement="bottom">
-                                    <span>Blog</span>
-                                </i>
-                                Blog
-                            </a>
-                        </li>
-                    </ul>
-                    
-                    <ul class="nav navbar-nav nav-social">
-                        <li>
-                            <a href="https://medium.com/@mjpitz">
-                                <i class="fab fa-medium" title="Medium" data-toggle="tooltip" data-placement="bottom">
-                                    <span>Medium</span>
-                                </i>
-                            </a>
-                        </li>
-                        
-                        <li>
-                            <a href="http://www.github.com/mjpitz">
-                                <i class="fab fa-github" title="GitHub" data-toggle="tooltip" data-placement="bottom">
-                                    <span>GitHub</span>
-                                </i>
-                            </a>
-                        </li>
+        
+    </ul>
+    <div class="footer">
+        <div class="by_farbox">&copy; Mya Pitzeruse 2020 </div>
+      </div>
+    </div>
+</div><div class="main">
+            <div class="page-top animated fadeInDown">
+    <ul class="nav">
+        
+        
+        
+        <li><a  href="/" title="">Home</a></li>
+        
+        
+        <li><a  href="/blog/" title="">Archive</a></li>
+        
+    </ul>
+    <div class="themeswitcher">
+        <a class="theme-switch" title="Switch Theme">
+            <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+        </a>
+    </div>
+</div>
 
-                        <li>
-                            <a href="https://hub.docker.com/u/mjpitz">
-                                <i class="fab fa-docker" title="Docker" data-toggle="tooltip" data-placement="bottom">
-                                    <span>Docker</span>
-                                </i>
-                            </a>
-                        </li>
-                        
-                        <li>
-                            <a href="http://www.twitter.com/_mjpitz_">
-                                <i class="fab fa-twitter" title="Twitter" data-toggle="tooltip" data-placement="bottom">
-                                    <span>Twitter</span>
-                                </i>
-                            </a>
-                        </li>
+            <div class="autopagerize_page_element">
+                <div class="content">
+<div class="post animated fadeInDown">
+    <div class="post-content">
 
-                        <li>
-                            <a href="http://www.linkedin.com/in/mjpitz">
-                                <i class="fab fa-linkedin" title="LinkedIn" data-toggle="tooltip" data-placement="bottom">
-                                    <span>LinkedIn</span>
-                                </i>
-                            </a>
-                        </li>
+      <div class="post-title">
+        <h3>k3s on Raspberry Pi
+        </h3>
+        
+        </div>
 
-                        <li>
-                            <a href="/feed.xml">
-                                <i class="fas fa-rss" title="Feed" data-toggle="tooltip" data-placement="bottom">
-                                    <span>Feed</span>
-                                </i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <div class="container mjpitz-content" style="margin-top:82px">
-            <div class="panel panel-default">
-    <div class="panel-body">
-        <div class="post">
-            <h1 class="post-title">k3s on Raspberry Pi</h1>
-            <p class="post-date">Posted on April 10, 2019</p>
-
-            <div class="post-content">
-                <p>Over the last few days, I’ve been revisiting <a href="https://kubernetes.io">Kubernetes</a> on my Raspberry Pi cluster.
+    <p>Over the last few days, I&rsquo;ve been revisiting <a href="https://kubernetes.io">Kubernetes</a> on my Raspberry Pi cluster.
 I hope to share what I learned in the process and some of the tooling that I discovered along the way.</p>
-
-<!--more-->
-
 <p>I first sat down to experiment with Kubernetes back when I first built my cluster.
-I don’t recall what guide I was following, so it’s hard to say where things went wrong.
+I don&rsquo;t recall what guide I was following, so it&rsquo;s hard to say where things went wrong.
 All I can remember was spending several hours working on it, only to end up with a partially functional cluster.
 As a result, I threw everything out and switched to running <a href="https://www.nomadproject.io">Nomad</a>.
 Running both <a href="https://www.consul.io/">Consul</a> and Nomad wound up taking a fraction of the time.
 They required more provisioning compared to Docker Swarm, but it was easy to automate.</p>
-
-<div class="row text-center">
-  <div class="col-xs-12 col-sm-1"></div>
-  <div class="col-xs-6 col-sm-5">
-    <img title="Consul" alt="Consul" src="/statics/img/consul.png" />
-  </div>
-  <div class="col-xs-6 col-sm-5">
-    <img title="Nomad" alt="Nomad" src="/statics/img/nomad.png" />
-  </div>
-  <div class="col-xs-12 col-sm-1"></div>
-</div>
-<p></p>
-
+<!-- raw HTML omitted -->
 <p>After working with Swarm and Nomad for a few months, I took a look to see what was new for k8s.
-First, I came across <a href="https://github.com/rancher/rke">Rancher’s RKE</a> command line tool.
+First, I came across <a href="https://github.com/rancher/rke">Rancher&rsquo;s RKE</a> command line tool.
 It makes provisioning production-ready Kubernetes clusters quick and painless.
 Since it was configuration driven, I decided to give it a try and see how it ran on the Raspberry Pis.
 I was impressed with how easy it was to get everything up and running.
 I was able to connect to and interact wtih the cluster without an issue.
 One downside was the overhead of some of the integrations.
 Many of my nodes were already consuming half their memory, and I needed dedicated etcd and control plane nodes.</p>
-
-<div class="text-center">
-  <img title="rancher" alt="Rancher" src="/statics/img/rancher.png" />
-</div>
-<p></p>
-
+<!-- raw HTML omitted -->
 <p>I also came across <a href="https://k3s.io/">k3s</a>.
 k3s is a lightweight distribution of kubernetes that targets IOT devices.
 This was appealing because it is intended to be deployed similar to k8s.
 <a href="https://microk8s.io">MicroK8s</a> presented another alternative, but it was intended to run as a single node.
 A pocket kubernetes cluster if you will.
 Given I was looking for something closer to native k8s, I decided to give k3s a spin.</p>
-
 <h3 id="starting-the-control-plane">Starting the control plane</h3>
-
 <p>After seeing how RKE deployed k8s to the cluster, I decided to try running k3s out of docker.
 Typically, I run these processes in systemd but I wanted to consider other alternatives.</p>
-
 <p>k3s control plane requires a docker volume to store the server data.
 Once the volume is created, we can run the k3s server process.
 Note that in the run command below, I explicitly disable the agent.
-The agent requires the <code class="highlighter-rouge">--priviledged</code> flag in order to run processes on the host.
-The control plane doesn’t require this permission.
+The agent requires the <code>--priviledged</code> flag in order to run processes on the host.
+The control plane doesn&rsquo;t require this permission.
 As a result, I decided to run them as separate processes.</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ docker volume create k3s-control
+<pre><code>$ docker volume create k3s-control
 
 $ docker run -d \
-    --name "k3s-control" \
-    --network "host" \
-    --restart "always" \
-    -e "K3S_CLUSTER_SECRET=&lt;YOUR_SECRET_HERE&gt;" \
-    -v "k3s-control:/var/lib/rancher/k3s" \
-    -p "6443:6443" \
+    --name &quot;k3s-control&quot; \
+    --network &quot;host&quot; \
+    --restart &quot;always&quot; \
+    -e &quot;K3S_CLUSTER_SECRET=&lt;YOUR_SECRET_HERE&gt;&quot; \
+    -v &quot;k3s-control:/var/lib/rancher/k3s&quot; \
+    -p &quot;6443:6443&quot; \
     rancher/k3s:v0.3.0-arm64 \
     server --disable-agent
-</code></pre></div></div>
-<p></p>
-
+</code></pre><!-- raw HTML omitted -->
 <p>After about 30 seconds, the control plane should be running.
-As a part of it’s setup, it writes the kubeconfg out to <code class="highlighter-rouge">/etc/rancher/k3s/k3s.yaml</code>.
-Using the following <code class="highlighter-rouge">docker cp</code> command, you can copy the file from the container and into your local <code class="highlighter-rouge">.kube</code> directory.
-Once copied, you’ll want to export it so that <code class="highlighter-rouge">kubectl</code> can easily interact with the remote control plane.</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ docker cp k3s-control:/etc/rancher/k3s/k3s.yaml ~/.kube/k3s
+As a part of it&rsquo;s setup, it writes the kubeconfg out to <code>/etc/rancher/k3s/k3s.yaml</code>.
+Using the following <code>docker cp</code> command, you can copy the file from the container and into your local <code>.kube</code> directory.
+Once copied, you&rsquo;ll want to export it so that <code>kubectl</code> can easily interact with the remote control plane.</p>
+<pre><code>$ docker cp k3s-control:/etc/rancher/k3s/k3s.yaml ~/.kube/k3s
 $ export KUBECONFIG=~/.kube/k3s
-</code></pre></div></div>
-<p></p>
-
-<p><em>NOTE: you will need to modify the extracted kubeconfig file and change “https://localhost:6443” to point to the proper host.</em>
-<em>In my case, this was “https://192.168.1.100:6443”.</em>
+</code></pre><!-- raw HTML omitted -->
+<p><em>NOTE: you will need to modify the extracted kubeconfig file and change &ldquo;https://localhost:6443&rdquo; to point to the proper host.</em>
+<em>In my case, this was &ldquo;https://192.168.1.100:6443&rdquo;.</em>
 <em>If you do not change this, kubectl cannot communicate with the api-server.</em></p>
-
 <h3 id="starting-the-agents">Starting the agents</h3>
-
 <p>Once the control plane is up and running, we need to add the agents.
 Agents are the component of the stack that are responsible for managing the processes running on the host.
 As a result, they need to be privileged to spin up containers where needed.</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ docker run -d \
-    --name "k3s-exec" \
-    --network "host" \
-    --restart "always" \
-    -e "K3S_CLUSTER_SECRET=&lt;YOUR_SECRET_HERE&gt;" \
-    -e "K3S_URL=https://&lt;CONTROL_IP&gt;:6443" \
+<pre><code>$ docker run -d \
+    --name &quot;k3s-exec&quot; \
+    --network &quot;host&quot; \
+    --restart &quot;always&quot; \
+    -e &quot;K3S_CLUSTER_SECRET=&lt;YOUR_SECRET_HERE&gt;&quot; \
+    -e &quot;K3S_URL=https://&lt;CONTROL_IP&gt;:6443&quot; \
     --privileged \
     --tmpfs /run \
     --tmpfs /var/run \
     rancher/k3s:v0.3.0-arm64
-</code></pre></div></div>
-<p></p>
-
+</code></pre><!-- raw HTML omitted -->
 <p>The agents should start up quicker compared to the control plane.
 You can verify that they connected successfully using kubectl.
-Remember, you’ll need to have the <code class="highlighter-rouge">KUBECONFIG</code> environment variable exported.</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ kubectl get node
+Remember, you&rsquo;ll need to have the <code>KUBECONFIG</code> environment variable exported.</p>
+<pre><code>$ kubectl get node
 NAME        STATUS    ROLES     AGE       VERSION
 myriad-1    Ready     &lt;none&gt;    1d        v1.13.5-k3s.1
 myriad-10   Ready     &lt;none&gt;    1d        v1.13.5-k3s.1
@@ -237,109 +181,65 @@ myriad-6    Ready     &lt;none&gt;    1d        v1.13.5-k3s.1
 myriad-7    Ready     &lt;none&gt;    1d        v1.13.5-k3s.1
 myriad-8    Ready     &lt;none&gt;    1d        v1.13.5-k3s.1
 myriad-9    Ready     &lt;none&gt;    1d        v1.13.5-k3s.1
-</code></pre></div></div>
-<p></p>
-
+</code></pre><!-- raw HTML omitted -->
 <h3 id="setup-details">Setup Details</h3>
-
 <p>There are a few key details about this setup that are worth noting.</p>
-
-<p><code class="highlighter-rouge">--network "host"</code></p>
-
+<p><code>--network &quot;host&quot;</code></p>
 <p>This flag tells the docker container to leverage the hosts network instead of the bridge provided by docker.
 (<a href="https://docs.docker.com/engine/reference/run/#network-settings">Documentation</a>)</p>
-
-<p><code class="highlighter-rouge">--restart "always"</code></p>
-
-<p>This flag tells the docker daemon to restart the process regardless of it’s exit status.
-For this kind of process, I’d use either <code class="highlighter-rouge">always</code> or <code class="highlighter-rouge">unless-stopped</code>.
-In practice, the container is either present and running or removed so I tend to lean towards <code class="highlighter-rouge">always</code>.
+<p><code>--restart &quot;always&quot;</code></p>
+<p>This flag tells the docker daemon to restart the process regardless of it&rsquo;s exit status.
+For this kind of process, I&rsquo;d use either <code>always</code> or <code>unless-stopped</code>.
+In practice, the container is either present and running or removed so I tend to lean towards <code>always</code>.
 (<a href="https://docs.docker.com/engine/reference/run/#restart-policies---restart">Documentation</a>)</p>
-
-<p><code class="highlighter-rouge">-e "K3S_CLUSTER_SECRET=&lt;YOUR_SECRET_HERE&gt;"</code></p>
-
+<p><code>-e &quot;K3S_CLUSTER_SECRET=&lt;YOUR_SECRET_HERE&gt;&quot;</code></p>
 <p>This is the shared secret that is used to bootstrap the cluster.
-Alternatively, you can set the <code class="highlighter-rouge">K3S_TOKEN</code> which is generated by the control plane.
+Alternatively, you can set the <code>K3S_TOKEN</code> which is generated by the control plane.
 For a quick start, I suggest the cluster secret.
-If you’re looking to be able to dynamically add nodes to the cluster, the token is a bit better.</p>
-
+If you&rsquo;re looking to be able to dynamically add nodes to the cluster, the token is a bit better.</p>
 <h2 id="resources">Resources</h2>
 <p>In <a href="/blog/2019/03/17/64bit-raspberry-pi/">Easy Steps to a 64bit Raspberry Pi 3 B/B+</a>, I talk about how easy it is to get a 64bit Raspberry Pi up and running.</p>
-
-<p>Since starting my cluster, I’ve been committing the scripts I used to manage it to a <a href="https://github.com/mjpitz/terraform-rpi">repository</a>.
+<p>Since starting my cluster, I&rsquo;ve been committing the scripts I used to manage it to a <a href="https://github.com/mjpitz/terraform-rpi">repository</a>.
 This repository has taken on a few different shapes, but it can be a good reference point for how all of this gets stood up.</p>
-
-            </div>
-
-            <div class="text-center">
-    <br/>
-    <br/>
-    <p><i>Share this article on</i></p>
-
-    <div style="font-size: 36px;">
-        <a rel="nofollow" target="_blank" href="https://facebook.com/sharer.php?u=https://www.mjpitz.com/blog/2019/04/10/k8s-k3s-rpi-oh-my/">
-            <i class="fab fa-facebook" title="Facebook" data-toggle="tooltip" data-placement="bottom"></i></a>
-        &nbsp;
-        <a rel="nofollow" target="_blank" href="https://twitter.com/intent/tweet?text=k3s on Raspberry Pi&url=https://www.mjpitz.com/blog/2019/04/10/k8s-k3s-rpi-oh-my/&via=&related=">
-            <i class="fab fa-twitter" title="Twitter" data-toggle="tooltip" data-placement="bottom"></i></a>
-        &nbsp;
-        <a rel="nofollow" target="_blank" href="http://www.linkedin.com/sharing/share-offsite/?url=https://www.mjpitz.com/blog/2019/04/10/k8s-k3s-rpi-oh-my/">
-            <i class="fab fa-linkedin" title="LinkedIn" data-toggle="tooltip" data-placement="bottom"></i></a>
     </div>
-</div>
-
-
-            <div class="post-footer row">
-                <div class="col-sm-6 text-left">
-                    
-                        <a class="btn btn-default" href="/blog/2019/03/17/64bit-raspberry-pi/">&laquo; Previous Post</a>
-                    
-                </div>
-
-                <div class="col-sm-6 text-right">
-                    
-                    <a class="btn btn-default" href="/blog/2019/04/12/rpi-cluster-setup/">Next Post &raquo;</a>
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-        </div>
-        <div style="padding:25px 0; margin-top: 50px;">
-    <div>
+    <div class="post-footer">
+      <div class="info">
         
-<!-- Google Analytics (http://google.com/analytics) -->
-<script>
-    !function(j,e,k,y,l,L){j.GoogleAnalyticsObject=y,j[y]||(j[y]=function(){
-        (j[y].q=j[y].q||[]).push(arguments)}),j[y].l=+new Date,l=e.createElement(k),
-            L=e.getElementsByTagName(k)[0],l.src='//www.google-analytics.com/analytics.js',
-            L.parentNode.insertBefore(l,L)}(window,document,'script','ga');
-    ga('create', 'UA-39314903-5', 'auto');
-    ga('send', 'pageview');
-</script>
+        
+    <span class="separator"><a class="tag" href="/tags/iot/">iot</a><a class="tag" href="/tags/raspberrypi/">raspberrypi</a><a class="tag" href="/tags/kubernetes/">kubernetes</a><a class="tag" href="/tags/k3s/">k3s</a></span>
 
-
-
-        <script src="/statics/libs/jquery-2.1.4/jquery.min.js"></script>
-        <script src="/statics/libs/bootstrap-3.3.7/js/bootstrap.min.js"></script>
-        <script src="/statics/libs/mermaid-8.5.0/mermaid.min.js"></script>
-
-        <script>
-            mermaid.initialize({
-                startOnLoad:true,
-                flowchart: {
-                    useMaxWidth: true,
-                }
-            });
-
-            $(function () {
-                $('[data-toggle="tooltip"]').tooltip();
-                $('.collapse').collapse({ toggle: false });
-            });
-        </script>
+      </div>
     </div>
+
+    
 </div>
 
-    </body>
+
+                </div>
+            </div>
+        </div>
+</body>
+
+
+
+<script type="text/javascript" src="https://mjpitz.com/js/jquery.min.86b1e8f819ee2d9099a783e50b49dff24282545fc40773861f9126b921532e4c.js" integrity="sha256-hrHo&#43;BnuLZCZp4PlC0nf8kKCVF/EB3OGH5EmuSFTLkw=" crossorigin="anonymous"></script>
+
+
+
+
+<script type="text/javascript" src="https://mjpitz.com/js/bundle.min.0f9c74cb78f13d1f15f33daff4037c70354f98acfbb97a6f61708966675c3cae.js" integrity="sha256-D5x0y3jxPR8V8z2v9AN8cDVPmKz7uXpvYXCJZmdcPK4=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://mjpitz.com/js/medium-zoom.min.92f21c856129f84aeb719459b3e6ac621a3032fd7b180a18c04e1d12083f8aba.js" integrity="sha256-kvIchWEp&#43;ErrcZRZs&#43;asYhowMv17GAoYwE4dEgg/iro=" crossorigin="anonymous"></script>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-39314903-5', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</html></body>
+
 </html>

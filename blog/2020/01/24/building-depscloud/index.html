@@ -1,267 +1,197 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link type="application/atom+xml" rel="alternate" href="https://www.mjpitz.com/feed.xml" title="Mya Pitzeruse" />
-        <meta name="author" content="Mya Pitzeruse">
+<html lang="en" data-theme="light"><head>
+    <title> Mya Pitzeruse | Building deps.cloud </title>
+    <meta charset="utf-8"><meta name="generator" content="Hugo 0.69.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="description" content="">
+    
+    <link rel="stylesheet" href="https://mjpitz.com/css/style.min.67cd718c0a3c8009c771494d381fb7128246a454bd0518fed97cb65d257db948.css" integrity="sha256-Z81xjAo8gAnHcUlNOB&#43;3EoJGpFS9BRj&#43;2Xy2XSV9uUg=" crossorigin="anonymous" type="text/css">
+    <link rel="stylesheet" href="https://mjpitz.com/statics/css/overrides.css" type="text/css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    
+    <link rel="shortcut icon" href="https://mjpitz.com/statics/img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://mjpitz.com/statics/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://mjpitz.com/statics/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://mjpitz.com/statics/img/favicon-16x16.png">
+    <link rel="canonical" href="https://mjpitz.com/blog/2020/01/24/building-depscloud/">
+    
+    
+    <script type="text/javascript" src="https://mjpitz.com/js/anatole-header.min.c275265a259296f3dd50e8236a77fcbcadb1dbb9597d3045c675dcc2c7c58a93.js" integrity="sha256-wnUmWiWSlvPdUOgjanf8vK2x27lZfTBFxnXcwsfFipM=" crossorigin="anonymous"></script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Building deps.cloud"/>
+<meta name="twitter:description" content="Over the last year, I&rsquo;ve been heavily working on deps.cloud.
+deps.cloud draws it&rsquo;s inspiration from a project that I worked on at Indeed.com.
+Since it&rsquo;s original inception, there had been a heavy push to move it into the open source space.
+In this post, I&rsquo;ll discuss the process and rationale I applied as I rewrote this project in the open."/>
 
-        <title>
-            
-                Building deps.cloud
-            
-        </title>
+</head><body><div class="sidebar animated fadeInDown">
+    <div class="logo-title">
+      <div class="title">
+        <img src="https://mjpitz.com/statics/img/mjpitz.jpeg" alt="profile picture">
+        <h3 title=""><a href="/">Mya Pitzeruse</a></h3>
+        <div class="description">
+          <p></p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
+        
+        <li>
+        <a href="https://github.com/mjpitz" rel="me" aria-label="GitHub">
+          <i class="fa fa-2x fa-github" aria-hidden="true"></i>
+        </a>          
+        </li>
 
         
+        <li>
+        <a href="https://twitter.com/_mjpitz_" rel="me" aria-label="Twitter">
+          <i class="fa fa-2x fa-twitter" aria-hidden="true"></i>
+        </a>          
+        </li>
 
-        <link rel="stylesheet" href="/statics/libs/bootstrap-3.3.7/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="/statics/libs/font-awesome-5.4.1/css/all.min.css">
-        <link rel="stylesheet" href="/statics/css/syntax-highlighting.css"/>
-        <link rel="stylesheet" href="/statics/css/app.css"/>
+        
+        <li>
+        <a href="https://www.linkedin.com/in/mjpitz/" rel="me" aria-label="LinkedIn">
+          <i class="fa fa-2x fa-linkedin" aria-hidden="true"></i>
+        </a>          
+        </li>
 
-        <link rel="apple-touch-icon" sizes="180x180" href="/statics/img/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/statics/img/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/statics/img/favicon-16x16.png">
-        <link rel="manifest" href="/statics/img/site.webmanifest">
-        <link rel="mask-icon" href="/statics/img/safari-pinned-tab.svg" color="#a28ad2">
-        <link rel="shortcut icon" href="/statics/img/favicon.ico">
-        <link rel="icon" href="/statics/img/favicon.ico" type="image/x-icon">
-        <meta name="msapplication-TileColor" content="#eeeeee">
-        <meta name="msapplication-config" content="/statics/img/browserconfig.xml">
-        <meta name="theme-color" content="#eeeeee">
-    </head>
-    <body>
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <div class="navbar-brand">@mjpitz</div>
-                </div>
+        
+        <li>
+        <a href="/index.xml" rel="me" aria-label="Feed">
+          <i class="fa fa-2x fa-rss" aria-hidden="true"></i>
+        </a>          
+        </li>
 
-                <div class="collapse navbar-collapse" id="menu">
-                    <ul class="nav navbar-nav mr-auto">
-                        <li>
-                            <a href="/">
-                                <i class="fas fa-home" title="Blog" data-toggle="tooltip" data-placement="bottom">
-                                    <span>Blog</span>
-                                </i>
-                                Blog
-                            </a>
-                        </li>
-                    </ul>
-                    
-                    <ul class="nav navbar-nav nav-social">
-                        <li>
-                            <a href="https://medium.com/@mjpitz">
-                                <i class="fab fa-medium" title="Medium" data-toggle="tooltip" data-placement="bottom">
-                                    <span>Medium</span>
-                                </i>
-                            </a>
-                        </li>
-                        
-                        <li>
-                            <a href="http://www.github.com/mjpitz">
-                                <i class="fab fa-github" title="GitHub" data-toggle="tooltip" data-placement="bottom">
-                                    <span>GitHub</span>
-                                </i>
-                            </a>
-                        </li>
+        
+    </ul>
+    <div class="footer">
+        <div class="by_farbox">&copy; Mya Pitzeruse 2020 </div>
+      </div>
+    </div>
+</div><div class="main">
+            <div class="page-top animated fadeInDown">
+    <ul class="nav">
+        
+        
+        
+        <li><a  href="/" title="">Home</a></li>
+        
+        
+        <li><a  href="/blog/" title="">Archive</a></li>
+        
+    </ul>
+    <div class="themeswitcher">
+        <a class="theme-switch" title="Switch Theme">
+            <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+        </a>
+    </div>
+</div>
 
-                        <li>
-                            <a href="https://hub.docker.com/u/mjpitz">
-                                <i class="fab fa-docker" title="Docker" data-toggle="tooltip" data-placement="bottom">
-                                    <span>Docker</span>
-                                </i>
-                            </a>
-                        </li>
-                        
-                        <li>
-                            <a href="http://www.twitter.com/_mjpitz_">
-                                <i class="fab fa-twitter" title="Twitter" data-toggle="tooltip" data-placement="bottom">
-                                    <span>Twitter</span>
-                                </i>
-                            </a>
-                        </li>
+            <div class="autopagerize_page_element">
+                <div class="content">
+<div class="post animated fadeInDown">
+    <div class="post-content">
 
-                        <li>
-                            <a href="http://www.linkedin.com/in/mjpitz">
-                                <i class="fab fa-linkedin" title="LinkedIn" data-toggle="tooltip" data-placement="bottom">
-                                    <span>LinkedIn</span>
-                                </i>
-                            </a>
-                        </li>
+      <div class="post-title">
+        <h3>Building deps.cloud
+        </h3>
+        
+        </div>
 
-                        <li>
-                            <a href="/feed.xml">
-                                <i class="fas fa-rss" title="Feed" data-toggle="tooltip" data-placement="bottom">
-                                    <span>Feed</span>
-                                </i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <div class="container mjpitz-content" style="margin-top:82px">
-            <div class="panel panel-default">
-    <div class="panel-body">
-        <div class="post">
-            <h1 class="post-title">Building deps.cloud</h1>
-            <p class="post-date">Posted on January 24, 2020</p>
-
-            <div class="post-content">
-                <p>Over the last year, I’ve been heavily working on <a href="https://deps.cloud">deps.cloud</a>.
-deps.cloud draws it’s inspiration from a project that I worked on at <a href="https://indeed.com">Indeed.com</a>.
-Since it’s original inception, there had been a heavy push to move it into the open source space.
-In this post, I’ll discuss the process and rationale I applied as I rewrote this project in the open.</p>
-
-<!--more-->
-
+    <p>Over the last year, I&rsquo;ve been heavily working on <a href="https://deps.cloud">deps.cloud</a>.
+deps.cloud draws it&rsquo;s inspiration from a project that I worked on at <a href="https://indeed.com">Indeed.com</a>.
+Since it&rsquo;s original inception, there had been a heavy push to move it into the open source space.
+In this post, I&rsquo;ll discuss the process and rationale I applied as I rewrote this project in the open.</p>
 <h2 id="v1---origin">V1 - Origin</h2>
-
-<p>At Indeed, I had built and prototyped the process internally known as Darwin (not to be confused with <a href="https://en.wikipedia.org/wiki/Darwin_(operating_system)">Apple’s Darwin</a>).
-I named it this way as it was intended to help evolve Indeed’s projects and libraries.
+<p>At Indeed, I had built and prototyped the process internally known as Darwin (not to be confused with <a href="https://en.wikipedia.org/wiki/Darwin_(operating_system)">Apple&rsquo;s Darwin</a>).
+I named it this way as it was intended to help evolve Indeed&rsquo;s projects and libraries.
 It facilitated many operations that could be automated across our ecosystem.
 Such operations included (but were not limited to):</p>
-
 <ul>
-  <li>Evaluating risk of library upgrades across our infrastructure</li>
-  <li>Perform on the fly API compatibility checks</li>
-  <li>Apply patches and open pull requests to affected repositories</li>
+<li>Evaluating risk of library upgrades across our infrastructure</li>
+<li>Perform on the fly API compatibility checks</li>
+<li>Apply patches and open pull requests to affected repositories</li>
 </ul>
-
 <p>There were many downsides with the way that this system was originally written.</p>
-
 <ul>
-  <li>Only supported <a href="https://ant.apache.org/ivy/">Apache Ivy</a></li>
-  <li>Long start up time with no backing store (kept all information in memory)</li>
-  <li>Inability to expand support to other languages</li>
+<li>Only supported <a href="https://ant.apache.org/ivy/">Apache Ivy</a></li>
+<li>Long start up time with no backing store (kept all information in memory)</li>
+<li>Inability to expand support to other languages</li>
 </ul>
-
 <p>Even over time, I needed to expand this system to be able to start up faster and reduce load on our version control system.
 This inevitably created a tight coupling with our <a href="https://www.youtube.com/watch?v=lDXdf5q8Yw8">Resilient Artifact Distribution</a>.
 As time went on, this system became increasingly more difficult to open source.</p>
-
 <h2 id="v2---private-gitlab">V2 - Private GitLab</h2>
-
 <p>During my hiatus from Indeed in 2018, I decided to try and rewrite the system.
 I found myself really wanting the set of tooling I built and all the automation that came with it.
 Given I worked at a small start up at the time, I decided to keep the code closed source.
 To do so, I started a single monorepo in GitLab.</p>
-
 <p>As I began the first rewrite, I wanted to work with a more flexible language.
 The original system was written in Java which made interacting with arbitrary structures rather difficult.
 To reduce the cognitive load, I decided to work with <a href="https://www.typescriptlang.org/">TypeScript</a>.
 It had given me the best of both worlds: being able to have static and duck types when needed.</p>
-
 <p>After having this iteration done, I started to run several tests.
 What I found was that the TypeScript solution worked well for a subset of operations, but did not scale for others.
 After learning this, I went back to the drawing board.</p>
-
 <h2 id="v3---public-github">V3 - Public GitHub</h2>
-
 <p>In late 2018, I returned to Indeed to work on our Kubernetes related efforts.
 Around the same time, I had started to port some of the code from closed to open source.
 It all started out under my user, just hacking on few different ideas.
 Having recently been thrown into the <a href="https://golang.org/">Golang</a> ecosystem, I decided to give it a try.
 I quickly found Golang provided much more efficient solution over the previous TypeScript solution.
 But like Java, it lacked the flexibility I needed in some places.</p>
-
 <p>One thing I was able to adapt from the closed source model was the <a href="https://grpc.io/">gRPC</a> interfaces.
-gRPC does a really good job of enabling multi-language systems by providing a standard RPC mechanism. 
+gRPC does a really good job of enabling multi-language systems by providing a standard RPC mechanism.
 Having put some good service interfaces in place, I was able to leverage part of the V2 solution.
 In the end, I wound up with a good chunk of the services being written in Golang and a single service written in TypeScript.</p>
-
 <h2 id="get-started">Get Started</h2>
-
 <p>Once the open sourced code base was in a stable position, I wanted to focus on making the system easy to run.
 I had seen many similar solutions starting to arise in open source.
 Many of them, like <a href="https://tidelift.com/">Tidelift</a> and <a href="https://snyk.io/">Snyk</a>, require you to leverage their cloud hosted solution which comes at a cost.
 I wanted to meet companies where they were, no matter their size.
 This inspired me to focus on <a href="https://www.docker.com/">Docker</a> support first and foremost.
 Then, I was able to quickly follow that with <a href="http://kubernetes.io/">Kubernetes</a> and <a href="https://helm.sh/">Helm</a> support.</p>
-
 <p>For more information on how to get started, see our <a href="https://deps.cloud/docs/">documentation</a>.
 Cheers!</p>
-
-            </div>
-
-            <div class="text-center">
-    <br/>
-    <br/>
-    <p><i>Share this article on</i></p>
-
-    <div style="font-size: 36px;">
-        <a rel="nofollow" target="_blank" href="https://facebook.com/sharer.php?u=https://www.mjpitz.com/blog/2020/01/24/building-depscloud/">
-            <i class="fab fa-facebook" title="Facebook" data-toggle="tooltip" data-placement="bottom"></i></a>
-        &nbsp;
-        <a rel="nofollow" target="_blank" href="https://twitter.com/intent/tweet?text=Building deps.cloud&url=https://www.mjpitz.com/blog/2020/01/24/building-depscloud/&via=&related=">
-            <i class="fab fa-twitter" title="Twitter" data-toggle="tooltip" data-placement="bottom"></i></a>
-        &nbsp;
-        <a rel="nofollow" target="_blank" href="http://www.linkedin.com/sharing/share-offsite/?url=https://www.mjpitz.com/blog/2020/01/24/building-depscloud/">
-            <i class="fab fa-linkedin" title="LinkedIn" data-toggle="tooltip" data-placement="bottom"></i></a>
     </div>
-</div>
-
-
-            <div class="post-footer row">
-                <div class="col-sm-6 text-left">
-                    
-                        <a class="btn btn-default" href="/blog/2019/10/17/kubernetes-service-precheck/">&laquo; Previous Post</a>
-                    
-                </div>
-
-                <div class="col-sm-6 text-right">
-                    
-                    <a class="btn btn-default" href="/blog/2020/01/27/returning-to-indeed/">Next Post &raquo;</a>
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-        </div>
-        <div style="padding:25px 0; margin-top: 50px;">
-    <div>
+    <div class="post-footer">
+      <div class="info">
         
-<!-- Google Analytics (http://google.com/analytics) -->
-<script>
-    !function(j,e,k,y,l,L){j.GoogleAnalyticsObject=y,j[y]||(j[y]=function(){
-        (j[y].q=j[y].q||[]).push(arguments)}),j[y].l=+new Date,l=e.createElement(k),
-            L=e.getElementsByTagName(k)[0],l.src='//www.google-analytics.com/analytics.js',
-            L.parentNode.insertBefore(l,L)}(window,document,'script','ga');
-    ga('create', 'UA-39314903-5', 'auto');
-    ga('send', 'pageview');
-</script>
+        
+    <span class="separator"><a class="tag" href="/tags/docker/">docker</a><a class="tag" href="/tags/kubernetes/">kubernetes</a><a class="tag" href="/tags/microservices/">microservices</a><a class="tag" href="/tags/dependencies/">dependencies</a></span>
 
-
-
-        <script src="/statics/libs/jquery-2.1.4/jquery.min.js"></script>
-        <script src="/statics/libs/bootstrap-3.3.7/js/bootstrap.min.js"></script>
-        <script src="/statics/libs/mermaid-8.5.0/mermaid.min.js"></script>
-
-        <script>
-            mermaid.initialize({
-                startOnLoad:true,
-                flowchart: {
-                    useMaxWidth: true,
-                }
-            });
-
-            $(function () {
-                $('[data-toggle="tooltip"]').tooltip();
-                $('.collapse').collapse({ toggle: false });
-            });
-        </script>
+      </div>
     </div>
+
+    
 </div>
 
-    </body>
+
+                </div>
+            </div>
+        </div>
+</body>
+
+
+
+<script type="text/javascript" src="https://mjpitz.com/js/jquery.min.86b1e8f819ee2d9099a783e50b49dff24282545fc40773861f9126b921532e4c.js" integrity="sha256-hrHo&#43;BnuLZCZp4PlC0nf8kKCVF/EB3OGH5EmuSFTLkw=" crossorigin="anonymous"></script>
+
+
+
+
+<script type="text/javascript" src="https://mjpitz.com/js/bundle.min.0f9c74cb78f13d1f15f33daff4037c70354f98acfbb97a6f61708966675c3cae.js" integrity="sha256-D5x0y3jxPR8V8z2v9AN8cDVPmKz7uXpvYXCJZmdcPK4=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://mjpitz.com/js/medium-zoom.min.92f21c856129f84aeb719459b3e6ac621a3032fd7b180a18c04e1d12083f8aba.js" integrity="sha256-kvIchWEp&#43;ErrcZRZs&#43;asYhowMv17GAoYwE4dEgg/iro=" crossorigin="anonymous"></script>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-39314903-5', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</html></body>
+
 </html>

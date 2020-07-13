@@ -1,20 +1,272 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link type="application/atom+xml" rel="alternate" href="https://www.mjpitz.com/feed.xml" title="Mya Pitzeruse" />
-    <meta name="author" content="Mya Pitzeruse">
+<html lang="en" data-theme="light"><head>
+    <title> Mya Pitzeruse | Status: A Java Library For Robust System Status Health Checks </title>
+    <meta charset="utf-8"><meta name="generator" content="Hugo 0.69.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="description" content="">
+    
+    <link rel="stylesheet" href="https://mjpitz.com/css/style.min.67cd718c0a3c8009c771494d381fb7128246a454bd0518fed97cb65d257db948.css" integrity="sha256-Z81xjAo8gAnHcUlNOB&#43;3EoJGpFS9BRj&#43;2Xy2XSV9uUg=" crossorigin="anonymous" type="text/css">
+    <link rel="stylesheet" href="https://mjpitz.com/statics/css/overrides.css" type="text/css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    
+    <link rel="shortcut icon" href="https://mjpitz.com/statics/img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://mjpitz.com/statics/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://mjpitz.com/statics/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://mjpitz.com/statics/img/favicon-16x16.png">
+    <link rel="canonical" href="http://engineering.indeedblog.com/blog/2015/07/status-java-library-for-system-status-health-checks/">
+    
+    
+    <script type="text/javascript" src="https://mjpitz.com/js/anatole-header.min.c275265a259296f3dd50e8236a77fcbcadb1dbb9597d3045c675dcc2c7c58a93.js" integrity="sha256-wnUmWiWSlvPdUOgjanf8vK2x27lZfTBFxnXcwsfFipM=" crossorigin="anonymous"></script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Status: A Java Library For Robust System Status Health Checks"/>
+<meta name="twitter:description" content="We are excited to highlight the open source availability of Status, a Java library that can report a system’s status in a readable format.
+The Status library enables dynamic health checks and monitoring of system dependencies.
+In this post, we will show how to add health checks to your applications."/>
 
-    <title>
+</head><body><div class="sidebar animated fadeInDown">
+    <div class="logo-title">
+      <div class="title">
+        <img src="https://mjpitz.com/statics/img/mjpitz.jpeg" alt="profile picture">
+        <h3 title=""><a href="/">Mya Pitzeruse</a></h3>
+        <div class="description">
+          <p></p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
         
-    Status: A Java Library For Robust System Status Health Checks
-        
-    </title>
+        <li>
+        <a href="https://github.com/mjpitz" rel="me" aria-label="GitHub">
+          <i class="fa fa-2x fa-github" aria-hidden="true"></i>
+        </a>          
+        </li>
 
-    <meta http-equiv="refresh" content="0; url=http://engineering.indeedblog.com/blog/2015/07/status-java-library-for-system-status-health-checks/">
-    <link rel="canonical" href="http://engineering.indeedblog.com/blog/2015/07/status-java-library-for-system-status-health-checks/" />
-    <script>window.location.href="http://engineering.indeedblog.com/blog/2015/07/status-java-library-for-system-status-health-checks/";</script>
-</head>
+        
+        <li>
+        <a href="https://twitter.com/_mjpitz_" rel="me" aria-label="Twitter">
+          <i class="fa fa-2x fa-twitter" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+        <li>
+        <a href="https://www.linkedin.com/in/mjpitz/" rel="me" aria-label="LinkedIn">
+          <i class="fa fa-2x fa-linkedin" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+        <li>
+        <a href="/index.xml" rel="me" aria-label="Feed">
+          <i class="fa fa-2x fa-rss" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+    </ul>
+    <div class="footer">
+        <div class="by_farbox">&copy; Mya Pitzeruse 2020 </div>
+      </div>
+    </div>
+</div><div class="main">
+            <div class="page-top animated fadeInDown">
+    <ul class="nav">
+        
+        
+        
+        <li><a  href="/" title="">Home</a></li>
+        
+        
+        <li><a  href="/blog/" title="">Archive</a></li>
+        
+    </ul>
+    <div class="themeswitcher">
+        <a class="theme-switch" title="Switch Theme">
+            <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+        </a>
+    </div>
+</div>
+
+            <div class="autopagerize_page_element">
+                <div class="content">
+<div class="post animated fadeInDown">
+    <div class="post-content">
+
+      <div class="post-title">
+        <h3>Status: A Java Library For Robust System Status Health Checks
+        </h3>
+        
+        </div>
+
+    <p>We are excited to highlight the open source availability of <a href="https://github.com/indeedeng/status">Status</a>, a Java library that can report a system’s status in a readable format.
+The Status library enables dynamic health checks and monitoring of system dependencies.
+In this post, we will show how to add health checks to your applications.</p>
+<h2 id="why-use-system-status-health-checks">Why use system status health checks?</h2>
+<p>Health checks play an important role at Indeed. We set up and run large-scale services and applications every day.
+Health checks allow us to see the problematic components at an endpoint, rather than combing through logs.</p>
+<p>In production, a health check can let us know when a service is unreachable, a file is missing, or the system cannot talk with the database.
+Additionally, these health checks provide a controlled way for developers to communicate issues to system administrators.
+In any of these situations, the application can evaluate its own health check and gracefully degrade behavior, rather than taking the entire system offline.</p>
+<p>The Status library will capture stack traces from dependencies and return the results in a single location.
+This feature makes it easy to resolve issues as they arise in any environment.
+Typical dependencies include MySQL tables, MongoDB collections, RabbitMQ message queues, and API statuses.</p>
+<h2 id="system-states">System states</h2>
+<p>When dependencies fail, they affect the condition of the system.
+System states include:</p>
+<ul>
+<li>OUTAGE – the system is unable to process requests;</li>
+<li>MAJOR – the system can service some requests, but may fail for the majority;</li>
+<li>MINOR – the system can service the majority of requests, but not all;</li>
+<li>OK – the system should be able to process all requests.</li>
+</ul>
+<h2 id="get-started-with-status">Get started with Status</h2>
+<p>Follow these instructions to start using the <a href="https://github.com/indeedeng/status">Status</a> library:</p>
+<p>Extend the <a href="https://github.com/indeedeng/status/blob/master/status-core/src/main/java/com/indeed/status/core/AbstractDependencyManager.java">AbstractDependencyManager</a>.
+The dependency manager will keep track of all your dependencies.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyDependencyManager</span> <span style="color:#66d9ef">extends</span> AbstractDependencyManager <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">MyDependencyManager</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">super</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;MyApplication&#34;</span><span style="color:#f92672">);</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Extend <a href="https://github.com/indeedeng/status/blob/master/status-core/src/main/java/com/indeed/status/core/PingableDependency.java">PingableDependency</a> for each component that your application requires to run.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyDependency</span> <span style="color:#66d9ef">extends</span> PingableDependency <span style="color:#f92672">{</span>
+  <span style="color:#a6e22e">@Override</span>
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">ping</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
+    <span style="color:#75715e">// Throw exception if considered unhealthy or unavailable
+</span><span style="color:#75715e"></span>  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Extending the <a href="https://github.com/indeedeng/status/blob/master/status-core/src/main/java/com/indeed/status/core/PingableDependency.java">PingableDependency</a> class is the simplest way to incorporate a dependency into your application.
+Alternatively, you can extend <a href="https://github.com/indeedeng/status/blob/master/status-core/src/main/java/com/indeed/status/core/AbstractDependency.java">AbstractDependency</a> or <a href="https://github.com/indeedeng/status/blob/master/status-core/src/main/java/com/indeed/status/core/ComparableDependency.java">ComparableDependency</a> to get more control over the state of a dependency.
+You can control how your dependency affects the system’s condition by providing an <a href="https://github.com/indeedeng/status/blob/fff009ad24d1641afe6d792e582e374e8e5f63a6/status-core/src/main/java/com/indeed/status/core/Urgency.java">Urgency</a> level.</p>
+<p>Add your new dependencies to your dependency manager.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">dependencyManager<span style="color:#f92672">.</span><span style="color:#a6e22e">addDependency</span><span style="color:#f92672">(</span>myDependency<span style="color:#f92672">);</span>
+<span style="color:#75715e">// ...
+</span></code></pre></div><p>For web-based applications and services, create an <a href="https://github.com/indeedeng/status/blob/master/status-web/src/main/java/com/indeed/status/web/AbstractDaemonCheckReportServlet.java">AbstractDaemonCheckReportServlet</a> that will report the status of your application.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">StatusServlet</span> <span style="color:#66d9ef">extends</span> AbstractDaemonCheckReportServlet <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> AbstractDependencyManager manager<span style="color:#f92672">;</span>
+ 
+  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">StatusServlet</span><span style="color:#f92672">(</span>AbstractDependencyManager manager<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">manager</span> <span style="color:#f92672">=</span> manager<span style="color:#f92672">;</span>
+  <span style="color:#f92672">}</span>
+ 
+  <span style="color:#a6e22e">@Override</span>
+  <span style="color:#66d9ef">protected</span> AbstractDependencyManager <span style="color:#a6e22e">newManager</span><span style="color:#f92672">(</span>ServletConfig config<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">return</span> manager<span style="color:#f92672">;</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Once this process is complete and your application is running, you should be able to access the servlet to read a JSON representation of your application status.</p>
+<p>Below is a sample response returned by the servlet.
+If the application is in an OUTAGE condition, the servlet returns a 500 status code.
+Associating the health check outcome with an HTTP status code enables integration with systems (like <a href="https://consul.io/">Consul</a>) that make routing decisions based on application health.
+Otherwise, the servlet returns a 200 since it can still process requests.
+In this case, the application may gracefully degrade less-critical functionality that depends on unhealthy code paths.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="color:#f92672">&#34;hostname&#34;</span>: <span style="color:#e6db74">&#34;pitz.local&#34;</span>,
+  <span style="color:#f92672">&#34;duration&#34;</span>: <span style="color:#ae81ff">19</span>,
+  <span style="color:#f92672">&#34;condition&#34;</span>: <span style="color:#e6db74">&#34;OUTAGE&#34;</span>,
+  <span style="color:#f92672">&#34;dcStatus&#34;</span>: <span style="color:#e6db74">&#34;FAILOVER&#34;</span>,
+  <span style="color:#f92672">&#34;appname&#34;</span>: <span style="color:#e6db74">&#34;crm.api&#34;</span>,
+  <span style="color:#f92672">&#34;catalinaBase&#34;</span>: <span style="color:#e6db74">&#34;/var/local/tomcat&#34;</span>,
+  <span style="color:#f92672">&#34;leastRecentlyExecutedDate&#34;</span>: <span style="color:#e6db74">&#34;2015-02-24T22:48:37.782-0600&#34;</span>,
+  <span style="color:#f92672">&#34;leastRecentlyExecutedTimestamp&#34;</span>: <span style="color:#ae81ff">1424839717782</span>,
+  <span style="color:#f92672">&#34;results&#34;</span>: {
+    <span style="color:#f92672">&#34;OUTAGE&#34;</span>: [{
+      <span style="color:#f92672">&#34;status&#34;</span>: <span style="color:#e6db74">&#34;OUTAGE&#34;</span>,
+      <span style="color:#f92672">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;mysql&#34;</span>,
+      <span style="color:#f92672">&#34;errorMessage&#34;</span>: <span style="color:#e6db74">&#34;Exception thrown during ping&#34;</span>,
+      <span style="color:#f92672">&#34;timestamp&#34;</span>: <span style="color:#ae81ff">1424839717782</span>,
+      <span style="color:#f92672">&#34;duration&#34;</span>: <span style="color:#ae81ff">18</span>,
+      <span style="color:#f92672">&#34;lastKnownGoodTimestamp&#34;</span>: <span style="color:#ae81ff">0</span>,
+      <span style="color:#f92672">&#34;period&#34;</span>: <span style="color:#ae81ff">0</span>,
+      <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#e6db74">&#34;mysql&#34;</span>,
+      <span style="color:#f92672">&#34;urgency&#34;</span>: <span style="color:#e6db74">&#34;Required: Failure of this dependency would result in complete system outage&#34;</span>,
+      <span style="color:#f92672">&#34;documentationUrl&#34;</span>: <span style="color:#e6db74">&#34;http://www.mysql.com/&#34;</span>,
+      <span style="color:#f92672">&#34;thrown&#34;</span>: {
+        <span style="color:#f92672">&#34;exception&#34;</span>: <span style="color:#e6db74">&#34;RuntimeException&#34;</span>,
+        <span style="color:#f92672">&#34;message&#34;</span>: <span style="color:#e6db74">&#34;Failed to communicate with the following tables:
+</span><span style="color:#e6db74">          user_authorities, oauth_code, oauth_approvals, oauth_client_token,
+</span><span style="color:#e6db74">          oauth_refresh_token, oauth_client_details, oauth_access_token&#34;</span>,
+        <span style="color:#f92672">&#34;stack&#34;</span>: [
+          <span style="color:#e6db74">&#34;io.github.jpitz.example.MySQLDependency.ping(MySQLDependency.java:68)&#34;</span>,
+          <span style="color:#e6db74">&#34;com.indeed.status.core.PingableDependency.call(PingableDependency.java:59)&#34;</span>,
+          <span style="color:#e6db74">&#34;com.indeed.status.core.PingableDependency.call(PingableDependency.java:15)&#34;</span>,
+          <span style="color:#e6db74">&#34;java.util.concurrent.FutureTask.run(FutureTask.java:262)&#34;</span>,
+          <span style="color:#e6db74">&#34;java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)&#34;</span>,
+          <span style="color:#e6db74">&#34;java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)&#34;</span>,
+          <span style="color:#e6db74">&#34;java.lang.Thread.run(Thread.java:745)&#34;</span>
+        ]
+      },
+      <span style="color:#f92672">&#34;date&#34;</span>: <span style="color:#e6db74">&#34;2015-02-24T22:48:37.782-0600&#34;</span>
+    }],
+    <span style="color:#f92672">&#34;OK&#34;</span>: [{
+      <span style="color:#f92672">&#34;status&#34;</span>: <span style="color:#e6db74">&#34;OK&#34;</span>,
+      <span style="color:#f92672">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;mongo&#34;</span>,
+      <span style="color:#f92672">&#34;errorMessage&#34;</span>: <span style="color:#e6db74">&#34;ok&#34;</span>,
+      <span style="color:#f92672">&#34;timestamp&#34;</span>: <span style="color:#ae81ff">1424839717782</span>,
+      <span style="color:#f92672">&#34;duration&#34;</span>: <span style="color:#ae81ff">0</span>,
+      <span style="color:#f92672">&#34;lastKnownGoodTimestamp&#34;</span>: <span style="color:#ae81ff">0</span>,
+      <span style="color:#f92672">&#34;period&#34;</span>: <span style="color:#ae81ff">0</span>,
+      <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#e6db74">&#34;mongo&#34;</span>,
+      <span style="color:#f92672">&#34;urgency&#34;</span>: <span style="color:#e6db74">&#34;Required: Failure of this dependency would result in complete system outage&#34;</span>,
+      <span style="color:#f92672">&#34;documentationUrl&#34;</span>: <span style="color:#e6db74">&#34;http://www.mongodb.org/&#34;</span>,
+      <span style="color:#f92672">&#34;date&#34;</span>: <span style="color:#e6db74">&#34;2015-02-24T22:48:37.782-0600&#34;</span>
+    }]
+  }
+}
+</code></pre></div><p>This report includes these key fields to help you evaluate the health of a system and the health of a dependency:</p>
+<ul>
+<li><code>condition</code> - Identifies the current health of the system as a whole.</li>
+<li><code>leastRecentlyExecutedDate</code> - The last date and time that the report was updated.</li>
+</ul>
+<p>Use these fields to inspect individual dependencies:</p>
+<ul>
+<li><code>status</code> - Identifies the health of the current dependency.</li>
+<li><code>thrown</code> - The exception that caused the dependency to fail.</li>
+<li><code>duration</code> - The length of time it took to evaluate the dependency’s health. Because the system caches the result of a dependency’s evaluation, this value can be 0.</li>
+<li><code>urgency</code> - The urgency of the dependency. Dependencies with a WEAK urgency may not need to be fixed immediately. Dependencies with a REQUIRED urgency must be fixed as soon as possible</li>
+</ul>
+<h2 id="learn-more-about-status">Learn more about Status</h2>
+<p>Stay tuned for a <a href="/blog/2017/01/19/gracefully-degrading-functionality-using-status/">future post</a> about using the Status library, in which we’ll show how to gracefully degrade unhealthy applications.
+To get started, read our <a href="http://opensource.indeedeng.io/status/docs/quick-start/">quick start guide</a> and take a look at the <a href="https://github.com/indeedeng/status/tree/master/status-samples">samples</a>.
+If you need help, you can reach out to us on <a href="https://github.com/indeedeng/">GitHub</a> or <a href="https://twitter.com/indeedeng">Twitter</a>.</p>
+    </div>
+    <div class="post-footer">
+      <div class="info">
+        
+        
+    <span class="separator"><a class="tag" href="/tags/indeed/">indeed</a></span>
+
+      </div>
+    </div>
+
+    
+</div>
+
+
+                </div>
+            </div>
+        </div>
+</body>
+
+
+
+<script type="text/javascript" src="https://mjpitz.com/js/jquery.min.86b1e8f819ee2d9099a783e50b49dff24282545fc40773861f9126b921532e4c.js" integrity="sha256-hrHo&#43;BnuLZCZp4PlC0nf8kKCVF/EB3OGH5EmuSFTLkw=" crossorigin="anonymous"></script>
+
+
+
+
+<script type="text/javascript" src="https://mjpitz.com/js/bundle.min.0f9c74cb78f13d1f15f33daff4037c70354f98acfbb97a6f61708966675c3cae.js" integrity="sha256-D5x0y3jxPR8V8z2v9AN8cDVPmKz7uXpvYXCJZmdcPK4=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://mjpitz.com/js/medium-zoom.min.92f21c856129f84aeb719459b3e6ac621a3032fd7b180a18c04e1d12083f8aba.js" integrity="sha256-kvIchWEp&#43;ErrcZRZs&#43;asYhowMv17GAoYwE4dEgg/iro=" crossorigin="anonymous"></script>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-39314903-5', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</html></body>
+
 </html>

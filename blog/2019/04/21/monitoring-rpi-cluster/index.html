@@ -1,381 +1,288 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link type="application/atom+xml" rel="alternate" href="https://www.mjpitz.com/feed.xml" title="Mya Pitzeruse" />
-        <meta name="author" content="Mya Pitzeruse">
-
-        <title>
-            
-                Raspberry Pi Cluster Monitoring
-            
-        </title>
-
-        
-
-        <link rel="stylesheet" href="/statics/libs/bootstrap-3.3.7/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="/statics/libs/font-awesome-5.4.1/css/all.min.css">
-        <link rel="stylesheet" href="/statics/css/syntax-highlighting.css"/>
-        <link rel="stylesheet" href="/statics/css/app.css"/>
-
-        <link rel="apple-touch-icon" sizes="180x180" href="/statics/img/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/statics/img/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/statics/img/favicon-16x16.png">
-        <link rel="manifest" href="/statics/img/site.webmanifest">
-        <link rel="mask-icon" href="/statics/img/safari-pinned-tab.svg" color="#a28ad2">
-        <link rel="shortcut icon" href="/statics/img/favicon.ico">
-        <link rel="icon" href="/statics/img/favicon.ico" type="image/x-icon">
-        <meta name="msapplication-TileColor" content="#eeeeee">
-        <meta name="msapplication-config" content="/statics/img/browserconfig.xml">
-        <meta name="theme-color" content="#eeeeee">
-    </head>
-    <body>
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <div class="navbar-brand">@mjpitz</div>
-                </div>
-
-                <div class="collapse navbar-collapse" id="menu">
-                    <ul class="nav navbar-nav mr-auto">
-                        <li>
-                            <a href="/">
-                                <i class="fas fa-home" title="Blog" data-toggle="tooltip" data-placement="bottom">
-                                    <span>Blog</span>
-                                </i>
-                                Blog
-                            </a>
-                        </li>
-                    </ul>
-                    
-                    <ul class="nav navbar-nav nav-social">
-                        <li>
-                            <a href="https://medium.com/@mjpitz">
-                                <i class="fab fa-medium" title="Medium" data-toggle="tooltip" data-placement="bottom">
-                                    <span>Medium</span>
-                                </i>
-                            </a>
-                        </li>
-                        
-                        <li>
-                            <a href="http://www.github.com/mjpitz">
-                                <i class="fab fa-github" title="GitHub" data-toggle="tooltip" data-placement="bottom">
-                                    <span>GitHub</span>
-                                </i>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="https://hub.docker.com/u/mjpitz">
-                                <i class="fab fa-docker" title="Docker" data-toggle="tooltip" data-placement="bottom">
-                                    <span>Docker</span>
-                                </i>
-                            </a>
-                        </li>
-                        
-                        <li>
-                            <a href="http://www.twitter.com/_mjpitz_">
-                                <i class="fab fa-twitter" title="Twitter" data-toggle="tooltip" data-placement="bottom">
-                                    <span>Twitter</span>
-                                </i>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="http://www.linkedin.com/in/mjpitz">
-                                <i class="fab fa-linkedin" title="LinkedIn" data-toggle="tooltip" data-placement="bottom">
-                                    <span>LinkedIn</span>
-                                </i>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="/feed.xml">
-                                <i class="fas fa-rss" title="Feed" data-toggle="tooltip" data-placement="bottom">
-                                    <span>Feed</span>
-                                </i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <div class="container mjpitz-content" style="margin-top:82px">
-            <div class="panel panel-default">
-    <div class="panel-body">
-        <div class="post">
-            <h1 class="post-title">Raspberry Pi Cluster Monitoring</h1>
-            <p class="post-date">Posted on April 21, 2019</p>
-
-            <div class="post-content">
-                <p>In my last few posts, I talked a bit about my at home development cluster.
+<html lang="en" data-theme="light"><head>
+    <title> Mya Pitzeruse | Raspberry Pi Cluster Monitoring </title>
+    <meta charset="utf-8"><meta name="generator" content="Hugo 0.69.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="description" content="">
+    
+    <link rel="stylesheet" href="https://mjpitz.com/css/style.min.67cd718c0a3c8009c771494d381fb7128246a454bd0518fed97cb65d257db948.css" integrity="sha256-Z81xjAo8gAnHcUlNOB&#43;3EoJGpFS9BRj&#43;2Xy2XSV9uUg=" crossorigin="anonymous" type="text/css">
+    <link rel="stylesheet" href="https://mjpitz.com/statics/css/overrides.css" type="text/css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    
+    <link rel="shortcut icon" href="https://mjpitz.com/statics/img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://mjpitz.com/statics/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://mjpitz.com/statics/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://mjpitz.com/statics/img/favicon-16x16.png">
+    <link rel="canonical" href="https://mjpitz.com/blog/2019/04/21/monitoring-rpi-cluster/">
+    
+    
+    <script type="text/javascript" src="https://mjpitz.com/js/anatole-header.min.c275265a259296f3dd50e8236a77fcbcadb1dbb9597d3045c675dcc2c7c58a93.js" integrity="sha256-wnUmWiWSlvPdUOgjanf8vK2x27lZfTBFxnXcwsfFipM=" crossorigin="anonymous"></script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Raspberry Pi Cluster Monitoring"/>
+<meta name="twitter:description" content="In my last few posts, I talked a bit about my at home development cluster.
 Due to the flexibility of my cluster, I wanted to provide a monitoring solution that was valuable across each technology I use.
 In this post, I discuss how monitoring is setup on my cluster.
-I’ll walk through setting up each node, the Prometheus server, and the Graphana UI.</p>
+I&rsquo;ll walk through setting up each node, the Prometheus server, and the Graphana UI."/>
 
-<!--more-->
+</head><body><div class="sidebar animated fadeInDown">
+    <div class="logo-title">
+      <div class="title">
+        <img src="https://mjpitz.com/statics/img/mjpitz.jpeg" alt="profile picture">
+        <h3 title=""><a href="/">Mya Pitzeruse</a></h3>
+        <div class="description">
+          <p></p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
+        
+        <li>
+        <a href="https://github.com/mjpitz" rel="me" aria-label="GitHub">
+          <i class="fa fa-2x fa-github" aria-hidden="true"></i>
+        </a>          
+        </li>
 
-<p>First, if you haven’t read my previous posts, I suggest going back and giving them a quick read.</p>
+        
+        <li>
+        <a href="https://twitter.com/_mjpitz_" rel="me" aria-label="Twitter">
+          <i class="fa fa-2x fa-twitter" aria-hidden="true"></i>
+        </a>          
+        </li>
 
+        
+        <li>
+        <a href="https://www.linkedin.com/in/mjpitz/" rel="me" aria-label="LinkedIn">
+          <i class="fa fa-2x fa-linkedin" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+        <li>
+        <a href="/index.xml" rel="me" aria-label="Feed">
+          <i class="fa fa-2x fa-rss" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+    </ul>
+    <div class="footer">
+        <div class="by_farbox">&copy; Mya Pitzeruse 2020 </div>
+      </div>
+    </div>
+</div><div class="main">
+            <div class="page-top animated fadeInDown">
+    <ul class="nav">
+        
+        
+        
+        <li><a  href="/" title="">Home</a></li>
+        
+        
+        <li><a  href="/blog/" title="">Archive</a></li>
+        
+    </ul>
+    <div class="themeswitcher">
+        <a class="theme-switch" title="Switch Theme">
+            <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+        </a>
+    </div>
+</div>
+
+            <div class="autopagerize_page_element">
+                <div class="content">
+<div class="post animated fadeInDown">
+    <div class="post-content">
+
+      <div class="post-title">
+        <h3>Raspberry Pi Cluster Monitoring
+        </h3>
+        
+        </div>
+
+    <p>In my last few posts, I talked a bit about my at home development cluster.
+Due to the flexibility of my cluster, I wanted to provide a monitoring solution that was valuable across each technology I use.
+In this post, I discuss how monitoring is setup on my cluster.
+I&rsquo;ll walk through setting up each node, the Prometheus server, and the Graphana UI.</p>
+<p>First, if you haven&rsquo;t read my previous posts, I suggest going back and giving them a quick read.</p>
 <ul>
-  <li><a href="/blog/2019/03/17/64bit-raspberry-pi">Easy Steps to a 64bit Raspberry Pi 3 B/B+</a></li>
-  <li><a href="/blog/2019/04/10/k8s-k3s-rpi-oh-my">k3s on Raspberry Pi</a></li>
-  <li><a href="/blog/2019/04/12/rpi-cluster-setup">Raspberry Pi Cluster Setup</a></li>
+<li><a href="/blog/2019/03/17/64bit-raspberry-pi">Easy Steps to a 64bit Raspberry Pi 3 B/B+</a></li>
+<li><a href="/blog/2019/04/10/k8s-k3s-rpi-oh-my">k3s on Raspberry Pi</a></li>
+<li><a href="/blog/2019/04/12/rpi-cluster-setup">Raspberry Pi Cluster Setup</a></li>
 </ul>
-
-<p>Historically, I haven’t put much monitoring in beyond the basic orchestrator level tooling.
+<p>Historically, I haven&rsquo;t put much monitoring in beyond the basic orchestrator level tooling.
 This was due to the lack of native ARM support on the Prometheus project.
 Sure there were a couple personal forks running out on the web.
 Some of them were well documented, but I tended to resort to compiling it myself.
 Many people in the ARM community have been waiting for support upstream.</p>
-
-<center>
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">This should be available soon hopefully<a href="https://t.co/3TXc4SjIug">https://t.co/3TXc4SjIug</a></p>&mdash; Simon P (@SimonHiker) <a href="https://twitter.com/SimonHiker/status/1104430227785244672?ref_src=twsrc%5Etfw">March 9, 2019</a></blockquote> <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-</center>
-
+<!-- raw HTML omitted -->
 <p>6 days ago, <a href="https://prometheus.io">Prometheus</a> merged in support for <a href="https://github.com/prometheus/prometheus/pull/5031">ARM based architectures</a>.
 I briefly stumbled across a tweet this week where someone mentioned that native support was now offered upstream.
 Unfortunately, I managed to misplace that tweet.
 With some free time on my hands, I decided to go looking for the images and get a solution running on my cluster at home.</p>
-
 <h2 id="running-node_exporter-on-each-node">Running node_exporter on each node</h2>
-
 <p>node_exporter is a project from the Prometheus team.
 It provides host level information such as cpu, memory, and disk usage.
 It also provides more detailed information such as open and max file descriptor counts, memory swap, cpu steal, etc.
 In order to get started with the project, you either had to use the container image or go out and compile your own binary.
 With the recent introduction of the ARM image, running this has become a bit easier.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker run <span class="nt">-d</span> <span class="se">\</span>
-    <span class="nt">--name</span> <span class="s2">"node-exporter"</span> <span class="se">\</span>
-    <span class="nt">--network</span> <span class="s2">"host"</span> <span class="se">\</span>
-    <span class="nt">--pid</span> <span class="s2">"host"</span> <span class="se">\</span>
-    <span class="nt">--restart</span> <span class="s2">"always"</span> <span class="se">\</span>
-    <span class="nt">-v</span> <span class="s2">"/:/host:ro,rslave"</span> <span class="se">\</span>
-    prom/node-exporter-linux-arm64:master <span class="se">\</span>
-    <span class="nt">--path</span>.rootfs /host
-</code></pre></div></div>
-
-<p>You can verify that this process started up successfully by curling the metrics endpoint of the process.
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker run -d <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --name <span style="color:#e6db74">&#34;node-exporter&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --network <span style="color:#e6db74">&#34;host&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --pid <span style="color:#e6db74">&#34;host&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --restart <span style="color:#e6db74">&#34;always&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -v <span style="color:#e6db74">&#34;/:/host:ro,rslave&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    prom/node-exporter-linux-arm64:master <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --path.rootfs /host
+</code></pre></div><p>You can verify that this process started up successfully by curling the metrics endpoint of the process.
 Over time, this page will be updated based on the current usage of the system.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl http://<span class="k">${</span><span class="nv">ip_address</span><span class="k">}</span>:9100/metrics
-</code></pre></div></div>
-
-<p>Repeat this process for each node within your cluster.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ curl http://<span style="color:#e6db74">${</span>ip_address<span style="color:#e6db74">}</span>:9100/metrics
+</code></pre></div><p>Repeat this process for each node within your cluster.</p>
 <h2 id="picking-a-monitoring-node">Picking a monitoring node</h2>
-
-<p>I want to explicitly call out to the “monitoring” node aspect of this section.
+<p>I want to explicitly call out to the &ldquo;monitoring&rdquo; node aspect of this section.
 A monitoring node in this case is simply a node who has a large amount of disk space.
 Prometheus works by aggregating data from different exporters.
 Since it collects all this information in one place, you will need to ensure you have enough storage.
 Alternatively, you can leverage an attachable storage solution, like <a href="https://ceph.com/">Ceph</a>.
 Since my setup is rather minimum, I run this on my laptop during times of experimentation.</p>
-
 <h2 id="running-prometheus-and-graphana">Running Prometheus and Graphana</h2>
-
 <p>Before starting the Prometheus server, you need a configuration file.
 This file tells Prometheus where it can gather metrics from.
 In this case, we use a static_config that points at every node in the cluster.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">global</span>:
+  <span style="color:#66d9ef">scrape_interval</span>: 1m
+  <span style="color:#66d9ef">scrape_timeout</span>: 10s
+  <span style="color:#66d9ef">evaluation_interval</span>: 1m
 
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">global</span><span class="pi">:</span>
-  <span class="na">scrape_interval</span><span class="pi">:</span> <span class="s">1m</span>
-  <span class="na">scrape_timeout</span><span class="pi">:</span> <span class="s">10s</span>
-  <span class="na">evaluation_interval</span><span class="pi">:</span> <span class="s">1m</span>
-
-<span class="na">scrape_configs</span><span class="pi">:</span>
-  <span class="pi">-</span> <span class="na">job_name</span><span class="pi">:</span> <span class="s">node-exporter</span>
-    <span class="na">static_configs</span><span class="pi">:</span>
-      <span class="pi">-</span> <span class="na">targets</span><span class="pi">:</span>
-        <span class="pi">-</span> <span class="s">192.168.1.100:9100</span>
-        <span class="pi">-</span> <span class="s">192.168.1.101:9100</span>
-        <span class="pi">-</span> <span class="s">192.168.1.102:9100</span>
-        <span class="pi">-</span> <span class="s">192.168.1.103:9100</span>
-        <span class="pi">-</span> <span class="s">192.168.1.104:9100</span>
-        <span class="pi">-</span> <span class="s">192.168.1.105:9100</span>
-        <span class="pi">-</span> <span class="s">192.168.1.106:9100</span>
-        <span class="pi">-</span> <span class="s">192.168.1.107:9100</span>
-        <span class="pi">-</span> <span class="s">192.168.1.108:9100</span>
-        <span class="pi">-</span> <span class="s">192.168.1.109:9100</span>
-</code></pre></div></div>
-
-<p>Once the configuration file is defined, I started to look into how to deploy this setup.
+<span style="color:#66d9ef">scrape_configs</span>:
+  - <span style="color:#66d9ef">job_name</span>: node-exporter
+    <span style="color:#66d9ef">static_configs</span>:
+      - <span style="color:#66d9ef">targets</span>:
+        - <span style="color:#ae81ff">192.168.1.100</span>:<span style="color:#ae81ff">9100</span>
+        - <span style="color:#ae81ff">192.168.1.101</span>:<span style="color:#ae81ff">9100</span>
+        - <span style="color:#ae81ff">192.168.1.102</span>:<span style="color:#ae81ff">9100</span>
+        - <span style="color:#ae81ff">192.168.1.103</span>:<span style="color:#ae81ff">9100</span>
+        - <span style="color:#ae81ff">192.168.1.104</span>:<span style="color:#ae81ff">9100</span>
+        - <span style="color:#ae81ff">192.168.1.105</span>:<span style="color:#ae81ff">9100</span>
+        - <span style="color:#ae81ff">192.168.1.106</span>:<span style="color:#ae81ff">9100</span>
+        - <span style="color:#ae81ff">192.168.1.107</span>:<span style="color:#ae81ff">9100</span>
+        - <span style="color:#ae81ff">192.168.1.108</span>:<span style="color:#ae81ff">9100</span>
+        - <span style="color:#ae81ff">192.168.1.109</span>:<span style="color:#ae81ff">9100</span>
+</code></pre></div><p>Once the configuration file is defined, I started to look into how to deploy this setup.
 I wound up finding docker-compose files to be the best way to managed this.
-By using something like <code class="highlighter-rouge">docker stack deploy</code>, we’re able to leverage the <code class="highlighter-rouge">configs</code> semantic.</p>
+By using something like <code>docker stack deploy</code>, we&rsquo;re able to leverage the <code>configs</code> semantic.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">version</span>: <span style="color:#e6db74">&#34;3.7&#34;</span>
 
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">3.7"</span>
+<span style="color:#66d9ef">volumes</span>:
+  <span style="color:#66d9ef">prometheus-data</span>:
+  <span style="color:#66d9ef">graphana-data</span>:
 
-<span class="na">volumes</span><span class="pi">:</span>
-  <span class="na">prometheus-data</span><span class="pi">:</span>
-  <span class="na">graphana-data</span><span class="pi">:</span>
+<span style="color:#66d9ef">configs</span>:
+  <span style="color:#66d9ef">prometheus-config</span>:
+    <span style="color:#66d9ef">file</span>: ./prometheus.yaml
 
-<span class="na">configs</span><span class="pi">:</span>
-  <span class="na">prometheus-config</span><span class="pi">:</span>
-    <span class="na">file</span><span class="pi">:</span> <span class="s">./prometheus.yaml</span>
+<span style="color:#66d9ef">services</span>:
+  <span style="color:#66d9ef">prometheus</span>:
+    <span style="color:#66d9ef">hostname</span>: prometheus
+    <span style="color:#66d9ef">configs</span>:
+      - <span style="color:#66d9ef">source</span>: prometheus-config
+        <span style="color:#66d9ef">target</span>: /prometheus.yaml
+    <span style="color:#66d9ef">volumes</span>:
+      - prometheus-data:/prometheus
+    <span style="color:#66d9ef">ports</span>:
+      - <span style="color:#ae81ff">9090</span>:<span style="color:#ae81ff">9090</span>
+    <span style="color:#66d9ef">image</span>: prom/prometheus
+    <span style="color:#66d9ef">command</span>: [
+      --config.file, /prometheus.yaml,
+      --storage.tsdb.path, /prometheus
+    ]
 
-<span class="na">services</span><span class="pi">:</span>
-  <span class="na">prometheus</span><span class="pi">:</span>
-    <span class="na">hostname</span><span class="pi">:</span> <span class="s">prometheus</span>
-    <span class="na">configs</span><span class="pi">:</span>
-      <span class="pi">-</span> <span class="na">source</span><span class="pi">:</span> <span class="s">prometheus-config</span>
-        <span class="na">target</span><span class="pi">:</span> <span class="s">/prometheus.yaml</span>
-    <span class="na">volumes</span><span class="pi">:</span>
-      <span class="pi">-</span> <span class="s">prometheus-data:/prometheus</span>
-    <span class="na">ports</span><span class="pi">:</span>
-      <span class="pi">-</span> <span class="s">9090:9090</span>
-    <span class="na">image</span><span class="pi">:</span> <span class="s">prom/prometheus</span>
-    <span class="na">command</span><span class="pi">:</span> <span class="pi">[</span>
-      <span class="nv">--config.file</span><span class="pi">,</span> <span class="nv">/prometheus.yaml</span><span class="pi">,</span>
-      <span class="nv">--storage.tsdb.path</span><span class="pi">,</span> <span class="nv">/prometheus</span>
-    <span class="pi">]</span>
-
-  <span class="na">graphana</span><span class="pi">:</span>
-    <span class="na">hostname</span><span class="pi">:</span> <span class="s">graphana</span>
-    <span class="na">volumes</span><span class="pi">:</span>
-      <span class="pi">-</span> <span class="s">graphana-data:/var/lib/grafana</span>
-    <span class="na">ports</span><span class="pi">:</span>
-      <span class="pi">-</span> <span class="s">3000:3000</span>
-    <span class="na">image</span><span class="pi">:</span> <span class="s">grafana/grafana</span>
-</code></pre></div></div>
-
-<p>Alternatively leverage the <code class="highlighter-rouge">docker run</code> command similar to node_exporter, but using a local volume mount instead of a config.
+  <span style="color:#66d9ef">graphana</span>:
+    <span style="color:#66d9ef">hostname</span>: graphana
+    <span style="color:#66d9ef">volumes</span>:
+      - graphana-data:/var/lib/grafana
+    <span style="color:#66d9ef">ports</span>:
+      - <span style="color:#ae81ff">3000</span>:<span style="color:#ae81ff">3000</span>
+    <span style="color:#66d9ef">image</span>: grafana/grafana
+</code></pre></div><p>Alternatively leverage the <code>docker run</code> command similar to node_exporter, but using a local volume mount instead of a config.
 Once these two processes are up and running you should be able to navigate to the UI in the browser.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ open http://<span style="color:#e6db74">${</span>ip_address<span style="color:#e6db74">}</span>:9090   <span style="color:#75715e"># prometheus</span>
+$ open http://<span style="color:#e6db74">${</span>ip_address<span style="color:#e6db74">}</span>:3000   <span style="color:#75715e"># graphana</span>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>open http://<span class="k">${</span><span class="nv">ip_address</span><span class="k">}</span>:9090   <span class="c"># prometheus</span>
-<span class="nv">$ </span>open http://<span class="k">${</span><span class="nv">ip_address</span><span class="k">}</span>:3000   <span class="c"># graphana</span>
-
-<span class="c">## on linux, this will be "xdg-open" instead of "open"</span>
-</code></pre></div></div>
-
-<h3 id="adding-prometheus-as-a-data-source-to-graphana">Adding Prometheus as a data source to Graphana</h3>
-
-<p>Once you have the Graphana interface open, you’ll need to configure a data source.
+<span style="color:#75715e">## on linux, this will be &#34;xdg-open&#34; instead of &#34;open&#34;</span>
+</code></pre></div><h3 id="adding-prometheus-as-a-data-source-to-graphana">Adding Prometheus as a data source to Graphana</h3>
+<p>Once you have the Graphana interface open, you&rsquo;ll need to configure a data source.
 Graphana supports Prometheus as a data source out of box, so connecting them is easy.
-In the address line, you’ll want to point it at your Prometheus server.
-For me, this was <code class="highlighter-rouge">http://prometheus:9090</code>.
+In the address line, you&rsquo;ll want to point it at your Prometheus server.
+For me, this was <code>http://prometheus:9090</code>.
 By default, docker sets up an overlay network across containers in a compose file.
-This means that we’re able to connect services on the same network using their <code class="highlighter-rouge">hostname</code>.</p>
-
+This means that we&rsquo;re able to connect services on the same network using their <code>hostname</code>.</p>
 <h3 id="adding-dashboards">Adding dashboards</h3>
-
 <p>Once the data source has been configured, you can start adding dashboards to Graphana.
 Graphana offers tons of <a href="https://grafana.com/dashboards">pre-built dashboards</a>.
-They’re mostly community driven, so finding a well maintained dashboard can be difficult.
+They&rsquo;re mostly community driven, so finding a well maintained dashboard can be difficult.
 The first dashboard I found extremely useful is the <a href="https://grafana.com/dashboards/1860">full export of all node_exporter</a> metrics.</p>
-
-<p><img src="/statics/img/rpi-mon-node-exporter-full.png" alt="Node Exporter Full" /></p>
-
-<p>Using this dashboard, I’m able to get a detailed view of each node.
+<p><img src="/statics/img/rpi-mon-node-exporter-full.png" alt="Node Exporter Full"></p>
+<p>Using this dashboard, I&rsquo;m able to get a detailed view of each node.
 It encapsulates all metrics emitted by node_exporter into a single dashboard.
 While this might seem overwhelming, the dashboard collapses the more detailed panels.
 This makes it easy to get a high level view of a node, and then dive in.</p>
-
 <p>One thing that this dashboard did not enable was a complete overview of all nodes in the cluster.
 In the past, this kind of dashboard has been extremely useful when investigating capacity constraints.
 In Datadog, this was a rather easy thing to setup:</p>
-
-<p><img src="/statics/img/rpi-mon-dd.jpg" alt="Datadog Host Map" /></p>
-
-<p>After looking around for a bit, I wasn’t able to find a rough equivalent.
+<p><img src="/statics/img/rpi-mon-dd.jpg" alt="Datadog Host Map"></p>
+<p>After looking around for a bit, I wasn&rsquo;t able to find a rough equivalent.
 So I started to build and prototype my own.
 First, I started with a few of the queries from the Node Exporter Full dashboard.
 With a few modifications, I was able to get something started.</p>
-
-<p><img src="/statics/img/rpi-mon-cluster-overview.png" alt="Cluster Overview" /></p>
-
+<p><img src="/statics/img/rpi-mon-cluster-overview.png" alt="Cluster Overview"></p>
 <p>While it may not look as nice as the host map in Datadog, I was able to get the same view of information.
 First, I look for the capacity of the cluster as a whole.
 The three gauges along the top monitor the current clusters usage across all nodes.
 The 3 heat maps along the bottom show the same usage broken down by each instance in the cluster, over time.
 This allows me to be able to track drastic changes in compute, memory, or disk back to an originating point.</p>
-
 <p>Using the combination of these dashboard, I can quickly get an idea of what my cluster is doing at any given time.
 Should I require more orchestrator related information, then I can follow up with their supplied monitoring.
 For Docker, I use <a href="https://portainer.io">portainer</a>.
 For Kubernetes and K3s, I use the <a href="https://github.com/kubernetes/dashboard">kubernetes-dashboard</a>.
-In Nomad, I’ll use the <a href="https://www.nomadproject.io/">Nomad</a> and <a href="https://www.consul.io/">Consul</a> views.</p>
-
-            </div>
-
-            <div class="text-center">
-    <br/>
-    <br/>
-    <p><i>Share this article on</i></p>
-
-    <div style="font-size: 36px;">
-        <a rel="nofollow" target="_blank" href="https://facebook.com/sharer.php?u=https://www.mjpitz.com/blog/2019/04/21/monitoring-rpi-cluster/">
-            <i class="fab fa-facebook" title="Facebook" data-toggle="tooltip" data-placement="bottom"></i></a>
-        &nbsp;
-        <a rel="nofollow" target="_blank" href="https://twitter.com/intent/tweet?text=Raspberry Pi Cluster Monitoring&url=https://www.mjpitz.com/blog/2019/04/21/monitoring-rpi-cluster/&via=&related=">
-            <i class="fab fa-twitter" title="Twitter" data-toggle="tooltip" data-placement="bottom"></i></a>
-        &nbsp;
-        <a rel="nofollow" target="_blank" href="http://www.linkedin.com/sharing/share-offsite/?url=https://www.mjpitz.com/blog/2019/04/21/monitoring-rpi-cluster/">
-            <i class="fab fa-linkedin" title="LinkedIn" data-toggle="tooltip" data-placement="bottom"></i></a>
+In Nomad, I&rsquo;ll use the <a href="https://www.nomadproject.io/">Nomad</a> and <a href="https://www.consul.io/">Consul</a> views.</p>
     </div>
-</div>
-
-
-            <div class="post-footer row">
-                <div class="col-sm-6 text-left">
-                    
-                        <a class="btn btn-default" href="/blog/2019/04/12/rpi-cluster-setup/">&laquo; Previous Post</a>
-                    
-                </div>
-
-                <div class="col-sm-6 text-right">
-                    
-                    <a class="btn btn-default" href="/blog/2019/05/02/from-apache2-to-mit/">Next Post &raquo;</a>
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-        </div>
-        <div style="padding:25px 0; margin-top: 50px;">
-    <div>
+    <div class="post-footer">
+      <div class="info">
         
-<!-- Google Analytics (http://google.com/analytics) -->
-<script>
-    !function(j,e,k,y,l,L){j.GoogleAnalyticsObject=y,j[y]||(j[y]=function(){
-        (j[y].q=j[y].q||[]).push(arguments)}),j[y].l=+new Date,l=e.createElement(k),
-            L=e.getElementsByTagName(k)[0],l.src='//www.google-analytics.com/analytics.js',
-            L.parentNode.insertBefore(l,L)}(window,document,'script','ga');
-    ga('create', 'UA-39314903-5', 'auto');
-    ga('send', 'pageview');
-</script>
+        
+    <span class="separator"><a class="tag" href="/tags/iot/">iot</a><a class="tag" href="/tags/raspberrypi/">raspberrypi</a><a class="tag" href="/tags/docker/">docker</a><a class="tag" href="/tags/monitoring/">monitoring</a><a class="tag" href="/tags/prometheus/">prometheus</a></span>
 
-
-
-        <script src="/statics/libs/jquery-2.1.4/jquery.min.js"></script>
-        <script src="/statics/libs/bootstrap-3.3.7/js/bootstrap.min.js"></script>
-        <script src="/statics/libs/mermaid-8.5.0/mermaid.min.js"></script>
-
-        <script>
-            mermaid.initialize({
-                startOnLoad:true,
-                flowchart: {
-                    useMaxWidth: true,
-                }
-            });
-
-            $(function () {
-                $('[data-toggle="tooltip"]').tooltip();
-                $('.collapse').collapse({ toggle: false });
-            });
-        </script>
+      </div>
     </div>
+
+    
 </div>
 
-    </body>
+
+                </div>
+            </div>
+        </div>
+</body>
+
+
+
+<script type="text/javascript" src="https://mjpitz.com/js/jquery.min.86b1e8f819ee2d9099a783e50b49dff24282545fc40773861f9126b921532e4c.js" integrity="sha256-hrHo&#43;BnuLZCZp4PlC0nf8kKCVF/EB3OGH5EmuSFTLkw=" crossorigin="anonymous"></script>
+
+
+
+
+<script type="text/javascript" src="https://mjpitz.com/js/bundle.min.0f9c74cb78f13d1f15f33daff4037c70354f98acfbb97a6f61708966675c3cae.js" integrity="sha256-D5x0y3jxPR8V8z2v9AN8cDVPmKz7uXpvYXCJZmdcPK4=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://mjpitz.com/js/medium-zoom.min.92f21c856129f84aeb719459b3e6ac621a3032fd7b180a18c04e1d12083f8aba.js" integrity="sha256-kvIchWEp&#43;ErrcZRZs&#43;asYhowMv17GAoYwE4dEgg/iro=" crossorigin="anonymous"></script>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-39314903-5', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</html></body>
+
 </html>

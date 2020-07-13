@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Mya Pitzeruse</title>
+    <link>https://mjpitz.com/tags/</link>
+    <description>Recent content in Tags on Mya Pitzeruse</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 20 Apr 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://mjpitz.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>iot</title>
+      <link>https://mjpitz.com/tags/iot/</link>
+      <pubDate>Mon, 20 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/iot/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>k3s</title>
+      <link>https://mjpitz.com/tags/k3s/</link>
+      <pubDate>Mon, 20 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/k3s/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kubernetes</title>
+      <link>https://mjpitz.com/tags/kubernetes/</link>
+      <pubDate>Mon, 20 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>raspberrypi</title>
+      <link>https://mjpitz.com/tags/raspberrypi/</link>
+      <pubDate>Mon, 20 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/raspberrypi/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>dependencies</title>
+      <link>https://mjpitz.com/tags/dependencies/</link>
+      <pubDate>Fri, 24 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/dependencies/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>docker</title>
+      <link>https://mjpitz.com/tags/docker/</link>
+      <pubDate>Fri, 24 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>microservices</title>
+      <link>https://mjpitz.com/tags/microservices/</link>
+      <pubDate>Fri, 24 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/microservices/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>arm</title>
+      <link>https://mjpitz.com/tags/arm/</link>
+      <pubDate>Tue, 07 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/arm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>arm64</title>
+      <link>https://mjpitz.com/tags/arm64/</link>
+      <pubDate>Tue, 07 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/arm64/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>buildx</title>
+      <link>https://mjpitz.com/tags/buildx/</link>
+      <pubDate>Tue, 07 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/buildx/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>multiarch</title>
+      <link>https://mjpitz.com/tags/multiarch/</link>
+      <pubDate>Tue, 07 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/multiarch/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>apache</title>
+      <link>https://mjpitz.com/tags/apache/</link>
+      <pubDate>Thu, 02 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/apache/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>licensing</title>
+      <link>https://mjpitz.com/tags/licensing/</link>
+      <pubDate>Thu, 02 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/licensing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mit</title>
+      <link>https://mjpitz.com/tags/mit/</link>
+      <pubDate>Thu, 02 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/mit/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>software</title>
+      <link>https://mjpitz.com/tags/software/</link>
+      <pubDate>Thu, 02 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/software/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>monitoring</title>
+      <link>https://mjpitz.com/tags/monitoring/</link>
+      <pubDate>Sun, 21 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/monitoring/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>prometheus</title>
+      <link>https://mjpitz.com/tags/prometheus/</link>
+      <pubDate>Sun, 21 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/prometheus/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>docker-machine</title>
+      <link>https://mjpitz.com/tags/docker-machine/</link>
+      <pubDate>Fri, 12 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/docker-machine/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>fuse</title>
+      <link>https://mjpitz.com/tags/fuse/</link>
+      <pubDate>Wed, 30 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/fuse/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>golang</title>
+      <link>https://mjpitz.com/tags/golang/</link>
+      <pubDate>Wed, 30 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>aws</title>
+      <link>https://mjpitz.com/tags/aws/</link>
+      <pubDate>Sun, 28 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/aws/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>dosh</title>
+      <link>https://mjpitz.com/tags/dosh/</link>
+      <pubDate>Sun, 28 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/dosh/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>lambda</title>
+      <link>https://mjpitz.com/tags/lambda/</link>
+      <pubDate>Sun, 28 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/lambda/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>serverless</title>
+      <link>https://mjpitz.com/tags/serverless/</link>
+      <pubDate>Sun, 28 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/serverless/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>indeed</title>
+      <link>https://mjpitz.com/tags/indeed/</link>
+      <pubDate>Sat, 01 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/indeed/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>spring-bad-practices</title>
+      <link>https://mjpitz.com/tags/spring-bad-practices/</link>
+      <pubDate>Sat, 01 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/spring-bad-practices/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

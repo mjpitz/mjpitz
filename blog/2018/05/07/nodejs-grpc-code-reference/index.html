@@ -1,138 +1,119 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link type="application/atom+xml" rel="alternate" href="https://www.mjpitz.com/feed.xml" title="Mya Pitzeruse" />
-        <meta name="author" content="Mya Pitzeruse">
-
-        <title>
-            
-                NodeJS gRPC Code Reference
-            
-        </title>
-
-        
-
-        <link rel="stylesheet" href="/statics/libs/bootstrap-3.3.7/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="/statics/libs/font-awesome-5.4.1/css/all.min.css">
-        <link rel="stylesheet" href="/statics/css/syntax-highlighting.css"/>
-        <link rel="stylesheet" href="/statics/css/app.css"/>
-
-        <link rel="apple-touch-icon" sizes="180x180" href="/statics/img/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/statics/img/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/statics/img/favicon-16x16.png">
-        <link rel="manifest" href="/statics/img/site.webmanifest">
-        <link rel="mask-icon" href="/statics/img/safari-pinned-tab.svg" color="#a28ad2">
-        <link rel="shortcut icon" href="/statics/img/favicon.ico">
-        <link rel="icon" href="/statics/img/favicon.ico" type="image/x-icon">
-        <meta name="msapplication-TileColor" content="#eeeeee">
-        <meta name="msapplication-config" content="/statics/img/browserconfig.xml">
-        <meta name="theme-color" content="#eeeeee">
-    </head>
-    <body>
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <div class="navbar-brand">@mjpitz</div>
-                </div>
-
-                <div class="collapse navbar-collapse" id="menu">
-                    <ul class="nav navbar-nav mr-auto">
-                        <li>
-                            <a href="/">
-                                <i class="fas fa-home" title="Blog" data-toggle="tooltip" data-placement="bottom">
-                                    <span>Blog</span>
-                                </i>
-                                Blog
-                            </a>
-                        </li>
-                    </ul>
-                    
-                    <ul class="nav navbar-nav nav-social">
-                        <li>
-                            <a href="https://medium.com/@mjpitz">
-                                <i class="fab fa-medium" title="Medium" data-toggle="tooltip" data-placement="bottom">
-                                    <span>Medium</span>
-                                </i>
-                            </a>
-                        </li>
-                        
-                        <li>
-                            <a href="http://www.github.com/mjpitz">
-                                <i class="fab fa-github" title="GitHub" data-toggle="tooltip" data-placement="bottom">
-                                    <span>GitHub</span>
-                                </i>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="https://hub.docker.com/u/mjpitz">
-                                <i class="fab fa-docker" title="Docker" data-toggle="tooltip" data-placement="bottom">
-                                    <span>Docker</span>
-                                </i>
-                            </a>
-                        </li>
-                        
-                        <li>
-                            <a href="http://www.twitter.com/_mjpitz_">
-                                <i class="fab fa-twitter" title="Twitter" data-toggle="tooltip" data-placement="bottom">
-                                    <span>Twitter</span>
-                                </i>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="http://www.linkedin.com/in/mjpitz">
-                                <i class="fab fa-linkedin" title="LinkedIn" data-toggle="tooltip" data-placement="bottom">
-                                    <span>LinkedIn</span>
-                                </i>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="/feed.xml">
-                                <i class="fas fa-rss" title="Feed" data-toggle="tooltip" data-placement="bottom">
-                                    <span>Feed</span>
-                                </i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <div class="container mjpitz-content" style="margin-top:82px">
-            <div class="panel panel-default">
-    <div class="panel-body">
-        <div class="post">
-            <h1 class="post-title">NodeJS gRPC Code Reference</h1>
-            <p class="post-date">Posted on May 07, 2018</p>
-
-            <div class="post-content">
-                <p>While working at Indeed, I did a fair amount with <a href="https://grpc.io/">gRPC</a>.
+<html lang="en" data-theme="light"><head>
+    <title> Mya Pitzeruse | NodeJS gRPC Code Reference </title>
+    <meta charset="utf-8"><meta name="generator" content="Hugo 0.69.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="description" content="">
+    
+    <link rel="stylesheet" href="https://mjpitz.com/css/style.min.67cd718c0a3c8009c771494d381fb7128246a454bd0518fed97cb65d257db948.css" integrity="sha256-Z81xjAo8gAnHcUlNOB&#43;3EoJGpFS9BRj&#43;2Xy2XSV9uUg=" crossorigin="anonymous" type="text/css">
+    <link rel="stylesheet" href="https://mjpitz.com/statics/css/overrides.css" type="text/css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    
+    <link rel="shortcut icon" href="https://mjpitz.com/statics/img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://mjpitz.com/statics/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://mjpitz.com/statics/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://mjpitz.com/statics/img/favicon-16x16.png">
+    <link rel="canonical" href="https://mjpitz.com/blog/2018/05/07/nodejs-grpc-code-reference/">
+    
+    
+    <script type="text/javascript" src="https://mjpitz.com/js/anatole-header.min.c275265a259296f3dd50e8236a77fcbcadb1dbb9597d3045c675dcc2c7c58a93.js" integrity="sha256-wnUmWiWSlvPdUOgjanf8vK2x27lZfTBFxnXcwsfFipM=" crossorigin="anonymous"></script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="NodeJS gRPC Code Reference"/>
+<meta name="twitter:description" content="While working at Indeed, I did a fair amount with gRPC.
 I became rather familiar with the Java, Go, NodeJS, and python implementations.
 During my vacation between jobs, I decided to revisit one of my old projects and try to migrate it to using gRPC.
 By doing so, I would be able to support a larger variety of request types (streaming, non-streaming, etc).
 When I started to look for good NodeJS code samples or reference implementations, I was rather disappointed with what I found.
-Many of the ones I could get my hands on only demonstrated unary methods and not any of the streaming API’s.
-After a lot of time digging through source and a few implementations online, I finally assembled a good reference.</p>
+Many of the ones I could get my hands on only demonstrated unary methods and not any of the streaming API&rsquo;s.
+After a lot of time digging through source and a few implementations online, I finally assembled a good reference.
+In this post, I only wanted to detail what the method calls look like on both ends of the wire.
+There are some additional best practices that should be taken into consideration, but I do not plan on covering those here."/>
 
+</head><body><div class="sidebar animated fadeInDown">
+    <div class="logo-title">
+      <div class="title">
+        <img src="https://mjpitz.com/statics/img/mjpitz.jpeg" alt="profile picture">
+        <h3 title=""><a href="/">Mya Pitzeruse</a></h3>
+        <div class="description">
+          <p></p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
+        
+        <li>
+        <a href="https://github.com/mjpitz" rel="me" aria-label="GitHub">
+          <i class="fa fa-2x fa-github" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+        <li>
+        <a href="https://twitter.com/_mjpitz_" rel="me" aria-label="Twitter">
+          <i class="fa fa-2x fa-twitter" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+        <li>
+        <a href="https://www.linkedin.com/in/mjpitz/" rel="me" aria-label="LinkedIn">
+          <i class="fa fa-2x fa-linkedin" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+        <li>
+        <a href="/index.xml" rel="me" aria-label="Feed">
+          <i class="fa fa-2x fa-rss" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+    </ul>
+    <div class="footer">
+        <div class="by_farbox">&copy; Mya Pitzeruse 2020 </div>
+      </div>
+    </div>
+</div><div class="main">
+            <div class="page-top animated fadeInDown">
+    <ul class="nav">
+        
+        
+        
+        <li><a  href="/" title="">Home</a></li>
+        
+        
+        <li><a  href="/blog/" title="">Archive</a></li>
+        
+    </ul>
+    <div class="themeswitcher">
+        <a class="theme-switch" title="Switch Theme">
+            <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+        </a>
+    </div>
+</div>
+
+            <div class="autopagerize_page_element">
+                <div class="content">
+<div class="post animated fadeInDown">
+    <div class="post-content">
+
+      <div class="post-title">
+        <h3>NodeJS gRPC Code Reference
+        </h3>
+        
+        </div>
+
+    <p>While working at Indeed, I did a fair amount with <a href="https://grpc.io/">gRPC</a>.
+I became rather familiar with the Java, Go, NodeJS, and python implementations.
+During my vacation between jobs, I decided to revisit one of my old projects and try to migrate it to using gRPC.
+By doing so, I would be able to support a larger variety of request types (streaming, non-streaming, etc).
+When I started to look for good NodeJS code samples or reference implementations, I was rather disappointed with what I found.
+Many of the ones I could get my hands on only demonstrated unary methods and not any of the streaming API&rsquo;s.
+After a lot of time digging through source and a few implementations online, I finally assembled a good reference.</p>
 <p>In this post, I only wanted to detail what the method calls look like on both ends of the wire.
 There are some additional best practices that should be taken into consideration, but I do not plan on covering those here.</p>
-
-<!--more-->
-
 <h2 id="protocol-buffers-definition">Protocol Buffers Definition</h2>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>message Request {
+<pre><code>message Request {
 }
 
 message Response {
@@ -144,211 +125,165 @@ service MyService {
     rpc serverStreamingMethod(Request) returns (stream Response);
     rpc bidirectionalStreamingMethod(stream Request) returns (stream Response);
 }
-</code></pre></div></div>
+</code></pre><h2 id="service-implementation">Service Implementation</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">grpc</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;grpc&#39;</span>);
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">MyServiceGrpc</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">grpc</span>.<span style="color:#a6e22e">load</span>(<span style="color:#a6e22e">require</span>.<span style="color:#a6e22e">resolve</span>(<span style="color:#e6db74">&#39;./MyService.proto&#39;</span>));
 
-<h2 id="service-implementation">Service Implementation</h2>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">grpc</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">grpc</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">const</span> <span class="nx">MyServiceGrpc</span> <span class="o">=</span> <span class="nx">grpc</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="nx">require</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="dl">'</span><span class="s1">./MyService.proto</span><span class="dl">'</span><span class="p">));</span>
-
-<span class="kd">class</span> <span class="nx">MyServiceImpl</span> <span class="p">{</span>
-    <span class="nx">unaryMethod</span><span class="p">(</span><span class="nx">call</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kd">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">call</span><span class="p">.</span><span class="nx">request</span><span class="p">;</span>
-        <span class="c1">// handle request</span>
-        <span class="nx">callback</span><span class="p">(</span><span class="dl">'</span><span class="s1">error</span><span class="dl">'</span><span class="p">,</span> <span class="nx">response</span><span class="p">);</span>
-    <span class="p">}</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyServiceImpl</span> {
+    <span style="color:#a6e22e">unaryMethod</span>(<span style="color:#a6e22e">call</span>, <span style="color:#a6e22e">callback</span>) {
+        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">request</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">call</span>.<span style="color:#a6e22e">request</span>;
+        <span style="color:#75715e">// handle request
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">callback</span>(<span style="color:#e6db74">&#39;error&#39;</span>, <span style="color:#a6e22e">response</span>);
+    }
     
-    <span class="nx">clientStreamingMethod</span><span class="p">(</span><span class="nx">call</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">call</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">data</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">request</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-            <span class="c1">// handle request</span>
-        <span class="p">});</span>
+    <span style="color:#a6e22e">clientStreamingMethod</span>(<span style="color:#a6e22e">call</span>, <span style="color:#a6e22e">callback</span>) {
+        <span style="color:#a6e22e">call</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;data&#39;</span>, (<span style="color:#a6e22e">request</span>) =&gt; {
+            <span style="color:#75715e">// handle request
+</span><span style="color:#75715e"></span>        });
         
-        <span class="nx">call</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">end</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-            <span class="nx">callback</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
-        <span class="p">});</span>
-    <span class="p">}</span>
+        <span style="color:#a6e22e">call</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;end&#39;</span>, () =&gt; {
+            <span style="color:#a6e22e">callback</span>(<span style="color:#a6e22e">response</span>);
+        });
+    }
     
-    <span class="nx">serverStreamingMethod</span><span class="p">(</span><span class="nx">call</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kd">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">call</span><span class="p">.</span><span class="nx">request</span><span class="p">;</span>
+    <span style="color:#a6e22e">serverStreamingMethod</span>(<span style="color:#a6e22e">call</span>) {
+        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">request</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">call</span>.<span style="color:#a6e22e">request</span>;
         
-        <span class="c1">// call N times</span>
-        <span class="nx">call</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+        <span style="color:#75715e">// call N times
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">call</span>.<span style="color:#a6e22e">write</span>(<span style="color:#a6e22e">response</span>);
         
-        <span class="c1">// call once</span>
-        <span class="nx">call</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
-    <span class="p">}</span>
+        <span style="color:#75715e">// call once
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">call</span>.<span style="color:#a6e22e">end</span>();
+    }
     
-    <span class="nx">bidirectionalStreamingMethod</span><span class="p">(</span><span class="nx">call</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">call</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">data</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">request</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-            <span class="c1">// handle request</span>
-            <span class="nx">call</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
-        <span class="p">});</span>
+    <span style="color:#a6e22e">bidirectionalStreamingMethod</span>(<span style="color:#a6e22e">call</span>) {
+        <span style="color:#a6e22e">call</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;data&#39;</span>, (<span style="color:#a6e22e">request</span>) =&gt; {
+            <span style="color:#75715e">// handle request
+</span><span style="color:#75715e"></span>            <span style="color:#a6e22e">call</span>.<span style="color:#a6e22e">write</span>(<span style="color:#a6e22e">response</span>);
+        });
         
-        <span class="nx">call</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">end</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-            <span class="nx">call</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
-        <span class="p">});</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+        <span style="color:#a6e22e">call</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;end&#39;</span>, () =&gt; {
+            <span style="color:#a6e22e">call</span>.<span style="color:#a6e22e">end</span>();
+        });
+    }
+}
 
-<span class="kd">const</span> <span class="nx">server</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">grpc</span><span class="p">.</span><span class="nx">Server</span><span class="p">();</span>
-<span class="nx">server</span><span class="p">.</span><span class="nx">addService</span><span class="p">(</span><span class="nx">MyServiceGrpc</span><span class="p">.</span><span class="nx">MyService</span><span class="p">.</span><span class="nx">service</span><span class="p">,</span> <span class="k">new</span> <span class="nx">MyServiceImpl</span><span class="p">());</span>
-<span class="nx">server</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="dl">'</span><span class="s1">0.0.0.0:1234</span><span class="dl">'</span><span class="p">,</span> <span class="nx">grpc</span><span class="p">.</span><span class="nx">ServerCredentials</span><span class="p">.</span><span class="nx">createInsecure</span><span class="p">());</span>
-<span class="nx">server</span><span class="p">.</span><span class="nx">start</span><span class="p">();</span>
-</code></pre></div></div>
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">server</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">grpc</span>.<span style="color:#a6e22e">Server</span>();
+<span style="color:#a6e22e">server</span>.<span style="color:#a6e22e">addService</span>(<span style="color:#a6e22e">MyServiceGrpc</span>.<span style="color:#a6e22e">MyService</span>.<span style="color:#a6e22e">service</span>, <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">MyServiceImpl</span>());
+<span style="color:#a6e22e">server</span>.<span style="color:#a6e22e">bind</span>(<span style="color:#e6db74">&#39;0.0.0.0:1234&#39;</span>, <span style="color:#a6e22e">grpc</span>.<span style="color:#a6e22e">ServerCredentials</span>.<span style="color:#a6e22e">createInsecure</span>());
+<span style="color:#a6e22e">server</span>.<span style="color:#a6e22e">start</span>();
+</code></pre></div><h2 id="client-usage">Client Usage</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">grpc</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;grpc&#39;</span>);
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">MyServiceGrpc</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">grpc</span>.<span style="color:#a6e22e">load</span>(<span style="color:#a6e22e">require</span>.<span style="color:#a6e22e">resolve</span>(<span style="color:#e6db74">&#39;./MyService.proto&#39;</span>));
 
-<h2 id="client-usage">Client Usage</h2>
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">credentials</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">grpc</span>.<span style="color:#a6e22e">credentials</span>.<span style="color:#a6e22e">createInsecure</span>();
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">client</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">MyServiceGrpc</span>.<span style="color:#a6e22e">MyService</span>(<span style="color:#e6db74">&#39;0.0.0.0:1234&#39;</span>, <span style="color:#a6e22e">credentials</span>);
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">md</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">grpc</span>.<span style="color:#a6e22e">Metadata</span>();
 
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">grpc</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">grpc</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">const</span> <span class="nx">MyServiceGrpc</span> <span class="o">=</span> <span class="nx">grpc</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="nx">require</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="dl">'</span><span class="s1">./MyService.proto</span><span class="dl">'</span><span class="p">));</span>
+<span style="color:#75715e">// unary
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">unaryMethod</span>(<span style="color:#a6e22e">request</span>, <span style="color:#a6e22e">md</span>, (<span style="color:#a6e22e">err</span>, <span style="color:#a6e22e">response</span>) =&gt; {
+    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">err</span>) {
+        <span style="color:#75715e">// handle err
+</span><span style="color:#75715e"></span>    } <span style="color:#66d9ef">else</span> {
+        <span style="color:#75715e">// handle response
+</span><span style="color:#75715e"></span>    }
+});
 
-<span class="kd">const</span> <span class="nx">credentials</span> <span class="o">=</span> <span class="nx">grpc</span><span class="p">.</span><span class="nx">credentials</span><span class="p">.</span><span class="nx">createInsecure</span><span class="p">();</span>
-<span class="kd">const</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MyServiceGrpc</span><span class="p">.</span><span class="nx">MyService</span><span class="p">(</span><span class="dl">'</span><span class="s1">0.0.0.0:1234</span><span class="dl">'</span><span class="p">,</span> <span class="nx">credentials</span><span class="p">);</span>
-<span class="kd">const</span> <span class="nx">md</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">grpc</span><span class="p">.</span><span class="nx">Metadata</span><span class="p">();</span>
-
-<span class="c1">// unary</span>
-<span class="nx">client</span><span class="p">.</span><span class="nx">unaryMethod</span><span class="p">(</span><span class="nx">request</span><span class="p">,</span> <span class="nx">md</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// handle err</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="c1">// handle response</span>
-    <span class="p">}</span>
-<span class="p">});</span>
-
-<span class="c1">// client streaming</span>
-<span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">call</span> <span class="o">=</span> <span class="nx">client</span><span class="p">.</span><span class="nx">clientStreamingMethod</span><span class="p">(</span><span class="nx">md</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// handle err</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-            <span class="c1">// handle response</span>
-        <span class="p">}</span>
-    <span class="p">});</span>
+<span style="color:#75715e">// client streaming
+</span><span style="color:#75715e"></span>{
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">call</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">clientStreamingMethod</span>(<span style="color:#a6e22e">md</span>, (<span style="color:#a6e22e">err</span>, <span style="color:#a6e22e">response</span>) =&gt; {
+        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">err</span>) {
+            <span style="color:#75715e">// handle err
+</span><span style="color:#75715e"></span>        } <span style="color:#66d9ef">else</span> {
+            <span style="color:#75715e">// handle response
+</span><span style="color:#75715e"></span>        }
+    });
     
-    <span class="c1">// call N times</span>
-    <span class="nx">call</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">request</span><span class="p">);</span>
+    <span style="color:#75715e">// call N times
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">call</span>.<span style="color:#a6e22e">write</span>(<span style="color:#a6e22e">request</span>);
     
-    <span class="c1">// call once</span>
-    <span class="nx">call</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
-<span class="p">}</span>
+    <span style="color:#75715e">// call once
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">call</span>.<span style="color:#a6e22e">end</span>();
+}
 
-<span class="c1">// server streaming</span>
-<span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">call</span> <span class="o">=</span> <span class="nx">client</span><span class="p">.</span><span class="nx">serverStreamingMethod</span><span class="p">(</span><span class="nx">request</span><span class="p">,</span> <span class="nx">md</span><span class="p">);</span>
+<span style="color:#75715e">// server streaming
+</span><span style="color:#75715e"></span>{
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">call</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">serverStreamingMethod</span>(<span style="color:#a6e22e">request</span>, <span style="color:#a6e22e">md</span>);
     
-    <span class="nx">call</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">data</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="c1">// handle response</span>
-    <span class="p">});</span>
+    <span style="color:#a6e22e">call</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;data&#39;</span>, (<span style="color:#a6e22e">response</span>) =&gt; {
+        <span style="color:#75715e">// handle response
+</span><span style="color:#75715e"></span>    });
     
-    <span class="nx">call</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">end</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="c1">// handle end of server</span>
-    <span class="p">});</span>
-<span class="p">}</span>
+    <span style="color:#a6e22e">call</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;end&#39;</span>, () =&gt; {
+        <span style="color:#75715e">// handle end of server
+</span><span style="color:#75715e"></span>    });
+}
 
-<span class="c1">// bidirectional streaming</span>
-<span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">call</span> <span class="o">=</span> <span class="nx">client</span><span class="p">.</span><span class="nx">bidirectionalStreamingMethod</span><span class="p">(</span><span class="nx">md</span><span class="p">);</span>
+<span style="color:#75715e">// bidirectional streaming
+</span><span style="color:#75715e"></span>{
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">call</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">bidirectionalStreamingMethod</span>(<span style="color:#a6e22e">md</span>);
     
-    <span class="nx">call</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">data</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="c1">// handle response</span>
-    <span class="p">});</span>
+    <span style="color:#a6e22e">call</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;data&#39;</span>, (<span style="color:#a6e22e">response</span>) =&gt; {
+        <span style="color:#75715e">// handle response
+</span><span style="color:#75715e"></span>    });
     
-    <span class="nx">call</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">end</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="c1">// handle end of server</span>
-    <span class="p">});</span>
+    <span style="color:#a6e22e">call</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;end&#39;</span>, () =&gt; {
+        <span style="color:#75715e">// handle end of server
+</span><span style="color:#75715e"></span>    });
     
-    <span class="c1">// call N times</span>
-    <span class="nx">call</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">request</span><span class="p">);</span>
+    <span style="color:#75715e">// call N times
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">call</span>.<span style="color:#a6e22e">write</span>(<span style="color:#a6e22e">request</span>);
     
-    <span class="c1">// call once</span>
-    <span class="nx">call</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<h2 id="other-points-of-reference">Other Points of Reference</h2>
-
+    <span style="color:#75715e">// call once
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">call</span>.<span style="color:#a6e22e">end</span>();
+}
+</code></pre></div><h2 id="other-points-of-reference">Other Points of Reference</h2>
 <p><strong>Code in grpc/grpc-node</strong></p>
-
 <p>Source code is always a great point of reference.
 gRPC has several good integration tests where you can see some of these approaches being used.</p>
-
 <ul>
-  <li><a href="https://github.com/grpc/grpc-node/blob/master/test/interop/interop_server.js">https://github.com/grpc/grpc-node/blob/master/test/interop/interop_server.js</a></li>
-  <li><a href="https://github.com/grpc/grpc-node/blob/master/test/interop/interop_client.js">https://github.com/grpc/grpc-node/blob/master/test/interop/interop_client.js</a></li>
-  <li><a href="https://github.com/grpc/grpc-node/blob/master/test/performance/benchmark_server.js">https://github.com/grpc/grpc-node/blob/master/test/performance/benchmark_server.js</a></li>
-  <li><a href="https://github.com/grpc/grpc-node/blob/master/test/performance/benchmark_client.js">https://github.com/grpc/grpc-node/blob/master/test/performance/benchmark_client.js</a></li>
+<li><a href="https://github.com/grpc/grpc-node/blob/master/test/interop/interop_server.js">https://github.com/grpc/grpc-node/blob/master/test/interop/interop_server.js</a></li>
+<li><a href="https://github.com/grpc/grpc-node/blob/master/test/interop/interop_client.js">https://github.com/grpc/grpc-node/blob/master/test/interop/interop_client.js</a></li>
+<li><a href="https://github.com/grpc/grpc-node/blob/master/test/performance/benchmark_server.js">https://github.com/grpc/grpc-node/blob/master/test/performance/benchmark_server.js</a></li>
+<li><a href="https://github.com/grpc/grpc-node/blob/master/test/performance/benchmark_client.js">https://github.com/grpc/grpc-node/blob/master/test/performance/benchmark_client.js</a></li>
 </ul>
-
-            </div>
-
-            <div class="text-center">
-    <br/>
-    <br/>
-    <p><i>Share this article on</i></p>
-
-    <div style="font-size: 36px;">
-        <a rel="nofollow" target="_blank" href="https://facebook.com/sharer.php?u=https://www.mjpitz.com/blog/2018/05/07/nodejs-grpc-code-reference/">
-            <i class="fab fa-facebook" title="Facebook" data-toggle="tooltip" data-placement="bottom"></i></a>
-        &nbsp;
-        <a rel="nofollow" target="_blank" href="https://twitter.com/intent/tweet?text=NodeJS gRPC Code Reference&url=https://www.mjpitz.com/blog/2018/05/07/nodejs-grpc-code-reference/&via=&related=">
-            <i class="fab fa-twitter" title="Twitter" data-toggle="tooltip" data-placement="bottom"></i></a>
-        &nbsp;
-        <a rel="nofollow" target="_blank" href="http://www.linkedin.com/sharing/share-offsite/?url=https://www.mjpitz.com/blog/2018/05/07/nodejs-grpc-code-reference/">
-            <i class="fab fa-linkedin" title="LinkedIn" data-toggle="tooltip" data-placement="bottom"></i></a>
     </div>
-</div>
-
-
-            <div class="post-footer row">
-                <div class="col-sm-6 text-left">
-                    
-                        <a class="btn btn-default" href="/blog/2017/06/14/delaying-message-processing/">&laquo; Previous Post</a>
-                    
-                </div>
-
-                <div class="col-sm-6 text-right">
-                    
-                    <a class="btn btn-default" href="/blog/2018/10/27/lambda-local-development/">Next Post &raquo;</a>
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-        </div>
-        <div style="padding:25px 0; margin-top: 50px;">
-    <div>
+    <div class="post-footer">
+      <div class="info">
         
-<!-- Google Analytics (http://google.com/analytics) -->
-<script>
-    !function(j,e,k,y,l,L){j.GoogleAnalyticsObject=y,j[y]||(j[y]=function(){
-        (j[y].q=j[y].q||[]).push(arguments)}),j[y].l=+new Date,l=e.createElement(k),
-            L=e.getElementsByTagName(k)[0],l.src='//www.google-analytics.com/analytics.js',
-            L.parentNode.insertBefore(l,L)}(window,document,'script','ga');
-    ga('create', 'UA-39314903-5', 'auto');
-    ga('send', 'pageview');
-</script>
-
-
-
-        <script src="/statics/libs/jquery-2.1.4/jquery.min.js"></script>
-        <script src="/statics/libs/bootstrap-3.3.7/js/bootstrap.min.js"></script>
-        <script src="/statics/libs/mermaid-8.5.0/mermaid.min.js"></script>
-
-        <script>
-            mermaid.initialize({
-                startOnLoad:true,
-                flowchart: {
-                    useMaxWidth: true,
-                }
-            });
-
-            $(function () {
-                $('[data-toggle="tooltip"]').tooltip();
-                $('.collapse').collapse({ toggle: false });
-            });
-        </script>
+        
+      </div>
     </div>
+
+    
 </div>
 
-    </body>
+
+                </div>
+            </div>
+        </div>
+</body>
+
+
+
+<script type="text/javascript" src="https://mjpitz.com/js/jquery.min.86b1e8f819ee2d9099a783e50b49dff24282545fc40773861f9126b921532e4c.js" integrity="sha256-hrHo&#43;BnuLZCZp4PlC0nf8kKCVF/EB3OGH5EmuSFTLkw=" crossorigin="anonymous"></script>
+
+
+
+
+<script type="text/javascript" src="https://mjpitz.com/js/bundle.min.0f9c74cb78f13d1f15f33daff4037c70354f98acfbb97a6f61708966675c3cae.js" integrity="sha256-D5x0y3jxPR8V8z2v9AN8cDVPmKz7uXpvYXCJZmdcPK4=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://mjpitz.com/js/medium-zoom.min.92f21c856129f84aeb719459b3e6ac621a3032fd7b180a18c04e1d12083f8aba.js" integrity="sha256-kvIchWEp&#43;ErrcZRZs&#43;asYhowMv17GAoYwE4dEgg/iro=" crossorigin="anonymous"></script>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-39314903-5', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</html></body>
+
 </html>

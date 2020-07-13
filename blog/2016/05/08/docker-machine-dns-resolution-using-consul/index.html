@@ -1,141 +1,115 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link type="application/atom+xml" rel="alternate" href="https://www.mjpitz.com/feed.xml" title="Mya Pitzeruse" />
-        <meta name="author" content="Mya Pitzeruse">
+<html lang="en" data-theme="light"><head>
+    <title> Mya Pitzeruse | Docker Machine DNS Resolution using Consul </title>
+    <meta charset="utf-8"><meta name="generator" content="Hugo 0.69.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="description" content="">
+    
+    <link rel="stylesheet" href="https://mjpitz.com/css/style.min.67cd718c0a3c8009c771494d381fb7128246a454bd0518fed97cb65d257db948.css" integrity="sha256-Z81xjAo8gAnHcUlNOB&#43;3EoJGpFS9BRj&#43;2Xy2XSV9uUg=" crossorigin="anonymous" type="text/css">
+    <link rel="stylesheet" href="https://mjpitz.com/statics/css/overrides.css" type="text/css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    
+    <link rel="shortcut icon" href="https://mjpitz.com/statics/img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://mjpitz.com/statics/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://mjpitz.com/statics/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://mjpitz.com/statics/img/favicon-16x16.png">
+    <link rel="canonical" href="https://mjpitz.com/blog/2016/05/08/docker-machine-dns-resolution-using-consul/">
+    
+    
+    <script type="text/javascript" src="https://mjpitz.com/js/anatole-header.min.c275265a259296f3dd50e8236a77fcbcadb1dbb9597d3045c675dcc2c7c58a93.js" integrity="sha256-wnUmWiWSlvPdUOgjanf8vK2x27lZfTBFxnXcwsfFipM=" crossorigin="anonymous"></script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Docker Machine DNS Resolution using Consul"/>
+<meta name="twitter:description" content="Developers at Indeed have recently switched over to using docker for local development.
+Being one of the earlier adopters, I fell in love with the type of workflow that it enabled.
+It allowed me to create seamless environments between both my desktop and portable workstation.
+The tooling did this by allowing you to resolve container names as hosts in your web browser.
+For example, if I had a web application named indigo running on port 4000, I could go to http://indigo:4000 to access that application.
+After a few weeks of enjoying the simplicity of this development workflow, I craved a similar type of environment for some of the larger scale projects that I do at home.
+In this blog post, I will cover some of the basics that allowed me to enable this type of development."/>
 
-        <title>
-            
-                Docker Machine DNS Resolution using Consul
-            
-        </title>
+</head><body><div class="sidebar animated fadeInDown">
+    <div class="logo-title">
+      <div class="title">
+        <img src="https://mjpitz.com/statics/img/mjpitz.jpeg" alt="profile picture">
+        <h3 title=""><a href="/">Mya Pitzeruse</a></h3>
+        <div class="description">
+          <p></p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
+        
+        <li>
+        <a href="https://github.com/mjpitz" rel="me" aria-label="GitHub">
+          <i class="fa fa-2x fa-github" aria-hidden="true"></i>
+        </a>          
+        </li>
 
         
+        <li>
+        <a href="https://twitter.com/_mjpitz_" rel="me" aria-label="Twitter">
+          <i class="fa fa-2x fa-twitter" aria-hidden="true"></i>
+        </a>          
+        </li>
 
-        <link rel="stylesheet" href="/statics/libs/bootstrap-3.3.7/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="/statics/libs/font-awesome-5.4.1/css/all.min.css">
-        <link rel="stylesheet" href="/statics/css/syntax-highlighting.css"/>
-        <link rel="stylesheet" href="/statics/css/app.css"/>
+        
+        <li>
+        <a href="https://www.linkedin.com/in/mjpitz/" rel="me" aria-label="LinkedIn">
+          <i class="fa fa-2x fa-linkedin" aria-hidden="true"></i>
+        </a>          
+        </li>
 
-        <link rel="apple-touch-icon" sizes="180x180" href="/statics/img/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/statics/img/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/statics/img/favicon-16x16.png">
-        <link rel="manifest" href="/statics/img/site.webmanifest">
-        <link rel="mask-icon" href="/statics/img/safari-pinned-tab.svg" color="#a28ad2">
-        <link rel="shortcut icon" href="/statics/img/favicon.ico">
-        <link rel="icon" href="/statics/img/favicon.ico" type="image/x-icon">
-        <meta name="msapplication-TileColor" content="#eeeeee">
-        <meta name="msapplication-config" content="/statics/img/browserconfig.xml">
-        <meta name="theme-color" content="#eeeeee">
-    </head>
-    <body>
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <div class="navbar-brand">@mjpitz</div>
-                </div>
+        
+        <li>
+        <a href="/index.xml" rel="me" aria-label="Feed">
+          <i class="fa fa-2x fa-rss" aria-hidden="true"></i>
+        </a>          
+        </li>
 
-                <div class="collapse navbar-collapse" id="menu">
-                    <ul class="nav navbar-nav mr-auto">
-                        <li>
-                            <a href="/">
-                                <i class="fas fa-home" title="Blog" data-toggle="tooltip" data-placement="bottom">
-                                    <span>Blog</span>
-                                </i>
-                                Blog
-                            </a>
-                        </li>
-                    </ul>
-                    
-                    <ul class="nav navbar-nav nav-social">
-                        <li>
-                            <a href="https://medium.com/@mjpitz">
-                                <i class="fab fa-medium" title="Medium" data-toggle="tooltip" data-placement="bottom">
-                                    <span>Medium</span>
-                                </i>
-                            </a>
-                        </li>
-                        
-                        <li>
-                            <a href="http://www.github.com/mjpitz">
-                                <i class="fab fa-github" title="GitHub" data-toggle="tooltip" data-placement="bottom">
-                                    <span>GitHub</span>
-                                </i>
-                            </a>
-                        </li>
+        
+    </ul>
+    <div class="footer">
+        <div class="by_farbox">&copy; Mya Pitzeruse 2020 </div>
+      </div>
+    </div>
+</div><div class="main">
+            <div class="page-top animated fadeInDown">
+    <ul class="nav">
+        
+        
+        
+        <li><a  href="/" title="">Home</a></li>
+        
+        
+        <li><a  href="/blog/" title="">Archive</a></li>
+        
+    </ul>
+    <div class="themeswitcher">
+        <a class="theme-switch" title="Switch Theme">
+            <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+        </a>
+    </div>
+</div>
 
-                        <li>
-                            <a href="https://hub.docker.com/u/mjpitz">
-                                <i class="fab fa-docker" title="Docker" data-toggle="tooltip" data-placement="bottom">
-                                    <span>Docker</span>
-                                </i>
-                            </a>
-                        </li>
-                        
-                        <li>
-                            <a href="http://www.twitter.com/_mjpitz_">
-                                <i class="fab fa-twitter" title="Twitter" data-toggle="tooltip" data-placement="bottom">
-                                    <span>Twitter</span>
-                                </i>
-                            </a>
-                        </li>
+            <div class="autopagerize_page_element">
+                <div class="content">
+<div class="post animated fadeInDown">
+    <div class="post-content">
 
-                        <li>
-                            <a href="http://www.linkedin.com/in/mjpitz">
-                                <i class="fab fa-linkedin" title="LinkedIn" data-toggle="tooltip" data-placement="bottom">
-                                    <span>LinkedIn</span>
-                                </i>
-                            </a>
-                        </li>
+      <div class="post-title">
+        <h3>Docker Machine DNS Resolution using Consul
+        </h3>
+        
+        </div>
 
-                        <li>
-                            <a href="/feed.xml">
-                                <i class="fas fa-rss" title="Feed" data-toggle="tooltip" data-placement="bottom">
-                                    <span>Feed</span>
-                                </i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <div class="container mjpitz-content" style="margin-top:82px">
-            <div class="panel panel-default">
-    <div class="panel-body">
-        <div class="post">
-            <h1 class="post-title">Docker Machine DNS Resolution using Consul</h1>
-            <p class="post-date">Posted on May 08, 2016</p>
-
-            <div class="post-content">
-                <p>Developers at <a href="http://www.indeed.com">Indeed</a> have <em>recently</em> switched over to using docker for local development.
+    <p>Developers at <a href="http://www.indeed.com">Indeed</a> have <em>recently</em> switched over to using docker for local development.
 Being one of the earlier adopters, I fell in love with the type of workflow that it enabled.
 It allowed me to create seamless environments between both my desktop and portable workstation.
 The tooling did this by allowing you to resolve container names as hosts in your web browser.
 For example, if I had a web application named <strong>indigo</strong> running on port 4000, I could go to http://indigo:4000 to access that application.
 After a few weeks of enjoying the simplicity of this development workflow, I craved a similar type of environment for some of the larger scale projects that I do at home.
 In this blog post, I will cover some of the basics that allowed me to enable this type of development.</p>
-
-<!--more-->
-
-<p><br /></p>
-<div class="alert alert-success">
-<b>Note:</b> I recently moved all of these utilities out into a separate code repository to make lives easier.
-<a href="https://github.com/jpitz/docker-utils">https://github.com/jpitz/docker-utils</a>
-</div>
-<p><br /></p>
-
+<!-- raw HTML omitted -->
 <h2 id="getting-started">Getting Started</h2>
-
 <p>To start, I want to explain the main differences between my workflow and the <a href="http://www.indeed.com">Indeed</a> workflow.
 I started using <a href="https://docs.docker.com/machine/install-machine">docker-machine</a> and <a href="https://docs.docker.com/compose/install/">docker-compose</a> as soon as I could.
 These tools are still early on in their development and many people have yet to adopt the technology.
@@ -144,54 +118,41 @@ This has allowed me to build out some complex services quickly.
 Additionally, I installed <a href="https://wiki.debian.org/HowTo/dnsmasq">dnsmasq</a> to set up a local development domain.
 Since I only develop on an OSX machine at home, I needed a way to provide a multitude of domains quickly with very little configuration.
 dnsmasq allows me to do this quickly and with very few lines of code.</p>
-
 <h3 id="install-dependencies">Install Dependencies</h3>
-
 <p>In order to be able to follow the examples and tutorial below, first insure that you have <a href="https://docs.docker.com/machine/install-machine">docker-machine</a> installed on your machine.
 Optionally, you can install <a href="https://docs.docker.com/compose/install/">docker-compose</a> as it allows for machines to be created through definition inheritance rather than requiring a local docker registry.
 I have provided the versions that are currently running on my box for each below.</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[jpitz@jpitz ~/Development dev 2/2]
+<pre><code>[jpitz@jpitz ~/Development dev 2/2]
 $ docker-machine --version
 docker-machine version 0.7.0, build a650a40
 
 [jpitz@jpitz ~/Development dev 2/2]
 $ docker-compose --version
 docker-compose version 1.7.0, build unknown
-</code></pre></div></div>
-
-<h2 id="basic-setup">Basic Setup</h2>
-
+</code></pre><h2 id="basic-setup">Basic Setup</h2>
 <p>First, we need to get the docker instance inside of the machine to behave in a more expected way.
 To do this, we set the bind ip of the docker engine to be one we can reference at a later time.</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker-machine create \
+<pre><code>docker-machine create \
     --engine-opt bip=172.30.254.1/24 \
     --driver virtualbox \
     default
-</code></pre></div></div>
-
-<p>Next, ensure that your environment variables are set correctly.
+</code></pre><p>Next, ensure that your environment variables are set correctly.
 You can do this by evaluating the result of the docker-machine env command.</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>eval $(docker-machine env default)
-</code></pre></div></div>
-
-<p>Now that our docker-machine is up and running, we can stand up our consul instance.
+<pre><code>eval $(docker-machine env default)
+</code></pre><p>Now that our docker-machine is up and running, we can stand up our consul instance.
 This consul instance will be used to register applications as nodes and resolve hostnames to docker-machine ips.
 In the command below, we are doing several port mappings.
-The first maps the docker-machine’s port 53 (tcp) to port 53 (udp) of the consul container.
+The first maps the docker-machine&rsquo;s port 53 (tcp) to port 53 (udp) of the consul container.
 We bind this port because requests for DNS resolution come in on port 53.
 By binding this port back to the host machine, it exposes the DNS resolution capabilities of consul.
-The second maps the docker-machine’s port 8301 (tcp) to port 8301 (udp) of the consul container.
+The second maps the docker-machine&rsquo;s port 8301 (tcp) to port 8301 (udp) of the consul container.
 These two ports play an important role in the DNS resolution process.
 Port 8301 allows us to have consul instances be able to communicate with other instances of consul.
 We expose this so that we can have various docker-machines speaking to one another.
 Lastly, we map the consul web interface back to the docker machine to allow for direct communication with the consul api.</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run -dt -h node \
-    --name="consul" \
-    --hostname="consul" \
+<pre><code>docker run -dt -h node \
+    --name=&quot;consul&quot; \
+    --hostname=&quot;consul&quot; \
     -p 53:53/udp \
     -p 8301:8301/udp \
     -p 8500:8500 \
@@ -200,160 +161,101 @@ Lastly, we map the consul web interface back to the docker machine to allow for 
     -server \
     -bootstrap \
     -advertise $(docker-machine ip default)
-</code></pre></div></div>
-
-<p>Now that we have an instance of consul running, we need to register some nodes to be able to resolve.
+</code></pre><p>Now that we have an instance of consul running, we need to register some nodes to be able to resolve.
 Using the <a href="https://github.com/jpitz/dotfiles/blob/master/bin/docker-dns-register">docker-dns-register</a> command, we can retrieve the ip of a provided container name and register it as a node with the consul instance.
 The <a href="https://github.com/jpitz/dotfiles/blob/master/bin/docker-dns-register-all">docker-dns-register-all</a> command will retrieve a list of all running containers for the current docker-machine and register each as a node with the consul instance.
-Run the <code class="highlighter-rouge">docker-dns-register consul</code> command to register consul as a node with itself.</p>
-
+Run the <code>docker-dns-register consul</code> command to register consul as a node with itself.</p>
 <p>Lastly, we need to do some local routing table trickery to enable DNS resolution through our newly created consul instance.
 This logic is encapsulated withing the <a href="https://github.com/jpitz/dotfiles/blob/master/bin/docker-dns-configure">docker-dns-configure</a> command.
 The process can be broken down to four simple steps.</p>
-
 <ol>
-  <li>For each available network, add ‘node.consul’ to possible search domains (if necessary).</li>
-  <li>Set the proper nameserver for the node.consul instance in the resolveconf <code class="highlighter-rouge">/etc/resolver/node.consul</code>.</li>
-  <li>Update the routing table to point requests to 172.30.254.0 through gateway $(docker-machine ip default)</li>
-  <li>Restart dnsmasq to pick of new DNS configurations</li>
+<li>For each available network, add &lsquo;node.consul&rsquo; to possible search domains (if necessary).</li>
+<li>Set the proper nameserver for the node.consul instance in the resolveconf <code>/etc/resolver/node.consul</code>.</li>
+<li>Update the routing table to point requests to 172.30.254.0 through gateway $(docker-machine ip default)</li>
+<li>Restart dnsmasq to pick of new DNS configurations</li>
 </ol>
-
-<p>Using your web browser you should now be able to resolve <a href="">http://consul:8500/ui/</a>.
-And that’s it!
-Anytime, you start a new docker container, simply re-run the <code class="highlighter-rouge">docker-dns-register ${container-name}</code> command and you will be able to access it using <code class="highlighter-rouge">http://${container_name}:${your_port}/</code>.</p>
-
+<p>Using your web browser you should now be able to resolve <a href="http://consul:8500/ui/">http://consul:8500/ui/</a>.
+And that&rsquo;s it!
+Anytime, you start a new docker container, simply re-run the <code>docker-dns-register ${container-name}</code> command and you will be able to access it using <code>http://${container_name}:${your_port}/</code>.</p>
 <h2 id="practical-applications">Practical Applications</h2>
-
 <p>There are many practical applications for this technique.
 Applications often have dependencies like <a href="https://hub.docker.com/_/mongo/">MongoDB</a> or <a href="https://hub.docker.com/_/mysql/">MySQL</a>.
 Using this technique we can enable container to container based communication without needing to manually link containers.
-Another application of this DNS resolution is it’s integration with <a href="https://github.com/hashicorp/consul-template">consul-template</a>.
+Another application of this DNS resolution is it&rsquo;s integration with <a href="https://github.com/hashicorp/consul-template">consul-template</a>.
 <a href="https://github.com/hashicorp/consul-template">consul-template</a> can be used to set up a dynamic proxy daemon that watches a consul instance and writes out proxy configurations.</p>
-
 <h3 id="container-to-container-communication">Container-to-Container Communication</h3>
-
 <p>A popular approach to making containers able to communicate with each other is through linking.
-This is considered the ‘legacy’ way to do things as it requires additional overhead.
+This is considered the &lsquo;legacy&rsquo; way to do things as it requires additional overhead.
 A better approach would be to use the DNS to resolve dependencies.
 It removes the overhead and offers a more fluent approach to building software in a local development mode and in a production environment.
 Say we have application requires a <a href="https://hub.docker.com/_/mongo/">MongoDB</a> and a <a href="https://hub.docker.com/_/mysql/">MySQL</a>.
 Using the docker-run wrapper, we can quickly stand up an instance of each.</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker-run --name="mongo" --hostname="mongo" mongo
-docker-run --name="mysql" --hostname="mysql" -e "MYSQL_ROOT_PASSWORD=root" mysql
-</code></pre></div></div>
-
-<p>The docker-run wrapper adds consul as a DNS resolver using the <code class="highlighter-rouge">--dns</code> flag and as a search domain using <code class="highlighter-rouge">--dns-search</code>.
-It also kicks the tool off as a daemon using the <code class="highlighter-rouge">-d</code> flag.</p>
-
+<pre><code>docker-run --name=&quot;mongo&quot; --hostname=&quot;mongo&quot; mongo
+docker-run --name=&quot;mysql&quot; --hostname=&quot;mysql&quot; -e &quot;MYSQL_ROOT_PASSWORD=root&quot; mysql
+</code></pre><p>The docker-run wrapper adds consul as a DNS resolver using the <code>--dns</code> flag and as a search domain using <code>--dns-search</code>.
+It also kicks the tool off as a daemon using the <code>-d</code> flag.</p>
 <p>After registering the new containers, you can test connecting to your services using the command link clients as well as the browser.</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mongo --host mongo
+<pre><code>mongo --host mongo
 mysql -h mysql -uroot -proot
-</code></pre></div></div>
-
-<h3 id="consul-template-proxy-and-dnsmasq">Consul Template Proxy and dnsmasq</h3>
-
+</code></pre><h3 id="consul-template-proxy-and-dnsmasq">Consul Template Proxy and dnsmasq</h3>
 <p>Using <a href="https://wiki.debian.org/HowTo/dnsmasq">dnsmasq</a>, developers can set up a local domain for their machine.
-For my machine, I set up <code class="highlighter-rouge">jpitz.local</code>.
+For my machine, I set up <code>jpitz.local</code>.
 The blog post <a href="https://passingcuriosity.com/2013/dnsmasq-dev-osx/">here</a> does a great job explaining how to setup development domains.</p>
-
 <p><a href="https://github.com/hashicorp/consul-template">consul-template</a> is a tool developed by hashicorp that monitors a consul instance.
-It’s specifically used to dynamically re-write configurations based on services and nodes registered in the instance.
+It&rsquo;s specifically used to dynamically re-write configurations based on services and nodes registered in the instance.
 Such configurations can be nginx proxy configurations, apache vhost configurations, or HASProxy configurations.
 The <a href="https://github.com/hashicorp/consul-template">consul-template</a> GitHub page has some excellent examples to follow.
 For my environment, I set up proxies to resolve to subdomains off of jpitz.local.</p>
-
-<pre>
-&#123;&#123; range nodes }}
-&#123;&#123; .Name }}.jpitz.local
-&#123;&#123; end }}
-</pre>
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>Enjoy!</p>
-
 <h2 id="references">References</h2>
-
 <ul>
-  <li><a href="http://www.tcpipguide.com/free/t_DNSNameResolutionProcess-2.htm">Overview of DNS Resolution</a></li>
-  <li><a href="https://docs.docker.com/machine/install-machine">docker-machine</a></li>
-  <li><a href="https://docs.docker.com/compose/install/">docker-compose</a></li>
-  <li>docker-dns commands from <a href="https://github.com/jpitz/dotfiles">dotfiles</a></li>
-  <li>docker-run wrapper from <a href="https://github.com/jpitz/dotfiles">dotfiles</a></li>
+<li><a href="http://www.tcpipguide.com/free/t_DNSNameResolutionProcess-2.htm">Overview of DNS Resolution</a></li>
+<li><a href="https://docs.docker.com/machine/install-machine">docker-machine</a></li>
+<li><a href="https://docs.docker.com/compose/install/">docker-compose</a></li>
+<li>docker-dns commands from <a href="https://github.com/jpitz/dotfiles">dotfiles</a></li>
+<li>docker-run wrapper from <a href="https://github.com/jpitz/dotfiles">dotfiles</a></li>
 </ul>
-
-
-            </div>
-
-            <div class="text-center">
-    <br/>
-    <br/>
-    <p><i>Share this article on</i></p>
-
-    <div style="font-size: 36px;">
-        <a rel="nofollow" target="_blank" href="https://facebook.com/sharer.php?u=https://www.mjpitz.com/blog/2016/05/08/docker-machine-dns-resolution-using-consul/">
-            <i class="fab fa-facebook" title="Facebook" data-toggle="tooltip" data-placement="bottom"></i></a>
-        &nbsp;
-        <a rel="nofollow" target="_blank" href="https://twitter.com/intent/tweet?text=Docker Machine DNS Resolution using Consul&url=https://www.mjpitz.com/blog/2016/05/08/docker-machine-dns-resolution-using-consul/&via=&related=">
-            <i class="fab fa-twitter" title="Twitter" data-toggle="tooltip" data-placement="bottom"></i></a>
-        &nbsp;
-        <a rel="nofollow" target="_blank" href="http://www.linkedin.com/sharing/share-offsite/?url=https://www.mjpitz.com/blog/2016/05/08/docker-machine-dns-resolution-using-consul/">
-            <i class="fab fa-linkedin" title="LinkedIn" data-toggle="tooltip" data-placement="bottom"></i></a>
     </div>
-</div>
-
-
-            <div class="post-footer row">
-                <div class="col-sm-6 text-left">
-                    
-                        <a class="btn btn-default" href="/blog/2015/12/05/introducing-laas/">&laquo; Previous Post</a>
-                    
-                </div>
-
-                <div class="col-sm-6 text-right">
-                    
-                    <a class="btn btn-default" href="/blog/2017/01/19/gracefully-degrading-functionality-using-status/">Next Post &raquo;</a>
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-        </div>
-        <div style="padding:25px 0; margin-top: 50px;">
-    <div>
+    <div class="post-footer">
+      <div class="info">
         
-<!-- Google Analytics (http://google.com/analytics) -->
-<script>
-    !function(j,e,k,y,l,L){j.GoogleAnalyticsObject=y,j[y]||(j[y]=function(){
-        (j[y].q=j[y].q||[]).push(arguments)}),j[y].l=+new Date,l=e.createElement(k),
-            L=e.getElementsByTagName(k)[0],l.src='//www.google-analytics.com/analytics.js',
-            L.parentNode.insertBefore(l,L)}(window,document,'script','ga');
-    ga('create', 'UA-39314903-5', 'auto');
-    ga('send', 'pageview');
-</script>
+        
+    <span class="separator"><a class="tag" href="/tags/docker/">docker</a></span>
 
-
-
-        <script src="/statics/libs/jquery-2.1.4/jquery.min.js"></script>
-        <script src="/statics/libs/bootstrap-3.3.7/js/bootstrap.min.js"></script>
-        <script src="/statics/libs/mermaid-8.5.0/mermaid.min.js"></script>
-
-        <script>
-            mermaid.initialize({
-                startOnLoad:true,
-                flowchart: {
-                    useMaxWidth: true,
-                }
-            });
-
-            $(function () {
-                $('[data-toggle="tooltip"]').tooltip();
-                $('.collapse').collapse({ toggle: false });
-            });
-        </script>
+      </div>
     </div>
+
+    
 </div>
 
-    </body>
+
+                </div>
+            </div>
+        </div>
+</body>
+
+
+
+<script type="text/javascript" src="https://mjpitz.com/js/jquery.min.86b1e8f819ee2d9099a783e50b49dff24282545fc40773861f9126b921532e4c.js" integrity="sha256-hrHo&#43;BnuLZCZp4PlC0nf8kKCVF/EB3OGH5EmuSFTLkw=" crossorigin="anonymous"></script>
+
+
+
+
+<script type="text/javascript" src="https://mjpitz.com/js/bundle.min.0f9c74cb78f13d1f15f33daff4037c70354f98acfbb97a6f61708966675c3cae.js" integrity="sha256-D5x0y3jxPR8V8z2v9AN8cDVPmKz7uXpvYXCJZmdcPK4=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://mjpitz.com/js/medium-zoom.min.92f21c856129f84aeb719459b3e6ac621a3032fd7b180a18c04e1d12083f8aba.js" integrity="sha256-kvIchWEp&#43;ErrcZRZs&#43;asYhowMv17GAoYwE4dEgg/iro=" crossorigin="anonymous"></script>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-39314903-5', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</html></body>
+
 </html>

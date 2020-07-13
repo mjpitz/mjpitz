@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blogs on Mya Pitzeruse</title>
+    <link>https://mjpitz.com/blog/</link>
+    <description>Recent content in Blogs on Mya Pitzeruse</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 20 Apr 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://mjpitz.com/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Home Lab: 1 year later</title>
+      <link>https://mjpitz.com/blog/2020/04/20/k3s-rpi-year1/</link>
+      <pubDate>Mon, 20 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/blog/2020/04/20/k3s-rpi-year1/</guid>
+      <description>&lt;p&gt;Last year, I wrote a series of blog posts covering the set-up of my home lab.
+The &lt;a href=&#34;https://mjpitz.com/blog/2019/04/10/k8s-k3s-rpi-oh-my/&#34;&gt;first&lt;/a&gt; post was on my decision to run &lt;a href=&#34;https://k3s.io/&#34;&gt;Rancher&amp;rsquo;s k3s&lt;/a&gt; on my &lt;a href=&#34;https://www.raspberrypi.org/&#34;&gt;Raspberry Pis&lt;/a&gt;.
+Since then, I&amp;rsquo;ve made a few modifications to how its all managed.
+In this post, I discuss some of these changes I made over the last year.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Returning to Indeed</title>
+      <link>https://mjpitz.com/blog/2020/01/27/returning-to-indeed/</link>
+      <pubDate>Mon, 27 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/blog/2020/01/27/returning-to-indeed/</guid>
+      <description>&lt;p&gt;In November 2018, I decided to return to &lt;a href=&#34;https://indeed.com&#34;&gt;Indeed.com&lt;/a&gt;.
+The decision to return did not come easy.
+Since then, I have frequently been asked about my reasons for rejoining.
+In this post, I hope to cover my interviewing process and some reasons that I had for returning.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Building deps.cloud</title>
+      <link>https://mjpitz.com/blog/2020/01/24/building-depscloud/</link>
+      <pubDate>Fri, 24 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/blog/2020/01/24/building-depscloud/</guid>
+      <description>&lt;p&gt;Over the last year, I&amp;rsquo;ve been heavily working on &lt;a href=&#34;https://deps.cloud&#34;&gt;deps.cloud&lt;/a&gt;.
+deps.cloud draws it&amp;rsquo;s inspiration from a project that I worked on at &lt;a href=&#34;https://indeed.com&#34;&gt;Indeed.com&lt;/a&gt;.
+Since it&amp;rsquo;s original inception, there had been a heavy push to move it into the open source space.
+In this post, I&amp;rsquo;ll discuss the process and rationale I applied as I rewrote this project in the open.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Checking Service Dependencies in Kubernetes</title>
+      <link>https://mjpitz.com/blog/2019/10/17/kubernetes-service-precheck/</link>
+      <pubDate>Thu, 17 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/blog/2019/10/17/kubernetes-service-precheck/</guid>
+      <description>&lt;p&gt;Back in July, I found myself needing to better coordinate deployments of my applications to &lt;a href=&#34;https://kubernetes.io/&#34;&gt;Kubernetes&lt;/a&gt;.
+After searching around, I found many ways that people where trying to solve this problem.
+Some used shell scripts to apply multiple YAML files with a fixed time sleep between them.
+Others used shell scripts and tailed the rollout using &lt;code&gt;kubectl rollout status -w&lt;/code&gt;.
+Now, I manage a lot of my deployments using &lt;a href=&#34;https://www.weave.works/technologies/gitops/&#34;&gt;GitOps&lt;/a&gt; and &lt;a href=&#34;https://github.com/fluxcd/flux&#34;&gt;Flux&lt;/a&gt;.
+So leveraging these shell scripts to manage my rollouts into clusters wasn&amp;rsquo;t really an option.&lt;/p&gt;
+&lt;p&gt;It wasn&amp;rsquo;t until I came across &lt;a href=&#34;https://us.alibabacloud.com&#34;&gt;Alibaba Cloud&amp;rsquo;s&lt;/a&gt; blog post on &lt;a href=&#34;https://www.alibabacloud.com/blog/kubernetes-demystified-solving-service-dependencies_594110&#34;&gt;solving service dependencies&lt;/a&gt; that I felt like I had something to work with.
+The article described two techniques.
+The first was inspecting dependencies within the application itself.
+At Indeed, we leverage our &lt;a href=&#34;http://github.com/indeedeng/status&#34;&gt;status&lt;/a&gt; library to do this.
+The second was to enable services to be checked, independent of the application.&lt;/p&gt;
+&lt;p&gt;In this post, I’ll demonstrate how to use my &lt;a href=&#34;https://hub.docker.com/r/mjpitz/service-precheck&#34;&gt;service-precheck&lt;/a&gt; initialization container (built off of the Alibaba blog post) to ensure upstream systems are up before attempting to start a downstream system.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Using docker-buildx for Multi-architecture Containers</title>
+      <link>https://mjpitz.com/blog/2019/05/07/docker-buildx/</link>
+      <pubDate>Tue, 07 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/blog/2019/05/07/docker-buildx/</guid>
+      <description>&lt;p&gt;When you build a container image, it&amp;rsquo;s typically only built for one platform (&lt;code&gt;linux&lt;/code&gt;) and one architecture (&lt;code&gt;amd64&lt;/code&gt;).
+As the Internet of Things continues to grow, the demand for more &lt;code&gt;arm&lt;/code&gt; images increased as well.
+Traditionally, in order to produce an &lt;code&gt;arm&lt;/code&gt; image, you need an &lt;code&gt;arm&lt;/code&gt; device to do the build on.
+As a result, most projects wind up missing &lt;code&gt;arm&lt;/code&gt; support.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/moby/buildkit&#34;&gt;BuildKit&lt;/a&gt; provides emulation capabilities that support multi-architecture builds.
+With BuildKit, you build container images across multiple architectures concurrently.
+This core utility backs &lt;code&gt;docker buildx&lt;/code&gt;, a multi-architecture build utility for docker.
+In this post, I&amp;rsquo;ll discuss why you should produce multi-architecture container images and demonstrate how to use &lt;code&gt;docker buildx&lt;/code&gt; to do it.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Moving Licenses - Apache 2.0 to MIT</title>
+      <link>https://mjpitz.com/blog/2019/05/02/from-apache2-to-mit/</link>
+      <pubDate>Thu, 02 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/blog/2019/05/02/from-apache2-to-mit/</guid>
+      <description>Yesterday, I decided to switch the license that I apply to my personal projects. Many open source projects use the Apache 2.0 license. After reading through it a few times, I liked the level of coverage that it provided. It was however a bit wordy in my opinion. These were often simple little side projects that I was hacking on in my free time.
+After some discussion with others in the community and a few podcasts, I decided to make a switch.</description>
+    </item>
+    
+    <item>
+      <title>Raspberry Pi Cluster Monitoring</title>
+      <link>https://mjpitz.com/blog/2019/04/21/monitoring-rpi-cluster/</link>
+      <pubDate>Sun, 21 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/blog/2019/04/21/monitoring-rpi-cluster/</guid>
+      <description>&lt;p&gt;In my last few posts, I talked a bit about my at home development cluster.
+Due to the flexibility of my cluster, I wanted to provide a monitoring solution that was valuable across each technology I use.
+In this post, I discuss how monitoring is setup on my cluster.
+I&amp;rsquo;ll walk through setting up each node, the Prometheus server, and the Graphana UI.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Raspberry Pi Cluster Setup</title>
+      <link>https://mjpitz.com/blog/2019/04/12/rpi-cluster-setup/</link>
+      <pubDate>Fri, 12 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/blog/2019/04/12/rpi-cluster-setup/</guid>
+      <description>&lt;p&gt;Previously, I talked about the different orchestration technologies that I&amp;rsquo;ve run on my Raspberry Pi cluster.
+That post was rather high level and only contained details relating to k3s.
+In this post, we&amp;rsquo;ll take a more in depth look at my cluster setup and my management process around it.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>k3s on Raspberry Pi</title>
+      <link>https://mjpitz.com/blog/2019/04/10/k8s-k3s-rpi-oh-my/</link>
+      <pubDate>Wed, 10 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/blog/2019/04/10/k8s-k3s-rpi-oh-my/</guid>
+      <description>&lt;p&gt;Over the last few days, I&amp;rsquo;ve been revisiting &lt;a href=&#34;https://kubernetes.io&#34;&gt;Kubernetes&lt;/a&gt; on my Raspberry Pi cluster.
+I hope to share what I learned in the process and some of the tooling that I discovered along the way.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Easy Steps to a 64bit Raspberry Pi 3 B/B&#43;</title>
+      <link>https://mjpitz.com/blog/2019/03/17/64bit-raspberry-pi/</link>
+      <pubDate>Sun, 17 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/blog/2019/03/17/64bit-raspberry-pi/</guid>
+      <description>&lt;p&gt;I was quite surprised to see how under documented installing a 64 bit operating system onto a Raspberry Pi is.
+Many articles out there talk about needing to compile Linux, which sounds oh-so-pleasant.
+One day, I stumbled across a 64bit OpenSUSE version that was compatible, but the installation instructions required a Linux OS to be done properly.
+Since I primarily work on OSX, this presented yet another barrier.&lt;/p&gt;
+&lt;p&gt;After a lot of searching around, I finally found a straight forward and simple way to do it.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>gitfs - A FUSE File System</title>
+      <link>https://mjpitz.com/blog/2019/01/30/gitfs-a-fuse-file-system/</link>
+      <pubDate>Wed, 30 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/blog/2019/01/30/gitfs-a-fuse-file-system/</guid>
+      <description>&lt;p&gt;During my first employment at Indeed, I cloned every repository down to my machine.
+This approach worked for a while when the number of repositories was small.
+As the organization has grown, the solution quickly became unmanageable.
+While many people do not work across every repository, many are familiar with the pain of setting up a new machine.
+I wrote &lt;a href=&#34;https://github.com/mjpitz/gitfs&#34;&gt;gitfs&lt;/a&gt; for a few reasons.
+First, to reduce the time spent setting up a new development environment.
+Second, to remove the need to figure out where all my projects need to be cloned.
+In this post, I discuss some challenges faced and lessons learned in writing my first file system.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Reflecting on Past Projects - JavaScript</title>
+      <link>https://mjpitz.com/blog/2018/10/31/past-project-reflections-javascript/</link>
+      <pubDate>Wed, 31 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/blog/2018/10/31/past-project-reflections-javascript/</guid>
+      <description>&lt;p&gt;Every now and then, a friend of mine reaches out and discuss previous projects we had worked on together.
+As we looked back at code, there was some obvious lessons that we took away from the project.
+In this post, I reflect on several JavaScript projects that I have worked on over the course of my career.
+In each project, I will try to provide:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;technologies used and rough size of project&lt;/li&gt;
+&lt;li&gt;an overview of the project&lt;/li&gt;
+&lt;li&gt;a critique about the approach taken to manage the project&lt;/li&gt;
+&lt;li&gt;what I would’ve done differently&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>AWS Lambda - Handler Lifetime</title>
+      <link>https://mjpitz.com/blog/2018/10/28/lambda-handler-lifetime/</link>
+      <pubDate>Sun, 28 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/blog/2018/10/28/lambda-handler-lifetime/</guid>
+      <description>&lt;p&gt;While working at Dosh, I had pretty heavy exposure to managing NodeJS services running in AWS Lambda.
+During that time, I had learned a few things about the platform that can be leveraged when writing Lambda services.
+Some of these lessons may influence how you write services but can also give you some performance boosts.
+It’s important to note that some of the behaviors that I observed about AWS Lambda may not apply to other serverless technologies.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>AWS Lambda - Local Development</title>
+      <link>https://mjpitz.com/blog/2018/10/27/lambda-local-development/</link>
+      <pubDate>Sat, 27 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/blog/2018/10/27/lambda-local-development/</guid>
+      <description>&lt;p&gt;While working at Dosh, I had pretty heavy exposure to managing NodeJS services running in AWS Lambda.
+During that time, I had learned a few things about the platform that can be leveraged when writing Lambda services.
+Some of these lessons may influence how you write services but can also give you some performance boosts.
+It’s important to note that some of the behaviors that I observed about AWS Lambda may not apply to other serverless technologies.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>NodeJS gRPC Code Reference</title>
+      <link>https://mjpitz.com/blog/2018/05/07/nodejs-grpc-code-reference/</link>
+      <pubDate>Mon, 07 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/blog/2018/05/07/nodejs-grpc-code-reference/</guid>
+      <description>&lt;p&gt;While working at Indeed, I did a fair amount with &lt;a href=&#34;https://grpc.io/&#34;&gt;gRPC&lt;/a&gt;.
+I became rather familiar with the Java, Go, NodeJS, and python implementations.
+During my vacation between jobs, I decided to revisit one of my old projects and try to migrate it to using gRPC.
+By doing so, I would be able to support a larger variety of request types (streaming, non-streaming, etc).
+When I started to look for good NodeJS code samples or reference implementations, I was rather disappointed with what I found.
+Many of the ones I could get my hands on only demonstrated unary methods and not any of the streaming API&amp;rsquo;s.
+After a lot of time digging through source and a few implementations online, I finally assembled a good reference.&lt;/p&gt;
+&lt;p&gt;In this post, I only wanted to detail what the method calls look like on both ends of the wire.
+There are some additional best practices that should be taken into consideration, but I do not plan on covering those here.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Component Scanning Library Code</title>
+      <link>https://mjpitz.com/blog/2017/04/01/spring-component-scanning/</link>
+      <pubDate>Sat, 01 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/blog/2017/04/01/spring-component-scanning/</guid>
+      <description>&lt;p&gt;Component scanning packages can be both your best friend and worst nightmare.
+In this post, I will cover several bad practices when it comes to component scanning.
+In detailing a few of these anti-patterns, I will also offer a few better patterns that are much cleaner to use.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Delaying Asynchronous Message Processing</title>
+      <link>https://mjpitz.com/blog/2017/04/01/delaying-message-processing/</link>
+      <pubDate>Sat, 01 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/blog/2017/04/01/delaying-message-processing/</guid>
+      <description>&lt;p&gt;At Indeed, we always consider what’s best for the job seeker.
+When a job seeker applies for a job, we want them to have every opportunity to be hired.
+It is unacceptable for a job seeker to miss an employment opportunity because their application was waiting to be processed while the employer makes a hire.
+The team responsible for handling applies to jobs posted on Indeed maintains &lt;a href=&#34;https://en.wikipedia.org/wiki/Service_level_objective&#34;&gt;service level objectives&lt;/a&gt; (SLOs) for application processing time.
+We constantly consider better solutions for processing applications and scaling this system.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Spring Bean Method Invocation</title>
+      <link>https://mjpitz.com/blog/2017/04/01/spring-bean-method-invocation/</link>
+      <pubDate>Sat, 01 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/blog/2017/04/01/spring-bean-method-invocation/</guid>
+      <description>&lt;p&gt;In my day to day development, I spend a fair bit of time working with &lt;a href=&#34;https://spring.io/&#34;&gt;Spring&lt;/a&gt; since it offers a lot of scaffolding to get a project off the ground.
+At &lt;a href=&#34;https://www.indeed.com/&#34;&gt;Indeed&lt;/a&gt;, I spent a fair bit of time upgrading us from Spring 3 to Spring 4 and came across many good uses of Spring and many bad ones too.
+In this &lt;em&gt;Bad Practices&lt;/em&gt; series, I will talk about some of these bad practices, why they should be avoided, and what you can do instead.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Gracefully Degrading Functionality Using Status</title>
+      <link>https://mjpitz.com/blog/2017/01/19/gracefully-degrading-functionality-using-status/</link>
+      <pubDate>Thu, 19 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/blog/2017/01/19/gracefully-degrading-functionality-using-status/</guid>
+      <description>&lt;p&gt;In a previous &lt;a href=&#34;https://mjpitz.com/blog/2015/07/10/status-java-library-for-system-status-health-checks/&#34;&gt;blog post&lt;/a&gt;, we described how to use our &lt;a href=&#34;https://github.com/indeedeng/status&#34;&gt;Status&lt;/a&gt; library to create a robust health check for your applications.
+In this follow-up, we show how you can check and degrade your application during an outage by:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;short-circuiting code paths of your application&lt;/li&gt;
+&lt;li&gt;removing a single application instance from a data center load balancer&lt;/li&gt;
+&lt;li&gt;removing an entire data center from rotation at the DNS level&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>Docker Machine DNS Resolution using Consul</title>
+      <link>https://mjpitz.com/blog/2016/05/08/docker-machine-dns-resolution-using-consul/</link>
+      <pubDate>Sun, 08 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/blog/2016/05/08/docker-machine-dns-resolution-using-consul/</guid>
+      <description>&lt;p&gt;Developers at &lt;a href=&#34;http://www.indeed.com&#34;&gt;Indeed&lt;/a&gt; have &lt;em&gt;recently&lt;/em&gt; switched over to using docker for local development.
+Being one of the earlier adopters, I fell in love with the type of workflow that it enabled.
+It allowed me to create seamless environments between both my desktop and portable workstation.
+The tooling did this by allowing you to resolve container names as hosts in your web browser.
+For example, if I had a web application named &lt;strong&gt;indigo&lt;/strong&gt; running on port 4000, I could go to http://indigo:4000 to access that application.
+After a few weeks of enjoying the simplicity of this development workflow, I craved a similar type of environment for some of the larger scale projects that I do at home.
+In this blog post, I will cover some of the basics that allowed me to enable this type of development.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Introducing LAAS</title>
+      <link>https://mjpitz.com/blog/2015/12/05/introducing-laas/</link>
+      <pubDate>Sat, 05 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/blog/2015/12/05/introducing-laas/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/jpitz/laas&#34;&gt;LAAS&lt;/a&gt; is an abbreviation for &lt;a href=&#34;http://leveldb.org/&#34;&gt;LevelDB&lt;/a&gt; as a service.
+&lt;a href=&#34;http://leveldb.org/&#34;&gt;LevelDB&lt;/a&gt; is an implementation of a &lt;a href=&#34;https://en.wikipedia.org/wiki/Log-structured_merge-tree&#34;&gt;log structured merge tree&lt;/a&gt; (LSMTree) provided by Google.
+This data structure aimed at providing a high write throughput.
+When attempting to use &lt;a href=&#34;http://leveldb.org/&#34;&gt;LevelDB&lt;/a&gt;, I found it difficult to track down supported libraries in different languages.
+Additionally, the fact that it&amp;rsquo;s labeled as a database and doesn&amp;rsquo;t provide a service was troublesome.
+I wrote &lt;a href=&#34;https://github.com/jpitz/laas&#34;&gt;LAAS&lt;/a&gt; to make the adoption of &lt;a href=&#34;http://leveldb.org/&#34;&gt;LevelDB&lt;/a&gt; easy for any language.
+It does this by introducing a RESTful API to the underlying functionality.
+HTTP request libraries are a dime a dozen, which drove the choice for a RESTful implementation.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Status: A Java Library For Robust System Status Health Checks</title>
+      <link>https://mjpitz.com/blog/2015/07/10/status-java-library-for-system-status-health-checks/</link>
+      <pubDate>Fri, 10 Jul 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/blog/2015/07/10/status-java-library-for-system-status-health-checks/</guid>
+      <description>&lt;p&gt;We are excited to highlight the open source availability of &lt;a href=&#34;https://github.com/indeedeng/status&#34;&gt;Status&lt;/a&gt;, a Java library that can report a system’s status in a readable format.
+The Status library enables dynamic health checks and monitoring of system dependencies.
+In this post, we will show how to add health checks to your applications.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

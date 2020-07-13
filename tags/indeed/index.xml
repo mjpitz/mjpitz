@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>indeed on Mya Pitzeruse</title>
+    <link>https://mjpitz.com/tags/indeed/</link>
+    <description>Recent content in indeed on Mya Pitzeruse</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 01 Apr 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://mjpitz.com/tags/indeed/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Delaying Asynchronous Message Processing</title>
+      <link>https://mjpitz.com/blog/2017/04/01/delaying-message-processing/</link>
+      <pubDate>Sat, 01 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/blog/2017/04/01/delaying-message-processing/</guid>
+      <description>&lt;p&gt;At Indeed, we always consider what’s best for the job seeker.
+When a job seeker applies for a job, we want them to have every opportunity to be hired.
+It is unacceptable for a job seeker to miss an employment opportunity because their application was waiting to be processed while the employer makes a hire.
+The team responsible for handling applies to jobs posted on Indeed maintains &lt;a href=&#34;https://en.wikipedia.org/wiki/Service_level_objective&#34;&gt;service level objectives&lt;/a&gt; (SLOs) for application processing time.
+We constantly consider better solutions for processing applications and scaling this system.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Gracefully Degrading Functionality Using Status</title>
+      <link>https://mjpitz.com/blog/2017/01/19/gracefully-degrading-functionality-using-status/</link>
+      <pubDate>Thu, 19 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/blog/2017/01/19/gracefully-degrading-functionality-using-status/</guid>
+      <description>&lt;p&gt;In a previous &lt;a href=&#34;https://mjpitz.com/blog/2015/07/10/status-java-library-for-system-status-health-checks/&#34;&gt;blog post&lt;/a&gt;, we described how to use our &lt;a href=&#34;https://github.com/indeedeng/status&#34;&gt;Status&lt;/a&gt; library to create a robust health check for your applications.
+In this follow-up, we show how you can check and degrade your application during an outage by:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;short-circuiting code paths of your application&lt;/li&gt;
+&lt;li&gt;removing a single application instance from a data center load balancer&lt;/li&gt;
+&lt;li&gt;removing an entire data center from rotation at the DNS level&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>Status: A Java Library For Robust System Status Health Checks</title>
+      <link>https://mjpitz.com/blog/2015/07/10/status-java-library-for-system-status-health-checks/</link>
+      <pubDate>Fri, 10 Jul 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/blog/2015/07/10/status-java-library-for-system-status-health-checks/</guid>
+      <description>&lt;p&gt;We are excited to highlight the open source availability of &lt;a href=&#34;https://github.com/indeedeng/status&#34;&gt;Status&lt;/a&gt;, a Java library that can report a system’s status in a readable format.
+The Status library enables dynamic health checks and monitoring of system dependencies.
+In this post, we will show how to add health checks to your applications.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

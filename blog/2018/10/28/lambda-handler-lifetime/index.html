@@ -1,297 +1,189 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link type="application/atom+xml" rel="alternate" href="https://www.mjpitz.com/feed.xml" title="Mya Pitzeruse" />
-        <meta name="author" content="Mya Pitzeruse">
+<html lang="en" data-theme="light"><head>
+    <title> Mya Pitzeruse | AWS Lambda - Handler Lifetime </title>
+    <meta charset="utf-8"><meta name="generator" content="Hugo 0.69.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="description" content="">
+    
+    <link rel="stylesheet" href="https://mjpitz.com/css/style.min.67cd718c0a3c8009c771494d381fb7128246a454bd0518fed97cb65d257db948.css" integrity="sha256-Z81xjAo8gAnHcUlNOB&#43;3EoJGpFS9BRj&#43;2Xy2XSV9uUg=" crossorigin="anonymous" type="text/css">
+    <link rel="stylesheet" href="https://mjpitz.com/statics/css/overrides.css" type="text/css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    
+    <link rel="shortcut icon" href="https://mjpitz.com/statics/img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://mjpitz.com/statics/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://mjpitz.com/statics/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://mjpitz.com/statics/img/favicon-16x16.png">
+    <link rel="canonical" href="https://mjpitz.com/blog/2018/10/28/lambda-handler-lifetime/">
+    
+    
+    <script type="text/javascript" src="https://mjpitz.com/js/anatole-header.min.c275265a259296f3dd50e8236a77fcbcadb1dbb9597d3045c675dcc2c7c58a93.js" integrity="sha256-wnUmWiWSlvPdUOgjanf8vK2x27lZfTBFxnXcwsfFipM=" crossorigin="anonymous"></script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="AWS Lambda - Handler Lifetime"/>
+<meta name="twitter:description" content="While working at Dosh, I had pretty heavy exposure to managing NodeJS services running in AWS Lambda.
+During that time, I had learned a few things about the platform that can be leveraged when writing Lambda services.
+Some of these lessons may influence how you write services but can also give you some performance boosts.
+It’s important to note that some of the behaviors that I observed about AWS Lambda may not apply to other serverless technologies."/>
 
-        <title>
-            
-                AWS Lambda - Handler Lifetime
-            
-        </title>
+</head><body><div class="sidebar animated fadeInDown">
+    <div class="logo-title">
+      <div class="title">
+        <img src="https://mjpitz.com/statics/img/mjpitz.jpeg" alt="profile picture">
+        <h3 title=""><a href="/">Mya Pitzeruse</a></h3>
+        <div class="description">
+          <p></p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
+        
+        <li>
+        <a href="https://github.com/mjpitz" rel="me" aria-label="GitHub">
+          <i class="fa fa-2x fa-github" aria-hidden="true"></i>
+        </a>          
+        </li>
 
         
+        <li>
+        <a href="https://twitter.com/_mjpitz_" rel="me" aria-label="Twitter">
+          <i class="fa fa-2x fa-twitter" aria-hidden="true"></i>
+        </a>          
+        </li>
 
-        <link rel="stylesheet" href="/statics/libs/bootstrap-3.3.7/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="/statics/libs/font-awesome-5.4.1/css/all.min.css">
-        <link rel="stylesheet" href="/statics/css/syntax-highlighting.css"/>
-        <link rel="stylesheet" href="/statics/css/app.css"/>
+        
+        <li>
+        <a href="https://www.linkedin.com/in/mjpitz/" rel="me" aria-label="LinkedIn">
+          <i class="fa fa-2x fa-linkedin" aria-hidden="true"></i>
+        </a>          
+        </li>
 
-        <link rel="apple-touch-icon" sizes="180x180" href="/statics/img/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/statics/img/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/statics/img/favicon-16x16.png">
-        <link rel="manifest" href="/statics/img/site.webmanifest">
-        <link rel="mask-icon" href="/statics/img/safari-pinned-tab.svg" color="#a28ad2">
-        <link rel="shortcut icon" href="/statics/img/favicon.ico">
-        <link rel="icon" href="/statics/img/favicon.ico" type="image/x-icon">
-        <meta name="msapplication-TileColor" content="#eeeeee">
-        <meta name="msapplication-config" content="/statics/img/browserconfig.xml">
-        <meta name="theme-color" content="#eeeeee">
-    </head>
-    <body>
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <div class="navbar-brand">@mjpitz</div>
-                </div>
+        
+        <li>
+        <a href="/index.xml" rel="me" aria-label="Feed">
+          <i class="fa fa-2x fa-rss" aria-hidden="true"></i>
+        </a>          
+        </li>
 
-                <div class="collapse navbar-collapse" id="menu">
-                    <ul class="nav navbar-nav mr-auto">
-                        <li>
-                            <a href="/">
-                                <i class="fas fa-home" title="Blog" data-toggle="tooltip" data-placement="bottom">
-                                    <span>Blog</span>
-                                </i>
-                                Blog
-                            </a>
-                        </li>
-                    </ul>
-                    
-                    <ul class="nav navbar-nav nav-social">
-                        <li>
-                            <a href="https://medium.com/@mjpitz">
-                                <i class="fab fa-medium" title="Medium" data-toggle="tooltip" data-placement="bottom">
-                                    <span>Medium</span>
-                                </i>
-                            </a>
-                        </li>
-                        
-                        <li>
-                            <a href="http://www.github.com/mjpitz">
-                                <i class="fab fa-github" title="GitHub" data-toggle="tooltip" data-placement="bottom">
-                                    <span>GitHub</span>
-                                </i>
-                            </a>
-                        </li>
+        
+    </ul>
+    <div class="footer">
+        <div class="by_farbox">&copy; Mya Pitzeruse 2020 </div>
+      </div>
+    </div>
+</div><div class="main">
+            <div class="page-top animated fadeInDown">
+    <ul class="nav">
+        
+        
+        
+        <li><a  href="/" title="">Home</a></li>
+        
+        
+        <li><a  href="/blog/" title="">Archive</a></li>
+        
+    </ul>
+    <div class="themeswitcher">
+        <a class="theme-switch" title="Switch Theme">
+            <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+        </a>
+    </div>
+</div>
 
-                        <li>
-                            <a href="https://hub.docker.com/u/mjpitz">
-                                <i class="fab fa-docker" title="Docker" data-toggle="tooltip" data-placement="bottom">
-                                    <span>Docker</span>
-                                </i>
-                            </a>
-                        </li>
-                        
-                        <li>
-                            <a href="http://www.twitter.com/_mjpitz_">
-                                <i class="fab fa-twitter" title="Twitter" data-toggle="tooltip" data-placement="bottom">
-                                    <span>Twitter</span>
-                                </i>
-                            </a>
-                        </li>
+            <div class="autopagerize_page_element">
+                <div class="content">
+<div class="post animated fadeInDown">
+    <div class="post-content">
 
-                        <li>
-                            <a href="http://www.linkedin.com/in/mjpitz">
-                                <i class="fab fa-linkedin" title="LinkedIn" data-toggle="tooltip" data-placement="bottom">
-                                    <span>LinkedIn</span>
-                                </i>
-                            </a>
-                        </li>
+      <div class="post-title">
+        <h3>AWS Lambda - Handler Lifetime
+        </h3>
+        
+        </div>
 
-                        <li>
-                            <a href="/feed.xml">
-                                <i class="fas fa-rss" title="Feed" data-toggle="tooltip" data-placement="bottom">
-                                    <span>Feed</span>
-                                </i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <div class="container mjpitz-content" style="margin-top:82px">
-            <div class="panel panel-default">
-    <div class="panel-body">
-        <div class="post">
-            <h1 class="post-title">AWS Lambda - Handler Lifetime</h1>
-            <p class="post-date">Posted on October 28, 2018</p>
-
-            <div class="post-content">
-                <p>While working at Dosh, I had pretty heavy exposure to managing NodeJS services running in AWS Lambda.
+    <p>While working at Dosh, I had pretty heavy exposure to managing NodeJS services running in AWS Lambda.
 During that time, I had learned a few things about the platform that can be leveraged when writing Lambda services.
 Some of these lessons may influence how you write services but can also give you some performance boosts.
 It’s important to note that some of the behaviors that I observed about AWS Lambda may not apply to other serverless technologies.</p>
-
-<!--more-->
-<hr />
-
+<!-- raw HTML omitted -->
 <p>When I first began working on AWS Lambda, I was skeptical.
 I remember a conversation with my manager where I made the comment about how Lambda feels like we are writing PHP transaction scripts all over again.
 As time went on, I learned a few things about the way that AWS Lambda manages it’s containers under the hood.
 By far, the biggest thing I took away was how long the lifespan of a Lambda function actually is.
 Consider the following Typescript handler:
-<br /><br /></p>
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">APIGatewayEvent</span>, <span style="color:#a6e22e">Callback</span>, <span style="color:#a6e22e">Context</span>, <span style="color:#a6e22e">Handler</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;aws-lambda&#39;</span>;
+<span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">uuidv4</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;uuid/v4&#34;</span>;
 
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">APIGatewayEvent</span><span class="p">,</span> <span class="nx">Callback</span><span class="p">,</span> <span class="nx">Context</span><span class="p">,</span> <span class="nx">Handler</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">aws-lambda</span><span class="dl">'</span><span class="p">;</span>
-<span class="k">import</span> <span class="o">*</span> <span class="k">as</span> <span class="nx">uuidv4</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">uuid/v4</span><span class="dl">"</span><span class="p">;</span>
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">instanceId</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">uuidv4</span>();
 
-<span class="kd">const</span> <span class="nx">instanceId</span> <span class="o">=</span> <span class="nx">uuidv4</span><span class="p">();</span>
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">hello</span>: <span style="color:#66d9ef">Handler</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">event</span>: <span style="color:#66d9ef">APIGatewayEvent</span>, <span style="color:#a6e22e">context</span>: <span style="color:#66d9ef">Context</span>, <span style="color:#a6e22e">cb</span>: <span style="color:#66d9ef">Callback</span>) <span style="color:#f92672">=&gt;</span> {
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">response</span> <span style="color:#f92672">=</span> {
+    <span style="color:#a6e22e">statusCode</span>: <span style="color:#66d9ef">200</span>,
+    <span style="color:#a6e22e">headers</span><span style="color:#f92672">:</span> {
+        <span style="color:#e6db74">&#34;Content-Type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;application/json&#34;</span>,
+    },
+    <span style="color:#a6e22e">body</span>: <span style="color:#66d9ef">JSON.stringify</span>({
+      <span style="color:#a6e22e">message</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Go Serverless Webpack (Typescript) v1.0! Your function executed successfully!&#39;</span>,
+      <span style="color:#a6e22e">instanceId</span>,
+      <span style="color:#a6e22e">input</span>: <span style="color:#66d9ef">event</span>,
+    }),
+  };
 
-<span class="k">export</span> <span class="kd">const</span> <span class="nx">hello</span><span class="p">:</span> <span class="nx">Handler</span> <span class="o">=</span> <span class="p">(</span><span class="nx">event</span><span class="p">:</span> <span class="nx">APIGatewayEvent</span><span class="p">,</span> <span class="nx">context</span><span class="p">:</span> <span class="nx">Context</span><span class="p">,</span> <span class="nx">cb</span><span class="p">:</span> <span class="nx">Callback</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">statusCode</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
-    <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-        <span class="dl">"</span><span class="s2">Content-Type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span><span class="p">,</span>
-    <span class="p">},</span>
-    <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
-      <span class="na">message</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Go Serverless Webpack (Typescript) v1.0! Your function executed successfully!</span><span class="dl">'</span><span class="p">,</span>
-      <span class="nx">instanceId</span><span class="p">,</span>
-      <span class="na">input</span><span class="p">:</span> <span class="nx">event</span><span class="p">,</span>
-    <span class="p">}),</span>
-  <span class="p">};</span>
-
-  <span class="nx">cb</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">response</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p><br />
-My initial understanding of AWS Lambda was that every execution of a handler, would result in a new context.
-To me, that meant that instanceId would be different for every execution of the function.
-In fact, you can see this using the <a href="https://www.npmjs.com/package/serverless-offline">serverless-offline</a> plugin (a common utility for locally testing AWS Lambda functions).
-<br /><br /></p>
-
-<div>
-    <div style="text-align:center">
-        <p><i>Execution 1</i></p>
-        <img src="/statics/img/offline-execution-1.png" alt="Execution 1" title="Execution 1" />
-    </div>
-    <br />
-    <div style="text-align:center">
-        <p><i>Execution 2</i></p>
-        <img src="/statics/img/offline-execution-2.png" alt="Execution 2" title="Execution 2" />
-    </div>
-    <br />
-    <div style="text-align:center">
-        <p><i>Execution 3</i></p>
-        <img src="/statics/img/offline-execution-3.png" alt="Execution 3" title="Execution 3" />
-    </div>
-    <br />
-</div>
-
-<p><br />
-Once I got into production, we saw a very different type of behavior.
-Instead of seeing one instanceId per request, we saw many requests being handled my the same instanceId.
-<br /><br /></p>
-
-<div class="row">
-    <div style="text-align:center">
-        <img src="/statics/img/executions-per-instance.png" alt="Executions/Instance" title="Executions/Instance" />
-    </div>
-</div>
-
-<p><br />
-What this meant was that the application container for a Lambda function was spun up and reused to service <strong>multiple</strong> requests.
-This was the first bit of insight into how AWS makes Lambda functions work efficiently.
-One way I’ve been able to think about the underlying infrastructure was equating it to an elastic container pool. 
-Lambda (or the container pool), maintains some minimum number of provisioned instances responsible for servicing traffic.
-When a request comes in, Lambda attempts to pull from it’s pool of existing containers.
-If we were able to find an existing container, then it is used to service the current request. 
-If we were unable to find an existing container, then we spin up a new one to service the current request (cold start). 
-When a request completes, its container is returned to the pool for reuse.
-After some idle time, containers are shut down to keep resources to a minimum.
-In practice, this process is distributed across a cluster of machines so that there is no single point of failure.</p>
-
+  <span style="color:#a6e22e">cb</span>(<span style="color:#66d9ef">null</span>, <span style="color:#a6e22e">response</span>);
+}
+</code></pre></div><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>From an engineering standpoint, this means that we can write lambda functions a lot like how we write your typical HTTP server.
 Services that load some data at start up can continue to benefit by doing that once and then re-using the loaded data for subsequent requests.
 Many of our reliability patterns can continue to be applied, such as circuit breaking, persistent connections, and distributed tracing.
-All in all, working in AWS Lambda isn’t all that different from your typical application development.
-<br /><br /></p>
-
+All in all, working in AWS Lambda isn&rsquo;t all that different from your typical application development.
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <p><em>Update: 2018-10-29</em></p>
-
 <p>I went and took a look at some larger windows of time.
-Over a 24 hour window, I found some lambda’s running all day and even all night.
+Over a 24 hour window, I found some lambda&rsquo;s running all day and even all night.
 The image below shows a provisioned lambda running from 9pm to 2am US Central Time.
-<br /><br /></p>
-
-<div class="row">
-    <div style="text-align:center">
-        <img src="/statics/img/long-running-lambda.png" alt="Long Running Lambda" title="Long Running Lambda" />
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
     </div>
-</div>
-<p><br /></p>
-
-            </div>
-
-            <div class="text-center">
-    <br/>
-    <br/>
-    <p><i>Share this article on</i></p>
-
-    <div style="font-size: 36px;">
-        <a rel="nofollow" target="_blank" href="https://facebook.com/sharer.php?u=https://www.mjpitz.com/blog/2018/10/28/lambda-handler-lifetime/">
-            <i class="fab fa-facebook" title="Facebook" data-toggle="tooltip" data-placement="bottom"></i></a>
-        &nbsp;
-        <a rel="nofollow" target="_blank" href="https://twitter.com/intent/tweet?text=AWS Lambda - Handler Lifetime&url=https://www.mjpitz.com/blog/2018/10/28/lambda-handler-lifetime/&via=&related=">
-            <i class="fab fa-twitter" title="Twitter" data-toggle="tooltip" data-placement="bottom"></i></a>
-        &nbsp;
-        <a rel="nofollow" target="_blank" href="http://www.linkedin.com/sharing/share-offsite/?url=https://www.mjpitz.com/blog/2018/10/28/lambda-handler-lifetime/">
-            <i class="fab fa-linkedin" title="LinkedIn" data-toggle="tooltip" data-placement="bottom"></i></a>
-    </div>
-</div>
-
-
-            <div class="post-footer row">
-                <div class="col-sm-6 text-left">
-                    
-                        <a class="btn btn-default" href="/blog/2018/10/27/lambda-local-development/">&laquo; Previous Post</a>
-                    
-                </div>
-
-                <div class="col-sm-6 text-right">
-                    
-                    <a class="btn btn-default" href="/blog/2018/10/31/past-project-reflections-javascript/">Next Post &raquo;</a>
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-        </div>
-        <div style="padding:25px 0; margin-top: 50px;">
-    <div>
+    <div class="post-footer">
+      <div class="info">
         
-<!-- Google Analytics (http://google.com/analytics) -->
-<script>
-    !function(j,e,k,y,l,L){j.GoogleAnalyticsObject=y,j[y]||(j[y]=function(){
-        (j[y].q=j[y].q||[]).push(arguments)}),j[y].l=+new Date,l=e.createElement(k),
-            L=e.getElementsByTagName(k)[0],l.src='//www.google-analytics.com/analytics.js',
-            L.parentNode.insertBefore(l,L)}(window,document,'script','ga');
-    ga('create', 'UA-39314903-5', 'auto');
-    ga('send', 'pageview');
-</script>
+        
+    <span class="separator"><a class="tag" href="/tags/aws/">aws</a><a class="tag" href="/tags/lambda/">lambda</a><a class="tag" href="/tags/dosh/">dosh</a><a class="tag" href="/tags/serverless/">serverless</a></span>
 
-
-
-        <script src="/statics/libs/jquery-2.1.4/jquery.min.js"></script>
-        <script src="/statics/libs/bootstrap-3.3.7/js/bootstrap.min.js"></script>
-        <script src="/statics/libs/mermaid-8.5.0/mermaid.min.js"></script>
-
-        <script>
-            mermaid.initialize({
-                startOnLoad:true,
-                flowchart: {
-                    useMaxWidth: true,
-                }
-            });
-
-            $(function () {
-                $('[data-toggle="tooltip"]').tooltip();
-                $('.collapse').collapse({ toggle: false });
-            });
-        </script>
+      </div>
     </div>
+
+    
 </div>
 
-    </body>
+
+                </div>
+            </div>
+        </div>
+</body>
+
+
+
+<script type="text/javascript" src="https://mjpitz.com/js/jquery.min.86b1e8f819ee2d9099a783e50b49dff24282545fc40773861f9126b921532e4c.js" integrity="sha256-hrHo&#43;BnuLZCZp4PlC0nf8kKCVF/EB3OGH5EmuSFTLkw=" crossorigin="anonymous"></script>
+
+
+
+
+<script type="text/javascript" src="https://mjpitz.com/js/bundle.min.0f9c74cb78f13d1f15f33daff4037c70354f98acfbb97a6f61708966675c3cae.js" integrity="sha256-D5x0y3jxPR8V8z2v9AN8cDVPmKz7uXpvYXCJZmdcPK4=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://mjpitz.com/js/medium-zoom.min.92f21c856129f84aeb719459b3e6ac621a3032fd7b180a18c04e1d12083f8aba.js" integrity="sha256-kvIchWEp&#43;ErrcZRZs&#43;asYhowMv17GAoYwE4dEgg/iro=" crossorigin="anonymous"></script>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-39314903-5', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</html></body>
+
 </html>

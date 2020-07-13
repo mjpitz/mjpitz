@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light"><head>
+    <title> Mya Pitzeruse | Component Scanning Library Code </title>
+    <meta charset="utf-8"><meta name="generator" content="Hugo 0.69.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="description" content="">
+    
+    <link rel="stylesheet" href="https://mjpitz.com/css/style.min.67cd718c0a3c8009c771494d381fb7128246a454bd0518fed97cb65d257db948.css" integrity="sha256-Z81xjAo8gAnHcUlNOB&#43;3EoJGpFS9BRj&#43;2Xy2XSV9uUg=" crossorigin="anonymous" type="text/css">
+    <link rel="stylesheet" href="https://mjpitz.com/statics/css/overrides.css" type="text/css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    
+    <link rel="shortcut icon" href="https://mjpitz.com/statics/img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://mjpitz.com/statics/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://mjpitz.com/statics/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://mjpitz.com/statics/img/favicon-16x16.png">
+    <link rel="canonical" href="https://mjpitz.com/blog/2017/04/01/spring-component-scanning/">
+    
+    
+    <script type="text/javascript" src="https://mjpitz.com/js/anatole-header.min.c275265a259296f3dd50e8236a77fcbcadb1dbb9597d3045c675dcc2c7c58a93.js" integrity="sha256-wnUmWiWSlvPdUOgjanf8vK2x27lZfTBFxnXcwsfFipM=" crossorigin="anonymous"></script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Component Scanning Library Code"/>
+<meta name="twitter:description" content="Component scanning packages can be both your best friend and worst nightmare.
+In this post, I will cover several bad practices when it comes to component scanning.
+In detailing a few of these anti-patterns, I will also offer a few better patterns that are much cleaner to use."/>
+
+</head><body><div class="sidebar animated fadeInDown">
+    <div class="logo-title">
+      <div class="title">
+        <img src="https://mjpitz.com/statics/img/mjpitz.jpeg" alt="profile picture">
+        <h3 title=""><a href="/">Mya Pitzeruse</a></h3>
+        <div class="description">
+          <p></p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
+        
+        <li>
+        <a href="https://github.com/mjpitz" rel="me" aria-label="GitHub">
+          <i class="fa fa-2x fa-github" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+        <li>
+        <a href="https://twitter.com/_mjpitz_" rel="me" aria-label="Twitter">
+          <i class="fa fa-2x fa-twitter" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+        <li>
+        <a href="https://www.linkedin.com/in/mjpitz/" rel="me" aria-label="LinkedIn">
+          <i class="fa fa-2x fa-linkedin" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+        <li>
+        <a href="/index.xml" rel="me" aria-label="Feed">
+          <i class="fa fa-2x fa-rss" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+    </ul>
+    <div class="footer">
+        <div class="by_farbox">&copy; Mya Pitzeruse 2020 </div>
+      </div>
+    </div>
+</div><div class="main">
+            <div class="page-top animated fadeInDown">
+    <ul class="nav">
+        
+        
+        
+        <li><a  href="/" title="">Home</a></li>
+        
+        
+        <li><a  href="/blog/" title="">Archive</a></li>
+        
+    </ul>
+    <div class="themeswitcher">
+        <a class="theme-switch" title="Switch Theme">
+            <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+        </a>
+    </div>
+</div>
+
+            <div class="autopagerize_page_element">
+                <div class="content">
+<div class="post animated fadeInDown">
+    <div class="post-content">
+
+      <div class="post-title">
+        <h3>Component Scanning Library Code
+        </h3>
+        
+        </div>
+
+    <p>Component scanning packages can be both your best friend and worst nightmare.
+In this post, I will cover several bad practices when it comes to component scanning.
+In detailing a few of these anti-patterns, I will also offer a few better patterns that are much cleaner to use.</p>
+<h2 id="abuse-of-componentscanfilter">Abuse of ComponentScan.Filter</h2>
+<p><a href="http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/context/annotation/ComponentScan.Filter.html">@ComponentScan.Filter</a> has its uses, but I often find it used incorrectly.
+One case where I&rsquo;ve seen this used is when they don&rsquo;t want to pull in <a href="https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/stereotype/Controller.html">@Controller</a>&lsquo;s.
+This usually happens when someone wants to pull code into a background daemon or cronjob.
+In these types of applications, you may not have a web server running for the controllers to bind to.
+To better handle this pattern, the library can offer two different <a href="http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/Configuration.html">@Configuration</a> classes.
+One for the non-web context, and one for the web.
+This offers a few benefits over component scanning.</p>
+<ol>
+<li>The library has complete control over the configuration class and can add <a href="http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/Bean.html">@Bean</a>s as they need to.</li>
+<li>The importing application know exactly what <a href="http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/Bean.html">@Bean</a>s they are importing.</li>
+<li>It is much more obvious what to do to start using the library. They import the configuration, and then move on with their day.</li>
+</ol>
+<p>Another way to address this filtering problem is to better structure the target package to better support scanning.
+One way I&rsquo;ve found to better support this, is by offering a <code>core</code> and <code>web</code> package.
+This makes it clear that all the web components should belong to the <code>web</code> package, while all other components should be in the <code>core</code> package.
+This approach has an added benefit.
+Suppose that one day in the future, your web package has grown and now you need to break it out into it&rsquo;s own library.
+This happens for a variety of reasons, one of the most common being to slim down transitive dependencies.
+With this package structure, you can now split out the web code with very little effort.</p>
+<h2 id="component-scanning-library-code">Component Scanning Library Code</h2>
+<p>This is another pattern that I&rsquo;ve see used in a few different cases.
+The biggest downside to this approach is that by scanning a single package, you open yourself up to all the beans that come along with it.
+Keep in mind, that often times packages become split across several libraries.
+That means that one day your may be pulling in only 10 beans, but the next you may add a new project dependency and now be pulling in 100.
+Now if the package space that you are defining is specific enough to a single project, then scan away.
+My general line in the sand is to not component scan outside the context of the project that I&rsquo;m working on.
+Additionally, I abide to the former principle of ensuring that all projects have a specific namespace.
+I&rsquo;ve found this to be a pretty practical practice both within library and application code.</p>
+<h2 id="componentscanusedefaultfilters">ComponentScan#useDefaultFilters</h2>
+<p>The documentation around this code is a little misleading.</p>
+<p>From <a href="http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/context/annotation/ComponentScan.html#useDefaultFilters--">@ComponentScan#useDefaultFilters</a>:</p>
+<blockquote>
+<p>Indicates whether automatic detection of classes annotated with @Component @Repository, @Service, or @Controller should be enabled.</p>
+</blockquote>
+<p>Many people read this and assume that <a href="http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/Configuration.html">@Configuration</a> classes aren&rsquo;t picked up in the scan.
+As a result, they often add an include <a href="http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/context/annotation/ComponentScan.Filter.html">@ComponentScan.Filter</a> to be extra sure they are pulling in configurations.
+It&rsquo;s important to note that without the addition of the filter, <a href="https://spring.io/">Spring</a> would still wire up the configuration into the context.
+This is because the <a href="http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/Configuration.html">@Configuration</a> class is a specialization of <a href="http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Component.html">@Component</a>.
+In looking at the source code, you can see it is annotated with <a href="http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Component.html">@Component</a>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Target</span><span style="color:#f92672">(</span>ElementType<span style="color:#f92672">.</span><span style="color:#a6e22e">TYPE</span><span style="color:#f92672">)</span>
+<span style="color:#a6e22e">@Retention</span><span style="color:#f92672">(</span>RetentionPolicy<span style="color:#f92672">.</span><span style="color:#a6e22e">RUNTIME</span><span style="color:#f92672">)</span>
+<span style="color:#a6e22e">@Documented</span>
+<span style="color:#a6e22e">@Component</span>
+<span style="color:#66d9ef">public</span> <span style="color:#a6e22e">@interface</span> Configuration <span style="color:#f92672">{</span>
+</code></pre></div><p><a href="https://github.com/spring-projects/spring-framework/blob/master/spring-context/src/main/java/org/springframework/context/annotation/Configuration.java#L404">source</a></p>
+    </div>
+    <div class="post-footer">
+      <div class="info">
+        
+        
+    <span class="separator"><a class="tag" href="/tags/spring-bad-practices/">spring-bad-practices</a></span>
+
+      </div>
+    </div>
+
+    
+</div>
+
+
+                </div>
+            </div>
+        </div>
+</body>
+
+
+
+<script type="text/javascript" src="https://mjpitz.com/js/jquery.min.86b1e8f819ee2d9099a783e50b49dff24282545fc40773861f9126b921532e4c.js" integrity="sha256-hrHo&#43;BnuLZCZp4PlC0nf8kKCVF/EB3OGH5EmuSFTLkw=" crossorigin="anonymous"></script>
+
+
+
+
+<script type="text/javascript" src="https://mjpitz.com/js/bundle.min.0f9c74cb78f13d1f15f33daff4037c70354f98acfbb97a6f61708966675c3cae.js" integrity="sha256-D5x0y3jxPR8V8z2v9AN8cDVPmKz7uXpvYXCJZmdcPK4=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://mjpitz.com/js/medium-zoom.min.92f21c856129f84aeb719459b3e6ac621a3032fd7b180a18c04e1d12083f8aba.js" integrity="sha256-kvIchWEp&#43;ErrcZRZs&#43;asYhowMv17GAoYwE4dEgg/iro=" crossorigin="anonymous"></script>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-39314903-5', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</html></body>
+
+</html>

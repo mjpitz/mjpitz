@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>k3s on Mya Pitzeruse</title>
+    <link>https://mjpitz.com/tags/k3s/</link>
+    <description>Recent content in k3s on Mya Pitzeruse</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 20 Apr 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://mjpitz.com/tags/k3s/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Home Lab: 1 year later</title>
+      <link>https://mjpitz.com/blog/2020/04/20/k3s-rpi-year1/</link>
+      <pubDate>Mon, 20 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/blog/2020/04/20/k3s-rpi-year1/</guid>
+      <description>&lt;p&gt;Last year, I wrote a series of blog posts covering the set-up of my home lab.
+The &lt;a href=&#34;https://mjpitz.com/blog/2019/04/10/k8s-k3s-rpi-oh-my/&#34;&gt;first&lt;/a&gt; post was on my decision to run &lt;a href=&#34;https://k3s.io/&#34;&gt;Rancher&amp;rsquo;s k3s&lt;/a&gt; on my &lt;a href=&#34;https://www.raspberrypi.org/&#34;&gt;Raspberry Pis&lt;/a&gt;.
+Since then, I&amp;rsquo;ve made a few modifications to how its all managed.
+In this post, I discuss some of these changes I made over the last year.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Raspberry Pi Cluster Setup</title>
+      <link>https://mjpitz.com/blog/2019/04/12/rpi-cluster-setup/</link>
+      <pubDate>Fri, 12 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/blog/2019/04/12/rpi-cluster-setup/</guid>
+      <description>&lt;p&gt;Previously, I talked about the different orchestration technologies that I&amp;rsquo;ve run on my Raspberry Pi cluster.
+That post was rather high level and only contained details relating to k3s.
+In this post, we&amp;rsquo;ll take a more in depth look at my cluster setup and my management process around it.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>k3s on Raspberry Pi</title>
+      <link>https://mjpitz.com/blog/2019/04/10/k8s-k3s-rpi-oh-my/</link>
+      <pubDate>Wed, 10 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/blog/2019/04/10/k8s-k3s-rpi-oh-my/</guid>
+      <description>&lt;p&gt;Over the last few days, I&amp;rsquo;ve been revisiting &lt;a href=&#34;https://kubernetes.io&#34;&gt;Kubernetes&lt;/a&gt; on my Raspberry Pi cluster.
+I hope to share what I learned in the process and some of the tooling that I discovered along the way.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
