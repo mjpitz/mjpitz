@@ -16,7 +16,7 @@ We constantly consider better solutions for processing applications and scaling 
 
 <!--more-->
 
-Indeed first adopted [RabbitMQ] within our [aggregation engine]() to handle the volume of jobs we process daily.
+Indeed first adopted [RabbitMQ] within our [aggregation engine](https://engineering.indeedblog.com/talks/get-job-35-million-times-day-using-rabbitmq/) to handle the volume of jobs we process daily.
 With this success, we integrated RabbitMQ into other systems, such as our job seeker application processing pipeline.
 Today, this pipeline is responsible for processing **more than 1.5 million applications a day**.
 Over time, the team needed to implement several resilience patterns around this integration including:
