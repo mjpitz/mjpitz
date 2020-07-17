@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light"><head>
+    <title> Mya Pitzeruse | Tracking impressions on repositories </title>
+    <meta charset="utf-8"><meta name="generator" content="Hugo 0.69.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="description" content="">
+    
+    <link rel="stylesheet" href="https://mjpitz.com/css/style.min.67cd718c0a3c8009c771494d381fb7128246a454bd0518fed97cb65d257db948.css" integrity="sha256-Z81xjAo8gAnHcUlNOB&#43;3EoJGpFS9BRj&#43;2Xy2XSV9uUg=" crossorigin="anonymous" type="text/css">
+    <link rel="stylesheet" href="https://mjpitz.com/statics/css/overrides.css" type="text/css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    
+    <link rel="shortcut icon" href="https://mjpitz.com/statics/img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://mjpitz.com/statics/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://mjpitz.com/statics/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://mjpitz.com/statics/img/favicon-16x16.png">
+    <link rel="canonical" href="https://mjpitz.com/blog/2020/07/17/repo-impression-tracking/">
+    
+    
+    <script type="text/javascript" src="https://mjpitz.com/js/anatole-header.min.c275265a259296f3dd50e8236a77fcbcadb1dbb9597d3045c675dcc2c7c58a93.js" integrity="sha256-wnUmWiWSlvPdUOgjanf8vK2x27lZfTBFxnXcwsfFipM=" crossorigin="anonymous"></script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Tracking impressions on repositories"/>
+<meta name="twitter:description" content="When working on open source projects, I often wonder how to improve the experience for my users.
+In order to improve my users experience, I first need to be able to measure and monitor it.
+On a website, I have Google Analytics which can help me understand my users paths through my site.
+This capability isn&rsquo;t as accessible on GitHub or GitLab as it requires JavaScript execution.
+In this post, I will demonstrate how you can set up Google Analytics to track impressions on GitHub repositories."/>
+
+</head><body><div class="sidebar animated fadeInDown">
+    <div class="logo-title">
+      <div class="title">
+        <img src="https://mjpitz.com/statics/img/mjpitz.jpeg" alt="profile picture">
+        <h3 title=""><a href="/">Mya Pitzeruse</a></h3>
+        <div class="description">
+          <p></p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
+        
+        <li>
+        <a href="https://github.com/mjpitz" rel="me" aria-label="GitHub">
+          <i class="fa fa-2x fa-github" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+        <li>
+        <a href="https://twitter.com/_mjpitz_" rel="me" aria-label="Twitter">
+          <i class="fa fa-2x fa-twitter" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+        <li>
+        <a href="https://www.linkedin.com/in/mjpitz/" rel="me" aria-label="LinkedIn">
+          <i class="fa fa-2x fa-linkedin" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+        <li>
+        <a href="/index.xml" rel="me" aria-label="Feed">
+          <i class="fa fa-2x fa-rss" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+    </ul>
+    <div class="footer">
+        <div class="by_farbox">&copy; Mya Pitzeruse 2020 </div>
+      </div>
+    </div>
+</div><div class="main">
+            <div class="page-top animated fadeInDown">
+    <ul class="nav">
+        
+        
+        
+        <li><a  href="/" title="">Home</a></li>
+        
+        
+        <li><a  href="/media/" title="">Media</a></li>
+        
+        
+        <li><a  href="/blog/" title="">Blog</a></li>
+        
+    </ul>
+    <div class="themeswitcher">
+        <a class="theme-switch" title="Switch Theme">
+            <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+        </a>
+    </div>
+</div>
+
+            <div class="autopagerize_page_element">
+                <div class="content">
+<div class="post animated fadeInDown">
+    <div class="post-content">
+
+      <div class="post-title">
+        <h3>Tracking impressions on repositories
+        </h3>
+        
+        </div>
+
+    <p>When working on open source projects, I often wonder how to improve the experience for my users.
+In order to improve my users experience, I first need to be able to measure and monitor it.
+On a website, I have Google Analytics which can help me understand my users paths through my site.
+This capability isn&rsquo;t as accessible on <a href="https://github.com">GitHub</a> or <a href="https://gitlab.com">GitLab</a> as it requires JavaScript execution.
+In this post, I will demonstrate how you can set up <a href="https://analytics.google.com">Google Analytics</a> to track impressions on GitHub repositories.</p>
+<p>Google Analytics implements a <a href="https://www.quora.com/How-does-a-tracking-pixel-work">tracking pixel</a>.
+This allows it&rsquo;s users to track their consumers behavior across their site.
+For browsers, this often requires a JavaScript snippet.
+This approach however, breaks down when you start to talk about markdown content on GitHub.</p>
+<p>Fortunately, Google Analytics supports an image ping approach.
+While less common in browsers, this approach is frequently used in emails.
+Using markdown images, we can leverage the image ping to embed a tracking pixel into <code>README.md</code> files.</p>
+<h2 id="set-up-a-google-analytics-property">Set up a Google Analytics property</h2>
+<p>The first step in this process is to set up a new property for GitHub.
+Google Analytics offers both web and app support.
+You only need web support.
+When creating the property, you will be prompted for the base URL for your site.
+Enter the GitHub URL including your organization or user.</p>
+<p><img src="/statics/img/2020-impression-ga-property.png" alt="Create Property"></p>
+<p>By using this prefix, you can use the same tracking key across all your projects.
+From there, complete the remainder of the form appropriately.
+Once created, you&rsquo;ll be given a tracking key.
+These keys tend to follow the form <code>UA-xxx-y</code>.
+Save this as it will be used to generate the pixel we will be embedding in our repository.</p>
+<h2 id="generate-an-image-ping-url-for-your-project">Generate an image ping URL for your project</h2>
+<p>Once you obtain a tracking key, you&rsquo;re able to generate embed pixels for your repositories.
+Google&rsquo;s image ping URL can get rather long.
+To help format the URI, I leveraged a little bit of JavaScript.
+With the built in <code>querystring</code> library, the work went rather quickly.
+Below, you can see a copy of the JavaScript I used to generate my image.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">qs</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;querystring&#39;</span>);
+
+<span style="color:#a6e22e">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">main</span>() {
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">key</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">argv</span>[<span style="color:#ae81ff">2</span>];    <span style="color:#75715e">// your tracking key (e.g UA-xxx-y)
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">path</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">argv</span>[<span style="color:#ae81ff">3</span>];   <span style="color:#75715e">// your repositoriy  (e.g mjpitz/go-gracefully)
+</span><span style="color:#75715e"></span>
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">query</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">qs</span>.<span style="color:#a6e22e">stringify</span>({
+    <span style="color:#a6e22e">v</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>,                         <span style="color:#75715e">// version
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">cid</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">555</span>,                     <span style="color:#75715e">// client id
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">t</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;event&#39;</span>,                   <span style="color:#75715e">// the type
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">ec</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;repo&#39;</span>,                   <span style="color:#75715e">// the category
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">ea</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;open&#39;</span>,                   <span style="color:#75715e">// the action
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">dp</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">path</span>,                     <span style="color:#75715e">// document path
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">dt</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">path</span>,                     <span style="color:#75715e">// document title
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">tid</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">key</span>,                     <span style="color:#75715e">// tracking key
+</span><span style="color:#75715e"></span>  })
+
+  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`![Google Analytics](https://www.google-analytics.com/collect?</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">query</span><span style="color:#e6db74">}</span><span style="color:#e6db74">)`</span>);
+}
+
+<span style="color:#a6e22e">main</span>().<span style="color:#66d9ef">catch</span>((<span style="color:#a6e22e">e</span>) =&gt; <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">error</span>(<span style="color:#a6e22e">e</span>));
+</code></pre></div><p>This script expects two arguments: your tracking key (<code>US-xxx-y</code>) and a path (<code>mjpitz/go-gracefully</code>).
+When run, this script will output a markdown image that you can paste into your projects README.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ node repo-ga-beacon.js UA-xxx-y mjpitz/go-gracefully
+!<span style="color:#f92672">[</span>Google Analytics<span style="color:#f92672">](</span>https://www.google-analytics.com/collect?v<span style="color:#f92672">=</span>1&amp;cid<span style="color:#f92672">=</span>1&amp;t<span style="color:#f92672">=</span>event&amp;ec<span style="color:#f92672">=</span>repo&amp;ea<span style="color:#f92672">=</span>open&amp;dp<span style="color:#f92672">=</span>mjpitz%2Fgo-gracefully&amp;dt<span style="color:#f92672">=</span>mjpitz%2Fgo-gracefully&amp;tid<span style="color:#f92672">=</span>UA-xxx-y<span style="color:#f92672">)</span>
+</code></pre></div><p>You can repeat this process for any project you want to be included in your report.
+For my project <a href="https://deps.cloud">deps.cloud</a>, this is valuable as we can see which repositories are hit the most.
+Using this information, we can better redirect our clients to pages where they can find more information.</p>
+<h2 id="why-should-you-do-this">Why should you do this?</h2>
+<p>There are many reasons you should do this.
+For one, it helps understand if there is an issue with your content or the discovery of it.
+Instead of wondering whether a project has the reach you intended it to, you can refer to the number of visitors.</p>
+<p><img src="/statics/img/2020-impression-funnel.png" alt=""></p>
+<p>In marketing, impressions, clicks, and conversions are used to determine the success of a given advertisement.
+Similarly, we can use this technique to track the success of an open source project.
+Most (popular) projects are already using some kind of heuristic to measure success of their projects.
+Number of issues created, stars, watches, forks, follows, etc.
+While these metrics are great, they represent conversions not impressions.
+With an added image ping you can now track conversion rates.
+That is the percentage of visitors that visit your projects, and take an action.</p>
+    </div>
+    <div class="post-footer">
+      <div class="info">
+        
+        
+    <span class="separator"><a class="tag" href="/tags/github/">github</a><a class="tag" href="/tags/gitlab/">gitlab</a><a class="tag" href="/tags/impression/">impression</a><a class="tag" href="/tags/tracking/">tracking</a><a class="tag" href="/tags/analytics/">analytics</a></span>
+
+      </div>
+    </div>
+
+    
+</div>
+
+
+                </div>
+            </div>
+        </div>
+</body>
+
+
+
+<script type="text/javascript" src="https://mjpitz.com/js/jquery.min.86b1e8f819ee2d9099a783e50b49dff24282545fc40773861f9126b921532e4c.js" integrity="sha256-hrHo&#43;BnuLZCZp4PlC0nf8kKCVF/EB3OGH5EmuSFTLkw=" crossorigin="anonymous"></script>
+
+
+
+
+<script type="text/javascript" src="https://mjpitz.com/js/bundle.min.0f9c74cb78f13d1f15f33daff4037c70354f98acfbb97a6f61708966675c3cae.js" integrity="sha256-D5x0y3jxPR8V8z2v9AN8cDVPmKz7uXpvYXCJZmdcPK4=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://mjpitz.com/js/medium-zoom.min.92f21c856129f84aeb719459b3e6ac621a3032fd7b180a18c04e1d12083f8aba.js" integrity="sha256-kvIchWEp&#43;ErrcZRZs&#43;asYhowMv17GAoYwE4dEgg/iro=" crossorigin="anonymous"></script>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-39314903-5', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</html></body>
+
+</html>
