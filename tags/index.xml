@@ -6,10 +6,37 @@
     <description>Recent content in Tags on Mya Pitzeruse</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 20 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 13 Jul 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://mjpitz.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>guest</title>
+      <link>https://mjpitz.com/tags/guest/</link>
+      <pubDate>Mon, 13 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/guest/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>podcast</title>
+      <link>https://mjpitz.com/tags/podcast/</link>
+      <pubDate>Mon, 13 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/podcast/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>womenintech</title>
+      <link>https://mjpitz.com/tags/womenintech/</link>
+      <pubDate>Mon, 13 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/womenintech/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>iot</title>
@@ -75,6 +102,24 @@
     </item>
     
     <item>
+      <title>software</title>
+      <link>https://mjpitz.com/tags/software/</link>
+      <pubDate>Thu, 21 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/software/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>softwaredaily</title>
+      <link>https://mjpitz.com/tags/softwaredaily/</link>
+      <pubDate>Thu, 21 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/softwaredaily/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>arm</title>
       <link>https://mjpitz.com/tags/arm/</link>
       <pubDate>Tue, 07 May 2019 00:00:00 +0000</pubDate>
@@ -134,15 +179,6 @@
       <pubDate>Thu, 02 May 2019 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/tags/mit/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>software</title>
-      <link>https://mjpitz.com/tags/software/</link>
-      <pubDate>Thu, 02 May 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://mjpitz.com/tags/software/</guid>
       <description></description>
     </item>
     

@@ -6,10 +6,27 @@
     <description>Recent content on Mya Pitzeruse</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 20 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 13 Jul 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://mjpitz.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>For the love of programming</title>
+      <link>https://mjpitz.com/media/2020/07/13/for-the-love-of-programming/</link>
+      <pubDate>Mon, 13 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/media/2020/07/13/for-the-love-of-programming/</guid>
+      <description>
+&lt;p&gt;
+    Join me on the &lt;a href=&#34;https://podcast.womenintechshow.com/&#34;&gt;WomenInTech show&lt;/a&gt;.
+    In this episode, Espree and I discuss my journey into tech.
+    From my early days working on things in high school to the work I do today.
+    I hope you enjoy the show!
+&lt;/p&gt;
+
+</description>
+    </item>
     
     <item>
       <title>Home Lab: 1 year later</title>
@@ -45,6 +62,23 @@ In this post, I hope to cover my interviewing process and some reasons that I ha
 deps.cloud draws it&amp;rsquo;s inspiration from a project that I worked on at &lt;a href=&#34;https://indeed.com&#34;&gt;Indeed.com&lt;/a&gt;.
 Since it&amp;rsquo;s original inception, there had been a heavy push to move it into the open source space.
 In this post, I&amp;rsquo;ll discuss the process and rationale I applied as I rewrote this project in the open.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Cloud dependencies</title>
+      <link>https://mjpitz.com/media/2019/11/21/cloud-dependencies/</link>
+      <pubDate>Thu, 21 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/media/2019/11/21/cloud-dependencies/</guid>
+      <description>
+&lt;p&gt;
+    Join me on the &lt;a href=&#34;https://softwareengineeringdaily.com/&#34;&gt;Software Engineering Daily&lt;/a&gt; podcast.
+    In this episode, Jeff and I discuss my personal project deps.cloud.
+    We discuss benefits and tradeoffs to leveraging monorepos as well as challenges mainting source control at a large organization.
+    I hope you enjoy the show!
+&lt;/p&gt;
+
+</description>
     </item>
     
     <item>
