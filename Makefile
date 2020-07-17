@@ -6,7 +6,6 @@ build-deps:
 
 deps: build-deps
 	git submodule update --init --recursive
-	npm install
 
 build:
 	hugo

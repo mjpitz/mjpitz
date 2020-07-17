@@ -9,6 +9,7 @@ googleAnalytics = "UA-39314903-5"
 
 [permalinks]
 blog = "/blog/:year/:month/:day/:slug/"
+media = "/media/:year/:month/:day/:slug/"
 
 [params]
 title = "Mya Pitzeruse"
@@ -18,7 +19,7 @@ profilePicture = "/statics/img/mjpitz.jpeg"
 keywords = ""
 favicon = "statics/img/"
 customCss = [ "statics/css/overrides.css" ]
-mainSections = ["blog"]
+mainSections = ["blog", "media"]
 
 ## Math settings
 [params.math]
@@ -58,7 +59,13 @@ url = "/index.xml"
   url = "/"
 
   [[menu.main]]
-  name = "Archive"
+  name = "Media"
+  identifier = "media"
   weight = 200
+  url = "/media/"
+
+  [[menu.main]]
+  name = "Blog"
+  weight = 500
   identifier = "blog"
   url = "/blog/"
