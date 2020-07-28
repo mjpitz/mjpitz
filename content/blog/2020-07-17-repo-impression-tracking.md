@@ -62,7 +62,7 @@ async function main() {
   const query = qs.stringify({
     v: 1,                         // version
     cid: 555,                     // client id
-    t: 'event',                   // the type
+    t: 'pageview',                // the type
     ec: 'repo',                   // the category
     ea: 'open',                   // the action
     dp: path,                     // document path
@@ -81,7 +81,7 @@ When run, this script will output a markdown image that you can paste into your 
 
 ```bash
 $ node repo-ga-beacon.js UA-xxx-y mjpitz/go-gracefully
-![Google Analytics](https://www.google-analytics.com/collect?v=1&cid=1&t=event&ec=repo&ea=open&dp=mjpitz%2Fgo-gracefully&dt=mjpitz%2Fgo-gracefully&tid=UA-xxx-y)
+![Google Analytics](https://www.google-analytics.com/collect?v=1&cid=1&t=pageview&ec=repo&ea=open&dp=mjpitz%2Fgo-gracefully&dt=mjpitz%2Fgo-gracefully&tid=UA-xxx-y)
 ```
 
 You can repeat this process for any project you want to be included in your report.

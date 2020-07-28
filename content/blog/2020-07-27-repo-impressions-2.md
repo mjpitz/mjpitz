@@ -63,6 +63,8 @@ For example, I use GitHub Projects to track active work items.
 The unfortunate part about GitHub projects is that it changes the base URL from `https://github.com/depscloud` to `https://github.com/orgs/depscloud/projects`.
 Because Analytics only allows a single website URL, we would need to create another site in Analytics for this part of content.
 
+**Edit:** I've swapped the event type `t` from `event` to `pageview` and this has drastically improved the ability to use Google Analytics.
+
 ## In summary
 
 In any regard, I highly recommend applying this pattern.
