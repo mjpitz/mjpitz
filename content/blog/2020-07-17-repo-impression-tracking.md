@@ -104,6 +104,14 @@ While these metrics are great, they represent conversions not impressions.
 With an added image ping you can now track conversion rates.
 That is the percentage of visitors that visit your projects, and take an action.
 
+---
+
+Thank you for joining me in this series!
+Be sure to check out the other parts.
+
+- [Part 1 - Set Up](/blog/2020/07/17/repo-impression-tracking/)
+- [Part 2 - Follow Up](/blog/2020/07/27/repo-impressions-2/)
+- [Part 3 - Conclusion](/blog/2020/08/02/repo-impressions-3/)
 
 [GitHub]: https://github.com
 [GitLab]: https://gitlab.com

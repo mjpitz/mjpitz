@@ -73,4 +73,13 @@ This information can be used in a variety of ways.
 From improving content, to targeting and redirection, to location analysis.
 While the setup is manual and may take an afternoon, there is value in these metrics.
 
+---
+
+Thank you for joining me in this series!
+Be sure to check out the other parts.
+
+- [Part 1 - Set Up](/blog/2020/07/17/repo-impression-tracking/)
+- [Part 2 - Follow Up](/blog/2020/07/27/repo-impressions-2/)
+- [Part 3 - Conclusion](/blog/2020/08/02/repo-impressions-3/)
+
 [Google Analytics]: https://analytics.google.com
