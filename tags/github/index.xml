@@ -6,10 +6,22 @@
     <description>Recent content in github on Mya Pitzeruse</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 27 Jul 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 02 Aug 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://mjpitz.com/tags/github/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Conclusion: Tracking impressions on repositories</title>
+      <link>https://mjpitz.com/blog/2020/08/02/repo-impressions-3/</link>
+      <pubDate>Sun, 02 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/blog/2020/08/02/repo-impressions-3/</guid>
+      <description>&lt;p&gt;In this post, I bring a conclusion to my recent series on tracking impressions on repositories.
+While it&amp;rsquo;s the last in the series, I will likely continue to post updates as time goes on.
+For now, I feel my current approach has yielded a wealth of information that I&amp;rsquo;m still fully digesting.
+In this conclusion, I will walk through how several of my metrics have changed since my &lt;a href=&#34;https://mjpitz.com/blog/2020/07/17/repo-impression-tracking/&#34;&gt;original approach&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Follow up: Tracking impressions on repositories</title>

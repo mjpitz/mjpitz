@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light"><head>
-    <title> Mya Pitzeruse | Follow up: Tracking impressions on repositories </title>
+    <title> Mya Pitzeruse | Conclusion: Tracking impressions on repositories </title>
     <meta charset="utf-8"><meta name="generator" content="Hugo 0.69.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
     <meta name="description" content="">
     
@@ -12,15 +12,16 @@
     <link rel="apple-touch-icon" sizes="180x180" href="https://mjpitz.com/statics/img/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="https://mjpitz.com/statics/img/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="https://mjpitz.com/statics/img/favicon-16x16.png">
-    <link rel="canonical" href="https://mjpitz.com/blog/2020/07/27/repo-impressions-2/">
+    <link rel="canonical" href="https://mjpitz.com/blog/2020/08/02/repo-impressions-3/">
     
     
     <script type="text/javascript" src="https://mjpitz.com/js/anatole-header.min.c275265a259296f3dd50e8236a77fcbcadb1dbb9597d3045c675dcc2c7c58a93.js" integrity="sha256-wnUmWiWSlvPdUOgjanf8vK2x27lZfTBFxnXcwsfFipM=" crossorigin="anonymous"></script>
     <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Follow up: Tracking impressions on repositories"/>
-<meta name="twitter:description" content="Last week, I put a tracking pixel on my GitHub repositories.
-And I&rsquo;ve got to say, the results have been really interesting.
-In this post, I follow up on what I&rsquo;ve learned since last week, changes I&rsquo;ve made, and improvements I&rsquo;m working through."/>
+<meta name="twitter:title" content="Conclusion: Tracking impressions on repositories"/>
+<meta name="twitter:description" content="In this post, I bring a conclusion to my recent series on tracking impressions on repositories.
+While it&rsquo;s the last in the series, I will likely continue to post updates as time goes on.
+For now, I feel my current approach has yielded a wealth of information that I&rsquo;m still fully digesting.
+In this conclusion, I will walk through how several of my metrics have changed since my original approach."/>
 
 </head><body><div class="sidebar animated fadeInDown">
     <div class="logo-title">
@@ -95,54 +96,49 @@ In this post, I follow up on what I&rsquo;ve learned since last week, changes I&
     <div class="post-content">
 
       <div class="post-title">
-        <h3>Follow up: Tracking impressions on repositories
+        <h3>Conclusion: Tracking impressions on repositories
         </h3>
         
         </div>
 
-    <p>Last week, I put a <a href="/blog/2020/07/17/repo-impression-tracking">tracking pixel</a> on my GitHub repositories.
-And I&rsquo;ve got to say, the results have been really interesting.
-In this post, I follow up on what I&rsquo;ve learned since last week, changes I&rsquo;ve made, and improvements I&rsquo;m working through.</p>
-<h2 id="learnings">Learnings</h2>
-<p>From my experience, image ping monitoring can be rather primitive.
-At Indeed, we really only got information around weather a user opened an email.
-It turns out, that the <a href="https://analytics.google.com">Google Analytics</a> ping can give you a fair bit more information.
-For example there&rsquo;s a lot of information around sessions.</p>
-<p><img src="/statics/img/2020-07-27-depscloud-gh-ga-bounce.png" alt=""></p>
-<p>For one, I&rsquo;m able to break sessions down by page.
-This has helped me understand which repositories receive the most attention.
-By looking at new visitors week over week by repository, I&rsquo;m also able to pick up on trends.</p>
-<p><img src="/statics/img/2020-07-27-depscloud-gh-ga.png" alt=""></p>
-<p>What I didn&rsquo;t realize I got from the analytics ping was session duration data.
-I figured I wouldn&rsquo;t be able to track cross-page meta-data since each ping was independent.
-But the fact I was able to get average session duration per page was really valuable.</p>
-<p><img src="/statics/img/2020-07-27-depscloud-gh-ga-session.png" alt=""></p>
-<h2 id="changes-ive-made">Changes I&rsquo;ve made</h2>
-<p>Once I had data coming in, I noticed a few things that I wanted to improve.
-The first thing was the document paths and title.
-While I liked having a the GitHub organization in the path, it breaks all the click through links.
-As a result, I&rsquo;ve shortened the <code>dp</code> and <code>dt</code> variables to just be the name of the repository.</p>
-<p>In addition to changing how entries appear in Google Analytics, I&rsquo;ve made a few other changes.
-To help get more data around this approach, I&rsquo;ve adopted this practice on my personal repositories.
-I even applied it to the magic <code>mjpitz/mjpitz</code> repository that embeds a <code>README.md</code> on my profile.</p>
-<h2 id="improvements">Improvements</h2>
-<p>While the data is limited at this time, the practice has already started to show value.
-In my preliminary analysis, I&rsquo;ve found a few rough edges.
-Since I&rsquo;m working with an image ping, there&rsquo;s only so many changes that I can make.
-For example, most of my analysis is done off of session data.
-I would love to be able to distill this information down to visitors with unique IP addresses.
-It&rsquo;s possible that this is a feature exists and I just haven&rsquo;t discovered it yet.</p>
-<p>Beyond distilling down to unique IPs, I&rsquo;d also like to loop in other areas of GitHub.
-For example, I use GitHub Projects to track active work items.
-The unfortunate part about GitHub projects is that it changes the base URL from <code>https://github.com/depscloud</code> to <code>https://github.com/orgs/depscloud/projects</code>.
-Because Analytics only allows a single website URL, we would need to create another site in Analytics for this part of content.</p>
-<p><strong>Edit:</strong> I&rsquo;ve swapped the event type <code>t</code> from <code>event</code> to <code>pageview</code> and this has drastically improved the ability to use Google Analytics.</p>
-<h2 id="in-summary">In summary</h2>
-<p>In any regard, I highly recommend applying this pattern.
-It allows open source maintainers to capture previously unknown segment of information.
-This information can be used in a variety of ways.
-From improving content, to targeting and redirection, to location analysis.
-While the setup is manual and may take an afternoon, there is value in these metrics.</p>
+    <p>In this post, I bring a conclusion to my recent series on tracking impressions on repositories.
+While it&rsquo;s the last in the series, I will likely continue to post updates as time goes on.
+For now, I feel my current approach has yielded a wealth of information that I&rsquo;m still fully digesting.
+In this conclusion, I will walk through how several of my metrics have changed since my <a href="/blog/2020/07/17/repo-impression-tracking/">original approach</a>.</p>
+<h2 id="bounce-rates">Bounce Rates</h2>
+<p>In the original post, I had used the <code>event</code> type.
+After a week of lack luster data, I swapped over to <code>pageview</code>.
+What a difference did this make.
+It kept all the metrics that I was getting from my <a href="/blog/2020/07/27/repo-impressions-2/">follow up</a> post and unlocked many more capabilities.
+For example, I&rsquo;m now able to report on bounce rates across repositories.</p>
+<p><img src="/statics/img/2020-08-02-repo-breakdown.png" alt="Repository Breakdown"></p>
+<p>Being able to report on a bounce rate for a project is huge.
+In GitHub, <code>topics</code> are used to promote your project in <a href="https://github.com/explore">Explore</a>.
+Having a high bounce rate <em>could</em> mean your topics aren&rsquo;t set up properly.
+Users likely see your project in Explore, click through, and quickly realize it wasn&rsquo;t what they were looking for.
+Unfortunately, we can&rsquo;t track impressions on explore so there&rsquo;s no way to know which topics are ineffective.</p>
+<p>To improve your bounce rate, I&rsquo;d evaluate a projects topics and compare it with others in the space.
+This will give you a sense for whether a given topic is appropriate or not.</p>
+<h2 id="page-views-and-bounce-rates-over-time">Page views and bounce rates over time</h2>
+<p>The <code>pageview</code> type seems to do some reconciliation that wasn&rsquo;t being done as part of the <code>event</code> type.
+For example, there&rsquo;s now a distinction between page views, unique page views, and entrances.
+With the <code>event</code> type, we would only get the ping, with none of these distinctions.
+We still get this information with the page views metric, we&rsquo;re just able to distill additional information.
+Consider the following graph.</p>
+<p><img src="/statics/img/2020-08-02-pageviews-over-time.png" alt="Page Views Over Time"></p>
+<p>Both page views and events, allowed us to break views down over time.
+But by using page views, we&rsquo;re now able to track bounce rates over time.</p>
+<p><img src="/statics/img/2020-08-02-bouncerate-over-time.png" alt="Bounce Rate Over Time"></p>
+<p>Together, this information can be used to better tune the content of your <code>README.md</code> and <code>topics</code>.
+This can help point people in the right direction on how to contribute or find additional information.</p>
+<h2 id="understanding-user-navigation">Understanding user navigation</h2>
+<p>One of the most surprising features I was able to start to leverage was user flows.
+By having this information, I can track how users navigate from one page to another.</p>
+<p><img src="/statics/img/2020-08-02-navigation-flow.png" alt="Navigation Flow"></p>
+<p>My <a href="https://github.com/depscloud">deps.cloud</a> project has many small repositories.
+Many of which are really only useful for developers of the system, not the end users.
+As a result, I try to redirect users to appropriate content from the <code>README.md</code>.
+By having access to this navigational flow, I can tell if these redirects are working as expected.</p>
 <hr>
 <p>Thank you for joining me in this series!
 Be sure to check out the other parts.</p>
