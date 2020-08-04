@@ -94,6 +94,28 @@
   
   <div class="post animated fadeInDown">
     <div class="post-title">
+      <h3><a href="/blog/2020/08/03/digitalocean-setup/">Reducing cost on DigitalOcean</a>
+      </h3>
+    </div>
+    <div class="post-content"><div class="p_part"><p><p>In a <a href="https://twitter.com/_mjpitz_/status/1290258134590603269">Twitter thread</a> between <a href="https://twitter.com/vitobotta">Vito Botta</a>, <a href="https://twitter.com/alexellisuk">Alex Ellis</a>, and <a href="https://twitter.com/_mjpitz_">myself</a>,
+we talked about how expensive <a href="https://digitalocean.com/">DigitalOcean</a> can be for personal projects.
+You often start off small with just a cluster for compute.
+Eventually you need a database to store your user&rsquo;s information.
+As time goes on, these needs only continue to grow.
+In this post, I share some cost-saving techniques I&rsquo;ve used to reduce my bill.</p></p></div>
+  
+  <div class="p_part"><p></p></div></div>
+    <div class="post-footer">
+      <div class="meta">
+        <div class="info"><i class="fa fa-sun-o"></i><span class="date">Mon, Aug 3, 2020</span>
+          <a class="tag" href="/tags/cost-savings/">cost-savings</a><a class="tag" href="/tags/digitalocean/">digitalocean</a><a class="tag" href="/tags/kubernetes/">kubernetes</a><a class="tag" href="/tags/terraform/">terraform</a><a class="tag" href="/tags/gitops/">gitops</a><a class="tag" href="/tags/fluxcd/">fluxcd</a>       
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="post animated fadeInDown">
+    <div class="post-title">
       <h3><a href="/blog/2020/08/02/repo-impressions-3/">Conclusion: Tracking impressions on repositories</a>
       </h3>
     </div>
@@ -285,30 +307,6 @@ The second was to enable services to be checked, independent of the application.
       <div class="meta">
         <div class="info"><i class="fa fa-sun-o"></i><span class="date">Thu, Oct 17, 2019</span>
           <a class="tag" href="/tags/docker/">docker</a><a class="tag" href="/tags/kubernetes/">kubernetes</a><a class="tag" href="/tags/microservices/">microservices</a><a class="tag" href="/tags/dependencies/">dependencies</a>       
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <div class="post animated fadeInDown">
-    <div class="post-title">
-      <h3><a href="/blog/2019/05/07/docker-buildx/">Using docker-buildx for Multi-architecture Containers</a>
-      </h3>
-    </div>
-    <div class="post-content"><div class="p_part"><p><p>When you build a container image, it&rsquo;s typically only built for one platform (<code>linux</code>) and one architecture (<code>amd64</code>).
-As the Internet of Things continues to grow, the demand for more <code>arm</code> images increased as well.
-Traditionally, in order to produce an <code>arm</code> image, you need an <code>arm</code> device to do the build on.
-As a result, most projects wind up missing <code>arm</code> support.</p>
-<p><a href="https://github.com/moby/buildkit">BuildKit</a> provides emulation capabilities that support multi-architecture builds.
-With BuildKit, you build container images across multiple architectures concurrently.
-This core utility backs <code>docker buildx</code>, a multi-architecture build utility for docker.
-In this post, I&rsquo;ll discuss why you should produce multi-architecture container images and demonstrate how to use <code>docker buildx</code> to do it.</p></p></div>
-  
-  <div class="p_part"><p></p></div></div>
-    <div class="post-footer">
-      <div class="meta">
-        <div class="info"><i class="fa fa-sun-o"></i><span class="date">Tue, May 7, 2019</span>
-          <a class="tag" href="/tags/docker/">docker</a><a class="tag" href="/tags/multiarch/">multiarch</a><a class="tag" href="/tags/arm/">arm</a><a class="tag" href="/tags/arm64/">arm64</a><a class="tag" href="/tags/buildx/">buildx</a>       
         </div>
       </div>
     </div>

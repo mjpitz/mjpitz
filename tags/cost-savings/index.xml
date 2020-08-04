@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cost-savings on Mya Pitzeruse</title>
+    <link>https://mjpitz.com/tags/cost-savings/</link>
+    <description>Recent content in cost-savings on Mya Pitzeruse</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 03 Aug 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://mjpitz.com/tags/cost-savings/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Reducing cost on DigitalOcean</title>
+      <link>https://mjpitz.com/blog/2020/08/03/digitalocean-setup/</link>
+      <pubDate>Mon, 03 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/blog/2020/08/03/digitalocean-setup/</guid>
+      <description>&lt;p&gt;In a &lt;a href=&#34;https://twitter.com/_mjpitz_/status/1290258134590603269&#34;&gt;Twitter thread&lt;/a&gt; between &lt;a href=&#34;https://twitter.com/vitobotta&#34;&gt;Vito Botta&lt;/a&gt;, &lt;a href=&#34;https://twitter.com/alexellisuk&#34;&gt;Alex Ellis&lt;/a&gt;, and &lt;a href=&#34;https://twitter.com/_mjpitz_&#34;&gt;myself&lt;/a&gt;,
+we talked about how expensive &lt;a href=&#34;https://digitalocean.com/&#34;&gt;DigitalOcean&lt;/a&gt; can be for personal projects.
+You often start off small with just a cluster for compute.
+Eventually you need a database to store your user&amp;rsquo;s information.
+As time goes on, these needs only continue to grow.
+In this post, I share some cost-saving techniques I&amp;rsquo;ve used to reduce my bill.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light"><head>
+    <title> Mya Pitzeruse | Reducing cost on DigitalOcean </title>
+    <meta charset="utf-8"><meta name="generator" content="Hugo 0.69.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="description" content="">
+    
+    <link rel="stylesheet" href="https://mjpitz.com/css/style.min.67cd718c0a3c8009c771494d381fb7128246a454bd0518fed97cb65d257db948.css" integrity="sha256-Z81xjAo8gAnHcUlNOB&#43;3EoJGpFS9BRj&#43;2Xy2XSV9uUg=" crossorigin="anonymous" type="text/css">
+    <link rel="stylesheet" href="https://mjpitz.com/statics/css/overrides.css" type="text/css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    
+    <link rel="shortcut icon" href="https://mjpitz.com/statics/img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://mjpitz.com/statics/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://mjpitz.com/statics/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://mjpitz.com/statics/img/favicon-16x16.png">
+    <link rel="canonical" href="https://mjpitz.com/blog/2020/08/03/digitalocean-setup/">
+    
+    
+    <script type="text/javascript" src="https://mjpitz.com/js/anatole-header.min.c275265a259296f3dd50e8236a77fcbcadb1dbb9597d3045c675dcc2c7c58a93.js" integrity="sha256-wnUmWiWSlvPdUOgjanf8vK2x27lZfTBFxnXcwsfFipM=" crossorigin="anonymous"></script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Reducing cost on DigitalOcean"/>
+<meta name="twitter:description" content="In a Twitter thread between Vito Botta, Alex Ellis, and myself,
+we talked about how expensive DigitalOcean can be for personal projects.
+You often start off small with just a cluster for compute.
+Eventually you need a database to store your user&rsquo;s information.
+As time goes on, these needs only continue to grow.
+In this post, I share some cost-saving techniques I&rsquo;ve used to reduce my bill."/>
+
+</head><body><div class="sidebar animated fadeInDown">
+    <div class="logo-title">
+      <div class="title">
+        <img src="https://mjpitz.com/statics/img/mjpitz.jpeg" alt="profile picture">
+        <h3 title=""><a href="/">Mya Pitzeruse</a></h3>
+        <div class="description">
+          <p></p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
+        
+        <li>
+        <a href="https://github.com/mjpitz" rel="me" aria-label="GitHub">
+          <i class="fa fa-2x fa-github" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+        <li>
+        <a href="https://twitter.com/_mjpitz_" rel="me" aria-label="Twitter">
+          <i class="fa fa-2x fa-twitter" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+        <li>
+        <a href="https://www.linkedin.com/in/mjpitz/" rel="me" aria-label="LinkedIn">
+          <i class="fa fa-2x fa-linkedin" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+        <li>
+        <a href="/index.xml" rel="me" aria-label="Feed">
+          <i class="fa fa-2x fa-rss" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+    </ul>
+    <div class="footer">
+        <div class="by_farbox">&copy; Mya Pitzeruse 2020 </div>
+      </div>
+    </div>
+</div><div class="main">
+            <div class="page-top animated fadeInDown">
+    <ul class="nav">
+        
+        
+        
+        <li><a  href="/" title="">Home</a></li>
+        
+        
+        <li><a  href="/media/" title="">Media</a></li>
+        
+        
+        <li><a  href="/blog/" title="">Blog</a></li>
+        
+    </ul>
+    <div class="themeswitcher">
+        <a class="theme-switch" title="Switch Theme">
+            <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+        </a>
+    </div>
+</div>
+
+            <div class="autopagerize_page_element">
+                <div class="content">
+<div class="post animated fadeInDown">
+    <div class="post-content">
+
+      <div class="post-title">
+        <h3>Reducing cost on DigitalOcean
+        </h3>
+        
+        </div>
+
+    <p>In a <a href="https://twitter.com/_mjpitz_/status/1290258134590603269">Twitter thread</a> between <a href="https://twitter.com/vitobotta">Vito Botta</a>, <a href="https://twitter.com/alexellisuk">Alex Ellis</a>, and <a href="https://twitter.com/_mjpitz_">myself</a>,
+we talked about how expensive <a href="https://digitalocean.com/">DigitalOcean</a> can be for personal projects.
+You often start off small with just a cluster for compute.
+Eventually you need a database to store your user&rsquo;s information.
+As time goes on, these needs only continue to grow.
+In this post, I share some cost-saving techniques I&rsquo;ve used to reduce my bill.</p>
+<h2 id="terraform">Terraform</h2>
+<p>While not required, I found declarative infrastructure makes a lot of this easier.
+I decided to migrate my cluster administration over to using to <a href="https://www.terraform.io/">Terraform</a> a few months ago.
+While my projects are small, I found it easy to use and documentation easy to navigate.
+During cluster deployment, I provision an elastic node pool for my workloads.
+The following provisions a Kubernetes 1.17 cluster with 1 node and a max of 5.</p>
+<pre><code class="language-hcl-terraform" data-lang="hcl-terraform">data &quot;digitalocean_kubernetes_versions&quot; &quot;version&quot; {
+  version_prefix = &quot;1.17.&quot;
+}
+
+resource &quot;digitalocean_kubernetes_cluster&quot; &quot;cluster&quot; {
+  name = &quot;my-cluster&quot;
+  region = &quot;sfo2&quot;
+  version = data.digitalocean_kubernetes_versions.version.latest_version
+
+  node_pool {
+    name = &quot;my-cluster-main&quot;
+    auto_scale = true
+    min_nodes = 1
+    max_nodes = 5
+  }
+}
+</code></pre><p>When the cluster runs out of resources it can scale up to the max.
+This is done by adding one node at a time until the cluster has sufficient resources.
+Sometimes, a single node configuration is not enough.
+For example, data science workloads tend to require support for GPUs.
+In these cases, additional pools can be attached to the cluster.</p>
+<pre><code class="language-hcl-terraform" data-lang="hcl-terraform">resource &quot;digitalocean_kubernetes_node_pool&quot; &quot;gpu_pool&quot; {
+  cluster_id = digitalocean_kubernetes_cluster.cluster.id
+  name = &quot;my-cluster-gpu&quot;
+  auto_scale = true
+  min_nodes = 0
+  max_nodes = 3
+}
+</code></pre><p>By leveraging the auto-scaling capabilities of node pools, clusters can size themselves accordingly.
+As a result, we better manage the cost of our clusters.
+While this is a large portion of the cost, it does not account for all of it.</p>
+<h2 id="fluxcd">FluxCD</h2>
+<p>In talking about reducing cost, we must talk about the workloads running within the cluster.
+Kubernetes abstracts away cloud providers from engineers, often incurring cost for workloads in cluster.
+I use what I would consider a pretty minimal set up.</p>
+<ul>
+<li><a href="https://cert-manager.io/">cert-manager</a> - Manages certificates</li>
+<li><a href="https://kubernetes.github.io/ingress-nginx/">nginx-ingress</a> - Enables HTTP communication to systems in cluster (TLS, LetsEncrypt)</li>
+<li><a href="https://github.com/kubernetes-sigs/external-dns">external-dns</a> - Automatically manage DNS <code>A</code> records for Ingress definitions in cluster</li>
+<li><a href="https://linkerd.io/">linkerd</a> - A service mesh technology (TLS, self-signed)</li>
+</ul>
+<p>I used to run a <a href="https://prometheus.io/">Prometheus</a> deployment, but opted to remove it by default.
+Over time, I found my hobby projects rarely use custom metrics.
+I still run one when I need it, but it&rsquo;s no longer a part of my hobby clusters.</p>
+<h2 id="priority-quality-of-service-and-eviction">Priority, quality of service, and eviction</h2>
+<p>Eviction in Kubernetes can get complicated, but it generally follows a predictable path.</p>
+<ol>
+<li>pods who are using more memory than requested</li>
+<li>by quality of service (best-effort, burstable, guaranteed)</li>
+<li>by priority class</li>
+</ol>
+<p>I found this blog post on <a href="https://www.replex.io/blog/everything-you-need-to-know-about-kubernetes-quality-of-service-qos-classes">replex</a> to be really useful in understanding a lot of this.
+Once I understood how processes would be evicted in my cluster, I just needed to configure everything properly.
+<code>external-dns</code>, <code>nginx-ingress</code>, <code>linkerd</code>, and <code>cert-manager</code> are all guaranteed resources.
+Most workloads I want to be running for demonstrations tend to fall into the <code>burstable</code> category.
+It&rsquo;s here that I make the most use of priority classes.
+Finally, any smaller projects I&rsquo;m working on land on my pis or in the <code>best-effort</code> category.</p>
+<h2 id="stateful-workloads">Stateful workloads</h2>
+<p>With stateful workloads, I often find myself running math to figure out if a hosted service is worth it.</p>
+<p>The way I see it, many of these services leverage a virtual machine and attached disk.
+The smallest configuration I could put together for MySQL on DigitalOcean was $15 / month.
+At the same time, I could run the same workload from within the cluster using an <a href="https://kubernetes.io/docs/concepts/extend-kubernetes/operator/">operator</a> or <a href="https://helm.sh/">Helm chart</a>.
+This allowed for smaller deployment configurations that made better use of the cluster I was already paying for.</p>
+<p>When it comes to management, I&rsquo;m indifferent about operators vs Helm charts.
+Similarly, they vary greatly on quantity and quality.
+Unlike Helm charts, operators tend to handle other types of administrative level tasks.
+Regardless, I tend to look for a few things when running StatefulSets in cluster:</p>
+<p><em>Is persistence enabled by default?</em></p>
+<p>Some systems don&rsquo;t enabled persistence by default.
+Not every cluster supports persistent volumes, and some solutions support this use case.</p>
+<p><em>What does the shutdown hook look like?</em></p>
+<p>In some cases, shutting down a stateful system requires a pre-shutdown hook to be sent.
+Ensuring your stateful system is shutdown properly is often critical to data integrity.</p>
+<p><em>Does my cluster support disk expansion?</em></p>
+<p>As you store more data, you&rsquo;ll likely need to grow your persistent volumes.
+If your cluster doesn&rsquo;t support volume expansion, you&rsquo;ll need to size your volume for your expected distribution.</p>
+<p><em>Is monitoring available?</em></p>
+<p>At the end of the day, you want to know when something is wrong.</p>
+<hr>
+<p>Anyway, that&rsquo;s all I have.
+Thanks for reading y&rsquo;all.</p>
+    </div>
+    <div class="post-footer">
+      <div class="info">
+        
+        
+    <span class="separator"><a class="tag" href="/tags/cost-savings/">cost-savings</a><a class="tag" href="/tags/digitalocean/">digitalocean</a><a class="tag" href="/tags/kubernetes/">kubernetes</a><a class="tag" href="/tags/terraform/">terraform</a><a class="tag" href="/tags/gitops/">gitops</a><a class="tag" href="/tags/fluxcd/">fluxcd</a></span>
+
+      </div>
+    </div>
+
+    
+</div>
+
+
+                </div>
+            </div>
+        </div>
+</body>
+
+
+
+<script type="text/javascript" src="https://mjpitz.com/js/jquery.min.86b1e8f819ee2d9099a783e50b49dff24282545fc40773861f9126b921532e4c.js" integrity="sha256-hrHo&#43;BnuLZCZp4PlC0nf8kKCVF/EB3OGH5EmuSFTLkw=" crossorigin="anonymous"></script>
+
+
+
+
+<script type="text/javascript" src="https://mjpitz.com/js/bundle.min.0f9c74cb78f13d1f15f33daff4037c70354f98acfbb97a6f61708966675c3cae.js" integrity="sha256-D5x0y3jxPR8V8z2v9AN8cDVPmKz7uXpvYXCJZmdcPK4=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://mjpitz.com/js/medium-zoom.min.92f21c856129f84aeb719459b3e6ac621a3032fd7b180a18c04e1d12083f8aba.js" integrity="sha256-kvIchWEp&#43;ErrcZRZs&#43;asYhowMv17GAoYwE4dEgg/iro=" crossorigin="anonymous"></script>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-39314903-5', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</html></body>
+
+</html>
