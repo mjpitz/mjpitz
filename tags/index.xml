@@ -6,7 +6,7 @@
     <description>Recent content in Tags on Mya Pitzeruse</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 03 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 06 Aug 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://mjpitz.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>algorithms</title>
       <link>https://mjpitz.com/tags/algorithms/</link>
-      <pubDate>Mon, 03 Aug 2020 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 06 Aug 2020 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/tags/algorithms/</guid>
       <description></description>
@@ -23,9 +23,54 @@
     <item>
       <title>bfs</title>
       <link>https://mjpitz.com/tags/bfs/</link>
-      <pubDate>Mon, 03 Aug 2020 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 06 Aug 2020 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/tags/bfs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>data-structures</title>
+      <link>https://mjpitz.com/tags/data-structures/</link>
+      <pubDate>Thu, 06 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/data-structures/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>golang</title>
+      <link>https://mjpitz.com/tags/golang/</link>
+      <pubDate>Thu, 06 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>graphs</title>
+      <link>https://mjpitz.com/tags/graphs/</link>
+      <pubDate>Thu, 06 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/graphs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>grpc</title>
+      <link>https://mjpitz.com/tags/grpc/</link>
+      <pubDate>Thu, 06 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/grpc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>trees</title>
+      <link>https://mjpitz.com/tags/trees/</link>
+      <pubDate>Thu, 06 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/trees/</guid>
       <description></description>
     </item>
     
@@ -35,15 +80,6 @@
       <pubDate>Mon, 03 Aug 2020 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/tags/cost-savings/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>data-structures</title>
-      <link>https://mjpitz.com/tags/data-structures/</link>
-      <pubDate>Mon, 03 Aug 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://mjpitz.com/tags/data-structures/</guid>
       <description></description>
     </item>
     
@@ -75,33 +111,6 @@
     </item>
     
     <item>
-      <title>golang</title>
-      <link>https://mjpitz.com/tags/golang/</link>
-      <pubDate>Mon, 03 Aug 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://mjpitz.com/tags/golang/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>graphs</title>
-      <link>https://mjpitz.com/tags/graphs/</link>
-      <pubDate>Mon, 03 Aug 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://mjpitz.com/tags/graphs/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>grpc</title>
-      <link>https://mjpitz.com/tags/grpc/</link>
-      <pubDate>Mon, 03 Aug 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://mjpitz.com/tags/grpc/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>kubernetes</title>
       <link>https://mjpitz.com/tags/kubernetes/</link>
       <pubDate>Mon, 03 Aug 2020 00:00:00 +0000</pubDate>
@@ -116,15 +125,6 @@
       <pubDate>Mon, 03 Aug 2020 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/tags/terraform/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>trees</title>
-      <link>https://mjpitz.com/tags/trees/</link>
-      <pubDate>Mon, 03 Aug 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://mjpitz.com/tags/trees/</guid>
       <description></description>
     </item>
     

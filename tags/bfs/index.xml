@@ -6,17 +6,17 @@
     <description>Recent content in bfs on Mya Pitzeruse</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 03 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 06 Aug 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://mjpitz.com/tags/bfs/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Implementing Breadth-first Search Over gRPC</title>
-      <link>https://mjpitz.com/blog/2020/08/03/bfs-over-grpc-stream/</link>
-      <pubDate>Mon, 03 Aug 2020 00:00:00 +0000</pubDate>
+      <link>https://mjpitz.com/blog/2020/08/06/bfs-over-grpc-stream/</link>
+      <pubDate>Thu, 06 Aug 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://mjpitz.com/blog/2020/08/03/bfs-over-grpc-stream/</guid>
+      <guid>https://mjpitz.com/blog/2020/08/06/bfs-over-grpc-stream/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://deps.cloud&#34;&gt;deps.cloud&lt;/a&gt; is an open source project that I started.
 It&amp;rsquo;s a tool that helps companies understand how their projects relate to one another.
 It does this by parsing files like &lt;code&gt;package.json&lt;/code&gt; and storing the contents in a &lt;a href=&#34;https://en.wikipedia.org/wiki/Graph_(abstract_data_type)&#34;&gt;graph&lt;/a&gt;.&lt;/p&gt;
