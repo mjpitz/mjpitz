@@ -1,6 +1,6 @@
 ---
 slug: bfs-over-grpc-stream
-date: 2020-08-03
+date: 2020-08-06
 title: "Implementing Breadth-first Search Over gRPC"
 tags:
   - data-structures
