@@ -13,8 +13,6 @@ tags:
 
 ---
 
-A modern take on a classic problem.
-
 [deps.cloud] is an open source project that I started.
 It's a tool that helps companies understand how their projects relate to one another.
 It does this by parsing files like `package.json` and storing the contents in a [graph].
