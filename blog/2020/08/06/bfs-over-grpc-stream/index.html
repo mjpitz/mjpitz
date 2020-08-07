@@ -386,7 +386,7 @@ Instead, we can write the current tier out to the client as we go.</p>
 		<span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">_</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">node</span> <span style="color:#ce5c00;font-weight:bold">:=</span> <span style="color:#204a87;font-weight:bold">range</span> <span style="color:#000">current</span> <span style="color:#000;font-weight:bold">{</span>
 			<span style="color:#000">next</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#204a87">append</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">next</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">graph</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">node</span><span style="color:#000;font-weight:bold">]</span><span style="color:#ce5c00;font-weight:bold">...</span><span style="color:#000;font-weight:bold">)</span>
 
-            <span style="color:#8f5902;font-style:italic">// result to client
+            <span style="color:#8f5902;font-style:italic">// flush result to client
 </span><span style="color:#8f5902;font-style:italic"></span>            <span style="color:#000">_</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#000">call</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Send</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">node</span><span style="color:#000;font-weight:bold">)</span>
 		<span style="color:#000;font-weight:bold">}</span>
 
