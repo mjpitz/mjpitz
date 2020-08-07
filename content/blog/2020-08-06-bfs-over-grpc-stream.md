@@ -210,6 +210,8 @@ func bfs(call ServerStreamingCall) {
 Unlike many previous implementations, this allows the server to progressively navigate the graph.
 It keeps server foot prints low, and requires clients to size accordingly for their query.
 It improves the latency of calls by reducing round trips between clients and servers.
+The was just first pass at implementing such a service.
+Throughout the process, I've come up other ways to continue improve the performance. 
 All in all, I'm excited to see how these types of operations scale as the amount of data stored grows.
 
 [deps.cloud]: https://deps.cloud
