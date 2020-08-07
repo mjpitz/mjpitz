@@ -198,7 +198,7 @@ func bfs(call ServerStreamingCall) {
 		for _, node := range current {
 			next = append(next, graph[node]...)
 
-            // result to client
+            // flush result to client
             _ = call.Send(node)
 		}
 
