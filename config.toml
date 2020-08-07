@@ -4,6 +4,7 @@ title = "Mya Pitzeruse"
 theme = "anatole"
 enableRobotsTXT = true
 
+
 # Highlighting config
 pygmentsCodeFences = true
 pygmentsUseClasses = false
