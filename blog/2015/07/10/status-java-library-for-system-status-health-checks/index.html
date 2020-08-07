@@ -125,97 +125,205 @@ System states include:</p>
 <p>Follow these instructions to start using the <a href="https://github.com/indeedeng/status">Status</a> library:</p>
 <p>Extend the <a href="https://github.com/indeedeng/status/blob/master/status-core/src/main/java/com/indeed/status/core/AbstractDependencyManager.java">AbstractDependencyManager</a>.
 The dependency manager will keep track of all your dependencies.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyDependencyManager</span> <span style="color:#66d9ef">extends</span> AbstractDependencyManager <span style="color:#f92672">{</span>
-  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">MyDependencyManager</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">super</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;MyApplication&#34;</span><span style="color:#f92672">);</span>
-  <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><p>Extend <a href="https://github.com/indeedeng/status/blob/master/status-core/src/main/java/com/indeed/status/core/PingableDependency.java">PingableDependency</a> for each component that your application requires to run.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyDependency</span> <span style="color:#66d9ef">extends</span> PingableDependency <span style="color:#f92672">{</span>
-  <span style="color:#a6e22e">@Override</span>
-  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">ping</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
-    <span style="color:#75715e">// Throw exception if considered unhealthy or unavailable
-</span><span style="color:#75715e"></span>  <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><p>Extending the <a href="https://github.com/indeedeng/status/blob/master/status-core/src/main/java/com/indeed/status/core/PingableDependency.java">PingableDependency</a> class is the simplest way to incorporate a dependency into your application.
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#204a87;font-weight:bold">public</span> <span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">MyDependencyManager</span> <span style="color:#204a87;font-weight:bold">extends</span> <span style="color:#000">AbstractDependencyManager</span> <span style="color:#ce5c00;font-weight:bold">{</span>
+  <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">MyDependencyManager</span><span style="color:#ce5c00;font-weight:bold">()</span> <span style="color:#ce5c00;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">super</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;MyApplication&#34;</span><span style="color:#ce5c00;font-weight:bold">);</span>
+  <span style="color:#ce5c00;font-weight:bold">}</span>
+<span style="color:#ce5c00;font-weight:bold">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Extend <a href="https://github.com/indeedeng/status/blob/master/status-core/src/main/java/com/indeed/status/core/PingableDependency.java">PingableDependency</a> for each component that your application requires to run.</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#204a87;font-weight:bold">public</span> <span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">MyDependency</span> <span style="color:#204a87;font-weight:bold">extends</span> <span style="color:#000">PingableDependency</span> <span style="color:#ce5c00;font-weight:bold">{</span>
+  <span style="color:#5c35cc;font-weight:bold">@Override</span>
+  <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">ping</span><span style="color:#ce5c00;font-weight:bold">()</span> <span style="color:#204a87;font-weight:bold">throws</span> <span style="color:#000">Exception</span> <span style="color:#ce5c00;font-weight:bold">{</span>
+    <span style="color:#8f5902;font-style:italic">// Throw exception if considered unhealthy or unavailable
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#ce5c00;font-weight:bold">}</span>
+<span style="color:#ce5c00;font-weight:bold">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Extending the <a href="https://github.com/indeedeng/status/blob/master/status-core/src/main/java/com/indeed/status/core/PingableDependency.java">PingableDependency</a> class is the simplest way to incorporate a dependency into your application.
 Alternatively, you can extend <a href="https://github.com/indeedeng/status/blob/master/status-core/src/main/java/com/indeed/status/core/AbstractDependency.java">AbstractDependency</a> or <a href="https://github.com/indeedeng/status/blob/master/status-core/src/main/java/com/indeed/status/core/ComparableDependency.java">ComparableDependency</a> to get more control over the state of a dependency.
 You can control how your dependency affects the system’s condition by providing an <a href="https://github.com/indeedeng/status/blob/fff009ad24d1641afe6d792e582e374e8e5f63a6/status-core/src/main/java/com/indeed/status/core/Urgency.java">Urgency</a> level.</p>
 <p>Add your new dependencies to your dependency manager.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">dependencyManager<span style="color:#f92672">.</span><span style="color:#a6e22e">addDependency</span><span style="color:#f92672">(</span>myDependency<span style="color:#f92672">);</span>
-<span style="color:#75715e">// ...
-</span></code></pre></div><p>For web-based applications and services, create an <a href="https://github.com/indeedeng/status/blob/master/status-web/src/main/java/com/indeed/status/web/AbstractDaemonCheckReportServlet.java">AbstractDaemonCheckReportServlet</a> that will report the status of your application.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">StatusServlet</span> <span style="color:#66d9ef">extends</span> AbstractDaemonCheckReportServlet <span style="color:#f92672">{</span>
-  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> AbstractDependencyManager manager<span style="color:#f92672">;</span>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000">dependencyManager</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">addDependency</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">myDependency</span><span style="color:#ce5c00;font-weight:bold">);</span>
+<span style="color:#8f5902;font-style:italic">// ...
+</span></code></pre></td></tr></table>
+</div>
+</div><p>For web-based applications and services, create an <a href="https://github.com/indeedeng/status/blob/master/status-web/src/main/java/com/indeed/status/web/AbstractDaemonCheckReportServlet.java">AbstractDaemonCheckReportServlet</a> that will report the status of your application.</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#204a87;font-weight:bold">public</span> <span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">StatusServlet</span> <span style="color:#204a87;font-weight:bold">extends</span> <span style="color:#000">AbstractDaemonCheckReportServlet</span> <span style="color:#ce5c00;font-weight:bold">{</span>
+  <span style="color:#204a87;font-weight:bold">private</span> <span style="color:#204a87;font-weight:bold">final</span> <span style="color:#000">AbstractDependencyManager</span> <span style="color:#000">manager</span><span style="color:#ce5c00;font-weight:bold">;</span>
  
-  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">StatusServlet</span><span style="color:#f92672">(</span>AbstractDependencyManager manager<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">manager</span> <span style="color:#f92672">=</span> manager<span style="color:#f92672">;</span>
-  <span style="color:#f92672">}</span>
+  <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">StatusServlet</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">AbstractDependencyManager</span> <span style="color:#000">manager</span><span style="color:#ce5c00;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">this</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">manager</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">manager</span><span style="color:#ce5c00;font-weight:bold">;</span>
+  <span style="color:#ce5c00;font-weight:bold">}</span>
  
-  <span style="color:#a6e22e">@Override</span>
-  <span style="color:#66d9ef">protected</span> AbstractDependencyManager <span style="color:#a6e22e">newManager</span><span style="color:#f92672">(</span>ServletConfig config<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">return</span> manager<span style="color:#f92672">;</span>
-  <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><p>Once this process is complete and your application is running, you should be able to access the servlet to read a JSON representation of your application status.</p>
+  <span style="color:#5c35cc;font-weight:bold">@Override</span>
+  <span style="color:#204a87;font-weight:bold">protected</span> <span style="color:#000">AbstractDependencyManager</span> <span style="color:#000">newManager</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">ServletConfig</span> <span style="color:#000">config</span><span style="color:#ce5c00;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">manager</span><span style="color:#ce5c00;font-weight:bold">;</span>
+  <span style="color:#ce5c00;font-weight:bold">}</span>
+<span style="color:#ce5c00;font-weight:bold">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Once this process is complete and your application is running, you should be able to access the servlet to read a JSON representation of your application status.</p>
 <p>Below is a sample response returned by the servlet.
 If the application is in an OUTAGE condition, the servlet returns a 500 status code.
 Associating the health check outcome with an HTTP status code enables integration with systems (like <a href="https://consul.io/">Consul</a>) that make routing decisions based on application health.
 Otherwise, the servlet returns a 200 since it can still process requests.
 In this case, the application may gracefully degrade less-critical functionality that depends on unhealthy code paths.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-  <span style="color:#f92672">&#34;hostname&#34;</span>: <span style="color:#e6db74">&#34;pitz.local&#34;</span>,
-  <span style="color:#f92672">&#34;duration&#34;</span>: <span style="color:#ae81ff">19</span>,
-  <span style="color:#f92672">&#34;condition&#34;</span>: <span style="color:#e6db74">&#34;OUTAGE&#34;</span>,
-  <span style="color:#f92672">&#34;dcStatus&#34;</span>: <span style="color:#e6db74">&#34;FAILOVER&#34;</span>,
-  <span style="color:#f92672">&#34;appname&#34;</span>: <span style="color:#e6db74">&#34;crm.api&#34;</span>,
-  <span style="color:#f92672">&#34;catalinaBase&#34;</span>: <span style="color:#e6db74">&#34;/var/local/tomcat&#34;</span>,
-  <span style="color:#f92672">&#34;leastRecentlyExecutedDate&#34;</span>: <span style="color:#e6db74">&#34;2015-02-24T22:48:37.782-0600&#34;</span>,
-  <span style="color:#f92672">&#34;leastRecentlyExecutedTimestamp&#34;</span>: <span style="color:#ae81ff">1424839717782</span>,
-  <span style="color:#f92672">&#34;results&#34;</span>: {
-    <span style="color:#f92672">&#34;OUTAGE&#34;</span>: [{
-      <span style="color:#f92672">&#34;status&#34;</span>: <span style="color:#e6db74">&#34;OUTAGE&#34;</span>,
-      <span style="color:#f92672">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;mysql&#34;</span>,
-      <span style="color:#f92672">&#34;errorMessage&#34;</span>: <span style="color:#e6db74">&#34;Exception thrown during ping&#34;</span>,
-      <span style="color:#f92672">&#34;timestamp&#34;</span>: <span style="color:#ae81ff">1424839717782</span>,
-      <span style="color:#f92672">&#34;duration&#34;</span>: <span style="color:#ae81ff">18</span>,
-      <span style="color:#f92672">&#34;lastKnownGoodTimestamp&#34;</span>: <span style="color:#ae81ff">0</span>,
-      <span style="color:#f92672">&#34;period&#34;</span>: <span style="color:#ae81ff">0</span>,
-      <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#e6db74">&#34;mysql&#34;</span>,
-      <span style="color:#f92672">&#34;urgency&#34;</span>: <span style="color:#e6db74">&#34;Required: Failure of this dependency would result in complete system outage&#34;</span>,
-      <span style="color:#f92672">&#34;documentationUrl&#34;</span>: <span style="color:#e6db74">&#34;http://www.mysql.com/&#34;</span>,
-      <span style="color:#f92672">&#34;thrown&#34;</span>: {
-        <span style="color:#f92672">&#34;exception&#34;</span>: <span style="color:#e6db74">&#34;RuntimeException&#34;</span>,
-        <span style="color:#f92672">&#34;message&#34;</span>: <span style="color:#e6db74">&#34;Failed to communicate with the following tables:
-</span><span style="color:#e6db74">          user_authorities, oauth_code, oauth_approvals, oauth_client_token,
-</span><span style="color:#e6db74">          oauth_refresh_token, oauth_client_details, oauth_access_token&#34;</span>,
-        <span style="color:#f92672">&#34;stack&#34;</span>: [
-          <span style="color:#e6db74">&#34;io.github.jpitz.example.MySQLDependency.ping(MySQLDependency.java:68)&#34;</span>,
-          <span style="color:#e6db74">&#34;com.indeed.status.core.PingableDependency.call(PingableDependency.java:59)&#34;</span>,
-          <span style="color:#e6db74">&#34;com.indeed.status.core.PingableDependency.call(PingableDependency.java:15)&#34;</span>,
-          <span style="color:#e6db74">&#34;java.util.concurrent.FutureTask.run(FutureTask.java:262)&#34;</span>,
-          <span style="color:#e6db74">&#34;java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)&#34;</span>,
-          <span style="color:#e6db74">&#34;java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)&#34;</span>,
-          <span style="color:#e6db74">&#34;java.lang.Thread.run(Thread.java:745)&#34;</span>
-        ]
-      },
-      <span style="color:#f92672">&#34;date&#34;</span>: <span style="color:#e6db74">&#34;2015-02-24T22:48:37.782-0600&#34;</span>
-    }],
-    <span style="color:#f92672">&#34;OK&#34;</span>: [{
-      <span style="color:#f92672">&#34;status&#34;</span>: <span style="color:#e6db74">&#34;OK&#34;</span>,
-      <span style="color:#f92672">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;mongo&#34;</span>,
-      <span style="color:#f92672">&#34;errorMessage&#34;</span>: <span style="color:#e6db74">&#34;ok&#34;</span>,
-      <span style="color:#f92672">&#34;timestamp&#34;</span>: <span style="color:#ae81ff">1424839717782</span>,
-      <span style="color:#f92672">&#34;duration&#34;</span>: <span style="color:#ae81ff">0</span>,
-      <span style="color:#f92672">&#34;lastKnownGoodTimestamp&#34;</span>: <span style="color:#ae81ff">0</span>,
-      <span style="color:#f92672">&#34;period&#34;</span>: <span style="color:#ae81ff">0</span>,
-      <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#e6db74">&#34;mongo&#34;</span>,
-      <span style="color:#f92672">&#34;urgency&#34;</span>: <span style="color:#e6db74">&#34;Required: Failure of this dependency would result in complete system outage&#34;</span>,
-      <span style="color:#f92672">&#34;documentationUrl&#34;</span>: <span style="color:#e6db74">&#34;http://www.mongodb.org/&#34;</span>,
-      <span style="color:#f92672">&#34;date&#34;</span>: <span style="color:#e6db74">&#34;2015-02-24T22:48:37.782-0600&#34;</span>
-    }]
-  }
-}
-</code></pre></div><p>This report includes these key fields to help you evaluate the health of a system and the health of a dependency:</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#000;font-weight:bold">{</span>
+  <span style="color:#204a87;font-weight:bold">&#34;hostname&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;pitz.local&#34;</span><span style="color:#000;font-weight:bold">,</span>
+  <span style="color:#204a87;font-weight:bold">&#34;duration&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">19</span><span style="color:#000;font-weight:bold">,</span>
+  <span style="color:#204a87;font-weight:bold">&#34;condition&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;OUTAGE&#34;</span><span style="color:#000;font-weight:bold">,</span>
+  <span style="color:#204a87;font-weight:bold">&#34;dcStatus&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;FAILOVER&#34;</span><span style="color:#000;font-weight:bold">,</span>
+  <span style="color:#204a87;font-weight:bold">&#34;appname&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;crm.api&#34;</span><span style="color:#000;font-weight:bold">,</span>
+  <span style="color:#204a87;font-weight:bold">&#34;catalinaBase&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;/var/local/tomcat&#34;</span><span style="color:#000;font-weight:bold">,</span>
+  <span style="color:#204a87;font-weight:bold">&#34;leastRecentlyExecutedDate&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;2015-02-24T22:48:37.782-0600&#34;</span><span style="color:#000;font-weight:bold">,</span>
+  <span style="color:#204a87;font-weight:bold">&#34;leastRecentlyExecutedTimestamp&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">1424839717782</span><span style="color:#000;font-weight:bold">,</span>
+  <span style="color:#204a87;font-weight:bold">&#34;results&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">&#34;OUTAGE&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">[{</span>
+      <span style="color:#204a87;font-weight:bold">&#34;status&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;OUTAGE&#34;</span><span style="color:#000;font-weight:bold">,</span>
+      <span style="color:#204a87;font-weight:bold">&#34;description&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;mysql&#34;</span><span style="color:#000;font-weight:bold">,</span>
+      <span style="color:#204a87;font-weight:bold">&#34;errorMessage&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;Exception thrown during ping&#34;</span><span style="color:#000;font-weight:bold">,</span>
+      <span style="color:#204a87;font-weight:bold">&#34;timestamp&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">1424839717782</span><span style="color:#000;font-weight:bold">,</span>
+      <span style="color:#204a87;font-weight:bold">&#34;duration&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">18</span><span style="color:#000;font-weight:bold">,</span>
+      <span style="color:#204a87;font-weight:bold">&#34;lastKnownGoodTimestamp&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span>
+      <span style="color:#204a87;font-weight:bold">&#34;period&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span>
+      <span style="color:#204a87;font-weight:bold">&#34;id&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;mysql&#34;</span><span style="color:#000;font-weight:bold">,</span>
+      <span style="color:#204a87;font-weight:bold">&#34;urgency&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;Required: Failure of this dependency would result in complete system outage&#34;</span><span style="color:#000;font-weight:bold">,</span>
+      <span style="color:#204a87;font-weight:bold">&#34;documentationUrl&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;http://www.mysql.com/&#34;</span><span style="color:#000;font-weight:bold">,</span>
+      <span style="color:#204a87;font-weight:bold">&#34;thrown&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#204a87;font-weight:bold">&#34;exception&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;RuntimeException&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#204a87;font-weight:bold">&#34;message&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;Failed to communicate with the following tables:
+</span><span style="color:#4e9a06">          user_authorities, oauth_code, oauth_approvals, oauth_client_token,
+</span><span style="color:#4e9a06">          oauth_refresh_token, oauth_client_details, oauth_access_token&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#204a87;font-weight:bold">&#34;stack&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">[</span>
+          <span style="color:#4e9a06">&#34;io.github.jpitz.example.MySQLDependency.ping(MySQLDependency.java:68)&#34;</span><span style="color:#000;font-weight:bold">,</span>
+          <span style="color:#4e9a06">&#34;com.indeed.status.core.PingableDependency.call(PingableDependency.java:59)&#34;</span><span style="color:#000;font-weight:bold">,</span>
+          <span style="color:#4e9a06">&#34;com.indeed.status.core.PingableDependency.call(PingableDependency.java:15)&#34;</span><span style="color:#000;font-weight:bold">,</span>
+          <span style="color:#4e9a06">&#34;java.util.concurrent.FutureTask.run(FutureTask.java:262)&#34;</span><span style="color:#000;font-weight:bold">,</span>
+          <span style="color:#4e9a06">&#34;java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)&#34;</span><span style="color:#000;font-weight:bold">,</span>
+          <span style="color:#4e9a06">&#34;java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)&#34;</span><span style="color:#000;font-weight:bold">,</span>
+          <span style="color:#4e9a06">&#34;java.lang.Thread.run(Thread.java:745)&#34;</span>
+        <span style="color:#000;font-weight:bold">]</span>
+      <span style="color:#000;font-weight:bold">},</span>
+      <span style="color:#204a87;font-weight:bold">&#34;date&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;2015-02-24T22:48:37.782-0600&#34;</span>
+    <span style="color:#000;font-weight:bold">}],</span>
+    <span style="color:#204a87;font-weight:bold">&#34;OK&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">[{</span>
+      <span style="color:#204a87;font-weight:bold">&#34;status&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;OK&#34;</span><span style="color:#000;font-weight:bold">,</span>
+      <span style="color:#204a87;font-weight:bold">&#34;description&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;mongo&#34;</span><span style="color:#000;font-weight:bold">,</span>
+      <span style="color:#204a87;font-weight:bold">&#34;errorMessage&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;ok&#34;</span><span style="color:#000;font-weight:bold">,</span>
+      <span style="color:#204a87;font-weight:bold">&#34;timestamp&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">1424839717782</span><span style="color:#000;font-weight:bold">,</span>
+      <span style="color:#204a87;font-weight:bold">&#34;duration&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span>
+      <span style="color:#204a87;font-weight:bold">&#34;lastKnownGoodTimestamp&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span>
+      <span style="color:#204a87;font-weight:bold">&#34;period&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span>
+      <span style="color:#204a87;font-weight:bold">&#34;id&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;mongo&#34;</span><span style="color:#000;font-weight:bold">,</span>
+      <span style="color:#204a87;font-weight:bold">&#34;urgency&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;Required: Failure of this dependency would result in complete system outage&#34;</span><span style="color:#000;font-weight:bold">,</span>
+      <span style="color:#204a87;font-weight:bold">&#34;documentationUrl&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;http://www.mongodb.org/&#34;</span><span style="color:#000;font-weight:bold">,</span>
+      <span style="color:#204a87;font-weight:bold">&#34;date&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;2015-02-24T22:48:37.782-0600&#34;</span>
+    <span style="color:#000;font-weight:bold">}]</span>
+  <span style="color:#000;font-weight:bold">}</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>This report includes these key fields to help you evaluate the health of a system and the health of a dependency:</p>
 <ul>
 <li><code>condition</code> - Identifies the current health of the system as a whole.</li>
 <li><code>leastRecentlyExecutedDate</code> - The last date and time that the report was updated.</li>

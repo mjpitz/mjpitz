@@ -143,12 +143,23 @@ As a result, they often add an include <a href="http://docs.spring.io/spring/doc
 It&rsquo;s important to note that without the addition of the filter, <a href="https://spring.io/">Spring</a> would still wire up the configuration into the context.
 This is because the <a href="http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/Configuration.html">@Configuration</a> class is a specialization of <a href="http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Component.html">@Component</a>.
 In looking at the source code, you can see it is annotated with <a href="http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Component.html">@Component</a>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Target</span><span style="color:#f92672">(</span>ElementType<span style="color:#f92672">.</span><span style="color:#a6e22e">TYPE</span><span style="color:#f92672">)</span>
-<span style="color:#a6e22e">@Retention</span><span style="color:#f92672">(</span>RetentionPolicy<span style="color:#f92672">.</span><span style="color:#a6e22e">RUNTIME</span><span style="color:#f92672">)</span>
-<span style="color:#a6e22e">@Documented</span>
-<span style="color:#a6e22e">@Component</span>
-<span style="color:#66d9ef">public</span> <span style="color:#a6e22e">@interface</span> Configuration <span style="color:#f92672">{</span>
-</code></pre></div><p><a href="https://github.com/spring-projects/spring-framework/blob/master/spring-context/src/main/java/org/springframework/context/annotation/Configuration.java#L404">source</a></p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#5c35cc;font-weight:bold">@Target</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">ElementType</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">TYPE</span><span style="color:#ce5c00;font-weight:bold">)</span>
+<span style="color:#5c35cc;font-weight:bold">@Retention</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">RetentionPolicy</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">RUNTIME</span><span style="color:#ce5c00;font-weight:bold">)</span>
+<span style="color:#5c35cc;font-weight:bold">@Documented</span>
+<span style="color:#5c35cc;font-weight:bold">@Component</span>
+<span style="color:#204a87;font-weight:bold">public</span> <span style="color:#5c35cc;font-weight:bold">@interface</span> <span style="color:#000">Configuration</span> <span style="color:#ce5c00;font-weight:bold">{</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><a href="https://github.com/spring-projects/spring-framework/blob/master/spring-context/src/main/java/org/springframework/context/annotation/Configuration.java#L404">source</a></p>
     </div>
     <div class="post-footer">
       <div class="info">

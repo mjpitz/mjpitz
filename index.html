@@ -94,6 +94,33 @@
   
   <div class="post animated fadeInDown">
     <div class="post-title">
+      <h3><a href="/blog/2020/08/03/bfs-over-grpc-stream/">Implementing Breadth-first Search Over gRPC</a>
+      </h3>
+    </div>
+    <div class="post-content"><div class="p_part"><p><p>A modern take on a classic problem.</p>
+<p><a href="https://deps.cloud">deps.cloud</a> is an open source project that I started.
+It&rsquo;s a tool that helps companies understand how their projects relate to one another.
+It does this by parsing files like <code>package.json</code> and storing the contents in a <a href="https://en.wikipedia.org/wiki/Graph_(abstract_data_type)">graph</a>.</p>
+<p>While <a href="https://en.wikipedia.org/wiki/Graph_database">graph databases</a> do exist, finding administrative and engineering support is often hard.
+To add complexity to this, graph databases come in a variety of flavors.<br>
+Since I wanted the workload to be portable, adopting a graph database was a non-starter.</p>
+<p>On the other hand, finding support for relational databases is easy.
+The problem is that implementing graphs on relational databases tend to be slow.
+While there has been previous efforts, I felt <a href="https://grpc.io">gRPC</a> was able to alleviate many of the problems they faced.
+In this post, I share lessons I learned while implementing such a graph database.</p></p></div>
+  
+  <div class="p_part"><p></p></div></div>
+    <div class="post-footer">
+      <div class="meta">
+        <div class="info"><i class="fa fa-sun-o"></i><span class="date">Mon, Aug 3, 2020</span>
+          <a class="tag" href="/tags/data-structures/">data-structures</a><a class="tag" href="/tags/algorithms/">algorithms</a><a class="tag" href="/tags/bfs/">bfs</a><a class="tag" href="/tags/grpc/">grpc</a><a class="tag" href="/tags/graphs/">graphs</a><a class="tag" href="/tags/trees/">trees</a><a class="tag" href="/tags/golang/">golang</a>       
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="post animated fadeInDown">
+    <div class="post-title">
       <h3><a href="/blog/2020/08/03/digitalocean-setup/">Reducing cost on DigitalOcean</a>
       </h3>
     </div>
@@ -279,34 +306,6 @@ In this post, I&rsquo;ll discuss the process and rationale I applied as I rewrot
       <div class="meta">
         <div class="info"><i class="fa fa-sun-o"></i><span class="date">Thu, Nov 21, 2019</span>
           <a class="tag" href="/tags/podcast/">podcast</a><a class="tag" href="/tags/guest/">guest</a><a class="tag" href="/tags/softwaredaily/">softwaredaily</a>       
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <div class="post animated fadeInDown">
-    <div class="post-title">
-      <h3><a href="/blog/2019/10/17/kubernetes-service-precheck/">Checking Service Dependencies in Kubernetes</a>
-      </h3>
-    </div>
-    <div class="post-content"><div class="p_part"><p><p>Back in July, I found myself needing to better coordinate deployments of my applications to <a href="https://kubernetes.io/">Kubernetes</a>.
-After searching around, I found many ways that people where trying to solve this problem.
-Some used shell scripts to apply multiple YAML files with a fixed time sleep between them.
-Others used shell scripts and tailed the rollout using <code>kubectl rollout status -w</code>.
-Now, I manage a lot of my deployments using <a href="https://www.weave.works/technologies/gitops/">GitOps</a> and <a href="https://github.com/fluxcd/flux">Flux</a>.
-So leveraging these shell scripts to manage my rollouts into clusters wasn&rsquo;t really an option.</p>
-<p>It wasn&rsquo;t until I came across <a href="https://us.alibabacloud.com">Alibaba Cloud&rsquo;s</a> blog post on <a href="https://www.alibabacloud.com/blog/kubernetes-demystified-solving-service-dependencies_594110">solving service dependencies</a> that I felt like I had something to work with.
-The article described two techniques.
-The first was inspecting dependencies within the application itself.
-At Indeed, we leverage our <a href="http://github.com/indeedeng/status">status</a> library to do this.
-The second was to enable services to be checked, independent of the application.</p>
-<p>In this post, I’ll demonstrate how to use my <a href="https://hub.docker.com/r/mjpitz/service-precheck">service-precheck</a> initialization container (built off of the Alibaba blog post) to ensure upstream systems are up before attempting to start a downstream system.</p></p></div>
-  
-  <div class="p_part"><p></p></div></div>
-    <div class="post-footer">
-      <div class="meta">
-        <div class="info"><i class="fa fa-sun-o"></i><span class="date">Thu, Oct 17, 2019</span>
-          <a class="tag" href="/tags/docker/">docker</a><a class="tag" href="/tags/kubernetes/">kubernetes</a><a class="tag" href="/tags/microservices/">microservices</a><a class="tag" href="/tags/dependencies/">dependencies</a>       
         </div>
       </div>
     </div>

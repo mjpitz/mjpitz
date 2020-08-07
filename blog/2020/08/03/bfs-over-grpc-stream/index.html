@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light"><head>
+    <title> Mya Pitzeruse | Implementing Breadth-first Search Over gRPC </title>
+    <meta charset="utf-8"><meta name="generator" content="Hugo 0.69.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="description" content="">
+    
+    <link rel="stylesheet" href="https://mjpitz.com/css/style.min.67cd718c0a3c8009c771494d381fb7128246a454bd0518fed97cb65d257db948.css" integrity="sha256-Z81xjAo8gAnHcUlNOB&#43;3EoJGpFS9BRj&#43;2Xy2XSV9uUg=" crossorigin="anonymous" type="text/css">
+    <link rel="stylesheet" href="https://mjpitz.com/statics/css/overrides.css" type="text/css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    
+    <link rel="shortcut icon" href="https://mjpitz.com/statics/img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://mjpitz.com/statics/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://mjpitz.com/statics/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://mjpitz.com/statics/img/favicon-16x16.png">
+    <link rel="canonical" href="https://mjpitz.com/blog/2020/08/03/bfs-over-grpc-stream/">
+    
+    
+    <script type="text/javascript" src="https://mjpitz.com/js/anatole-header.min.c275265a259296f3dd50e8236a77fcbcadb1dbb9597d3045c675dcc2c7c58a93.js" integrity="sha256-wnUmWiWSlvPdUOgjanf8vK2x27lZfTBFxnXcwsfFipM=" crossorigin="anonymous"></script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Implementing Breadth-first Search Over gRPC"/>
+<meta name="twitter:description" content="A modern take on a classic problem.
+deps.cloud is an open source project that I started.
+It&rsquo;s a tool that helps companies understand how their projects relate to one another.
+It does this by parsing files like package.json and storing the contents in a graph.
+While graph databases do exist, finding administrative and engineering support is often hard.
+To add complexity to this, graph databases come in a variety of flavors.
+Since I wanted the workload to be portable, adopting a graph database was a non-starter.
+On the other hand, finding support for relational databases is easy.
+The problem is that implementing graphs on relational databases tend to be slow.
+While there has been previous efforts, I felt gRPC was able to alleviate many of the problems they faced.
+In this post, I share lessons I learned while implementing such a graph database."/>
+
+</head><body><div class="sidebar animated fadeInDown">
+    <div class="logo-title">
+      <div class="title">
+        <img src="https://mjpitz.com/statics/img/mjpitz.jpeg" alt="profile picture">
+        <h3 title=""><a href="/">Mya Pitzeruse</a></h3>
+        <div class="description">
+          <p></p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
+        
+        <li>
+        <a href="https://github.com/mjpitz" rel="me" aria-label="GitHub">
+          <i class="fa fa-2x fa-github" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+        <li>
+        <a href="https://twitter.com/_mjpitz_" rel="me" aria-label="Twitter">
+          <i class="fa fa-2x fa-twitter" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+        <li>
+        <a href="https://www.linkedin.com/in/mjpitz/" rel="me" aria-label="LinkedIn">
+          <i class="fa fa-2x fa-linkedin" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+        <li>
+        <a href="/index.xml" rel="me" aria-label="Feed">
+          <i class="fa fa-2x fa-rss" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+    </ul>
+    <div class="footer">
+        <div class="by_farbox">&copy; Mya Pitzeruse 2020 </div>
+      </div>
+    </div>
+</div><div class="main">
+            <div class="page-top animated fadeInDown">
+    <ul class="nav">
+        
+        
+        
+        <li><a  href="/" title="">Home</a></li>
+        
+        
+        <li><a  href="/media/" title="">Media</a></li>
+        
+        
+        <li><a  href="/blog/" title="">Blog</a></li>
+        
+    </ul>
+    <div class="themeswitcher">
+        <a class="theme-switch" title="Switch Theme">
+            <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+        </a>
+    </div>
+</div>
+
+            <div class="autopagerize_page_element">
+                <div class="content">
+<div class="post animated fadeInDown">
+    <div class="post-content">
+
+      <div class="post-title">
+        <h3>Implementing Breadth-first Search Over gRPC
+        </h3>
+        
+        </div>
+
+    <p>A modern take on a classic problem.</p>
+<p><a href="https://deps.cloud">deps.cloud</a> is an open source project that I started.
+It&rsquo;s a tool that helps companies understand how their projects relate to one another.
+It does this by parsing files like <code>package.json</code> and storing the contents in a <a href="https://en.wikipedia.org/wiki/Graph_(abstract_data_type)">graph</a>.</p>
+<p>While <a href="https://en.wikipedia.org/wiki/Graph_database">graph databases</a> do exist, finding administrative and engineering support is often hard.
+To add complexity to this, graph databases come in a variety of flavors.<br>
+Since I wanted the workload to be portable, adopting a graph database was a non-starter.</p>
+<p>On the other hand, finding support for relational databases is easy.
+The problem is that implementing graphs on relational databases tend to be slow.
+While there has been previous efforts, I felt <a href="https://grpc.io">gRPC</a> was able to alleviate many of the problems they faced.
+In this post, I share lessons I learned while implementing such a graph database.</p>
+<h2 id="the-database-schema">The Database Schema</h2>
+<p>Before talking about the service layer, we first need to cover how we store data.
+A common approach is to separate the data out into two separate tables.
+One table stores the <code>nodes</code>, or entities, of the graph.
+The other stores the <code>edges</code>, or associations.
+The problem with this approach is that it often complicates the query logic.
+In order to get a full picture, you need to join across 3 tables (<code>nodes</code>, <code>edges</code>, and <code>nodes</code> again).</p>
+<p>Instead, I decided to store all data (<code>nodes</code> and <code>edges</code>) in a single table.
+This was inspired by <a href="https://www.youtube.com/watch?v=VZ-zJEWi-Vo">Dropbox&rsquo;s EdgeStore</a>.
+The schema for <a href="https://www.mysql.com/">MySQL</a> is as follows:</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#204a87;font-weight:bold">CREATE</span> <span style="color:#204a87;font-weight:bold">TABLE</span> <span style="color:#204a87;font-weight:bold">IF</span> <span style="color:#204a87;font-weight:bold">NOT</span> <span style="color:#204a87;font-weight:bold">EXISTS</span> <span style="color:#000">graphdata</span><span style="color:#000;font-weight:bold">(</span>
+  <span style="color:#000">graph_item_type</span> <span style="color:#204a87;font-weight:bold">VARCHAR</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">55</span><span style="color:#000;font-weight:bold">),</span>
+  <span style="color:#000">k1</span> <span style="color:#204a87;font-weight:bold">VARCHAR</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">64</span><span style="color:#000;font-weight:bold">),</span>
+  <span style="color:#000">k2</span> <span style="color:#204a87;font-weight:bold">VARCHAR</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">64</span><span style="color:#000;font-weight:bold">),</span>
+  <span style="color:#000">k3</span> <span style="color:#204a87;font-weight:bold">VARCHAR</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">64</span><span style="color:#000;font-weight:bold">),</span>
+  <span style="color:#000">encoding</span> <span style="color:#204a87;font-weight:bold">TINYINT</span><span style="color:#000;font-weight:bold">,</span>
+  <span style="color:#000">graph_item_data</span> <span style="color:#204a87;font-weight:bold">TEXT</span><span style="color:#000;font-weight:bold">,</span>
+  <span style="color:#000">last_modified</span> <span style="color:#204a87;font-weight:bold">DATETIME</span><span style="color:#000;font-weight:bold">,</span>
+  <span style="color:#000">date_deleted</span> <span style="color:#204a87;font-weight:bold">DATETIME</span> <span style="color:#204a87;font-weight:bold">DEFAULT</span> <span style="color:#000">NULL</span><span style="color:#000;font-weight:bold">,</span>
+  <span style="color:#204a87;font-weight:bold">PRIMARY</span> <span style="color:#204a87;font-weight:bold">KEY</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">graph_item_type</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">k1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">k2</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">k3</span><span style="color:#000;font-weight:bold">),</span>
+  <span style="color:#204a87;font-weight:bold">KEY</span> <span style="color:#000">secondary</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">graph_item_type</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">k2</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">k1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">k3</span><span style="color:#000;font-weight:bold">),</span>
+  <span style="color:#204a87;font-weight:bold">KEY</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">date_deleted</span><span style="color:#000;font-weight:bold">)</span>
+<span style="color:#000;font-weight:bold">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol>
+<li>When <code>k1 == k2</code>, the row is a node.</li>
+<li>When <code>k1 != k2</code>, the row is an edge.</li>
+<li>The <code>k3</code> field allows nodes to have multiple edges between them.</li>
+<li>Keys have a maximum length to keep the index small.</li>
+<li>The <code>secondary</code> key improves performance of queries in the inverse direction.</li>
+</ol>
+<h2 id="service-definitions">Service Definitions</h2>
+<p>Early on, I wanted a very straight forward interface.
+In some of my previous work, the data felt more like key/value data.
+I often used bulk updates or bulk deletes to manage my information.
+Scanning the data was a semi-common task.
+Finally, I needed to do prefix scans on both indexes.
+That is:</p>
+<ul>
+<li><code>k1, k2</code> when querying for the egress (upstream) edges.</li>
+<li><code>k2, k1</code> when querying for the ingress (downstream) edges.</li>
+</ul>
+<p>As a result, I wound up with a pretty minimal key/value interface.
+While small, it provides the necessary building blocks for other calls.</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-proto" data-lang="proto"><span style="color:#204a87;font-weight:bold">message</span> <span style="color:#000">PutRequest</span> <span style="color:#000;font-weight:bold">{}</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span><span style="color:#204a87;font-weight:bold">message</span> <span style="color:#000">PutResponse</span> <span style="color:#000;font-weight:bold">{}</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span><span style="color:#204a87;font-weight:bold">message</span> <span style="color:#000">DeleteRequest</span> <span style="color:#000;font-weight:bold">{}</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span><span style="color:#204a87;font-weight:bold">message</span> <span style="color:#000">DeleteResponse</span> <span style="color:#000;font-weight:bold">{}</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span><span style="color:#204a87;font-weight:bold">message</span> <span style="color:#000">ListRequest</span> <span style="color:#000;font-weight:bold">{}</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span><span style="color:#204a87;font-weight:bold">message</span> <span style="color:#000">ListResponse</span> <span style="color:#000;font-weight:bold">{}</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span><span style="color:#204a87;font-weight:bold">message</span> <span style="color:#000">FindRequest</span> <span style="color:#000;font-weight:bold">{}</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span><span style="color:#204a87;font-weight:bold">message</span> <span style="color:#000">FindResponse</span> <span style="color:#000;font-weight:bold">{}</span><span style="color:#a40000">
+</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span><span style="color:#204a87;font-weight:bold">service</span> <span style="color:#000">GraphStore</span> <span style="color:#000;font-weight:bold">{</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span>  <span style="color:#204a87;font-weight:bold">rpc</span> <span style="color:#000">Put</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">PutRequest</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">returns</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">PutResponse</span><span style="color:#000;font-weight:bold">);</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span>  <span style="color:#204a87;font-weight:bold">rpc</span> <span style="color:#000">Delete</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">DeleteRequest</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">returns</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">DeleteResponse</span><span style="color:#000;font-weight:bold">);</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span>  <span style="color:#204a87;font-weight:bold">rpc</span> <span style="color:#000">List</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">ListRequest</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">returns</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">ListResponse</span><span style="color:#000;font-weight:bold">);</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span>  <span style="color:#8f5902;font-style:italic">// neighbors
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#204a87;font-weight:bold">rpc</span> <span style="color:#000">FindUpstream</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">FindRequest</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">returns</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">FindResponse</span><span style="color:#000;font-weight:bold">);</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span>  <span style="color:#204a87;font-weight:bold">rpc</span> <span style="color:#000">FindDownstream</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">FindRequest</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">returns</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">FindResponse</span><span style="color:#000;font-weight:bold">);</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span><span style="color:#000;font-weight:bold">}</span><span style="color:#a40000">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>In addition to the key/value interface, I needed away to query the graph efficiently.
+I started by implementing topological sorting as a client-only feature.
+The problem was this required constant communication between the client and server.
+This pushed me more towards a stream-based API.
+gRPC provides three different types of streaming calls:</p>
+<ol>
+<li>Client (eg. file upload)</li>
+<li>Server (eg. file download)</li>
+<li>Bidirectional (eg. chat app)</li>
+</ol>
+<p>For this use case, either a server or bidirectional streaming API would work.
+The main goal is to reduce the amount of back and forth between the clients.
+In many traversal algorithms you usually start with a set of nodes, and a strategy to apply.</p>
+<p>For example, consider <a href="https://en.wikipedia.org/wiki/Breadth-first_search">breadth-first search</a>.
+Engineers often use it to navigate <a href="https://en.wikipedia.org/wiki/Tree_(data_structure)">tree</a> and graph based data structures.
+It works by taking a starting node, traversing its children, and repeating the process for each child.
+What we see here is that we start with a single request that quickly turns into a lot of data.
+Hence, the server streaming capability.</p>
+<p>In my implementation, I chose a bidirectional stream.
+The reason is these search algorithms often terminate early once it finds the node.
+I wanted clients to be able to send along a stop request to prevent any further queries.</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-proto" data-lang="proto"><span style="color:#204a87;font-weight:bold">message</span> <span style="color:#000">SearchRequest</span> <span style="color:#000;font-weight:bold">{}</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span><span style="color:#204a87;font-weight:bold">message</span> <span style="color:#000">SearchResponse</span> <span style="color:#000;font-weight:bold">{}</span><span style="color:#a40000">
+</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span><span style="color:#204a87;font-weight:bold">service</span> <span style="color:#000">SearchService</span> <span style="color:#000;font-weight:bold">{</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span>  <span style="color:#204a87;font-weight:bold">rpc</span> <span style="color:#000">BreadthFirstSearch</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">stream</span> <span style="color:#000">SearchRequest</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">returns</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">stream</span> <span style="color:#000">SearchResponse</span><span style="color:#000;font-weight:bold">);</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span>  <span style="color:#204a87;font-weight:bold">rpc</span> <span style="color:#000">DepthFirstSearch</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">stream</span> <span style="color:#000">SearchRequest</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">returns</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">stream</span> <span style="color:#000">SearchResponse</span><span style="color:#000;font-weight:bold">);</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span><span style="color:#000;font-weight:bold">}</span><span style="color:#a40000">
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="implementing-breadth-first-search">Implementing Breadth-first Search</h2>
+<p>In my opinion, breadth-first search is the easier of the two functions.
+<a href="https://en.wikipedia.org/wiki/Depth-first_search">Depth-first search</a> requires further conversation around ordering and how that impacts the results.</p>
+<p>In this section, I&rsquo;m going to use an in-memory map to represent the graph.
+You can imagine this being swapped out with the <code>GraphStore</code> interface.
+Before we introduce streaming concepts to the code, lets start with an iterative BFS.</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#204a87;font-weight:bold">package</span> <span style="color:#000">main</span>
+
+<span style="color:#204a87;font-weight:bold">func</span> <span style="color:#000">bfs</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+	<span style="color:#000">graph</span> <span style="color:#ce5c00;font-weight:bold">:=</span> <span style="color:#204a87;font-weight:bold">map</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87;font-weight:bold">string</span><span style="color:#000;font-weight:bold">][]</span><span style="color:#204a87;font-weight:bold">string</span><span style="color:#000;font-weight:bold">{</span>
+		<span style="color:#4e9a06">&#34;a&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">{</span><span style="color:#4e9a06">&#34;b&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;c&#34;</span><span style="color:#000;font-weight:bold">},</span>
+		<span style="color:#4e9a06">&#34;b&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">{</span><span style="color:#4e9a06">&#34;c&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;d&#34;</span><span style="color:#000;font-weight:bold">},</span>
+		<span style="color:#4e9a06">&#34;c&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">{</span><span style="color:#4e9a06">&#34;e&#34;</span><span style="color:#000;font-weight:bold">},</span>
+		<span style="color:#8f5902;font-style:italic">// ....
+</span><span style="color:#8f5902;font-style:italic"></span>	<span style="color:#000;font-weight:bold">}</span>
+
+	<span style="color:#000">current</span> <span style="color:#ce5c00;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">[]</span><span style="color:#204a87;font-weight:bold">string</span><span style="color:#000;font-weight:bold">{</span><span style="color:#4e9a06">&#34;a&#34;</span><span style="color:#000;font-weight:bold">}</span>
+	<span style="color:#000">results</span> <span style="color:#ce5c00;font-weight:bold">:=</span> <span style="color:#204a87">make</span><span style="color:#000;font-weight:bold">([]</span><span style="color:#204a87;font-weight:bold">string</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">)</span>
+
+	<span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">length</span> <span style="color:#ce5c00;font-weight:bold">:=</span> <span style="color:#204a87">len</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">current</span><span style="color:#000;font-weight:bold">);</span> <span style="color:#000">length</span> <span style="color:#000;font-weight:bold">&gt;</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">length</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#204a87">len</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">current</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+		<span style="color:#000">next</span> <span style="color:#ce5c00;font-weight:bold">:=</span> <span style="color:#204a87">make</span><span style="color:#000;font-weight:bold">([]</span><span style="color:#204a87;font-weight:bold">string</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">)</span>
+
+		<span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">_</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">node</span> <span style="color:#ce5c00;font-weight:bold">:=</span> <span style="color:#204a87;font-weight:bold">range</span> <span style="color:#000">current</span> <span style="color:#000;font-weight:bold">{</span>
+			<span style="color:#000">next</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#204a87">append</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">next</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">graph</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">node</span><span style="color:#000;font-weight:bold">]</span><span style="color:#ce5c00;font-weight:bold">...</span><span style="color:#000;font-weight:bold">)</span>
+		<span style="color:#000;font-weight:bold">}</span>
+
+		<span style="color:#000">results</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#204a87">append</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">results</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">current</span><span style="color:#ce5c00;font-weight:bold">...</span><span style="color:#000;font-weight:bold">)</span>
+		<span style="color:#000">current</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#000">next</span>
+	<span style="color:#000;font-weight:bold">}</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>An iterative solution is key here.
+It allows you to buffer and discard layers, thus keeping memory requirements low.
+While there are a few inefficiencies in the code, it illustrates the overall structure.
+Next, we can introduce the streaming concepts.
+In introducing these, we no longer need to track the <code>results</code> of a function.
+Instead, we can write the current tier out to the client as we go.</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#204a87;font-weight:bold">package</span> <span style="color:#000">main</span>
+
+<span style="color:#204a87;font-weight:bold">type</span> <span style="color:#000">ServerStreamingCall</span> <span style="color:#204a87;font-weight:bold">interface</span> <span style="color:#000;font-weight:bold">{</span>
+	<span style="color:#000">Send</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">response</span> <span style="color:#204a87;font-weight:bold">string</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">error</span>
+<span style="color:#000;font-weight:bold">}</span>
+
+<span style="color:#204a87;font-weight:bold">func</span> <span style="color:#000">bfs</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">call</span> <span style="color:#000">ServerStreamingCall</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+	<span style="color:#000">graph</span> <span style="color:#ce5c00;font-weight:bold">:=</span> <span style="color:#204a87;font-weight:bold">map</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87;font-weight:bold">string</span><span style="color:#000;font-weight:bold">][]</span><span style="color:#204a87;font-weight:bold">string</span><span style="color:#000;font-weight:bold">{</span>
+		<span style="color:#4e9a06">&#34;a&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">{</span><span style="color:#4e9a06">&#34;b&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;c&#34;</span><span style="color:#000;font-weight:bold">},</span>
+		<span style="color:#4e9a06">&#34;b&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">{</span><span style="color:#4e9a06">&#34;c&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;d&#34;</span><span style="color:#000;font-weight:bold">},</span>
+		<span style="color:#4e9a06">&#34;c&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">{</span><span style="color:#4e9a06">&#34;e&#34;</span><span style="color:#000;font-weight:bold">},</span>
+		<span style="color:#8f5902;font-style:italic">// ....
+</span><span style="color:#8f5902;font-style:italic"></span>	<span style="color:#000;font-weight:bold">}</span>
+
+	<span style="color:#000">current</span> <span style="color:#ce5c00;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">[]</span><span style="color:#204a87;font-weight:bold">string</span><span style="color:#000;font-weight:bold">{</span><span style="color:#4e9a06">&#34;a&#34;</span><span style="color:#000;font-weight:bold">}</span>
+
+	<span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">length</span> <span style="color:#ce5c00;font-weight:bold">:=</span> <span style="color:#204a87">len</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">current</span><span style="color:#000;font-weight:bold">);</span> <span style="color:#000">length</span> <span style="color:#000;font-weight:bold">&gt;</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">length</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#204a87">len</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">current</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+		<span style="color:#000">next</span> <span style="color:#ce5c00;font-weight:bold">:=</span> <span style="color:#204a87">make</span><span style="color:#000;font-weight:bold">([]</span><span style="color:#204a87;font-weight:bold">string</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">)</span>
+
+		<span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">_</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">node</span> <span style="color:#ce5c00;font-weight:bold">:=</span> <span style="color:#204a87;font-weight:bold">range</span> <span style="color:#000">current</span> <span style="color:#000;font-weight:bold">{</span>
+			<span style="color:#000">next</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#204a87">append</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">next</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">graph</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">node</span><span style="color:#000;font-weight:bold">]</span><span style="color:#ce5c00;font-weight:bold">...</span><span style="color:#000;font-weight:bold">)</span>
+
+            <span style="color:#8f5902;font-style:italic">// result to client
+</span><span style="color:#8f5902;font-style:italic"></span>            <span style="color:#000">_</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#000">call</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Send</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">node</span><span style="color:#000;font-weight:bold">)</span>
+		<span style="color:#000;font-weight:bold">}</span>
+
+		<span style="color:#000">current</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#000">next</span>
+	<span style="color:#000;font-weight:bold">}</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Unlike many previous implementations, this allows the server to progressively navigate the graph.
+It keeps server foot prints low, and requires clients to size accordingly for their query.
+It improves the latency of calls by reducing round trips between clients and servers.
+All in all, I&rsquo;m excited to see how these types of operations scale as the amount of data stored grows.</p>
+    </div>
+    <div class="post-footer">
+      <div class="info">
+        
+        
+    <span class="separator"><a class="tag" href="/tags/data-structures/">data-structures</a><a class="tag" href="/tags/algorithms/">algorithms</a><a class="tag" href="/tags/bfs/">bfs</a><a class="tag" href="/tags/grpc/">grpc</a><a class="tag" href="/tags/graphs/">graphs</a><a class="tag" href="/tags/trees/">trees</a><a class="tag" href="/tags/golang/">golang</a></span>
+
+      </div>
+    </div>
+
+    
+</div>
+
+
+                </div>
+            </div>
+        </div>
+</body>
+
+
+
+<script type="text/javascript" src="https://mjpitz.com/js/jquery.min.86b1e8f819ee2d9099a783e50b49dff24282545fc40773861f9126b921532e4c.js" integrity="sha256-hrHo&#43;BnuLZCZp4PlC0nf8kKCVF/EB3OGH5EmuSFTLkw=" crossorigin="anonymous"></script>
+
+
+
+
+<script type="text/javascript" src="https://mjpitz.com/js/bundle.min.0f9c74cb78f13d1f15f33daff4037c70354f98acfbb97a6f61708966675c3cae.js" integrity="sha256-D5x0y3jxPR8V8z2v9AN8cDVPmKz7uXpvYXCJZmdcPK4=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://mjpitz.com/js/medium-zoom.min.92f21c856129f84aeb719459b3e6ac621a3032fd7b180a18c04e1d12083f8aba.js" integrity="sha256-kvIchWEp&#43;ErrcZRZs&#43;asYhowMv17GAoYwE4dEgg/iro=" crossorigin="anonymous"></script>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-39314903-5', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</html></body>
+
+</html>

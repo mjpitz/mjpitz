@@ -127,18 +127,39 @@ It provides host level information such as cpu, memory, and disk usage.
 It also provides more detailed information such as open and max file descriptor counts, memory swap, cpu steal, etc.
 In order to get started with the project, you either had to use the container image or go out and compile your own binary.
 With the recent introduction of the ARM image, running this has become a bit easier.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker run -d <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    --name <span style="color:#e6db74">&#34;node-exporter&#34;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    --network <span style="color:#e6db74">&#34;host&#34;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    --pid <span style="color:#e6db74">&#34;host&#34;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    --restart <span style="color:#e6db74">&#34;always&#34;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    -v <span style="color:#e6db74">&#34;/:/host:ro,rslave&#34;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    prom/node-exporter-linux-arm64:master <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    --path.rootfs /host
-</code></pre></div><p>You can verify that this process started up successfully by curling the metrics endpoint of the process.
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker run -d <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>    --name <span style="color:#4e9a06">&#34;node-exporter&#34;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>    --network <span style="color:#4e9a06">&#34;host&#34;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>    --pid <span style="color:#4e9a06">&#34;host&#34;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>    --restart <span style="color:#4e9a06">&#34;always&#34;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>    -v <span style="color:#4e9a06">&#34;/:/host:ro,rslave&#34;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>    prom/node-exporter-linux-arm64:master <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>    --path.rootfs /host
+</code></pre></td></tr></table>
+</div>
+</div><p>You can verify that this process started up successfully by curling the metrics endpoint of the process.
 Over time, this page will be updated based on the current usage of the system.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ curl http://<span style="color:#e6db74">${</span>ip_address<span style="color:#e6db74">}</span>:9100/metrics
-</code></pre></div><p>Repeat this process for each node within your cluster.</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ curl http://<span style="color:#4e9a06">${</span><span style="color:#000">ip_address</span><span style="color:#4e9a06">}</span>:9100/metrics
+</code></pre></td></tr></table>
+</div>
+</div><p>Repeat this process for each node within your cluster.</p>
 <h2 id="picking-a-monitoring-node">Picking a monitoring node</h2>
 <p>I want to explicitly call out to the &ldquo;monitoring&rdquo; node aspect of this section.
 A monitoring node in this case is simply a node who has a large amount of disk space.
@@ -150,68 +171,142 @@ Since my setup is rather minimum, I run this on my laptop during times of experi
 <p>Before starting the Prometheus server, you need a configuration file.
 This file tells Prometheus where it can gather metrics from.
 In this case, we use a static_config that points at every node in the cluster.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">global</span>:
-  <span style="color:#66d9ef">scrape_interval</span>: 1m
-  <span style="color:#66d9ef">scrape_timeout</span>: 10s
-  <span style="color:#66d9ef">evaluation_interval</span>: 1m
-
-<span style="color:#66d9ef">scrape_configs</span>:
-  - <span style="color:#66d9ef">job_name</span>: node-exporter
-    <span style="color:#66d9ef">static_configs</span>:
-      - <span style="color:#66d9ef">targets</span>:
-        - <span style="color:#ae81ff">192.168.1.100</span>:<span style="color:#ae81ff">9100</span>
-        - <span style="color:#ae81ff">192.168.1.101</span>:<span style="color:#ae81ff">9100</span>
-        - <span style="color:#ae81ff">192.168.1.102</span>:<span style="color:#ae81ff">9100</span>
-        - <span style="color:#ae81ff">192.168.1.103</span>:<span style="color:#ae81ff">9100</span>
-        - <span style="color:#ae81ff">192.168.1.104</span>:<span style="color:#ae81ff">9100</span>
-        - <span style="color:#ae81ff">192.168.1.105</span>:<span style="color:#ae81ff">9100</span>
-        - <span style="color:#ae81ff">192.168.1.106</span>:<span style="color:#ae81ff">9100</span>
-        - <span style="color:#ae81ff">192.168.1.107</span>:<span style="color:#ae81ff">9100</span>
-        - <span style="color:#ae81ff">192.168.1.108</span>:<span style="color:#ae81ff">9100</span>
-        - <span style="color:#ae81ff">192.168.1.109</span>:<span style="color:#ae81ff">9100</span>
-</code></pre></div><p>Once the configuration file is defined, I started to look into how to deploy this setup.
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">global</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">scrape_interval</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>1m<span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">scrape_timeout</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>10s<span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">evaluation_interval</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>1m<span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">scrape_configs</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span>- <span style="color:#204a87;font-weight:bold">job_name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>node-exporter<span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">static_configs</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#204a87;font-weight:bold">targets</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span>- <span style="color:#0000cf;font-weight:bold">192.168.1.100</span><span style="color:#000;font-weight:bold">:</span><span style="color:#0000cf;font-weight:bold">9100</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span>- <span style="color:#0000cf;font-weight:bold">192.168.1.101</span><span style="color:#000;font-weight:bold">:</span><span style="color:#0000cf;font-weight:bold">9100</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span>- <span style="color:#0000cf;font-weight:bold">192.168.1.102</span><span style="color:#000;font-weight:bold">:</span><span style="color:#0000cf;font-weight:bold">9100</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span>- <span style="color:#0000cf;font-weight:bold">192.168.1.103</span><span style="color:#000;font-weight:bold">:</span><span style="color:#0000cf;font-weight:bold">9100</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span>- <span style="color:#0000cf;font-weight:bold">192.168.1.104</span><span style="color:#000;font-weight:bold">:</span><span style="color:#0000cf;font-weight:bold">9100</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span>- <span style="color:#0000cf;font-weight:bold">192.168.1.105</span><span style="color:#000;font-weight:bold">:</span><span style="color:#0000cf;font-weight:bold">9100</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span>- <span style="color:#0000cf;font-weight:bold">192.168.1.106</span><span style="color:#000;font-weight:bold">:</span><span style="color:#0000cf;font-weight:bold">9100</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span>- <span style="color:#0000cf;font-weight:bold">192.168.1.107</span><span style="color:#000;font-weight:bold">:</span><span style="color:#0000cf;font-weight:bold">9100</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span>- <span style="color:#0000cf;font-weight:bold">192.168.1.108</span><span style="color:#000;font-weight:bold">:</span><span style="color:#0000cf;font-weight:bold">9100</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span>- <span style="color:#0000cf;font-weight:bold">192.168.1.109</span><span style="color:#000;font-weight:bold">:</span><span style="color:#0000cf;font-weight:bold">9100</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>Once the configuration file is defined, I started to look into how to deploy this setup.
 I wound up finding docker-compose files to be the best way to managed this.
 By using something like <code>docker stack deploy</code>, we&rsquo;re able to leverage the <code>configs</code> semantic.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">version</span>: <span style="color:#e6db74">&#34;3.7&#34;</span>
-
-<span style="color:#66d9ef">volumes</span>:
-  <span style="color:#66d9ef">prometheus-data</span>:
-  <span style="color:#66d9ef">graphana-data</span>:
-
-<span style="color:#66d9ef">configs</span>:
-  <span style="color:#66d9ef">prometheus-config</span>:
-    <span style="color:#66d9ef">file</span>: ./prometheus.yaml
-
-<span style="color:#66d9ef">services</span>:
-  <span style="color:#66d9ef">prometheus</span>:
-    <span style="color:#66d9ef">hostname</span>: prometheus
-    <span style="color:#66d9ef">configs</span>:
-      - <span style="color:#66d9ef">source</span>: prometheus-config
-        <span style="color:#66d9ef">target</span>: /prometheus.yaml
-    <span style="color:#66d9ef">volumes</span>:
-      - prometheus-data:/prometheus
-    <span style="color:#66d9ef">ports</span>:
-      - <span style="color:#ae81ff">9090</span>:<span style="color:#ae81ff">9090</span>
-    <span style="color:#66d9ef">image</span>: prom/prometheus
-    <span style="color:#66d9ef">command</span>: [
-      --config.file, /prometheus.yaml,
-      --storage.tsdb.path, /prometheus
-    ]
-
-  <span style="color:#66d9ef">graphana</span>:
-    <span style="color:#66d9ef">hostname</span>: graphana
-    <span style="color:#66d9ef">volumes</span>:
-      - graphana-data:/var/lib/grafana
-    <span style="color:#66d9ef">ports</span>:
-      - <span style="color:#ae81ff">3000</span>:<span style="color:#ae81ff">3000</span>
-    <span style="color:#66d9ef">image</span>: grafana/grafana
-</code></pre></div><p>Alternatively leverage the <code>docker run</code> command similar to node_exporter, but using a local volume mount instead of a config.
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">version</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;3.7&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">volumes</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">prometheus-data</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">graphana-data</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">configs</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">prometheus-config</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">file</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>./prometheus.yaml<span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">services</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">prometheus</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">hostname</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>prometheus<span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">configs</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#204a87;font-weight:bold">source</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>prometheus-config<span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">target</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>/prometheus.yaml<span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">volumes</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span>- prometheus-data<span style="color:#000;font-weight:bold">:</span>/prometheus<span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">ports</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#0000cf;font-weight:bold">9090</span><span style="color:#000;font-weight:bold">:</span><span style="color:#0000cf;font-weight:bold">9090</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">image</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>prom/prometheus<span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">command</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">[</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span>--config.file<span style="color:#000;font-weight:bold">,</span><span style="color:#f8f8f8;text-decoration:underline"> </span>/prometheus.yaml<span style="color:#000;font-weight:bold">,</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span>--storage.tsdb.path<span style="color:#000;font-weight:bold">,</span><span style="color:#f8f8f8;text-decoration:underline"> </span>/prometheus<span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#000;font-weight:bold">]</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">graphana</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">hostname</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>graphana<span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">volumes</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span>- graphana-data<span style="color:#000;font-weight:bold">:</span>/var/lib/grafana<span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">ports</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#0000cf;font-weight:bold">3000</span><span style="color:#000;font-weight:bold">:</span><span style="color:#0000cf;font-weight:bold">3000</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">image</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>grafana/grafana<span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>Alternatively leverage the <code>docker run</code> command similar to node_exporter, but using a local volume mount instead of a config.
 Once these two processes are up and running you should be able to navigate to the UI in the browser.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ open http://<span style="color:#e6db74">${</span>ip_address<span style="color:#e6db74">}</span>:9090   <span style="color:#75715e"># prometheus</span>
-$ open http://<span style="color:#e6db74">${</span>ip_address<span style="color:#e6db74">}</span>:3000   <span style="color:#75715e"># graphana</span>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ open http://<span style="color:#4e9a06">${</span><span style="color:#000">ip_address</span><span style="color:#4e9a06">}</span>:9090   <span style="color:#8f5902;font-style:italic"># prometheus</span>
+$ open http://<span style="color:#4e9a06">${</span><span style="color:#000">ip_address</span><span style="color:#4e9a06">}</span>:3000   <span style="color:#8f5902;font-style:italic"># graphana</span>
 
-<span style="color:#75715e">## on linux, this will be &#34;xdg-open&#34; instead of &#34;open&#34;</span>
-</code></pre></div><h3 id="adding-prometheus-as-a-data-source-to-graphana">Adding Prometheus as a data source to Graphana</h3>
+<span style="color:#8f5902;font-style:italic">## on linux, this will be &#34;xdg-open&#34; instead of &#34;open&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="adding-prometheus-as-a-data-source-to-graphana">Adding Prometheus as a data source to Graphana</h3>
 <p>Once you have the Graphana interface open, you&rsquo;ll need to configure a data source.
 Graphana supports Prometheus as a data source out of box, so connecting them is easy.
 In the address line, you&rsquo;ll want to point it at your Prometheus server.

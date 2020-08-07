@@ -112,27 +112,53 @@ As time went on, I learned a few things about the way that AWS Lambda manages it
 By far, the biggest thing I took away was how long the lifespan of a Lambda function actually is.
 Consider the following Typescript handler:
 <!-- raw HTML omitted --><!-- raw HTML omitted --></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">APIGatewayEvent</span>, <span style="color:#a6e22e">Callback</span>, <span style="color:#a6e22e">Context</span>, <span style="color:#a6e22e">Handler</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;aws-lambda&#39;</span>;
-<span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">uuidv4</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;uuid/v4&#34;</span>;
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#000">APIGatewayEvent</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">Callback</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">Context</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">Handler</span> <span style="color:#000;font-weight:bold">}</span> <span style="color:#000">from</span> <span style="color:#4e9a06">&#39;aws-lambda&#39;</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#204a87;font-weight:bold">import</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#204a87;font-weight:bold">as</span> <span style="color:#000">uuidv4</span> <span style="color:#000">from</span> <span style="color:#4e9a06">&#34;uuid/v4&#34;</span><span style="color:#000;font-weight:bold">;</span>
 
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">instanceId</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">uuidv4</span>();
+<span style="color:#204a87;font-weight:bold">const</span> <span style="color:#000">instanceId</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">uuidv4</span><span style="color:#000;font-weight:bold">();</span>
 
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">hello</span>: <span style="color:#66d9ef">Handler</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">event</span>: <span style="color:#66d9ef">APIGatewayEvent</span>, <span style="color:#a6e22e">context</span>: <span style="color:#66d9ef">Context</span>, <span style="color:#a6e22e">cb</span>: <span style="color:#66d9ef">Callback</span>) <span style="color:#f92672">=&gt;</span> {
-  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">response</span> <span style="color:#f92672">=</span> {
-    <span style="color:#a6e22e">statusCode</span>: <span style="color:#66d9ef">200</span>,
-    <span style="color:#a6e22e">headers</span><span style="color:#f92672">:</span> {
-        <span style="color:#e6db74">&#34;Content-Type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;application/json&#34;</span>,
-    },
-    <span style="color:#a6e22e">body</span>: <span style="color:#66d9ef">JSON.stringify</span>({
-      <span style="color:#a6e22e">message</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Go Serverless Webpack (Typescript) v1.0! Your function executed successfully!&#39;</span>,
-      <span style="color:#a6e22e">instanceId</span>,
-      <span style="color:#a6e22e">input</span>: <span style="color:#66d9ef">event</span>,
-    }),
-  };
+<span style="color:#204a87;font-weight:bold">export</span> <span style="color:#204a87;font-weight:bold">const</span> <span style="color:#000">hello</span>: <span style="color:#204a87;font-weight:bold">Handler</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">event</span>: <span style="color:#204a87;font-weight:bold">APIGatewayEvent</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">context</span>: <span style="color:#204a87;font-weight:bold">Context</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">cb</span>: <span style="color:#204a87;font-weight:bold">Callback</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">=&gt;</span> <span style="color:#000;font-weight:bold">{</span>
+  <span style="color:#204a87;font-weight:bold">const</span> <span style="color:#000">response</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#000">statusCode</span>: <span style="color:#204a87;font-weight:bold">200</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#000">headers</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#4e9a06">&#34;Content-Type&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;application/json&#34;</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#000;font-weight:bold">},</span>
+    <span style="color:#000">body</span>: <span style="color:#204a87;font-weight:bold">JSON.stringify</span><span style="color:#000;font-weight:bold">({</span>
+      <span style="color:#000">message</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#39;Go Serverless Webpack (Typescript) v1.0! Your function executed successfully!&#39;</span><span style="color:#000;font-weight:bold">,</span>
+      <span style="color:#000">instanceId</span><span style="color:#000;font-weight:bold">,</span>
+      <span style="color:#000">input</span>: <span style="color:#204a87;font-weight:bold">event</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#000;font-weight:bold">}),</span>
+  <span style="color:#000;font-weight:bold">};</span>
 
-  <span style="color:#a6e22e">cb</span>(<span style="color:#66d9ef">null</span>, <span style="color:#a6e22e">response</span>);
-}
-</code></pre></div><!-- raw HTML omitted -->
+  <span style="color:#000">cb</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">response</span><span style="color:#000;font-weight:bold">);</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->

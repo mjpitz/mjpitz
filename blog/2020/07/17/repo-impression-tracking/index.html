@@ -132,32 +132,67 @@ Google&rsquo;s image ping URL can get rather long.
 To help format the URI, I leveraged a little bit of JavaScript.
 With the built in <code>querystring</code> library, the work went rather quickly.
 Below, you can see a copy of the JavaScript I used to generate my image.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">qs</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;querystring&#39;</span>);
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#204a87;font-weight:bold">const</span> <span style="color:#000">qs</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">require</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;querystring&#39;</span><span style="color:#000;font-weight:bold">);</span>
 
-<span style="color:#a6e22e">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">main</span>() {
-  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">key</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">argv</span>[<span style="color:#ae81ff">2</span>];    <span style="color:#75715e">// your tracking key (e.g UA-xxx-y)
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">path</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">argv</span>[<span style="color:#ae81ff">3</span>];   <span style="color:#75715e">// your repositoriy  (e.g mjpitz/go-gracefully)
-</span><span style="color:#75715e"></span>
-  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">query</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">qs</span>.<span style="color:#a6e22e">stringify</span>({
-    <span style="color:#a6e22e">v</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>,                         <span style="color:#75715e">// version
-</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">cid</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">555</span>,                     <span style="color:#75715e">// client id
-</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">t</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;pageview&#39;</span>,                <span style="color:#75715e">// the type
-</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">ec</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;repo&#39;</span>,                   <span style="color:#75715e">// the category
-</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">ea</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;open&#39;</span>,                   <span style="color:#75715e">// the action
-</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">dp</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">path</span>,                     <span style="color:#75715e">// document path
-</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">dt</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">path</span>,                     <span style="color:#75715e">// document title
-</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">tid</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">key</span>,                     <span style="color:#75715e">// tracking key
-</span><span style="color:#75715e"></span>  })
+<span style="color:#000">async</span> <span style="color:#204a87;font-weight:bold">function</span> <span style="color:#000">main</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+  <span style="color:#204a87;font-weight:bold">const</span> <span style="color:#000">key</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">process</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">argv</span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">];</span>    <span style="color:#8f5902;font-style:italic">// your tracking key (e.g UA-xxx-y)
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#204a87;font-weight:bold">const</span> <span style="color:#000">path</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">process</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">argv</span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">];</span>   <span style="color:#8f5902;font-style:italic">// your repositoriy  (e.g mjpitz/go-gracefully)
+</span><span style="color:#8f5902;font-style:italic"></span>
+  <span style="color:#204a87;font-weight:bold">const</span> <span style="color:#000">query</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">qs</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">stringify</span><span style="color:#000;font-weight:bold">({</span>
+    <span style="color:#000">v</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span>                         <span style="color:#8f5902;font-style:italic">// version
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000">cid</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">555</span><span style="color:#000;font-weight:bold">,</span>                     <span style="color:#8f5902;font-style:italic">// client id
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#39;pageview&#39;</span><span style="color:#000;font-weight:bold">,</span>                <span style="color:#8f5902;font-style:italic">// the type
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000">ec</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#39;repo&#39;</span><span style="color:#000;font-weight:bold">,</span>                   <span style="color:#8f5902;font-style:italic">// the category
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000">ea</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#39;open&#39;</span><span style="color:#000;font-weight:bold">,</span>                   <span style="color:#8f5902;font-style:italic">// the action
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000">dp</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000">path</span><span style="color:#000;font-weight:bold">,</span>                     <span style="color:#8f5902;font-style:italic">// document path
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000">dt</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000">path</span><span style="color:#000;font-weight:bold">,</span>                     <span style="color:#8f5902;font-style:italic">// document title
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000">tid</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000">key</span><span style="color:#000;font-weight:bold">,</span>                     <span style="color:#8f5902;font-style:italic">// tracking key
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#000;font-weight:bold">})</span>
 
-  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`![Google Analytics](https://www.google-analytics.com/collect?</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">query</span><span style="color:#e6db74">}</span><span style="color:#e6db74">)`</span>);
-}
+  <span style="color:#000">console</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">log</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">`![Google Analytics](https://www.google-analytics.com/collect?</span><span style="color:#4e9a06">${</span><span style="color:#000">query</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">)`</span><span style="color:#000;font-weight:bold">);</span>
+<span style="color:#000;font-weight:bold">}</span>
 
-<span style="color:#a6e22e">main</span>().<span style="color:#66d9ef">catch</span>((<span style="color:#a6e22e">e</span>) =&gt; <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">error</span>(<span style="color:#a6e22e">e</span>));
-</code></pre></div><p>This script expects two arguments: your tracking key (<code>US-xxx-y</code>) and a path (<code>mjpitz/go-gracefully</code>).
+<span style="color:#000">main</span><span style="color:#000;font-weight:bold">().</span><span style="color:#204a87;font-weight:bold">catch</span><span style="color:#000;font-weight:bold">((</span><span style="color:#000">e</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">=&gt;</span> <span style="color:#000">console</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">error</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">e</span><span style="color:#000;font-weight:bold">));</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>This script expects two arguments: your tracking key (<code>US-xxx-y</code>) and a path (<code>mjpitz/go-gracefully</code>).
 When run, this script will output a markdown image that you can paste into your projects README.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ node repo-ga-beacon.js UA-xxx-y mjpitz/go-gracefully
-!<span style="color:#f92672">[</span>Google Analytics<span style="color:#f92672">](</span>https://www.google-analytics.com/collect?v<span style="color:#f92672">=</span>1&amp;cid<span style="color:#f92672">=</span>1&amp;t<span style="color:#f92672">=</span>pageview&amp;ec<span style="color:#f92672">=</span>repo&amp;ea<span style="color:#f92672">=</span>open&amp;dp<span style="color:#f92672">=</span>mjpitz%2Fgo-gracefully&amp;dt<span style="color:#f92672">=</span>mjpitz%2Fgo-gracefully&amp;tid<span style="color:#f92672">=</span>UA-xxx-y<span style="color:#f92672">)</span>
-</code></pre></div><p>You can repeat this process for any project you want to be included in your report.
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ node repo-ga-beacon.js UA-xxx-y mjpitz/go-gracefully
+!<span style="color:#ce5c00;font-weight:bold">[</span>Google Analytics<span style="color:#ce5c00;font-weight:bold">](</span>https://www.google-analytics.com/collect?v<span style="color:#ce5c00;font-weight:bold">=</span>1<span style="color:#000;font-weight:bold">&amp;</span><span style="color:#000">cid</span><span style="color:#ce5c00;font-weight:bold">=</span>1<span style="color:#000;font-weight:bold">&amp;</span><span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">=</span>pageview<span style="color:#000;font-weight:bold">&amp;</span><span style="color:#000">ec</span><span style="color:#ce5c00;font-weight:bold">=</span>repo<span style="color:#000;font-weight:bold">&amp;</span><span style="color:#000">ea</span><span style="color:#ce5c00;font-weight:bold">=</span>open<span style="color:#000;font-weight:bold">&amp;</span><span style="color:#000">dp</span><span style="color:#ce5c00;font-weight:bold">=</span>mjpitz%2Fgo-gracefully<span style="color:#000;font-weight:bold">&amp;</span><span style="color:#000">dt</span><span style="color:#ce5c00;font-weight:bold">=</span>mjpitz%2Fgo-gracefully<span style="color:#000;font-weight:bold">&amp;</span><span style="color:#000">tid</span><span style="color:#ce5c00;font-weight:bold">=</span>UA-xxx-y<span style="color:#ce5c00;font-weight:bold">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>You can repeat this process for any project you want to be included in your report.
 For my project <a href="https://deps.cloud">deps.cloud</a>, this is valuable as we can see which repositories are hit the most.
 Using this information, we can better redirect our clients to pages where they can find more information.</p>
 <h2 id="why-should-you-do-this">Why should you do this?</h2>

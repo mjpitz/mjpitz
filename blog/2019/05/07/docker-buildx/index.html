@@ -137,20 +137,48 @@ By cross compiling images and leveraging manifest lists, you can create a much b
 <p>Once the edge version of Docker has been installed, you&rsquo;ll be able to interact with the <code>buildx</code> command.
 The first thing you will want to do is create a context for your project.
 This acts as a workspace for your current build states.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker buildx create --name <span style="color:#e6db74">${</span>PROJECT<span style="color:#e6db74">}</span>
-</code></pre></div><p>Once the context has been created, you&rsquo;ll want to switch to using it.
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker buildx create --name <span style="color:#4e9a06">${</span><span style="color:#000">PROJECT</span><span style="color:#4e9a06">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Once the context has been created, you&rsquo;ll want to switch to using it.
 You can either use the <code>--use</code> option on the <code>create</code> command or explicitly switch contexts using <code>use</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker buildx use <span style="color:#e6db74">${</span>PROJECT<span style="color:#e6db74">}</span>
-</code></pre></div><p>After activating the environment, you&rsquo;re ready to build your image across multiple architectures.
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker buildx use <span style="color:#4e9a06">${</span><span style="color:#000">PROJECT</span><span style="color:#4e9a06">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>After activating the environment, you&rsquo;re ready to build your image across multiple architectures.
 Below, I have provided a simple build command.
 This will cause 3 builds to happen: one for <code>linux/amd64</code>, one for <code>linux/arm64</code>, and one for <code>linux/arm/v7</code>.
 In addition to that, by providing the <code>-t</code> option, <code>buildx</code> will produce a manifest list containing the layer references for each corresponding architectures.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t <span style="color:#e6db74">${</span>PROJECT<span style="color:#e6db74">}</span>:<span style="color:#e6db74">${</span>VERSION<span style="color:#e6db74">}</span> .
-</code></pre></div><p>What this means is that when a user wants to run your project on an ARM system, they no longer need to reference an architecture specific image or tag.
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t <span style="color:#4e9a06">${</span><span style="color:#000">PROJECT</span><span style="color:#4e9a06">}</span>:<span style="color:#4e9a06">${</span><span style="color:#000">VERSION</span><span style="color:#4e9a06">}</span> .
+</code></pre></td></tr></table>
+</div>
+</div><p>What this means is that when a user wants to run your project on an ARM system, they no longer need to reference an architecture specific image or tag.
 Instead, they are able to use the same image ref and the same tag that they would use on a typical desktop machine.
 Once you&rsquo;re satisfied with your build, you can append the <code>--push</code> option to the <code>buildx</code> command to push the images and manifest list upstream.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t <span style="color:#e6db74">${</span>PROJECT<span style="color:#e6db74">}</span>:<span style="color:#e6db74">${</span>VERSION<span style="color:#e6db74">}</span> . --push
-</code></pre></div><p>After your images have been successfully pushed, you can see the supported architectures on the tags page of the docker repository.</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t <span style="color:#4e9a06">${</span><span style="color:#000">PROJECT</span><span style="color:#4e9a06">}</span>:<span style="color:#4e9a06">${</span><span style="color:#000">VERSION</span><span style="color:#4e9a06">}</span> . --push
+</code></pre></td></tr></table>
+</div>
+</div><p>After your images have been successfully pushed, you can see the supported architectures on the tags page of the docker repository.</p>
 <p><img src="/statics/img/multiarch-container-image.png" alt="multiarch-container-image.png"></p>
 <p>One thing that I&rsquo;ve found frustrating from hub.docker.com is that they don&rsquo;t do a good job calling out to the supported architectures on the public tags page.
 This means that image producers need to call out to this support in their README files.

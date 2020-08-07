@@ -12,11 +12,38 @@
     
     
     <item>
+      <title>algorithms</title>
+      <link>https://mjpitz.com/tags/algorithms/</link>
+      <pubDate>Mon, 03 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/algorithms/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>bfs</title>
+      <link>https://mjpitz.com/tags/bfs/</link>
+      <pubDate>Mon, 03 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/bfs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>cost-savings</title>
       <link>https://mjpitz.com/tags/cost-savings/</link>
       <pubDate>Mon, 03 Aug 2020 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/tags/cost-savings/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>data-structures</title>
+      <link>https://mjpitz.com/tags/data-structures/</link>
+      <pubDate>Mon, 03 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/data-structures/</guid>
       <description></description>
     </item>
     
@@ -48,6 +75,33 @@
     </item>
     
     <item>
+      <title>golang</title>
+      <link>https://mjpitz.com/tags/golang/</link>
+      <pubDate>Mon, 03 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>graphs</title>
+      <link>https://mjpitz.com/tags/graphs/</link>
+      <pubDate>Mon, 03 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/graphs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>grpc</title>
+      <link>https://mjpitz.com/tags/grpc/</link>
+      <pubDate>Mon, 03 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/grpc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>kubernetes</title>
       <link>https://mjpitz.com/tags/kubernetes/</link>
       <pubDate>Mon, 03 Aug 2020 00:00:00 +0000</pubDate>
@@ -62,6 +116,15 @@
       <pubDate>Mon, 03 Aug 2020 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/tags/terraform/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>trees</title>
+      <link>https://mjpitz.com/tags/trees/</link>
+      <pubDate>Mon, 03 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/trees/</guid>
       <description></description>
     </item>
     
@@ -305,15 +368,6 @@
       <pubDate>Wed, 30 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/tags/fuse/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>golang</title>
-      <link>https://mjpitz.com/tags/golang/</link>
-      <pubDate>Wed, 30 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://mjpitz.com/tags/golang/</guid>
       <description></description>
     </item>
     

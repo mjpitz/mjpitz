@@ -94,6 +94,34 @@
   
   <div class="post animated fadeInDown">
     <div class="post-title">
+      <h3><a href="/blog/2019/10/17/kubernetes-service-precheck/">Checking Service Dependencies in Kubernetes</a>
+      </h3>
+    </div>
+    <div class="post-content"><div class="p_part"><p><p>Back in July, I found myself needing to better coordinate deployments of my applications to <a href="https://kubernetes.io/">Kubernetes</a>.
+After searching around, I found many ways that people where trying to solve this problem.
+Some used shell scripts to apply multiple YAML files with a fixed time sleep between them.
+Others used shell scripts and tailed the rollout using <code>kubectl rollout status -w</code>.
+Now, I manage a lot of my deployments using <a href="https://www.weave.works/technologies/gitops/">GitOps</a> and <a href="https://github.com/fluxcd/flux">Flux</a>.
+So leveraging these shell scripts to manage my rollouts into clusters wasn&rsquo;t really an option.</p>
+<p>It wasn&rsquo;t until I came across <a href="https://us.alibabacloud.com">Alibaba Cloud&rsquo;s</a> blog post on <a href="https://www.alibabacloud.com/blog/kubernetes-demystified-solving-service-dependencies_594110">solving service dependencies</a> that I felt like I had something to work with.
+The article described two techniques.
+The first was inspecting dependencies within the application itself.
+At Indeed, we leverage our <a href="http://github.com/indeedeng/status">status</a> library to do this.
+The second was to enable services to be checked, independent of the application.</p>
+<p>In this post, I’ll demonstrate how to use my <a href="https://hub.docker.com/r/mjpitz/service-precheck">service-precheck</a> initialization container (built off of the Alibaba blog post) to ensure upstream systems are up before attempting to start a downstream system.</p></p></div>
+  
+  <div class="p_part"><p></p></div></div>
+    <div class="post-footer">
+      <div class="meta">
+        <div class="info"><i class="fa fa-sun-o"></i><span class="date">Thu, Oct 17, 2019</span>
+          <a class="tag" href="/tags/docker/">docker</a><a class="tag" href="/tags/kubernetes/">kubernetes</a><a class="tag" href="/tags/microservices/">microservices</a><a class="tag" href="/tags/dependencies/">dependencies</a>       
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="post animated fadeInDown">
+    <div class="post-title">
       <h3><a href="/blog/2019/05/07/docker-buildx/">Using docker-buildx for Multi-architecture Containers</a>
       </h3>
     </div>
@@ -276,26 +304,6 @@ It’s important to note that some of the behaviors that I observed about AWS La
     <div class="post-footer">
       <div class="meta">
         <div class="info"><i class="fa fa-sun-o"></i><span class="date">Sun, Oct 28, 2018</span>
-          <a class="tag" href="/tags/aws/">aws</a><a class="tag" href="/tags/lambda/">lambda</a><a class="tag" href="/tags/dosh/">dosh</a><a class="tag" href="/tags/serverless/">serverless</a>       
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <div class="post animated fadeInDown">
-    <div class="post-title">
-      <h3><a href="/blog/2018/10/27/lambda-local-development/">AWS Lambda - Local Development</a>
-      </h3>
-    </div>
-    <div class="post-content"><div class="p_part"><p><p>While working at Dosh, I had pretty heavy exposure to managing NodeJS services running in AWS Lambda.
-During that time, I had learned a few things about the platform that can be leveraged when writing Lambda services.
-Some of these lessons may influence how you write services but can also give you some performance boosts.
-It’s important to note that some of the behaviors that I observed about AWS Lambda may not apply to other serverless technologies.</p></p></div>
-  
-  <div class="p_part"><p></p></div></div>
-    <div class="post-footer">
-      <div class="meta">
-        <div class="info"><i class="fa fa-sun-o"></i><span class="date">Sat, Oct 27, 2018</span>
           <a class="tag" href="/tags/aws/">aws</a><a class="tag" href="/tags/lambda/">lambda</a><a class="tag" href="/tags/dosh/">dosh</a><a class="tag" href="/tags/serverless/">serverless</a>       
         </div>
       </div>

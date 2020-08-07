@@ -8,12 +8,27 @@
   </url>
   
   <url>
+    <loc>https://mjpitz.com/tags/algorithms/</loc>
+    <lastmod>2020-08-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/tags/bfs/</loc>
+    <lastmod>2020-08-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://mjpitz.com/blog/</loc>
     <lastmod>2020-08-03T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://mjpitz.com/tags/cost-savings/</loc>
+    <lastmod>2020-08-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/tags/data-structures/</loc>
     <lastmod>2020-08-03T00:00:00+00:00</lastmod>
   </url>
   
@@ -29,6 +44,26 @@
   
   <url>
     <loc>https://mjpitz.com/tags/gitops/</loc>
+    <lastmod>2020-08-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/tags/golang/</loc>
+    <lastmod>2020-08-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/tags/graphs/</loc>
+    <lastmod>2020-08-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/tags/grpc/</loc>
+    <lastmod>2020-08-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/blog/2020/08/03/bfs-over-grpc-stream/</loc>
     <lastmod>2020-08-03T00:00:00+00:00</lastmod>
   </url>
   
@@ -49,6 +84,11 @@
   
   <url>
     <loc>https://mjpitz.com/tags/terraform/</loc>
+    <lastmod>2020-08-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/tags/trees/</loc>
     <lastmod>2020-08-03T00:00:00+00:00</lastmod>
   </url>
   
@@ -269,11 +309,6 @@
   
   <url>
     <loc>https://mjpitz.com/blog/2019/01/30/gitfs-a-fuse-file-system/</loc>
-    <lastmod>2019-01-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mjpitz.com/tags/golang/</loc>
     <lastmod>2019-01-30T00:00:00+00:00</lastmod>
   </url>
   

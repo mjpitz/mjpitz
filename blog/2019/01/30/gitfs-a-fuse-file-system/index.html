@@ -166,36 +166,71 @@ As the project progressed, having the logic in two separate files became difficu
 Eventually, these implementations collapsed into a single INode structure.
 This made it easy to keep a lot of business logic in one place.
 For portability, I added an interface for quick reference detailing which methods need to be implemented.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#f92672">package</span> <span style="color:#a6e22e">filesystem</span>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#204a87;font-weight:bold">package</span> <span style="color:#000">filesystem</span>
 
-<span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;bazil.org/fuse/fs&#34;</span>
+<span style="color:#204a87;font-weight:bold">import</span> <span style="color:#4e9a06">&#34;bazil.org/fuse/fs&#34;</span>
 
-<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">INode</span> <span style="color:#66d9ef">interface</span> {
-	<span style="color:#75715e">// common node functions
-</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">Node</span>
-	<span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">NodeSetattrer</span>
+<span style="color:#204a87;font-weight:bold">type</span> <span style="color:#000">INode</span> <span style="color:#204a87;font-weight:bold">interface</span> <span style="color:#000;font-weight:bold">{</span>
+	<span style="color:#8f5902;font-style:italic">// common node functions
+</span><span style="color:#8f5902;font-style:italic"></span>	<span style="color:#000">fs</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Node</span>
+	<span style="color:#000">fs</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">NodeSetattrer</span>
 
-	<span style="color:#75715e">// directory functions
-</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">NodeStringLookuper</span>
-	<span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">HandleReadDirAller</span>
-	<span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">NodeMkdirer</span>
-	<span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">NodeCreater</span>
-	<span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">NodeRemover</span>
-	<span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">NodeRenamer</span>
-	<span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">NodeSymlinker</span>
+	<span style="color:#8f5902;font-style:italic">// directory functions
+</span><span style="color:#8f5902;font-style:italic"></span>	<span style="color:#000">fs</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">NodeStringLookuper</span>
+	<span style="color:#000">fs</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">HandleReadDirAller</span>
+	<span style="color:#000">fs</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">NodeMkdirer</span>
+	<span style="color:#000">fs</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">NodeCreater</span>
+	<span style="color:#000">fs</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">NodeRemover</span>
+	<span style="color:#000">fs</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">NodeRenamer</span>
+	<span style="color:#000">fs</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">NodeSymlinker</span>
 
-	<span style="color:#75715e">// handle functions
-</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">NodeOpener</span>
-	<span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">HandleWriter</span>
-	<span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">HandleReader</span>
-	<span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">NodeFsyncer</span>
-	<span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">HandleFlusher</span>
-	<span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">HandleReleaser</span>
+	<span style="color:#8f5902;font-style:italic">// handle functions
+</span><span style="color:#8f5902;font-style:italic"></span>	<span style="color:#000">fs</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">NodeOpener</span>
+	<span style="color:#000">fs</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">HandleWriter</span>
+	<span style="color:#000">fs</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">HandleReader</span>
+	<span style="color:#000">fs</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">NodeFsyncer</span>
+	<span style="color:#000">fs</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">HandleFlusher</span>
+	<span style="color:#000">fs</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">HandleReleaser</span>
 
-	<span style="color:#75715e">// symlink functions
-</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">NodeReadlinker</span>
-}
-</code></pre></div><h2 id="challenge-2---debugging">Challenge 2 - Debugging</h2>
+	<span style="color:#8f5902;font-style:italic">// symlink functions
+</span><span style="color:#8f5902;font-style:italic"></span>	<span style="color:#000">fs</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">NodeReadlinker</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="challenge-2---debugging">Challenge 2 - Debugging</h2>
 <p>Debugging a file system can be intense.
 Since many operations happen in such a short period of time, a full set of logs can quickly fill your disk.
 First, I started by only logging errors.

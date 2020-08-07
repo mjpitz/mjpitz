@@ -129,118 +129,240 @@ service MyService {
     rpc bidirectionalStreamingMethod(stream Request) returns (stream Response);
 }
 </code></pre><h2 id="service-implementation">Service Implementation</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">grpc</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;grpc&#39;</span>);
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">MyServiceGrpc</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">grpc</span>.<span style="color:#a6e22e">load</span>(<span style="color:#a6e22e">require</span>.<span style="color:#a6e22e">resolve</span>(<span style="color:#e6db74">&#39;./MyService.proto&#39;</span>));
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#204a87;font-weight:bold">const</span> <span style="color:#000">grpc</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">require</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;grpc&#39;</span><span style="color:#000;font-weight:bold">);</span>
+<span style="color:#204a87;font-weight:bold">const</span> <span style="color:#000">MyServiceGrpc</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">grpc</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">load</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">require</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">resolve</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;./MyService.proto&#39;</span><span style="color:#000;font-weight:bold">));</span>
 
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyServiceImpl</span> {
-    <span style="color:#a6e22e">unaryMethod</span>(<span style="color:#a6e22e">call</span>, <span style="color:#a6e22e">callback</span>) {
-        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">request</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">call</span>.<span style="color:#a6e22e">request</span>;
-        <span style="color:#75715e">// handle request
-</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">callback</span>(<span style="color:#e6db74">&#39;error&#39;</span>, <span style="color:#a6e22e">response</span>);
-    }
+<span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">MyServiceImpl</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#000">unaryMethod</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">call</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">callback</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#204a87;font-weight:bold">const</span> <span style="color:#000">request</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">call</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">request</span><span style="color:#000;font-weight:bold">;</span>
+        <span style="color:#8f5902;font-style:italic">// handle request
+</span><span style="color:#8f5902;font-style:italic"></span>        <span style="color:#000">callback</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;error&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">response</span><span style="color:#000;font-weight:bold">);</span>
+    <span style="color:#000;font-weight:bold">}</span>
     
-    <span style="color:#a6e22e">clientStreamingMethod</span>(<span style="color:#a6e22e">call</span>, <span style="color:#a6e22e">callback</span>) {
-        <span style="color:#a6e22e">call</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;data&#39;</span>, (<span style="color:#a6e22e">request</span>) =&gt; {
-            <span style="color:#75715e">// handle request
-</span><span style="color:#75715e"></span>        });
+    <span style="color:#000">clientStreamingMethod</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">call</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">callback</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#000">call</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">on</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;data&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">request</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">=&gt;</span> <span style="color:#000;font-weight:bold">{</span>
+            <span style="color:#8f5902;font-style:italic">// handle request
+</span><span style="color:#8f5902;font-style:italic"></span>        <span style="color:#000;font-weight:bold">});</span>
         
-        <span style="color:#a6e22e">call</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;end&#39;</span>, () =&gt; {
-            <span style="color:#a6e22e">callback</span>(<span style="color:#a6e22e">response</span>);
-        });
-    }
+        <span style="color:#000">call</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">on</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;end&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">=&gt;</span> <span style="color:#000;font-weight:bold">{</span>
+            <span style="color:#000">callback</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">response</span><span style="color:#000;font-weight:bold">);</span>
+        <span style="color:#000;font-weight:bold">});</span>
+    <span style="color:#000;font-weight:bold">}</span>
     
-    <span style="color:#a6e22e">serverStreamingMethod</span>(<span style="color:#a6e22e">call</span>) {
-        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">request</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">call</span>.<span style="color:#a6e22e">request</span>;
+    <span style="color:#000">serverStreamingMethod</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">call</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#204a87;font-weight:bold">const</span> <span style="color:#000">request</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">call</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">request</span><span style="color:#000;font-weight:bold">;</span>
         
-        <span style="color:#75715e">// call N times
-</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">call</span>.<span style="color:#a6e22e">write</span>(<span style="color:#a6e22e">response</span>);
+        <span style="color:#8f5902;font-style:italic">// call N times
+</span><span style="color:#8f5902;font-style:italic"></span>        <span style="color:#000">call</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">write</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">response</span><span style="color:#000;font-weight:bold">);</span>
         
-        <span style="color:#75715e">// call once
-</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">call</span>.<span style="color:#a6e22e">end</span>();
-    }
+        <span style="color:#8f5902;font-style:italic">// call once
+</span><span style="color:#8f5902;font-style:italic"></span>        <span style="color:#000">call</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">end</span><span style="color:#000;font-weight:bold">();</span>
+    <span style="color:#000;font-weight:bold">}</span>
     
-    <span style="color:#a6e22e">bidirectionalStreamingMethod</span>(<span style="color:#a6e22e">call</span>) {
-        <span style="color:#a6e22e">call</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;data&#39;</span>, (<span style="color:#a6e22e">request</span>) =&gt; {
-            <span style="color:#75715e">// handle request
-</span><span style="color:#75715e"></span>            <span style="color:#a6e22e">call</span>.<span style="color:#a6e22e">write</span>(<span style="color:#a6e22e">response</span>);
-        });
+    <span style="color:#000">bidirectionalStreamingMethod</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">call</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#000">call</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">on</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;data&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">request</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">=&gt;</span> <span style="color:#000;font-weight:bold">{</span>
+            <span style="color:#8f5902;font-style:italic">// handle request
+</span><span style="color:#8f5902;font-style:italic"></span>            <span style="color:#000">call</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">write</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">response</span><span style="color:#000;font-weight:bold">);</span>
+        <span style="color:#000;font-weight:bold">});</span>
         
-        <span style="color:#a6e22e">call</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;end&#39;</span>, () =&gt; {
-            <span style="color:#a6e22e">call</span>.<span style="color:#a6e22e">end</span>();
-        });
-    }
-}
+        <span style="color:#000">call</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">on</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;end&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">=&gt;</span> <span style="color:#000;font-weight:bold">{</span>
+            <span style="color:#000">call</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">end</span><span style="color:#000;font-weight:bold">();</span>
+        <span style="color:#000;font-weight:bold">});</span>
+    <span style="color:#000;font-weight:bold">}</span>
+<span style="color:#000;font-weight:bold">}</span>
 
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">server</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">grpc</span>.<span style="color:#a6e22e">Server</span>();
-<span style="color:#a6e22e">server</span>.<span style="color:#a6e22e">addService</span>(<span style="color:#a6e22e">MyServiceGrpc</span>.<span style="color:#a6e22e">MyService</span>.<span style="color:#a6e22e">service</span>, <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">MyServiceImpl</span>());
-<span style="color:#a6e22e">server</span>.<span style="color:#a6e22e">bind</span>(<span style="color:#e6db74">&#39;0.0.0.0:1234&#39;</span>, <span style="color:#a6e22e">grpc</span>.<span style="color:#a6e22e">ServerCredentials</span>.<span style="color:#a6e22e">createInsecure</span>());
-<span style="color:#a6e22e">server</span>.<span style="color:#a6e22e">start</span>();
-</code></pre></div><h2 id="client-usage">Client Usage</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">grpc</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;grpc&#39;</span>);
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">MyServiceGrpc</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">grpc</span>.<span style="color:#a6e22e">load</span>(<span style="color:#a6e22e">require</span>.<span style="color:#a6e22e">resolve</span>(<span style="color:#e6db74">&#39;./MyService.proto&#39;</span>));
+<span style="color:#204a87;font-weight:bold">const</span> <span style="color:#000">server</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">grpc</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Server</span><span style="color:#000;font-weight:bold">();</span>
+<span style="color:#000">server</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">addService</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">MyServiceGrpc</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">MyService</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">service</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">MyServiceImpl</span><span style="color:#000;font-weight:bold">());</span>
+<span style="color:#000">server</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">bind</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;0.0.0.0:1234&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">grpc</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">ServerCredentials</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">createInsecure</span><span style="color:#000;font-weight:bold">());</span>
+<span style="color:#000">server</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">start</span><span style="color:#000;font-weight:bold">();</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="client-usage">Client Usage</h2>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">54
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">55
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">56
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">57
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">58
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">59
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">60
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">61
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">62
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">63
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">64
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#204a87;font-weight:bold">const</span> <span style="color:#000">grpc</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">require</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;grpc&#39;</span><span style="color:#000;font-weight:bold">);</span>
+<span style="color:#204a87;font-weight:bold">const</span> <span style="color:#000">MyServiceGrpc</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">grpc</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">load</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">require</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">resolve</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;./MyService.proto&#39;</span><span style="color:#000;font-weight:bold">));</span>
 
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">credentials</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">grpc</span>.<span style="color:#a6e22e">credentials</span>.<span style="color:#a6e22e">createInsecure</span>();
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">client</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">MyServiceGrpc</span>.<span style="color:#a6e22e">MyService</span>(<span style="color:#e6db74">&#39;0.0.0.0:1234&#39;</span>, <span style="color:#a6e22e">credentials</span>);
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">md</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">grpc</span>.<span style="color:#a6e22e">Metadata</span>();
+<span style="color:#204a87;font-weight:bold">const</span> <span style="color:#000">credentials</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">grpc</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">credentials</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">createInsecure</span><span style="color:#000;font-weight:bold">();</span>
+<span style="color:#204a87;font-weight:bold">const</span> <span style="color:#000">client</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">MyServiceGrpc</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">MyService</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;0.0.0.0:1234&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">credentials</span><span style="color:#000;font-weight:bold">);</span>
+<span style="color:#204a87;font-weight:bold">const</span> <span style="color:#000">md</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">grpc</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Metadata</span><span style="color:#000;font-weight:bold">();</span>
 
-<span style="color:#75715e">// unary
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">unaryMethod</span>(<span style="color:#a6e22e">request</span>, <span style="color:#a6e22e">md</span>, (<span style="color:#a6e22e">err</span>, <span style="color:#a6e22e">response</span>) =&gt; {
-    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">err</span>) {
-        <span style="color:#75715e">// handle err
-</span><span style="color:#75715e"></span>    } <span style="color:#66d9ef">else</span> {
-        <span style="color:#75715e">// handle response
-</span><span style="color:#75715e"></span>    }
-});
+<span style="color:#8f5902;font-style:italic">// unary
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000">client</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">unaryMethod</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">request</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">md</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">err</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">response</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">=&gt;</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">err</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#8f5902;font-style:italic">// handle err
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000;font-weight:bold">}</span> <span style="color:#204a87;font-weight:bold">else</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#8f5902;font-style:italic">// handle response
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000;font-weight:bold">}</span>
+<span style="color:#000;font-weight:bold">});</span>
 
-<span style="color:#75715e">// client streaming
-</span><span style="color:#75715e"></span>{
-    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">call</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">clientStreamingMethod</span>(<span style="color:#a6e22e">md</span>, (<span style="color:#a6e22e">err</span>, <span style="color:#a6e22e">response</span>) =&gt; {
-        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">err</span>) {
-            <span style="color:#75715e">// handle err
-</span><span style="color:#75715e"></span>        } <span style="color:#66d9ef">else</span> {
-            <span style="color:#75715e">// handle response
-</span><span style="color:#75715e"></span>        }
-    });
+<span style="color:#8f5902;font-style:italic">// client streaming
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">const</span> <span style="color:#000">call</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">client</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">clientStreamingMethod</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">md</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">err</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">response</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">=&gt;</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">err</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+            <span style="color:#8f5902;font-style:italic">// handle err
+</span><span style="color:#8f5902;font-style:italic"></span>        <span style="color:#000;font-weight:bold">}</span> <span style="color:#204a87;font-weight:bold">else</span> <span style="color:#000;font-weight:bold">{</span>
+            <span style="color:#8f5902;font-style:italic">// handle response
+</span><span style="color:#8f5902;font-style:italic"></span>        <span style="color:#000;font-weight:bold">}</span>
+    <span style="color:#000;font-weight:bold">});</span>
     
-    <span style="color:#75715e">// call N times
-</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">call</span>.<span style="color:#a6e22e">write</span>(<span style="color:#a6e22e">request</span>);
+    <span style="color:#8f5902;font-style:italic">// call N times
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000">call</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">write</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">request</span><span style="color:#000;font-weight:bold">);</span>
     
-    <span style="color:#75715e">// call once
-</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">call</span>.<span style="color:#a6e22e">end</span>();
-}
+    <span style="color:#8f5902;font-style:italic">// call once
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000">call</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">end</span><span style="color:#000;font-weight:bold">();</span>
+<span style="color:#000;font-weight:bold">}</span>
 
-<span style="color:#75715e">// server streaming
-</span><span style="color:#75715e"></span>{
-    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">call</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">serverStreamingMethod</span>(<span style="color:#a6e22e">request</span>, <span style="color:#a6e22e">md</span>);
+<span style="color:#8f5902;font-style:italic">// server streaming
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">const</span> <span style="color:#000">call</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">client</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">serverStreamingMethod</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">request</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">md</span><span style="color:#000;font-weight:bold">);</span>
     
-    <span style="color:#a6e22e">call</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;data&#39;</span>, (<span style="color:#a6e22e">response</span>) =&gt; {
-        <span style="color:#75715e">// handle response
-</span><span style="color:#75715e"></span>    });
+    <span style="color:#000">call</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">on</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;data&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">response</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">=&gt;</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#8f5902;font-style:italic">// handle response
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000;font-weight:bold">});</span>
     
-    <span style="color:#a6e22e">call</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;end&#39;</span>, () =&gt; {
-        <span style="color:#75715e">// handle end of server
-</span><span style="color:#75715e"></span>    });
-}
+    <span style="color:#000">call</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">on</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;end&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">=&gt;</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#8f5902;font-style:italic">// handle end of server
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000;font-weight:bold">});</span>
+<span style="color:#000;font-weight:bold">}</span>
 
-<span style="color:#75715e">// bidirectional streaming
-</span><span style="color:#75715e"></span>{
-    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">call</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">bidirectionalStreamingMethod</span>(<span style="color:#a6e22e">md</span>);
+<span style="color:#8f5902;font-style:italic">// bidirectional streaming
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">const</span> <span style="color:#000">call</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">client</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">bidirectionalStreamingMethod</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">md</span><span style="color:#000;font-weight:bold">);</span>
     
-    <span style="color:#a6e22e">call</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;data&#39;</span>, (<span style="color:#a6e22e">response</span>) =&gt; {
-        <span style="color:#75715e">// handle response
-</span><span style="color:#75715e"></span>    });
+    <span style="color:#000">call</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">on</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;data&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">response</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">=&gt;</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#8f5902;font-style:italic">// handle response
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000;font-weight:bold">});</span>
     
-    <span style="color:#a6e22e">call</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;end&#39;</span>, () =&gt; {
-        <span style="color:#75715e">// handle end of server
-</span><span style="color:#75715e"></span>    });
+    <span style="color:#000">call</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">on</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;end&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">=&gt;</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#8f5902;font-style:italic">// handle end of server
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000;font-weight:bold">});</span>
     
-    <span style="color:#75715e">// call N times
-</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">call</span>.<span style="color:#a6e22e">write</span>(<span style="color:#a6e22e">request</span>);
+    <span style="color:#8f5902;font-style:italic">// call N times
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000">call</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">write</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">request</span><span style="color:#000;font-weight:bold">);</span>
     
-    <span style="color:#75715e">// call once
-</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">call</span>.<span style="color:#a6e22e">end</span>();
-}
-</code></pre></div><h2 id="other-points-of-reference">Other Points of Reference</h2>
+    <span style="color:#8f5902;font-style:italic">// call once
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000">call</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">end</span><span style="color:#000;font-weight:bold">();</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="other-points-of-reference">Other Points of Reference</h2>
 <p><strong>Code in grpc/grpc-node</strong></p>
 <p>Source code is always a great point of reference.
 gRPC has several good integration tests where you can see some of these approaches being used.</p>

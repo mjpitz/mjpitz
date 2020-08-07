@@ -122,58 +122,135 @@ The Status library allows you to perform two different types of checks on a syst
 </ul>
 <p>A CheckResult is a Java enum that is one of <code>OK</code>, <code>MINOR</code>, <code>MAJOR</code>, or <code>OUTAGE</code>.
 The <code>OUTAGE</code> status indicates that the dependency is not usable.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">final</span> CheckResult checkResult <span style="color:#f92672">=</span> dependencyManager<span style="color:#f92672">.</span><span style="color:#a6e22e">evaluate</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;dependencyId&#34;</span><span style="color:#f92672">);</span>
-<span style="color:#66d9ef">final</span> CheckStatus status <span style="color:#f92672">=</span> checkResult<span style="color:#f92672">.</span><span style="color:#a6e22e">getStatus</span><span style="color:#f92672">();</span>
-</code></pre></div><p>The second approach to evaluating an application’s health is to look at the system as a whole.
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#204a87;font-weight:bold">final</span> <span style="color:#000">CheckResult</span> <span style="color:#000">checkResult</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">dependencyManager</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">evaluate</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;dependencyId&#34;</span><span style="color:#ce5c00;font-weight:bold">);</span>
+<span style="color:#204a87;font-weight:bold">final</span> <span style="color:#000">CheckStatus</span> <span style="color:#000">status</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">checkResult</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">getStatus</span><span style="color:#ce5c00;font-weight:bold">();</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>The second approach to evaluating an application’s health is to look at the system as a whole.
 This gives you a high-level overview of how the entire system is performing.
 When a system is in <code>OUTAGE</code>, this indicates that the instance of an application is not usable.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">final</span> CheckResultSet checkResultSet <span style="color:#f92672">=</span> dependencyManager<span style="color:#f92672">.</span><span style="color:#a6e22e">evaluate</span><span style="color:#f92672">();</span>
-<span style="color:#66d9ef">final</span> CheckStatus systemStatus <span style="color:#f92672">=</span> checkResultSet<span style="color:#f92672">.</span><span style="color:#a6e22e">getSystemStatus</span><span style="color:#f92672">();</span>
-</code></pre></div><p>If a system is unhealthy, it’s often best to short circuit requests made to the system and return an HTTP status code 500 (“Internal Server Error”).
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#204a87;font-weight:bold">final</span> <span style="color:#000">CheckResultSet</span> <span style="color:#000">checkResultSet</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">dependencyManager</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">evaluate</span><span style="color:#ce5c00;font-weight:bold">();</span>
+<span style="color:#204a87;font-weight:bold">final</span> <span style="color:#000">CheckStatus</span> <span style="color:#000">systemStatus</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">checkResultSet</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">getSystemStatus</span><span style="color:#ce5c00;font-weight:bold">();</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>If a system is unhealthy, it’s often best to short circuit requests made to the system and return an HTTP status code 500 (“Internal Server Error”).
 In the example below, we use an interceptor in Spring to capture the request, evaluate the system’s health, and respond with an error in the event that the application is in an outage.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SystemHealthInterceptor</span> <span style="color:#66d9ef">extends</span> HandlerInterceptorAdapter <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> DependencyManager dependencyManager<span style="color:#f92672">;</span>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#204a87;font-weight:bold">public</span> <span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">SystemHealthInterceptor</span> <span style="color:#204a87;font-weight:bold">extends</span> <span style="color:#000">HandlerInterceptorAdapter</span> <span style="color:#ce5c00;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">private</span> <span style="color:#204a87;font-weight:bold">final</span> <span style="color:#000">DependencyManager</span> <span style="color:#000">dependencyManager</span><span style="color:#ce5c00;font-weight:bold">;</span>
  
-    <span style="color:#a6e22e">@Override</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">preHandle</span><span style="color:#f92672">(</span>
-            <span style="color:#66d9ef">final</span> HttpServletRequest request<span style="color:#f92672">,</span>
-            <span style="color:#66d9ef">final</span> HttpServletResponse response<span style="color:#f92672">,</span>
-            <span style="color:#66d9ef">final</span> Object handler
-    <span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">final</span> CheckResultSet checkResultSet <span style="color:#f92672">=</span> dependencyManager<span style="color:#f92672">.</span><span style="color:#a6e22e">evaluate</span><span style="color:#f92672">();</span>
-        <span style="color:#66d9ef">final</span> CheckStatus systemStatus <span style="color:#f92672">=</span> checkResultSet<span style="color:#f92672">.</span><span style="color:#a6e22e">getSystemStatus</span><span style="color:#f92672">();</span>
+    <span style="color:#5c35cc;font-weight:bold">@Override</span>
+    <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#204a87;font-weight:bold">boolean</span> <span style="color:#000">preHandle</span><span style="color:#ce5c00;font-weight:bold">(</span>
+            <span style="color:#204a87;font-weight:bold">final</span> <span style="color:#000">HttpServletRequest</span> <span style="color:#000">request</span><span style="color:#ce5c00;font-weight:bold">,</span>
+            <span style="color:#204a87;font-weight:bold">final</span> <span style="color:#000">HttpServletResponse</span> <span style="color:#000">response</span><span style="color:#ce5c00;font-weight:bold">,</span>
+            <span style="color:#204a87;font-weight:bold">final</span> <span style="color:#000">Object</span> <span style="color:#000">handler</span>
+    <span style="color:#ce5c00;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">throws</span> <span style="color:#000">Exception</span> <span style="color:#ce5c00;font-weight:bold">{</span>
+        <span style="color:#204a87;font-weight:bold">final</span> <span style="color:#000">CheckResultSet</span> <span style="color:#000">checkResultSet</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">dependencyManager</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">evaluate</span><span style="color:#ce5c00;font-weight:bold">();</span>
+        <span style="color:#204a87;font-weight:bold">final</span> <span style="color:#000">CheckStatus</span> <span style="color:#000">systemStatus</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">checkResultSet</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">getSystemStatus</span><span style="color:#ce5c00;font-weight:bold">();</span>
          
-        <span style="color:#66d9ef">switch</span> <span style="color:#f92672">(</span>systemStatus<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-            <span style="color:#66d9ef">case</span> OUTAGE<span style="color:#f92672">:</span>
-                response<span style="color:#f92672">.</span><span style="color:#a6e22e">setStatus</span><span style="color:#f92672">(</span>HttpStatus<span style="color:#f92672">.</span><span style="color:#a6e22e">INTERNAL_SERVER_ERROR</span><span style="color:#f92672">.</span><span style="color:#a6e22e">value</span><span style="color:#f92672">());</span>
-                <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">;</span>
-            <span style="color:#66d9ef">default</span><span style="color:#f92672">:</span>
-                <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
-        <span style="color:#f92672">}</span>
+        <span style="color:#204a87;font-weight:bold">switch</span> <span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">systemStatus</span><span style="color:#ce5c00;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">{</span>
+            <span style="color:#204a87;font-weight:bold">case</span> <span style="color:#000">OUTAGE</span><span style="color:#ce5c00;font-weight:bold">:</span>
+                <span style="color:#000">response</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">setStatus</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">HttpStatus</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">INTERNAL_SERVER_ERROR</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">value</span><span style="color:#ce5c00;font-weight:bold">());</span>
+                <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#204a87;font-weight:bold">false</span><span style="color:#ce5c00;font-weight:bold">;</span>
+            <span style="color:#204a87;font-weight:bold">default</span><span style="color:#ce5c00;font-weight:bold">:</span>
+                <span style="color:#204a87;font-weight:bold">break</span><span style="color:#ce5c00;font-weight:bold">;</span>
+        <span style="color:#ce5c00;font-weight:bold">}</span>
  
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
-    <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><h2 id="comparing-the-health-of-dependencies">Comparing the health of dependencies</h2>
+        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#204a87;font-weight:bold">true</span><span style="color:#ce5c00;font-weight:bold">;</span>
+    <span style="color:#ce5c00;font-weight:bold">}</span>
+<span style="color:#ce5c00;font-weight:bold">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="comparing-the-health-of-dependencies">Comparing the health of dependencies</h2>
 <p><a href="https://github.com/indeedeng/status/blob/master/status-core/src/main/java/com/indeed/status/core/CheckResultSet.java">CheckResultSet</a> and <a href="https://github.com/indeedeng/status/blob/master/status-core/src/main/java/com/indeed/status/core/CheckResult.java">CheckResult</a> have methods for returning the current status of the system or the dependency, respectively.
 Once you have CheckStatus, there are a couple of methods that allow you to compare the results.</p>
 <p><code>isBetterThan()</code> determines if the current status is better than the provided status. This is an exclusive comparison.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">CheckStatus<span style="color:#f92672">.</span><span style="color:#a6e22e">OK</span><span style="color:#f92672">.</span><span style="color:#a6e22e">isBetterThan</span><span style="color:#f92672">(</span>CheckStatus<span style="color:#f92672">.</span><span style="color:#a6e22e">OK</span><span style="color:#f92672">)</span>              <span style="color:#75715e">// evaluates to false
-</span><span style="color:#75715e"></span>CheckStatus<span style="color:#f92672">.</span><span style="color:#a6e22e">OK</span><span style="color:#f92672">.</span><span style="color:#a6e22e">isBetterThan</span><span style="color:#f92672">(</span><span style="color:#75715e">/* any other CheckStatus */</span><span style="color:#f92672">)</span> <span style="color:#75715e">// evaluates to true
-</span></code></pre></div><p><code>isWorseThan()</code> determines if the current status is worse than the provided status. Again, this operation is exclusive.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">CheckStatus<span style="color:#f92672">.</span><span style="color:#a6e22e">OUTAGE</span><span style="color:#f92672">.</span><span style="color:#a6e22e">isWorseThan</span><span style="color:#f92672">(</span>CheckStatus<span style="color:#f92672">.</span><span style="color:#a6e22e">OUTAGE</span><span style="color:#f92672">)</span>          <span style="color:#75715e">// evaluates to false
-</span><span style="color:#75715e"></span>CheckStatus<span style="color:#f92672">.</span><span style="color:#a6e22e">OUTAGE</span><span style="color:#f92672">.</span><span style="color:#a6e22e">isWorseThan</span><span style="color:#f92672">(</span><span style="color:#75715e">/* any other CheckStatus */</span><span style="color:#f92672">)</span> <span style="color:#75715e">// evaluates to true
-</span></code></pre></div><p>The <code>isBetterThan()</code> and <code>isWorseThan()</code> methods are great tools to check for a desired state of an evaluated dependency.
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000">CheckStatus</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">OK</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">isBetterThan</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">CheckStatus</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">OK</span><span style="color:#ce5c00;font-weight:bold">)</span>              <span style="color:#8f5902;font-style:italic">// evaluates to false
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000">CheckStatus</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">OK</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">isBetterThan</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#8f5902;font-style:italic">/* any other CheckStatus */</span><span style="color:#ce5c00;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic">// evaluates to true
+</span></code></pre></td></tr></table>
+</div>
+</div><p><code>isWorseThan()</code> determines if the current status is worse than the provided status. Again, this operation is exclusive.</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000">CheckStatus</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">OUTAGE</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">isWorseThan</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">CheckStatus</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">OUTAGE</span><span style="color:#ce5c00;font-weight:bold">)</span>          <span style="color:#8f5902;font-style:italic">// evaluates to false
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000">CheckStatus</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">OUTAGE</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">isWorseThan</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#8f5902;font-style:italic">/* any other CheckStatus */</span><span style="color:#ce5c00;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic">// evaluates to true
+</span></code></pre></td></tr></table>
+</div>
+</div><p>The <code>isBetterThan()</code> and <code>isWorseThan()</code> methods are great tools to check for a desired state of an evaluated dependency.
 Unfortunately, these methods do not offer enough control to produce a graceful degradation.
 Either the system was healthy, or it was in an outage.
 To better control the graceful degradation of our system, two additional methods were needed.</p>
 <p><code>noBetterThan()</code> returns the unhealthier of the two statuses.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">CheckStatus<span style="color:#f92672">.</span><span style="color:#a6e22e">MINOR</span><span style="color:#f92672">.</span><span style="color:#a6e22e">noBetterThan</span><span style="color:#f92672">(</span>CheckStatus<span style="color:#f92672">.</span><span style="color:#a6e22e">MAJOR</span><span style="color:#f92672">)</span> <span style="color:#75715e">// returns CheckStatus.MAJOR
-</span><span style="color:#75715e"></span>CheckStatus<span style="color:#f92672">.</span><span style="color:#a6e22e">MINOR</span><span style="color:#f92672">.</span><span style="color:#a6e22e">noBetterThan</span><span style="color:#f92672">(</span>CheckStatus<span style="color:#f92672">.</span><span style="color:#a6e22e">OK</span><span style="color:#f92672">)</span>    <span style="color:#75715e">// returns CheckStatus.MINOR
-</span></code></pre></div><p><code>noWorseThan()</code> returns the healthier of the two statuses.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">CheckStatus<span style="color:#f92672">.</span><span style="color:#a6e22e">MINOR</span><span style="color:#f92672">.</span><span style="color:#a6e22e">noWorseThan</span><span style="color:#f92672">(</span>CheckStatus<span style="color:#f92672">.</span><span style="color:#a6e22e">MAJOR</span><span style="color:#f92672">)</span> <span style="color:#75715e">// returns CheckStatus.MINOR
-</span><span style="color:#75715e"></span>CheckStatus<span style="color:#f92672">.</span><span style="color:#a6e22e">MINOR</span><span style="color:#f92672">.</span><span style="color:#a6e22e">noWorseThan</span><span style="color:#f92672">(</span>CheckStatus<span style="color:#f92672">.</span><span style="color:#a6e22e">OK</span><span style="color:#f92672">)</span>    <span style="color:#75715e">// returns CheckStatus.OK
-</span></code></pre></div><p>During the complete system evaluation, we use a combination of these methods and the <code>Urgency#downgradeWith()</code> methods to gracefully degrade our application’s health.</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000">CheckStatus</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">MINOR</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">noBetterThan</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">CheckStatus</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">MAJOR</span><span style="color:#ce5c00;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic">// returns CheckStatus.MAJOR
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000">CheckStatus</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">MINOR</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">noBetterThan</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">CheckStatus</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">OK</span><span style="color:#ce5c00;font-weight:bold">)</span>    <span style="color:#8f5902;font-style:italic">// returns CheckStatus.MINOR
+</span></code></pre></td></tr></table>
+</div>
+</div><p><code>noWorseThan()</code> returns the healthier of the two statuses.</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000">CheckStatus</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">MINOR</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">noWorseThan</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">CheckStatus</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">MAJOR</span><span style="color:#ce5c00;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic">// returns CheckStatus.MINOR
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000">CheckStatus</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">MINOR</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">noWorseThan</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">CheckStatus</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">OK</span><span style="color:#ce5c00;font-weight:bold">)</span>    <span style="color:#8f5902;font-style:italic">// returns CheckStatus.OK
+</span></code></pre></td></tr></table>
+</div>
+</div><p>During the complete system evaluation, we use a combination of these methods and the <code>Urgency#downgradeWith()</code> methods to gracefully degrade our application’s health.</p>
 <p>By having the ability to inspect the outage state, engineers can dynamically toggle feature visibility based on the health of its corresponding dependency.
 Suppose that our service that provides company information was unable to reach its database.
 The service’s health check would change its state to MAJOR or OUTAGE.
