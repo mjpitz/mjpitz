@@ -223,6 +223,21 @@
   </url>
   
   <url>
+    <loc>https://mjpitz.com/media/2019/08/21/moving-to-a-service-mesh/</loc>
+    <lastmod>2019-08-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/media/2019/08/21/moving-to-grpc-java/</loc>
+    <lastmod>2019-08-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/tags/presentation/</loc>
+    <lastmod>2019-08-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://mjpitz.com/tags/arm/</loc>
     <lastmod>2019-05-07T00:00:00+00:00</lastmod>
   </url>
