@@ -20,13 +20,13 @@ It's a tool that helps companies understand how their projects relate to one ano
 It does this by parsing files like `package.json` and storing the contents in a [graph].
 
 While [graph databases] do exist, finding administrative and engineering support is often hard.
-To add complexity to this, graph databases come in a variety of flavors.  
+To add complexity to this, graph databases come in a variety of flavors.
 Since I wanted the workload to be portable, adopting a graph database was a non-starter.
 
 On the other hand, finding support for relational databases is easy.
 The problem is that implementing graphs on relational databases tend to be slow.
 While there has been previous efforts, I felt [gRPC] was able to alleviate many of the problems they faced.
-In this post, I share lessons I learned while implementing such a graph database. 
+In this post, I share lessons I learned while implementing such a graph database.
 
 <!--more-->
 
