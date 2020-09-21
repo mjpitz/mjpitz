@@ -258,11 +258,6 @@
   </url>
   
   <url>
-    <loc>https://mjpitz.com/media/2019/08/21/moving-to-grpc-java/</loc>
-    <lastmod>2019-08-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://mjpitz.com/tags/presentation/</loc>
     <lastmod>2019-08-21T00:00:00+00:00</lastmod>
   </url>
@@ -345,6 +340,11 @@
   <url>
     <loc>https://mjpitz.com/blog/2019/03/17/64bit-raspberry-pi/</loc>
     <lastmod>2019-03-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/media/2019/02/21/moving-to-grpc-java/</loc>
+    <lastmod>2019-02-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>

@@ -27,10 +27,10 @@
     
     <item>
       <title>Moving to grpc-java</title>
-      <link>https://mjpitz.com/media/2019/08/21/moving-to-grpc-java/</link>
-      <pubDate>Wed, 21 Aug 2019 00:00:00 +0000</pubDate>
+      <link>https://mjpitz.com/media/2019/02/21/moving-to-grpc-java/</link>
+      <pubDate>Thu, 21 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://mjpitz.com/media/2019/08/21/moving-to-grpc-java/</guid>
+      <guid>https://mjpitz.com/media/2019/02/21/moving-to-grpc-java/</guid>
       <description>
 &lt;p&gt;
   Historically, Indeed has used Boxcar (Indeed’s proprietary framework) to build distributed systems.

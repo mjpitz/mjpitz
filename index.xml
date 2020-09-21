@@ -198,26 +198,6 @@ The second was to enable services to be checked, independent of the application.
     </item>
     
     <item>
-      <title>Moving to grpc-java</title>
-      <link>https://mjpitz.com/media/2019/08/21/moving-to-grpc-java/</link>
-      <pubDate>Wed, 21 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://mjpitz.com/media/2019/08/21/moving-to-grpc-java/</guid>
-      <description>
-&lt;p&gt;
-  Historically, Indeed has used Boxcar (Indeed’s proprietary framework) to build distributed systems.
-  Over the last year, we have been shifting several of our systems to use gRPC.
-  The first question product teams often ask is &#34;How does gRPC compare to Boxcar?&#34;
-  In this presentation, I put the two frameworks head to head and present the results.
-  I show how my team established some common workloads and gathered metrics to better inform other engineers.
-  We learned a lot about how to optimize the gRPC Java library when performing this analysis.
-  In closing, I present the lessons that we learned performance tuning gRPC services and how you can leverage this information for your own services.
-&lt;/p&gt;
-
-</description>
-    </item>
-    
-    <item>
       <title>Using docker-buildx for Multi-architecture Containers</title>
       <link>https://mjpitz.com/blog/2019/05/07/docker-buildx/</link>
       <pubDate>Tue, 07 May 2019 00:00:00 +0000</pubDate>
@@ -287,6 +267,26 @@ Many articles out there talk about needing to compile Linux, which sounds oh-so-
 One day, I stumbled across a 64bit OpenSUSE version that was compatible, but the installation instructions required a Linux OS to be done properly.
 Since I primarily work on OSX, this presented yet another barrier.&lt;/p&gt;
 &lt;p&gt;After a lot of searching around, I finally found a straight forward and simple way to do it.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Moving to grpc-java</title>
+      <link>https://mjpitz.com/media/2019/02/21/moving-to-grpc-java/</link>
+      <pubDate>Thu, 21 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/media/2019/02/21/moving-to-grpc-java/</guid>
+      <description>
+&lt;p&gt;
+  Historically, Indeed has used Boxcar (Indeed’s proprietary framework) to build distributed systems.
+  Over the last year, we have been shifting several of our systems to use gRPC.
+  The first question product teams often ask is &#34;How does gRPC compare to Boxcar?&#34;
+  In this presentation, I put the two frameworks head to head and present the results.
+  I show how my team established some common workloads and gathered metrics to better inform other engineers.
+  We learned a lot about how to optimize the gRPC Java library when performing this analysis.
+  In closing, I present the lessons that we learned performance tuning gRPC services and how you can leverage this information for your own services.
+&lt;/p&gt;
+
+</description>
     </item>
     
     <item>
