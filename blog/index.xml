@@ -6,10 +6,24 @@
     <description>Recent content in Blogs on Mya Pitzeruse</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 06 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 21 Sep 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://mjpitz.com/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Working with Protocol Buffers</title>
+      <link>https://mjpitz.com/blog/2020/09/21/protobuf-experience/</link>
+      <pubDate>Mon, 21 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/blog/2020/09/21/protobuf-experience/</guid>
+      <description>&lt;p&gt;Google&amp;rsquo;s &lt;a href=&#34;https://developers.google.com/protocol-buffers/docs/&#34;&gt;Protocol Buffers&lt;/a&gt; can be a power piece of technology.
+Yet, I often feel they are undervalued, underutilized, and underappreciated.
+Since joining &lt;a href=&#34;https://www.indeed.com&#34;&gt;Indeed&lt;/a&gt; back in 2013, I&amp;rsquo;ve had a fair amount of experience working with them.
+&lt;a href=&#34;https://engineering.indeedblog.com/blog/2012/12/boxcar-self-balancing-distributed-services-protocol/&#34;&gt;Boxcar&lt;/a&gt; (Indeed&amp;rsquo;s distributed services framework) was built on protocol buffers.
+As a previous maintainer of Boxcar, I&amp;rsquo;ve had hands on experience with low level components of protocol buffers.
+In this post, I discuss many of the benefits to using the technology.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Implementing Breadth-first Search Over gRPC</title>
