@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light"><head>
+    <title> Mya Pitzeruse | SLOs for Open Source </title>
+    <meta charset="utf-8"><meta name="generator" content="Hugo 0.69.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="description" content="">
+    
+    <link rel="stylesheet" href="https://mjpitz.com/css/style.min.67cd718c0a3c8009c771494d381fb7128246a454bd0518fed97cb65d257db948.css" integrity="sha256-Z81xjAo8gAnHcUlNOB&#43;3EoJGpFS9BRj&#43;2Xy2XSV9uUg=" crossorigin="anonymous" type="text/css">
+    <link rel="stylesheet" href="https://mjpitz.com/statics/css/overrides.css" type="text/css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    
+    <link rel="shortcut icon" href="https://mjpitz.com/statics/img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://mjpitz.com/statics/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://mjpitz.com/statics/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://mjpitz.com/statics/img/favicon-16x16.png">
+    <link rel="canonical" href="https://mjpitz.com/blog/2020/09/30/slos-for-oss/">
+    
+    
+    <script type="text/javascript" src="https://mjpitz.com/js/anatole-header.min.c275265a259296f3dd50e8236a77fcbcadb1dbb9597d3045c675dcc2c7c58a93.js" integrity="sha256-wnUmWiWSlvPdUOgjanf8vK2x27lZfTBFxnXcwsfFipM=" crossorigin="anonymous"></script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="SLOs for Open Source"/>
+<meta name="twitter:description" content="Open source software has been used to build organizations for years.
+From libraries to complex infrastructure systems, the open source landscape provides a vast sea of solutions.
+For larger infrastructure projects, organizations are asking maintainers for service level objectives (SLOs).
+Many do not publish or provide any, even when projects come from organizations who likely had SLOs in place.
+In this post, I walk through my process for developing indicators and objectives for open source projects."/>
+
+</head><body><div class="sidebar animated fadeInDown">
+    <div class="logo-title">
+      <div class="title">
+        <img src="https://mjpitz.com/statics/img/mjpitz.jpeg" alt="profile picture">
+        <h3 title=""><a href="/">Mya Pitzeruse</a></h3>
+        <div class="description">
+          <p></p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
+        
+        <li>
+        <a href="https://github.com/mjpitz" rel="me" aria-label="GitHub">
+          <i class="fa fa-2x fa-github" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+        <li>
+        <a href="https://twitter.com/myajpitz" rel="me" aria-label="Twitter">
+          <i class="fa fa-2x fa-twitter" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+        <li>
+        <a href="https://www.linkedin.com/in/mjpitz/" rel="me" aria-label="LinkedIn">
+          <i class="fa fa-2x fa-linkedin" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+        <li>
+        <a href="/index.xml" rel="me" aria-label="Feed">
+          <i class="fa fa-2x fa-rss" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+    </ul>
+    <div class="footer">
+        <div class="by_farbox">&copy; Mya Pitzeruse 2020 </div>
+      </div>
+    </div>
+</div><div class="main">
+            <div class="page-top animated fadeInDown">
+    <ul class="nav">
+        
+        
+        
+        <li><a  href="/" title="">Home</a></li>
+        
+        
+        <li><a  href="/media/" title="">Media</a></li>
+        
+        
+        <li><a  href="/blog/" title="">Blog</a></li>
+        
+    </ul>
+    <div class="themeswitcher">
+        <a class="theme-switch" title="Switch Theme">
+            <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+        </a>
+    </div>
+</div>
+
+            <div class="autopagerize_page_element">
+                <div class="content">
+<div class="post animated fadeInDown">
+    <div class="post-content">
+
+      <div class="post-title">
+        <h3>SLOs for Open Source
+        </h3>
+        
+        <div class="info">
+          <i class="fa fa-sun-o"></i><span class="date">Wed, Sep 30, 2020</span>
+          <i class="fa fa-clock-o"></i><span class="reading-time">6-minute read</span>
+        </div>
+        
+        </div>
+
+    <p>Open source software has been used to build organizations for years.
+From libraries to complex infrastructure systems, the open source landscape provides a vast sea of solutions.
+For larger infrastructure projects, organizations are asking maintainers for <a href="https://en.wikipedia.org/wiki/Service-level_objective">service level objectives</a> (SLOs).
+Many do not publish or provide any, even when projects come from organizations who likely had SLOs in place.
+In this post, I walk through my process for developing indicators and objectives for open source projects.</p>
+<p>Site reliability engineering started at <a href="https://indeed.com">Indeed</a> right around when Google released the book.
+One of the first things they asked for was that every design review considered SLOs.
+This has always felt out of place to me.
+Projects would write in idealized values and end up adjusting them to match how the system performed post implementation.
+What I found was this process took away from the useful work, proper failure analysis.</p>
+<h3 id="failure-mode-and-effect-analysis">Failure mode and effect analysis</h3>
+<p><a href="https://en.wikipedia.org/wiki/Failure_mode_and_effects_analysis">FMEA</a> is the process of reviewing subsystems to identify potential failure modes, their causes, and effects.
+Because it focuses on failure analysis, it fits nicely in the design review stage.
+While engineers may not be able to accurately assess an SLO metric, they can reason about how systems might fail.
+The process also helps prioritize runbook development.
+It communicates the probability, severity, and risk of a given scenario.
+Finally, the process is iterative allowing you to add more to it later on.</p>
+<p>When performing an FMEA, you often complete a worksheet.
+While the one provided on Wikipedia has more information, I decided to break this information down into two components:</p>
+<ul>
+<li>a simplified FMEA worksheet (example shown below)</li>
+<li>a set of production outage scenarios derived from the worksheet</li>
+</ul>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown">| Item          | Failure Mode         | Possible Cause       | Effects                 | Probability (P)        | Severity (S)    | Detection (D) | Risk      |
+|:--------------|:---------------------|:---------------------|:------------------------|:-----------------------|:----------------|:--------------|:----------|
+| MySQL Primary | Outage / Unreachable | Host maintenance     | Data cannot be stored   | occasional (C)         | critical (IV)   | certain       | moderate  |
+| MySQL Replica | Outage / Unreachable | Host maintenance     | Data cannot be read     | remote (B)             | critical (IV)   | certain       | moderate  |
+| Service-X     | Not Running / Ready  | Crash loop           | ....                    | extremely unlikely (A) | critical (IV)   | certain       | low       |
+| Service-X     | Not Running / Ready  | Cluster full         | ....                    | remote (B)             | critical (IV)   | high          | moderate  |
+| Service-X     | Partial Outage       | MySQL primary outage | ....                    | occasional (B)         | critical (IV)   | high          | moderate  |
+| Service-X     | Partial Outage       | MySQL replica outage | ....                    | remote (B)             | critical (IV)   | high          | moderate  |
+</code></pre></td></tr></table>
+</div>
+</div><p>The process and <a href="https://en.wikipedia.org/wiki/Failure_mode_and_effects_analysis#Ground_rules">ground rules</a> for completing this worksheet is quite simple.
+For your system and each system your project depends on, start to brainstorm how components might fail.
+Add each failure as a row in the table.
+I&rsquo;ve found this table to be easiest to complete in three passes.
+First, focus on the items, their failure modes, causes, and effects.
+Second, go through and assign priority, severity, and detection.
+In your final pass, assign risk based on the <a href="https://en.wikipedia.org/wiki/Failure_mode_and_effects_analysis#Risk_level_(P%C3%97S)_and_(D)">factors</a>.</p>
+<h4 id="production-outage-scenarios">Production outage scenarios</h4>
+<p>Once the worksheet is complete, each line can be turned into a production outage scenario.
+You can prioritize completion based on their relative risk factors.
+Production outage scenarios are a lot like runbooks, but consolidated and focused on a single failure.
+Each scenario contains the following information:</p>
+<ul>
+<li><strong>Symptoms</strong> the system is likely exhibiting.</li>
+<li><strong>Context</strong> to help assess the impact to end users.</li>
+<li>Steps to help <strong>troubleshoot</strong> and gather additional information about the state of the system.</li>
+<li><strong>Remediation steps</strong> used to help resolve the underlying issues.</li>
+<li><strong>Next steps</strong> should this scenario be insufficient (including additional scenarios to consider).</li>
+</ul>
+<p>For ease of use, I wrote up a quick <a href="https://gist.github.com/mjpitz/985f8562addb8d137cd5b99872e3f5f8">template here</a>.
+I prefer to write up a single document for each scenario instead of collecting every scenario into a single document.
+I&rsquo;ve found it helps improve the signal-to-noise ratio.</p>
+<h4 id="monitoring-and-alerting">Monitoring and alerting</h4>
+<p>Some failures can be mitigated with proper monitoring and alerting.
+Using your worksheet, you can brainstorm how to mitigate failures.
+Some useful questions to probe for what kind of monitoring should be added include:</p>
+<ul>
+<li>What are some early warning signs of the given failure?</li>
+<li>What monitoring can we put in place to better detect a problem?</li>
+</ul>
+<h3 id="runbooks">Runbooks</h3>
+<p>When writing up runbooks for open source projects, I looked to some larger solutions.
+<a href="https://gitlab.com/">GitLab</a> has an excellent set of <a href="https://gitlab.com/gitlab-com/runbooks">runbooks</a> published to the public.
+While <a href="https://kubernetes.io">kubernetes</a> does provide <a href="https://github.com/kubernetes-monitoring/kubernetes-mixin/blob/master/runbook.md">one</a>,
+I&rsquo;ve found it lacks a lot of useful information when I&rsquo;m actually paged.</p>
+<p>I really like <a href="https://twitter.com/caitie">Caitie McCaffrey</a>&lsquo;s <a href="https://github.com/CaitieM20/Talks/blob/master/TacklingAlertFatigue/runbook.md">runbook template</a> from her <a href="https://vimeo.com/173704290">Tackling Alert Fatigue</a> talk.
+It highlights everything I expect to see in a runbook.
+There&rsquo;s a section for you to provide an overview of the functionality the system provides.
+There&rsquo;s space for alerts and how to remediate them.
+Some components do not map cleanly for open source projects, such as deployment configuration and contact info.
+With a few modifications, I was able to assemble an <a href="https://gist.github.com/mjpitz/fd7cb715d4d6f77dff97b89baebc60a6">augmented template</a> for open source projects.</p>
+<p>While I removed the deployment configuration and contact information, I still plan on providing a separate template for those.
+There are many benefits to decoupling that information.
+For commonly supported deployments, we can provide a set of well-known guides that work.
+For less common deployments, individuals can write up a quick guide specific to their usage.
+Some guides can even be contributed back.</p>
+<h3 id="indicators-and-objectives">Indicators and objectives</h3>
+<p>One of the benefits to publishing your FMEA is that it allows others to quickly understand failures within your system.
+This information is useful for writing runbooks, onboarding organizations, and determining service level indicators and objectives.</p>
+<p>I strongly believe that you can&rsquo;t reliably set SLOs until your system until it is in production.
+Even once you&rsquo;re there, some platforms can provide stronger reliability guarantees than others.
+It&rsquo;s well-known a service&rsquo;s SLO cannot be greater than the product of its dependencies SLOs.
+Dependencies come in all shapes and sizes.
+As managed services provided by cloud providers, platforms running your systems, or even libraries in your application.
+The FMEA process forces you to think critically about your system, its dependencies, and the failure modes they can experience.
+This better informs our understanding of a system, and helps guide our decisions around SLOs.</p>
+<p><strong>What SLOs should I set?</strong></p>
+<p>There&rsquo;s already a lot of information out there on what SLOs to set, monitoring, and alerting.
+Availability and response latency are two of the most common objectives.
+This <a href="https://blog.newrelic.com/engineering/best-practices-for-setting-slos-and-slis-for-modern-complex-systems/">post from NewRelic</a> is a great guide on how to pick and set SLOs.
+Generally speaking, features and capabilities should drive SLIs and SLIs should drive SLOs.</p>
+    </div>
+    <div class="post-footer">
+      <div class="info">
+        
+        
+    <span class="separator"><a class="tag" href="/tags/fmea/">fmea</a><a class="tag" href="/tags/slo/">slo</a><a class="tag" href="/tags/sli/">sli</a><a class="tag" href="/tags/sla/">sla</a><a class="tag" href="/tags/reliability/">reliability</a><a class="tag" href="/tags/open-source/">open-source</a><a class="tag" href="/tags/oss/">oss</a><a class="tag" href="/tags/sre/">sre</a><a class="tag" href="/tags/runbooks/">runbooks</a></span>
+
+      </div>
+    </div>
+
+    
+</div>
+
+
+                </div>
+            </div>
+        </div>
+</body>
+
+
+
+<script type="text/javascript" src="https://mjpitz.com/js/jquery.min.86b1e8f819ee2d9099a783e50b49dff24282545fc40773861f9126b921532e4c.js" integrity="sha256-hrHo&#43;BnuLZCZp4PlC0nf8kKCVF/EB3OGH5EmuSFTLkw=" crossorigin="anonymous"></script>
+
+
+
+
+<script type="text/javascript" src="https://mjpitz.com/js/bundle.min.0f9c74cb78f13d1f15f33daff4037c70354f98acfbb97a6f61708966675c3cae.js" integrity="sha256-D5x0y3jxPR8V8z2v9AN8cDVPmKz7uXpvYXCJZmdcPK4=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://mjpitz.com/js/medium-zoom.min.92f21c856129f84aeb719459b3e6ac621a3032fd7b180a18c04e1d12083f8aba.js" integrity="sha256-kvIchWEp&#43;ErrcZRZs&#43;asYhowMv17GAoYwE4dEgg/iro=" crossorigin="anonymous"></script>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-39314903-5', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</html></body>
+
+</html>

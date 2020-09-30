@@ -6,10 +6,91 @@
     <description>Recent content in Tags on Mya Pitzeruse</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 21 Sep 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 30 Sep 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://mjpitz.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>fmea</title>
+      <link>https://mjpitz.com/tags/fmea/</link>
+      <pubDate>Wed, 30 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/fmea/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>open-source</title>
+      <link>https://mjpitz.com/tags/open-source/</link>
+      <pubDate>Wed, 30 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/open-source/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>oss</title>
+      <link>https://mjpitz.com/tags/oss/</link>
+      <pubDate>Wed, 30 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/oss/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>reliability</title>
+      <link>https://mjpitz.com/tags/reliability/</link>
+      <pubDate>Wed, 30 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/reliability/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>runbooks</title>
+      <link>https://mjpitz.com/tags/runbooks/</link>
+      <pubDate>Wed, 30 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/runbooks/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sla</title>
+      <link>https://mjpitz.com/tags/sla/</link>
+      <pubDate>Wed, 30 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/sla/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sli</title>
+      <link>https://mjpitz.com/tags/sli/</link>
+      <pubDate>Wed, 30 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/sli/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>slo</title>
+      <link>https://mjpitz.com/tags/slo/</link>
+      <pubDate>Wed, 30 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/slo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sre</title>
+      <link>https://mjpitz.com/tags/sre/</link>
+      <pubDate>Wed, 30 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/sre/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>golang</title>
