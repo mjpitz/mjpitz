@@ -62,9 +62,9 @@ While the one provided on Wikipedia has more information, I decided to break thi
 The process and [ground rules] for completing this worksheet is quite simple.
 For your system and each system your project depends on, start to brainstorm how components might fail.
 Add each failure as a row in the table.
-I've found this table to be easiest to complete in three passes.
+I've found this easiest to complete in three passes.
 First, focus on the items, their failure modes, causes, and effects.
-Second, go through and assign priority, severity, and detection.
+Second, go through and assign probability, severity, and detection.
 In your final pass, assign risk based on the [factors].
 
 [FMEA]: https://en.wikipedia.org/wiki/Failure_mode_and_effects_analysis
@@ -74,7 +74,7 @@ In your final pass, assign risk based on the [factors].
 #### Production outage scenarios
 
 Once the worksheet is complete, each line can be turned into a production outage scenario.
-You can prioritize completion based on their relative risk factors.
+You can prioritize completion based on their relative risks.
 Production outage scenarios are a lot like runbooks, but consolidated and focused on a single failure.
 Each scenario contains the following information:
 
@@ -108,11 +108,12 @@ I really like [Caitie McCaffrey]'s [runbook template] from her [Tackling Alert F
 It highlights everything I expect to see in a runbook.
 There's a section for you to provide an overview of the functionality the system provides.
 There's space for alerts and how to remediate them.
-Some components do not map cleanly for open source projects, such as deployment configuration and contact info.
+Deployment configuration and contact information don't really map cleanly for open source projects.
+Open source solutions often have to consider a variety of deployment models. 
 With a few modifications, I was able to assemble an [augmented template] for open source projects.
 
-While I removed the deployment configuration and contact information, I still plan on providing a separate template for those.
-There are many benefits to decoupling that information.
+While I removed the deployment configuration and contact information, I still plan on using a separate document for those.
+There are many benefits to decoupling that information from the core set of runbooks.
 For commonly supported deployments, we can provide a set of well-known guides that work.
 For less common deployments, individuals can write up a quick guide specific to their usage.
 Some guides can even be contributed back.
@@ -127,7 +128,7 @@ Some guides can even be contributed back.
 One of the benefits to publishing your FMEA is that it allows others to quickly understand failures within your system.
 This information is useful for writing runbooks, onboarding organizations, and determining service level indicators and objectives.
 
-I strongly believe that you can't reliably set SLOs until your system until it is in production.
+I strongly believe that you can't reliably set SLOs until your system is in production.
 Even once you're there, some platforms can provide stronger reliability guarantees than others.
 It's well-known a service's SLO cannot be greater than the product of its dependencies SLOs.
 Dependencies come in all shapes and sizes.
