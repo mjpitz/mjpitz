@@ -4,31 +4,86 @@
   
   <url>
     <loc>https://mjpitz.com/</loc>
-    <lastmod>2020-09-30T00:00:00+00:00</lastmod>
+    <lastmod>2020-10-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/tags/alerts/</loc>
+    <lastmod>2020-10-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://mjpitz.com/blog/</loc>
-    <lastmod>2020-09-30T00:00:00+00:00</lastmod>
+    <lastmod>2020-10-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://mjpitz.com/tags/fmea/</loc>
-    <lastmod>2020-09-30T00:00:00+00:00</lastmod>
+    <loc>https://mjpitz.com/tags/dashboards/</loc>
+    <lastmod>2020-10-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/tags/grafana/</loc>
+    <lastmod>2020-10-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/tags/jsonnet/</loc>
+    <lastmod>2020-10-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/blog/2020/10/12/learning-jsonnet/</loc>
+    <lastmod>2020-10-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://mjpitz.com/tags/open-source/</loc>
-    <lastmod>2020-09-30T00:00:00+00:00</lastmod>
+    <lastmod>2020-10-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://mjpitz.com/tags/oss/</loc>
-    <lastmod>2020-09-30T00:00:00+00:00</lastmod>
+    <lastmod>2020-10-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/tags/prometheus/</loc>
+    <lastmod>2020-10-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://mjpitz.com/tags/reliability/</loc>
+    <lastmod>2020-10-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/tags/rules/</loc>
+    <lastmod>2020-10-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/tags/sli/</loc>
+    <lastmod>2020-10-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/tags/slo/</loc>
+    <lastmod>2020-10-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/tags/sre/</loc>
+    <lastmod>2020-10-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/tags/</loc>
+    <lastmod>2020-10-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/tags/fmea/</loc>
     <lastmod>2020-09-30T00:00:00+00:00</lastmod>
   </url>
   
@@ -43,27 +98,7 @@
   </url>
   
   <url>
-    <loc>https://mjpitz.com/tags/sli/</loc>
-    <lastmod>2020-09-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mjpitz.com/tags/slo/</loc>
-    <lastmod>2020-09-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://mjpitz.com/blog/2020/09/30/slos-for-oss/</loc>
-    <lastmod>2020-09-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mjpitz.com/tags/sre/</loc>
-    <lastmod>2020-09-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mjpitz.com/tags/</loc>
     <lastmod>2020-09-30T00:00:00+00:00</lastmod>
   </url>
   
@@ -359,11 +394,6 @@
   
   <url>
     <loc>https://mjpitz.com/tags/monitoring/</loc>
-    <lastmod>2019-04-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mjpitz.com/tags/prometheus/</loc>
     <lastmod>2019-04-21T00:00:00+00:00</lastmod>
   </url>
   

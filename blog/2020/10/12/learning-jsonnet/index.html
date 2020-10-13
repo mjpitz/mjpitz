@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light"><head>
+    <title> Mya Pitzeruse | Learning Jsonnet </title>
+    <meta charset="utf-8"><meta name="generator" content="Hugo 0.69.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="description" content="">
+    
+    <link rel="stylesheet" href="https://mjpitz.com/css/style.min.67cd718c0a3c8009c771494d381fb7128246a454bd0518fed97cb65d257db948.css" integrity="sha256-Z81xjAo8gAnHcUlNOB&#43;3EoJGpFS9BRj&#43;2Xy2XSV9uUg=" crossorigin="anonymous" type="text/css">
+    <link rel="stylesheet" href="https://mjpitz.com/statics/css/overrides.css" type="text/css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    
+    <link rel="shortcut icon" href="https://mjpitz.com/statics/img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://mjpitz.com/statics/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://mjpitz.com/statics/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://mjpitz.com/statics/img/favicon-16x16.png">
+    <link rel="canonical" href="https://mjpitz.com/blog/2020/10/12/learning-jsonnet/">
+    
+    
+    <script type="text/javascript" src="https://mjpitz.com/js/anatole-header.min.c275265a259296f3dd50e8236a77fcbcadb1dbb9597d3045c675dcc2c7c58a93.js" integrity="sha256-wnUmWiWSlvPdUOgjanf8vK2x27lZfTBFxnXcwsfFipM=" crossorigin="anonymous"></script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Learning Jsonnet"/>
+<meta name="twitter:description" content="Jsonnet is a powerful data templating language.
+It extends JSON with variables, conditionals, functions, imports and more.
+As an engineer who never touched the technology before, I often struggled to understand it.
+In this post, I share my experience learning Jsonnet and my thoughts behind developing a starter."/>
+
+</head><body><div class="sidebar animated fadeInDown">
+    <div class="logo-title">
+      <div class="title">
+        <img src="https://mjpitz.com/statics/img/mjpitz.jpeg" alt="profile picture">
+        <h3 title=""><a href="/">Mya Pitzeruse</a></h3>
+        <div class="description">
+          <p></p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
+        
+        <li>
+        <a href="https://github.com/mjpitz" rel="me" aria-label="GitHub">
+          <i class="fa fa-2x fa-github" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+        <li>
+        <a href="https://twitter.com/myajpitz" rel="me" aria-label="Twitter">
+          <i class="fa fa-2x fa-twitter" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+        <li>
+        <a href="https://www.linkedin.com/in/mjpitz/" rel="me" aria-label="LinkedIn">
+          <i class="fa fa-2x fa-linkedin" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+        <li>
+        <a href="/index.xml" rel="me" aria-label="Feed">
+          <i class="fa fa-2x fa-rss" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+    </ul>
+    <div class="footer">
+        <div class="by_farbox">&copy; Mya Pitzeruse 2020 </div>
+      </div>
+    </div>
+</div><div class="main">
+            <div class="page-top animated fadeInDown">
+    <ul class="nav">
+        
+        
+        
+        <li><a  href="/" title="">Home</a></li>
+        
+        
+        <li><a  href="/media/" title="">Media</a></li>
+        
+        
+        <li><a  href="/blog/" title="">Blog</a></li>
+        
+    </ul>
+    <div class="themeswitcher">
+        <a class="theme-switch" title="Switch Theme">
+            <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+        </a>
+    </div>
+</div>
+
+            <div class="autopagerize_page_element">
+                <div class="content">
+<div class="post animated fadeInDown">
+    <div class="post-content">
+
+      <div class="post-title">
+        <h3>Learning Jsonnet
+        </h3>
+        
+        <div class="info">
+          <i class="fa fa-sun-o"></i><span class="date">Mon, Oct 12, 2020</span>
+          <i class="fa fa-clock-o"></i><span class="reading-time">4-minute read</span>
+        </div>
+        
+        </div>
+
+    <p><a href="https://jsonnet.org/">Jsonnet</a> is a powerful data templating language.
+It extends JSON with variables, conditionals, functions, imports and more.
+As an engineer who never touched the technology before, I often struggled to understand it.
+In this post, I share my experience learning Jsonnet and my thoughts behind developing a starter.</p>
+<p>With my departure from Indeed, coworkers asked that I provide monitoring for my open source project.
+As I searched around looking for examples to follow, I quickly discovered Jsonnet.
+While it appeared to be a powerful tool, I couldn&rsquo;t find any good starters for it.
+Many existing projects out there were great references, but lacked set up and direction.
+To keep things simple, I started with the <a href="https://github.com/kubernetes-monitoring/kubernetes-mixin">kubernetes-mixin</a> project structure.</p>
+<h3 id="fighting-through-the-trough">Fighting through the trough</h3>
+<p>When I learn something new, I often go through the <a href="https://en.wikipedia.org/wiki/Hype_cycle">Hype Cycle</a>.
+At first, there are high expectations for what I&rsquo;ll be able to do with a given tool.
+After gaining some familiarity, I dig in.
+Then, the trough of disillusionment hits.
+Here, I spend most of my time learning (often hands on).
+While here, I try not to expect anything to work the first time.
+Only that I&rsquo;m making progress, both iteratively and visibly.
+Eventually, I reach the plateau of productivity.
+At this point,  I&rsquo;m familiar enough with the semantics and sharp edges to be productive.</p>
+<p>With Jsonnet, I found the trough to be longer than I initially expected.
+Like many languages, issues with files were identified by line and character numbers.
+Where I ran into more problems was at the command-line tool / language interface.
+There were several moments where the output of the jsonnet CLI stumped me.
+At one point, I pushed up my changes and gave it a break.
+After some needed rest, I was able to track down the issue and was back on track.
+(Granted, I was attempting to build <strong><em>four</em></strong> <a href="https://grafana.com">Grafana</a> dashboards my first time through.)</p>
+<p><em>References were key</em> to making it through the trough.
+Without them, I would still be working through the pull request.
+They can provide great examples, reference points, and even ideas on what you should monitor.</p>
+<h3 id="composition">Composition</h3>
+<p><a href="https://deps.cloud/">deps.cloud</a> is an open source project of mine that helps track, monitor, and connect project dependencies across languages and toolchains.
+I built it as a <a href="https://mjpitz.com/blog/2020/01/24/building-depscloud/">successor to a previous system</a> I implemented at Indeed.
+Unlike it&rsquo;s predecessor, deps.cloud supports many different languages.
+It implements a common set of <a href="https://grpc.io">gRPC</a> microservices that can be swapped out or reconfigured.
+For example, <a href="https://api.deps.cloud">https://api.deps.cloud</a> is backed by a read-only version of the <code>tracker</code> process (for now).
+As the operator of that service, I might want a dedicated dashboard or set of alerts for that deployment.</p>
+<p>Remember, iterative and visible progress.
+When I started the dashboards, I used a similar layout to the kubernetes-mixin project.
+Once I had something working and checked in, I started to look at how I could improve it.
+For one, I found their format didn&rsquo;t support the composition model I was hoping for.
+It used a few tools like [jsonnet-bundler] which allows for package management.
+With a few modifications, I was able to get a more modular structure in place.</p>
+<h3 id="jsonnet-monitoring-starter">jsonnet-monitoring-starter</h3>
+<p>I created the <a href="https://github.com/mjpitz/jsonnet-monitoring-starter">jsonnet-monitoring-starter</a> repository to help others get started with monitoring tools in a declarative way.
+Each service in your system is given space for alerts, dashboards, recording rules, and default configuration.</p>
+<pre><code>└── service-template
+    ├── config.libsonnet
+    ├── mixin.libsonnet
+    ├── alerts
+    │   ├── alert-template.libsonnet
+    │   └── alerts.libsonnet
+    ├── dashboards
+    │   ├── dashboard-template.libsonnet
+    │   └── dashboards.libsonnet
+    └── rules
+        ├── rule-template.libsonnet
+        └── rules.libsonnet
+</code></pre><p><code>mixin.libsonnet</code> allows services to be composed into higher level abstractions.
+This is done using the <code>import</code> directive in jsonnet.
+For an example of how this is done, see any <code>mixin.libsonnet</code> file in the repository.
+Finally, the starter provides some boilerplate for generating output files.</p>
+<pre><code>└── pkg
+    ├── alerts.jsonnet
+    ├── dashboards.jsonnet
+    └── rules.jsonnet
+</code></pre><p>To see this approach in action, stop on over at <a href="https://github.com/depscloud/deploy">depscloud/deploy</a> and take a look at the <a href="https://github.com/depscloud/deploy/tree/main/monitoring">monitoring</a> setup there.</p>
+    </div>
+    <div class="post-footer">
+      <div class="info">
+        
+        
+    <span class="separator"><a class="tag" href="/tags/slo/">slo</a><a class="tag" href="/tags/sli/">sli</a><a class="tag" href="/tags/reliability/">reliability</a><a class="tag" href="/tags/open-source/">open-source</a><a class="tag" href="/tags/oss/">oss</a><a class="tag" href="/tags/sre/">sre</a><a class="tag" href="/tags/jsonnet/">jsonnet</a><a class="tag" href="/tags/grafana/">grafana</a><a class="tag" href="/tags/prometheus/">prometheus</a><a class="tag" href="/tags/alerts/">alerts</a><a class="tag" href="/tags/dashboards/">dashboards</a><a class="tag" href="/tags/rules/">rules</a></span>
+
+      </div>
+    </div>
+
+    
+</div>
+
+
+                </div>
+            </div>
+        </div>
+</body>
+
+
+
+<script type="text/javascript" src="https://mjpitz.com/js/jquery.min.86b1e8f819ee2d9099a783e50b49dff24282545fc40773861f9126b921532e4c.js" integrity="sha256-hrHo&#43;BnuLZCZp4PlC0nf8kKCVF/EB3OGH5EmuSFTLkw=" crossorigin="anonymous"></script>
+
+
+
+
+<script type="text/javascript" src="https://mjpitz.com/js/bundle.min.0f9c74cb78f13d1f15f33daff4037c70354f98acfbb97a6f61708966675c3cae.js" integrity="sha256-D5x0y3jxPR8V8z2v9AN8cDVPmKz7uXpvYXCJZmdcPK4=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://mjpitz.com/js/medium-zoom.min.92f21c856129f84aeb719459b3e6ac621a3032fd7b180a18c04e1d12083f8aba.js" integrity="sha256-kvIchWEp&#43;ErrcZRZs&#43;asYhowMv17GAoYwE4dEgg/iro=" crossorigin="anonymous"></script>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-39314903-5', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</html></body>
+
+</html>

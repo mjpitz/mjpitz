@@ -6,24 +6,51 @@
     <description>Recent content in Tags on Mya Pitzeruse</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 30 Sep 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 12 Oct 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://mjpitz.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>fmea</title>
-      <link>https://mjpitz.com/tags/fmea/</link>
-      <pubDate>Wed, 30 Sep 2020 00:00:00 +0000</pubDate>
+      <title>alerts</title>
+      <link>https://mjpitz.com/tags/alerts/</link>
+      <pubDate>Mon, 12 Oct 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://mjpitz.com/tags/fmea/</guid>
+      <guid>https://mjpitz.com/tags/alerts/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>dashboards</title>
+      <link>https://mjpitz.com/tags/dashboards/</link>
+      <pubDate>Mon, 12 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/dashboards/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>grafana</title>
+      <link>https://mjpitz.com/tags/grafana/</link>
+      <pubDate>Mon, 12 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/grafana/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>jsonnet</title>
+      <link>https://mjpitz.com/tags/jsonnet/</link>
+      <pubDate>Mon, 12 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/jsonnet/</guid>
       <description></description>
     </item>
     
     <item>
       <title>open-source</title>
       <link>https://mjpitz.com/tags/open-source/</link>
-      <pubDate>Wed, 30 Sep 2020 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 12 Oct 2020 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/tags/open-source/</guid>
       <description></description>
@@ -32,18 +59,72 @@
     <item>
       <title>oss</title>
       <link>https://mjpitz.com/tags/oss/</link>
-      <pubDate>Wed, 30 Sep 2020 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 12 Oct 2020 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/tags/oss/</guid>
       <description></description>
     </item>
     
     <item>
+      <title>prometheus</title>
+      <link>https://mjpitz.com/tags/prometheus/</link>
+      <pubDate>Mon, 12 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/prometheus/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>reliability</title>
       <link>https://mjpitz.com/tags/reliability/</link>
-      <pubDate>Wed, 30 Sep 2020 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 12 Oct 2020 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/tags/reliability/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>rules</title>
+      <link>https://mjpitz.com/tags/rules/</link>
+      <pubDate>Mon, 12 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/rules/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sli</title>
+      <link>https://mjpitz.com/tags/sli/</link>
+      <pubDate>Mon, 12 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/sli/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>slo</title>
+      <link>https://mjpitz.com/tags/slo/</link>
+      <pubDate>Mon, 12 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/slo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sre</title>
+      <link>https://mjpitz.com/tags/sre/</link>
+      <pubDate>Mon, 12 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/sre/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>fmea</title>
+      <link>https://mjpitz.com/tags/fmea/</link>
+      <pubDate>Wed, 30 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/fmea/</guid>
       <description></description>
     </item>
     
@@ -62,33 +143,6 @@
       <pubDate>Wed, 30 Sep 2020 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/tags/sla/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>sli</title>
-      <link>https://mjpitz.com/tags/sli/</link>
-      <pubDate>Wed, 30 Sep 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://mjpitz.com/tags/sli/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>slo</title>
-      <link>https://mjpitz.com/tags/slo/</link>
-      <pubDate>Wed, 30 Sep 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://mjpitz.com/tags/slo/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>sre</title>
-      <link>https://mjpitz.com/tags/sre/</link>
-      <pubDate>Wed, 30 Sep 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://mjpitz.com/tags/sre/</guid>
       <description></description>
     </item>
     
@@ -476,15 +530,6 @@
       <pubDate>Sun, 21 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/tags/monitoring/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>prometheus</title>
-      <link>https://mjpitz.com/tags/prometheus/</link>
-      <pubDate>Sun, 21 Apr 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://mjpitz.com/tags/prometheus/</guid>
       <description></description>
     </item>
     
