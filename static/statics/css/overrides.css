@@ -1,3 +1,23 @@
+body {
+    font-family: atkinson-hyperlegible !important;
+}
+
+p {
+    font-size: 1rem;
+}
+
+.page-top .nav {
+    font-size: 1rem;
+}
+
+.post .post-title h3 {
+    text-transform: none;
+}
+
+.sidebar .logo-title .title h3 {
+    text-transform: none;
+}
+
 .post .post-content img {
     max-width: 800px;
 }
@@ -12,4 +32,32 @@
     margin: 0 auto;
     max-width: 800px;
     padding: 30px;
+}
+
+@font-face {
+    font-family: atkinson-hyperlegible;
+    src: url("/statics/font/Atkinson-Hyperlegible-Bold-102a.woff2");
+    src: url("/statics/font/Atkinson-Hyperlegible-Bold-102.woff");
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: atkinson-hyperlegible;
+    src: url("/statics/font/Atkinson-Hyperlegible-BoldItalic-102a.woff2");
+    src: url("/statics/font/Atkinson-Hyperlegible-BoldItalic-102.woff");
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: atkinson-hyperlegible;
+    src: url("/statics/font/Atkinson-Hyperlegible-Italic-102a.woff2");
+    src: url("/statics/font/Atkinson-Hyperlegible-Italic-102.woff");
+    font-style: italic;
+}
+
+@font-face {
+    font-family: atkinson-hyperlegible;
+    src: url("/statics/font/Atkinson-Hyperlegible-Regular-102a.woff2");
+    src: url("/statics/font/Atkinson-Hyperlegible-Regular-102.woff");
 }
