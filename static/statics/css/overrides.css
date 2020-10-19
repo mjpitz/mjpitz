@@ -32,6 +32,7 @@ p {
     margin: 0 auto;
     max-width: 800px;
     padding: 30px;
+    font-size: 1rem;
 }
 
 @font-face {
