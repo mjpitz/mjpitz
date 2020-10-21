@@ -81,7 +81,7 @@ Finally, I connect a pair of [Cowin E7 active noise cancelling headphones].
 At a $60 price point, it's hard to argue with these.
 You get great sound for a pretty reasonable price.
 
-[Autonomous SmartDesk 2]: https://www.autonomous.ai/standing-desks/smartdesk-2-home
+[Autonomous SmartDesk2]: https://www.autonomous.ai/standing-desks/smartdesk-2-home
 
 [Anker USB C Hub]: https://www.amazon.com/gp/product/B07YZ48HCT
 [Nuxaly laptop stand]: https://www.amazon.com/gp/product/B07P54RSPY
