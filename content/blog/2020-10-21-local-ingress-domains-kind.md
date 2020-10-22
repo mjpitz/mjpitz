@@ -32,7 +32,7 @@ Using dnsmasq, we're able to setup a synthetic domain thats managed by localhost
 Before getting started, let's install dnsmasq.
 On OSX, you an install dnsmasq using [homebrew].
 
-```sh
+```text
 brew install dnsmasq
 ```
 
@@ -44,13 +44,13 @@ Using one will result in DNS query leaks, which may be problematic for organizat
 `.dev` has historically been used by engineers, but recent browser changes now require TLS for communication.
 I've recently taken to the non-existent `.hack` TLD.
 
-```
+```text
 address=/mjpitz.hack/127.0.0.1
 ```
 
 Once configured, you'll need to start (or restart) the dnsmasq service.
 
-```sh
+```text
 sudo brew services start dnsmasq
 # or
 sudo brew services restart dnsmasq
@@ -59,7 +59,7 @@ sudo brew services restart dnsmasq
 You can verify that dnsmasq picked up your configuration using the `dig` command.
 For now, you'll need to explicitly point it at localhost.
 
-```sh
+```text
 $ dig @127.0.0.1 test.mjpitz.hack
 
 ; <<>> DiG 9.10.6 <<>> test.mjpitz.hack
@@ -92,7 +92,7 @@ Create a file under `/etc/resolver` with the name of the domain from earlier.
 The file should contain a `domain`, `search`, and `nameserver`.
 The `nameserver` should point to `127.0.0.1`.
 
-```sh
+```text
 sudo mkdir /etc/resolver/
 
 cat <<EOF | sudo tee /etc/resolver/mjpitz.hack
@@ -106,13 +106,13 @@ Once the resolver is configured, you'll need to restart the `mDNSResponder`.
 The easiest way to do this is by sending a hang up.
 This will cause the process to be restarted gracefully.
 
-```sh
+```text
 sudo killall -HUP mDNSResponder
 ```
 
 Once restarted, verify the new resolver was picked up using the `scutil` command.
 
-```sh
+```text
 scutil --dns
 
 # ...
@@ -140,7 +140,7 @@ To test, we'll use the same `dig` command from earlier.
 Instead of pointing it at localhost this time, we'll omit the target.
 The result should be the same.
 
-```sh
+```text
 $ dig test.mjpitz.hack
 
 ; <<>> DiG 9.10.6 <<>> test.mjpitz.hack
@@ -169,7 +169,7 @@ Now that we've got a synthetic domain that routes properly, we can deploy and co
 
 Before creating the cluster, be sure you have kind installed and are on the latest version.
 
-```sh
+```text
 brew install kind
 ```
 
@@ -204,14 +204,14 @@ nodes:
 
 Using this configuration, we can create a cluster.
 
-```sh
+```text
 kind create cluster --config cluster.yaml
 ```
 
 Once the cluster is up and running, verify that port `80` and `443` bound properly.
 You can do this by inspecting the docker container.
 
-```sh
+```text
 $ docker ps
 CONTAINER ID        IMAGE                  COMMAND                  CREATED              STATUS              PORTS                                                                     NAMES
 db95e53f6876        kindest/node:v1.19.1   "/usr/local/bin/entr…"   About a minute ago   Up About a minute   127.0.0.1:80->80/tcp, 127.0.0.1:443->443/tcp, 127.0.0.1:55416->6443/tcp   kind-control-plane
@@ -225,7 +225,7 @@ Once your cluster is up and running, it's time to deploy an ingress controller.
 Ingress controllers enable routing of HTTP requests based on the `Host` header.
 While it's tempting to use your ingress controller of choice, let's start simply with ingress-nginx.
 
-```sh
+```text
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/kind/deploy.yaml
 ```
 
