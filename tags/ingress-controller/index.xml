@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ingress-controller on Mya Pitzeruse</title>
+    <link>https://mjpitz.com/tags/ingress-controller/</link>
+    <description>Recent content in ingress-controller on Mya Pitzeruse</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 21 Oct 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://mjpitz.com/tags/ingress-controller/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Local Ingress Domains for your Kind Cluster</title>
+      <link>https://mjpitz.com/blog/2020/10/21/local-ingress-domains-kind/</link>
+      <pubDate>Wed, 21 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/blog/2020/10/21/local-ingress-domains-kind/</guid>
+      <description>&lt;p&gt;Tools like &lt;a href=&#34;https://minikube.sigs.k8s.io/docs/&#34;&gt;minikube&lt;/a&gt; and &lt;a href=&#34;https://kind.sigs.k8s.io/&#34;&gt;kind&lt;/a&gt; make it easy to get a &lt;a href=&#34;https://kubernetes.io/&#34;&gt;kubernetes&lt;/a&gt; cluster up and running locally.
+Unfortunately these tools are limited in their capabilities, namely a lack of load balancer support.
+As a result, the community developed solutions like &lt;a href=&#34;https://github.com/txn2/kubefwd&#34;&gt;kubefwd&lt;/a&gt; and &lt;code&gt;minikube tunnel&lt;/code&gt; to expose services.
+While this approach works, keeping a dedicated terminal open during development can be tedeous.
+In this post, I show how to set up an ingress controller in a kind cluster and pair it with a private, locally addressable domain.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

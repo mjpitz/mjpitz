@@ -6,10 +6,73 @@
     <description>Recent content in Tags on Mya Pitzeruse</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 19 Oct 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 21 Oct 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://mjpitz.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>dnsmasq</title>
+      <link>https://mjpitz.com/tags/dnsmasq/</link>
+      <pubDate>Wed, 21 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/dnsmasq/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ingress</title>
+      <link>https://mjpitz.com/tags/ingress/</link>
+      <pubDate>Wed, 21 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/ingress/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ingress-controller</title>
+      <link>https://mjpitz.com/tags/ingress-controller/</link>
+      <pubDate>Wed, 21 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/ingress-controller/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>k8s</title>
+      <link>https://mjpitz.com/tags/k8s/</link>
+      <pubDate>Wed, 21 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/k8s/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kind</title>
+      <link>https://mjpitz.com/tags/kind/</link>
+      <pubDate>Wed, 21 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/kind/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kubernetes</title>
+      <link>https://mjpitz.com/tags/kubernetes/</link>
+      <pubDate>Wed, 21 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>minikube</title>
+      <link>https://mjpitz.com/tags/minikube/</link>
+      <pubDate>Wed, 21 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/minikube/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>anker</title>
@@ -377,15 +440,6 @@
       <pubDate>Mon, 03 Aug 2020 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/tags/gitops/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>kubernetes</title>
-      <link>https://mjpitz.com/tags/kubernetes/</link>
-      <pubDate>Mon, 03 Aug 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://mjpitz.com/tags/kubernetes/</guid>
       <description></description>
     </item>
     
