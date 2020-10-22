@@ -116,7 +116,7 @@ In this post, I show how to set up an ingress controller in a kind cluster and p
 <p><a href="https://en.wikipedia.org/wiki/Dnsmasq">dnsmasq</a> is a free tool that provides domain name system (DNS) capabilities.
 Using dnsmasq, we&rsquo;re able to setup a synthetic domain thats managed by localhost.
 Before getting started, let&rsquo;s install dnsmasq.
-On OSX, you an install dnsmasq using <a href="https://brew.sh/">homebrew</a>.</p>
+On OSX, you can install dnsmasq using <a href="https://brew.sh/">homebrew</a>.</p>
 <div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
@@ -479,7 +479,7 @@ You can verify that the traffic reaches the container by opening it up in your b
 <p><em>Why setup a local, private domain?</em></p>
 <p>Sure.
 You could follow the path as described in the kind documentation.
-But managing path based routing can be a headache and often doesn&rsquo;t align with how things are deployed in production.
+Managing path based routing can be a headache and often doesn&rsquo;t align with how things are deployed in production.
 By leveraging a local private domain, we make our dev ecosystem look and feel much closer to production.
 Let&rsquo;s take a look at this in action using the example from the kind documentation.
 Instead of using path based routing, let&rsquo;s set up two ingress definitions with our fake domain.</p>
