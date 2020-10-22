@@ -20,6 +20,7 @@ p {
 
 .post .post-content img {
     max-width: 800px;
+    width: 100%;
 }
 
 .post {
@@ -33,10 +34,6 @@ p {
     max-width: 800px;
     padding: 30px;
     font-size: 1rem;
-}
-
-img {
-    max-width: 100%;
 }
 
 @font-face {
