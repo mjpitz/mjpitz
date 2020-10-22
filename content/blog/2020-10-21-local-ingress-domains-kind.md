@@ -30,7 +30,7 @@ In this post, I show how to set up an ingress controller in a kind cluster and p
 [dnsmasq] is a free tool that provides domain name system (DNS) capabilities.
 Using dnsmasq, we're able to setup a synthetic domain thats managed by localhost.
 Before getting started, let's install dnsmasq.
-On OSX, you an install dnsmasq using [homebrew].
+On OSX, you can install dnsmasq using [homebrew].
 
 ```text
 brew install dnsmasq
@@ -273,7 +273,7 @@ _Why setup a local, private domain?_
 
 Sure.
 You could follow the path as described in the kind documentation.
-But managing path based routing can be a headache and often doesn't align with how things are deployed in production.
+Managing path based routing can be a headache and often doesn't align with how things are deployed in production.
 By leveraging a local private domain, we make our dev ecosystem look and feel much closer to production.
 Let's take a look at this in action using the example from the kind documentation.
 Instead of using path based routing, let's set up two ingress definitions with our fake domain.
