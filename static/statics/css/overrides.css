@@ -35,6 +35,10 @@ p {
     font-size: 1rem;
 }
 
+img {
+    max-width: 100%;
+}
+
 @font-face {
     font-family: atkinson-hyperlegible;
     src: url("/statics/font/Atkinson-Hyperlegible-Bold-102a.woff2");
