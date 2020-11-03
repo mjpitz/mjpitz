@@ -99,6 +99,7 @@
     </div>
     <div class="post-content"><div class="p_part"><p><p>DockerHub&rsquo;s <a href="https://docs.docker.com/docker-hub/download-rate-limit/">impending download rate limit</a> presents an interesting challenge for some.
 From hobbyists to open core ecosystems, projects are trying to find ways insulate their users.
+For my projects, I chose to deploy a simple registry mirror.
 One nice thing about this project is that the system is largely stateless (and cheap to run).
 The <code>docker-registry</code> and <code>docker-auth</code> projects are pretty easy to horizontally scale.
 The only stateful system you really need to manage is a cache (which isn&rsquo;t mission critical).
