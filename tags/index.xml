@@ -6,10 +6,73 @@
     <description>Recent content in Tags on Mya Pitzeruse</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 21 Oct 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 03 Nov 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://mjpitz.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>auth</title>
+      <link>https://mjpitz.com/tags/auth/</link>
+      <pubDate>Tue, 03 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/auth/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>docker</title>
+      <link>https://mjpitz.com/tags/docker/</link>
+      <pubDate>Tue, 03 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mirror</title>
+      <link>https://mjpitz.com/tags/mirror/</link>
+      <pubDate>Tue, 03 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/mirror/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>rate-limit</title>
+      <link>https://mjpitz.com/tags/rate-limit/</link>
+      <pubDate>Tue, 03 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/rate-limit/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>readonly</title>
+      <link>https://mjpitz.com/tags/readonly/</link>
+      <pubDate>Tue, 03 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/readonly/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>registry</title>
+      <link>https://mjpitz.com/tags/registry/</link>
+      <pubDate>Tue, 03 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/registry/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>setup</title>
+      <link>https://mjpitz.com/tags/setup/</link>
+      <pubDate>Tue, 03 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/setup/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>dnsmasq</title>
@@ -143,15 +206,6 @@
       <pubDate>Mon, 19 Oct 2020 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/tags/rpi/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>setup</title>
-      <link>https://mjpitz.com/tags/setup/</link>
-      <pubDate>Mon, 19 Oct 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://mjpitz.com/tags/setup/</guid>
       <description></description>
     </item>
     
@@ -548,15 +602,6 @@
       <pubDate>Fri, 24 Jan 2020 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/tags/dependencies/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>docker</title>
-      <link>https://mjpitz.com/tags/docker/</link>
-      <pubDate>Fri, 24 Jan 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://mjpitz.com/tags/docker/</guid>
       <description></description>
     </item>
     

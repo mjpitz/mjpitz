@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light"><head>
+    <title> Mya Pitzeruse | Docker Registry Setup </title>
+    <meta charset="utf-8"><meta name="generator" content="Hugo 0.69.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="description" content="">
+    
+    <link rel="stylesheet" href="https://mjpitz.com/css/style.min.67cd718c0a3c8009c771494d381fb7128246a454bd0518fed97cb65d257db948.css" integrity="sha256-Z81xjAo8gAnHcUlNOB&#43;3EoJGpFS9BRj&#43;2Xy2XSV9uUg=" crossorigin="anonymous" type="text/css">
+    <link rel="stylesheet" href="https://mjpitz.com/statics/css/overrides.css" type="text/css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    
+    <link rel="shortcut icon" href="https://mjpitz.com/statics/img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://mjpitz.com/statics/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://mjpitz.com/statics/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://mjpitz.com/statics/img/favicon-16x16.png">
+    <link rel="canonical" href="https://mjpitz.com/blog/2020/11/03/registry-123/">
+    
+    
+    <script type="text/javascript" src="https://mjpitz.com/js/anatole-header.min.c275265a259296f3dd50e8236a77fcbcadb1dbb9597d3045c675dcc2c7c58a93.js" integrity="sha256-wnUmWiWSlvPdUOgjanf8vK2x27lZfTBFxnXcwsfFipM=" crossorigin="anonymous"></script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Docker Registry Setup"/>
+<meta name="twitter:description" content="DockerHub&rsquo;s impending download rate limit presents an interesting challenge for some.
+From hobbyists to open core ecosystems, projects are trying to find ways insulate their users.
+One nice thing about this project is that the system is largely stateless (and cheap to run).
+The docker-registry and docker-auth projects are pretty easy to horizontally scale.
+The only stateful system you really need to manage is a cache (which isn&rsquo;t mission critical).
+While Harbor was appealing, it had a lot more overhead than what I needed.
+In this post, I&rsquo;ll walk you through my deployment."/>
+
+</head><body><div class="sidebar animated fadeInDown">
+    <div class="logo-title">
+      <div class="title">
+        <img src="https://mjpitz.com/statics/img/mjpitz.jpeg" alt="profile picture">
+        <h3 title=""><a href="/">Mya Pitzeruse</a></h3>
+        <div class="description">
+          <p></p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
+        
+        <li>
+        <a href="https://github.com/mjpitz" rel="me" aria-label="GitHub">
+          <i class="fa fa-2x fa-github" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+        <li>
+        <a href="https://twitter.com/myajpitz" rel="me" aria-label="Twitter">
+          <i class="fa fa-2x fa-twitter" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+        <li>
+        <a href="https://www.linkedin.com/in/mjpitz/" rel="me" aria-label="LinkedIn">
+          <i class="fa fa-2x fa-linkedin" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+        <li>
+        <a href="/index.xml" rel="me" aria-label="Feed">
+          <i class="fa fa-2x fa-rss" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+    </ul>
+    <div class="footer">
+        <div class="by_farbox">&copy; Mya Pitzeruse 2020 </div>
+      </div>
+    </div>
+</div><div class="main">
+            <div class="page-top animated fadeInDown">
+    <ul class="nav">
+        
+        
+        
+        <li><a  href="/" title="">Home</a></li>
+        
+        
+        <li><a  href="/media/" title="">Media</a></li>
+        
+        
+        <li><a  href="/blog/" title="">Blog</a></li>
+        
+    </ul>
+    <div class="themeswitcher">
+        <a class="theme-switch" title="Switch Theme">
+            <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+        </a>
+    </div>
+</div>
+
+            <div class="autopagerize_page_element">
+                <div class="content">
+<div class="post animated fadeInDown">
+    <div class="post-content">
+
+      <div class="post-title">
+        <h3>Docker Registry Setup
+        </h3>
+        
+        <div class="info">
+          <i class="fa fa-sun-o"></i><span class="date">Tue, Nov 3, 2020</span>
+          <i class="fa fa-clock-o"></i><span class="reading-time">7-minute read</span>
+        </div>
+        
+        </div>
+
+    <p>DockerHub&rsquo;s <a href="https://docs.docker.com/docker-hub/download-rate-limit/">impending download rate limit</a> presents an interesting challenge for some.
+From hobbyists to open core ecosystems, projects are trying to find ways insulate their users.
+One nice thing about this project is that the system is largely stateless (and cheap to run).
+The <code>docker-registry</code> and <code>docker-auth</code> projects are pretty easy to horizontally scale.
+The only stateful system you really need to manage is a cache (which isn&rsquo;t mission critical).
+While <a href="https://goharbor.io/">Harbor</a> was appealing, it had a lot more overhead than what I needed.
+In this post, I&rsquo;ll walk you through my deployment.</p>
+<h3 id="prerequisites">Prerequisites</h3>
+<ul>
+<li>An <a href="https://aws.amazon.com/s3">Amazon S3</a> like system (<a href="https://min.io/">minio</a>)</li>
+<li>A <a href="https://kubernetes.io/">Kubernetes</a> cluster
+<ul>
+<li>Required (or equivalent): <a href="https://kubernetes.io/docs/concepts/services-networking/ingress/">Ingress</a></li>
+<li>Optional: <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/">Persistent Volumes</a></li>
+<li>My Stack: <a href="https://cert-manager.io/">cert-manager</a>, <a href="https://github.com/kubernetes/ingress-nginx">ingress-nginx</a>, and <a href="https://github.com/kubernetes-sigs/external-dns">external-dns</a>.</li>
+</ul>
+</li>
+<li>A domain or subdomain to work on.
+<ul>
+<li>If running locally, take a look at how to setup a <a href="https://mjpitz.com/blog/2020/10/21/local-ingress-domains-kind/">local domain with kind</a>.</li>
+</ul>
+</li>
+</ul>
+<h3 id="overview">Overview</h3>
+<p>Unlike many of my posts, I tried to externalize resources this time around instead of inlining them.
+All the configuration used in this project can be found <a href="https://gist.github.com/mjpitz/53e1d92cb0f2dc68e06e5c405f67e04f">here</a>.
+Below, you&rsquo;ll find an overview of the ecosystem.</p>
+<p><img src="/statics/img/2020-11-02-registry-overview.png" alt="system overview"></p>
+<p>First, we&rsquo;ll deploy a simple <a href="https://redislabs.com/">Redis</a> cluster.
+Once up and running, we&rsquo;ll deploy a read-only <a href="https://docs.docker.com/registry/">registry</a> mirror.
+Finally, we&rsquo;ll add <a href="https://github.com/cesanta/docker_auth">token authentication</a> to lock down repo access.</p>
+<h3 id="configuration">Configuration</h3>
+<p>Before getting into things, let&rsquo;s prepare our configuration.
+These values will be used throughout the process and should be unique to your deployment.</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># s3 configuration</span>
+<span style="color:#204a87">export</span> <span style="color:#000">AWS_ACCESS_KEY_ID</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;???&#34;</span>
+<span style="color:#204a87">export</span> <span style="color:#000">AWS_SECRET_ACCESS_KEY</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;???&#34;</span>
+<span style="color:#204a87">export</span> <span style="color:#000">S3_REGION</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;&#34;</span>
+<span style="color:#204a87">export</span> <span style="color:#000">S3_ENDPOINT</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;&#34;</span>
+<span style="color:#204a87">export</span> <span style="color:#000">S3_BUCKET</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;&#34;</span>
+
+<span style="color:#8f5902;font-style:italic"># obtained from https://hub.docker.com/settings/security</span>
+<span style="color:#204a87">export</span> <span style="color:#000">DOCKERHUB_USERNAME</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;&#34;</span>
+<span style="color:#204a87">export</span> <span style="color:#000">DOCKERHUB_ACCESS_TOKEN</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;&#34;</span>
+
+<span style="color:#8f5902;font-style:italic"># only allow images from mjpitz to be pulled</span> 
+<span style="color:#204a87">export</span> <span style="color:#000">DOCKERHUB_ALLOWED</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;mjpitz&#34;</span>
+
+<span style="color:#204a87">export</span> <span style="color:#000">REDIS_PASSWORD</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#204a87;font-weight:bold">$(</span>uuidgen<span style="color:#204a87;font-weight:bold">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>In addition to that configuration, we will need to tap a couple <a href="https://helm.sh/">Helm</a> repositories.
+<code>stable</code> provides a well-supported <code>docker-registry</code> chart.
+<code>bitnami</code> provides a couple <code>redis</code> charts sufficient for use with the registry.</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">helm repo add stable https://kubernetes-charts.storage.googleapis.com
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm repo update
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="deploy-a-redis-cluster">Deploy a redis cluster</h3>
+<p>First things first, docker-registry supports caching blobs read from the S3 backend.
+It supports two types of drivers: <code>inmemory</code> and <code>redis</code>.
+For our deployment, we&rsquo;ll be using redis.
+<a href="https://bitnami.com/">Bitnami</a> provides a <code>redis</code> and a <code>redis-cluster</code> chart.
+The <code>redis</code> chart offers a primary-replica scheme.
+A <code>redis-cluster</code> provides multiple primaries, improving the availability of writes.
+For our sake, we&rsquo;re just going to use the <code>redis</code> chart.
+All we need to do, is provide a password.</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">helm upgrade -i redis bitnami/redis --version 11.2.3 <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>    --set <span style="color:#000">password</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">${</span><span style="color:#000">REDIS_PASSWORD</span><span style="color:#4e9a06">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="deploy-the-registry">Deploy the registry</h3>
+<p>Once we have Redis and S3 ready, we should be able to deploy the registry.
+For this, you will need my <a href="https://gist.github.com/mjpitz/53e1d92cb0f2dc68e06e5c405f67e04f#file-01-docker-registry-values-yaml">01-docker-registry-values.yaml</a> file from the gist.
+This file configures the registry to:</p>
+<ul>
+<li>Store data in an S3 bucket</li>
+<li>Cache blobs in redis</li>
+<li>Run in a readonly mode (toggled by setting <code>configData.storage.maintenance.readonly.enabled=false</code>)</li>
+<li>Proxy requests to DockerHub (toggled by setting <code>configData.proxy=</code>)</li>
+</ul>
+<p>All we need to do is plug in our values from earlier.</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">helm upgrade -i docker-registry stable/docker-registry --version 1.9.4 <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>    -f 01-docker-registry-values.yaml <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>    --set secrets.s3.accessKey<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">${</span><span style="color:#000">AWS_ACCESS_KEY_ID</span><span style="color:#4e9a06">}</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>    --set secrets.s3.secretKey<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">${</span><span style="color:#000">AWS_SECRET_ACCESS_KEY</span><span style="color:#4e9a06">}</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>    --set s3.region<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">${</span><span style="color:#000">S3_REGION</span><span style="color:#4e9a06">}</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>    --set s3.regionEndpoint<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">${</span><span style="color:#000">S3_ENDPOINT</span><span style="color:#4e9a06">}</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>    --set s3.bucket<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">${</span><span style="color:#000">S3_BUCKET</span><span style="color:#4e9a06">}</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>    --set configData.redis.password<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">${</span><span style="color:#000">REDIS_PASSWORD</span><span style="color:#4e9a06">}</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>    --set configData.proxy.username<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">${</span><span style="color:#000">DOCKERHUB_USERNAME</span><span style="color:#4e9a06">}</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>    --set configData.proxy.password<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">${</span><span style="color:#000">DOCKERHUB_ACCESS_TOKEN</span><span style="color:#4e9a06">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Just like that, you should have a registry mirror up and running.
+You can test this by port-forwarding to the pod and attempting to pull any image from DockerHub.
+While being able to pull data from DockerHub is great, this <em>could</em> be used maliciously.
+For example, <em>someone</em> could start pulling every image, for every tag on DockerHub.
+This can result in bloating your image registry with images you didn&rsquo;t intend to host.</p>
+<h3 id="adding-authentication">Adding authentication</h3>
+<p><a href="https://github.com/cesanta/docker_auth">docker_auth</a> was built to fill in the authentication (authn) and authorization (authz) gap for Docker.
+It was one of the first systems to support Docker&rsquo;s token authentication flow.
+The flow uses signed JWT tokens to verify identity claims by clients.
+In order for it to work, we need to generate a private key and certificate.
+Together, these are used to sign JWT token.
+Using the commands below, we can generate the key and certificate.
+Be sure to change the <code>-subj</code> line to something appropriate for your project.</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openssl req -new -newkey rsa:4096 -days <span style="color:#0000cf;font-weight:bold">5000</span> -nodes -x509 <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>		-subj <span style="color:#4e9a06">&#34;/C=DE/ST=BW/L=Mannheim/O=ACME/CN=docker-auth&#34;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>		-keyout tls.key <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>		-out tls.crt
+
+kubectl create secret tls auth-credentials --cert<span style="color:#ce5c00;font-weight:bold">=</span>tls.crt --key<span style="color:#ce5c00;font-weight:bold">=</span>tls.key
+</code></pre></td></tr></table>
+</div>
+</div><p>Once our <code>auth-credentials</code> secret has been configured, we can deploy the docker-auth system.
+For this example, we&rsquo;re going to restrict anonymous pulls to a DockerHub user or group of our choosing (<code>DOCKERHUB_ALLOWED</code>).
+This means that users who are unauthenticated will only be allowed to pull images from these specified groups.
+For this, you will need <a href="https://gist.github.com/mjpitz/53e1d92cb0f2dc68e06e5c405f67e04f#file-02-docker-auth-values-yaml">02-docker-auth-values.yaml</a> from the gist.</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://github.com/cesanta/docker_auth.git
+
+helm upgrade -i docker-auth ./docker_auth/chart/docker-auth <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>    -f 02-docker-auth-values.yaml <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>    --set configmap.data.acl<span style="color:#ce5c00;font-weight:bold">[</span>0<span style="color:#ce5c00;font-weight:bold">]</span>.match.name<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#4e9a06">${</span><span style="color:#000">DOCKERHUB_ALLOWED</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">/*&#34;</span> 
+</code></pre></td></tr></table>
+</div>
+</div><p>Once running, you should be able to issue <code>/auth</code> requests against the pod.
+The endpoint should return a pair of tokens that represent an unauthenticated user.</p>
+<h3 id="deploy-an-ingress">Deploy an ingress</h3>
+<p>Now that both docker-registry and docker-auth are running, let&rsquo;s connect them.
+In kubernetes, an <code>Ingress</code> is a great way to provide application layer (L7) routing to applications.
+It supports both host and path based routing.
+In this post we&rsquo;ll configure the paths of an ingress to route to their appropriate backend.
+<code>/auth</code>, <code>/google_auth</code>, and <code>/github_auth</code> will all route to the docker-auth project.
+<code>/v2</code> will route to the docker-registry project.
+To do this, we will need <a href="https://gist.github.com/mjpitz/53e1d92cb0f2dc68e06e5c405f67e04f#file-03-ingress-yaml">03-ingress.yaml</a> from the gist.
+Be sure to change the <code>host</code> to your project domain.</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl apply -f 03-ingress.yaml
+</code></pre></td></tr></table>
+</div>
+</div><p>Once applied, you should be able to start working with the ingress definition.
+Requests to <code>/auth</code> should resolve from docker-auth.
+Requests to <code>/v2/_catalog</code> should resolve from docker-registry.
+Remember, some annotations on the ingress are specific to my tech stack.
+You may need to find the equivalent for yours.</p>
+<h3 id="connecting-docker-registry-to-docker-auth">Connecting docker-registry to docker-auth</h3>
+<p>Now that the client can speak to docker-auth and docker-registry, we can connect the two.
+To do so, the docker-registry needs access to the certificate used by docker-auth.
+This is used to validate the JWT token.
+We can update <code>docker-registry-values.yaml</code> to volume mount the file in.
+Then, we just need to point the <code>auth</code> block of configuration at the proper endpoints.
+Below is a diff of the changes needed to add auth.</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff">    encrypt: false
+    securet: true
+  
+<span style="color:#00a000">+ extraVolumeMounts:
+</span><span style="color:#00a000">+   - name: auth
+</span><span style="color:#00a000">+     mountPath: &#34;/etc/docker-auth/ssl/&#34;
+</span><span style="color:#00a000">+     readOnly: true
+</span><span style="color:#00a000">+ 
+</span><span style="color:#00a000">+ extraVolumes:
+</span><span style="color:#00a000">+   - name: auth
+</span><span style="color:#00a000">+     secret:
+</span><span style="color:#00a000">+       secretName: auth-credentials
+</span><span style="color:#00a000">+ 
+</span><span style="color:#00a000"></span>  # see https://docs.docker.com/registry/configuration/
+  configData:
+<span style="color:#00a000">+   auth:
+</span><span style="color:#00a000">+     token:
+</span><span style="color:#00a000">+       realm: &#34;https://ocr.sh/auth&#34;
+</span><span style="color:#00a000">+       service: &#34;ocr.sh&#34;
+</span><span style="color:#00a000">+       issuer: &#34;My Auth&#34; # must match issuer from docker-auth
+</span><span style="color:#00a000">+       rootcertbundle: /etc/docker-auth/ssl/tls.crt
+</span><span style="color:#00a000">+ 
+</span><span style="color:#00a000"></span>    http:
+      addr: :5000
+      debug:
+</code></pre></td></tr></table>
+</div>
+</div><p>Alternatively, you can grab an updated copy from <a href="https://gist.github.com/mjpitz/53e1d92cb0f2dc68e06e5c405f67e04f#file-04-docker-registry-values-yaml">04-docker-registry-values-yaml</a> in the gist.
+Remember to set your <code>realm</code>, <code>service</code>, <code>issuer</code> and <code>rootcertbundle</code> appropriately.</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">helm upgrade -i docker-registry stable/docker-registry --version 1.9.4 <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>    -f 04-docker-registry-values.yaml <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>    --set secrets.s3.accessKey<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">${</span><span style="color:#000">AWS_ACCESS_KEY_ID</span><span style="color:#4e9a06">}</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>    --set secrets.s3.secretKey<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">${</span><span style="color:#000">AWS_SECRET_ACCESS_KEY</span><span style="color:#4e9a06">}</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>    --set s3.region<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">${</span><span style="color:#000">S3_REGION</span><span style="color:#4e9a06">}</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>    --set s3.regionEndpoint<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">${</span><span style="color:#000">S3_ENDPOINT</span><span style="color:#4e9a06">}</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>    --set s3.bucket<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">${</span><span style="color:#000">S3_BUCKET</span><span style="color:#4e9a06">}</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>    --set configData.redis.password<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">${</span><span style="color:#000">REDIS_PASSWORD</span><span style="color:#4e9a06">}</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>    --set configData.proxy.username<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">${</span><span style="color:#000">DOCKERHUB_USERNAME</span><span style="color:#4e9a06">}</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>    --set configData.proxy.password<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">${</span><span style="color:#000">DOCKERHUB_ACCESS_TOKEN</span><span style="color:#4e9a06">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Once your release has been upgraded, the registry should deny any requests for images outside of your configured group.
+For example, I wound up with <code>ocr.sh</code> for my projects domain.
+I configured <code>DOCKERHUB_ALLOWED</code> to only allow unauthenticated users to pull <code>depscloud/*</code>.
+This allows my project consumers to continue to use my product without being rate limited by GitHub.
+Under the hood, all requests to DockerHub are authenticated.
+In addition to that, I have tight control over what repositories I allow to be pulled through my proxy.</p>
+<p>Thanks for reading!
+I hope you learned something by stopping by and reading this post.</p>
+    </div>
+    <div class="post-footer">
+      <div class="info">
+        
+        
+    <span class="separator"><a class="tag" href="/tags/docker/">docker</a><a class="tag" href="/tags/rate-limit/">rate-limit</a><a class="tag" href="/tags/registry/">registry</a><a class="tag" href="/tags/auth/">auth</a><a class="tag" href="/tags/readonly/">readonly</a><a class="tag" href="/tags/mirror/">mirror</a><a class="tag" href="/tags/setup/">setup</a></span>
+
+      </div>
+    </div>
+
+    
+</div>
+
+
+                </div>
+            </div>
+        </div>
+</body>
+
+
+
+<script type="text/javascript" src="https://mjpitz.com/js/jquery.min.86b1e8f819ee2d9099a783e50b49dff24282545fc40773861f9126b921532e4c.js" integrity="sha256-hrHo&#43;BnuLZCZp4PlC0nf8kKCVF/EB3OGH5EmuSFTLkw=" crossorigin="anonymous"></script>
+
+
+
+
+<script type="text/javascript" src="https://mjpitz.com/js/bundle.min.0f9c74cb78f13d1f15f33daff4037c70354f98acfbb97a6f61708966675c3cae.js" integrity="sha256-D5x0y3jxPR8V8z2v9AN8cDVPmKz7uXpvYXCJZmdcPK4=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://mjpitz.com/js/medium-zoom.min.92f21c856129f84aeb719459b3e6ac621a3032fd7b180a18c04e1d12083f8aba.js" integrity="sha256-kvIchWEp&#43;ErrcZRZs&#43;asYhowMv17GAoYwE4dEgg/iro=" crossorigin="anonymous"></script>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-39314903-5', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</html></body>
+
+</html>

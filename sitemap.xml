@@ -4,12 +4,57 @@
   
   <url>
     <loc>https://mjpitz.com/</loc>
-    <lastmod>2020-10-21T00:00:00+00:00</lastmod>
+    <lastmod>2020-11-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/tags/auth/</loc>
+    <lastmod>2020-11-03T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://mjpitz.com/blog/</loc>
-    <lastmod>2020-10-21T00:00:00+00:00</lastmod>
+    <lastmod>2020-11-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/tags/docker/</loc>
+    <lastmod>2020-11-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/blog/2020/11/03/registry-123/</loc>
+    <lastmod>2020-11-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/tags/mirror/</loc>
+    <lastmod>2020-11-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/tags/rate-limit/</loc>
+    <lastmod>2020-11-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/tags/readonly/</loc>
+    <lastmod>2020-11-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/tags/registry/</loc>
+    <lastmod>2020-11-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/tags/setup/</loc>
+    <lastmod>2020-11-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/tags/</loc>
+    <lastmod>2020-11-03T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -53,11 +98,6 @@
   </url>
   
   <url>
-    <loc>https://mjpitz.com/tags/</loc>
-    <lastmod>2020-10-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://mjpitz.com/tags/anker/</loc>
     <lastmod>2020-10-19T00:00:00+00:00</lastmod>
   </url>
@@ -94,11 +134,6 @@
   
   <url>
     <loc>https://mjpitz.com/tags/rpi/</loc>
-    <lastmod>2020-10-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mjpitz.com/tags/setup/</loc>
     <lastmod>2020-10-19T00:00:00+00:00</lastmod>
   </url>
   
@@ -389,11 +424,6 @@
   
   <url>
     <loc>https://mjpitz.com/tags/dependencies/</loc>
-    <lastmod>2020-01-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mjpitz.com/tags/docker/</loc>
     <lastmod>2020-01-24T00:00:00+00:00</lastmod>
   </url>
   

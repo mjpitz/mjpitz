@@ -94,6 +94,29 @@
   
   <div class="post animated fadeInDown">
     <div class="post-title">
+      <h3><a href="/blog/2020/11/03/registry-123/">Docker Registry Setup</a>
+      </h3>
+    </div>
+    <div class="post-content"><div class="p_part"><p><p>DockerHub&rsquo;s <a href="https://docs.docker.com/docker-hub/download-rate-limit/">impending download rate limit</a> presents an interesting challenge for some.
+From hobbyists to open core ecosystems, projects are trying to find ways insulate their users.
+One nice thing about this project is that the system is largely stateless (and cheap to run).
+The <code>docker-registry</code> and <code>docker-auth</code> projects are pretty easy to horizontally scale.
+The only stateful system you really need to manage is a cache (which isn&rsquo;t mission critical).
+While <a href="https://goharbor.io/">Harbor</a> was appealing, it had a lot more overhead than what I needed.
+In this post, I&rsquo;ll walk you through my deployment.</p></p></div>
+  
+  <div class="p_part"><p></p></div></div>
+    <div class="post-footer">
+      <div class="meta">
+        <div class="info"><i class="fa fa-sun-o"></i><span class="date">Tue, Nov 3, 2020</span>
+          <a class="tag" href="/tags/docker/">docker</a><a class="tag" href="/tags/rate-limit/">rate-limit</a><a class="tag" href="/tags/registry/">registry</a><a class="tag" href="/tags/auth/">auth</a><a class="tag" href="/tags/readonly/">readonly</a><a class="tag" href="/tags/mirror/">mirror</a><a class="tag" href="/tags/setup/">setup</a>       
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="post animated fadeInDown">
+    <div class="post-title">
       <h3><a href="/blog/2020/10/21/local-ingress-domains-kind/">Local Ingress Domains for your Kind Cluster</a>
       </h3>
     </div>
@@ -278,27 +301,6 @@ In this post, I follow up on what I&rsquo;ve learned since last week, changes I&
     <div class="post-footer">
       <div class="meta">
         <div class="info"><i class="fa fa-sun-o"></i><span class="date">Mon, Jul 27, 2020</span>
-          <a class="tag" href="/tags/github/">github</a><a class="tag" href="/tags/gitlab/">gitlab</a><a class="tag" href="/tags/impression/">impression</a><a class="tag" href="/tags/tracking/">tracking</a><a class="tag" href="/tags/analytics/">analytics</a>       
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <div class="post animated fadeInDown">
-    <div class="post-title">
-      <h3><a href="/blog/2020/07/17/repo-impression-tracking/">Tracking impressions on repositories</a>
-      </h3>
-    </div>
-    <div class="post-content"><div class="p_part"><p><p>When working on open source projects, I often wonder how to improve the experience for my users.
-In order to improve my users experience, I first need to be able to measure and monitor it.
-On a website, I have Google Analytics which can help me understand my users paths through my site.
-This capability isn&rsquo;t as accessible on <a href="https://github.com">GitHub</a> or <a href="https://gitlab.com">GitLab</a> as it requires JavaScript execution.
-In this post, I will demonstrate how you can set up <a href="https://analytics.google.com">Google Analytics</a> to track impressions on GitHub repositories.</p></p></div>
-  
-  <div class="p_part"><p></p></div></div>
-    <div class="post-footer">
-      <div class="meta">
-        <div class="info"><i class="fa fa-sun-o"></i><span class="date">Fri, Jul 17, 2020</span>
           <a class="tag" href="/tags/github/">github</a><a class="tag" href="/tags/gitlab/">gitlab</a><a class="tag" href="/tags/impression/">impression</a><a class="tag" href="/tags/tracking/">tracking</a><a class="tag" href="/tags/analytics/">analytics</a>       
         </div>
       </div>

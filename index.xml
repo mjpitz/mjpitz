@@ -6,10 +6,25 @@
     <description>Recent content on Mya Pitzeruse</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 21 Oct 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 03 Nov 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://mjpitz.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Docker Registry Setup</title>
+      <link>https://mjpitz.com/blog/2020/11/03/registry-123/</link>
+      <pubDate>Tue, 03 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/blog/2020/11/03/registry-123/</guid>
+      <description>&lt;p&gt;DockerHub&amp;rsquo;s &lt;a href=&#34;https://docs.docker.com/docker-hub/download-rate-limit/&#34;&gt;impending download rate limit&lt;/a&gt; presents an interesting challenge for some.
+From hobbyists to open core ecosystems, projects are trying to find ways insulate their users.
+One nice thing about this project is that the system is largely stateless (and cheap to run).
+The &lt;code&gt;docker-registry&lt;/code&gt; and &lt;code&gt;docker-auth&lt;/code&gt; projects are pretty easy to horizontally scale.
+The only stateful system you really need to manage is a cache (which isn&amp;rsquo;t mission critical).
+While &lt;a href=&#34;https://goharbor.io/&#34;&gt;Harbor&lt;/a&gt; was appealing, it had a lot more overhead than what I needed.
+In this post, I&amp;rsquo;ll walk you through my deployment.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Local Ingress Domains for your Kind Cluster</title>
