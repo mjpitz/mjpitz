@@ -30,6 +30,8 @@ For more information about my experience and related certifications, please see 
 <p>Deployment and Configuration</p>
 {{</package>}}
 
+Feel free to reach out to me on LinkedIn if you'd like to chat briefly before setting up an introduction.
+
 ### Process
 
 _Step 1 - [30min Introduction](https://calendly.com/mjpitz/30min)_
