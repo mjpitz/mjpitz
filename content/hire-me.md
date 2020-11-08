@@ -6,7 +6,7 @@ title: Hire Me
 I am currently employed full-time and am not looking for a change in work.
 With the current climate, I decided to offer some freelance and consulting work.
 My work has given me extensive exposure to companies shifting to microservices, and the challenges they face along the way.
-My career started on the product side of the world.
+My career started working on product development.
 I built large scale systems consumed by millions of users around the world.
 Over time, I shifted my skill set toward software infrastructure.
 There, I've been able to coordinate large scale migrations between compute platforms (like [Apache Mesos] and [Kubernetes]) and to the cloud.
