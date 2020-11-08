@@ -16,6 +16,10 @@ li {
     font-size: 1rem;
 }
 
+.page-top .nav li {
+    padding-right: 30px;
+}
+
 .post .post-title h3 {
     text-transform: none;
 }
@@ -68,4 +72,16 @@ li {
     font-family: atkinson-hyperlegible;
     src: url("/statics/font/Atkinson-Hyperlegible-Regular-102a.woff2");
     src: url("/statics/font/Atkinson-Hyperlegible-Regular-102.woff");
+}
+
+.content {
+    margin-top: 80px;
+}
+
+.hire-package {
+    min-width: 200px;
+    width: 49%;
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
 }

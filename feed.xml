@@ -595,5 +595,14 @@ In this post, we will show how to add health checks to your applications.&lt;/p&
       <description></description>
     </item>
     
+    <item>
+      <title>Hire Me</title>
+      <link>https://mjpitz.com/hire-me/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/hire-me/</guid>
+      <description>I am currently employed full-time and am not looking for a change in work. With the current climate, I decided to offer some freelance and consulting work. My work has given me extensive exposure to companies shifting to microservices, and the challenges they face along the way. My career started on the product side of the world. I built large scale systems consumed by millions of users around the world. Over time, I shifted my skill set toward software infrastructure.</description>
+    </item>
+    
   </channel>
 </rss>
