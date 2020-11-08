@@ -1,0 +1,12 @@
+{{ $title := .Get "title" }}
+{{ $price := .Get "price" }}
+
+<div class="hire-package">
+  <h3 style="text-decoration: underline;">{{ $title }}</h3>
+  <p style="font-style: italic;">{{ $price }}</p>
+
+  <div>
+    <p style="font-weight: bold;">Often Includes:</p>
+    {{ .Inner }}
+  </div>
+</div>
