@@ -46,7 +46,12 @@ I've recently taken to the non-existent `.hack` TLD.
 
 ```text
 address=/mjpitz.hack/127.0.0.1
+server=8.8.8.8
+server=8.8.4.4
 ```
+
+**Edit #1:** I recently ran into an issue with this setup.
+I also add the Google nameservers to list.
 
 Once configured, you'll need to start (or restart) the dnsmasq service.
 
@@ -102,7 +107,7 @@ nameserver 127.0.0.1
 EOF
 ```
 
-Once the resolver is configured, you'll need to restart the `mDNSResponder`.
+Once we configure the resolver, we'll need to restart the `mDNSResponder`.
 The easiest way to do this is by sending a hang up.
 This will cause the process to be restarted gracefully.
 
@@ -134,6 +139,10 @@ Add `127.0.0.1` to the list of the addresses already shown.
 Once configured, be sure to apply the configuration.
 
 ![network preferences dns](/statics/img/2020-10-21-network-pref-dns.png)
+
+**Edit #2:** I recently ran into an issue with this setup.
+Instead of adding `127.0.0.1` to the list, I now set it so it's the only one.
+This relies on the server entries that were added to `dnsmasq.conf`.
 
 At this point, your networking should be properly configured.
 To test, we'll use the same `dig` command from earlier.
