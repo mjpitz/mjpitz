@@ -24,7 +24,7 @@ media = "/media/:year/:month/:day/:slug/"
 [params]
 title = "Mya Pitzeruse"
 author = "Mya Pitzeruse"
-description = ""
+description = "Thoughts, ramblings, and learnings from my adventures in code."
 profilePicture = "/statics/img/mjpitz.jpeg"
 keywords = ""
 favicon = "statics/img/"
