@@ -21,7 +21,8 @@
 <meta name="twitter:title" content=""/>
 <meta name="twitter:description" content="Thoughts, ramblings, and learnings from my adventures in code."/>
 
-</head><body><div class="sidebar animated fadeInDown">
+</head>
+<body><div class="sidebar animated fadeInDown">
     <div class="logo-title">
       <div class="title">
         <img src="https://mjpitz.com/statics/img/mjpitz.jpeg" alt="profile picture">
@@ -94,6 +95,31 @@
             <div class="autopagerize_page_element">
                 <div class="content">
   
+  
+  <div class="post animated fadeInDown">
+    <div class="post-title">
+      <h3><a href="/blog/2018/05/07/nodejs-grpc-code-reference/">NodeJS gRPC Code Reference</a>
+      </h3>
+    </div>
+    <div class="post-content"><div class="p_part"><p><p>While working at Indeed, I did a fair amount with <a href="https://grpc.io/">gRPC</a>.
+I became rather familiar with the Java, Go, NodeJS, and python implementations.
+During my vacation between jobs, I decided to revisit one of my old projects and try to migrate it to using gRPC.
+By doing so, I would be able to support a larger variety of request types (streaming, non-streaming, etc).
+When I started to look for good NodeJS code samples or reference implementations, I was rather disappointed with what I found.
+Many of the ones I could get my hands on only demonstrated unary methods and not any of the streaming API&rsquo;s.
+After a lot of time digging through source and a few implementations online, I finally assembled a good reference.</p>
+<p>In this post, I only wanted to detail what the method calls look like on both ends of the wire.
+There are some additional best practices that should be taken into consideration, but I do not plan on covering those here.</p></p></div>
+  
+  <div class="p_part"><p></p></div></div>
+    <div class="post-footer">
+      <div class="meta">
+        <div class="info"><i class="fa fa-sun-o"></i><span class="date">Mon, May 7, 2018</span>
+                 
+        </div>
+      </div>
+    </div>
+  </div>
   
   <div class="post animated fadeInDown">
     <div class="post-title">
@@ -325,9 +351,7 @@ In this post, we will show how to add health checks to your applications.</p></p
 <script type="text/javascript" src="https://mjpitz.com/js/jquery.min.86b1e8f819ee2d9099a783e50b49dff24282545fc40773861f9126b921532e4c.js" integrity="sha256-hrHo&#43;BnuLZCZp4PlC0nf8kKCVF/EB3OGH5EmuSFTLkw=" crossorigin="anonymous"></script>
 
 
-
-
-<script type="text/javascript" src="https://mjpitz.com/js/bundle.min.0f9c74cb78f13d1f15f33daff4037c70354f98acfbb97a6f61708966675c3cae.js" integrity="sha256-D5x0y3jxPR8V8z2v9AN8cDVPmKz7uXpvYXCJZmdcPK4=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://mjpitz.com/js/jquery.min.86b1e8f819ee2d9099a783e50b49dff24282545fc40773861f9126b921532e4c.js" integrity="sha256-hrHo&#43;BnuLZCZp4PlC0nf8kKCVF/EB3OGH5EmuSFTLkw=" crossorigin="anonymous"></script>
 
 <script type="text/javascript" src="https://mjpitz.com/js/medium-zoom.min.92f21c856129f84aeb719459b3e6ac621a3032fd7b180a18c04e1d12083f8aba.js" integrity="sha256-kvIchWEp&#43;ErrcZRZs&#43;asYhowMv17GAoYwE4dEgg/iro=" crossorigin="anonymous"></script>
 <script type="application/javascript">
@@ -340,6 +364,8 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
-</html></body>
+
+</html>
+</body>
 
 </html>

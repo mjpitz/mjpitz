@@ -6,10 +6,23 @@
     <description>Recent content in Blogs on Mya Pitzeruse</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 03 Nov 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 10 Nov 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://mjpitz.com/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Adventures in Path Based Routing</title>
+      <link>https://mjpitz.com/blog/2020/11/10/path-based-routing-k8s/</link>
+      <pubDate>Tue, 10 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/blog/2020/11/10/path-based-routing-k8s/</guid>
+      <description>&lt;p&gt;Path based routing can be an extremely useful feature.
+It enables you to serve a single page app and an API on the same domain.
+This can often be helpful when starting a project, but don&amp;rsquo;t want to handle things like &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS&#34;&gt;cross-origin resource sharing&lt;/a&gt;.
+In a recent project, I wanted to split traffic between a static site hosted on GitHub (or S3) and an API running in the cluster.
+In this post, I&amp;rsquo;ll demonstrate some less common approaches to path based routing using &lt;a href=&#34;https://kubernetes.io&#34;&gt;Kubernetes&lt;/a&gt; resources.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Docker Registry Setup</title>

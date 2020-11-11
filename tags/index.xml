@@ -6,10 +6,55 @@
     <description>Recent content in Tags on Mya Pitzeruse</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 03 Nov 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 10 Nov 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://mjpitz.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ingress</title>
+      <link>https://mjpitz.com/tags/ingress/</link>
+      <pubDate>Tue, 10 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/ingress/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ingress-controller</title>
+      <link>https://mjpitz.com/tags/ingress-controller/</link>
+      <pubDate>Tue, 10 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/ingress-controller/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>k8s</title>
+      <link>https://mjpitz.com/tags/k8s/</link>
+      <pubDate>Tue, 10 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/k8s/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kubernetes</title>
+      <link>https://mjpitz.com/tags/kubernetes/</link>
+      <pubDate>Tue, 10 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>path-based routing</title>
+      <link>https://mjpitz.com/tags/path-based-routing/</link>
+      <pubDate>Tue, 10 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/path-based-routing/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>auth</title>
@@ -84,47 +129,11 @@
     </item>
     
     <item>
-      <title>ingress</title>
-      <link>https://mjpitz.com/tags/ingress/</link>
-      <pubDate>Wed, 21 Oct 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://mjpitz.com/tags/ingress/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ingress-controller</title>
-      <link>https://mjpitz.com/tags/ingress-controller/</link>
-      <pubDate>Wed, 21 Oct 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://mjpitz.com/tags/ingress-controller/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>k8s</title>
-      <link>https://mjpitz.com/tags/k8s/</link>
-      <pubDate>Wed, 21 Oct 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://mjpitz.com/tags/k8s/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>kind</title>
       <link>https://mjpitz.com/tags/kind/</link>
       <pubDate>Wed, 21 Oct 2020 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/tags/kind/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>kubernetes</title>
-      <link>https://mjpitz.com/tags/kubernetes/</link>
-      <pubDate>Wed, 21 Oct 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://mjpitz.com/tags/kubernetes/</guid>
       <description></description>
     </item>
     

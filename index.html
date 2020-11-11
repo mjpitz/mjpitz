@@ -21,7 +21,8 @@
 <meta name="twitter:title" content=""/>
 <meta name="twitter:description" content="Thoughts, ramblings, and learnings from my adventures in code."/>
 
-</head><body><div class="sidebar animated fadeInDown">
+</head>
+<body><div class="sidebar animated fadeInDown">
     <div class="logo-title">
       <div class="title">
         <img src="https://mjpitz.com/statics/img/mjpitz.jpeg" alt="profile picture">
@@ -94,6 +95,27 @@
             <div class="autopagerize_page_element">
                 <div class="content">
   
+  
+  <div class="post animated fadeInDown">
+    <div class="post-title">
+      <h3><a href="/blog/2020/11/10/path-based-routing-k8s/">Adventures in Path Based Routing</a>
+      </h3>
+    </div>
+    <div class="post-content"><div class="p_part"><p><p>Path based routing can be an extremely useful feature.
+It enables you to serve a single page app and an API on the same domain.
+This can often be helpful when starting a project, but don&rsquo;t want to handle things like <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">cross-origin resource sharing</a>.
+In a recent project, I wanted to split traffic between a static site hosted on GitHub (or S3) and an API running in the cluster.
+In this post, I&rsquo;ll demonstrate some less common approaches to path based routing using <a href="https://kubernetes.io">Kubernetes</a> resources.</p></p></div>
+  
+  <div class="p_part"><p></p></div></div>
+    <div class="post-footer">
+      <div class="meta">
+        <div class="info"><i class="fa fa-sun-o"></i><span class="date">Tue, Nov 10, 2020</span>
+          <a class="tag" href="/tags/kubernetes/">kubernetes</a><a class="tag" href="/tags/k8s/">k8s</a><a class="tag" href="/tags/ingress/">ingress</a><a class="tag" href="/tags/ingress-controller/">ingress-controller</a><a class="tag" href="/tags/path-based-routing/">path-based routing</a>       
+        </div>
+      </div>
+    </div>
+  </div>
   
   <div class="post animated fadeInDown">
     <div class="post-title">
@@ -292,25 +314,6 @@ In this conclusion, I will walk through how several of my metrics have changed s
     </div>
   </div>
   
-  <div class="post animated fadeInDown">
-    <div class="post-title">
-      <h3><a href="/blog/2020/07/27/repo-impressions-2/">Follow up: Tracking impressions on repositories</a>
-      </h3>
-    </div>
-    <div class="post-content"><div class="p_part"><p><p>Last week, I put a <a href="/blog/2020/07/17/repo-impression-tracking">tracking pixel</a> on my GitHub repositories.
-And I&rsquo;ve got to say, the results have been really interesting.
-In this post, I follow up on what I&rsquo;ve learned since last week, changes I&rsquo;ve made, and improvements I&rsquo;m working through.</p></p></div>
-  
-  <div class="p_part"><p></p></div></div>
-    <div class="post-footer">
-      <div class="meta">
-        <div class="info"><i class="fa fa-sun-o"></i><span class="date">Mon, Jul 27, 2020</span>
-          <a class="tag" href="/tags/github/">github</a><a class="tag" href="/tags/gitlab/">gitlab</a><a class="tag" href="/tags/impression/">impression</a><a class="tag" href="/tags/tracking/">tracking</a><a class="tag" href="/tags/analytics/">analytics</a>       
-        </div>
-      </div>
-    </div>
-  </div>
-  
 <div class="pagination">
   
 
@@ -393,9 +396,7 @@ In this post, I follow up on what I&rsquo;ve learned since last week, changes I&
 <script type="text/javascript" src="https://mjpitz.com/js/jquery.min.86b1e8f819ee2d9099a783e50b49dff24282545fc40773861f9126b921532e4c.js" integrity="sha256-hrHo&#43;BnuLZCZp4PlC0nf8kKCVF/EB3OGH5EmuSFTLkw=" crossorigin="anonymous"></script>
 
 
-
-
-<script type="text/javascript" src="https://mjpitz.com/js/bundle.min.0f9c74cb78f13d1f15f33daff4037c70354f98acfbb97a6f61708966675c3cae.js" integrity="sha256-D5x0y3jxPR8V8z2v9AN8cDVPmKz7uXpvYXCJZmdcPK4=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://mjpitz.com/js/jquery.min.86b1e8f819ee2d9099a783e50b49dff24282545fc40773861f9126b921532e4c.js" integrity="sha256-hrHo&#43;BnuLZCZp4PlC0nf8kKCVF/EB3OGH5EmuSFTLkw=" crossorigin="anonymous"></script>
 
 <script type="text/javascript" src="https://mjpitz.com/js/medium-zoom.min.92f21c856129f84aeb719459b3e6ac621a3032fd7b180a18c04e1d12083f8aba.js" integrity="sha256-kvIchWEp&#43;ErrcZRZs&#43;asYhowMv17GAoYwE4dEgg/iro=" crossorigin="anonymous"></script>
 <script type="application/javascript">
@@ -408,6 +409,8 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
-</html></body>
+
+</html>
+</body>
 
 </html>

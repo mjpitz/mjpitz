@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light"><head>
+    <title> Mya Pitzeruse | Adventures in Path Based Routing </title>
+    <meta charset="utf-8"><meta name="generator" content="Hugo 0.69.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="description" content="Thoughts, ramblings, and learnings from my adventures in code.">
+    
+    <link rel="stylesheet" href="https://mjpitz.com/css/style.min.67cd718c0a3c8009c771494d381fb7128246a454bd0518fed97cb65d257db948.css" integrity="sha256-Z81xjAo8gAnHcUlNOB&#43;3EoJGpFS9BRj&#43;2Xy2XSV9uUg=" crossorigin="anonymous" type="text/css">
+    <link rel="stylesheet" href="https://mjpitz.com/statics/css/overrides.css" type="text/css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    
+    <link rel="shortcut icon" href="https://mjpitz.com/statics/img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://mjpitz.com/statics/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://mjpitz.com/statics/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://mjpitz.com/statics/img/favicon-16x16.png">
+    <link rel="canonical" href="https://mjpitz.com/blog/2020/11/10/path-based-routing-k8s/">
+    
+    
+    <script type="text/javascript" src="https://mjpitz.com/js/anatole-header.min.c275265a259296f3dd50e8236a77fcbcadb1dbb9597d3045c675dcc2c7c58a93.js" integrity="sha256-wnUmWiWSlvPdUOgjanf8vK2x27lZfTBFxnXcwsfFipM=" crossorigin="anonymous"></script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Adventures in Path Based Routing"/>
+<meta name="twitter:description" content="Path based routing can be an extremely useful feature.
+It enables you to serve a single page app and an API on the same domain.
+This can often be helpful when starting a project, but don&rsquo;t want to handle things like cross-origin resource sharing.
+In a recent project, I wanted to split traffic between a static site hosted on GitHub (or S3) and an API running in the cluster.
+In this post, I&rsquo;ll demonstrate some less common approaches to path based routing using Kubernetes resources."/>
+
+</head>
+<body><div class="sidebar animated fadeInDown">
+    <div class="logo-title">
+      <div class="title">
+        <img src="https://mjpitz.com/statics/img/mjpitz.jpeg" alt="profile picture">
+        <h3 title=""><a href="/">Mya Pitzeruse</a></h3>
+        <div class="description">
+          <p>Thoughts, ramblings, and learnings from my adventures in code.</p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
+        
+        <li>
+        <a href="https://github.com/mjpitz" rel="me" aria-label="GitHub">
+          <i class="fa fa-2x fa-github" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+        <li>
+        <a href="https://twitter.com/myajpitz" rel="me" aria-label="Twitter">
+          <i class="fa fa-2x fa-twitter" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+        <li>
+        <a href="https://www.linkedin.com/in/mjpitz/" rel="me" aria-label="LinkedIn">
+          <i class="fa fa-2x fa-linkedin" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+        <li>
+        <a href="/index.xml" rel="me" aria-label="Feed">
+          <i class="fa fa-2x fa-rss" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+    </ul>
+    <div class="footer">
+        <div class="by_farbox">&copy; Mya Pitzeruse 2020 </div>
+      </div>
+    </div>
+</div><div class="main">
+            <div class="page-top animated fadeInDown">
+    <ul class="nav">
+        
+        
+        
+        <li><a  href="/" title="">Home</a></li>
+        
+        
+        <li><a  href="/hire-me/" title="">Hire Me</a></li>
+        
+        
+        <li><a  href="/media/" title="">Media</a></li>
+        
+        
+        <li><a  href="/blog/" title="">Blog</a></li>
+        
+    </ul>
+    <div class="themeswitcher">
+        <a class="theme-switch" title="Switch Theme">
+            <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+        </a>
+    </div>
+</div>
+
+            <div class="autopagerize_page_element">
+                <div class="content">
+<div class="post animated fadeInDown">
+    <div class="post-content">
+
+      <div class="post-title">
+        <h3>Adventures in Path Based Routing</h3>
+        
+        <div class="info">
+          <i class="fa fa-sun-o"></i><span class="date">Tue, Nov 10, 2020</span>
+          <i class="fa fa-clock-o"></i><span class="reading-time">3-minute read</span>
+        </div>
+        
+        </div>
+
+    <p>Path based routing can be an extremely useful feature.
+It enables you to serve a single page app and an API on the same domain.
+This can often be helpful when starting a project, but don&rsquo;t want to handle things like <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">cross-origin resource sharing</a>.
+In a recent project, I wanted to split traffic between a static site hosted on GitHub (or S3) and an API running in the cluster.
+In this post, I&rsquo;ll demonstrate some less common approaches to path based routing using <a href="https://kubernetes.io">Kubernetes</a> resources.</p>
+<p>Kubernetes supports routing HTTP requests via an <code>Ingress</code> resource.
+This directs processes known as ingress controllers to route communication for a host / path pair to a given backend service.
+Services represent to a collection of backend pods, which are mapped through Endpoints (soon to be EndpointSlices).
+They come in several variations: <code>ClusterIP</code> (default), <code>NodePort</code>, <code>LoadBalancer</code>, <code>ExternalName</code>, and <code>Headless</code>.
+In this post, we will focus two, <code>ClusterIP</code> and <code>ExternalName</code>.</p>
+<p>To continue the spirit of keeping posts lighter on code, all configuration used today is available on <a href="https://gist.github.com/mjpitz/decebc0506e2f09445c0e52bb2b3c76d">GitHub</a>.
+It provides a minimal footprint to show how to connect the parts together.
+Some files require bringing your own values (such as a <code>DOMAIN</code>, <code>REGION</code> or <code>BUCKET</code>).
+Before getting into the ingress, let&rsquo;s deploy an api-service stub.</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl apply -f api-service.yaml
+</code></pre></td></tr></table>
+</div>
+</div><p>This can act as a placeholder for your real API if you don&rsquo;t yet have one.
+This service will handle all API requests.</p>
+<h3 id="manually-configured-clusterip">Manually configured ClusterIP</h3>
+<p>First, I will demonstrate how to manually configure a <code>ClusterIP</code> service to point to GitHub pages.
+Using an ingress definition, we will split traffic between two backends.
+Requests to <code>/api/</code> will be sent to an <code>api-service</code> backend.
+All other requests will be routed to GitHub pages.
+This is shown in the diagram below.</p>
+<p><img src="/statics/img/2020-11-10-routing-clusterip.png" alt="diagram"></p>
+<p>First, we&rsquo;ll create the <code>gh-pages</code> service.
+This file sets up the service, and it&rsquo;s associated endpoint.
+The IP addresses for the endpoint can be obtained by looking up the nameservers for <code>github.io</code>.</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl apply -f gh-pages-service.yaml
+</code></pre></td></tr></table>
+</div>
+</div><p>Once created, you will have a <code>gh-pages</code> service.
+This allows us to point our ingress definition directly at GitHub pages.
+Applying our ingress configuration, will allow traffic to flow seamlessly between the two systems.</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl apply -f gh-pages-ingress.yaml
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="using-a-cname">Using a CNAME</h3>
+<p>Next, I will demonstrate how an <code>ExternalName</code> can be used to point to an S3 bucket.
+We will be using a similar ingress setup (as seen below).
+This time, we will use an <code>ExternalName</code> service instead of a <code>ClusterIP</code>.</p>
+<p><img src="/statics/img/2020-11-10-routing-externalname.png" alt="diagram"></p>
+<p><code>ExternalNames</code> are more or less a DNS CNAME.
+They allow us to reference another host address that&rsquo;s serving our content.</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl apply -f s3-bucket-service.yaml
+</code></pre></td></tr></table>
+</div>
+</div><p>Once created, you will have an <code>s3-bucket</code> service.
+This allows us to point our ingress definition directly at the S3 backend.
+Similarly, we can deploy the ingress and have communication flow seamlessly between the systems.</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl apply -f s3-bucket-ingress.yaml
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="tips-and-tricks">Tips and Tricks</h2>
+<p><em>Use sparingly</em></p>
+<p>For small numbers of paths, path based routing is fine.
+If you find that you&rsquo;re spawning more and more routes, managing them can become difficult.</p>
+<p><em>Backends should serve on the paths they&rsquo;re listening on</em></p>
+<p>Having application logic that binds to a specific path can often be clunky for developers.
+Subdomains tradeoff the complexity of path management (from an development AND operational standpoint) for the complexity of CORS.</p>
+<h2 id="exercise">Exercise</h2>
+<p>A <code>docker-registry</code> is a great example of a service that can be deployed in such a manner.
+The registry only serves requests on <code>/v2/</code>, making it an easy target.
+<code>docker-auth</code> can be added to lock down access.
+It only needs access to your authentication path (<code>/auth</code>, <code>/google_auth</code>, or <code>/github_auth</code>).
+Finally, you can throw an open source UI on the <code>/</code> to give visitors an easy to use UI.</p>
+<p>For a starting point, take a look at my previous blog post on my <a href="https://mjpitz.com/blog/2020/11/03/registry-123/">docker registry setup</a>.</p>
+    </div>
+    <div class="post-footer">
+      <div class="info">
+        
+        
+    <span class="separator"><a class="tag" href="/tags/kubernetes/">kubernetes</a><a class="tag" href="/tags/k8s/">k8s</a><a class="tag" href="/tags/ingress/">ingress</a><a class="tag" href="/tags/ingress-controller/">ingress-controller</a><a class="tag" href="/tags/path-based-routing/">path-based routing</a></span>
+
+      </div>
+    </div>
+
+    
+</div>
+
+
+                </div>
+            </div>
+        </div>
+</body>
+
+
+
+<script type="text/javascript" src="https://mjpitz.com/js/jquery.min.86b1e8f819ee2d9099a783e50b49dff24282545fc40773861f9126b921532e4c.js" integrity="sha256-hrHo&#43;BnuLZCZp4PlC0nf8kKCVF/EB3OGH5EmuSFTLkw=" crossorigin="anonymous"></script>
+
+
+<script type="text/javascript" src="https://mjpitz.com/js/jquery.min.86b1e8f819ee2d9099a783e50b49dff24282545fc40773861f9126b921532e4c.js" integrity="sha256-hrHo&#43;BnuLZCZp4PlC0nf8kKCVF/EB3OGH5EmuSFTLkw=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://mjpitz.com/js/medium-zoom.min.92f21c856129f84aeb719459b3e6ac621a3032fd7b180a18c04e1d12083f8aba.js" integrity="sha256-kvIchWEp&#43;ErrcZRZs&#43;asYhowMv17GAoYwE4dEgg/iro=" crossorigin="anonymous"></script>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-39314903-5', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</html>
+</body>
+
+</html>
