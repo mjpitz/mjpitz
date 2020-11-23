@@ -4,16 +4,61 @@
   
   <url>
     <loc>https://mjpitz.com/</loc>
-    <lastmod>2020-11-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mjpitz.com/blog/2020/11/10/path-based-routing-k8s/</loc>
-    <lastmod>2020-11-10T00:00:00+00:00</lastmod>
+    <lastmod>2020-11-23T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://mjpitz.com/blog/</loc>
+    <lastmod>2020-11-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/tags/connect/</loc>
+    <lastmod>2020-11-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/tags/consul/</loc>
+    <lastmod>2020-11-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/tags/k3s/</loc>
+    <lastmod>2020-11-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/tags/kubernetes/</loc>
+    <lastmod>2020-11-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/tags/raspberrypi/</loc>
+    <lastmod>2020-11-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/tags/rpi/</loc>
+    <lastmod>2020-11-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/blog/2020/11/23/service-mesh-rpi/</loc>
+    <lastmod>2020-11-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/tags/service-mesh/</loc>
+    <lastmod>2020-11-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/tags/</loc>
+    <lastmod>2020-11-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/blog/2020/11/10/path-based-routing-k8s/</loc>
     <lastmod>2020-11-10T00:00:00+00:00</lastmod>
   </url>
   
@@ -33,17 +78,7 @@
   </url>
   
   <url>
-    <loc>https://mjpitz.com/tags/kubernetes/</loc>
-    <lastmod>2020-11-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://mjpitz.com/tags/path-based-routing/</loc>
-    <lastmod>2020-11-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mjpitz.com/tags/</loc>
     <lastmod>2020-11-10T00:00:00+00:00</lastmod>
   </url>
   
@@ -133,17 +168,7 @@
   </url>
   
   <url>
-    <loc>https://mjpitz.com/tags/raspberrypi/</loc>
-    <lastmod>2020-10-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://mjpitz.com/tags/razer/</loc>
-    <lastmod>2020-10-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mjpitz.com/tags/rpi/</loc>
     <lastmod>2020-10-19T00:00:00+00:00</lastmod>
   </url>
   
@@ -414,11 +439,6 @@
   
   <url>
     <loc>https://mjpitz.com/tags/iot/</loc>
-    <lastmod>2020-04-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mjpitz.com/tags/k3s/</loc>
     <lastmod>2020-04-20T00:00:00+00:00</lastmod>
   </url>
   

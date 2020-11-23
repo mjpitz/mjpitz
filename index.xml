@@ -6,10 +6,27 @@
     <description>Recent content on Mya Pitzeruse</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 10 Nov 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 23 Nov 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://mjpitz.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Running a Service Mesh on Raspberry Pis</title>
+      <link>https://mjpitz.com/blog/2020/11/23/service-mesh-rpi/</link>
+      <pubDate>Mon, 23 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/blog/2020/11/23/service-mesh-rpi/</guid>
+      <description>&lt;p&gt;Many people have asked how to support deploying service mesh to Raspberry Pis.
+It wasn&amp;rsquo;t until September that this started to be possible.
+&lt;a href=&#34;https://github.com/linkerd/linkerd2/releases/tag/stable-2.9.0&#34;&gt;Linkerd&lt;/a&gt; recently released support for arm64, but has had support for it in edge versions since August.
+Many &lt;a href=&#34;https://envoyproxy.io/&#34;&gt;envoy&lt;/a&gt; based service mesh have been blocked by support for an arm-compatible envoy image.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.consul.io/&#34;&gt;Consul&lt;/a&gt; is a powerful service discovery and configuration management tool from &lt;a href=&#34;https://www.hashicorp.com/&#34;&gt;Hashicorp&lt;/a&gt;.
+It has a long history of supporting a variety of execution platforms, operating systems, and architectures.
+In 1.2, Hashicorp introduced &lt;a href=&#34;https://www.consul.io/docs/connect&#34;&gt;Consul Connect&lt;/a&gt;, an envoy based service mesh integration.
+This allows Consul to control and direct clients in the service mesh data plane.&lt;/p&gt;
+&lt;p&gt;In this post, I&amp;rsquo;ll demonstrate how to deploy Consul to support a service mesh on Raspberry Pis.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Adventures in Path Based Routing</title>

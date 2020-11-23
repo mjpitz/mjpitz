@@ -6,10 +6,73 @@
     <description>Recent content in Tags on Mya Pitzeruse</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 10 Nov 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 23 Nov 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://mjpitz.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>connect</title>
+      <link>https://mjpitz.com/tags/connect/</link>
+      <pubDate>Mon, 23 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/connect/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>consul</title>
+      <link>https://mjpitz.com/tags/consul/</link>
+      <pubDate>Mon, 23 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/consul/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>k3s</title>
+      <link>https://mjpitz.com/tags/k3s/</link>
+      <pubDate>Mon, 23 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/k3s/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kubernetes</title>
+      <link>https://mjpitz.com/tags/kubernetes/</link>
+      <pubDate>Mon, 23 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>raspberrypi</title>
+      <link>https://mjpitz.com/tags/raspberrypi/</link>
+      <pubDate>Mon, 23 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/raspberrypi/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>rpi</title>
+      <link>https://mjpitz.com/tags/rpi/</link>
+      <pubDate>Mon, 23 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/rpi/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>service-mesh</title>
+      <link>https://mjpitz.com/tags/service-mesh/</link>
+      <pubDate>Mon, 23 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/tags/service-mesh/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>ingress</title>
@@ -35,15 +98,6 @@
       <pubDate>Tue, 10 Nov 2020 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/tags/k8s/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>kubernetes</title>
-      <link>https://mjpitz.com/tags/kubernetes/</link>
-      <pubDate>Tue, 10 Nov 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://mjpitz.com/tags/kubernetes/</guid>
       <description></description>
     </item>
     
@@ -192,29 +246,11 @@
     </item>
     
     <item>
-      <title>raspberrypi</title>
-      <link>https://mjpitz.com/tags/raspberrypi/</link>
-      <pubDate>Mon, 19 Oct 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://mjpitz.com/tags/raspberrypi/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>razer</title>
       <link>https://mjpitz.com/tags/razer/</link>
       <pubDate>Mon, 19 Oct 2020 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/tags/razer/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>rpi</title>
-      <link>https://mjpitz.com/tags/rpi/</link>
-      <pubDate>Mon, 19 Oct 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://mjpitz.com/tags/rpi/</guid>
       <description></description>
     </item>
     
@@ -593,15 +629,6 @@
       <pubDate>Mon, 20 Apr 2020 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/tags/iot/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>k3s</title>
-      <link>https://mjpitz.com/tags/k3s/</link>
-      <pubDate>Mon, 20 Apr 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://mjpitz.com/tags/k3s/</guid>
       <description></description>
     </item>
     

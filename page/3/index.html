@@ -98,6 +98,30 @@
   
   <div class="post animated fadeInDown">
     <div class="post-title">
+      <h3><a href="/blog/2019/05/07/docker-buildx/">Using docker-buildx for Multi-architecture Containers</a>
+      </h3>
+    </div>
+    <div class="post-content"><div class="p_part"><p><p>When you build a container image, it&rsquo;s typically only built for one platform (<code>linux</code>) and one architecture (<code>amd64</code>).
+As the Internet of Things continues to grow, the demand for more <code>arm</code> images increased as well.
+Traditionally, in order to produce an <code>arm</code> image, you need an <code>arm</code> device to do the build on.
+As a result, most projects wind up missing <code>arm</code> support.</p>
+<p><a href="https://github.com/moby/buildkit">BuildKit</a> provides emulation capabilities that support multi-architecture builds.
+With BuildKit, you build container images across multiple architectures concurrently.
+This core utility backs <code>docker buildx</code>, a multi-architecture build utility for docker.
+In this post, I&rsquo;ll discuss why you should produce multi-architecture container images and demonstrate how to use <code>docker buildx</code> to do it.</p></p></div>
+  
+  <div class="p_part"><p></p></div></div>
+    <div class="post-footer">
+      <div class="meta">
+        <div class="info"><i class="fa fa-sun-o"></i><span class="date">Tue, May 7, 2019</span>
+          <a class="tag" href="/tags/docker/">docker</a><a class="tag" href="/tags/multiarch/">multiarch</a><a class="tag" href="/tags/arm/">arm</a><a class="tag" href="/tags/arm64/">arm64</a><a class="tag" href="/tags/buildx/">buildx</a>       
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="post animated fadeInDown">
+    <div class="post-title">
       <h3><a href="/blog/2019/05/02/from-apache2-to-mit/">Moving Licenses - Apache 2.0 to MIT</a>
       </h3>
     </div>
@@ -284,26 +308,6 @@ It’s important to note that some of the behaviors that I observed about AWS La
     <div class="post-footer">
       <div class="meta">
         <div class="info"><i class="fa fa-sun-o"></i><span class="date">Sun, Oct 28, 2018</span>
-          <a class="tag" href="/tags/aws/">aws</a><a class="tag" href="/tags/lambda/">lambda</a><a class="tag" href="/tags/dosh/">dosh</a><a class="tag" href="/tags/serverless/">serverless</a>       
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <div class="post animated fadeInDown">
-    <div class="post-title">
-      <h3><a href="/blog/2018/10/27/lambda-local-development/">AWS Lambda - Local Development</a>
-      </h3>
-    </div>
-    <div class="post-content"><div class="p_part"><p><p>While working at Dosh, I had pretty heavy exposure to managing NodeJS services running in AWS Lambda.
-During that time, I had learned a few things about the platform that can be leveraged when writing Lambda services.
-Some of these lessons may influence how you write services but can also give you some performance boosts.
-It’s important to note that some of the behaviors that I observed about AWS Lambda may not apply to other serverless technologies.</p></p></div>
-  
-  <div class="p_part"><p></p></div></div>
-    <div class="post-footer">
-      <div class="meta">
-        <div class="info"><i class="fa fa-sun-o"></i><span class="date">Sat, Oct 27, 2018</span>
           <a class="tag" href="/tags/aws/">aws</a><a class="tag" href="/tags/lambda/">lambda</a><a class="tag" href="/tags/dosh/">dosh</a><a class="tag" href="/tags/serverless/">serverless</a>       
         </div>
       </div>

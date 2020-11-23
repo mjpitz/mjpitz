@@ -98,6 +98,31 @@
   
   <div class="post animated fadeInDown">
     <div class="post-title">
+      <h3><a href="/blog/2020/11/23/service-mesh-rpi/">Running a Service Mesh on Raspberry Pis</a>
+      </h3>
+    </div>
+    <div class="post-content"><div class="p_part"><p><p>Many people have asked how to support deploying service mesh to Raspberry Pis.
+It wasn&rsquo;t until September that this started to be possible.
+<a href="https://github.com/linkerd/linkerd2/releases/tag/stable-2.9.0">Linkerd</a> recently released support for arm64, but has had support for it in edge versions since August.
+Many <a href="https://envoyproxy.io/">envoy</a> based service mesh have been blocked by support for an arm-compatible envoy image.</p>
+<p><a href="https://www.consul.io/">Consul</a> is a powerful service discovery and configuration management tool from <a href="https://www.hashicorp.com/">Hashicorp</a>.
+It has a long history of supporting a variety of execution platforms, operating systems, and architectures.
+In 1.2, Hashicorp introduced <a href="https://www.consul.io/docs/connect">Consul Connect</a>, an envoy based service mesh integration.
+This allows Consul to control and direct clients in the service mesh data plane.</p>
+<p>In this post, I&rsquo;ll demonstrate how to deploy Consul to support a service mesh on Raspberry Pis.</p></p></div>
+  
+  <div class="p_part"><p></p></div></div>
+    <div class="post-footer">
+      <div class="meta">
+        <div class="info"><i class="fa fa-sun-o"></i><span class="date">Mon, Nov 23, 2020</span>
+          <a class="tag" href="/tags/service-mesh/">service-mesh</a><a class="tag" href="/tags/consul/">consul</a><a class="tag" href="/tags/connect/">connect</a><a class="tag" href="/tags/rpi/">rpi</a><a class="tag" href="/tags/raspberrypi/">raspberrypi</a><a class="tag" href="/tags/k3s/">k3s</a><a class="tag" href="/tags/kubernetes/">kubernetes</a>       
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="post animated fadeInDown">
+    <div class="post-title">
       <h3><a href="/blog/2020/11/10/path-based-routing-k8s/">Adventures in Path Based Routing</a>
       </h3>
     </div>
@@ -289,26 +314,6 @@ In this post, I share some cost-saving techniques I&rsquo;ve used to reduce my b
       <div class="meta">
         <div class="info"><i class="fa fa-sun-o"></i><span class="date">Mon, Aug 3, 2020</span>
           <a class="tag" href="/tags/cost-savings/">cost-savings</a><a class="tag" href="/tags/digitalocean/">digitalocean</a><a class="tag" href="/tags/kubernetes/">kubernetes</a><a class="tag" href="/tags/terraform/">terraform</a><a class="tag" href="/tags/gitops/">gitops</a><a class="tag" href="/tags/fluxcd/">fluxcd</a>       
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <div class="post animated fadeInDown">
-    <div class="post-title">
-      <h3><a href="/blog/2020/08/02/repo-impressions-3/">Conclusion: Tracking impressions on repositories</a>
-      </h3>
-    </div>
-    <div class="post-content"><div class="p_part"><p><p>In this post, I bring a conclusion to my recent series on tracking impressions on repositories.
-While it&rsquo;s the last in the series, I will likely continue to post updates as time goes on.
-For now, I feel my current approach has yielded a wealth of information that I&rsquo;m still fully digesting.
-In this conclusion, I will walk through how several of my metrics have changed since my <a href="/blog/2020/07/17/repo-impression-tracking/">original approach</a>.</p></p></div>
-  
-  <div class="p_part"><p></p></div></div>
-    <div class="post-footer">
-      <div class="meta">
-        <div class="info"><i class="fa fa-sun-o"></i><span class="date">Sun, Aug 2, 2020</span>
-          <a class="tag" href="/tags/github/">github</a><a class="tag" href="/tags/gitlab/">gitlab</a><a class="tag" href="/tags/impression/">impression</a><a class="tag" href="/tags/tracking/">tracking</a><a class="tag" href="/tags/analytics/">analytics</a>       
         </div>
       </div>
     </div>

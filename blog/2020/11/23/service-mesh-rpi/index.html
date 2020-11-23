@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light"><head>
+    <title> Mya Pitzeruse | Running a Service Mesh on Raspberry Pis </title>
+    <meta charset="utf-8"><meta name="generator" content="Hugo 0.69.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="description" content="Thoughts, ramblings, and learnings from my adventures in code.">
+    
+    <link rel="stylesheet" href="https://mjpitz.com/css/style.min.67cd718c0a3c8009c771494d381fb7128246a454bd0518fed97cb65d257db948.css" integrity="sha256-Z81xjAo8gAnHcUlNOB&#43;3EoJGpFS9BRj&#43;2Xy2XSV9uUg=" crossorigin="anonymous" type="text/css">
+    <link rel="stylesheet" href="https://mjpitz.com/statics/css/overrides.css" type="text/css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    
+    <link rel="shortcut icon" href="https://mjpitz.com/statics/img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://mjpitz.com/statics/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://mjpitz.com/statics/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://mjpitz.com/statics/img/favicon-16x16.png">
+    <link rel="canonical" href="https://mjpitz.com/blog/2020/11/23/service-mesh-rpi/">
+    
+    
+    <script type="text/javascript" src="https://mjpitz.com/js/anatole-header.min.c275265a259296f3dd50e8236a77fcbcadb1dbb9597d3045c675dcc2c7c58a93.js" integrity="sha256-wnUmWiWSlvPdUOgjanf8vK2x27lZfTBFxnXcwsfFipM=" crossorigin="anonymous"></script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Running a Service Mesh on Raspberry Pis"/>
+<meta name="twitter:description" content="Many people have asked how to support deploying service mesh to Raspberry Pis.
+It wasn&rsquo;t until September that this started to be possible.
+Linkerd recently released support for arm64, but has had support for it in edge versions since August.
+Many envoy based service mesh have been blocked by support for an arm-compatible envoy image.
+Consul is a powerful service discovery and configuration management tool from Hashicorp.
+It has a long history of supporting a variety of execution platforms, operating systems, and architectures.
+In 1.2, Hashicorp introduced Consul Connect, an envoy based service mesh integration.
+This allows Consul to control and direct clients in the service mesh data plane.
+In this post, I&rsquo;ll demonstrate how to deploy Consul to support a service mesh on Raspberry Pis."/>
+
+</head>
+<body><div class="sidebar animated fadeInDown">
+    <div class="logo-title">
+      <div class="title">
+        <img src="https://mjpitz.com/statics/img/mjpitz.jpeg" alt="profile picture">
+        <h3 title=""><a href="/">Mya Pitzeruse</a></h3>
+        <div class="description">
+          <p>Thoughts, ramblings, and learnings from my adventures in code.</p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
+        
+        <li>
+        <a href="https://github.com/mjpitz" rel="me" aria-label="GitHub">
+          <i class="fa fa-2x fa-github" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+        <li>
+        <a href="https://twitter.com/myajpitz" rel="me" aria-label="Twitter">
+          <i class="fa fa-2x fa-twitter" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+        <li>
+        <a href="https://www.linkedin.com/in/mjpitz/" rel="me" aria-label="LinkedIn">
+          <i class="fa fa-2x fa-linkedin" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+        <li>
+        <a href="/index.xml" rel="me" aria-label="Feed">
+          <i class="fa fa-2x fa-rss" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+    </ul>
+    <div class="footer">
+        <div class="by_farbox">&copy; Mya Pitzeruse 2020 </div>
+      </div>
+    </div>
+</div><div class="main">
+            <div class="page-top animated fadeInDown">
+    <ul class="nav">
+        
+        
+        
+        <li><a  href="/" title="">Home</a></li>
+        
+        
+        <li><a  href="/hire-me/" title="">Hire Me</a></li>
+        
+        
+        <li><a  href="/media/" title="">Media</a></li>
+        
+        
+        <li><a  href="/blog/" title="">Blog</a></li>
+        
+    </ul>
+    <div class="themeswitcher">
+        <a class="theme-switch" title="Switch Theme">
+            <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+        </a>
+    </div>
+</div>
+
+            <div class="autopagerize_page_element">
+                <div class="content">
+<div class="post animated fadeInDown">
+    <div class="post-content">
+
+      <div class="post-title">
+        <h3>Running a Service Mesh on Raspberry Pis</h3>
+        
+        <div class="info">
+          <i class="fa fa-sun-o"></i><span class="date">Mon, Nov 23, 2020</span>
+          <i class="fa fa-clock-o"></i><span class="reading-time">4-minute read</span>
+        </div>
+        
+        </div>
+
+    <p>Many people have asked how to support deploying service mesh to Raspberry Pis.
+It wasn&rsquo;t until September that this started to be possible.
+<a href="https://github.com/linkerd/linkerd2/releases/tag/stable-2.9.0">Linkerd</a> recently released support for arm64, but has had support for it in edge versions since August.
+Many <a href="https://envoyproxy.io/">envoy</a> based service mesh have been blocked by support for an arm-compatible envoy image.</p>
+<p><a href="https://www.consul.io/">Consul</a> is a powerful service discovery and configuration management tool from <a href="https://www.hashicorp.com/">Hashicorp</a>.
+It has a long history of supporting a variety of execution platforms, operating systems, and architectures.
+In 1.2, Hashicorp introduced <a href="https://www.consul.io/docs/connect">Consul Connect</a>, an envoy based service mesh integration.
+This allows Consul to control and direct clients in the service mesh data plane.</p>
+<p>In this post, I&rsquo;ll demonstrate how to deploy Consul to support a service mesh on Raspberry Pis.</p>
+<h2 id="my-setup">My setup</h2>
+<p>To offer some transparency here, I&rsquo;m working with a fresh deployment of <a href="https://k3s.io/">k3s</a> <code>v1.19.1-k3s1</code>.
+I run a single server agent in docker on top of a Raspberry Pi 4, and 4 worker nodes on Raspberry Pi 3b+.
+There&rsquo;s nothing specific to my setup in this post, but I find it helpful to understand what I&rsquo;m working with.</p>
+<p>As usual, all configuration for this post is available on <a href="https://gist.github.com/mjpitz/f88bac2edfaebd67f2a2148829e053bb">GitHub</a>.</p>
+<h2 id="deploy-consul">Deploy consul</h2>
+<p>First, we&rsquo;ll want to deploy Consul.
+The easiest way I found to do this was using the <a href="https://helm.sh">Helm</a> chart provided by Hashicorp.
+The default configuration won&rsquo;t work out of box, so we need to make a few modifications.
+Below, you&rsquo;ll find a snippet from the <code>consul-values.yaml</code> file included in the Gist.
+Here, we override the envoy image used by Consul connect to support arm64.
+(<code>envoyproxy/envoy-alpine</code> does not yet support <code>arm64</code>.)</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">global</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#8f5902;font-style:italic"># 1.16 supports both amd64 and arm64 compatible</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">imageEnvoy</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>envoyproxy/envoy<span style="color:#000;font-weight:bold">:</span>v1<span style="color:#0000cf;font-weight:bold">.16.0</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># ...</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">connectInject</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">enabled</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">true</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># ...</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>Next, we can deploy consul.
+Simply pass in our associated values.yaml file when performing the installation (or upgrade).</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">helm repo add hashicorp https://helm.releases.hashicorp.com
+<span style="color:#8f5902;font-style:italic"># or `helm repo update` if you already have it</span>
+  
+kubectl create ns consul
+helm upgrade -i consul hashicorp/consul -n consul -f consul-values.yaml
+</code></pre></td></tr></table>
+</div>
+</div><p>That <em>should</em> be it.
+Consul should be up and running, ready to inject your workloads with an envoy sidecar.</p>
+<h2 id="deploy-a-workload">Deploy a workload</h2>
+<p>With Cosnsul Connect running, we want to tell it to inject our workloads with an envoy container.
+We do this by adding the <code>consul.hashicorp.com/connect-inject=true</code> annotation to the pods.
+While you can deploy any project you want, I&rsquo;ll be demonstrating this with my project, <a href="https://deps.cloud">deps.cloud</a>.
+In order to run this system, we&rsquo;ll need a <a href="https://www.postgresql.org/">PostgreSQL</a> database.
+I provided a developer configuration that can be used with my postgresql-dev chart.</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">helm repo add mjpitz https://mjpitz.github.io/charts/
+<span style="color:#8f5902;font-style:italic"># or `helm repo update` if you already have it</span>
+
+helm upgrade -i postgresql-dev mjpitz/postgresql-dev -f postgresql-dev-values.yaml
+</code></pre></td></tr></table>
+</div>
+</div><p>Once PostgreSQL is running we can look at deploying our workloads.
+In order for systems to connect to each other when using Consul connect, you need to specify the <code>consul.hashicorp.com/connect-service-upstreams</code> annotation.
+This annotation lists the upstream services your process intends to connect to.
+Below, you can find some examples on how to use the annotations.</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># for a single service</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">consul.hashicorp.com/connect-service-upstreams</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#39;postgresql-dev:5432&#39;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span>---<span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># for multiple services</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">consul.hashicorp.com/connect-service-upstreams</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#39;depscloud-extractor:9000,depscloud-tracker:9001&#39;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Note:</strong> the ports in the annotation do not have to be the same as the remote service port.
+This really tripped me up when working with upstreams.
+I was really confused when the value I expected to enter (<code>depscloud-extractor:8090,depscloud-tracker:8090</code>) yielded an error.</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl logs -n depscloud depscloud-gateway-7579687f59-w9g92 consul-connect-inject-init
+Error: service <span style="color:#4e9a06">&#34;gateway-sidecar-proxy&#34;</span>: <span style="color:#0000cf;font-weight:bold">1</span> error occurred:
+        * upstreams cannot contain duplicates by <span style="color:#204a87">local</span> <span style="color:#204a87">bind</span> address and port<span style="color:#000;font-weight:bold">;</span> <span style="color:#4e9a06">&#34;127.0.0.1:8090&#34;</span> is specified twice
+</code></pre></td></tr></table>
+</div>
+</div><p>In digging a little further, I learned Consul Connect binds these ports locally.
+At first, it felt odd these ports even needed to be specified.
+Many other service mesh solutions are able to do this without the need for specification.
+It does make sense though.
+You don&rsquo;t want your service mesh binding to a port already in use.
+The easiest way to get around that is just by being explicit.
+Now, you shouldn&rsquo;t need to modify how your services address your remotes.
+For example, my applications still target port <code>8090</code> despite using different ports on the upstream annotation.</p>
+<p>To deploy deps.cloud using the provided configuration, you will need to clone the deploy repository.
+I expect the associated changes to be available in <code>v0.2.33</code>, once published.</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># helm repo add depscloud https://depscloud.github.io/deploy/charts</span>
+<span style="color:#8f5902;font-style:italic"># or `helm repo update` if you already have it</span>
+
+git clone https://github.com/depscloud/deploy.git
+helm upgrade -i depscloud ./deploy/charts/depscloud -f depscloud-values.yaml
+</code></pre></td></tr></table>
+</div>
+</div><p>This will bring the deps.cloud ecosystem up on top of the Consul connect mesh.</p>
+<h2 id="next-steps">Next steps</h2>
+<p>For me, this was just a stepping stone.
+Similar to Linkerd and Istio, Consul Connect doesn&rsquo;t quite handle cronjob termination properly.
+Using proxy-based service mesh has some advantages, it&rsquo;s not always ideal.
+In a resource constrained environment like Raspberry Pi&rsquo;s, the overhead of an additional proxy and sidecar per pod is rough.
+In the next couple of weeks, I&rsquo;ll be playing around with <a href="https://github.com/grpc/grpc-go/blob/master/examples/features/xds/">gRPC&rsquo;s XDS integration</a> for a proxy-less service mesh.</p>
+<p>Stay tuned to see it all in action!</p>
+    </div>
+    <div class="post-footer">
+      <div class="info">
+        
+        
+    <span class="separator"><a class="tag" href="/tags/service-mesh/">service-mesh</a><a class="tag" href="/tags/consul/">consul</a><a class="tag" href="/tags/connect/">connect</a><a class="tag" href="/tags/rpi/">rpi</a><a class="tag" href="/tags/raspberrypi/">raspberrypi</a><a class="tag" href="/tags/k3s/">k3s</a><a class="tag" href="/tags/kubernetes/">kubernetes</a></span>
+
+      </div>
+    </div>
+
+    
+</div>
+
+
+                </div>
+            </div>
+        </div>
+</body>
+
+
+
+<script type="text/javascript" src="https://mjpitz.com/js/jquery.min.86b1e8f819ee2d9099a783e50b49dff24282545fc40773861f9126b921532e4c.js" integrity="sha256-hrHo&#43;BnuLZCZp4PlC0nf8kKCVF/EB3OGH5EmuSFTLkw=" crossorigin="anonymous"></script>
+
+
+<script type="text/javascript" src="https://mjpitz.com/js/jquery.min.86b1e8f819ee2d9099a783e50b49dff24282545fc40773861f9126b921532e4c.js" integrity="sha256-hrHo&#43;BnuLZCZp4PlC0nf8kKCVF/EB3OGH5EmuSFTLkw=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://mjpitz.com/js/medium-zoom.min.92f21c856129f84aeb719459b3e6ac621a3032fd7b180a18c04e1d12083f8aba.js" integrity="sha256-kvIchWEp&#43;ErrcZRZs&#43;asYhowMv17GAoYwE4dEgg/iro=" crossorigin="anonymous"></script>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-39314903-5', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</html>
+</body>
+
+</html>
