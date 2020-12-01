@@ -170,7 +170,7 @@ It is through writing that we can learn to identify these ambiguities.
 
 ## Technique #4 - _Shift left_
 
-To help explain, let us consider a timeline with four events.
+To help explain, let us consider a timeline with three events.
 
 1. Conversation horizon
 2. In conversation
