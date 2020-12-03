@@ -98,6 +98,34 @@
   
   <div class="post animated fadeInDown">
     <div class="post-title">
+      <h3><a href="/blog/2020/12/03/renovate-your-gitops/">Renovate your GitOps</a>
+      </h3>
+    </div>
+    <div class="post-content"><div class="p_part"><p><p>Every engineering organization struggles to stay up to date with the latest versions of applications they run.
+When an organization deploys an open source project, their versions start to drift from day one.
+The longer a project runs without an update, the more likely it is to contain a vulnerability.
+To help applications stay on top of library versions, the project <a href="https://github.com/renovatebot/">Renovate</a> was developed.
+Renovate works by parsing manifest files (like <code>package.json</code> and <code>go.mod</code>) and checking for newer versions of libraries.
+When Renovate discovers an update, it submits a pull request with the newer version to the project.</p>
+<p>Recently, I noticed Renovate submit pull requests for dependencies in my <a href="https://helm.sh/">Helm</a> v3 charts.
+This gave me an idea.
+What if Renovate could automatically manage something like a GitOps repository?
+This means organizations would no longer need to tediously query for updates.
+Instead, they&rsquo;d automatically receive a pull request when a new version of an application became available.
+In this blog post, I demonstrate how to set this up for an <a href="https://github.com/argoproj/argo-cd/">ArgoCD</a> GitOps repository.</p></p></div>
+  
+  <div class="p_part"><p></p></div></div>
+    <div class="post-footer">
+      <div class="meta">
+        <div class="info"><i class="fa fa-sun-o"></i><span class="date">Thu, Dec 3, 2020</span>
+          <a class="tag" href="/tags/kubernetes/">kubernetes</a><a class="tag" href="/tags/k8s/">k8s</a><a class="tag" href="/tags/gitops/">gitops</a><a class="tag" href="/tags/argocd/">argocd</a><a class="tag" href="/tags/renovate/">renovate</a><a class="tag" href="/tags/open-source/">open-source</a><a class="tag" href="/tags/continuous-delivery/">continuous-delivery</a><a class="tag" href="/tags/security/">security</a>       
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="post animated fadeInDown">
+    <div class="post-title">
       <h3><a href="/blog/2020/11/30/pronoun-practice/">Pronoun Practice</a>
       </h3>
     </div>
@@ -294,32 +322,6 @@ In this post, I discuss many of the benefits to using the technology.</p></p></d
     </div>
   </div>
   
-  <div class="post animated fadeInDown">
-    <div class="post-title">
-      <h3><a href="/blog/2020/08/06/bfs-over-grpc-stream/">Implementing Breadth-first Search Over gRPC</a>
-      </h3>
-    </div>
-    <div class="post-content"><div class="p_part"><p><p><a href="https://deps.cloud">deps.cloud</a> is an open source project that I started.
-It&rsquo;s a tool that helps companies understand how their projects relate to one another.
-It does this by parsing files like <code>package.json</code> and storing the contents in a <a href="https://en.wikipedia.org/wiki/Graph_(abstract_data_type)">graph</a>.</p>
-<p>While <a href="https://en.wikipedia.org/wiki/Graph_database">graph databases</a> do exist, finding administrative and engineering support is often hard.
-To add complexity to this, graph databases come in a variety of flavors.
-Since I wanted the workload to be portable, adopting a graph database was a non-starter.</p>
-<p>On the other hand, finding support for relational databases is easy.
-The problem is that implementing graphs on relational databases tend to be slow.
-While there has been previous efforts, I felt <a href="https://grpc.io">gRPC</a> was able to alleviate many of the problems they faced.
-In this post, I share lessons I learned while implementing such a graph database.</p></p></div>
-  
-  <div class="p_part"><p></p></div></div>
-    <div class="post-footer">
-      <div class="meta">
-        <div class="info"><i class="fa fa-sun-o"></i><span class="date">Thu, Aug 6, 2020</span>
-          <a class="tag" href="/tags/protobuf/">protobuf</a><a class="tag" href="/tags/grpc/">grpc</a><a class="tag" href="/tags/grpc-streaming/">grpc-streaming</a><a class="tag" href="/tags/golang/">golang</a><a class="tag" href="/tags/data-structures/">data-structures</a><a class="tag" href="/tags/algorithms/">algorithms</a><a class="tag" href="/tags/bfs/">bfs</a><a class="tag" href="/tags/graphs/">graphs</a><a class="tag" href="/tags/trees/">trees</a>       
-        </div>
-      </div>
-    </div>
-  </div>
-  
 <div class="pagination">
   
 
@@ -376,7 +378,18 @@ In this post, I share lessons I learned while implementing such a graph database
         
     
     
-    <li class="page-item"><a class="page-link" href="/page/4/">4</a></li>
+    <li class="page-item disabled"><span aria-hidden="true">&nbsp;&hellip;&nbsp;</span></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/page/5/">5</a></li>
     
     
     <li class="page-item">
@@ -384,7 +397,7 @@ In this post, I share lessons I learned while implementing such a graph database
     </li>
     
     <li class="page-item">
-        <a href="/page/4/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/page/5/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>

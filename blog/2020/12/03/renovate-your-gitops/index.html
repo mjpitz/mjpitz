@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light"><head>
+    <title> Mya Pitzeruse | Renovate your GitOps </title>
+    <meta charset="utf-8"><meta name="generator" content="Hugo 0.69.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="description" content="Thoughts, ramblings, and learnings from my adventures in code.">
+    
+    <link rel="stylesheet" href="https://mjpitz.com/css/style.min.67cd718c0a3c8009c771494d381fb7128246a454bd0518fed97cb65d257db948.css" integrity="sha256-Z81xjAo8gAnHcUlNOB&#43;3EoJGpFS9BRj&#43;2Xy2XSV9uUg=" crossorigin="anonymous" type="text/css">
+    <link rel="stylesheet" href="https://mjpitz.com/statics/css/overrides.css" type="text/css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    
+    <link rel="shortcut icon" href="https://mjpitz.com/statics/img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://mjpitz.com/statics/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://mjpitz.com/statics/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://mjpitz.com/statics/img/favicon-16x16.png">
+    <link rel="canonical" href="https://mjpitz.com/blog/2020/12/03/renovate-your-gitops/">
+    
+    
+    <script type="text/javascript" src="https://mjpitz.com/js/anatole-header.min.c275265a259296f3dd50e8236a77fcbcadb1dbb9597d3045c675dcc2c7c58a93.js" integrity="sha256-wnUmWiWSlvPdUOgjanf8vK2x27lZfTBFxnXcwsfFipM=" crossorigin="anonymous"></script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Renovate your GitOps"/>
+<meta name="twitter:description" content="Every engineering organization struggles to stay up to date with the latest versions of applications they run.
+When an organization deploys an open source project, their versions start to drift from day one.
+The longer a project runs without an update, the more likely it is to contain a vulnerability.
+To help applications stay on top of library versions, the project Renovate was developed.
+Renovate works by parsing manifest files (like package.json and go.mod) and checking for newer versions of libraries.
+When Renovate discovers an update, it submits a pull request with the newer version to the project.
+Recently, I noticed Renovate submit pull requests for dependencies in my Helm v3 charts.
+This gave me an idea.
+What if Renovate could automatically manage something like a GitOps repository?
+This means organizations would no longer need to tediously query for updates.
+Instead, they&rsquo;d automatically receive a pull request when a new version of an application became available.
+In this blog post, I demonstrate how to set this up for an ArgoCD GitOps repository."/>
+
+</head>
+<body><div class="sidebar animated fadeInDown">
+    <div class="logo-title">
+      <div class="title">
+        <img src="https://mjpitz.com/statics/img/mjpitz.jpeg" alt="profile picture">
+        <h3 title=""><a href="/">Mya Pitzeruse</a></h3>
+        <div class="description">
+          <p>Thoughts, ramblings, and learnings from my adventures in code.</p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
+        
+        <li>
+        <a href="https://github.com/mjpitz" rel="me" aria-label="GitHub">
+          <i class="fa fa-2x fa-github" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+        <li>
+        <a href="https://twitter.com/myajpitz" rel="me" aria-label="Twitter">
+          <i class="fa fa-2x fa-twitter" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+        <li>
+        <a href="https://www.linkedin.com/in/mjpitz/" rel="me" aria-label="LinkedIn">
+          <i class="fa fa-2x fa-linkedin" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+        <li>
+        <a href="/index.xml" rel="me" aria-label="Feed">
+          <i class="fa fa-2x fa-rss" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+    </ul>
+    <div class="footer">
+        <div class="by_farbox">&copy; Mya Pitzeruse 2020 </div>
+      </div>
+    </div>
+</div><div class="main">
+            <div class="page-top animated fadeInDown">
+    <ul class="nav">
+        
+        
+        
+        <li><a  href="/" title="">Home</a></li>
+        
+        
+        <li><a  href="/hire-me/" title="">Hire Me</a></li>
+        
+        
+        <li><a  href="/media/" title="">Media</a></li>
+        
+        
+        <li><a  href="/blog/" title="">Blog</a></li>
+        
+    </ul>
+    <div class="themeswitcher">
+        <a class="theme-switch" title="Switch Theme">
+            <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+        </a>
+    </div>
+</div>
+
+            <div class="autopagerize_page_element">
+                <div class="content">
+<div class="post animated fadeInDown">
+    <div class="post-content">
+
+      <div class="post-title">
+        <h3>Renovate your GitOps</h3>
+        
+        <div class="info">
+          <i class="fa fa-sun-o"></i><span class="date">Thu, Dec 3, 2020</span>
+          <i class="fa fa-clock-o"></i><span class="reading-time">6-minute read</span>
+        </div>
+        
+        </div>
+
+    <p>Every engineering organization struggles to stay up to date with the latest versions of applications they run.
+When an organization deploys an open source project, their versions start to drift from day one.
+The longer a project runs without an update, the more likely it is to contain a vulnerability.
+To help applications stay on top of library versions, the project <a href="https://github.com/renovatebot/">Renovate</a> was developed.
+Renovate works by parsing manifest files (like <code>package.json</code> and <code>go.mod</code>) and checking for newer versions of libraries.
+When Renovate discovers an update, it submits a pull request with the newer version to the project.</p>
+<p>Recently, I noticed Renovate submit pull requests for dependencies in my <a href="https://helm.sh/">Helm</a> v3 charts.
+This gave me an idea.
+What if Renovate could automatically manage something like a GitOps repository?
+This means organizations would no longer need to tediously query for updates.
+Instead, they&rsquo;d automatically receive a pull request when a new version of an application became available.
+In this blog post, I demonstrate how to set this up for an <a href="https://github.com/argoproj/argo-cd/">ArgoCD</a> GitOps repository.</p>
+<h2 id="what-is-gitops">What is GitOps?</h2>
+<p><a href="https://www.weave.works/blog/what-is-gitops-really">GitOps</a> is the process of managing infrastructure using <code>git</code> and pull requests.
+It enables developers to manage their infrastructure and applications with a declarative source of truth.
+Because workloads must be declared, it provides transparency around what versions of applications are running.</p>
+<p>Recently, GitOps has become more popular within the <a href="https://kubernetes.io">Kubernetes</a> community.
+We&rsquo;ve seen new tooling to support GitOps like FluxCD, ArgoCD, and GitOps toolkit.
+While it GitOps has solved many problems for organizations, it&rsquo;s also led to some challenges.
+As our ability to deploy and manage software has become easier, we&rsquo;ve also increased the number of things we need to manage.
+Staying on top of all the recent versions of these systems can sometimes feel like a full time job.</p>
+<h2 id="why-argocd">Why ArgoCD?</h2>
+<p>ArgoCD is an incubating project in the <a href="https://www.cncf.io/">Cloud Native Computing Foundation</a> (CNCF).
+It enables declarative delivery of workloads to Kubernetes through GitOps.
+One of the nice things about ArgoCDs <a href="https://argoproj.github.io/argo-cd/operator-manual/declarative-setup/#applications">Application</a> model is that it lets you point at Helm charts stored in git.
+This is convenient because Renovate can identify these charts and manage the versions of dependencies within them.</p>
+<p>As a result, we have an automated cycle that self-manages.
+ArgoCD will roll out any changes whenever someone merges something into your default branch (<code>HEAD</code>).
+Renovate will periodically open pull requests with newer versions of dependent applications as they become available.
+Once an engineer merges that pull request, the changes propagate out via ArgoCD.</p>
+<h2 id="here-we-go">Here we go!</h2>
+<p>Before setting up a project, here are a few things you&rsquo;ll need:</p>
+<ul>
+<li>Some version control system (VCS) like GitHub, GitLab, and BitBucket.
+I&rsquo;m using GitHub, but you can download a zip and pull it into your VCS of choice.
+For simplicity, this repository should be public.
+This makes the ArgoCD side of the world a bit easier.</li>
+<li>A <strong>personal access token</strong> to your VCS for Renovate to use.</li>
+<li><a href="https://www.docker.com/">Docker</a> - A popular container runtime.</li>
+<li><a href="https://kind.sigs.k8s.io/">kind</a> - We will be spinning up a cluster in docker for this demonstration.</li>
+<li>Helm v3 - Used to perform the initial deployment of ArgoCD.</li>
+</ul>
+<p>To help reduce the setup, I created a template on GitHub.
+You can either fork the template, or use it to create your own project and follow along.</p>
+<p><a href="https://github.com/mjpitz/auto-gitops-demo">https://github.com/mjpitz/auto-gitops-demo</a></p>
+<p>With your newly created project, you&rsquo;ll need to replace references to the source.
+You can find these references by executing <code>git grep</code> within the project root.</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic">## replace with your project</span>
+git clone https://github.com/mjpitz/renovate-gitops.git 
+<span style="color:#204a87">cd</span> renovate-gitops
+
+git grep <span style="color:#4e9a06">&#34;mjpitz/renovate-gitops&#34;</span> <span style="color:#000;font-weight:bold">|</span> grep -v README.md
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>Note:</strong> If you&rsquo;re not using GitHub, you&rsquo;ll need to change your platform in Renovate&rsquo;s configuration.</p>
+<p>Once replaced, be sure to commit and push your changes.
+ArgoCD deploys code from the remote repository, not from your local copy.</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git commit -a -m <span style="color:#4e9a06">&#34;replace references&#34;</span>
+git push
+</code></pre></td></tr></table>
+</div>
+</div><p>Next, we&rsquo;ll deploy a local kind cluster.</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kind create cluster --name demo
+kubectl config use-context kind-demo
+</code></pre></td></tr></table>
+</div>
+</div><p>At this point, you&rsquo;ll want to give kind a minute or two to initialize.
+Kind runs the control plane components inside the cluster, so it takes a minute for things to come up.
+You can watch the pods come up in the <code>kube-system</code> namespace.
+Once initialized, we can deploy ArgoCD.</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl apply -f namespaces/argocd.yaml
+helm dependency update workloads/argocd/
+helm upgrade -i argocd ./workloads/argocd/ -n argocd
+kubectl rollout status -n argocd deployment/argocd-server -w
+</code></pre></td></tr></table>
+</div>
+</div><p>The last command above will hang until the <code>argocd-server</code> has successfully been deployed.
+Once released, you can try logging into ArgoCD using <code>admin</code> for the username and <code>password</code> for the password.
+To do this, you&rsquo;ll need to forward the port for the service before opening <code>localhost:8080</code> in the browser.</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl port-forward -n argocd svc/argocd-server 8080:80
+</code></pre></td></tr></table>
+</div>
+</div><p>Next, we&rsquo;re going to create a root ArgoCD Application named <code>applications</code>.
+This is used to bootstrap all the other applications running in the cluster.
+In the end, there should be a total of 5 applications (<code>applications</code>, <code>argocd</code>, <code>cert-manager</code>, <code>namespaces</code>, <code>renovate</code>).</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl apply -f applications.yaml
+
+watch kubectl get applications -A
+</code></pre></td></tr></table>
+</div>
+</div><p>Once all five applications are there, you should be able to watch the pods come up.
+You can do this either in the ArgoCD UI (from earlier) or by getting pods for all namespaces.</p>
+<p>In order for Renovate to run, it needs a secret.
+The secret should contain any sensitive configuration for renovate.
+For GitHub or GitLab, you just need to provide an access token (<code>RENOVATE_TOKEN</code>).
+For BitBucket, you will also need to include a username (<code>RENOVATE_USERNAME</code>).</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl create secret generic <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>    -n renovate renovate-secrets <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>    --from-literal <span style="color:#000">RENOVATE_TOKEN</span><span style="color:#ce5c00;font-weight:bold">=</span>access_token 
+</code></pre></td></tr></table>
+</div>
+</div><p>Now, we just need to kick off a job for Renovate.</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl create job -n renovate --from cronjob/renovate renovate-<span style="color:#204a87;font-weight:bold">$(</span>date +%s<span style="color:#204a87;font-weight:bold">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>When the job completes, you should wind up with a few pull requests.
+You can see some examples under the <a href="https://github.com/mjpitz/auto-gitops-demo/pulls">pull requests</a> tab.</p>
+<p><img src="/statics/img/2020-12-03-renovate-gitops.png" alt="screenshot"></p>
+<p>Once we merge one of these pull requests, ArgoCD will kick off a deployment.
+It might take a minute or two for ArgoCD to realize there are changes.
+If time is of the essence, you can always go into the UI and force refresh the application.
+In production deployments, you might consider configuring a hook that runs a sync in your CI job.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Together, these technologies reduce the burden of running software yourself.
+It can free up time for your developers, allowing them to focus on valuable work for your company.
+With proper testing, you can configure Renovate to automatically merge changes if they pass your checks.</p>
+<p>I&rsquo;ve been using this configuration for my projects, and it&rsquo;s been working out great.
+I hope others find this as useful as I have.
+Enjoy!</p>
+    </div>
+    <div class="post-footer">
+      <div class="info">
+        
+        
+    <span class="separator"><a class="tag" href="/tags/kubernetes/">kubernetes</a><a class="tag" href="/tags/k8s/">k8s</a><a class="tag" href="/tags/gitops/">gitops</a><a class="tag" href="/tags/argocd/">argocd</a><a class="tag" href="/tags/renovate/">renovate</a><a class="tag" href="/tags/open-source/">open-source</a><a class="tag" href="/tags/continuous-delivery/">continuous-delivery</a><a class="tag" href="/tags/security/">security</a></span>
+
+      </div>
+    </div>
+
+    
+</div>
+
+
+                </div>
+            </div>
+        </div>
+</body>
+
+
+
+<script type="text/javascript" src="https://mjpitz.com/js/jquery.min.86b1e8f819ee2d9099a783e50b49dff24282545fc40773861f9126b921532e4c.js" integrity="sha256-hrHo&#43;BnuLZCZp4PlC0nf8kKCVF/EB3OGH5EmuSFTLkw=" crossorigin="anonymous"></script>
+
+
+<script type="text/javascript" src="https://mjpitz.com/js/jquery.min.86b1e8f819ee2d9099a783e50b49dff24282545fc40773861f9126b921532e4c.js" integrity="sha256-hrHo&#43;BnuLZCZp4PlC0nf8kKCVF/EB3OGH5EmuSFTLkw=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://mjpitz.com/js/medium-zoom.min.92f21c856129f84aeb719459b3e6ac621a3032fd7b180a18c04e1d12083f8aba.js" integrity="sha256-kvIchWEp&#43;ErrcZRZs&#43;asYhowMv17GAoYwE4dEgg/iro=" crossorigin="anonymous"></script>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-39314903-5', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</html>
+</body>
+
+</html>

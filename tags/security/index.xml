@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>open-source on Mya Pitzeruse</title>
-    <link>https://mjpitz.com/tags/open-source/</link>
-    <description>Recent content in open-source on Mya Pitzeruse</description>
+    <title>security on Mya Pitzeruse</title>
+    <link>https://mjpitz.com/tags/security/</link>
+    <description>Recent content in security on Mya Pitzeruse</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 03 Dec 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://mjpitz.com/tags/open-source/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://mjpitz.com/tags/security/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -29,31 +29,6 @@ What if Renovate could automatically manage something like a GitOps repository?
 This means organizations would no longer need to tediously query for updates.
 Instead, they&amp;rsquo;d automatically receive a pull request when a new version of an application became available.
 In this blog post, I demonstrate how to set this up for an &lt;a href=&#34;https://github.com/argoproj/argo-cd/&#34;&gt;ArgoCD&lt;/a&gt; GitOps repository.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Learning Jsonnet</title>
-      <link>https://mjpitz.com/blog/2020/10/12/learning-jsonnet/</link>
-      <pubDate>Mon, 12 Oct 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://mjpitz.com/blog/2020/10/12/learning-jsonnet/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://jsonnet.org/&#34;&gt;Jsonnet&lt;/a&gt; is a powerful data templating language.
-It extends JSON with variables, conditionals, functions, imports and more.
-As an engineer who never touched the technology before, I often struggled to understand it.
-In this post, I share my experience learning Jsonnet and my thoughts behind developing a starter.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>SLOs for Open Source</title>
-      <link>https://mjpitz.com/blog/2020/09/30/slos-for-oss/</link>
-      <pubDate>Wed, 30 Sep 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://mjpitz.com/blog/2020/09/30/slos-for-oss/</guid>
-      <description>&lt;p&gt;Open source software has been used to build organizations for years.
-From libraries to complex infrastructure systems, the open source landscape provides a vast sea of solutions.
-For larger infrastructure projects, organizations are asking maintainers for &lt;a href=&#34;https://en.wikipedia.org/wiki/Service-level_objective&#34;&gt;service level objectives&lt;/a&gt; (SLOs).
-Many do not publish or provide any, even when projects come from organizations who likely had SLOs in place.
-In this post, I walk through my process for developing indicators and objectives for open source projects.&lt;/p&gt;</description>
     </item>
     
   </channel>

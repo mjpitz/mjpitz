@@ -4,12 +4,62 @@
   
   <url>
     <loc>https://mjpitz.com/</loc>
-    <lastmod>2020-11-30T00:00:00+00:00</lastmod>
+    <lastmod>2020-12-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/tags/argocd/</loc>
+    <lastmod>2020-12-03T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://mjpitz.com/blog/</loc>
-    <lastmod>2020-11-30T00:00:00+00:00</lastmod>
+    <lastmod>2020-12-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/tags/continuous-delivery/</loc>
+    <lastmod>2020-12-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/tags/gitops/</loc>
+    <lastmod>2020-12-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/tags/k8s/</loc>
+    <lastmod>2020-12-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/tags/kubernetes/</loc>
+    <lastmod>2020-12-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/tags/open-source/</loc>
+    <lastmod>2020-12-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/tags/renovate/</loc>
+    <lastmod>2020-12-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/blog/2020/12/03/renovate-your-gitops/</loc>
+    <lastmod>2020-12-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/tags/security/</loc>
+    <lastmod>2020-12-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mjpitz.com/tags/</loc>
+    <lastmod>2020-12-03T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -33,11 +83,6 @@
   </url>
   
   <url>
-    <loc>https://mjpitz.com/tags/</loc>
-    <lastmod>2020-11-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://mjpitz.com/tags/transgender/</loc>
     <lastmod>2020-11-30T00:00:00+00:00</lastmod>
   </url>
@@ -54,11 +99,6 @@
   
   <url>
     <loc>https://mjpitz.com/tags/k3s/</loc>
-    <lastmod>2020-11-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mjpitz.com/tags/kubernetes/</loc>
     <lastmod>2020-11-23T00:00:00+00:00</lastmod>
   </url>
   
@@ -94,11 +134,6 @@
   
   <url>
     <loc>https://mjpitz.com/tags/ingress-controller/</loc>
-    <lastmod>2020-11-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mjpitz.com/tags/k8s/</loc>
     <lastmod>2020-11-10T00:00:00+00:00</lastmod>
   </url>
   
@@ -229,11 +264,6 @@
   
   <url>
     <loc>https://mjpitz.com/blog/2020/10/12/learning-jsonnet/</loc>
-    <lastmod>2020-10-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mjpitz.com/tags/open-source/</loc>
     <lastmod>2020-10-12T00:00:00+00:00</lastmod>
   </url>
   
@@ -374,11 +404,6 @@
   
   <url>
     <loc>https://mjpitz.com/tags/fluxcd/</loc>
-    <lastmod>2020-08-03T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mjpitz.com/tags/gitops/</loc>
     <lastmod>2020-08-03T00:00:00+00:00</lastmod>
   </url>
   
