@@ -77,8 +77,8 @@ Before setting up a project, here are a few things you'll need:
 * [kind][] - We will be spinning up a cluster in docker for this demonstration.
 * Helm v3 - Used to perform the initial deployment of ArgoCD.
 
-[Docker]: #tbd
-[kind]: #tbd
+[Docker]: https://www.docker.com/
+[kind]: https://kind.sigs.k8s.io/
 
 To help reduce the setup, I created a template on GitHub.
 You can either fork the template, or use it to create your own project and follow along.
