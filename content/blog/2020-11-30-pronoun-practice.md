@@ -3,10 +3,10 @@ slug: pronoun-practice
 date: 2020-11-30
 title: "Pronoun Practice"
 tags:
-- management
-- di&b
-- pronouns
-- transgender
+  - management
+  - di&b
+  - pronouns
+  - transgender
 ---
 
 Historically, my blog has largely been focused on technology.
