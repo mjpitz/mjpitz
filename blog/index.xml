@@ -26,8 +26,8 @@ When Renovate discovers an update, it submits a pull request with the newer vers
 &lt;p&gt;Recently, I noticed Renovate submit pull requests for dependencies in my &lt;a href=&#34;https://helm.sh/&#34;&gt;Helm&lt;/a&gt; v3 charts.
 This gave me an idea.
 What if Renovate could automatically manage something like a GitOps repository?
-This means organizations would no longer need to tediously query for updates.
-Instead, they&amp;rsquo;d automatically receive a pull request when a new version of an application became available.
+This means organizations would no longer need to tediously query for newer versions of applications.
+Instead, they&amp;rsquo;d automatically receive a pull request when an update becomes available.
 In this blog post, I demonstrate how to set this up for an &lt;a href=&#34;https://github.com/argoproj/argo-cd/&#34;&gt;ArgoCD&lt;/a&gt; GitOps repository.&lt;/p&gt;</description>
     </item>
     
