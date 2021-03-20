@@ -1,8 +1,11 @@
+export PATH := $(shell pwd)/bin:$(PATH)
+export SHELL := env PATH=$(PATH) /bin/bash
+
 clean:
 	rm -rf bin/ node_modules/ public/ resources/_gen/ tmp/
 
-build-deps:
-	curl https://raw.githubusercontent.com/wjdp/htmltest/master/godownloader.sh | bash
+bin: bin.yaml
+	bin-vendor
 
 deps: build-deps
 	git submodule update --init --recursive
@@ -12,6 +15,5 @@ build:
 	cp public/index.xml public/feed.xml
 
 test:
-	bin/htmltest
-	#bin/htmltest --conf .htmltest.external.yml
-
+	htmltest
+	# htmltest --conf .htmltest.external.yml

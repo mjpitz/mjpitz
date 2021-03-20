@@ -1,0 +1,30 @@
+name: mjpitz/mjpitz.com
+
+tools:
+  - name: hugo
+    version: v0.81.0
+    github_release:
+      repo: gohugoio/hugo
+      format: hugo_extended_{{ .Version | trimPrefix "v" }}_{{ .OS }}-{{ .Arch }}.tar.gz
+      windows: hugo_extended_{{ .Version | trimPrefix "v" }}_{{ .OS }}-{{ .Arch }}.zip
+      replacements:
+        amd64: 64bit
+        386: 32bit
+        arm: ARM
+        arm64: ARM64
+        darwin: macOS
+        linux: Linux
+        windows: Windows
+        openbsd: OpenBSD
+        netbsd: NetBSD
+        freebsd: FreeBSD
+        dragonfly: DragonFlyBSD
+
+  - name: htmltest
+    version: v0.14.0
+    github_release:
+      repo: wjdp/htmltest
+      format: htmltest_{{ .Version | trimPrefix "v" }}_{{ .OS }}_{{ .Arch }}.tar.gz
+      windows: htmltest_{{ .Version | trimPrefix "v" }}_{{ .OS }}_{{ .Arch }}.zip
+      replacements:
+        darwin: macos
