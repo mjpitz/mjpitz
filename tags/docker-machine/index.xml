@@ -6,11 +6,7 @@
     <description>Recent content in docker-machine on Mya Pitzeruse</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 12 Apr 2019 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://mjpitz.com/tags/docker-machine/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Fri, 12 Apr 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://mjpitz.com/tags/docker-machine/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Raspberry Pi Cluster Setup</title>
       <link>https://mjpitz.com/blog/2019/04/12/rpi-cluster-setup/</link>

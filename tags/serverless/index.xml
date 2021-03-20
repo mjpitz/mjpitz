@@ -6,11 +6,7 @@
     <description>Recent content in serverless on Mya Pitzeruse</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 28 Oct 2018 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://mjpitz.com/tags/serverless/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 28 Oct 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://mjpitz.com/tags/serverless/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>AWS Lambda - Handler Lifetime</title>
       <link>https://mjpitz.com/blog/2018/10/28/lambda-handler-lifetime/</link>

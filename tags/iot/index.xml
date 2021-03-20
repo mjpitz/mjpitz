@@ -6,11 +6,7 @@
     <description>Recent content in iot on Mya Pitzeruse</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 20 Apr 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://mjpitz.com/tags/iot/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 20 Apr 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://mjpitz.com/tags/iot/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Home Lab: 1 year later</title>
       <link>https://mjpitz.com/blog/2020/04/20/k3s-rpi-year1/</link>

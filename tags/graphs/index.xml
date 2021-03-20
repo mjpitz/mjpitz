@@ -6,11 +6,7 @@
     <description>Recent content in graphs on Mya Pitzeruse</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 06 Aug 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://mjpitz.com/tags/graphs/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 06 Aug 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://mjpitz.com/tags/graphs/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Implementing Breadth-first Search Over gRPC</title>
       <link>https://mjpitz.com/blog/2020/08/06/bfs-over-grpc-stream/</link>

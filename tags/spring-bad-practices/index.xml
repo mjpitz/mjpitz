@@ -6,11 +6,7 @@
     <description>Recent content in spring-bad-practices on Mya Pitzeruse</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 01 Apr 2017 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://mjpitz.com/tags/spring-bad-practices/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 01 Apr 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://mjpitz.com/tags/spring-bad-practices/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Component Scanning Library Code</title>
       <link>https://mjpitz.com/blog/2017/04/01/spring-component-scanning/</link>
