@@ -41,8 +41,8 @@ It enables developers to manage their infrastructure and applications with a dec
 Because workloads must be declared, it provides transparency around what versions of applications are running.
 
 Recently, GitOps has become more popular within the [Kubernetes][] community.
-We've seen new tooling to support GitOps like FluxCD, ArgoCD, and GitOps toolkit.
-While it GitOps has solved many problems for organizations, it's also led to some challenges.
+We've seen new tooling like FluxCD, ArgoCD, and GitOps toolkit.
+While it has solved many problems for organizations, it's also led to some challenges.
 As our ability to deploy and manage software has become easier, we've also increased the number of things we need to manage.
 Staying on top of all the recent versions of these systems can sometimes feel like a full time job.  
 
