@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light"><head>
+    <title> Mya Pitzeruse | Exploring Redis High Availability </title>
+    <meta charset="utf-8"><meta name="generator" content="Hugo 0.81.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="description" content="Thoughts, ramblings, and learnings from my adventures in code.">
+    
+    <link rel="stylesheet" href="https://mjpitz.com/css/style.min.707aa4670276c49b9db4a4ed6b89419c0ed1b4346e2104f50a364aa767d77773.css" integrity="sha256-cHqkZwJ2xJudtKTta4lBnA7RtDRuIQT1CjZKp2fXd3M=" crossorigin="anonymous" type="text/css">
+    <link rel="stylesheet" href="https://mjpitz.com/statics/css/overrides.css" type="text/css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    
+    <link rel="shortcut icon" href="https://mjpitz.com/statics/img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://mjpitz.com/statics/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://mjpitz.com/statics/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://mjpitz.com/statics/img/favicon-16x16.png">
+    <link rel="canonical" href="https://mjpitz.com/blog/2021/04/22/ha-redis/">
+    
+    
+    <script type="text/javascript" src="https://mjpitz.com/js/anatole-header.min.3252f25a22b06e9062229fa50b222e04393830ad8260421079b1d55ace7605b3.js" integrity="sha256-MlLyWiKwbpBiIp&#43;lCyIuBDk4MK2CYEIQebHVWs52BbM=" crossorigin="anonymous"></script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Exploring Redis High Availability"/>
+<meta name="twitter:description" content="Recently, I&rsquo;ve found myself using Redis for more of the projects that I work on.
+Redis can be used in a variety of ways.
+It provides functionality for queueing, set operations, bitmaps, streams, and so much more.
+Yet, most of my experience with Redis has been as a best-effort cache.
+Since it&rsquo;s become a staple in my development, I figured it would be good to brush up on its operations.
+In this post, I dive into the variety of ways Redis can be deployed.
+I&rsquo;ll cover the benefits, tradeoffs, and even some uses for each deployment.
+Finally, I&rsquo;ll describe the deployment that I recently put together."/>
+
+</head>
+<body><div class="sidebar animated fadeInDown">
+    <div class="logo-title">
+      <div class="title">
+        <img src="https://mjpitz.com/statics/img/mjpitz.jpeg" alt="profile picture">
+        <h3 title=""><a href="/">Mya Pitzeruse</a></h3>
+        <div class="description">
+          <p>Thoughts, ramblings, and learnings from my adventures in code.</p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
+        
+        <li>
+        <a href="https://github.com/mjpitz" rel="me" aria-label="GitHub">
+          <i class="fa fa-2x fa-github" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+        <li>
+        <a href="https://twitter.com/myajpitz" rel="me" aria-label="Twitter">
+          <i class="fa fa-2x fa-twitter" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+        <li>
+        <a href="https://www.linkedin.com/in/mjpitz/" rel="me" aria-label="LinkedIn">
+          <i class="fa fa-2x fa-linkedin" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+        <li>
+        <a href="/index.xml" rel="me" aria-label="Feed">
+          <i class="fa fa-2x fa-rss" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+    </ul>
+    <div class="footer">
+        <div class="by_farbox">&copy; Mya Pitzeruse 2021 </div>
+      </div>
+    </div>
+</div><div class="main">
+            <div class="page-top animated fadeInDown">
+    <ul class="nav">
+        
+        
+        
+        <li><a  href="/" title="">Home</a></li>
+        
+        
+        <li><a  href="/hire-me/" title="">Hire Me</a></li>
+        
+        
+        <li><a  href="/media/" title="">Media</a></li>
+        
+        
+        <li><a  href="/blog/" title="">Blog</a></li>
+        
+    </ul>
+    <div class="themeswitcher">
+        <a class="theme-switch" title="Switch Theme">
+            <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+        </a>
+    </div>
+</div>
+
+            <div class="autopagerize_page_element">
+                <div class="content">
+<div class="post animated fadeInDown">
+    <div class="post-content">
+
+      <div class="post-title">
+        <h3>Exploring Redis High Availability</h3>
+        
+        <div class="info">
+          <i class="fa fa-sun-o"></i><span class="date">Thu, Apr 22, 2021</span>
+          <i class="fa fa-clock-o"></i><span class="reading-time">7-minute read</span>
+        </div>
+        
+        </div>
+
+    <p>Recently, I&rsquo;ve found myself using <a href="https://redis.io/">Redis</a> for more of the projects that I work on.
+Redis can be used in a variety of ways.
+It provides functionality for queueing, set operations, bitmaps, streams, and so much more.
+Yet, most of my experience with Redis has been as a best-effort cache.
+Since it&rsquo;s become a staple in my development, I figured it would be good to brush up on its operations.</p>
+<p>In this post, I dive into the variety of ways Redis can be deployed.
+I&rsquo;ll cover the benefits, tradeoffs, and even some uses for each deployment.
+Finally, I&rsquo;ll describe the deployment that I recently put together.</p>
+<h2 id="what-is-redis">What is Redis?</h2>
+<p>Redis is an open-source, in-memory database licensed under the BSD license.
+It has built-in replication, common eviction strategies, and even different levels of on-disk persistence.
+Redis also supports <a href="https://redis.io/topics/modules-intro">modules</a>, which makes it easy to plug in new functionality and interact with native data types.
+For example, the <a href="http://redisgraph.io/">RedisGraph</a> module extends Redis by providing <a href="https://en.wikipedia.org/wiki/Graph_database">graph database</a> capabilities.
+Due to the variety of data structures and its flexibility, it&rsquo;s no wonder Redis has become as <a href="https://www.cncf.io/blog/2020/11/18/cncf-end-user-technology-radar-database-storage-november-2020/">popular</a> as it has.</p>
+<h2 id="how-can-redis-be-deployed">How can Redis be deployed?</h2>
+<p>One of the big benefits to Redis is that it can be deployed in a variety of ways.
+We won&rsquo;t dive into every deployment, but we will focus on the common patterns.</p>
+<h3 id="replicated">Replicated</h3>
+<p>The easiest deployment of Redis is a replicated architecture.
+In this deployment, Redis has a single, primary write point called a &ldquo;master&rdquo;.
+Any data written to this primary propagates to replicas asynchronously.
+The diagram below depicts how an application may interact with this deployment.</p>
+<p><img src="/statics/img/2021-04-22-redis-replicated.jpg" alt="replicated diagram"></p>
+<p>While the deployment is rather straightforward, there are a few things that we need to keep in mind.
+First, applications need to be able to track read-only and read-write connections.
+They could use a single connection, but that likely means that the primary handles every request.
+By using a single connection, your application makes no use of the replicas that you have in place.
+Second, this deployment has a single point of failure, the primary node.
+Should the primary node fail, applications can no longer write data to Redis.</p>
+<p>This deployment works well for offline population.
+For example, maybe you have a background task that&rsquo;s responsible for populating the cache.
+Meanwhile, your web service knows about the replicas and actively reads from them.
+Should the primary crash, your background process can simply wait for it to return.</p>
+<h3 id="using-sentinel">Using Sentinel</h3>
+<p>To help alleviate the single primary node in the previous deployment, Redis provides Sentinel.
+Sentinel is a separate process that determines when a given primary node is no longer available.
+It does this by using a quorum to vote on member availability.
+When a member becomes unavailable, Sentinel is able to elect a new primary for the cluster.
+The diagram below depicts how an application may interact with this deployment.</p>
+<p><img src="/statics/img/2021-04-22-redis-sentinel.jpg" alt="sentinel diagram"></p>
+<p>Similar to the last deployment, this approach has some downsides.
+When a client wants to write data to a Sentinel cluster, they first need to consult the Sentinel process.
+Sentinel reports to callers who the current primary in the cluster is.
+Then, clients will call the primary to write the data.
+As a result, clients need to be aware they are talking to a Sentinel cluster.
+This often requires additional configuration that few projects support.</p>
+<p>Another risk to this deployment is a potential split-brain state during upgrades or node failures.
+A split-brain state happens when two nodes cannot come to an agreement.
+This case is less likely if you manage Sentinel deployments separately from Redis.
+If you run them in the same pod or on the same host, the likelihood of this scenario increases.
+To illustrate let us consider the above example.</p>
+<ol>
+<li>Suppose we upgrade our cluster and <code>redis-0</code> is taken down.</li>
+<li>Sentinels detect that the pod is no longer available and start figuring out a new primary.</li>
+<li>The sentinel for <code>redis-1</code> votes that <code>redis-2</code> should be the new primary.</li>
+<li>The sentinel for <code>redis-2</code> votes that <code>redis-1</code> should be the new primary.</li>
+<li>With a quorum of <code>2</code>, the instances are unable to come to consensus.</li>
+<li>Steps 2 through 5 repeat until the instances reach a quorum.</li>
+</ol>
+<p>Unfortunately, this is how <a href="https://github.com/bitnami/charts">Bitnami</a> configures the deployment of Sentinel in their <code>redis</code> Helm chart.
+While split-brains <em>can</em> occur, they may not be as common as you may think.
+Still, it&rsquo;s something you need to account for in your deployment.</p>
+<h3 id="redis-cluster">Redis Cluster</h3>
+<p>Redis Cluster is popular amongst those using Redis for a large amount of data.
+It shards data across the instances in the cluster, thus reducing the resource requirements of each individual node.
+Redis does this by hashing the provided key into a slot.
+Slots are distributed across the primaries in the cluster, often in chunks.
+The diagram below illustrates how an application might interact with members of a Redis Cluster.</p>
+<p><img src="/statics/img/2021-04-22-redis-cluster.jpg" alt="cluster diagram"></p>
+<p>Similar to the Sentinel deployment, applications need to be aware they are speaking to a Redis Cluster.
+This is due to how Redis Cluster handles it&rsquo;s sharding.
+Clients are responsible for hashing keys to determine which slot they write to.
+Then, clients write to the instance responsible for the associated slot.
+This will allow clients to perform a subset of operations, even in the event of a partial cluster outage.</p>
+<h3 id="clustering-with-envoy">Clustering with Envoy</h3>
+<p>An alternative to using Redis Cluster would be to cluster using Envoy.
+<a href="https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/other_protocols/redis">Envoy</a> is a well-known, well-supported, network proxy open-sourced by Lyft.
+It supports many protocols including HTTP, gRPC, MongoDB, Redis, and more.
+When using Envoy to cluster instances, envoy handles partitioning the keyspace on behalf of Redis.
+This means the underlying Redis instances <em>shouldn&rsquo;t</em> have clustering enabled.</p>
+<p><img src="/statics/img/2021-04-22-redis-envoy.jpg" alt="envoy diagram"></p>
+<p>In this deployment, Envoy favors availability and partition tolerance over consistency.
+This makes it ideal for a best-effort cache, but not great for more stateful systems.
+You might consider setting an LRU eviction policy for redis to ensure stale, unused data is pruned first.
+One nice thing about this deployment is that clients can speak to any <code>envoy</code> instance in the cluster.
+This drastically simplifies the logic on the callers end when compared to Redis Cluster.</p>
+<h2 id="my-deployment">My deployment</h2>
+<p>While these approaches can work great, I often found myself wanting something a little different.
+Ideally, I wanted a deployment that:</p>
+<ul>
+<li>Improves the availability of the replicated deployment</li>
+<li>Improves the stability of the sentinel deployment</li>
+<li>Maintains the simplicity of the replicated deployment</li>
+<li>Maintains the consistency of the Redis deployments</li>
+</ul>
+<p>Such a deployment would improve task and queue based systems like <a href="https://docs.celeryproject.org/en/stable/index.html">Celery</a> in python or <a href="https://github.com/RichardKnop/machinery/">Machinery</a> in go.
+Payloads in these systems tend to be small, relatively short-lived, and/or backed up else where.
+This means we rarely need to shard data across nodes.</p>
+<p>As I contemplated how to do this, I kept my runtime environment in mind.
+Kubernetes provides many capabilities to engineers.
+For example, adding leader election to a system is relatively easy to do in Go.
+The <code>client-go</code> library provides a pre-built <a href="https://github.com/kubernetes/client-go/tree/master/tools/leaderelection"><code>leaderelection</code></a> package.
+This can automate watching a <code>Lease</code> for changes and periodically attempting to claim leadership.
+This had given me an idea for a sidecar.</p>
+<ol>
+<li>The sidecar would use the Lease API to determine leadership in the cluster.</li>
+<li>When an election occurs, the sidecar is responsible for updating the topology of the Redis cluster.
+<ol>
+<li>Each sidecar acts independently, removing the need for coordination beyond the initial election.</li>
+<li>Each sidecar takes appropriate steps to handle the change in leadership gracefully.
+<ul>
+<li>The current leader pauses writes and waits for the newly elected leader to catch up.</li>
+<li>The newly elected leader waits for syncs to complete before attempting to promote itself to leader.</li>
+<li>All other followers swap over to replicating from the new leader.</li>
+</ul>
+</li>
+<li>Once the topology of the cluster has been updated, the sidecar of the newly elected updates a Kubernetes <code>Endpoint</code>.
+<ul>
+<li>This Endpoint can be used by clients to guarantee requests get sent to the leader.</li>
+<li>A separate service can be used to allow reads to any node in the cluster.</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<p>Such a system can be seen below.</p>
+<p><img src="/statics/img/2021-04-22-redis-mya.jpg" alt="mya diagram"></p>
+<p>A nice thing about this deployment is that the mitigation techniques are similar to that of the sentinel deployment.
+While we aren&rsquo;t using the sentinel to perform the election process, we are doing more or less the same thing.
+A benefit to this deployment over sentinel is that we remove the call to discover the current leader.
+Instead, clients get a stable address they can dial and always reach a leader, even during rolling upgrades.</p>
+<p>In the few tests I ran, I had seen fail over times of 6 to 10 seconds.
+Definitely still working out some tuning, but all in all I&rsquo;m satisfied with how it came out.
+For now, I&rsquo;m going to keep the project closed source.
+If you&rsquo;re interested in chatting through this a bit more feel free to reach out.</p>
+<p>Any way, thanks for checking in.
+I know it&rsquo;s been a while.
+I hope you learned something while you were here.
+Thanks for reading!</p>
+    </div>
+    <div class="post-footer">
+      <div class="info">
+        
+        
+    <span class="separator"><a class="tag" href="/tags/redis/">redis</a><a class="tag" href="/tags/high-availability/">high-availability</a><a class="tag" href="/tags/ha/">ha</a></span>
+
+      </div>
+    </div>
+
+    
+</div>
+
+
+                </div>
+            </div>
+        </div>
+</body>
+
+
+
+<script type="text/javascript" src="https://mjpitz.com/js/jquery.min.64d0083866906099f942140bc1c5cba4b1bf65783c52e4a63c5c46bf9dbc41f4.js" integrity="sha256-ZNAIOGaQYJn5QhQLwcXLpLG/ZXg8UuSmPFxGv528QfQ=" crossorigin="anonymous"></script>
+
+
+<script type="text/javascript" src="https://mjpitz.com/js/jquery.min.64d0083866906099f942140bc1c5cba4b1bf65783c52e4a63c5c46bf9dbc41f4.js" integrity="sha256-ZNAIOGaQYJn5QhQLwcXLpLG/ZXg8UuSmPFxGv528QfQ=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://mjpitz.com/js/medium-zoom.min.2d6fd0be87fa98f0c9b4dc2536b312bbca48757f584f6ea1f394abc9bcc38fbc.js" integrity="sha256-LW/Qvof6mPDJtNwlNrMSu8pIdX9YT26h85SrybzDj7w=" crossorigin="anonymous"></script>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-39314903-5', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</html>
+</body>
+
+</html>

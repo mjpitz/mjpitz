@@ -98,6 +98,30 @@
   
   <div class="post animated fadeInDown">
     <div class="post-title">
+      <h3><a href="/blog/2019/01/30/gitfs-a-fuse-file-system/">gitfs - A FUSE File System</a>
+      </h3>
+    </div>
+    <div class="post-content"><div class="p_part"><p><p>During my first employment at Indeed, I cloned every repository down to my machine.
+This approach worked for a while when the number of repositories was small.
+As the organization has grown, the solution quickly became unmanageable.
+While many people do not work across every repository, many are familiar with the pain of setting up a new machine.
+I wrote <a href="https://github.com/mjpitz/gitfs">gitfs</a> for a few reasons.
+First, to reduce the time spent setting up a new development environment.
+Second, to remove the need to figure out where all my projects need to be cloned.
+In this post, I discuss some challenges faced and lessons learned in writing my first file system.</p></p></div>
+  
+  <div class="p_part"><p></p></div></div>
+    <div class="post-footer">
+      <div class="meta">
+        <div class="info"><i class="fa fa-sun-o"></i><span class="date">Wed, Jan 30, 2019</span>
+          <a class="tag" href="/tags/golang/">golang</a><a class="tag" href="/tags/fuse/">fuse</a>       
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="post animated fadeInDown">
+    <div class="post-title">
       <h3><a href="/blog/2018/10/31/past-project-reflections-javascript/">Reflecting on Past Projects - JavaScript</a>
       </h3>
     </div>
@@ -287,30 +311,6 @@ In this blog post, I will cover some of the basics that allowed me to enable thi
       <div class="meta">
         <div class="info"><i class="fa fa-sun-o"></i><span class="date">Sun, May 8, 2016</span>
           <a class="tag" href="/tags/docker/">docker</a>       
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <div class="post animated fadeInDown">
-    <div class="post-title">
-      <h3><a href="/blog/2015/12/05/introducing-laas/">Introducing LAAS</a>
-      </h3>
-    </div>
-    <div class="post-content"><div class="p_part"><p><p><a href="https://github.com/jpitz/laas">LAAS</a> is an abbreviation for <a href="http://leveldb.org/">LevelDB</a> as a service.
-<a href="http://leveldb.org/">LevelDB</a> is an implementation of a <a href="https://en.wikipedia.org/wiki/Log-structured_merge-tree">log structured merge tree</a> (LSMTree) provided by Google.
-This data structure aimed at providing a high write throughput.
-When attempting to use <a href="http://leveldb.org/">LevelDB</a>, I found it difficult to track down supported libraries in different languages.
-Additionally, the fact that it&rsquo;s labeled as a database and doesn&rsquo;t provide a service was troublesome.
-I wrote <a href="https://github.com/jpitz/laas">LAAS</a> to make the adoption of <a href="http://leveldb.org/">LevelDB</a> easy for any language.
-It does this by introducing a RESTful API to the underlying functionality.
-HTTP request libraries are a dime a dozen, which drove the choice for a RESTful implementation.</p></p></div>
-  
-  <div class="p_part"><p></p></div></div>
-    <div class="post-footer">
-      <div class="meta">
-        <div class="info"><i class="fa fa-sun-o"></i><span class="date">Sat, Dec 5, 2015</span>
-                 
         </div>
       </div>
     </div>

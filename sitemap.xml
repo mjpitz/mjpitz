@@ -3,12 +3,27 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://mjpitz.com/</loc>
-    <lastmod>2020-12-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/argocd/</loc>
-    <lastmod>2020-12-03T00:00:00+00:00</lastmod>
+    <lastmod>2021-04-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://mjpitz.com/blog/</loc>
+    <lastmod>2021-04-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://mjpitz.com/blog/2021/04/22/ha-redis/</loc>
+    <lastmod>2021-04-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://mjpitz.com/tags/ha/</loc>
+    <lastmod>2021-04-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://mjpitz.com/tags/high-availability/</loc>
+    <lastmod>2021-04-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://mjpitz.com/tags/redis/</loc>
+    <lastmod>2021-04-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://mjpitz.com/tags/</loc>
+    <lastmod>2021-04-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://mjpitz.com/tags/argocd/</loc>
     <lastmod>2020-12-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://mjpitz.com/tags/continuous-delivery/</loc>
@@ -33,9 +48,6 @@
     <lastmod>2020-12-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://mjpitz.com/tags/security/</loc>
-    <lastmod>2020-12-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/</loc>
     <lastmod>2020-12-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://mjpitz.com/tags/dib/</loc>
