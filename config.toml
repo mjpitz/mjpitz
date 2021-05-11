@@ -69,12 +69,6 @@ url = "/index.xml"
   url = "/"
 
   [[menu.main]]
-  name = "Hire Me"
-  identifier = "hire-me"
-  weight = 200
-  url = "/hire-me/"
-
-  [[menu.main]]
   name = "Media"
   identifier = "media"
   weight = 400
