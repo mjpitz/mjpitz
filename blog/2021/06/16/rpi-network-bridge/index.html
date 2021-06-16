@@ -21,18 +21,22 @@
 <meta name="twitter:description" content="It doesn&rsquo;t happen a lot, but every so often I come across a device that isn&rsquo;t wi-fi supported.
 This latest case was my security system.
 On one hand, I like that my cameras aren&rsquo;t taking up bandwidth on my home network and that the system is largely a closed loop.
-On the other hand, not having access to my security system without having it tethered into the router is a bit of a pain.
+On the other, not having access to my security system without having it tethered into the router is a bit of a pain.
 For one, my home networking setup isn&rsquo;t that elegant (yet).
 Second, the last thing I want to do is have more stuff out in the open, co-located with my router.
 So I decided to get a little creative.
 Sure, I could&rsquo;ve bought a wi-fi adapter, but where&rsquo;s the fun in that.
 On top of that, I had some other reasons:
 
-I didn&rsquo;t know if an adapter would work for this system.
-I eventually want to do some real-time processing of video feed data and didn&rsquo;t want to stream that over the network.
-I already have more than a dozen pis around (I wound up using a 3b&#43; for this).
+I didn&rsquo;t want to spend money on an adapter for this system.
+Even though they aren&rsquo;t that expensive, I would likely need to wait for one to come in which would probably happen after I left for my trip.
+Eventually, I want to do some real-time video processing and having a device closer to the box is promising.
+This would let me process data straight from the box rather than needing to transmit all that information over wi-fi to another machine.
+Finally, I already have more than a dozen pis around.
+For the first version of this, I wound up using a 3b&#43;.
+I would likely upgrade this later on when I add the real-time processing.
 
-Today, I describe how I set up and configured a Raspberry Pi to act as a WAN client for connected devices."/>
+Today, I show how I set up and configured a Raspberry Pi to act as a WAN client for a connected device."/>
 
 </head>
 <body><div class="sidebar animated fadeInDown">
@@ -120,20 +124,24 @@ Today, I describe how I set up and configured a Raspberry Pi to act as a WAN cli
     <p>It doesn&rsquo;t happen a lot, but every so often I come across a device that isn&rsquo;t wi-fi supported.
 This latest case was my security system.
 On one hand, I like that my cameras aren&rsquo;t taking up bandwidth on my home network and that the system is largely a closed loop.
-On the other hand, not having access to my security system without having it tethered into the router is a bit of a pain.
+On the other, not having access to my security system without having it tethered into the router is a bit of a pain.
 For one, my home networking setup isn&rsquo;t that elegant (yet).
 Second, the last thing I want to do is have more stuff out in the open, co-located with my router.
 So I decided to get a little creative.
 Sure, I could&rsquo;ve bought a wi-fi adapter, but where&rsquo;s the fun in that.
 On top of that, I had some other reasons:</p>
 <ol>
-<li>I didn&rsquo;t know if an adapter would work for this system.</li>
-<li>I eventually want to do some real-time processing of video feed data and didn&rsquo;t want to stream that over the network.</li>
-<li>I already have more than a dozen pis around (I wound up using a 3b+ for this).</li>
+<li>I didn&rsquo;t want to spend money on an adapter for this system.
+Even though they aren&rsquo;t that expensive, I would likely need to wait for one to come in which would probably happen <em>after</em> I left for my trip.</li>
+<li>Eventually, I want to do some real-time video processing and having a device closer to the box is promising.
+This would let me process data straight from the box rather than needing to transmit all that information over wi-fi to another machine.</li>
+<li>Finally, I already have more than a dozen pis around.
+For the first version of this, I wound up using a 3b+.
+I would likely upgrade this later on when I add the real-time processing.</li>
 </ol>
-<p>Today, I describe how I set up and configured a Raspberry Pi to act as a WAN client for connected devices.</p>
+<p>Today, I show how I set up and configured a Raspberry Pi to act as a WAN client for a connected device.</p>
 <p>There are a handful of similar guides out there, but finding one for this specific direction / configuration was difficult.
-Similar guides I used as reference:</p>
+Here are some similar guides I used as reference:</p>
 <ul>
 <li><a href="https://www.raspberrypi.org/documentation/configuration/wireless/access-point-bridged.md">Setting up a Raspberry Pi as a bridged wireless access point</a></li>
 <li><a href="https://www.raspberrypi.org/documentation/configuration/wireless/access-point-routed.md">Setting up a Raspberry Pi as a routed wireless access point</a></li>
@@ -143,10 +151,10 @@ Similar guides I used as reference:</p>
 <p>Of these guides, &ldquo;Raspberry Pi 4 Model B WiFi Ethernet Bridge&rdquo; is the closest.
 Unlike many of these guides, I run an Ubuntu arm64 image instead of Raspbian OS.
 The process is largely the same, but some tooling is different.
-For example, we need to work with netplan (which can be a pain depending on what you&rsquo;re trying to do).
-In addition to that, we have a slightly higher resource footprint, but thats not the biggest concern for what this little one is doing.
-To help provide a little context as to what&rsquo;s going on here, I&rsquo;ve put together this diagram:</p>
-<p><a href="https://mermaid-js.github.io/mermaid-live-editor/edit/#eyJjb2RlIjoiZ3JhcGggVERcbiAgICBjMShDYW1lcmEgMSlcbiAgICBjMihDYW1lcmEgMilcbiAgICBjLihDYW1lcmEgLi4uKVxuICAgIGNuKENhbWVyYSBOKVxuICAgIGh1YihTZWN1cml0eSBIdWIgPGJyPiBldGgwIC0gMTkyLjE2OC4xMC4yKVxuICAgIHBpKFJhc3BiZXJyeSBQaSA8YnI-IHdsYW4wIC0gMTkyLjE2OC40LjMwIDxicj4gZXRoMCAtIDE5Mi4xNjguMTAuMSlcbiAgICBtZShNeWEncyBMYXB0b3AgPGJyPiB3bGFuMCAtIDE5Mi4xNjguNC4xMClcbiAgICByb3V0ZXIoV2ktZmkgUm91dGVyKVxuXG4gICAgcm91dGVyIC0uLXx3aS1maXwgbWVcbiAgICByb3V0ZXIgLS4tfHdpLWZpfCBwaVxuXG4gICAgcGkgLS0tfGV0aGVybmV8IGh1YlxuICBcbiAgICBodWIgLS0tIGMxXG4gICAgaHViIC0tLSBjMlxuICAgIGh1YiAtLS0gYy5cbiAgICBodWIgLS0tIGNuXG4iLCJtZXJtYWlkIjoie1xuICBcInRoZW1lXCI6IFwiZGVmYXVsdFwiXG59IiwidXBkYXRlRWRpdG9yIjpmYWxzZSwiYXV0b1N5bmMiOnRydWUsInVwZGF0ZURpYWdyYW0iOmZhbHNlfQ"><img src="https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVERcbiAgICBjMShDYW1lcmEgMSlcbiAgICBjMihDYW1lcmEgMilcbiAgICBjLihDYW1lcmEgLi4uKVxuICAgIGNuKENhbWVyYSBOKVxuICAgIGh1YihTZWN1cml0eSBIdWIgPGJyPiBldGgwIC0gMTkyLjE2OC4xMC4yKVxuICAgIHBpKFJhc3BiZXJyeSBQaSA8YnI-IHdsYW4wIC0gMTkyLjE2OC40LjMwIDxicj4gZXRoMCAtIDE5Mi4xNjguMTAuMSlcbiAgICBtZShNeWEncyBMYXB0b3AgPGJyPiB3bGFuMCAtIDE5Mi4xNjguNC4xMClcbiAgICByb3V0ZXIoV2ktZmkgUm91dGVyKVxuXG4gICAgcm91dGVyIC0uLXx3aS1maXwgbWVcbiAgICByb3V0ZXIgLS4tfHdpLWZpfCBwaVxuXG4gICAgcGkgLS0tfGV0aGVybmV0fCBodWJcbiAgXG4gICAgaHViIC0tLSBjMVxuICAgIGh1YiAtLS0gYzJcbiAgICBodWIgLS0tIGMuXG4gICAgaHViIC0tLSBjblxuIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZSwiYXV0b1N5bmMiOnRydWUsInVwZGF0ZURpYWdyYW0iOmZhbHNlfQ" alt=""></a></p>
+For example, Ubuntu works with netplan by default.
+In addition to that, we have a slightly higher resource footprint, but it&rsquo;s not the biggest concern for what this little one is doing.
+To help provide a little context as to what&rsquo;s going on here, I&rsquo;ve put together this diagram (and alt-text):</p>
+<p><a href="https://mermaid-js.github.io/mermaid-live-editor/edit/#eyJjb2RlIjoiZ3JhcGggVERcbiAgICBjMShDYW1lcmEgMSlcbiAgICBjMihDYW1lcmEgMilcbiAgICBjLihDYW1lcmEgLi4uKVxuICAgIGNuKENhbWVyYSBOKVxuICAgIGh1YihTZWN1cml0eSBIdWIgPGJyPiBldGgwIC0gMTkyLjE2OC4xMC4yKVxuICAgIHBpKFJhc3BiZXJyeSBQaSA8YnI-IHdsYW4wIC0gMTkyLjE2OC40LjMwIDxicj4gZXRoMCAtIDE5Mi4xNjguMTAuMSlcbiAgICBtZShNeWEncyBMYXB0b3AgPGJyPiB3bGFuMCAtIDE5Mi4xNjguNC4xMClcbiAgICByb3V0ZXIoV2ktZmkgUm91dGVyKVxuXG4gICAgcm91dGVyIC0uLXx3aS1maXwgbWVcbiAgICByb3V0ZXIgLS4tfHdpLWZpfCBwaVxuXG4gICAgcGkgLS0tfGV0aGVybmV8IGh1YlxuICBcbiAgICBodWIgLS0tIGMxXG4gICAgaHViIC0tLSBjMlxuICAgIGh1YiAtLS0gYy5cbiAgICBodWIgLS0tIGNuXG4iLCJtZXJtYWlkIjoie1xuICBcInRoZW1lXCI6IFwiZGVmYXVsdFwiXG59IiwidXBkYXRlRWRpdG9yIjpmYWxzZSwiYXV0b1N5bmMiOnRydWUsInVwZGF0ZURpYWdyYW0iOmZhbHNlfQ"><img src="https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVERcbiAgICBjMShDYW1lcmEgMSlcbiAgICBjMihDYW1lcmEgMilcbiAgICBjLihDYW1lcmEgLi4uKVxuICAgIGNuKENhbWVyYSBOKVxuICAgIGh1YihTZWN1cml0eSBIdWIgPGJyPiBldGgwIC0gMTkyLjE2OC4xMC4yKVxuICAgIHBpKFJhc3BiZXJyeSBQaSA8YnI-IHdsYW4wIC0gMTkyLjE2OC40LjMwIDxicj4gZXRoMCAtIDE5Mi4xNjguMTAuMSlcbiAgICBtZShNeWEncyBMYXB0b3AgPGJyPiB3bGFuMCAtIDE5Mi4xNjguNC4xMClcbiAgICByb3V0ZXIoV2ktZmkgUm91dGVyKVxuXG4gICAgcm91dGVyIC0uLXx3aS1maXwgbWVcbiAgICByb3V0ZXIgLS4tfHdpLWZpfCBwaVxuXG4gICAgcGkgLS0tfGV0aGVybmV0fCBodWJcbiAgXG4gICAgaHViIC0tLSBjMVxuICAgIGh1YiAtLS0gYzJcbiAgICBodWIgLS0tIGMuXG4gICAgaHViIC0tLSBjblxuIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZSwiYXV0b1N5bmMiOnRydWUsInVwZGF0ZURpYWdyYW0iOmZhbHNlfQ" alt="Alt-text below."></a></p>
 <p>Alt-text for diagram:</p>
 <ul>
 <li>At the top, there&rsquo;s a wi-fi router that&rsquo;s connected to the public internet who&rsquo;s <code>wlan0</code> interface holds the <code>192.168.4.1</code> IP address.</li>
@@ -194,9 +202,7 @@ We will be creating a new <code>/etc/netplan/60-static-eth0.yaml</code> file wit
 </span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">addresses</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">192.168.10.1</span><span style="color:#000;font-weight:bold">]</span><span style="color:#f8f8f8;text-decoration:underline">   
 </span></code></pre></td></tr></table>
 </div>
-</div><p>This overrides the configuration we provided initially and sets up a private, static IP block for connected devices to use.
-It also assigns <code>192.168.10.1</code> as the IP this device on the <code>eth0</code> interface.
-We really only need two/three here, but allocating a block may be useful at some point later on.
+</div><p>This configures the devices <code>eth0</code> interface to use the static IP <code>192.168.10.1</code>.
 With the new file, we need to generate and apply the changes.</p>
 <pre><code>$ sudo netplan generate
 $ sudo netplan apply
@@ -213,13 +219,13 @@ wlan0: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500
         inet 192.168.4.30  netmask 255.255.255.0  broadcast 192.168.4.255
 
 </code></pre><h2 id="software">Software</h2>
-<p>In order get this to work, I needed to install some basic software components.</p>
+<p>In order to get this to work, I needed to install some basic software components.</p>
 <ul>
 <li><code>isc-dhcp-server</code> is responsible for providing configuration to machines on the underlying network.</li>
-<li><code>dnsmasq</code> does a lot of the heavy lifting by acting as a DNS cache server and router.</li>
-<li><code>netfilter-persistent</code> helps preserve firewall rules and restoring them on reboots.</li>
-<li><code>iptables-persistent</code> helps preserve iptable rules and restoring them on reboots.</li>
+<li><code>dnsmasq</code> intermediates DNS queries between connected devices and the upstream router.</li>
+<li><code>netfilter-persistent</code> and <code>iptables-persistent</code> preserve firewall and iptables rules on reboot (respectively). We will be using iptables to act as our core routing layer.</li>
 </ul>
+<p>You can install these components using <code>apt-get</code>.</p>
 <pre><code>$ sudo apt-get update -y &amp;&amp; sudo apt-get install -y isc-dhcp-server dnsmasq
 $ sudo DEBIAN_FRONTEND=noninteractive apt install -y netfilter-persistent iptables-persistent
 </code></pre><p>Once installed, we&rsquo;ll need to configure each system.
@@ -268,16 +274,14 @@ dhcp-range=192.168.10.2,192.168.10.254,12h  # configures the lease time for dhcp
 <pre><code>$ sudo service dnsmasq restart
 </code></pre><p>Once restarted, dnsmasq should come up without an issue.
 We can check its status using <code>sudo service dnsmasq status</code> or by tailing logs with <code>sudo journalctl -u dnsmasq</code>.
-Before requests can successfully pass through the dnsmasq, we need to configure some lower level networking.</p>
-<h3 id="gnulinux-networking">(GNU/?)Linux networking</h3>
+Before requests can successfully pass through the Raspberry Pi, we need to configure some lower level networking.</p>
+<h3 id="linux-networking">Linux networking</h3>
 <p>The last part of this configuration requires modifying the (GNU/?)Linux networking components.
-I say (GNU/?)Linux because I&rsquo;m not entirely sure where iptables falls in that delineation.
-Gut feeling is Linux, but I&rsquo;ve never actually gone down that rabbit whole to verify.</p>
-<p>To do this, we&rsquo;ll first want to configure the kernel to do packet forwarding for IPv4.
+To do this, we&rsquo;ll first want to configure the kernel to do packet forwarding for IPv4.
 Open <code>/etc/sysctl.conf</code>, uncomment the line containing <code>net.ipv4.ip_forward=1</code>, and save.
 To reload the configuration without a full system reboot, run the following command.</p>
 <pre><code>$ sudo sysctl --system
-</code></pre><p>Next, we&rsquo;ll instruct IP tables to allow masquerading over the wlan0 interface.
+</code></pre><p>Next, we&rsquo;ll instruct IP tables to allow masquerading over the <code>wlan0</code> interface.
 This allows requests to pass through the network interfaces with very little software in between.
 Once modified, we&rsquo;ll need to persist changes using <code>netfilter-persistent</code> so changes persist between reboots.</p>
 <pre><code>$ sudo iptables -t nat -A POSTROUTING -o wlan0 -j MASQUERADE
@@ -299,7 +303,7 @@ As a result, I needed to expose the client application ports through the Raspber
 And <code>554</code>, which exposes a real-time streaming protocol (RTSP) that allows for remote observation of cameras.
 To quickly proxy these ports, we can use our good ole friend <code>iptables</code> again.
 By executing the following commands, we can successfully route requests from a port on the Raspberry Pi to a port on the client.
-Note, <code>${CLIENT_IP}</code> should the IP your client obtained.
+Note, <code>${CLIENT_IP}</code> should be the IP your client obtained.
 <code>${PORT}</code> would be the port you want to expose.</p>
 <pre><code>$ sudo iptables -A PREROUTING -t nat -i wlan0 -p tcp --dport ${PORT} -j DNAT --to ${CLIENT_IP}:${PORT}
 $ sudo iptables -A FORWARD -p tcp -d ${CLIENT_IP} --dport ${PORT} -j ACCEPT

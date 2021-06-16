@@ -16,18 +16,22 @@
       <description>&lt;p&gt;It doesn&amp;rsquo;t happen a lot, but every so often I come across a device that isn&amp;rsquo;t wi-fi supported.
 This latest case was my security system.
 On one hand, I like that my cameras aren&amp;rsquo;t taking up bandwidth on my home network and that the system is largely a closed loop.
-On the other hand, not having access to my security system without having it tethered into the router is a bit of a pain.
+On the other, not having access to my security system without having it tethered into the router is a bit of a pain.
 For one, my home networking setup isn&amp;rsquo;t that elegant (yet).
 Second, the last thing I want to do is have more stuff out in the open, co-located with my router.
 So I decided to get a little creative.
 Sure, I could&amp;rsquo;ve bought a wi-fi adapter, but where&amp;rsquo;s the fun in that.
 On top of that, I had some other reasons:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;I didn&amp;rsquo;t know if an adapter would work for this system.&lt;/li&gt;
-&lt;li&gt;I eventually want to do some real-time processing of video feed data and didn&amp;rsquo;t want to stream that over the network.&lt;/li&gt;
-&lt;li&gt;I already have more than a dozen pis around (I wound up using a 3b+ for this).&lt;/li&gt;
+&lt;li&gt;I didn&amp;rsquo;t want to spend money on an adapter for this system.
+Even though they aren&amp;rsquo;t that expensive, I would likely need to wait for one to come in which would probably happen &lt;em&gt;after&lt;/em&gt; I left for my trip.&lt;/li&gt;
+&lt;li&gt;Eventually, I want to do some real-time video processing and having a device closer to the box is promising.
+This would let me process data straight from the box rather than needing to transmit all that information over wi-fi to another machine.&lt;/li&gt;
+&lt;li&gt;Finally, I already have more than a dozen pis around.
+For the first version of this, I wound up using a 3b+.
+I would likely upgrade this later on when I add the real-time processing.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;Today, I describe how I set up and configured a Raspberry Pi to act as a WAN client for connected devices.&lt;/p&gt;</description>
+&lt;p&gt;Today, I show how I set up and configured a Raspberry Pi to act as a WAN client for a connected device.&lt;/p&gt;</description>
     </item>
     
     <item>
