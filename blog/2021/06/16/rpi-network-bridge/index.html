@@ -295,7 +295,7 @@ When I went to set up cloud backups, I learned that needed to be done through th
 As a result, I needed to expose the client application ports through the Raspberry Pi in order to connect from my devices.</p>
 <h3 id="exposing-ports">Exposing ports</h3>
 <p>The system I bought exposed two ports of interest to me.
-<code>9000</code> provides a media application that can interface with their mobile application.
+<code>9000</code> provides a media application that can interface with my security systems mobile application.
 And <code>554</code>, which exposes a real-time streaming protocol (RTSP) that allows for remote observation of cameras.
 To quickly proxy these ports, we can use our good ole friend <code>iptables</code> again.
 By executing the following commands, we can successfully route requests from a port on the Raspberry Pi to a port on the client.
