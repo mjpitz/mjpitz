@@ -163,8 +163,7 @@ and who&rsquo;s <code>eth0</code> interface holds the <code>192.168.10.1</code> 
 <h2 id="flash-the-image">Flash the Image</h2>
 <p>For simplicity, I used my <code>cloud-init</code> base from my <a href="https://github.com/mjpitz/rpi-cloud-init">rpi-cloud-init</a> repository to flash my Raspberry Pi (w/ wi-fi access).
 This gives it a similar look and feel to many of the other microcomputers I have around the house.
-In addition to that, I get some reasonable default security configurations with that setup (i.e. private key access, no root, custom user), etc.
-Note that in flashing this image, we should setup wi-fi so the Raspberry Pi can connect to the internet without ethernet.
+In addition to that, I get some reasonable default security configurations with that setup (i.e. private key access, no root, custom user, etc).
 To get a machine up and running, follow Steps 1 - 4 on the projects <a href="https://github.com/mjpitz/rpi-cloud-init/blob/main/README.md">README.md</a>.</p>
 <p>Once the board is running, we&rsquo;ll need to make some additional modifications to the networking setup.
 The <code>network-config</code> provided in the <code>cloud-init</code> setup generates <code>/etc/netplan/50-cloud-init.yaml</code>.
@@ -196,7 +195,8 @@ We will be creating a new <code>/etc/netplan/60-static-eth0.yaml</code> file wit
 </span></code></pre></td></tr></table>
 </div>
 </div><p>This overrides the configuration we provided initially and sets up a private, static IP block for connected devices to use.
-We really only need one here, but allocating a block may be useful at some point later on.
+It also assigns <code>192.168.10.1</code> as the IP this device on the <code>eth0</code> interface.
+We really only need two/three here, but allocating a block may be useful at some point later on.
 With the new file, we need to generate and apply the changes.</p>
 <pre><code>$ sudo netplan generate
 $ sudo netplan apply
@@ -227,11 +227,12 @@ Note, dnsmasq may be having trouble starting up.
 This is OK, we&rsquo;ll fix it.</p>
 <h3 id="dhcp">dhcp</h3>
 <p>First up, let&rsquo;s configure dhcp.
+dhcp delivers network configuration to devices attempting to connect to a given router.
 For some reason, I couldn&rsquo;t get the system to work without this installed.
 I know dnsmasq supports dhcp, but without this process I was getting an error and couldn&rsquo;t obtain a network address.</p>
 <pre><code>dnsmasq-dhcp[3685]: DHCP packet received on eth0 which has no address
 </code></pre><p>First, we&rsquo;ll want to modify <code>/etc/default/isc-dhcp-server</code> to point <code>INTERFACESv4=&quot;eth0&quot;</code>.
-This will ensure that the dhcp server responds to request (similar to how your wi-fi router responds to these requests).
+This will ensure that the dhcp server responds to dhcp requests (similar to how your wi-fi router works).
 Next we need to configure the dhcp server to know about the subnet that we&rsquo;re allocating to it.
 To do this, we&rsquo;ll edit <code>/etc/dhcp/dhcpd.conf</code> to contain the following contents:</p>
 <pre><code># communicates that the Raspberry Pi will act as a router for requests.
@@ -246,15 +247,15 @@ subnet 192.168.10.0 netmask 255.255.255.0 {
   option routers 192.168.10.1;
   option dns-name-servers 192.168.10.1;
 }
-</code></pre><p>Once dhcp has been configured, you&rsquo;ll need to restart the service.</p>
+</code></pre><p>Once dhcp has been configured, we&rsquo;ll need to restart the service.</p>
 <pre><code>$ sudo service isc-dhcp-server restart
-</code></pre><p>Once the dhcp server has been restarted, it should be operating with your new configuration.
+</code></pre><p>Once the dhcp server has been restarted, it should be operating with the new configuration.
 We can verify that it&rsquo;s running properly using <code>sudo service isc-dhcp-server status</code> or by tailing logs with <code>sudo journalctl -u isc-dhcp-server</code>.</p>
 <h3 id="dnsmasq">dnsmasq</h3>
 <p>Next we&rsquo;re going to configure dnsmasq.
-This is responsible for the routing logic.
-In the default configuration, dnsmasq conflicts with systemd-resolved (which is why the service likely couldn&rsquo;t start).
-We&rsquo;ll be modifying its configuration to bind dnsmasq to eth0 allowing it to respond to requests there instead of conflicting on <code>wlan0</code>.
+dnsmasq provides discovery logic for requests via a DNS interface.
+In the default configuration, it conflicts with systemd-resolved (which is why the service likely couldn&rsquo;t start).
+We&rsquo;ll be modifying its configuration to bind dnsmasq to <code>eth0</code> allowing it to respond to requests there instead of conflicting on <code>wlan0</code>.
 To do so, we&rsquo;ll backup the existing configuration and create a new file.</p>
 <pre><code>$ sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig
 </code></pre><p>Next, we&rsquo;ll create a new <code>/etc/dnsmasq.conf</code> with the following content.</p>
@@ -284,8 +285,8 @@ $ sudo netfilter-persistent save
 </code></pre><h3 id="verifying-client">Verifying client</h3>
 <p>Once all of this is done, traffic should flow from the connected device through to other devices on the network or internet.
 We can verify this by connecting a device to the Raspberry Pi.
-It should successfully negotiate an IP address from the dchp server (likely <code>192.168.10.2</code>).
-In addition to that, we should be able to make requests from the client (i.e. the security system) to other devices on your network or internet.</p>
+It should successfully negotiate an IP address from the dhcp server (likely <code>192.168.10.2</code>).
+In addition to that, we should be able to make requests from the client (i.e. the security system) to other devices on the network or internet.</p>
 <p>Once I connected my system, I saw that it successfully obtain an IP from the server using the UI they provide.
 After, I sent a test email to make sure the request would successfully go through.
 While doing this, I brought up a terminal on the Raspberry Pi to watch the traffic flow (<code>sudo tcpdump -X -i eth0</code>).
