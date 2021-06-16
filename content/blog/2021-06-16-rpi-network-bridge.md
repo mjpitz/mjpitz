@@ -57,8 +57,7 @@ Alt-text for diagram:
 
 For simplicity, I used my `cloud-init` base from my [rpi-cloud-init](https://github.com/mjpitz/rpi-cloud-init) repository to flash my Raspberry Pi (w/ wi-fi access).
 This gives it a similar look and feel to many of the other microcomputers I have around the house.
-In addition to that, I get some reasonable default security configurations with that setup (i.e. private key access, no root, custom user), etc.
-Note that in flashing this image, we should setup wi-fi so the Raspberry Pi can connect to the internet without ethernet.
+In addition to that, I get some reasonable default security configurations with that setup (i.e. private key access, no root, custom user, etc).
 To get a machine up and running, follow Steps 1 - 4 on the projects [README.md](https://github.com/mjpitz/rpi-cloud-init/blob/main/README.md).
 
 Once the board is running, we'll need to make some additional modifications to the networking setup.
@@ -79,7 +78,8 @@ network:
 ```
 
 This overrides the configuration we provided initially and sets up a private, static IP block for connected devices to use.
-We really only need one here, but allocating a block may be useful at some point later on.
+It also assigns `192.168.10.1` as the IP this device on the `eth0` interface.
+We really only need two/three here, but allocating a block may be useful at some point later on.
 With the new file, we need to generate and apply the changes.
 
 ```
@@ -124,6 +124,7 @@ This is OK, we'll fix it.
 ### dhcp
 
 First up, let's configure dhcp.
+dhcp delivers network configuration to devices attempting to connect to a given router.
 For some reason, I couldn't get the system to work without this installed.
 I know dnsmasq supports dhcp, but without this process I was getting an error and couldn't obtain a network address.
 
@@ -132,7 +133,7 @@ dnsmasq-dhcp[3685]: DHCP packet received on eth0 which has no address
 ```
 
 First, we'll want to modify `/etc/default/isc-dhcp-server` to point `INTERFACESv4="eth0"`.
-This will ensure that the dhcp server responds to request (similar to how your wi-fi router responds to these requests).
+This will ensure that the dhcp server responds to dhcp requests (similar to how your wi-fi router works).
 Next we need to configure the dhcp server to know about the subnet that we're allocating to it.
 To do this, we'll edit `/etc/dhcp/dhcpd.conf` to contain the following contents:
 
@@ -151,21 +152,21 @@ subnet 192.168.10.0 netmask 255.255.255.0 {
 }
 ```
 
-Once dhcp has been configured, you'll need to restart the service.
+Once dhcp has been configured, we'll need to restart the service.
 
 ```
 $ sudo service isc-dhcp-server restart
 ```
 
-Once the dhcp server has been restarted, it should be operating with your new configuration.
+Once the dhcp server has been restarted, it should be operating with the new configuration.
 We can verify that it's running properly using `sudo service isc-dhcp-server status` or by tailing logs with `sudo journalctl -u isc-dhcp-server`.
 
 ### dnsmasq
 
 Next we're going to configure dnsmasq. 
-This is responsible for the routing logic.
-In the default configuration, dnsmasq conflicts with systemd-resolved (which is why the service likely couldn't start).
-We'll be modifying its configuration to bind dnsmasq to eth0 allowing it to respond to requests there instead of conflicting on `wlan0`.
+dnsmasq provides discovery logic for requests via a DNS interface.
+In the default configuration, it conflicts with systemd-resolved (which is why the service likely couldn't start).
+We'll be modifying its configuration to bind dnsmasq to `eth0` allowing it to respond to requests there instead of conflicting on `wlan0`.
 To do so, we'll backup the existing configuration and create a new file.
 
 ```
@@ -219,8 +220,8 @@ $ sudo netfilter-persistent save
 
 Once all of this is done, traffic should flow from the connected device through to other devices on the network or internet.
 We can verify this by connecting a device to the Raspberry Pi.
-It should successfully negotiate an IP address from the dchp server (likely `192.168.10.2`).
-In addition to that, we should be able to make requests from the client (i.e. the security system) to other devices on your network or internet.
+It should successfully negotiate an IP address from the dhcp server (likely `192.168.10.2`).
+In addition to that, we should be able to make requests from the client (i.e. the security system) to other devices on the network or internet.
 
 Once I connected my system, I saw that it successfully obtain an IP from the server using the UI they provide.
 After, I sent a test email to make sure the request would successfully go through.
