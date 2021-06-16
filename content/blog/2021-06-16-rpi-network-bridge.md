@@ -12,37 +12,41 @@ tags:
 It doesn't happen a lot, but every so often I come across a device that isn't wi-fi supported.
 This latest case was my security system.
 On one hand, I like that my cameras aren't taking up bandwidth on my home network and that the system is largely a closed loop.
-On the other hand, not having access to my security system without having it tethered into the router is a bit of a pain.
+On the other, not having access to my security system without having it tethered into the router is a bit of a pain.
 For one, my home networking setup isn't that elegant (yet).
 Second, the last thing I want to do is have more stuff out in the open, co-located with my router.
 So I decided to get a little creative.
 Sure, I could've bought a wi-fi adapter, but where's the fun in that.
 On top of that, I had some other reasons:
 
-1. I didn't know if an adapter would work for this system.
-1. I eventually want to do some real-time processing of video feed data and didn't want to stream that over the network.
-1. I already have more than a dozen pis around (I wound up using a 3b+ for this).
+1. I didn't want to spend money on an adapter for this system.
+   Even though they aren't that expensive, I would likely need to wait for one to come in which would probably happen _after_ I left for my trip.
+1. Eventually, I want to do some real-time video processing and having a device closer to the box is promising.
+   This would let me process data straight from the box rather than needing to transmit all that information over wi-fi to another machine.
+1. Finally, I already have more than a dozen pis around.
+   For the first version of this, I wound up using a 3b+.
+   I would likely upgrade this later on when I add the real-time processing.
 
-Today, I describe how I set up and configured a Raspberry Pi to act as a WAN client for connected devices.
+Today, I show how I set up and configured a Raspberry Pi to act as a WAN client for a connected device.
 
 <!--more-->
 
 There are a handful of similar guides out there, but finding one for this specific direction / configuration was difficult.
-Similar guides I used as reference:
+Here are some similar guides I used as reference:
 
 - [Setting up a Raspberry Pi as a bridged wireless access point](https://www.raspberrypi.org/documentation/configuration/wireless/access-point-bridged.md)
 - [Setting up a Raspberry Pi as a routed wireless access point](https://www.raspberrypi.org/documentation/configuration/wireless/access-point-routed.md)
 - [Setting up a Raspberry Pi as an access point](https://raspberrypi.stackexchange.com/questions/88214/setting-up-a-raspberry-pi-as-an-access-point-the-easy-way)
 - [Raspberry Pi 4 Model B WiFi Ethernet Bridge](https://willhaley.com/blog/raspberry-pi-wifi-ethernet-bridge/)
 
-Of these guides, "Raspberry Pi 4 Model B WiFi Ethernet Bridge" is the closest.
-Unlike many of these guides, I run an Ubuntu arm64 image instead of Raspbian OS.
-The process is largely the same, but some tooling is different.
-For example, we need to work with netplan (which can be a pain depending on what you're trying to do).
-In addition to that, we have a slightly higher resource footprint, but thats not the biggest concern for what this little one is doing.
-To help provide a little context as to what's going on here, I've put together this diagram:
+Of these guides, "Raspberry Pi 4 Model B WiFi Ethernet Bridge" is the closest. 
+Unlike many of these guides, I run an Ubuntu arm64 image instead of Raspbian OS. 
+The process is largely the same, but some tooling is different. 
+For example, Ubuntu works with netplan by default. 
+In addition to that, we have a slightly higher resource footprint, but it's not the biggest concern for what this little one is doing.
+To help provide a little context as to what's going on here, I've put together this diagram (and alt-text):
 
-[![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVERcbiAgICBjMShDYW1lcmEgMSlcbiAgICBjMihDYW1lcmEgMilcbiAgICBjLihDYW1lcmEgLi4uKVxuICAgIGNuKENhbWVyYSBOKVxuICAgIGh1YihTZWN1cml0eSBIdWIgPGJyPiBldGgwIC0gMTkyLjE2OC4xMC4yKVxuICAgIHBpKFJhc3BiZXJyeSBQaSA8YnI-IHdsYW4wIC0gMTkyLjE2OC40LjMwIDxicj4gZXRoMCAtIDE5Mi4xNjguMTAuMSlcbiAgICBtZShNeWEncyBMYXB0b3AgPGJyPiB3bGFuMCAtIDE5Mi4xNjguNC4xMClcbiAgICByb3V0ZXIoV2ktZmkgUm91dGVyKVxuXG4gICAgcm91dGVyIC0uLXx3aS1maXwgbWVcbiAgICByb3V0ZXIgLS4tfHdpLWZpfCBwaVxuXG4gICAgcGkgLS0tfGV0aGVybmV0fCBodWJcbiAgXG4gICAgaHViIC0tLSBjMVxuICAgIGh1YiAtLS0gYzJcbiAgICBodWIgLS0tIGMuXG4gICAgaHViIC0tLSBjblxuIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZSwiYXV0b1N5bmMiOnRydWUsInVwZGF0ZURpYWdyYW0iOmZhbHNlfQ)](https://mermaid-js.github.io/mermaid-live-editor/edit/#eyJjb2RlIjoiZ3JhcGggVERcbiAgICBjMShDYW1lcmEgMSlcbiAgICBjMihDYW1lcmEgMilcbiAgICBjLihDYW1lcmEgLi4uKVxuICAgIGNuKENhbWVyYSBOKVxuICAgIGh1YihTZWN1cml0eSBIdWIgPGJyPiBldGgwIC0gMTkyLjE2OC4xMC4yKVxuICAgIHBpKFJhc3BiZXJyeSBQaSA8YnI-IHdsYW4wIC0gMTkyLjE2OC40LjMwIDxicj4gZXRoMCAtIDE5Mi4xNjguMTAuMSlcbiAgICBtZShNeWEncyBMYXB0b3AgPGJyPiB3bGFuMCAtIDE5Mi4xNjguNC4xMClcbiAgICByb3V0ZXIoV2ktZmkgUm91dGVyKVxuXG4gICAgcm91dGVyIC0uLXx3aS1maXwgbWVcbiAgICByb3V0ZXIgLS4tfHdpLWZpfCBwaVxuXG4gICAgcGkgLS0tfGV0aGVybmV8IGh1YlxuICBcbiAgICBodWIgLS0tIGMxXG4gICAgaHViIC0tLSBjMlxuICAgIGh1YiAtLS0gYy5cbiAgICBodWIgLS0tIGNuXG4iLCJtZXJtYWlkIjoie1xuICBcInRoZW1lXCI6IFwiZGVmYXVsdFwiXG59IiwidXBkYXRlRWRpdG9yIjpmYWxzZSwiYXV0b1N5bmMiOnRydWUsInVwZGF0ZURpYWdyYW0iOmZhbHNlfQ)
+[![Alt-text below.](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVERcbiAgICBjMShDYW1lcmEgMSlcbiAgICBjMihDYW1lcmEgMilcbiAgICBjLihDYW1lcmEgLi4uKVxuICAgIGNuKENhbWVyYSBOKVxuICAgIGh1YihTZWN1cml0eSBIdWIgPGJyPiBldGgwIC0gMTkyLjE2OC4xMC4yKVxuICAgIHBpKFJhc3BiZXJyeSBQaSA8YnI-IHdsYW4wIC0gMTkyLjE2OC40LjMwIDxicj4gZXRoMCAtIDE5Mi4xNjguMTAuMSlcbiAgICBtZShNeWEncyBMYXB0b3AgPGJyPiB3bGFuMCAtIDE5Mi4xNjguNC4xMClcbiAgICByb3V0ZXIoV2ktZmkgUm91dGVyKVxuXG4gICAgcm91dGVyIC0uLXx3aS1maXwgbWVcbiAgICByb3V0ZXIgLS4tfHdpLWZpfCBwaVxuXG4gICAgcGkgLS0tfGV0aGVybmV0fCBodWJcbiAgXG4gICAgaHViIC0tLSBjMVxuICAgIGh1YiAtLS0gYzJcbiAgICBodWIgLS0tIGMuXG4gICAgaHViIC0tLSBjblxuIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZSwiYXV0b1N5bmMiOnRydWUsInVwZGF0ZURpYWdyYW0iOmZhbHNlfQ)](https://mermaid-js.github.io/mermaid-live-editor/edit/#eyJjb2RlIjoiZ3JhcGggVERcbiAgICBjMShDYW1lcmEgMSlcbiAgICBjMihDYW1lcmEgMilcbiAgICBjLihDYW1lcmEgLi4uKVxuICAgIGNuKENhbWVyYSBOKVxuICAgIGh1YihTZWN1cml0eSBIdWIgPGJyPiBldGgwIC0gMTkyLjE2OC4xMC4yKVxuICAgIHBpKFJhc3BiZXJyeSBQaSA8YnI-IHdsYW4wIC0gMTkyLjE2OC40LjMwIDxicj4gZXRoMCAtIDE5Mi4xNjguMTAuMSlcbiAgICBtZShNeWEncyBMYXB0b3AgPGJyPiB3bGFuMCAtIDE5Mi4xNjguNC4xMClcbiAgICByb3V0ZXIoV2ktZmkgUm91dGVyKVxuXG4gICAgcm91dGVyIC0uLXx3aS1maXwgbWVcbiAgICByb3V0ZXIgLS4tfHdpLWZpfCBwaVxuXG4gICAgcGkgLS0tfGV0aGVybmV8IGh1YlxuICBcbiAgICBodWIgLS0tIGMxXG4gICAgaHViIC0tLSBjMlxuICAgIGh1YiAtLS0gYy5cbiAgICBodWIgLS0tIGNuXG4iLCJtZXJtYWlkIjoie1xuICBcInRoZW1lXCI6IFwiZGVmYXVsdFwiXG59IiwidXBkYXRlRWRpdG9yIjpmYWxzZSwiYXV0b1N5bmMiOnRydWUsInVwZGF0ZURpYWdyYW0iOmZhbHNlfQ)
 
 Alt-text for diagram:
 - At the top, there's a wi-fi router that's connected to the public internet who's `wlan0` interface holds the `192.168.4.1` IP address.
@@ -77,9 +81,7 @@ network:
         addresses: [192.168.10.1]   
 ```
 
-This overrides the configuration we provided initially and sets up a private, static IP block for connected devices to use.
-It also assigns `192.168.10.1` as the IP this device on the `eth0` interface.
-We really only need two/three here, but allocating a block may be useful at some point later on.
+This configures the devices `eth0` interface to use the static IP `192.168.10.1`.
 With the new file, we need to generate and apply the changes.
 
 ```
@@ -105,12 +107,13 @@ wlan0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
 
 ## Software
 
-In order get this to work, I needed to install some basic software components.
+In order to get this to work, I needed to install some basic software components.
 
 - `isc-dhcp-server` is responsible for providing configuration to machines on the underlying network.
-- `dnsmasq` does a lot of the heavy lifting by acting as a DNS cache server and router.
-- `netfilter-persistent` helps preserve firewall rules and restoring them on reboots.
-- `iptables-persistent` helps preserve iptable rules and restoring them on reboots.
+- `dnsmasq` intermediates DNS queries between connected devices and the upstream router.
+- `netfilter-persistent` and `iptables-persistent` preserve firewall and iptables rules on reboot (respectively). We will be using iptables to act as our core routing layer.
+
+You can install these components using `apt-get`.
 
 ```
 $ sudo apt-get update -y && sudo apt-get install -y isc-dhcp-server dnsmasq
@@ -191,14 +194,11 @@ $ sudo service dnsmasq restart
 
 Once restarted, dnsmasq should come up without an issue.
 We can check its status using `sudo service dnsmasq status` or by tailing logs with `sudo journalctl -u dnsmasq`.
-Before requests can successfully pass through the dnsmasq, we need to configure some lower level networking.
+Before requests can successfully pass through the Raspberry Pi, we need to configure some lower level networking.
 
-### (GNU/?)Linux networking
+### Linux networking
 
 The last part of this configuration requires modifying the (GNU/?)Linux networking components.
-I say (GNU/?)Linux because I'm not entirely sure where iptables falls in that delineation.
-Gut feeling is Linux, but I've never actually gone down that rabbit whole to verify.
-
 To do this, we'll first want to configure the kernel to do packet forwarding for IPv4.
 Open `/etc/sysctl.conf`, uncomment the line containing `net.ipv4.ip_forward=1`, and save.
 To reload the configuration without a full system reboot, run the following command. 
@@ -207,7 +207,7 @@ To reload the configuration without a full system reboot, run the following comm
 $ sudo sysctl --system
 ```
 
-Next, we'll instruct IP tables to allow masquerading over the wlan0 interface.
+Next, we'll instruct IP tables to allow masquerading over the `wlan0` interface.
 This allows requests to pass through the network interfaces with very little software in between.
 Once modified, we'll need to persist changes using `netfilter-persistent` so changes persist between reboots.
 
@@ -237,7 +237,7 @@ The system I bought exposed two ports of interest to me.
 And `554`, which exposes a real-time streaming protocol (RTSP) that allows for remote observation of cameras.
 To quickly proxy these ports, we can use our good ole friend `iptables` again.
 By executing the following commands, we can successfully route requests from a port on the Raspberry Pi to a port on the client.
-Note, `${CLIENT_IP}` should the IP your client obtained.
+Note, `${CLIENT_IP}` should be the IP your client obtained.
 `${PORT}` would be the port you want to expose.
 
 ```
