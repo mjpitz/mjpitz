@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light"><head>
+    <title> Mya Pitzeruse | Extending my Security System with a Raspberry Pi Network Bridge </title>
+    <meta charset="utf-8"><meta name="generator" content="Hugo 0.81.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="description" content="Thoughts, ramblings, and learnings from my adventures in code.">
+    
+    <link rel="stylesheet" href="https://mjpitz.com/css/style.min.707aa4670276c49b9db4a4ed6b89419c0ed1b4346e2104f50a364aa767d77773.css" integrity="sha256-cHqkZwJ2xJudtKTta4lBnA7RtDRuIQT1CjZKp2fXd3M=" crossorigin="anonymous" type="text/css">
+    <link rel="stylesheet" href="https://mjpitz.com/statics/css/overrides.css" type="text/css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    
+    <link rel="shortcut icon" href="https://mjpitz.com/statics/img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://mjpitz.com/statics/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://mjpitz.com/statics/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://mjpitz.com/statics/img/favicon-16x16.png">
+    <link rel="canonical" href="https://mjpitz.com/blog/2021/06/16/rpi-network-bridge/">
+    
+    
+    <script type="text/javascript" src="https://mjpitz.com/js/anatole-header.min.3252f25a22b06e9062229fa50b222e04393830ad8260421079b1d55ace7605b3.js" integrity="sha256-MlLyWiKwbpBiIp&#43;lCyIuBDk4MK2CYEIQebHVWs52BbM=" crossorigin="anonymous"></script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Extending my Security System with a Raspberry Pi Network Bridge"/>
+<meta name="twitter:description" content="It doesn&rsquo;t happen a lot, but every so often I come across a device that isn&rsquo;t wi-fi supported.
+This latest case was my security system.
+On one hand, I like that my cameras aren&rsquo;t taking up bandwidth on my home network and that the system is largely a closed loop.
+On the other hand, not having access to my security system without having it tethered into the router is a bit of a pain.
+For one, my home networking setup isn&rsquo;t that elegant (yet).
+Second, the last thing I want to do is have more stuff out in the open, co-located with my router.
+So I decided to get a little creative.
+Sure, I could&rsquo;ve bought a wi-fi adapter, but where&rsquo;s the fun in that.
+On top of that, I had some other reasons:
+
+I didn&rsquo;t know if an adapter would work for this system.
+I eventually want to do some real-time processing of video feed data and didn&rsquo;t want to stream that over the network.
+I already have more than a dozen pis around (I wound up using a 3b&#43; for this).
+
+Today, I describe how I set up and configured a Raspberry Pi to act as a WAN client for connected devices."/>
+
+</head>
+<body><div class="sidebar animated fadeInDown">
+    <div class="logo-title">
+      <div class="title">
+        <img src="https://mjpitz.com/statics/img/mjpitz.jpeg" alt="profile picture">
+        <h3 title=""><a href="/">Mya Pitzeruse</a></h3>
+        <div class="description">
+          <p>Thoughts, ramblings, and learnings from my adventures in code.</p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
+        
+        <li>
+        <a href="https://github.com/mjpitz" rel="me" aria-label="GitHub">
+          <i class="fa fa-2x fa-github" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+        <li>
+        <a href="https://twitter.com/myajpitz" rel="me" aria-label="Twitter">
+          <i class="fa fa-2x fa-twitter" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+        <li>
+        <a href="https://www.linkedin.com/in/mjpitz/" rel="me" aria-label="LinkedIn">
+          <i class="fa fa-2x fa-linkedin" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+        <li>
+        <a href="/index.xml" rel="me" aria-label="Feed">
+          <i class="fa fa-2x fa-rss" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+    </ul>
+    <div class="footer">
+        <div class="by_farbox">&copy; Mya Pitzeruse 2021 </div>
+      </div>
+    </div>
+</div><div class="main">
+            <div class="page-top animated fadeInDown">
+    <ul class="nav">
+        
+        
+        
+        <li><a  href="/" title="">Home</a></li>
+        
+        
+        <li><a  href="/media/" title="">Media</a></li>
+        
+        
+        <li><a  href="/blog/" title="">Blog</a></li>
+        
+    </ul>
+    <div class="themeswitcher">
+        <a class="theme-switch" title="Switch Theme">
+            <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+        </a>
+    </div>
+</div>
+
+            <div class="autopagerize_page_element">
+                <div class="content">
+<div class="post animated fadeInDown">
+    <div class="post-content">
+
+      <div class="post-title">
+        <h3>Extending my Security System with a Raspberry Pi Network Bridge</h3>
+        
+        <div class="info">
+          <i class="fa fa-sun-o"></i><span class="date">Wed, Jun 16, 2021</span>
+          <i class="fa fa-clock-o"></i><span class="reading-time">9-minute read</span>
+        </div>
+        
+        </div>
+
+    <p>It doesn&rsquo;t happen a lot, but every so often I come across a device that isn&rsquo;t wi-fi supported.
+This latest case was my security system.
+On one hand, I like that my cameras aren&rsquo;t taking up bandwidth on my home network and that the system is largely a closed loop.
+On the other hand, not having access to my security system without having it tethered into the router is a bit of a pain.
+For one, my home networking setup isn&rsquo;t that elegant (yet).
+Second, the last thing I want to do is have more stuff out in the open, co-located with my router.
+So I decided to get a little creative.
+Sure, I could&rsquo;ve bought a wi-fi adapter, but where&rsquo;s the fun in that.
+On top of that, I had some other reasons:</p>
+<ol>
+<li>I didn&rsquo;t know if an adapter would work for this system.</li>
+<li>I eventually want to do some real-time processing of video feed data and didn&rsquo;t want to stream that over the network.</li>
+<li>I already have more than a dozen pis around (I wound up using a 3b+ for this).</li>
+</ol>
+<p>Today, I describe how I set up and configured a Raspberry Pi to act as a WAN client for connected devices.</p>
+<p>There are a handful of similar guides out there, but finding one for this specific direction / configuration was difficult.
+Similar guides I used as reference:</p>
+<ul>
+<li><a href="https://www.raspberrypi.org/documentation/configuration/wireless/access-point-bridged.md">Setting up a Raspberry Pi as a bridged wireless access point</a></li>
+<li><a href="https://www.raspberrypi.org/documentation/configuration/wireless/access-point-routed.md">Setting up a Raspberry Pi as a routed wireless access point</a></li>
+<li><a href="https://raspberrypi.stackexchange.com/questions/88214/setting-up-a-raspberry-pi-as-an-access-point-the-easy-way">Setting up a Raspberry Pi as an access point</a></li>
+<li><a href="https://willhaley.com/blog/raspberry-pi-wifi-ethernet-bridge/">Raspberry Pi 4 Model B WiFi Ethernet Bridge</a></li>
+</ul>
+<p>Of these guides, &ldquo;Raspberry Pi 4 Model B WiFi Ethernet Bridge&rdquo; is the closest.
+Unlike many of these guides, I run an Ubuntu arm64 image instead of Raspbian OS.
+The process is largely the same, but some tooling is different.
+For example, we need to work with netplan (which can be a pain depending on what you&rsquo;re trying to do).
+In addition to that, we have a slightly higher resource footprint, but thats not the biggest concern for what this little one is doing.
+To help provide a little context as to what&rsquo;s going on here, I&rsquo;ve put together this diagram:</p>
+<p><a href="https://mermaid-js.github.io/mermaid-live-editor/edit/#eyJjb2RlIjoiZ3JhcGggVERcbiAgICBjMShDYW1lcmEgMSlcbiAgICBjMihDYW1lcmEgMilcbiAgICBjLihDYW1lcmEgLi4uKVxuICAgIGNuKENhbWVyYSBOKVxuICAgIGh1YihTZWN1cml0eSBIdWIgPGJyPiBldGgwIC0gMTkyLjE2OC4xMC4yKVxuICAgIHBpKFJhc3BiZXJyeSBQaSA8YnI-IHdsYW4wIC0gMTkyLjE2OC40LjMwIDxicj4gZXRoMCAtIDE5Mi4xNjguMTAuMSlcbiAgICBtZShNeWEncyBMYXB0b3AgPGJyPiB3bGFuMCAtIDE5Mi4xNjguNC4xMClcbiAgICByb3V0ZXIoV2ktZmkgUm91dGVyKVxuXG4gICAgcm91dGVyIC0uLXx3aS1maXwgbWVcbiAgICByb3V0ZXIgLS4tfHdpLWZpfCBwaVxuXG4gICAgcGkgLS0tfGV0aGVybmV8IGh1YlxuICBcbiAgICBodWIgLS0tIGMxXG4gICAgaHViIC0tLSBjMlxuICAgIGh1YiAtLS0gYy5cbiAgICBodWIgLS0tIGNuXG4iLCJtZXJtYWlkIjoie1xuICBcInRoZW1lXCI6IFwiZGVmYXVsdFwiXG59IiwidXBkYXRlRWRpdG9yIjpmYWxzZSwiYXV0b1N5bmMiOnRydWUsInVwZGF0ZURpYWdyYW0iOmZhbHNlfQ"><img src="https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVERcbiAgICBjMShDYW1lcmEgMSlcbiAgICBjMihDYW1lcmEgMilcbiAgICBjLihDYW1lcmEgLi4uKVxuICAgIGNuKENhbWVyYSBOKVxuICAgIGh1YihTZWN1cml0eSBIdWIgPGJyPiBldGgwIC0gMTkyLjE2OC4xMC4yKVxuICAgIHBpKFJhc3BiZXJyeSBQaSA8YnI-IHdsYW4wIC0gMTkyLjE2OC40LjMwIDxicj4gZXRoMCAtIDE5Mi4xNjguMTAuMSlcbiAgICBtZShNeWEncyBMYXB0b3AgPGJyPiB3bGFuMCAtIDE5Mi4xNjguNC4xMClcbiAgICByb3V0ZXIoV2ktZmkgUm91dGVyKVxuXG4gICAgcm91dGVyIC0uLXx3aS1maXwgbWVcbiAgICByb3V0ZXIgLS4tfHdpLWZpfCBwaVxuXG4gICAgcGkgLS0tfGV0aGVybmV0fCBodWJcbiAgXG4gICAgaHViIC0tLSBjMVxuICAgIGh1YiAtLS0gYzJcbiAgICBodWIgLS0tIGMuXG4gICAgaHViIC0tLSBjblxuIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZSwiYXV0b1N5bmMiOnRydWUsInVwZGF0ZURpYWdyYW0iOmZhbHNlfQ" alt=""></a></p>
+<p>Alt-text for diagram:</p>
+<ul>
+<li>At the top, there&rsquo;s a wi-fi router that&rsquo;s connected to the public internet who&rsquo;s <code>wlan0</code> interface holds the <code>192.168.4.1</code> IP address.</li>
+<li>Connected to the router over wi-fi are two machines.
+<ul>
+<li>First is Mya&rsquo;s laptop who&rsquo;s <code>wlan0</code> interface holds the <code>192.168.4.10</code> IP address.</li>
+<li>Second is a Raspberry Pi board who&rsquo;s <code>wlan0</code> interface holds the <code>192.168.4.30</code> IP address
+and who&rsquo;s <code>eth0</code> interface holds the <code>192.168.10.1</code> IP address.</li>
+</ul>
+</li>
+<li>The Security hub connects to the Raspberry Pi&rsquo;s using an ethernet cable.</li>
+<li>Some number of cameras connect to the security hub using a cable.</li>
+</ul>
+<h2 id="flash-the-image">Flash the Image</h2>
+<p>For simplicity, I used my <code>cloud-init</code> base from my <a href="https://github.com/mjpitz/rpi-cloud-init">rpi-cloud-init</a> repository to flash my Raspberry Pi (w/ wi-fi access).
+This gives it a similar look and feel to many of the other microcomputers I have around the house.
+In addition to that, I get some reasonable default security configurations with that setup (i.e. private key access, no root, custom user), etc.
+Note that in flashing this image, we should setup wi-fi so the Raspberry Pi can connect to the internet without ethernet.
+To get a machine up and running, follow Steps 1 - 4 on the projects <a href="https://github.com/mjpitz/rpi-cloud-init/blob/main/README.md">README.md</a>.</p>
+<p>Once the board is running, we&rsquo;ll need to make some additional modifications to the networking setup.
+The <code>network-config</code> provided in the <code>cloud-init</code> setup generates <code>/etc/netplan/50-cloud-init.yaml</code>.
+We will be creating a new <code>/etc/netplan/60-static-eth0.yaml</code> file with the following contents.</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">network</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">version</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">2</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">ethernets</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">eth0</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">dhcp4</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">false</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">dhcp6</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">false</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">addresses</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">192.168.10.1</span><span style="color:#000">/24]</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">gateway4</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">192.168.10.1</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">nameservers</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">addresses</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">192.168.10.1</span><span style="color:#000;font-weight:bold">]</span><span style="color:#f8f8f8;text-decoration:underline">   
+</span></code></pre></td></tr></table>
+</div>
+</div><p>This overrides the configuration we provided initially and sets up a private, static IP block for connected devices to use.
+We really only need one here, but allocating a block may be useful at some point later on.
+With the new file, we need to generate and apply the changes.</p>
+<pre><code>$ sudo netplan generate
+$ sudo netplan apply
+</code></pre><p>We can verify the changes by inspecting the <code>ifconfig</code> (you may need to <code>apt-get install net-tools</code>).</p>
+<pre><code>$ ifconfig
+mjpitz@ip-192-168-4-74:~$ ifconfig
+eth0: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500
+        inet 192.168.10.1  netmask 255.255.255.0  broadcast 192.168.10.255    ###### expected change
+
+lo: flags=73&lt;UP,LOOPBACK,RUNNING&gt;  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+
+wlan0: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500
+        inet 192.168.4.30  netmask 255.255.255.0  broadcast 192.168.4.255
+
+</code></pre><h2 id="software">Software</h2>
+<p>In order get this to work, I needed to install some basic software components.</p>
+<ul>
+<li><code>isc-dhcp-server</code> is responsible for providing configuration to machines on the underlying network.</li>
+<li><code>dnsmasq</code> does a lot of the heavy lifting by acting as a DNS cache server and router.</li>
+<li><code>netfilter-persistent</code> helps preserve firewall rules and restoring them on reboots.</li>
+<li><code>iptables-persistent</code> helps preserve iptable rules and restoring them on reboots.</li>
+</ul>
+<pre><code>$ sudo apt-get update -y &amp;&amp; sudo apt-get install -y isc-dhcp-server dnsmasq
+$ sudo DEBIAN_FRONTEND=noninteractive apt install -y netfilter-persistent iptables-persistent
+</code></pre><p>Once installed, we&rsquo;ll need to configure each system.
+Note, dnsmasq may be having trouble starting up.
+This is OK, we&rsquo;ll fix it.</p>
+<h3 id="dhcp">dhcp</h3>
+<p>First up, let&rsquo;s configure dhcp.
+For some reason, I couldn&rsquo;t get the system to work without this installed.
+I know dnsmasq supports dhcp, but without this process I was getting an error and couldn&rsquo;t obtain a network address.</p>
+<pre><code>dnsmasq-dhcp[3685]: DHCP packet received on eth0 which has no address
+</code></pre><p>First, we&rsquo;ll want to modify <code>/etc/default/isc-dhcp-server</code> to point <code>INTERFACESv4=&quot;eth0&quot;</code>.
+This will ensure that the dhcp server responds to request (similar to how your wi-fi router responds to these requests).
+Next we need to configure the dhcp server to know about the subnet that we&rsquo;re allocating to it.
+To do this, we&rsquo;ll edit <code>/etc/dhcp/dhcpd.conf</code> to contain the following contents:</p>
+<pre><code># communicates that the Raspberry Pi will act as a router for requests.
+host router {
+  hardware ethernet &quot;mac of eth0, obtained from ifconfig.eth0.ether attribute&quot;;
+  fixed-address 192.168.10.1;
+}
+
+# communicates how to manage the associated subnet(s)
+subnet 192.168.10.0 netmask 255.255.255.0 {
+  range 192.168.10.2 192.168.10.254;
+  option routers 192.168.10.1;
+  option dns-name-servers 192.168.10.1;
+}
+</code></pre><p>Once dhcp has been configured, you&rsquo;ll need to restart the service.</p>
+<pre><code>$ sudo service isc-dhcp-server restart
+</code></pre><p>Once the dhcp server has been restarted, it should be operating with your new configuration.
+We can verify that it&rsquo;s running properly using <code>sudo service isc-dhcp-server status</code> or by tailing logs with <code>sudo journalctl -u isc-dhcp-server</code>.</p>
+<h3 id="dnsmasq">dnsmasq</h3>
+<p>Next we&rsquo;re going to configure dnsmasq.
+This is responsible for the routing logic.
+In the default configuration, dnsmasq conflicts with systemd-resolved (which is why the service likely couldn&rsquo;t start).
+We&rsquo;ll be modifying its configuration to bind dnsmasq to eth0 allowing it to respond to requests there instead of conflicting on <code>wlan0</code>.
+To do so, we&rsquo;ll backup the existing configuration and create a new file.</p>
+<pre><code>$ sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig
+</code></pre><p>Next, we&rsquo;ll create a new <code>/etc/dnsmasq.conf</code> with the following content.</p>
+<pre><code>interface=eth0                              # what interface to bind to.
+listen-address=192.168.10.1                 # what addresses to listen on.
+bind-interfaces                             # binds to all interfaces, even if we're only listening on some.
+server=192.168.4.1                          # sets the upstream router as a dns server for delegation.
+dhcp-range=192.168.10.2,192.168.10.254,12h  # configures the lease time for dhcp requests.
+</code></pre><p>Once we configure dnsmasq, we&rsquo;ll need to restart it for our changes to take effect.</p>
+<pre><code>$ sudo service dnsmasq restart
+</code></pre><p>Once restarted, dnsmasq should come up without an issue.
+We can check its status using <code>sudo service dnsmasq status</code> or by tailing logs with <code>sudo journalctl -u dnsmasq</code>.
+Before requests can successfully pass through the dnsmasq, we need to configure some lower level networking.</p>
+<h3 id="gnulinux-networking">(GNU/?)Linux networking</h3>
+<p>The last part of this configuration requires modifying the (GNU/?)Linux networking components.
+I say (GNU/?)Linux because I&rsquo;m not entirely sure where iptables falls in that delineation.
+Gut feeling is Linux, but I&rsquo;ve never actually gone down that rabbit whole to verify.</p>
+<p>To do this, we&rsquo;ll first want to configure the kernel to do packet forwarding for IPv4.
+Open <code>/etc/sysctl.conf</code>, uncomment the line containing <code>net.ipv4.ip_forward=1</code>, and save.
+To reload the configuration without a full system reboot, run the following command.</p>
+<pre><code>$ sudo sysctl --system
+</code></pre><p>Next, we&rsquo;ll instruct IP tables to allow masquerading over the wlan0 interface.
+This allows requests to pass through the network interfaces with very little software in between.
+Once modified, we&rsquo;ll need to persist changes using <code>netfilter-persistent</code> so changes persist between reboots.</p>
+<pre><code>$ sudo iptables -t nat -A POSTROUTING -o wlan0 -j MASQUERADE
+$ sudo netfilter-persistent save
+</code></pre><h3 id="verifying-client">Verifying client</h3>
+<p>Once all of this is done, traffic should flow from the connected device through to other devices on the network or internet.
+We can verify this by connecting a device to the Raspberry Pi.
+It should successfully negotiate an IP address from the dchp server (likely <code>192.168.10.2</code>).
+In addition to that, we should be able to make requests from the client (i.e. the security system) to other devices on your network or internet.</p>
+<p>Once I connected my system, I saw that it successfully obtain an IP from the server using the UI they provide.
+After, I sent a test email to make sure the request would successfully go through.
+While doing this, I brought up a terminal on the Raspberry Pi to watch the traffic flow (<code>sudo tcpdump -X -i eth0</code>).
+At this point, I&rsquo;m leagues ahead of where I was before.
+When I went to set up cloud backups, I learned that needed to be done through their mobile app.
+As a result, I needed to expose the client application ports through the Raspberry Pi in order to connect from my devices.</p>
+<h3 id="exposing-ports">Exposing ports</h3>
+<p>The system I bought exposed two ports of interest to me.
+<code>9000</code> provides a media application that can interface with their mobile application.
+And <code>554</code>, which exposes a real-time streaming protocol (RTSP) that allows for remote observation of cameras.
+To quickly proxy these ports, we can use our good ole friend <code>iptables</code> again.
+By executing the following commands, we can successfully route requests from a port on the Raspberry Pi to a port on the client.
+Note, <code>${CLIENT_IP}</code> should the IP your client obtained.
+<code>${PORT}</code> would be the port you want to expose.</p>
+<pre><code>$ sudo iptables -A PREROUTING -t nat -i wlan0 -p tcp --dport ${PORT} -j DNAT --to ${CLIENT_IP}:${PORT}
+$ sudo iptables -A FORWARD -p tcp -d ${CLIENT_IP} --dport ${PORT} -j ACCEPT
+</code></pre><p>Note that in my case, the RTSP port needed to also be exposed over <code>udp</code> for better streaming support.
+If you&rsquo;re exposing ports through a Raspberry Pi, you&rsquo;ll need to verify what protocols to expose them over.
+Also, don&rsquo;t forget to save your updated IP table rules, otherwise changes will be lost on reboot.</p>
+<pre><code>$ sudo netfilter-persistent save
+</code></pre><h2 id="conclusion">Conclusion</h2>
+<p>That was it.
+Once everything was setup, I was able to connect to the real-time stream from my devices and monitor my whole system.
+The mobile application also connected to the security system fine and was able to let me configure cloud backups.
+While this is where I stop today, I have some more plans for this in the future.
+As I prepare for some upcoming trips, I want to make sure I can access this system outside of my home network safely and securely.
+While I don&rsquo;t expect this to become a regular pattern I&rsquo;ll deploy, it was extremely useful to set up in this case.</p>
+<p>If you plan on doing this on your own network, be sure to use the proper values for your router and network topology.
+For example, my wireless system uses <code>192.168.4.1</code>.
+Yours might be something different.
+When it comes to configuring the network for the Raspberry Pi&rsquo;s ethernet port, you can pick any unused range on your network.</p>
+    </div>
+    <div class="post-footer">
+      <div class="info">
+        
+        
+    <span class="separator"><a class="tag" href="/tags/iot/">iot</a><a class="tag" href="/tags/raspberrypi/">raspberrypi</a><a class="tag" href="/tags/security-system/">security-system</a></span>
+
+      </div>
+    </div>
+
+    
+</div>
+
+
+                </div>
+            </div>
+        </div>
+</body>
+
+
+
+<script type="text/javascript" src="https://mjpitz.com/js/jquery.min.64d0083866906099f942140bc1c5cba4b1bf65783c52e4a63c5c46bf9dbc41f4.js" integrity="sha256-ZNAIOGaQYJn5QhQLwcXLpLG/ZXg8UuSmPFxGv528QfQ=" crossorigin="anonymous"></script>
+
+
+<script type="text/javascript" src="https://mjpitz.com/js/jquery.min.64d0083866906099f942140bc1c5cba4b1bf65783c52e4a63c5c46bf9dbc41f4.js" integrity="sha256-ZNAIOGaQYJn5QhQLwcXLpLG/ZXg8UuSmPFxGv528QfQ=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://mjpitz.com/js/medium-zoom.min.2d6fd0be87fa98f0c9b4dc2536b312bbca48757f584f6ea1f394abc9bcc38fbc.js" integrity="sha256-LW/Qvof6mPDJtNwlNrMSu8pIdX9YT26h85SrybzDj7w=" crossorigin="anonymous"></script>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-39314903-5', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</html>
+</body>
+
+</html>

@@ -6,7 +6,30 @@
     <description>Recent content on Mya Pitzeruse</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 22 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://mjpitz.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 16 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://mjpitz.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Extending my Security System with a Raspberry Pi Network Bridge</title>
+      <link>https://mjpitz.com/blog/2021/06/16/rpi-network-bridge/</link>
+      <pubDate>Wed, 16 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/blog/2021/06/16/rpi-network-bridge/</guid>
+      <description>&lt;p&gt;It doesn&amp;rsquo;t happen a lot, but every so often I come across a device that isn&amp;rsquo;t wi-fi supported.
+This latest case was my security system.
+On one hand, I like that my cameras aren&amp;rsquo;t taking up bandwidth on my home network and that the system is largely a closed loop.
+On the other hand, not having access to my security system without having it tethered into the router is a bit of a pain.
+For one, my home networking setup isn&amp;rsquo;t that elegant (yet).
+Second, the last thing I want to do is have more stuff out in the open, co-located with my router.
+So I decided to get a little creative.
+Sure, I could&amp;rsquo;ve bought a wi-fi adapter, but where&amp;rsquo;s the fun in that.
+On top of that, I had some other reasons:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;I didn&amp;rsquo;t know if an adapter would work for this system.&lt;/li&gt;
+&lt;li&gt;I eventually want to do some real-time processing of video feed data and didn&amp;rsquo;t want to stream that over the network.&lt;/li&gt;
+&lt;li&gt;I already have more than a dozen pis around (I wound up using a 3b+ for this).&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Today, I describe how I set up and configured a Raspberry Pi to act as a WAN client for connected devices.&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Exploring Redis High Availability</title>
       <link>https://mjpitz.com/blog/2021/04/22/ha-redis/</link>
