@@ -233,7 +233,7 @@ As a result, I needed to expose the client application ports through the Raspber
 ### Exposing ports
 
 The system I bought exposed two ports of interest to me.
-`9000` provides a media application that can interface with their mobile application.
+`9000` provides a media application that can interface with my security systems mobile application.
 And `554`, which exposes a real-time streaming protocol (RTSP) that allows for remote observation of cameras.
 To quickly proxy these ports, we can use our good ole friend `iptables` again.
 By executing the following commands, we can successfully route requests from a port on the Raspberry Pi to a port on the client.
