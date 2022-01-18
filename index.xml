@@ -6,7 +6,20 @@
     <description>Recent content on Mya Pitzeruse</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 16 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://mjpitz.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 16 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://mjpitz.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Bye-Bye Twitter</title>
+      <link>https://mjpitz.com/blog/2022/01/16/bye-bye-twitter/</link>
+      <pubDate>Sun, 16 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/blog/2022/01/16/bye-bye-twitter/</guid>
+      <description>&lt;p&gt;Two months ago, I decided to try an experiment. I took my Twitter account that I reserved back in 2012 with hundreds of
+followers and deactivated it. Before deactivation, I created a new account and invited folks to follow me there. This
+not only gave me a fresh start, but it also gave me a chance to curate who I follow and who I allow to follow me a bit
+better than I had before. After having it up for a few months, I finally decided to deactivate it. For good. Here&amp;rsquo;s why,
+and how my life has been better because of it.&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Extending my Security System with a Raspberry Pi Network Bridge</title>
       <link>https://mjpitz.com/blog/2021/06/16/rpi-network-bridge/</link>
