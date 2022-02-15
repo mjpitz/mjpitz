@@ -3,12 +3,7 @@ slug: digitalocean-setup
 date: 2020-08-03
 title: "Reducing cost on DigitalOcean"
 tags:
-  - cost-savings
-  - digitalocean
-  - kubernetes
-  - terraform
-  - gitops
-  - fluxcd
+  - software development
 
 ---
 

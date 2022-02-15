@@ -3,11 +3,8 @@ slug: path-based-routing-k8s
 date: 2020-11-10
 title: "Adventures in Path Based Routing"
 tags:
-  - kubernetes
-  - k8s
-  - ingress
-  - ingress-controller
-  - path-based routing
+  - software development
+
 ---
 
 Path based routing can be an extremely useful feature.

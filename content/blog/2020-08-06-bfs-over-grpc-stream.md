@@ -3,15 +3,7 @@ slug: bfs-over-grpc-stream
 date: 2020-08-06
 title: "Implementing Breadth-first Search Over gRPC"
 tags:
-  - protobuf
-  - grpc
-  - grpc-streaming
-  - golang
-  - data-structures
-  - algorithms
-  - bfs
-  - graphs
-  - trees
+  - software development
 
 ---
 

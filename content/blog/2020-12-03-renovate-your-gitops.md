@@ -3,14 +3,7 @@ slug: renovate-your-gitops
 date: 2020-12-03
 title: "Renovate your GitOps"
 tags:
-  - kubernetes
-  - k8s
-  - gitops
-  - argocd
-  - renovate
-  - open-source
-  - continuous-delivery
-  - security
+  - software development
 
 ---
 

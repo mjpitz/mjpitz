@@ -3,13 +3,7 @@ slug: protobuf-experience
 date: 2020-09-21
 title: "Working with Protocol Buffers"
 tags:
-  - protobuf
-  - grpc
-  - grpc-streaming
-  - golang
-  - python
-  - nodejs
-  - java
+  - software development
 
 ---
 

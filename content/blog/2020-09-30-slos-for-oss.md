@@ -3,15 +3,7 @@ slug: slos-for-oss
 date: 2020-09-30
 title: "SLOs for Open Source"
 tags:
-  - fmea
-  - slo
-  - sli
-  - sla
-  - reliability
-  - open-source
-  - oss
-  - sre
-  - runbooks
+  - software development
 
 ---
 

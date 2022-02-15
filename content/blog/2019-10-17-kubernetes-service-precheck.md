@@ -3,10 +3,7 @@ slug: kubernetes-service-precheck
 date: 2019-10-17
 title: "Checking Service Dependencies in Kubernetes"
 tags:
-  - docker
-  - kubernetes
-  - microservices
-  - dependencies
+  - software development
 
 ---
 

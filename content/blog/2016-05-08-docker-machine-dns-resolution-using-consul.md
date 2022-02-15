@@ -3,7 +3,7 @@ slug: docker-machine-dns-resolution-using-consul
 date: 2016-05-08
 title: "Docker Machine DNS Resolution using Consul"
 tags:
-  - docker
+  - software development
 
 ---
 

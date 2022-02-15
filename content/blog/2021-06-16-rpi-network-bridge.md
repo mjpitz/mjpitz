@@ -3,9 +3,8 @@ slug: rpi-network-bridge
 date: 2021-06-16
 title: "Extending my Security System with a Raspberry Pi Network Bridge"
 tags:
-  - iot
-  - raspberrypi
-  - security-system
+  - software development
+  - homestead
 
 ---
 

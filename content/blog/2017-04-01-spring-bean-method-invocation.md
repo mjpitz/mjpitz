@@ -3,7 +3,7 @@ slug: spring-bean-method-invocation
 date: 2017-04-01
 title: "Spring Bean Method Invocation"
 tags:
-  - spring-bad-practices
+  - software development
   
 ---
 

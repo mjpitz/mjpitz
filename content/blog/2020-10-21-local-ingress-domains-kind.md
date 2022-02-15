@@ -3,13 +3,8 @@ slug: local-ingress-domains-kind
 date: 2020-10-21
 title: "Local Ingress Domains for your Kind Cluster"
 tags:
-  - kubernetes
-  - k8s
-  - minikube
-  - kind
-  - ingress
-  - ingress-controller
-  - dnsmasq
+  - software development
+
 ---
 
 Tools like [minikube] and [kind] make it easy to get a [kubernetes] cluster up and running locally.

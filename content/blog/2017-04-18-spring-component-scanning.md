@@ -3,7 +3,7 @@ slug: spring-component-scanning
 date: 2017-04-01
 title: "Component Scanning Library Code"
 tags:
-  - spring-bad-practices
+  - software development
   
 ---
 

@@ -4,7 +4,7 @@ date: 2015-07-10
 title: "Status: A Java Library For Robust System Status Health Checks"
 canonical: http://engineering.indeedblog.com/blog/2015/07/status-java-library-for-system-status-health-checks/
 tags:
-  - indeed
+  - software development
 
 ---
 

@@ -3,10 +3,7 @@ slug: lambda-local-development
 date: 2018-10-27
 title: "AWS Lambda - Local Development"
 tags:
-  - aws
-  - lambda
-  - dosh
-  - serverless
+  - software development
   
 ---
 

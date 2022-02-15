@@ -24,12 +24,11 @@ media = "/media/:year/:month/:day/:slug/"
 [params]
 title = "Mya Pitzeruse"
 author = "Mya Pitzeruse"
-description = "Thoughts, ramblings, and learnings from my adventures in code."
+description = "Mom | Homesteader | Software Engineer"
 profilePicture = "/statics/img/mjpitz.jpeg"
 keywords = ""
 favicon = "statics/img/"
 customCss = [ "statics/css/overrides.css" ]
-mainSections = ["blog", "media"]
 
 ## Math settings
 [params.math]
@@ -64,13 +63,13 @@ url = "/index.xml"
   url = "/"
 
   [[menu.main]]
-  name = "Media"
+  name = "Blog"
+  weight = 200
+  identifier = "blog"
+  url = "/blog/"
+
+  [[menu.main]]
+  name = "Talks and Podcasts"
   identifier = "media"
   weight = 400
   url = "/media/"
-
-  [[menu.main]]
-  name = "Blog"
-  weight = 500
-  identifier = "blog"
-  url = "/blog/"

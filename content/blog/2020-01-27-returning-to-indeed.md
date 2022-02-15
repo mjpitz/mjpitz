@@ -2,6 +2,8 @@
 slug: returning-to-indeed
 date: 2020-01-27
 title: "Returning to Indeed"
+tags:
+  - reflection
 
 ---
 

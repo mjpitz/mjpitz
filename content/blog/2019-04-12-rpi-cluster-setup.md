@@ -3,11 +3,7 @@ slug: rpi-cluster-setup
 date: 2019-04-12
 title: "Raspberry Pi Cluster Setup"
 tags:
-  - iot
-  - raspberrypi
-  - docker
-  - docker-machine
-  - k3s
+  - software development
 
 ---
 

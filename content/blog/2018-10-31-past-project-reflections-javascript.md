@@ -2,6 +2,8 @@
 slug: past-project-reflections-javascript
 date: 2018-10-31
 title: "Reflecting on Past Projects - JavaScript"
+tags:
+  - reflection
 
 ---
 

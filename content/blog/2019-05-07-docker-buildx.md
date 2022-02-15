@@ -3,11 +3,7 @@ slug: docker-buildx
 date: 2019-05-07
 title: "Using docker-buildx for Multi-architecture Containers"
 tags:
-  - docker
-  - multiarch
-  - arm
-  - arm64
-  - buildx
+  - software development
 
 ---
 

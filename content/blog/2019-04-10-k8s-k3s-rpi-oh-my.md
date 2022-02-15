@@ -3,10 +3,7 @@ slug: k8s-k3s-rpi-oh-my
 date: 2019-04-10
 title: "k3s on Raspberry Pi"
 tags:
-  - iot
-  - raspberrypi
-  - kubernetes
-  - k3s
+  - software development
 
 ---
 

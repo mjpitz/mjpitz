@@ -3,10 +3,7 @@ slug: lambda-handler-lifetime
 date: 2018-10-28
 title: "AWS Lambda - Handler Lifetime"
 tags:
-  - aws
-  - lambda
-  - dosh
-  - serverless
+  - software development
 
 ---
 

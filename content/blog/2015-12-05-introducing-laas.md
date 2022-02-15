@@ -2,6 +2,8 @@
 slug: introducing-laas
 date: 2015-12-05
 title: "Introducing LAAS"
+tags:
+  - software development
 
 ---
 

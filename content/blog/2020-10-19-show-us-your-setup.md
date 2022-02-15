@@ -3,16 +3,9 @@ slug: show-us-your-setup
 date: 2020-10-19
 title: "Show us Your Setup!"
 tags:
-  - setup
-  - show-and-tell
-  - autonomous.ai
-  - anker
-  - logitech
-  - blue
-  - dell
-  - razer
-  - raspberrypi
-  - rpi
+  - software development
+  - work from home
+
 ---
 
 

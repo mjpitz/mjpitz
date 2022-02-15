@@ -4,7 +4,7 @@ date: 2017-01-19
 title: "Gracefully Degrading Functionality Using Status"
 canonical: http://engineering.indeedblog.com/blog/2017/01/degrade-functionality/
 tags:
-  - indeed
+  - software development
 
 ---
 

@@ -3,18 +3,7 @@ slug: learning-jsonnet
 date: 2020-10-12
 title: "Learning Jsonnet"
 tags:
-  - slo
-  - sli
-  - reliability
-  - open-source
-  - oss
-  - sre
-  - jsonnet
-  - grafana
-  - prometheus
-  - alerts
-  - dashboards
-  - rules
+  - software development
 
 ---
 

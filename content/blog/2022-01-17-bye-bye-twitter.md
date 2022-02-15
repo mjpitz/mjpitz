@@ -2,6 +2,9 @@
 slug: bye-bye-twitter
 date: 2022-01-16
 title: "Bye-Bye Twitter"
+tags:
+  - social media
+
 ---
 
 Two months ago, I decided to try an experiment. I took my Twitter account that I reserved back in 2012 with hundreds of 

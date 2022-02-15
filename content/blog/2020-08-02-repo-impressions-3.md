@@ -3,11 +3,7 @@ slug: repo-impressions-3
 date: 2020-08-02
 title: "Conclusion: Tracking impressions on repositories"
 tags:
-  - github
-  - gitlab
-  - impression
-  - tracking
-  - analytics
+  - software development
 
 ---
 

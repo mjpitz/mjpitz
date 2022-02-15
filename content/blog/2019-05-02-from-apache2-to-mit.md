@@ -3,10 +3,7 @@ slug: from-apache2-to-mit
 date: 2019-05-02
 title: "Moving Licenses - Apache 2.0 to MIT"
 tags:
-  - software
-  - licensing
-  - apache
-  - mit
+  - software development
 
 ---
 

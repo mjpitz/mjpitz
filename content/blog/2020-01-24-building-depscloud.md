@@ -3,10 +3,7 @@ slug: building-depscloud
 date: 2020-01-24
 title: "Building deps.cloud"
 tags:
-  - docker
-  - kubernetes
-  - microservices
-  - dependencies
+  - software development
 
 ---
 

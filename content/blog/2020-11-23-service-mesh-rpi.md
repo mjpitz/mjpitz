@@ -3,13 +3,7 @@ slug: service-mesh-rpi
 date: 2020-11-23
 title: "Running a Service Mesh on Raspberry Pis"
 tags:
-  - service-mesh
-  - consul
-  - connect
-  - rpi
-  - raspberrypi
-  - k3s
-  - kubernetes
+  - software development
 
 ---
 

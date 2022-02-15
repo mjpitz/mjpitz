@@ -4,7 +4,7 @@ date: 2017-04-01
 title: "Delaying Asynchronous Message Processing"
 canonical: http://engineering.indeedblog.com/blog/2017/06/delaying-messages/
 tags:
-  - indeed
+  - software development
 
 ---
 
