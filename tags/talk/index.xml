@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>talk on Mya Pitzeruse</title>
+    <link>https://mjpitz.com/tags/talk/</link>
+    <description>Recent content in talk on Mya Pitzeruse</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 21 Aug 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://mjpitz.com/tags/talk/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Moving to a Service Mesh</title>
+      <link>https://mjpitz.com/media/2019/08/21/moving-to-a-service-mesh/</link>
+      <pubDate>Wed, 21 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/media/2019/08/21/moving-to-a-service-mesh/</guid>
+      <description>
+&lt;p&gt;
+  Similar to my talk on gRPC Java but with more of a focus on the addition of the service mesh.
+&lt;/p&gt;
+
+</description>
+    </item>
+    
+    <item>
+      <title>Moving to grpc-java</title>
+      <link>https://mjpitz.com/media/2019/02/21/moving-to-grpc-java/</link>
+      <pubDate>Thu, 21 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/media/2019/02/21/moving-to-grpc-java/</guid>
+      <description>
+&lt;p&gt;
+  Historically, Indeed has used Boxcar (Indeed’s proprietary framework) to build distributed systems.
+  Over the last year, we have been shifting several of our systems to use gRPC.
+  The first question product teams often ask is &#34;How does gRPC compare to Boxcar?&#34;
+  In this presentation, I put the two frameworks head to head and present the results.
+  I show how my team established some common workloads and gathered metrics to better inform other engineers.
+  We learned a lot about how to optimize the gRPC Java library when performing this analysis.
+  In closing, I present the lessons that we learned performance tuning gRPC services and how you can leverage this information for your own services.
+&lt;/p&gt;
+
+</description>
+    </item>
+    
+  </channel>
+</rss>

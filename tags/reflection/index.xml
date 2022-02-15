@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>reflection on Mya Pitzeruse</title>
+    <link>https://mjpitz.com/tags/reflection/</link>
+    <description>Recent content in reflection on Mya Pitzeruse</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 27 Jan 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://mjpitz.com/tags/reflection/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Returning to Indeed</title>
+      <link>https://mjpitz.com/blog/2020/01/27/returning-to-indeed/</link>
+      <pubDate>Mon, 27 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/blog/2020/01/27/returning-to-indeed/</guid>
+      <description>&lt;p&gt;In November 2018, I decided to return to &lt;a href=&#34;https://indeed.com&#34;&gt;Indeed.com&lt;/a&gt;.
+The decision to return did not come easy.
+Since then, I have frequently been asked about my reasons for rejoining.
+In this post, I hope to cover my interviewing process and some reasons that I had for returning.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Reflecting on Past Projects - JavaScript</title>
+      <link>https://mjpitz.com/blog/2018/10/31/past-project-reflections-javascript/</link>
+      <pubDate>Wed, 31 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/blog/2018/10/31/past-project-reflections-javascript/</guid>
+      <description>&lt;p&gt;Every now and then, a friend of mine reaches out and discuss previous projects we had worked on together.
+As we looked back at code, there was some obvious lessons that we took away from the project.
+In this post, I reflect on several JavaScript projects that I have worked on over the course of my career.
+In each project, I will try to provide:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;technologies used and rough size of project&lt;/li&gt;
+&lt;li&gt;an overview of the project&lt;/li&gt;
+&lt;li&gt;a critique about the approach taken to manage the project&lt;/li&gt;
+&lt;li&gt;what I would’ve done differently&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

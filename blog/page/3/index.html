@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light"><head>
+    <title> Mya Pitzeruse | Blogs </title>
+    <meta charset="utf-8"><meta name="generator" content="Hugo 0.81.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="description" content="Mom | Homesteader | Software Engineer">
+    
+    <link rel="stylesheet" href="https://mjpitz.com/css/style.min.707aa4670276c49b9db4a4ed6b89419c0ed1b4346e2104f50a364aa767d77773.css" integrity="sha256-cHqkZwJ2xJudtKTta4lBnA7RtDRuIQT1CjZKp2fXd3M=" crossorigin="anonymous" type="text/css">
+    <link rel="stylesheet" href="https://mjpitz.com/statics/css/overrides.css" type="text/css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    
+    <link rel="shortcut icon" href="https://mjpitz.com/statics/img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://mjpitz.com/statics/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://mjpitz.com/statics/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://mjpitz.com/statics/img/favicon-16x16.png">
+    <link rel="canonical" href="https://mjpitz.com/blog/">
+    <link rel="alternate" type="application/rss+xml" href="https://mjpitz.com/blog/index.xml" title="Mya Pitzeruse" />
+    
+    
+    <script type="text/javascript" src="https://mjpitz.com/js/anatole-header.min.3252f25a22b06e9062229fa50b222e04393830ad8260421079b1d55ace7605b3.js" integrity="sha256-MlLyWiKwbpBiIp&#43;lCyIuBDk4MK2CYEIQebHVWs52BbM=" crossorigin="anonymous"></script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Blogs"/>
+<meta name="twitter:description" content="Mom | Homesteader | Software Engineer"/>
+
+</head>
+<body><div class="sidebar animated fadeInDown">
+    <div class="logo-title">
+      <div class="title">
+        <img src="https://mjpitz.com/statics/img/mjpitz.jpeg" alt="profile picture">
+        <h3 title=""><a href="/">Mya Pitzeruse</a></h3>
+        <div class="description">
+          <p>Mom | Homesteader | Software Engineer</p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
+        
+        <li>
+        <a href="https://github.com/mjpitz" rel="me" aria-label="GitHub">
+          <i class="fa fa-2x fa-github" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+        <li>
+        <a href="https://www.linkedin.com/in/mjpitz/" rel="me" aria-label="LinkedIn">
+          <i class="fa fa-2x fa-linkedin" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+        <li>
+        <a href="/index.xml" rel="me" aria-label="Feed">
+          <i class="fa fa-2x fa-rss" aria-hidden="true"></i>
+        </a>          
+        </li>
+
+        
+    </ul>
+    <div class="footer">
+        <div class="by_farbox">&copy; Mya Pitzeruse 2022 </div>
+      </div>
+    </div>
+</div><div class="main">
+            <div class="page-top animated fadeInDown">
+    <ul class="nav">
+        
+        
+        
+        <li><a  href="/" title="">Home</a></li>
+        
+        
+        <li><a class="current" href="/blog/" title="">Blog</a></li>
+        
+        
+        <li><a  href="/media/" title="">Talks and Podcasts</a></li>
+        
+    </ul>
+    <div class="themeswitcher">
+        <a class="theme-switch" title="Switch Theme">
+            <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+        </a>
+    </div>
+</div>
+
+            <div class="autopagerize_page_element">
+                <div class="content">
+
+
+<div class="post animated fadeInDown">
+    <div class="post-title">
+        <h3><a href="/blog/2020/01/24/building-depscloud/">Building deps.cloud</a>
+        </h3>
+    </div>
+    <div class="post-content"><div class="p_part"><p><p>Over the last year, I&rsquo;ve been heavily working on <a href="https://deps.cloud">deps.cloud</a>.
+deps.cloud draws it&rsquo;s inspiration from a project that I worked on at <a href="https://indeed.com">Indeed.com</a>.
+Since it&rsquo;s original inception, there had been a heavy push to move it into the open source space.
+In this post, I&rsquo;ll discuss the process and rationale I applied as I rewrote this project in the open.</p></p></div>
+
+        <div class="p_part"><p></p></div></div>
+    <div class="post-footer">
+        <div class="meta">
+            <div class="info"><i class="fa fa-sun-o"></i><span class="date">Fri, Jan 24, 2020</span>
+                <a class="tag" href="/tags/software-development/">software development</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="post animated fadeInDown">
+    <div class="post-title">
+        <h3><a href="/blog/2019/10/17/kubernetes-service-precheck/">Checking Service Dependencies in Kubernetes</a>
+        </h3>
+    </div>
+    <div class="post-content"><div class="p_part"><p><p>Back in July, I found myself needing to better coordinate deployments of my applications to <a href="https://kubernetes.io/">Kubernetes</a>.
+After searching around, I found many ways that people where trying to solve this problem.
+Some used shell scripts to apply multiple YAML files with a fixed time sleep between them.
+Others used shell scripts and tailed the rollout using <code>kubectl rollout status -w</code>.
+Now, I manage a lot of my deployments using <a href="https://www.weave.works/technologies/gitops/">GitOps</a> and <a href="https://github.com/fluxcd/flux">Flux</a>.
+So leveraging these shell scripts to manage my rollouts into clusters wasn&rsquo;t really an option.</p>
+<p>It wasn&rsquo;t until I came across <a href="https://us.alibabacloud.com">Alibaba Cloud&rsquo;s</a> blog post on <a href="https://www.alibabacloud.com/blog/kubernetes-demystified-solving-service-dependencies_594110">solving service dependencies</a> that I felt like I had something to work with.
+The article described two techniques.
+The first was inspecting dependencies within the application itself.
+At Indeed, we leverage our <a href="http://github.com/indeedeng/status">status</a> library to do this.
+The second was to enable services to be checked, independent of the application.</p>
+<p>In this post, I’ll demonstrate how to use my <a href="https://hub.docker.com/r/mjpitz/service-precheck">service-precheck</a> initialization container (built off of the Alibaba blog post) to ensure upstream systems are up before attempting to start a downstream system.</p></p></div>
+
+        <div class="p_part"><p></p></div></div>
+    <div class="post-footer">
+        <div class="meta">
+            <div class="info"><i class="fa fa-sun-o"></i><span class="date">Thu, Oct 17, 2019</span>
+                <a class="tag" href="/tags/software-development/">software development</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="post animated fadeInDown">
+    <div class="post-title">
+        <h3><a href="/blog/2019/05/07/docker-buildx/">Using docker-buildx for Multi-architecture Containers</a>
+        </h3>
+    </div>
+    <div class="post-content"><div class="p_part"><p><p>When you build a container image, it&rsquo;s typically only built for one platform (<code>linux</code>) and one architecture (<code>amd64</code>).
+As the Internet of Things continues to grow, the demand for more <code>arm</code> images increased as well.
+Traditionally, in order to produce an <code>arm</code> image, you need an <code>arm</code> device to do the build on.
+As a result, most projects wind up missing <code>arm</code> support.</p>
+<p><a href="https://github.com/moby/buildkit">BuildKit</a> provides emulation capabilities that support multi-architecture builds.
+With BuildKit, you build container images across multiple architectures concurrently.
+This core utility backs <code>docker buildx</code>, a multi-architecture build utility for docker.
+In this post, I&rsquo;ll discuss why you should produce multi-architecture container images and demonstrate how to use <code>docker buildx</code> to do it.</p></p></div>
+
+        <div class="p_part"><p></p></div></div>
+    <div class="post-footer">
+        <div class="meta">
+            <div class="info"><i class="fa fa-sun-o"></i><span class="date">Tue, May 7, 2019</span>
+                <a class="tag" href="/tags/software-development/">software development</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="post animated fadeInDown">
+    <div class="post-title">
+        <h3><a href="/blog/2019/05/02/from-apache2-to-mit/">Moving Licenses - Apache 2.0 to MIT</a>
+        </h3>
+    </div>
+    <div class="post-content"><div class="p_part"><p>Yesterday, I decided to switch the license that I apply to my personal projects. Many open source projects use the Apache 2.0 license. After reading through it a few times, I liked the level of coverage that it provided. It was however a bit wordy in my opinion. These were often simple little side projects that I was hacking on in my free time.
+After some discussion with others in the community and a few podcasts, I decided to make a switch.</p></div>
+
+        <div class="p_part"><p></p></div></div>
+    <div class="post-footer">
+        <div class="meta">
+            <div class="info"><i class="fa fa-sun-o"></i><span class="date">Thu, May 2, 2019</span>
+                <a class="tag" href="/tags/software-development/">software development</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="post animated fadeInDown">
+    <div class="post-title">
+        <h3><a href="/blog/2019/04/21/monitoring-rpi-cluster/">Raspberry Pi Cluster Monitoring</a>
+        </h3>
+    </div>
+    <div class="post-content"><div class="p_part"><p><p>In my last few posts, I talked a bit about my at home development cluster.
+Due to the flexibility of my cluster, I wanted to provide a monitoring solution that was valuable across each technology I use.
+In this post, I discuss how monitoring is setup on my cluster.
+I&rsquo;ll walk through setting up each node, the Prometheus server, and the Graphana UI.</p></p></div>
+
+        <div class="p_part"><p></p></div></div>
+    <div class="post-footer">
+        <div class="meta">
+            <div class="info"><i class="fa fa-sun-o"></i><span class="date">Sun, Apr 21, 2019</span>
+                <a class="tag" href="/tags/software-development/">software development</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="post animated fadeInDown">
+    <div class="post-title">
+        <h3><a href="/blog/2019/04/12/rpi-cluster-setup/">Raspberry Pi Cluster Setup</a>
+        </h3>
+    </div>
+    <div class="post-content"><div class="p_part"><p><p>Previously, I talked about the different orchestration technologies that I&rsquo;ve run on my Raspberry Pi cluster.
+That post was rather high level and only contained details relating to k3s.
+In this post, we&rsquo;ll take a more in depth look at my cluster setup and my management process around it.</p></p></div>
+
+        <div class="p_part"><p></p></div></div>
+    <div class="post-footer">
+        <div class="meta">
+            <div class="info"><i class="fa fa-sun-o"></i><span class="date">Fri, Apr 12, 2019</span>
+                <a class="tag" href="/tags/software-development/">software development</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="post animated fadeInDown">
+    <div class="post-title">
+        <h3><a href="/blog/2019/04/10/k8s-k3s-rpi-oh-my/">k3s on Raspberry Pi</a>
+        </h3>
+    </div>
+    <div class="post-content"><div class="p_part"><p><p>Over the last few days, I&rsquo;ve been revisiting <a href="https://kubernetes.io">Kubernetes</a> on my Raspberry Pi cluster.
+I hope to share what I learned in the process and some of the tooling that I discovered along the way.</p></p></div>
+
+        <div class="p_part"><p></p></div></div>
+    <div class="post-footer">
+        <div class="meta">
+            <div class="info"><i class="fa fa-sun-o"></i><span class="date">Wed, Apr 10, 2019</span>
+                <a class="tag" href="/tags/software-development/">software development</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="post animated fadeInDown">
+    <div class="post-title">
+        <h3><a href="/blog/2019/03/17/64bit-raspberry-pi/">Easy Steps to a 64bit Raspberry Pi 3 B/B&#43;</a>
+        </h3>
+    </div>
+    <div class="post-content"><div class="p_part"><p><p>I was quite surprised to see how under documented installing a 64 bit operating system onto a Raspberry Pi is.
+Many articles out there talk about needing to compile Linux, which sounds oh-so-pleasant.
+One day, I stumbled across a 64bit OpenSUSE version that was compatible, but the installation instructions required a Linux OS to be done properly.
+Since I primarily work on OSX, this presented yet another barrier.</p>
+<p>After a lot of searching around, I finally found a straight forward and simple way to do it.</p></p></div>
+
+        <div class="p_part"><p></p></div></div>
+    <div class="post-footer">
+        <div class="meta">
+            <div class="info"><i class="fa fa-sun-o"></i><span class="date">Sun, Mar 17, 2019</span>
+                <a class="tag" href="/tags/software-development/">software development</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="post animated fadeInDown">
+    <div class="post-title">
+        <h3><a href="/blog/2019/01/30/gitfs-a-fuse-file-system/">gitfs - A FUSE File System</a>
+        </h3>
+    </div>
+    <div class="post-content"><div class="p_part"><p><p>During my first employment at Indeed, I cloned every repository down to my machine.
+This approach worked for a while when the number of repositories was small.
+As the organization has grown, the solution quickly became unmanageable.
+While many people do not work across every repository, many are familiar with the pain of setting up a new machine.
+I wrote <a href="https://github.com/mjpitz/gitfs">gitfs</a> for a few reasons.
+First, to reduce the time spent setting up a new development environment.
+Second, to remove the need to figure out where all my projects need to be cloned.
+In this post, I discuss some challenges faced and lessons learned in writing my first file system.</p></p></div>
+
+        <div class="p_part"><p></p></div></div>
+    <div class="post-footer">
+        <div class="meta">
+            <div class="info"><i class="fa fa-sun-o"></i><span class="date">Wed, Jan 30, 2019</span>
+                <a class="tag" href="/tags/software-development/">software development</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="post animated fadeInDown">
+    <div class="post-title">
+        <h3><a href="/blog/2018/10/31/past-project-reflections-javascript/">Reflecting on Past Projects - JavaScript</a>
+        </h3>
+    </div>
+    <div class="post-content"><div class="p_part"><p><p>Every now and then, a friend of mine reaches out and discuss previous projects we had worked on together.
+As we looked back at code, there was some obvious lessons that we took away from the project.
+In this post, I reflect on several JavaScript projects that I have worked on over the course of my career.
+In each project, I will try to provide:</p>
+<ul>
+<li>technologies used and rough size of project</li>
+<li>an overview of the project</li>
+<li>a critique about the approach taken to manage the project</li>
+<li>what I would’ve done differently</li>
+</ul></p></div>
+
+        <div class="p_part"><p></p></div></div>
+    <div class="post-footer">
+        <div class="meta">
+            <div class="info"><i class="fa fa-sun-o"></i><span class="date">Wed, Oct 31, 2018</span>
+                <a class="tag" href="/tags/reflection/">reflection</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="pagination">
+    
+<ul class="pagination">
+  <li class="page-item">
+    <a href="/blog/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+  </li>
+  <li class="page-item">
+    <a href="/blog/page/2/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/blog/">1</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/blog/page/2/">2</a>
+  </li>
+  <li class="page-item active">
+    <a class="page-link" href="/blog/page/3/">3</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/blog/page/4/">4</a>
+  </li>
+  <li class="page-item">
+    <a href="/blog/page/4/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+  </li>
+  <li class="page-item">
+    <a href="/blog/page/4/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+  </li>
+</ul>
+
+
+</div>
+
+                </div>
+            </div>
+        </div>
+</body>
+
+
+
+<script type="text/javascript" src="https://mjpitz.com/js/jquery.min.64d0083866906099f942140bc1c5cba4b1bf65783c52e4a63c5c46bf9dbc41f4.js" integrity="sha256-ZNAIOGaQYJn5QhQLwcXLpLG/ZXg8UuSmPFxGv528QfQ=" crossorigin="anonymous"></script>
+
+
+<script type="text/javascript" src="https://mjpitz.com/js/jquery.min.64d0083866906099f942140bc1c5cba4b1bf65783c52e4a63c5c46bf9dbc41f4.js" integrity="sha256-ZNAIOGaQYJn5QhQLwcXLpLG/ZXg8UuSmPFxGv528QfQ=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://mjpitz.com/js/medium-zoom.min.2d6fd0be87fa98f0c9b4dc2536b312bbca48757f584f6ea1f394abc9bcc38fbc.js" integrity="sha256-LW/Qvof6mPDJtNwlNrMSu8pIdX9YT26h85SrybzDj7w=" crossorigin="anonymous"></script>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-39314903-5', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</html>
+</body>
+
+</html>

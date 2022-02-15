@@ -2,7 +2,7 @@
 <html lang="en" data-theme="light"><head>
     <title> Mya Pitzeruse | Blogs </title>
     <meta charset="utf-8"><meta name="generator" content="Hugo 0.81.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-    <meta name="description" content="Thoughts, ramblings, and learnings from my adventures in code.">
+    <meta name="description" content="Mom | Homesteader | Software Engineer">
     
     <link rel="stylesheet" href="https://mjpitz.com/css/style.min.707aa4670276c49b9db4a4ed6b89419c0ed1b4346e2104f50a364aa767d77773.css" integrity="sha256-cHqkZwJ2xJudtKTta4lBnA7RtDRuIQT1CjZKp2fXd3M=" crossorigin="anonymous" type="text/css">
     <link rel="stylesheet" href="https://mjpitz.com/statics/css/overrides.css" type="text/css">
@@ -19,7 +19,7 @@
     <script type="text/javascript" src="https://mjpitz.com/js/anatole-header.min.3252f25a22b06e9062229fa50b222e04393830ad8260421079b1d55ace7605b3.js" integrity="sha256-MlLyWiKwbpBiIp&#43;lCyIuBDk4MK2CYEIQebHVWs52BbM=" crossorigin="anonymous"></script>
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Blogs"/>
-<meta name="twitter:description" content="Thoughts, ramblings, and learnings from my adventures in code."/>
+<meta name="twitter:description" content="Mom | Homesteader | Software Engineer"/>
 
 </head>
 <body><div class="sidebar animated fadeInDown">
@@ -28,7 +28,7 @@
         <img src="https://mjpitz.com/statics/img/mjpitz.jpeg" alt="profile picture">
         <h3 title=""><a href="/">Mya Pitzeruse</a></h3>
         <div class="description">
-          <p>Thoughts, ramblings, and learnings from my adventures in code.</p>
+          <p>Mom | Homesteader | Software Engineer</p>
         </div>
       </div>
     </div>
@@ -69,10 +69,10 @@
         <li><a  href="/" title="">Home</a></li>
         
         
-        <li><a  href="/media/" title="">Media</a></li>
-        
-        
         <li><a class="current" href="/blog/" title="">Blog</a></li>
+        
+        
+        <li><a  href="/media/" title="">Talks and Podcasts</a></li>
         
     </ul>
     <div class="themeswitcher">
@@ -84,355 +84,282 @@
 
             <div class="autopagerize_page_element">
                 <div class="content">
-<div class="archive animated fadeInDown">
-   
-    <ul class="list-with-title">
-           
-      <div class="listing-title">2022</div>
-      
-      <ul class="listing">
-        <div class="listing-item">
-            <div class="listing-post"><a href="https://mjpitz.com/blog/2022/01/16/bye-bye-twitter/" title="Bye-Bye Twitter">Bye-Bye Twitter</a>
-              <div class="post-time"><span class="date">Jan 16</span></div>
+
+
+<div class="post animated fadeInDown">
+    <div class="post-title">
+        <h3><a href="/blog/2022/01/16/bye-bye-twitter/">Bye-Bye Twitter</a>
+        </h3>
+    </div>
+    <div class="post-content"><div class="p_part"><p><p>Two months ago, I decided to try an experiment. I took my Twitter account that I reserved back in 2012 with hundreds of
+followers and deactivated it. Before deactivation, I created a new account and invited folks to follow me there. This
+not only gave me a fresh start, but it also gave me a chance to curate who I follow and who I allow to follow me a bit
+better than I had before. After having it up for a few months, I finally decided to deactivate it. For good. Here&rsquo;s why,
+and how my life has been better because of it.</p></p></div>
+
+        <div class="p_part"><p></p></div></div>
+    <div class="post-footer">
+        <div class="meta">
+            <div class="info"><i class="fa fa-sun-o"></i><span class="date">Sun, Jan 16, 2022</span>
+                <a class="tag" href="/tags/social-media/">social media</a>
             </div>
-          </div>
-    </ul>
-    
-         
-      <div class="listing-title">2021</div>
-      
-      <ul class="listing">
-        <div class="listing-item">
-            <div class="listing-post"><a href="https://mjpitz.com/blog/2021/06/16/rpi-network-bridge/" title="Extending my Security System with a Raspberry Pi Network Bridge">Extending my Security System with a Raspberry Pi Network Bridge</a>
-              <div class="post-time"><span class="date">Jun 16</span></div>
+        </div>
+    </div>
+</div>
+
+<div class="post animated fadeInDown">
+    <div class="post-title">
+        <h3><a href="/blog/2021/06/16/rpi-network-bridge/">Extending my Security System with a Raspberry Pi Network Bridge</a>
+        </h3>
+    </div>
+    <div class="post-content"><div class="p_part"><p><p>It doesn&rsquo;t happen a lot, but every so often I come across a device that isn&rsquo;t wi-fi supported.
+This latest case was my security system.
+On one hand, I like that my cameras aren&rsquo;t taking up bandwidth on my home network and that the system is largely a closed loop.
+On the other, not having access to my security system without having it tethered into the router is a bit of a pain.
+For one, my home networking setup isn&rsquo;t that elegant (yet).
+Second, the last thing I want to do is have more stuff out in the open, co-located with my router.
+So I decided to get a little creative.
+Sure, I could&rsquo;ve bought a wi-fi adapter, but where&rsquo;s the fun in that.
+On top of that, I had some other reasons:</p>
+<ol>
+<li>I didn&rsquo;t want to spend money on an adapter for this system.
+Even though they aren&rsquo;t that expensive, I would likely need to wait for one to come in which would probably happen <em>after</em> I left for my trip.</li>
+<li>Eventually, I want to do some real-time video processing and having a device closer to the box is promising.
+This would let me process data straight from the box rather than needing to transmit all that information over wi-fi to another machine.</li>
+<li>Finally, I already have more than a dozen pis around.
+For the first version of this, I wound up using a 3b+.
+I would likely upgrade this later on when I add the real-time processing.</li>
+</ol>
+<p>Today, I show how I set up and configured a Raspberry Pi to act as a WAN client for a connected device.</p></p></div>
+
+        <div class="p_part"><p></p></div></div>
+    <div class="post-footer">
+        <div class="meta">
+            <div class="info"><i class="fa fa-sun-o"></i><span class="date">Wed, Jun 16, 2021</span>
+                <a class="tag" href="/tags/software-development/">software development</a><a class="tag" href="/tags/homestead/">homestead</a>
             </div>
-          </div>
-    </ul>
-    
-      <ul class="listing">
-        <div class="listing-item">
-            <div class="listing-post"><a href="https://mjpitz.com/blog/2021/04/22/ha-redis/" title="Exploring Redis High Availability">Exploring Redis High Availability</a>
-              <div class="post-time"><span class="date">Apr 22</span></div>
+        </div>
+    </div>
+</div>
+
+<div class="post animated fadeInDown">
+    <div class="post-title">
+        <h3><a href="/blog/2021/04/22/ha-redis/">Exploring Redis High Availability</a>
+        </h3>
+    </div>
+    <div class="post-content"><div class="p_part"><p><p>Recently, I&rsquo;ve found myself using <a href="https://redis.io/">Redis</a> for more of the projects that I work on.
+Redis can be used in a variety of ways.
+It provides functionality for queueing, set operations, bitmaps, streams, and so much more.
+Yet, most of my experience with Redis has been as a best-effort cache.
+Since it&rsquo;s become a staple in my development, I figured it would be good to brush up on its operations.</p>
+<p>In this post, I dive into the variety of ways Redis can be deployed.
+I&rsquo;ll cover the benefits, tradeoffs, and even some uses for each deployment.
+Finally, I&rsquo;ll describe the deployment that I recently put together.</p></p></div>
+
+        <div class="p_part"><p></p></div></div>
+    <div class="post-footer">
+        <div class="meta">
+            <div class="info"><i class="fa fa-sun-o"></i><span class="date">Thu, Apr 22, 2021</span>
+                <a class="tag" href="/tags/software-development/">software development</a>
             </div>
-          </div>
-    </ul>
-    
-         
-      <div class="listing-title">2020</div>
-      
-      <ul class="listing">
-        <div class="listing-item">
-            <div class="listing-post"><a href="https://mjpitz.com/blog/2020/12/03/renovate-your-gitops/" title="Renovate your GitOps">Renovate your GitOps</a>
-              <div class="post-time"><span class="date">Dec 3</span></div>
+        </div>
+    </div>
+</div>
+
+<div class="post animated fadeInDown">
+    <div class="post-title">
+        <h3><a href="/blog/2020/12/03/renovate-your-gitops/">Renovate your GitOps</a>
+        </h3>
+    </div>
+    <div class="post-content"><div class="p_part"><p><p>Every engineering organization struggles to stay up to date with the latest versions of applications they run.
+When an organization deploys an open source project, their versions start to drift from day one.
+The longer a project runs without an update, the more likely it is to contain a vulnerability.
+To help applications stay on top of library versions, the project <a href="https://github.com/renovatebot/">Renovate</a> was developed.
+Renovate works by parsing manifest files (like <code>package.json</code> and <code>go.mod</code>) and checking for newer versions of libraries.
+When Renovate discovers an update, it submits a pull request with the newer version to the project.</p>
+<p>Recently, I noticed Renovate submit pull requests for dependencies in my <a href="https://helm.sh/">Helm</a> v3 charts.
+This gave me an idea.
+What if Renovate could automatically manage something like a GitOps repository?
+This means organizations would no longer need to tediously query for newer versions of applications.
+Instead, they&rsquo;d automatically receive a pull request when an update becomes available.
+In this blog post, I demonstrate how to set this up for an <a href="https://github.com/argoproj/argo-cd/">ArgoCD</a> GitOps repository.</p></p></div>
+
+        <div class="p_part"><p></p></div></div>
+    <div class="post-footer">
+        <div class="meta">
+            <div class="info"><i class="fa fa-sun-o"></i><span class="date">Thu, Dec 3, 2020</span>
+                <a class="tag" href="/tags/software-development/">software development</a>
             </div>
-          </div>
-    </ul>
-    
-      <ul class="listing">
-        <div class="listing-item">
-            <div class="listing-post"><a href="https://mjpitz.com/blog/2020/11/30/pronoun-practice/" title="Pronoun Practice">Pronoun Practice</a>
-              <div class="post-time"><span class="date">Nov 30</span></div>
+        </div>
+    </div>
+</div>
+
+<div class="post animated fadeInDown">
+    <div class="post-title">
+        <h3><a href="/blog/2020/11/30/pronoun-practice/">Pronoun Practice</a>
+        </h3>
+    </div>
+    <div class="post-content"><div class="p_part"><p><p>Historically, my blog has largely been focused on technology.
+This was because of where I was in my career.
+And yet, my career doesn&rsquo;t solely reside in tech.
+As a transgender individual, I frequently need to correct peoples use of my and other peoples pronouns.
+Whenever a transgender person needs to correct someone, we pay an emotional tax.
+While it might seem small at first, you need to consider that individuals full experience.
+In this post, I share techniques I found effective at getting better with pronouns.</p></p></div>
+
+        <div class="p_part"><p></p></div></div>
+    <div class="post-footer">
+        <div class="meta">
+            <div class="info"><i class="fa fa-sun-o"></i><span class="date">Mon, Nov 30, 2020</span>
+                <a class="tag" href="/tags/management/">management</a><a class="tag" href="/tags/inclusion/">inclusion</a><a class="tag" href="/tags/pronouns/">pronouns</a>
             </div>
-          </div>
-    </ul>
-    
-      <ul class="listing">
-        <div class="listing-item">
-            <div class="listing-post"><a href="https://mjpitz.com/blog/2020/11/23/service-mesh-rpi/" title="Running a Service Mesh on Raspberry Pis">Running a Service Mesh on Raspberry Pis</a>
-              <div class="post-time"><span class="date">Nov 23</span></div>
+        </div>
+    </div>
+</div>
+
+<div class="post animated fadeInDown">
+    <div class="post-title">
+        <h3><a href="/blog/2020/11/23/service-mesh-rpi/">Running a Service Mesh on Raspberry Pis</a>
+        </h3>
+    </div>
+    <div class="post-content"><div class="p_part"><p><p>Many people have asked how to support deploying service mesh to Raspberry Pis.
+It wasn&rsquo;t until September that this started to be possible.
+<a href="https://github.com/linkerd/linkerd2/releases/tag/stable-2.9.0">Linkerd</a> recently released support for arm64, but has had support for it in edge versions since August.
+Many <a href="https://envoyproxy.io/">envoy</a> based service mesh have been blocked by support for an arm-compatible envoy image.</p>
+<p><a href="https://www.consul.io/">Consul</a> is a powerful service discovery and configuration management tool from <a href="https://www.hashicorp.com/">Hashicorp</a>.
+It has a long history of supporting a variety of execution platforms, operating systems, and architectures.
+In 1.2, Hashicorp introduced <a href="https://www.consul.io/docs/connect">Consul Connect</a>, an envoy based service mesh integration.
+This allows Consul to control and direct clients in the service mesh data plane.</p>
+<p>In this post, I&rsquo;ll demonstrate how to deploy Consul to support a service mesh on Raspberry Pis.</p></p></div>
+
+        <div class="p_part"><p></p></div></div>
+    <div class="post-footer">
+        <div class="meta">
+            <div class="info"><i class="fa fa-sun-o"></i><span class="date">Mon, Nov 23, 2020</span>
+                <a class="tag" href="/tags/software-development/">software development</a>
             </div>
-          </div>
-    </ul>
-    
-      <ul class="listing">
-        <div class="listing-item">
-            <div class="listing-post"><a href="https://mjpitz.com/blog/2020/11/10/path-based-routing-k8s/" title="Adventures in Path Based Routing">Adventures in Path Based Routing</a>
-              <div class="post-time"><span class="date">Nov 10</span></div>
+        </div>
+    </div>
+</div>
+
+<div class="post animated fadeInDown">
+    <div class="post-title">
+        <h3><a href="/blog/2020/11/10/path-based-routing-k8s/">Adventures in Path Based Routing</a>
+        </h3>
+    </div>
+    <div class="post-content"><div class="p_part"><p><p>Path based routing can be an extremely useful feature.
+It enables you to serve a single page app and an API on the same domain.
+This can often be helpful when starting a project, but don&rsquo;t want to handle things like <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">cross-origin resource sharing</a>.
+In a recent project, I wanted to split traffic between a static site hosted on GitHub (or S3) and an API running in the cluster.
+In this post, I&rsquo;ll demonstrate some less common approaches to path based routing using <a href="https://kubernetes.io">Kubernetes</a> resources.</p></p></div>
+
+        <div class="p_part"><p></p></div></div>
+    <div class="post-footer">
+        <div class="meta">
+            <div class="info"><i class="fa fa-sun-o"></i><span class="date">Tue, Nov 10, 2020</span>
+                <a class="tag" href="/tags/software-development/">software development</a>
             </div>
-          </div>
-    </ul>
-    
-      <ul class="listing">
-        <div class="listing-item">
-            <div class="listing-post"><a href="https://mjpitz.com/blog/2020/11/03/registry-123/" title="Docker Registry Setup">Docker Registry Setup</a>
-              <div class="post-time"><span class="date">Nov 3</span></div>
+        </div>
+    </div>
+</div>
+
+<div class="post animated fadeInDown">
+    <div class="post-title">
+        <h3><a href="/blog/2020/11/03/registry-123/">Docker Registry Setup</a>
+        </h3>
+    </div>
+    <div class="post-content"><div class="p_part"><p><p>DockerHub&rsquo;s <a href="https://docs.docker.com/docker-hub/download-rate-limit/">impending download rate limit</a> presents an interesting challenge for some.
+From hobbyists to open core ecosystems, projects are trying to find ways insulate their users.
+For my projects, I chose to deploy a simple registry mirror.
+One nice thing about this project is that the system is largely stateless (and cheap to run).
+The <code>docker-registry</code> and <code>docker-auth</code> projects are horizontally scalable.
+The only stateful system you really need to manage is a cache (which isn&rsquo;t mission critical).
+While <a href="https://goharbor.io/">Harbor</a> was appealing, it had a lot more overhead than what I needed.
+In this post, I&rsquo;ll walk you through my deployment.</p></p></div>
+
+        <div class="p_part"><p></p></div></div>
+    <div class="post-footer">
+        <div class="meta">
+            <div class="info"><i class="fa fa-sun-o"></i><span class="date">Tue, Nov 3, 2020</span>
+                <a class="tag" href="/tags/software-development/">software development</a>
             </div>
-          </div>
-    </ul>
-    
-      <ul class="listing">
-        <div class="listing-item">
-            <div class="listing-post"><a href="https://mjpitz.com/blog/2020/10/21/local-ingress-domains-kind/" title="Local Ingress Domains for your Kind Cluster">Local Ingress Domains for your Kind Cluster</a>
-              <div class="post-time"><span class="date">Oct 21</span></div>
+        </div>
+    </div>
+</div>
+
+<div class="post animated fadeInDown">
+    <div class="post-title">
+        <h3><a href="/blog/2020/10/21/local-ingress-domains-kind/">Local Ingress Domains for your Kind Cluster</a>
+        </h3>
+    </div>
+    <div class="post-content"><div class="p_part"><p><p>Tools like <a href="https://minikube.sigs.k8s.io/docs/">minikube</a> and <a href="https://kind.sigs.k8s.io/">kind</a> make it easy to get a <a href="https://kubernetes.io/">kubernetes</a> cluster up and running locally.
+Unfortunately these tools are limited in their capabilities, namely a lack of load balancer support.
+As a result, the community developed solutions like <a href="https://github.com/txn2/kubefwd">kubefwd</a> and <code>minikube tunnel</code> to expose services.
+While this approach works, keeping a dedicated terminal open during development can be tedeous.
+In this post, I show how to set up an ingress controller in a kind cluster and pair it with a private, locally addressable domain.</p></p></div>
+
+        <div class="p_part"><p></p></div></div>
+    <div class="post-footer">
+        <div class="meta">
+            <div class="info"><i class="fa fa-sun-o"></i><span class="date">Wed, Oct 21, 2020</span>
+                <a class="tag" href="/tags/software-development/">software development</a>
             </div>
-          </div>
-    </ul>
-    
-      <ul class="listing">
-        <div class="listing-item">
-            <div class="listing-post"><a href="https://mjpitz.com/blog/2020/10/19/show-us-your-setup/" title="Show us Your Setup!">Show us Your Setup!</a>
-              <div class="post-time"><span class="date">Oct 19</span></div>
+        </div>
+    </div>
+</div>
+
+<div class="post animated fadeInDown">
+    <div class="post-title">
+        <h3><a href="/blog/2020/10/19/show-us-your-setup/">Show us Your Setup!</a>
+        </h3>
+    </div>
+    <div class="post-content"><div class="p_part"><p><p>Indeed had an internal blog series called &ldquo;Show us Your Setup.&rdquo;
+It was a great way to get an idea of others workspaces, the equipment they use, and software they run.
+Recently, I had noticed a few folks doing a walk through of their equipment.
+In this post, I will show and walk through my setup.
+I&rsquo;ll discuss the things I like, and the things I don&rsquo;t.</p></p></div>
+
+        <div class="p_part"><p></p></div></div>
+    <div class="post-footer">
+        <div class="meta">
+            <div class="info"><i class="fa fa-sun-o"></i><span class="date">Mon, Oct 19, 2020</span>
+                <a class="tag" href="/tags/software-development/">software development</a><a class="tag" href="/tags/work-from-home/">work from home</a>
             </div>
-          </div>
-    </ul>
+        </div>
+    </div>
+</div>
+
+<div class="pagination">
     
-      <ul class="listing">
-        <div class="listing-item">
-            <div class="listing-post"><a href="https://mjpitz.com/blog/2020/10/12/learning-jsonnet/" title="Learning Jsonnet">Learning Jsonnet</a>
-              <div class="post-time"><span class="date">Oct 12</span></div>
-            </div>
-          </div>
-    </ul>
-    
-      <ul class="listing">
-        <div class="listing-item">
-            <div class="listing-post"><a href="https://mjpitz.com/blog/2020/09/30/slos-for-oss/" title="SLOs for Open Source">SLOs for Open Source</a>
-              <div class="post-time"><span class="date">Sep 30</span></div>
-            </div>
-          </div>
-    </ul>
-    
-      <ul class="listing">
-        <div class="listing-item">
-            <div class="listing-post"><a href="https://mjpitz.com/blog/2020/09/21/protobuf-experience/" title="Working with Protocol Buffers">Working with Protocol Buffers</a>
-              <div class="post-time"><span class="date">Sep 21</span></div>
-            </div>
-          </div>
-    </ul>
-    
-      <ul class="listing">
-        <div class="listing-item">
-            <div class="listing-post"><a href="https://mjpitz.com/blog/2020/08/06/bfs-over-grpc-stream/" title="Implementing Breadth-first Search Over gRPC">Implementing Breadth-first Search Over gRPC</a>
-              <div class="post-time"><span class="date">Aug 6</span></div>
-            </div>
-          </div>
-    </ul>
-    
-      <ul class="listing">
-        <div class="listing-item">
-            <div class="listing-post"><a href="https://mjpitz.com/blog/2020/08/03/digitalocean-setup/" title="Reducing cost on DigitalOcean">Reducing cost on DigitalOcean</a>
-              <div class="post-time"><span class="date">Aug 3</span></div>
-            </div>
-          </div>
-    </ul>
-    
-      <ul class="listing">
-        <div class="listing-item">
-            <div class="listing-post"><a href="https://mjpitz.com/blog/2020/08/02/repo-impressions-3/" title="Conclusion: Tracking impressions on repositories">Conclusion: Tracking impressions on repositories</a>
-              <div class="post-time"><span class="date">Aug 2</span></div>
-            </div>
-          </div>
-    </ul>
-    
-      <ul class="listing">
-        <div class="listing-item">
-            <div class="listing-post"><a href="https://mjpitz.com/blog/2020/07/27/repo-impressions-2/" title="Follow up: Tracking impressions on repositories">Follow up: Tracking impressions on repositories</a>
-              <div class="post-time"><span class="date">Jul 27</span></div>
-            </div>
-          </div>
-    </ul>
-    
-      <ul class="listing">
-        <div class="listing-item">
-            <div class="listing-post"><a href="https://mjpitz.com/blog/2020/07/17/repo-impression-tracking/" title="Tracking impressions on repositories">Tracking impressions on repositories</a>
-              <div class="post-time"><span class="date">Jul 17</span></div>
-            </div>
-          </div>
-    </ul>
-    
-      <ul class="listing">
-        <div class="listing-item">
-            <div class="listing-post"><a href="https://mjpitz.com/blog/2020/04/20/k3s-rpi-year1/" title="Home Lab: 1 year later">Home Lab: 1 year later</a>
-              <div class="post-time"><span class="date">Apr 20</span></div>
-            </div>
-          </div>
-    </ul>
-    
-      <ul class="listing">
-        <div class="listing-item">
-            <div class="listing-post"><a href="https://mjpitz.com/blog/2020/01/27/returning-to-indeed/" title="Returning to Indeed">Returning to Indeed</a>
-              <div class="post-time"><span class="date">Jan 27</span></div>
-            </div>
-          </div>
-    </ul>
-    
-      <ul class="listing">
-        <div class="listing-item">
-            <div class="listing-post"><a href="https://mjpitz.com/blog/2020/01/24/building-depscloud/" title="Building deps.cloud">Building deps.cloud</a>
-              <div class="post-time"><span class="date">Jan 24</span></div>
-            </div>
-          </div>
-    </ul>
-    
-         
-      <div class="listing-title">2019</div>
-      
-      <ul class="listing">
-        <div class="listing-item">
-            <div class="listing-post"><a href="https://mjpitz.com/blog/2019/10/17/kubernetes-service-precheck/" title="Checking Service Dependencies in Kubernetes">Checking Service Dependencies in Kubernetes</a>
-              <div class="post-time"><span class="date">Oct 17</span></div>
-            </div>
-          </div>
-    </ul>
-    
-      <ul class="listing">
-        <div class="listing-item">
-            <div class="listing-post"><a href="https://mjpitz.com/blog/2019/05/07/docker-buildx/" title="Using docker-buildx for Multi-architecture Containers">Using docker-buildx for Multi-architecture Containers</a>
-              <div class="post-time"><span class="date">May 7</span></div>
-            </div>
-          </div>
-    </ul>
-    
-      <ul class="listing">
-        <div class="listing-item">
-            <div class="listing-post"><a href="https://mjpitz.com/blog/2019/05/02/from-apache2-to-mit/" title="Moving Licenses - Apache 2.0 to MIT">Moving Licenses - Apache 2.0 to MIT</a>
-              <div class="post-time"><span class="date">May 2</span></div>
-            </div>
-          </div>
-    </ul>
-    
-      <ul class="listing">
-        <div class="listing-item">
-            <div class="listing-post"><a href="https://mjpitz.com/blog/2019/04/21/monitoring-rpi-cluster/" title="Raspberry Pi Cluster Monitoring">Raspberry Pi Cluster Monitoring</a>
-              <div class="post-time"><span class="date">Apr 21</span></div>
-            </div>
-          </div>
-    </ul>
-    
-      <ul class="listing">
-        <div class="listing-item">
-            <div class="listing-post"><a href="https://mjpitz.com/blog/2019/04/12/rpi-cluster-setup/" title="Raspberry Pi Cluster Setup">Raspberry Pi Cluster Setup</a>
-              <div class="post-time"><span class="date">Apr 12</span></div>
-            </div>
-          </div>
-    </ul>
-    
-      <ul class="listing">
-        <div class="listing-item">
-            <div class="listing-post"><a href="https://mjpitz.com/blog/2019/04/10/k8s-k3s-rpi-oh-my/" title="k3s on Raspberry Pi">k3s on Raspberry Pi</a>
-              <div class="post-time"><span class="date">Apr 10</span></div>
-            </div>
-          </div>
-    </ul>
-    
-      <ul class="listing">
-        <div class="listing-item">
-            <div class="listing-post"><a href="https://mjpitz.com/blog/2019/03/17/64bit-raspberry-pi/" title="Easy Steps to a 64bit Raspberry Pi 3 B/B&#43;">Easy Steps to a 64bit Raspberry Pi 3 B/B&#43;</a>
-              <div class="post-time"><span class="date">Mar 17</span></div>
-            </div>
-          </div>
-    </ul>
-    
-      <ul class="listing">
-        <div class="listing-item">
-            <div class="listing-post"><a href="https://mjpitz.com/blog/2019/01/30/gitfs-a-fuse-file-system/" title="gitfs - A FUSE File System">gitfs - A FUSE File System</a>
-              <div class="post-time"><span class="date">Jan 30</span></div>
-            </div>
-          </div>
-    </ul>
-    
-         
-      <div class="listing-title">2018</div>
-      
-      <ul class="listing">
-        <div class="listing-item">
-            <div class="listing-post"><a href="https://mjpitz.com/blog/2018/10/31/past-project-reflections-javascript/" title="Reflecting on Past Projects - JavaScript">Reflecting on Past Projects - JavaScript</a>
-              <div class="post-time"><span class="date">Oct 31</span></div>
-            </div>
-          </div>
-    </ul>
-    
-      <ul class="listing">
-        <div class="listing-item">
-            <div class="listing-post"><a href="https://mjpitz.com/blog/2018/10/28/lambda-handler-lifetime/" title="AWS Lambda - Handler Lifetime">AWS Lambda - Handler Lifetime</a>
-              <div class="post-time"><span class="date">Oct 28</span></div>
-            </div>
-          </div>
-    </ul>
-    
-      <ul class="listing">
-        <div class="listing-item">
-            <div class="listing-post"><a href="https://mjpitz.com/blog/2018/10/27/lambda-local-development/" title="AWS Lambda - Local Development">AWS Lambda - Local Development</a>
-              <div class="post-time"><span class="date">Oct 27</span></div>
-            </div>
-          </div>
-    </ul>
-    
-      <ul class="listing">
-        <div class="listing-item">
-            <div class="listing-post"><a href="https://mjpitz.com/blog/2018/05/07/nodejs-grpc-code-reference/" title="NodeJS gRPC Code Reference">NodeJS gRPC Code Reference</a>
-              <div class="post-time"><span class="date">May 7</span></div>
-            </div>
-          </div>
-    </ul>
-    
-         
-      <div class="listing-title">2017</div>
-      
-      <ul class="listing">
-        <div class="listing-item">
-            <div class="listing-post"><a href="https://mjpitz.com/blog/2017/04/01/spring-bean-method-invocation/" title="Spring Bean Method Invocation">Spring Bean Method Invocation</a>
-              <div class="post-time"><span class="date">Apr 1</span></div>
-            </div>
-          </div>
-    </ul>
-    
-      <ul class="listing">
-        <div class="listing-item">
-            <div class="listing-post"><a href="https://mjpitz.com/blog/2017/04/01/delaying-message-processing/" title="Delaying Asynchronous Message Processing">Delaying Asynchronous Message Processing</a>
-              <div class="post-time"><span class="date">Apr 1</span></div>
-            </div>
-          </div>
-    </ul>
-    
-      <ul class="listing">
-        <div class="listing-item">
-            <div class="listing-post"><a href="https://mjpitz.com/blog/2017/04/01/spring-component-scanning/" title="Component Scanning Library Code">Component Scanning Library Code</a>
-              <div class="post-time"><span class="date">Apr 1</span></div>
-            </div>
-          </div>
-    </ul>
-    
-      <ul class="listing">
-        <div class="listing-item">
-            <div class="listing-post"><a href="https://mjpitz.com/blog/2017/01/19/gracefully-degrading-functionality-using-status/" title="Gracefully Degrading Functionality Using Status">Gracefully Degrading Functionality Using Status</a>
-              <div class="post-time"><span class="date">Jan 19</span></div>
-            </div>
-          </div>
-    </ul>
-    
-         
-      <div class="listing-title">2016</div>
-      
-      <ul class="listing">
-        <div class="listing-item">
-            <div class="listing-post"><a href="https://mjpitz.com/blog/2016/05/08/docker-machine-dns-resolution-using-consul/" title="Docker Machine DNS Resolution using Consul">Docker Machine DNS Resolution using Consul</a>
-              <div class="post-time"><span class="date">May 8</span></div>
-            </div>
-          </div>
-    </ul>
-    
-         
-      <div class="listing-title">2015</div>
-      
-      <ul class="listing">
-        <div class="listing-item">
-            <div class="listing-post"><a href="https://mjpitz.com/blog/2015/12/05/introducing-laas/" title="Introducing LAAS">Introducing LAAS</a>
-              <div class="post-time"><span class="date">Dec 5</span></div>
-            </div>
-          </div>
-    </ul>
-    
-      <ul class="listing">
-        <div class="listing-item">
-            <div class="listing-post"><a href="https://mjpitz.com/blog/2015/07/10/status-java-library-for-system-status-health-checks/" title="Status: A Java Library For Robust System Status Health Checks">Status: A Java Library For Robust System Status Health Checks</a>
-              <div class="post-time"><span class="date">Jul 10</span></div>
-            </div>
-          </div>
-    </ul>
-    
-    
-  </div>
+<ul class="pagination">
+  <li class="page-item">
+    <a href="/blog/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+  </li>
+  <li class="page-item disabled">
+    <a  class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+  </li>
+  <li class="page-item active">
+    <a class="page-link" href="/blog/">1</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/blog/page/2/">2</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/blog/page/3/">3</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/blog/page/4/">4</a>
+  </li>
+  <li class="page-item">
+    <a href="/blog/page/2/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+  </li>
+  <li class="page-item">
+    <a href="/blog/page/4/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+  </li>
+</ul>
+
+
+</div>
 
                 </div>
             </div>

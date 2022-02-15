@@ -11,61 +11,28 @@
     <loc>https://mjpitz.com/blog/2022/01/16/bye-bye-twitter/</loc>
     <lastmod>2022-01-16T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://mjpitz.com/tags/social-media/</loc>
+    <lastmod>2022-01-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://mjpitz.com/tags/</loc>
+    <lastmod>2022-01-16T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://mjpitz.com/blog/2021/06/16/rpi-network-bridge/</loc>
     <lastmod>2021-06-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://mjpitz.com/tags/iot/</loc>
+    <loc>https://mjpitz.com/tags/homestead/</loc>
     <lastmod>2021-06-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://mjpitz.com/tags/raspberrypi/</loc>
-    <lastmod>2021-06-16T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/security-system/</loc>
-    <lastmod>2021-06-16T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/</loc>
+    <loc>https://mjpitz.com/tags/software-development/</loc>
     <lastmod>2021-06-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://mjpitz.com/blog/2021/04/22/ha-redis/</loc>
     <lastmod>2021-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://mjpitz.com/tags/ha/</loc>
-    <lastmod>2021-04-22T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/high-availability/</loc>
-    <lastmod>2021-04-22T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/redis/</loc>
-    <lastmod>2021-04-22T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/argocd/</loc>
-    <lastmod>2020-12-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/continuous-delivery/</loc>
-    <lastmod>2020-12-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/gitops/</loc>
-    <lastmod>2020-12-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/k8s/</loc>
-    <lastmod>2020-12-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/kubernetes/</loc>
-    <lastmod>2020-12-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/open-source/</loc>
-    <lastmod>2020-12-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/renovate/</loc>
-    <lastmod>2020-12-03T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://mjpitz.com/blog/2020/12/03/renovate-your-gitops/</loc>
     <lastmod>2020-12-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://mjpitz.com/tags/security/</loc>
-    <lastmod>2020-12-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/dib/</loc>
+    <loc>https://mjpitz.com/tags/inclusion/</loc>
     <lastmod>2020-11-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://mjpitz.com/tags/management/</loc>
@@ -77,220 +44,40 @@
     <loc>https://mjpitz.com/tags/pronouns/</loc>
     <lastmod>2020-11-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://mjpitz.com/tags/transgender/</loc>
-    <lastmod>2020-11-30T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/connect/</loc>
-    <lastmod>2020-11-23T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/consul/</loc>
-    <lastmod>2020-11-23T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/k3s/</loc>
-    <lastmod>2020-11-23T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/rpi/</loc>
-    <lastmod>2020-11-23T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://mjpitz.com/blog/2020/11/23/service-mesh-rpi/</loc>
-    <lastmod>2020-11-23T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/service-mesh/</loc>
     <lastmod>2020-11-23T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://mjpitz.com/blog/2020/11/10/path-based-routing-k8s/</loc>
     <lastmod>2020-11-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://mjpitz.com/tags/ingress/</loc>
-    <lastmod>2020-11-10T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/ingress-controller/</loc>
-    <lastmod>2020-11-10T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/path-based-routing/</loc>
-    <lastmod>2020-11-10T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/auth/</loc>
-    <lastmod>2020-11-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/docker/</loc>
-    <lastmod>2020-11-03T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://mjpitz.com/blog/2020/11/03/registry-123/</loc>
     <lastmod>2020-11-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/mirror/</loc>
-    <lastmod>2020-11-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/rate-limit/</loc>
-    <lastmod>2020-11-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/readonly/</loc>
-    <lastmod>2020-11-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/registry/</loc>
-    <lastmod>2020-11-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/setup/</loc>
-    <lastmod>2020-11-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/dnsmasq/</loc>
-    <lastmod>2020-10-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/kind/</loc>
-    <lastmod>2020-10-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://mjpitz.com/blog/2020/10/21/local-ingress-domains-kind/</loc>
     <lastmod>2020-10-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://mjpitz.com/tags/minikube/</loc>
-    <lastmod>2020-10-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/anker/</loc>
-    <lastmod>2020-10-19T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/autonomous.ai/</loc>
-    <lastmod>2020-10-19T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/blue/</loc>
-    <lastmod>2020-10-19T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/dell/</loc>
-    <lastmod>2020-10-19T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/logitech/</loc>
-    <lastmod>2020-10-19T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/razer/</loc>
-    <lastmod>2020-10-19T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://mjpitz.com/blog/2020/10/19/show-us-your-setup/</loc>
     <lastmod>2020-10-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://mjpitz.com/tags/show-and-tell/</loc>
+    <loc>https://mjpitz.com/tags/work-from-home/</loc>
     <lastmod>2020-10-19T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/alerts/</loc>
-    <lastmod>2020-10-12T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/dashboards/</loc>
-    <lastmod>2020-10-12T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/grafana/</loc>
-    <lastmod>2020-10-12T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/jsonnet/</loc>
-    <lastmod>2020-10-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://mjpitz.com/blog/2020/10/12/learning-jsonnet/</loc>
     <lastmod>2020-10-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://mjpitz.com/tags/oss/</loc>
-    <lastmod>2020-10-12T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/prometheus/</loc>
-    <lastmod>2020-10-12T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/reliability/</loc>
-    <lastmod>2020-10-12T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/rules/</loc>
-    <lastmod>2020-10-12T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/sli/</loc>
-    <lastmod>2020-10-12T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/slo/</loc>
-    <lastmod>2020-10-12T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/sre/</loc>
-    <lastmod>2020-10-12T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/fmea/</loc>
-    <lastmod>2020-09-30T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/runbooks/</loc>
-    <lastmod>2020-09-30T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/sla/</loc>
-    <lastmod>2020-09-30T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://mjpitz.com/blog/2020/09/30/slos-for-oss/</loc>
     <lastmod>2020-09-30T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/golang/</loc>
-    <lastmod>2020-09-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/grpc/</loc>
-    <lastmod>2020-09-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/grpc-streaming/</loc>
-    <lastmod>2020-09-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/java/</loc>
-    <lastmod>2020-09-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/nodejs/</loc>
-    <lastmod>2020-09-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/protobuf/</loc>
-    <lastmod>2020-09-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/python/</loc>
-    <lastmod>2020-09-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://mjpitz.com/blog/2020/09/21/protobuf-experience/</loc>
     <lastmod>2020-09-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://mjpitz.com/tags/algorithms/</loc>
-    <lastmod>2020-08-06T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/bfs/</loc>
-    <lastmod>2020-08-06T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/data-structures/</loc>
-    <lastmod>2020-08-06T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/graphs/</loc>
-    <lastmod>2020-08-06T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://mjpitz.com/blog/2020/08/06/bfs-over-grpc-stream/</loc>
     <lastmod>2020-08-06T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/trees/</loc>
-    <lastmod>2020-08-06T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/cost-savings/</loc>
-    <lastmod>2020-08-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/digitalocean/</loc>
-    <lastmod>2020-08-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/fluxcd/</loc>
-    <lastmod>2020-08-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://mjpitz.com/blog/2020/08/03/digitalocean-setup/</loc>
     <lastmod>2020-08-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://mjpitz.com/tags/terraform/</loc>
-    <lastmod>2020-08-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/analytics/</loc>
-    <lastmod>2020-08-02T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://mjpitz.com/blog/2020/08/02/repo-impressions-3/</loc>
-    <lastmod>2020-08-02T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/github/</loc>
-    <lastmod>2020-08-02T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/gitlab/</loc>
-    <lastmod>2020-08-02T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/impression/</loc>
-    <lastmod>2020-08-02T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/tracking/</loc>
     <lastmod>2020-08-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://mjpitz.com/blog/2020/07/27/repo-impressions-2/</loc>
@@ -302,20 +89,17 @@
     <loc>https://mjpitz.com/media/2020/07/13/for-the-love-of-programming/</loc>
     <lastmod>2020-07-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://mjpitz.com/tags/guest/</loc>
-    <lastmod>2020-07-13T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://mjpitz.com/media/</loc>
     <lastmod>2020-07-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://mjpitz.com/tags/podcast/</loc>
     <lastmod>2020-07-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://mjpitz.com/tags/womenintech/</loc>
-    <lastmod>2020-07-13T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://mjpitz.com/blog/2020/04/20/k3s-rpi-year1/</loc>
     <lastmod>2020-04-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://mjpitz.com/tags/reflection/</loc>
+    <lastmod>2020-01-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://mjpitz.com/blog/2020/01/27/returning-to-indeed/</loc>
     <lastmod>2020-01-27T00:00:00+00:00</lastmod>
@@ -323,16 +107,7 @@
     <loc>https://mjpitz.com/blog/2020/01/24/building-depscloud/</loc>
     <lastmod>2020-01-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://mjpitz.com/tags/dependencies/</loc>
-    <lastmod>2020-01-24T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/microservices/</loc>
-    <lastmod>2020-01-24T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://mjpitz.com/media/2019/11/21/cloud-dependencies/</loc>
-    <lastmod>2019-11-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/softwaredaily/</loc>
     <lastmod>2019-11-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://mjpitz.com/blog/2019/10/17/kubernetes-service-precheck/</loc>
@@ -341,47 +116,17 @@
     <loc>https://mjpitz.com/media/2019/08/21/moving-to-a-service-mesh/</loc>
     <lastmod>2019-08-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://mjpitz.com/tags/presentation/</loc>
+    <loc>https://mjpitz.com/tags/talk/</loc>
     <lastmod>2019-08-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/arm/</loc>
-    <lastmod>2019-05-07T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/arm64/</loc>
-    <lastmod>2019-05-07T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/buildx/</loc>
-    <lastmod>2019-05-07T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/multiarch/</loc>
-    <lastmod>2019-05-07T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://mjpitz.com/blog/2019/05/07/docker-buildx/</loc>
     <lastmod>2019-05-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://mjpitz.com/tags/apache/</loc>
-    <lastmod>2019-05-02T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/licensing/</loc>
-    <lastmod>2019-05-02T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/mit/</loc>
-    <lastmod>2019-05-02T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://mjpitz.com/blog/2019/05/02/from-apache2-to-mit/</loc>
     <lastmod>2019-05-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://mjpitz.com/tags/software/</loc>
-    <lastmod>2019-05-02T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/monitoring/</loc>
-    <lastmod>2019-04-21T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://mjpitz.com/blog/2019/04/21/monitoring-rpi-cluster/</loc>
     <lastmod>2019-04-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/docker-machine/</loc>
-    <lastmod>2019-04-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://mjpitz.com/blog/2019/04/12/rpi-cluster-setup/</loc>
     <lastmod>2019-04-12T00:00:00+00:00</lastmod>
@@ -395,28 +140,13 @@
     <loc>https://mjpitz.com/media/2019/02/21/moving-to-grpc-java/</loc>
     <lastmod>2019-02-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://mjpitz.com/tags/fuse/</loc>
-    <lastmod>2019-01-30T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://mjpitz.com/blog/2019/01/30/gitfs-a-fuse-file-system/</loc>
     <lastmod>2019-01-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://mjpitz.com/blog/2018/10/31/past-project-reflections-javascript/</loc>
     <lastmod>2018-10-31T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://mjpitz.com/tags/aws/</loc>
-    <lastmod>2018-10-28T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://mjpitz.com/blog/2018/10/28/lambda-handler-lifetime/</loc>
-    <lastmod>2018-10-28T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/dosh/</loc>
-    <lastmod>2018-10-28T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/lambda/</loc>
-    <lastmod>2018-10-28T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/serverless/</loc>
     <lastmod>2018-10-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://mjpitz.com/blog/2018/10/27/lambda-local-development/</loc>
@@ -431,13 +161,7 @@
     <loc>https://mjpitz.com/blog/2017/04/01/delaying-message-processing/</loc>
     <lastmod>2017-04-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://mjpitz.com/tags/indeed/</loc>
-    <lastmod>2017-04-01T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://mjpitz.com/blog/2017/04/01/spring-bean-method-invocation/</loc>
-    <lastmod>2017-04-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mjpitz.com/tags/spring-bad-practices/</loc>
     <lastmod>2017-04-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://mjpitz.com/blog/2017/01/19/gracefully-degrading-functionality-using-status/</loc>
