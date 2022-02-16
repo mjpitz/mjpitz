@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Papers on Mya Pitzeruse</title>
+    <link>https://mjpitz.com/papers/</link>
+    <description>Recent content in Papers on Mya Pitzeruse</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 23 Sep 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://mjpitz.com/papers/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cost Attribution for Multi-cloud / Multi-platform Applications</title>
+      <link>https://mjpitz.com/papers/cost-attribution/</link>
+      <pubDate>Wed, 23 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/papers/cost-attribution/</guid>
+      <description>This paper details a solution to attributing cost across common infrastructure. The original target for the solution was a hybrid-cloud infrastructure. This led to a comprehensive, yet flexible design. As a result, its concepts are generic and support both cloud and non-cloud ecosystems. The goal is to provide a single view into spend across platforms. It needs to support a large variety of use cases, from leaders analyzing spend to teams understanding the cost of systems they consume.</description>
+    </item>
+    
+  </channel>
+</rss>
