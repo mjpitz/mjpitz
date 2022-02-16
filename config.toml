@@ -69,7 +69,13 @@ url = "/index.xml"
   url = "/blog/"
 
   [[menu.main]]
-  name = "Talks and Podcasts"
+  name = "Media"
+  weight = 300
   identifier = "media"
-  weight = 400
   url = "/media/"
+
+  [[menu.main]]
+  name = "Papers"
+  weight = 400
+  identifier = "papers"
+  url = "/papers/"
