@@ -3,7 +3,13 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://mjpitz.com/</loc>
-    <lastmod>2022-01-16T00:00:00+00:00</lastmod>
+    <lastmod>2022-02-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://mjpitz.com/projects/</loc>
+    <lastmod>2022-02-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://mjpitz.com/projects/varys/</loc>
+    <lastmod>2022-02-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://mjpitz.com/blog/</loc>
     <lastmod>2022-01-16T00:00:00+00:00</lastmod>
@@ -16,6 +22,9 @@
   </url><url>
     <loc>https://mjpitz.com/tags/</loc>
     <lastmod>2022-01-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://mjpitz.com/projects/aetherfs/</loc>
+    <lastmod>2021-11-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://mjpitz.com/blog/2021/06/16/rpi-network-bridge/</loc>
     <lastmod>2021-06-16T00:00:00+00:00</lastmod>
@@ -104,6 +113,9 @@
     <loc>https://mjpitz.com/blog/2020/04/20/k3s-rpi-year1/</loc>
     <lastmod>2020-04-20T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://mjpitz.com/projects/rpi-cloud-init/</loc>
+    <lastmod>2020-04-05T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://mjpitz.com/tags/reflection/</loc>
     <lastmod>2020-01-27T00:00:00+00:00</lastmod>
   </url><url>
@@ -148,6 +160,9 @@
   </url><url>
     <loc>https://mjpitz.com/blog/2019/01/30/gitfs-a-fuse-file-system/</loc>
     <lastmod>2019-01-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://mjpitz.com/projects/depscloud/</loc>
+    <lastmod>2018-12-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://mjpitz.com/blog/2018/10/31/past-project-reflections-javascript/</loc>
     <lastmod>2018-10-31T00:00:00+00:00</lastmod>

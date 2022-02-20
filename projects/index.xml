@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Projects on Mya Pitzeruse</title>
+    <link>https://mjpitz.com/projects/</link>
+    <description>Recent content in Projects on Mya Pitzeruse</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 20 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://mjpitz.com/projects/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>varys</title>
+      <link>https://mjpitz.com/projects/varys/</link>
+      <pubDate>Sun, 20 Feb 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/projects/varys/</guid>
+      <description>&lt;p&gt;A derivation-based secret engine and privileged access management system. This project was inspired by HashiCorp&amp;rsquo;s Vault
+project but with the goal of being easier to administer for smaller scale projects.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.shields.io/github/languages/top/mjpitz/varys?style=for-the-badge&#34; alt=&#34;Language: Go&#34;&gt;
+&lt;img src=&#34;https://img.shields.io/github/license/mjpitz/varys?style=for-the-badge&#34; alt=&#34;License: AGPL-3.0&#34;&gt;
+&lt;img src=&#34;https://img.shields.io/github/v/release/mjpitz/varys?style=for-the-badge&#34; alt=&#34;Latest release&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>AetherFS</title>
+      <link>https://mjpitz.com/projects/aetherfs/</link>
+      <pubDate>Sat, 20 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/projects/aetherfs/</guid>
+      <description>&lt;p&gt;A virtual file system for small to medium-sized datasets (MB or GB, not TB or PB). Like Docker, but for data. Inspired
+by Indeeds RAD project and Netflix&amp;rsquo;s Hollow library.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.shields.io/github/languages/top/mjpitz/aetherfs?style=for-the-badge&#34; alt=&#34;Language: Go&#34;&gt;
+&lt;img src=&#34;https://img.shields.io/github/license/mjpitz/aetherfs?style=for-the-badge&#34; alt=&#34;License: AGPL-3.0&#34;&gt;
+&lt;img src=&#34;https://img.shields.io/github/v/release/mjpitz/aetherfs?style=for-the-badge&#34; alt=&#34;Latest release&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>rpi-cloud-init</title>
+      <link>https://mjpitz.com/projects/rpi-cloud-init/</link>
+      <pubDate>Sun, 05 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/projects/rpi-cloud-init/</guid>
+      <description>&lt;p&gt;Configuration for my at-home cloud. My goal is to build a modular, relatively low-power system that can function in the
+event of an outage or offline scenario.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.shields.io/github/languages/top/mjpitz/rpi-cloud-init?style=for-the-badge&#34; alt=&#34;Language: HCL&#34;&gt;
+&lt;img src=&#34;https://img.shields.io/github/license/mjpitz/rpi-cloud-init?style=for-the-badge&#34; alt=&#34;License: MIT&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>deps.cloud</title>
+      <link>https://mjpitz.com/projects/depscloud/</link>
+      <pubDate>Sat, 01 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/projects/depscloud/</guid>
+      <description>&lt;p&gt;Index and query dependencies across your company&amp;rsquo;s private repositories.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.shields.io/github/languages/top/depscloud/depscloud?style=for-the-badge&#34; alt=&#34;Language: Go&#34;&gt;
+&lt;img src=&#34;https://img.shields.io/github/license/depscloud/depscloud?style=for-the-badge&#34; alt=&#34;License: MIT&#34;&gt;
+&lt;img src=&#34;https://img.shields.io/github/v/release/depscloud/depscloud?style=for-the-badge&#34; alt=&#34;Latest release&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
