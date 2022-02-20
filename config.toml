@@ -79,3 +79,9 @@ url = "/index.xml"
   weight = 400
   identifier = "papers"
   url = "/papers/"
+
+  [[menu.main]]
+  name = "Projects"
+  weight = 500
+  identifier = "projects"
+  url = "/projects/"
