@@ -6,3 +6,10 @@ tmp/
 .terraform.lock.hcl
 terraform.tfstate
 terraform.tfstate.backup
+
+infra/helm/**/tls.crt
+infra/helm/**/tls.key
+infra/helm/**/secret.yaml
+infra/helm/**/secret-*.yaml
+infra/helm/**/*.lock
+infra/helm/**/*.tgz

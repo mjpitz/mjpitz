@@ -1,0 +1,20 @@
+ingress-nginx:
+  controller:
+    replicaCount: 2
+    admissionWebhooks:
+      enabled: false
+    config:
+      use-forwarded-headers: "true"
+    extraArgs:
+      enable-ssl-passthrough: "true"
+    ingressClass: nginx
+    # tells nginx-ingress-controller to attach load balancer ip to associated ingresses
+    publishService:
+      enabled: true
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+  defaultBackend:
+    enabled: true
+    replicaCount: 1

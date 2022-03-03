@@ -1,0 +1,71 @@
+kube-prometheus-stack:
+  defaultRules:
+    create: false
+  grafana:
+    replicas: 1
+    rbac:
+      pspEnabled: false
+    defaultDashboardsEnabled: false
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: "nginx"
+        kubernetes.io/tls-acme: "true"
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+        nginx.ingress.kubernetes.io/ssl-redirect: "true"
+      hosts:
+        - grafana.mjpitz.com
+      tls:
+        - secretName: "grafana-certs"
+          hosts:
+            - grafana.mjpitz.com
+    envFromSecret: grafana-env-secrets
+    grafana.ini:
+      server:
+        root_url: https://grafana.mjpitz.com
+        disable_initial_admin_creation: true
+      auth:
+        disable_login_form: true
+      auth.github:
+        enabled: true
+        allow_sign_up: true
+        scopes: user:email,read:org
+        auth_url: https://github.com/login/oauth/authorize
+        token_url: https://github.com/login/oauth/access_token
+        api_url: https://api.github.com/user
+        allowed_organizations: enjoyablyio
+        team_ids: ""
+      users:
+        auto_assign_org_role: Admin
+  kubeApiServer:
+    enabled: false
+  kubelet:
+    enabled: false
+  kubeControllerManager:
+    enabled: false
+  coreDns:
+    enabled: false
+  kubeDns:
+    enabled: false
+  kubeEtcd:
+    enabled: false
+  kubeScheduler:
+    enabled: false
+  kubeProxy:
+    enabled: false
+  nodeExporter:
+    enabled: false
+  prometheusOperator:
+    kubeletService:
+      enabled: false
+  prometheus:
+    prometheusSpec:
+      serviceMonitorSelectorNilUsesHelmValues: false
+      retention: 30d
+      storageSpec:
+        volumeClaimTemplate:
+          spec:
+            accessModes: ["ReadWriteOnce"]
+            resources:
+              requests:
+                storage: 10Gi

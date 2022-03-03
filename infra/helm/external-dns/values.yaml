@@ -1,0 +1,14 @@
+external-dns:
+  logLevel: debug
+  domainFilters:
+    - deps.cloud
+    - ocr.sh
+    - e7y.dev
+    - mjpitz.com
+  txtOwnerId: "mya-nyc."
+  txtPrefix: "mya-nyc."
+  policy: sync
+  provider: cloudflare
+  cloudflare:
+    secretName: "cloudflare-api-token"
+    proxied: false
