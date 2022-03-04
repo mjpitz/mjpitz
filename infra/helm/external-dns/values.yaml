@@ -2,9 +2,11 @@ external-dns:
   logLevel: debug
   domainFilters:
     - deps.cloud
-    - ocr.sh
-    - e7y.dev
     - mjpitz.com
+    - mjpitz.net
+    - mya.sh
+    - ocr.sh
+    - pitz.tech
   txtOwnerId: "mya-nyc."
   txtPrefix: "mya-nyc."
   policy: sync
