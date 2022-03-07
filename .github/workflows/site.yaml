@@ -1,24 +1,26 @@
-name: site
+name: Build Site
 
 on:
   pull_request:
     branches:
-      - "*"
+      - main
     paths:
       - content/
       - layouts/
       - resources/
       - static/
       - themes/
+      - config.toml
   push:
     branches:
-      - "*"
+      - main
     paths:
       - content/
       - layouts/
       - resources/
       - static/
       - themes/
+      - config.toml
 
 jobs:
   build:
