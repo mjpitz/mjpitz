@@ -48,3 +48,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
           enable_jekyll: false
+          keep_files: true # otherwise, we remove the index.yaml file
