@@ -16,7 +16,7 @@ kube-prometheus-stack:
       hosts:
         - grafana.pitz.tech
       tls:
-        - secretName: "grafana-certs"
+        - secretName: grafana-tls
           hosts:
             - grafana.pitz.tech
     envFromSecret: grafana-env-secrets
