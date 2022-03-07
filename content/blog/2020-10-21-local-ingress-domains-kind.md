@@ -133,7 +133,7 @@ You only need to set it up once, so doing it manually isn't too bad.
 Add `127.0.0.1` to the list of the addresses already shown.
 Once configured, be sure to apply the configuration.
 
-![network preferences dns](/statics/img/2020-10-21-network-pref-dns.png)
+![network preferences dns](/img/2020-10-21-network-pref-dns.png)
 
 **Edit #2:** I recently ran into an issue with this setup.
 Instead of adding `127.0.0.1` to the list, I now set it so it's the only one.
@@ -271,7 +271,7 @@ We know that the kind container is forwarding communication with port `80` and `
 This means that when you call `localhost:80` or `localhost:443` from your machine, the traffic is being handled by the ingress controller.
 You can verify that the traffic reaches the container by opening it up in your browser.
 
-![network preferences dns](/statics/img/2020-10-21-nginx.png)
+![network preferences dns](/img/2020-10-21-nginx.png)
 
 _Why setup a local, private domain?_
 
@@ -315,9 +315,9 @@ spec:
 
 And just like that, you're off to communicating with your services using an ingress.
 
-![foo.mjpitz.hack](/statics/img/2020-10-21-foo.png)
+![foo.mjpitz.hack](/img/2020-10-21-foo.png)
 
-![bar.mjpitz.hack](/statics/img/2020-10-21-bar.png)
+![bar.mjpitz.hack](/img/2020-10-21-bar.png)
 
 No need for complicated path based routing.
 No need to fuss with long running process.

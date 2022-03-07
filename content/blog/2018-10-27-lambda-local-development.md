@@ -23,7 +23,7 @@ This approach enabled testing of functions locally with little effort, but didnâ
 
 <br/>
 <div style="text-align:center">
-    <img src="/statics/img/localstack.png" alt="localstack" title="Localstack Header" />
+    <img src="/img/localstack.png" alt="localstack" title="Localstack Header" />
 </div>
 <br/>
 
@@ -34,7 +34,7 @@ After a fair bit of digging around, I filed a bug with what I was able to find a
 
 <br/>
 <div style="text-align:center">
-    <img src="/statics/img/serverless.png" alt="serverless" title="Serverless" />
+    <img src="/img/serverless.png" alt="serverless" title="Serverless" />
 </div>
 <br/>
 

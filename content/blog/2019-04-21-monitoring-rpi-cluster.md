@@ -166,7 +166,7 @@ Graphana offers tons of [pre-built dashboards](https://grafana.com/dashboards).
 They're mostly community driven, so finding a well maintained dashboard can be difficult.
 The first dashboard I found extremely useful is the [full export of all node_exporter](https://grafana.com/dashboards/1860) metrics.
 
-![Node Exporter Full](/statics/img/rpi-mon-node-exporter-full.png)
+![Node Exporter Full](/img/rpi-mon-node-exporter-full.png)
 
 Using this dashboard, I'm able to get a detailed view of each node.
 It encapsulates all metrics emitted by node_exporter into a single dashboard.
@@ -177,14 +177,14 @@ One thing that this dashboard did not enable was a complete overview of all node
 In the past, this kind of dashboard has been extremely useful when investigating capacity constraints.
 In Datadog, this was a rather easy thing to setup:
 
-![Datadog Host Map](/statics/img/rpi-mon-dd.jpg)
+![Datadog Host Map](/img/rpi-mon-dd.jpg)
 
 After looking around for a bit, I wasn't able to find a rough equivalent.
 So I started to build and prototype my own.
 First, I started with a few of the queries from the Node Exporter Full dashboard.
 With a few modifications, I was able to get something started.
 
-![Cluster Overview](/statics/img/rpi-mon-cluster-overview.png)
+![Cluster Overview](/img/rpi-mon-cluster-overview.png)
 
 While it may not look as nice as the host map in Datadog, I was able to get the same view of information.
 First, I look for the capacity of the cluster as a whole.

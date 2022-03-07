@@ -121,11 +121,11 @@ The core functionality that helps people find jobs would be unaffected.
 
 **Healthy**
 
-![healthy](/statics/img/2017-status-healthy.png)
+![healthy](/img/2017-status-healthy.png)
 
 **Unhealthy (Gracefully)**
 
-![gracefully unhealthy](/statics/img/2017-status-unhealthy.png)
+![gracefully unhealthy](/img/2017-status-unhealthy.png)
 
 Status offers more than just the ability to control features based on a service’s health.
 We also use it to control access to instances of our front end web applications.
@@ -140,15 +140,15 @@ These instances of your application can live on a single machine, multiple machi
 The Status library lets you configure your load balancer to remove an instance if it becomes unhealthy.
 Consider the following basic example within a single data center.
 
-![all healthy](/statics/img/2017-status-all-healthy.png)
+![all healthy](/img/2017-status-all-healthy.png)
 
 _When all of the applications within a single data center are healthy, the load balancer distributes requests among them evenly. To determine if an application is healthy, the load balancer sends a request to the health check endpoint and evaluates the response code._
 
-![one unhealthy](/statics/img/2017-status-one-unhealthy.png)
+![one unhealthy](/img/2017-status-one-unhealthy.png)
 
 _When an instance becomes unhealthy, the health check endpoint returns a non-200 status code, indicating that it should no longer receive traffic. The load balancer then removes the unhealthy instance from rotation, preventing it from receiving requests._
 
-![one removed](/statics/img/2017-status-one-removed.png)
+![one removed](/img/2017-status-one-removed.png)
 
 _When instance 1 is removed from rotation, the other instances within a data center start to receive instance 1’s traffic. Within each data center, we provision enough instances so that we can handle traffic even if some of the instances go down._
 
@@ -156,17 +156,17 @@ _When instance 1 is removed from rotation, the other instances within a data cen
 
 Before a request is even sent to a data center, our domain (e.g. www.indeed.com) is resolved to an IP address using DNS. We use Global Server Load Balancer (GSLB) that allows us to geographically distribute traffic across our data centers. After the GSLB resolves the domain to the IP address of the nearest available data center, the data center load balancer then routes and fails over traffic as described above.
 
-![healthy](/statics/img/2017-status-dc-healthy.png)
+![healthy](/img/2017-status-dc-healthy.png)
 
 What if an entire data center can no longer service requests? Similar to the single instance approach, GSLB constantly checks each of our data centers for their health (using the same health check endpoint). When GSLB detects that a single data center can no longer service requests, it fails requests over to another data center and removes the unhealthy data center from rotation. Again, this helps keep the site available by ensuring that requests can be processed, even during an outage.
 
-![failout](/statics/img/2017-status-dc-removed.png)
+![failout](/img/2017-status-dc-removed.png)
 
 As long as a single data center remains healthy, the site can continue to service requests. For users that hit unhealthy data centers, this just looks like a slower web page load. While not ideal, the experience is better than an unprocessed request.
 
 The last scenario is a complete system outage. This occurs when every data center becomes unhealthy and can no longer service requests. Engineers try to avoid this situation like the plague.
 
-![failopen](/statics/img/2017-status-all-dc-removed.png)
+![failopen](/img/2017-status-all-dc-removed.png)
 
 When Indeed encounters complete system outages, we reroute traffic to every data center and every instance. This policy, known as “failing open,” allows for graceful degradation of our system. While every instance may report an unhealthy state, it is possible that an application can perform some work. And being able to perform some work is better than performing no work.
 

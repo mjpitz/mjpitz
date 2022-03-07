@@ -22,7 +22,7 @@ What a difference did this make.
 It kept all the metrics that I was getting from my [follow up] post and unlocked many more capabilities.
 For example, I'm now able to report on bounce rates across repositories.
 
-![Repository Breakdown](/statics/img/2020-08-02-repo-breakdown.png)
+![Repository Breakdown](/img/2020-08-02-repo-breakdown.png)
 
 Being able to report on a bounce rate for a project is huge.
 In GitHub, `topics` are used to promote your project in [Explore](https://github.com/explore).
@@ -41,12 +41,12 @@ With the `event` type, we would only get the ping, with none of these distinctio
 We still get this information with the page views metric, we're just able to distill additional information.
 Consider the following graph.
 
-![Page Views Over Time](/statics/img/2020-08-02-pageviews-over-time.png)
+![Page Views Over Time](/img/2020-08-02-pageviews-over-time.png)
 
 Both page views and events, allowed us to break views down over time.
 But by using page views, we're now able to track bounce rates over time.
 
-![Bounce Rate Over Time](/statics/img/2020-08-02-bouncerate-over-time.png)
+![Bounce Rate Over Time](/img/2020-08-02-bouncerate-over-time.png)
 
 Together, this information can be used to better tune the content of your `README.md` and `topics`.
 This can help point people in the right direction on how to contribute or find additional information.
@@ -56,7 +56,7 @@ This can help point people in the right direction on how to contribute or find a
 One of the most surprising features I was able to start to leverage was user flows.
 By having this information, I can track how users navigate from one page to another.  
 
-![Navigation Flow](/statics/img/2020-08-02-navigation-flow.png)
+![Navigation Flow](/img/2020-08-02-navigation-flow.png)
 
 My [deps.cloud](https://github.com/depscloud) project has many small repositories. 
 Many of which are really only useful for developers of the system, not the end users.

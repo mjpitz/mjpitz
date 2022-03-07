@@ -18,7 +18,7 @@ I have 2 racks of 5 nodes.
 Each rack is independently powered.
 Each Raspberry Pi runs [Ubuntu 18.04](/blog/2019/03/17/64bit-raspberry-pi/), has cgroups enabled, and is assigned a static IP.
 
-![Private Cloud](/statics/img/private-cloud.png)
+![Private Cloud](/img/private-cloud.png)
 
 For easy access to each node, I copy my ssh key to each Pi.
 

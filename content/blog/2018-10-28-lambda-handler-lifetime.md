@@ -54,17 +54,17 @@ In fact, you can see this using the [serverless-offline](https://www.npmjs.com/p
 <div>
     <div style="text-align:center">
         <p><i>Execution 1</i></p>
-        <img src="/statics/img/offline-execution-1.png" alt="Execution 1" title="Execution 1"/>
+        <img src="/img/offline-execution-1.png" alt="Execution 1" title="Execution 1"/>
     </div>
     <br/>
     <div style="text-align:center">
         <p><i>Execution 2</i></p>
-        <img src="/statics/img/offline-execution-2.png" alt="Execution 2" title="Execution 2"/>
+        <img src="/img/offline-execution-2.png" alt="Execution 2" title="Execution 2"/>
     </div>
     <br/>
     <div style="text-align:center">
         <p><i>Execution 3</i></p>
-        <img src="/statics/img/offline-execution-3.png" alt="Execution 3" title="Execution 3"/>
+        <img src="/img/offline-execution-3.png" alt="Execution 3" title="Execution 3"/>
     </div>
     <br/>
 </div>
@@ -76,7 +76,7 @@ Instead of seeing one instanceId per request, we saw many requests being handled
 
 <div class="row">
     <div style="text-align:center">
-        <img src="/statics/img/executions-per-instance.png" alt="Executions/Instance" title="Executions/Instance"/>
+        <img src="/img/executions-per-instance.png" alt="Executions/Instance" title="Executions/Instance"/>
     </div>
 </div>
 
@@ -107,7 +107,7 @@ The image below shows a provisioned lambda running from 9pm to 2am US Central Ti
 
 <div class="row">
     <div style="text-align:center">
-        <img src="/statics/img/long-running-lambda.png" alt="Long Running Lambda" title="Long Running Lambda"/>
+        <img src="/img/long-running-lambda.png" alt="Long Running Lambda" title="Long Running Lambda"/>
     </div>
 </div>
 <br/>

@@ -18,7 +18,7 @@ I remember hearing about Ubuntu's active support for ARM.
 I went to the [18.04 release page](http://cdimage.ubuntu.com/ubuntu/releases/bionic/release/) and looked at what they offer out of box.
 They not only included the ARM server images, but they also provide an image built specifically for the Raspberry Pi.
 
-![Ubuntu Downloads](/statics/img/ubuntu-downloads.png) 
+![Ubuntu Downloads](/img/ubuntu-downloads.png) 
 
 The reason I really liked this option is because the image that is produced by Ubuntu is compatible with [Balena Etcher](https://www.balena.io/etcher/).
 Etcher is a rather popular tool used to quickly flash SD cards with new operating systems.

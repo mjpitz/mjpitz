@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://github.com/mjpitz/mjpitz/raw/main/static/statics/img/banner.png"/>
+    <img src="https://github.com/mjpitz/mjpitz/raw/main/static/img/banner.png"/>
 </p>
 
 <h3 align="center">👋 Welcome to my profile!</h3>

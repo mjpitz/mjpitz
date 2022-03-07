@@ -78,12 +78,12 @@ $ docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t ${PROJE
 
 After your images have been successfully pushed, you can see the supported architectures on the tags page of the docker repository.
 
-![multiarch-container-image.png](/statics/img/multiarch-container-image.png)
+![multiarch-container-image.png](/img/multiarch-container-image.png)
 
 One thing that I've found frustrating from hub.docker.com is that they don't do a good job calling out to the supported architectures on the public tags page.
 This means that image producers need to call out to this support in their README files.
 At least for now.
 
-![multiarch-container-public.png](/statics/img/multiarch-container-public.png)
+![multiarch-container-public.png](/img/multiarch-container-public.png)
 
 

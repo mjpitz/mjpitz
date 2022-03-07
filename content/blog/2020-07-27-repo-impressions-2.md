@@ -20,19 +20,19 @@ At Indeed, we really only got information around weather a user opened an email.
 It turns out, that the [Google Analytics] ping can give you a fair bit more information.
 For example there's a lot of information around sessions.
 
-![](/statics/img/2020-07-27-depscloud-gh-ga-bounce.png)
+![](/img/2020-07-27-depscloud-gh-ga-bounce.png)
 
 For one, I'm able to break sessions down by page.
 This has helped me understand which repositories receive the most attention.
 By looking at new visitors week over week by repository, I'm also able to pick up on trends.
 
-![](/statics/img/2020-07-27-depscloud-gh-ga.png)
+![](/img/2020-07-27-depscloud-gh-ga.png)
 
 What I didn't realize I got from the analytics ping was session duration data.
 I figured I wouldn't be able to track cross-page meta-data since each ping was independent.
 But the fact I was able to get average session duration per page was really valuable.
 
-![](/statics/img/2020-07-27-depscloud-gh-ga-session.png)
+![](/img/2020-07-27-depscloud-gh-ga-session.png)
 
 ## Changes I've made
 

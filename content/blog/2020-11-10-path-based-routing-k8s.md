@@ -46,7 +46,7 @@ Requests to `/api/` will be sent to an `api-service` backend.
 All other requests will be routed to GitHub pages.
 This is shown in the diagram below.
 
-![diagram](/statics/img/2020-11-10-routing-clusterip.png)
+![diagram](/img/2020-11-10-routing-clusterip.png)
 
 First, we'll create the `gh-pages` service.
 This file sets up the service, and it's associated endpoint.
@@ -70,7 +70,7 @@ Next, I will demonstrate how an `ExternalName` can be used to point to an S3 buc
 We will be using a similar ingress setup (as seen below).
 This time, we will use an `ExternalName` service instead of a `ClusterIP`. 
 
-![diagram](/statics/img/2020-11-10-routing-externalname.png)
+![diagram](/img/2020-11-10-routing-externalname.png)
 
 `ExternalNames` are more or less a DNS CNAME.
 They allow us to reference another host address that's serving our content.

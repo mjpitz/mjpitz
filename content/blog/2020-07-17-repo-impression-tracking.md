@@ -32,7 +32,7 @@ You only need web support.
 When creating the property, you will be prompted for the base URL for your site.
 Enter the GitHub URL including your organization or user.
 
-![Create Property](/statics/img/2020-impression-ga-property.png)
+![Create Property](/img/2020-impression-ga-property.png)
 
 By using this prefix, you can use the same tracking key across all your projects.
 From there, complete the remainder of the form appropriately.
@@ -90,7 +90,7 @@ There are many reasons you should do this.
 For one, it helps understand if there is an issue with your content or the discovery of it.
 Instead of wondering whether a project has the reach you intended it to, you can refer to the number of visitors.
 
-![](/statics/img/2020-impression-funnel.png)
+![](/img/2020-impression-funnel.png)
 
 In marketing, impressions, clicks, and conversions are used to determine the success of a given advertisement.
 Similarly, we can use this technique to track the success of an open source project.

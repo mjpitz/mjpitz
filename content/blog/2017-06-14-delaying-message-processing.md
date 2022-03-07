@@ -40,7 +40,7 @@ Since RabbitMQ requeues messages to the head of the queue, the next message your
 Although this is a non-issue for a small volume of messages, critical problems occur as the number of unprocessable messages exceeds the number of consumer threads.
 Since consumers can’t get past the group of unprocessable messages at the beginning of the queue, messages back up within the cluster.
 
-![message backup](/statics/img/2017-delayqueue-backup.jpg)
+![message backup](/img/2017-delayqueue-backup.jpg)
 
 _Figure 1. Message backup within the cluster_
 
@@ -51,7 +51,7 @@ The delay queue pattern allows our systems to continue processing.
 Additionally, it requires less work from our first responders (engineers who are _"on call"_ during business hours to handle production issues), Site Reliability Engineers (SREs), and our operations team.
 The following diagram shows the options for a consumer process that encounters an error:
 
-![delay queue](/statics/img/2017-delayqueue.png)
+![delay queue](/img/2017-delayqueue.png)
 
 _Figure 2. Asynchronous message consuming system_
 

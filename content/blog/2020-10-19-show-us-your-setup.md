@@ -19,7 +19,7 @@ I'll discuss the things I like, and the things I don't.
 
 ### Desktop hardware
 
-![desktop](/statics/img/2020-10-19-desktop.jpeg)
+![desktop](/img/2020-10-19-desktop.jpeg)
 
 My desk is an [Autonomous SmartDesk2].
 Early in my career, I hopped on the standing desk kick and loved it.
@@ -96,7 +96,7 @@ You get great sound for a pretty reasonable price.
 
 ### Cluster hardware
 
-![clusters](/statics/img/2020-10-19-clusters.jpeg)
+![clusters](/img/2020-10-19-clusters.jpeg)
 
 While independent of my desk, I consider my cluster(s) part of my setup.
 I have full access to them and am able to send work to them when I need to.

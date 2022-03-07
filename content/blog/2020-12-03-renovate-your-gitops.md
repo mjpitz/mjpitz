@@ -159,7 +159,7 @@ kubectl create job -n renovate --from cronjob/renovate renovate-$(date +%s)
 When the job completes, you should wind up with a few pull requests.
 You can see some examples under the [pull requests](https://github.com/mjpitz/auto-gitops-demo/pulls) tab.
 
-![screenshot](/statics/img/2020-12-03-renovate-gitops.png)
+![screenshot](/img/2020-12-03-renovate-gitops.png)
 
 Once we merge one of these pull requests, ArgoCD will kick off a deployment.
 It might take a minute or two for ArgoCD to realize there are changes.

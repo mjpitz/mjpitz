@@ -25,10 +25,10 @@ media = "/media/:year/:month/:day/:slug/"
 title = "Mya Pitzeruse"
 author = "Mya Pitzeruse"
 description = "Mom | Homesteader | Software Engineer"
-profilePicture = "/statics/img/mjpitz.jpeg"
+profilePicture = "/img/mjpitz.jpeg"
 keywords = ""
-favicon = "statics/img/"
-customCss = [ "statics/css/overrides.css" ]
+favicon = "/img/"
+customCss = [ "css/overrides.css" ]
 
 ## Math settings
 [params.math]

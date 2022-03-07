@@ -22,10 +22,10 @@ They required more provisioning compared to Docker Swarm, but it was easy to aut
 <div class="row text-center">
   <div class="col-xs-12 col-sm-1"></div>
   <div class="col-xs-6 col-sm-5">
-    <img title="Consul" alt="Consul" src="/statics/img/consul.png">
+    <img title="Consul" alt="Consul" src="/img/consul.png">
   </div>
   <div class="col-xs-6 col-sm-5">
-    <img title="Nomad" alt="Nomad" src="/statics/img/nomad.png">
+    <img title="Nomad" alt="Nomad" src="/img/nomad.png">
   </div>
   <div class="col-xs-12 col-sm-1"></div>
 </div>
@@ -41,7 +41,7 @@ One downside was the overhead of some of the integrations.
 Many of my nodes were already consuming half their memory, and I needed dedicated etcd and control plane nodes.
 
 <div class="text-center">
-  <img title="rancher" alt="Rancher" src="/statics/img/rancher.png">
+  <img title="rancher" alt="Rancher" src="/img/rancher.png">
 </div>
 <p></p>
 
