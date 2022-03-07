@@ -29,6 +29,10 @@ registry:
       mountPath: /etc/docker/auth/token
       readOnly: true
 
+  metrics:
+    serviceMonitor:
+      enabled: true
+
   config:
     storage:
       s3:
@@ -86,3 +90,7 @@ registry:
   redis:
     enabled: true
     replicaCount: 3
+
+    metrics:
+      serviceMonitor:
+        enabled: true
