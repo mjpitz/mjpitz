@@ -700,6 +700,15 @@ In this post, we will show how to add health checks to your applications.&lt;/p&
     
     <item>
       <title></title>
+      <link>https://mjpitz.com/charts/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/charts/</guid>
+      <description>Charts 1  helm repo add mjpitz https://mjpitz.com    auth - Deploys a replicated token authorization server for use with the registry. redis - Deploys an inconsistent Redis cluster, intended to be fronted by an envoy sidecar. registry - Deploys a replicated container registry, with optional caching provided by redis.  </description>
+    </item>
+    
+    <item>
+      <title></title>
       <link>https://mjpitz.com/go/cncf2017/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
