@@ -5,13 +5,13 @@
     <meta name="description" content="Mom | Homesteader | Software Engineer">
     
     <link rel="stylesheet" href="https://mjpitz.com/css/style.min.707aa4670276c49b9db4a4ed6b89419c0ed1b4346e2104f50a364aa767d77773.css" integrity="sha256-cHqkZwJ2xJudtKTta4lBnA7RtDRuIQT1CjZKp2fXd3M=" crossorigin="anonymous" type="text/css">
-    <link rel="stylesheet" href="https://mjpitz.com/statics/css/overrides.css" type="text/css">
+    <link rel="stylesheet" href="https://mjpitz.com/css/overrides.css" type="text/css">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     
-    <link rel="shortcut icon" href="https://mjpitz.com/statics/img/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" sizes="180x180" href="https://mjpitz.com/statics/img/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://mjpitz.com/statics/img/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://mjpitz.com/statics/img/favicon-16x16.png">
+    <link rel="shortcut icon" href="https://mjpitz.com/img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://mjpitz.com/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://mjpitz.com/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://mjpitz.com/img/favicon-16x16.png">
     <link rel="canonical" href="https://mjpitz.com/blog/2019/04/21/monitoring-rpi-cluster/">
     
     
@@ -27,7 +27,7 @@ I&rsquo;ll walk through setting up each node, the Prometheus server, and the Gra
 <body><div class="sidebar animated fadeInDown">
     <div class="logo-title">
       <div class="title">
-        <img src="https://mjpitz.com/statics/img/mjpitz.jpeg" alt="profile picture">
+        <img src="https://mjpitz.com/img/mjpitz.jpeg" alt="profile picture">
         <h3 title=""><a href="/">Mya Pitzeruse</a></h3>
         <div class="description">
           <p>Mom | Homesteader | Software Engineer</p>
@@ -325,7 +325,7 @@ This means that we&rsquo;re able to connect services on the same network using t
 Graphana offers tons of <a href="https://grafana.com/dashboards">pre-built dashboards</a>.
 They&rsquo;re mostly community driven, so finding a well maintained dashboard can be difficult.
 The first dashboard I found extremely useful is the <a href="https://grafana.com/dashboards/1860">full export of all node_exporter</a> metrics.</p>
-<p><img src="/statics/img/rpi-mon-node-exporter-full.png" alt="Node Exporter Full"></p>
+<p><img src="/img/rpi-mon-node-exporter-full.png" alt="Node Exporter Full"></p>
 <p>Using this dashboard, I&rsquo;m able to get a detailed view of each node.
 It encapsulates all metrics emitted by node_exporter into a single dashboard.
 While this might seem overwhelming, the dashboard collapses the more detailed panels.
@@ -333,12 +333,12 @@ This makes it easy to get a high level view of a node, and then dive in.</p>
 <p>One thing that this dashboard did not enable was a complete overview of all nodes in the cluster.
 In the past, this kind of dashboard has been extremely useful when investigating capacity constraints.
 In Datadog, this was a rather easy thing to setup:</p>
-<p><img src="/statics/img/rpi-mon-dd.jpg" alt="Datadog Host Map"></p>
+<p><img src="/img/rpi-mon-dd.jpg" alt="Datadog Host Map"></p>
 <p>After looking around for a bit, I wasn&rsquo;t able to find a rough equivalent.
 So I started to build and prototype my own.
 First, I started with a few of the queries from the Node Exporter Full dashboard.
 With a few modifications, I was able to get something started.</p>
-<p><img src="/statics/img/rpi-mon-cluster-overview.png" alt="Cluster Overview"></p>
+<p><img src="/img/rpi-mon-cluster-overview.png" alt="Cluster Overview"></p>
 <p>While it may not look as nice as the host map in Datadog, I was able to get the same view of information.
 First, I look for the capacity of the cluster as a whole.
 The three gauges along the top monitor the current clusters usage across all nodes.

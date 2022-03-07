@@ -5,13 +5,13 @@
     <meta name="description" content="Mom | Homesteader | Software Engineer">
     
     <link rel="stylesheet" href="https://mjpitz.com/css/style.min.707aa4670276c49b9db4a4ed6b89419c0ed1b4346e2104f50a364aa767d77773.css" integrity="sha256-cHqkZwJ2xJudtKTta4lBnA7RtDRuIQT1CjZKp2fXd3M=" crossorigin="anonymous" type="text/css">
-    <link rel="stylesheet" href="https://mjpitz.com/statics/css/overrides.css" type="text/css">
+    <link rel="stylesheet" href="https://mjpitz.com/css/overrides.css" type="text/css">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     
-    <link rel="shortcut icon" href="https://mjpitz.com/statics/img/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" sizes="180x180" href="https://mjpitz.com/statics/img/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://mjpitz.com/statics/img/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://mjpitz.com/statics/img/favicon-16x16.png">
+    <link rel="shortcut icon" href="https://mjpitz.com/img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://mjpitz.com/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://mjpitz.com/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://mjpitz.com/img/favicon-16x16.png">
     <link rel="canonical" href="http://engineering.indeedblog.com/blog/2017/01/degrade-functionality/">
     
     
@@ -30,7 +30,7 @@ removing an entire data center from rotation at the DNS level
 <body><div class="sidebar animated fadeInDown">
     <div class="logo-title">
       <div class="title">
-        <img src="https://mjpitz.com/statics/img/mjpitz.jpeg" alt="profile picture">
+        <img src="https://mjpitz.com/img/mjpitz.jpeg" alt="profile picture">
         <h3 title=""><a href="/">Mya Pitzeruse</a></h3>
         <div class="description">
           <p>Mom | Homesteader | Software Engineer</p>
@@ -264,9 +264,9 @@ The service’s health check would change its state to MAJOR or OUTAGE.
 Our job search product would then omit the company widget from the right rail on the search results page.
 The core functionality that helps people find jobs would be unaffected.</p>
 <p><strong>Healthy</strong></p>
-<p><img src="/statics/img/2017-status-healthy.png" alt="healthy"></p>
+<p><img src="/img/2017-status-healthy.png" alt="healthy"></p>
 <p><strong>Unhealthy (Gracefully)</strong></p>
-<p><img src="/statics/img/2017-status-unhealthy.png" alt="gracefully unhealthy"></p>
+<p><img src="/img/2017-status-unhealthy.png" alt="gracefully unhealthy"></p>
 <p>Status offers more than just the ability to control features based on a service’s health.
 We also use it to control access to instances of our front end web applications.
 When an instance is unable to service requests, we remove it from the load balancer until it is healthy again.</p>
@@ -276,20 +276,20 @@ This helps keep your system resilient by allowing it to continue to handle reque
 These instances of your application can live on a single machine, multiple machines, and even in multiple data centers.</p>
 <p>The Status library lets you configure your load balancer to remove an instance if it becomes unhealthy.
 Consider the following basic example within a single data center.</p>
-<p><img src="/statics/img/2017-status-all-healthy.png" alt="all healthy"></p>
+<p><img src="/img/2017-status-all-healthy.png" alt="all healthy"></p>
 <p><em>When all of the applications within a single data center are healthy, the load balancer distributes requests among them evenly. To determine if an application is healthy, the load balancer sends a request to the health check endpoint and evaluates the response code.</em></p>
-<p><img src="/statics/img/2017-status-one-unhealthy.png" alt="one unhealthy"></p>
+<p><img src="/img/2017-status-one-unhealthy.png" alt="one unhealthy"></p>
 <p><em>When an instance becomes unhealthy, the health check endpoint returns a non-200 status code, indicating that it should no longer receive traffic. The load balancer then removes the unhealthy instance from rotation, preventing it from receiving requests.</em></p>
-<p><img src="/statics/img/2017-status-one-removed.png" alt="one removed"></p>
+<p><img src="/img/2017-status-one-removed.png" alt="one removed"></p>
 <p><em>When instance 1 is removed from rotation, the other instances within a data center start to receive instance 1’s traffic. Within each data center, we provision enough instances so that we can handle traffic even if some of the instances go down.</em></p>
 <h2 id="data-center-level-failovers">Data center level failovers</h2>
 <p>Before a request is even sent to a data center, our domain (e.g. <a href="http://www.indeed.com">www.indeed.com</a>) is resolved to an IP address using DNS. We use Global Server Load Balancer (GSLB) that allows us to geographically distribute traffic across our data centers. After the GSLB resolves the domain to the IP address of the nearest available data center, the data center load balancer then routes and fails over traffic as described above.</p>
-<p><img src="/statics/img/2017-status-dc-healthy.png" alt="healthy"></p>
+<p><img src="/img/2017-status-dc-healthy.png" alt="healthy"></p>
 <p>What if an entire data center can no longer service requests? Similar to the single instance approach, GSLB constantly checks each of our data centers for their health (using the same health check endpoint). When GSLB detects that a single data center can no longer service requests, it fails requests over to another data center and removes the unhealthy data center from rotation. Again, this helps keep the site available by ensuring that requests can be processed, even during an outage.</p>
-<p><img src="/statics/img/2017-status-dc-removed.png" alt="failout"></p>
+<p><img src="/img/2017-status-dc-removed.png" alt="failout"></p>
 <p>As long as a single data center remains healthy, the site can continue to service requests. For users that hit unhealthy data centers, this just looks like a slower web page load. While not ideal, the experience is better than an unprocessed request.</p>
 <p>The last scenario is a complete system outage. This occurs when every data center becomes unhealthy and can no longer service requests. Engineers try to avoid this situation like the plague.</p>
-<p><img src="/statics/img/2017-status-all-dc-removed.png" alt="failopen"></p>
+<p><img src="/img/2017-status-all-dc-removed.png" alt="failopen"></p>
 <p>When Indeed encounters complete system outages, we reroute traffic to every data center and every instance. This policy, known as “failing open,” allows for graceful degradation of our system. While every instance may report an unhealthy state, it is possible that an application can perform some work. And being able to perform some work is better than performing no work.</p>
 <h2 id="status-works-for-indeed-and-can-work-for-you">Status works for Indeed and can work for you</h2>
 <p>The <a href="https://github.com/indeedeng/status">Status</a> library is an integral part of the systems that we develop and run at Indeed. We use Status to:</p>

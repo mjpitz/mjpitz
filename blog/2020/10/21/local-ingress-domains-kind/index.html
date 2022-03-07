@@ -5,13 +5,13 @@
     <meta name="description" content="Mom | Homesteader | Software Engineer">
     
     <link rel="stylesheet" href="https://mjpitz.com/css/style.min.707aa4670276c49b9db4a4ed6b89419c0ed1b4346e2104f50a364aa767d77773.css" integrity="sha256-cHqkZwJ2xJudtKTta4lBnA7RtDRuIQT1CjZKp2fXd3M=" crossorigin="anonymous" type="text/css">
-    <link rel="stylesheet" href="https://mjpitz.com/statics/css/overrides.css" type="text/css">
+    <link rel="stylesheet" href="https://mjpitz.com/css/overrides.css" type="text/css">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     
-    <link rel="shortcut icon" href="https://mjpitz.com/statics/img/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" sizes="180x180" href="https://mjpitz.com/statics/img/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://mjpitz.com/statics/img/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://mjpitz.com/statics/img/favicon-16x16.png">
+    <link rel="shortcut icon" href="https://mjpitz.com/img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://mjpitz.com/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://mjpitz.com/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://mjpitz.com/img/favicon-16x16.png">
     <link rel="canonical" href="https://mjpitz.com/blog/2020/10/21/local-ingress-domains-kind/">
     
     
@@ -28,7 +28,7 @@ In this post, I show how to set up an ingress controller in a kind cluster and p
 <body><div class="sidebar animated fadeInDown">
     <div class="logo-title">
       <div class="title">
-        <img src="https://mjpitz.com/statics/img/mjpitz.jpeg" alt="profile picture">
+        <img src="https://mjpitz.com/img/mjpitz.jpeg" alt="profile picture">
         <h3 title=""><a href="/">Mya Pitzeruse</a></h3>
         <div class="description">
           <p>Mom | Homesteader | Software Engineer</p>
@@ -278,7 +278,7 @@ I personally find this easiest to do through the <em>Network Preferences</em> se
 You only need to set it up once, so doing it manually isn&rsquo;t too bad.
 Add <code>127.0.0.1</code> to the list of the addresses already shown.
 Once configured, be sure to apply the configuration.</p>
-<p><img src="/statics/img/2020-10-21-network-pref-dns.png" alt="network preferences dns"></p>
+<p><img src="/img/2020-10-21-network-pref-dns.png" alt="network preferences dns"></p>
 <p><strong>Edit #2:</strong> I recently ran into an issue with this setup.
 Instead of adding <code>127.0.0.1</code> to the list, I now set it so it&rsquo;s the only one.
 This relies on the server entries that were added to <code>dnsmasq.conf</code>.</p>
@@ -486,7 +486,7 @@ We know that your host is forwarding communication with port <code>80</code> and
 We know that the kind container is forwarding communication with port <code>80</code> and <code>443</code> to the ingress controller.
 This means that when you call <code>localhost:80</code> or <code>localhost:443</code> from your machine, the traffic is being handled by the ingress controller.
 You can verify that the traffic reaches the container by opening it up in your browser.</p>
-<p><img src="/statics/img/2020-10-21-nginx.png" alt="network preferences dns"></p>
+<p><img src="/img/2020-10-21-nginx.png" alt="network preferences dns"></p>
 <p><em>Why setup a local, private domain?</em></p>
 <p>Sure.
 You could follow the path as described in the kind documentation.
@@ -557,8 +557,8 @@ Instead of using path based routing, let&rsquo;s set up two ingress definitions 
 </span></code></pre></td></tr></table>
 </div>
 </div><p>And just like that, you&rsquo;re off to communicating with your services using an ingress.</p>
-<p><img src="/statics/img/2020-10-21-foo.png" alt="foo.mjpitz.hack"></p>
-<p><img src="/statics/img/2020-10-21-bar.png" alt="bar.mjpitz.hack"></p>
+<p><img src="/img/2020-10-21-foo.png" alt="foo.mjpitz.hack"></p>
+<p><img src="/img/2020-10-21-bar.png" alt="bar.mjpitz.hack"></p>
 <p>No need for complicated path based routing.
 No need to fuss with long running process.
 Just simple, straightforward, ingress definitions.</p>

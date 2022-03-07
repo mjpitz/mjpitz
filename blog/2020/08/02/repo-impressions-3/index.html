@@ -5,13 +5,13 @@
     <meta name="description" content="Mom | Homesteader | Software Engineer">
     
     <link rel="stylesheet" href="https://mjpitz.com/css/style.min.707aa4670276c49b9db4a4ed6b89419c0ed1b4346e2104f50a364aa767d77773.css" integrity="sha256-cHqkZwJ2xJudtKTta4lBnA7RtDRuIQT1CjZKp2fXd3M=" crossorigin="anonymous" type="text/css">
-    <link rel="stylesheet" href="https://mjpitz.com/statics/css/overrides.css" type="text/css">
+    <link rel="stylesheet" href="https://mjpitz.com/css/overrides.css" type="text/css">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     
-    <link rel="shortcut icon" href="https://mjpitz.com/statics/img/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" sizes="180x180" href="https://mjpitz.com/statics/img/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://mjpitz.com/statics/img/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://mjpitz.com/statics/img/favicon-16x16.png">
+    <link rel="shortcut icon" href="https://mjpitz.com/img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://mjpitz.com/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://mjpitz.com/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://mjpitz.com/img/favicon-16x16.png">
     <link rel="canonical" href="https://mjpitz.com/blog/2020/08/02/repo-impressions-3/">
     
     
@@ -27,7 +27,7 @@ In this conclusion, I will walk through how several of my metrics have changed s
 <body><div class="sidebar animated fadeInDown">
     <div class="logo-title">
       <div class="title">
-        <img src="https://mjpitz.com/statics/img/mjpitz.jpeg" alt="profile picture">
+        <img src="https://mjpitz.com/img/mjpitz.jpeg" alt="profile picture">
         <h3 title=""><a href="/">Mya Pitzeruse</a></h3>
         <div class="description">
           <p>Mom | Homesteader | Software Engineer</p>
@@ -118,7 +118,7 @@ After a week of lack luster data, I swapped over to <code>pageview</code>.
 What a difference did this make.
 It kept all the metrics that I was getting from my <a href="/blog/2020/07/27/repo-impressions-2/">follow up</a> post and unlocked many more capabilities.
 For example, I&rsquo;m now able to report on bounce rates across repositories.</p>
-<p><img src="/statics/img/2020-08-02-repo-breakdown.png" alt="Repository Breakdown"></p>
+<p><img src="/img/2020-08-02-repo-breakdown.png" alt="Repository Breakdown"></p>
 <p>Being able to report on a bounce rate for a project is huge.
 In GitHub, <code>topics</code> are used to promote your project in <a href="https://github.com/explore">Explore</a>.
 Having a high bounce rate <em>could</em> mean your topics aren&rsquo;t set up properly.
@@ -132,16 +132,16 @@ For example, there&rsquo;s now a distinction between page views, unique page vie
 With the <code>event</code> type, we would only get the ping, with none of these distinctions.
 We still get this information with the page views metric, we&rsquo;re just able to distill additional information.
 Consider the following graph.</p>
-<p><img src="/statics/img/2020-08-02-pageviews-over-time.png" alt="Page Views Over Time"></p>
+<p><img src="/img/2020-08-02-pageviews-over-time.png" alt="Page Views Over Time"></p>
 <p>Both page views and events, allowed us to break views down over time.
 But by using page views, we&rsquo;re now able to track bounce rates over time.</p>
-<p><img src="/statics/img/2020-08-02-bouncerate-over-time.png" alt="Bounce Rate Over Time"></p>
+<p><img src="/img/2020-08-02-bouncerate-over-time.png" alt="Bounce Rate Over Time"></p>
 <p>Together, this information can be used to better tune the content of your <code>README.md</code> and <code>topics</code>.
 This can help point people in the right direction on how to contribute or find additional information.</p>
 <h2 id="understanding-user-navigation">Understanding user navigation</h2>
 <p>One of the most surprising features I was able to start to leverage was user flows.
 By having this information, I can track how users navigate from one page to another.</p>
-<p><img src="/statics/img/2020-08-02-navigation-flow.png" alt="Navigation Flow"></p>
+<p><img src="/img/2020-08-02-navigation-flow.png" alt="Navigation Flow"></p>
 <p>My <a href="https://github.com/depscloud">deps.cloud</a> project has many small repositories.
 Many of which are really only useful for developers of the system, not the end users.
 As a result, I try to redirect users to appropriate content from the <code>README.md</code>.

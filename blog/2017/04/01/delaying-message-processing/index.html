@@ -5,13 +5,13 @@
     <meta name="description" content="Mom | Homesteader | Software Engineer">
     
     <link rel="stylesheet" href="https://mjpitz.com/css/style.min.707aa4670276c49b9db4a4ed6b89419c0ed1b4346e2104f50a364aa767d77773.css" integrity="sha256-cHqkZwJ2xJudtKTta4lBnA7RtDRuIQT1CjZKp2fXd3M=" crossorigin="anonymous" type="text/css">
-    <link rel="stylesheet" href="https://mjpitz.com/statics/css/overrides.css" type="text/css">
+    <link rel="stylesheet" href="https://mjpitz.com/css/overrides.css" type="text/css">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     
-    <link rel="shortcut icon" href="https://mjpitz.com/statics/img/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" sizes="180x180" href="https://mjpitz.com/statics/img/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://mjpitz.com/statics/img/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://mjpitz.com/statics/img/favicon-16x16.png">
+    <link rel="shortcut icon" href="https://mjpitz.com/img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://mjpitz.com/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://mjpitz.com/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://mjpitz.com/img/favicon-16x16.png">
     <link rel="canonical" href="http://engineering.indeedblog.com/blog/2017/06/delaying-messages/">
     
     
@@ -28,7 +28,7 @@ We constantly consider better solutions for processing applications and scaling 
 <body><div class="sidebar animated fadeInDown">
     <div class="logo-title">
       <div class="title">
-        <img src="https://mjpitz.com/statics/img/mjpitz.jpeg" alt="profile picture">
+        <img src="https://mjpitz.com/img/mjpitz.jpeg" alt="profile picture">
         <h3 title=""><a href="/">Mya Pitzeruse</a></h3>
         <div class="description">
           <p>Mom | Homesteader | Software Engineer</p>
@@ -136,14 +136,14 @@ RabbitMQ:</p>
 Since RabbitMQ requeues messages to the head of the queue, the next message your consumer will likely process is the one that just failed.
 Although this is a non-issue for a small volume of messages, critical problems occur as the number of unprocessable messages exceeds the number of consumer threads.
 Since consumers can’t get past the group of unprocessable messages at the beginning of the queue, messages back up within the cluster.</p>
-<p><img src="/statics/img/2017-delayqueue-backup.jpg" alt="message backup"></p>
+<p><img src="/img/2017-delayqueue-backup.jpg" alt="message backup"></p>
 <p><em>Figure 1. Message backup within the cluster</em></p>
 <h2 id="how-it-works">How it works</h2>
 <p>While mechanisms such as a dead letter queue allowed us to delay message processing, they often required manual intervention to return a system to a healthy state.
 The delay queue pattern allows our systems to continue processing.
 Additionally, it requires less work from our first responders (engineers who are <em>&ldquo;on call&rdquo;</em> during business hours to handle production issues), Site Reliability Engineers (SREs), and our operations team.
 The following diagram shows the options for a consumer process that encounters an error:</p>
-<p><img src="/statics/img/2017-delayqueue.png" alt="delay queue"></p>
+<p><img src="/img/2017-delayqueue.png" alt="delay queue"></p>
 <p><em>Figure 2. Asynchronous message consuming system</em></p>
 <p>When a consumer encounters an error and cannot process a message, engineers must choose to have the consumer requeue, place into the delayed queue, or deliver to the dead letter queue.
 They can make this decision by considering the following questions:</p>

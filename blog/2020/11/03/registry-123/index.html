@@ -5,13 +5,13 @@
     <meta name="description" content="Mom | Homesteader | Software Engineer">
     
     <link rel="stylesheet" href="https://mjpitz.com/css/style.min.707aa4670276c49b9db4a4ed6b89419c0ed1b4346e2104f50a364aa767d77773.css" integrity="sha256-cHqkZwJ2xJudtKTta4lBnA7RtDRuIQT1CjZKp2fXd3M=" crossorigin="anonymous" type="text/css">
-    <link rel="stylesheet" href="https://mjpitz.com/statics/css/overrides.css" type="text/css">
+    <link rel="stylesheet" href="https://mjpitz.com/css/overrides.css" type="text/css">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     
-    <link rel="shortcut icon" href="https://mjpitz.com/statics/img/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" sizes="180x180" href="https://mjpitz.com/statics/img/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://mjpitz.com/statics/img/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://mjpitz.com/statics/img/favicon-16x16.png">
+    <link rel="shortcut icon" href="https://mjpitz.com/img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://mjpitz.com/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://mjpitz.com/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://mjpitz.com/img/favicon-16x16.png">
     <link rel="canonical" href="https://mjpitz.com/blog/2020/11/03/registry-123/">
     
     
@@ -31,7 +31,7 @@ In this post, I&rsquo;ll walk you through my deployment."/>
 <body><div class="sidebar animated fadeInDown">
     <div class="logo-title">
       <div class="title">
-        <img src="https://mjpitz.com/statics/img/mjpitz.jpeg" alt="profile picture">
+        <img src="https://mjpitz.com/img/mjpitz.jpeg" alt="profile picture">
         <h3 title=""><a href="/">Mya Pitzeruse</a></h3>
         <div class="description">
           <p>Mom | Homesteader | Software Engineer</p>
@@ -140,7 +140,7 @@ In this post, I&rsquo;ll walk you through my deployment.</p>
 <p>Unlike many of my posts, I tried to externalize resources this time around instead of inlining them.
 All the configuration used in this project can be found <a href="https://gist.github.com/mjpitz/53e1d92cb0f2dc68e06e5c405f67e04f">here</a>.
 Below, you&rsquo;ll find an overview of the ecosystem.</p>
-<p><img src="/statics/img/2020-11-02-registry-overview.png" alt="system overview"></p>
+<p><img src="/img/2020-11-02-registry-overview.png" alt="system overview"></p>
 <p>First, we&rsquo;ll deploy a simple <a href="https://redislabs.com/">Redis</a> cluster.
 Once up and running, we&rsquo;ll deploy a read-only <a href="https://docs.docker.com/registry/">registry</a> mirror.
 Finally, we&rsquo;ll add <a href="https://github.com/cesanta/docker_auth">token authentication</a> to lock down repo access.</p>
