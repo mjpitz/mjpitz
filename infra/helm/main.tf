@@ -102,3 +102,22 @@ resource "helm_release" "ingress_nginx" {
   atomic = false
   wait   = false
 }
+
+resource "helm_release" "registry" {
+  depends_on = [
+    helm_release.ingress_nginx,
+  ]
+
+  chart     = "./registry"
+  namespace = "registry"
+  name      = "registry"
+
+  values = [
+    file("./registry/values.yaml"),
+    file("./registry/secret.yaml"),
+  ]
+
+  dependency_update = true
+  create_namespace  = true
+  atomic            = true
+}

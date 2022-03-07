@@ -7,9 +7,12 @@ tmp/
 terraform.tfstate
 terraform.tfstate.backup
 
-infra/helm/**/tls.crt
-infra/helm/**/tls.key
-infra/helm/**/secret.yaml
-infra/helm/**/secret-*.yaml
+charts/**/*.lock
+charts/**/*.tgz
+
 infra/helm/**/*.lock
 infra/helm/**/*.tgz
+infra/helm/**/secret.yaml
+infra/helm/**/secret-*.yaml
+infra/helm/**/tls.crt
+infra/helm/**/tls.key

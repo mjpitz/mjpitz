@@ -1,0 +1,209 @@
+# Default values for auth.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: cesanta/docker_auth
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+extraVolumes: []
+
+extraVolumeMounts: []
+
+externalConfig:
+  secretRef:
+    name: ""
+
+# https://github.com/cesanta/docker_auth/blob/master/examples/reference.yml
+config:
+  token:
+    issuer: "Acme Auth Server"
+    expiration: 900
+    certificate: ""
+    key: ""
+
+  google_auth: {}
+#    domain: "example.com"
+#    client_id: "1223123456-somethingsomething.apps.googleusercontent.com"
+#    client_secret: "verysecret"
+#    client_secret_file: "/path/to/client_secret.txt"
+#    token_db: "/somewhere/to/put/google_tokens.ldb"
+#    http_timeout: 10
+
+  github_auth: {}
+#    organization: "acme"
+#    client_id: "1223123456"
+#    client_secret: "verysecret"
+#    client_secret_file: "/path/to/client_secret.txt"
+#    token_db: "/somewhere/to/put/github_tokens.ldb"
+#    gcs_token_db:
+#      bucket: "tokenBucket"
+#      client_secret_file: "/path/to/client_secret.json"
+#    redis_token_db:
+#      redis_options:
+#        addr: localhost:6379
+#      redis_cluster_options:
+#        addrs: ["localhost:7000"]
+#    http_timeout: "10s"
+#    revalidate_after: "1h"
+#    github_web_uri: "https://github.acme.com"
+#    github_api_uri: "https://github.acme.com/api/v3"
+#    registry_url: localhost:5000
+
+  oidc_auth: {}
+#    issuer: "my_issuer_url"
+#    redirect_url: "my_redirect_uri/oidc_auth"
+#    client_id: "be4ut1fu1-cl13n7-1d"
+#    client_secret: "be4ut1fu1-cl13n7-s3cr37"
+#    client_secret_file: "/path/to/client_secret.txt"
+#    token_db: "/path/to/tokens.ldb"
+#    http_timeout: 10
+#    registry_url: "url_of_my_beautiful_docker_registry"
+
+  gitlab_auth: {}
+#    client_id: "1223123456"
+#    client_secret: "verysecret"
+#    client_secret_file: "/path/to/client_secret.txt"
+#    token_db: "/somewhere/to/put/gitlab_tokens.ldb"
+#    gcs_token_db:
+#      bucket: "tokenBucket"
+#      client_secret_file: "/path/to/client_secret.json"
+#    redis_token_db:
+#      redis_options:
+#        addr: localhost:6379
+#      redis_cluster_options:
+#        addrs: ["localhost:7000"]
+#    http_timeout: "10s"
+#    revalidate_after: "1h"
+#    gitlab_web_uri: "https://gitlab.com"
+#    gitlab_api_uri: "https://gitlab.com/api/v4"
+#    registry_url: localhost:5000
+#    grant_type: "authorization_code"
+#    redirect_uri: "https://localhost:5001/gitlab_auth"
+
+  ldap_auth: {}
+#    addr: ldap.example.com:636
+#    tls: always
+#    insecure_tls_skip_verify: false
+#    ca_certificate:
+#    bind_dn:
+#    bind_password_file:
+#    base: o=example.com
+#    filter: (&(uid=${account})(objectClass=person))
+#    labels:
+#      title:
+#        attribute: title
+#      groups:
+#        attribute: memberOf
+#        parse_cn: true
+
+  mongo_auth: {}
+#    dial_info:
+#      addrs: ["localhost"]
+#      timeout: "10s"
+#      database: "docker_auth"
+#      username: ""
+#      password_file: ""
+#      enable_tls: false
+#    collection: "users"
+
+  xorm_auth: {}
+#    database_type: "mysql"
+#    conn_string: "username:password@/database_name?charset=utf8"
+
+  ext_auth: {}
+#    command: "/usr/local/bin/my_auth"
+#    args: [ "--flag", "--more", "--flags" ]
+
+  users: {}
+#    "admin":
+#      # use `htpasswd -nB USERNAME` to generate.
+#      password: "$2y$05$RpL90nfw/BJwcWbSI0a1LuyVAWj2Bb2bd3rn9hqp66FQptwsV3EOK"  # badadmin
+
+  acl_mongo: {}
+#    dial_info:
+#      addrs: ["localhost"]
+#      timeout: "10s"
+#      database: "docker_auth"
+#      username: ""
+#      password_file: ""
+#      enable_tls: false
+#    collection: "acl"
+#    cache_ttl: "1m"
+
+  acl_xorm: {}
+#    database_type: "mysql"
+#    conn_string: "username:password@/database_name?charset=utf8"
+#    cache_ttl: "1m"
+
+  casbin_authz: {}
+#    model_path: "path/to/model"
+#    policy_path: "path/to/csv"
+
+  ext_authz: {}
+#    command: "/usr/local/bin/my_authz"
+#    args: ["--flag", "--more", "--flags"]
+
+  # - Control what users are able to do. Access is denied by default.
+  acl: []
+#    - match: {account: "admin"}
+#      actions: ["*"]
+#      comment: "Admin has full access to everything."

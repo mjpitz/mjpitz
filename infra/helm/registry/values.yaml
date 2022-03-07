@@ -1,0 +1,88 @@
+registry:
+  replicaCount: 2
+
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: "nginx"
+      kubernetes.io/tls-acme: "true"
+      cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      nginx.ingress.kubernetes.io/enable-cors: "true"
+      nginx.ingress.kubernetes.io/ssl-redirect: "true"
+      nginx.ingress.kubernetes.io/proxy-body-size: "0"
+      nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
+      nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
+    hosts:
+      - host: registry.pitz.tech
+    tls:
+      - secretName: registry-tls
+        hosts:
+          - registry.pitz.tech
+
+  extraVolumes:
+    - name: token-cert
+      secret:
+        secretName: registry-auth-token-cert
+
+  extraVolumeMounts:
+    - name: token-cert
+      mountPath: /etc/docker/auth/token
+      readOnly: true
+
+  config:
+    storage:
+      s3:
+        region: "nyc3"
+        regionendpoint: "nyc3.digitaloceanspaces.com"
+        bucket: "mya-containers"
+        encrypt: false
+        secure: true
+      maintenance:
+        uploadpurging:
+          enabled: false
+    proxy:
+      remoteurl: "https://registry-1.docker.io/"
+
+  auth:
+    enabled: true
+    replicaCount: 2
+
+    extraVolumes:
+      - name: token-cert
+        secret:
+          secretName: registry-auth-token-cert
+
+    extraVolumeMounts:
+      - name: token-cert
+        mountPath: /etc/docker/auth/token
+        readOnly: true
+
+    config:
+      token:
+        autoRedirect: true
+        realm: "https://registry.pitz.tech/auth"
+        service: "registry.pitz.tech"
+        issuer: "Registry Auth"
+        certificate: "/etc/docker/auth/token/tls.crt"
+        key: "/etc/docker/auth/token/tls.key"
+      acl:
+        - actions:
+            - '*'
+          comment: Admin can do it all
+          match: { account: admin }
+        - actions:
+            - pull
+          comment: Anonymous users can pull depscloud
+          match: { account: "", name: depscloud/* }
+        - actions:
+            - pull
+          comment: Anonymous users can pull mjpitz
+          match: { account: "", name: mjpitz/* }
+        - actions:
+            - "*"
+          comment: Anonymous users can query the api
+          match: { account: "", type: "registry", name: "catalog" }
+
+  redis:
+    enabled: true
+    replicaCount: 3

@@ -1,0 +1,15 @@
+apiVersion: v2
+name: registry
+description: Deploy the registry process
+type: application
+version: 2.7.1
+appVersion: 2.7.1
+dependencies:
+  - name: auth
+    repository: "file://../auth"
+    version: "*"
+    condition: auth.enabled
+  - name: redis
+    repository: "file://../redis"
+    version: "*"
+    condition: redis.enabled
