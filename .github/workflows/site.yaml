@@ -1,12 +1,24 @@
-name: branch
+name: site
 
 on:
   pull_request:
     branches:
       - "*"
+    paths:
+      - content/
+      - layouts/
+      - resources/
+      - static/
+      - themes/
   push:
     branches:
       - "*"
+    paths:
+      - content/
+      - layouts/
+      - resources/
+      - static/
+      - themes/
 
 jobs:
   build:
