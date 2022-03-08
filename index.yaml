@@ -1,45 +1,111 @@
 apiVersion: v1
 entries:
   auth:
-    - apiVersion: v2
-      appVersion: 1.6.0
-      created: "2022-03-07T14:18:01.127551491Z"
-      description: Deploy the auth process
-      digest: 2f9b4e7d4c9bfc36f99acd7ccaba217b3719408111ddbe24e3dc0500f8a127ab
-      name: auth
-      type: application
-      urls:
-        - https://github.com/mjpitz/mjpitz/releases/download/auth-1.6.0/auth-1.6.0.tgz
-      version: 1.6.0
+  - apiVersion: v2
+    appVersion: 1.6.0
+    created: "2022-03-08T22:42:49.474532961Z"
+    description: Deploy an token authorization server for the registry.
+    digest: 0e7729f94cbc8e99d29ccb472cebaa8e74ddf7ae4363b79fc8e59d137ca860b2
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: auth
+    sources:
+    - https://github.com/cesanta/docker_auth
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/auth
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/auth-22.3.0/auth-22.3.0.tgz
+    version: 22.3.0
+  - apiVersion: v2
+    appVersion: 1.6.0
+    created: "2022-03-07T14:18:01.127551491Z"
+    description: Deploy the auth process
+    digest: 2f9b4e7d4c9bfc36f99acd7ccaba217b3719408111ddbe24e3dc0500f8a127ab
+    name: auth
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/auth-1.6.0/auth-1.6.0.tgz
+    version: 1.6.0
   redis:
-    - apiVersion: v2
-      appVersion: 6.2.6
-      created: "2022-03-07T14:18:01.294132754Z"
-      description: Deploy elastic Redis cluster fronted by envoy.
-      digest: 6ebb8d9c84e23475e498de6b558f624f372f0301bd65b91fd1db6b38f93a0087
-      name: redis
-      type: application
-      urls:
-        - https://github.com/mjpitz/mjpitz/releases/download/redis-6.2.6/redis-6.2.6.tgz
-      version: 6.2.6
+  - apiVersion: v2
+    appVersion: 6.2.6
+    created: "2022-03-08T22:42:49.602705111Z"
+    description: Deploy an elastic Redis cluster fronted by an envoy sidecar.
+    digest: 1e559831c9f919285497eeb6725cb583ea5d20e30265919762d6abcdf69b44f5
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: redis
+    sources:
+    - https://github.com/redis/redis
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/redis
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/redis-22.3.0/redis-22.3.0.tgz
+    version: 22.3.0
+  - apiVersion: v2
+    appVersion: 6.2.6
+    created: "2022-03-07T14:18:01.294132754Z"
+    description: Deploy elastic Redis cluster fronted by envoy.
+    digest: 6ebb8d9c84e23475e498de6b558f624f372f0301bd65b91fd1db6b38f93a0087
+    name: redis
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/redis-6.2.6/redis-6.2.6.tgz
+    version: 6.2.6
   registry:
-    - apiVersion: v2
-      appVersion: 2.7.1
-      created: "2022-03-07T14:18:01.52871946Z"
-      dependencies:
-        - condition: auth.enabled
-          name: auth
-          repository: file://../auth
-          version: '*'
-        - condition: redis.enabled
-          name: redis
-          repository: file://../redis
-          version: '*'
-      description: Deploy the registry process
-      digest: f0edb8168c3fb1d1a9b64b697c7a7a748890aa3007e1011d16c4e8dfb4fe4901
-      name: registry
-      type: application
-      urls:
-        - https://github.com/mjpitz/mjpitz/releases/download/registry-2.7.1/registry-2.7.1.tgz
-      version: 2.7.1
+  - apiVersion: v2
+    appVersion: 2.8.0
+    created: "2022-03-08T22:42:49.721920201Z"
+    dependencies:
+    - condition: auth.enabled
+      name: auth
+      repository: file://../auth
+      version: '*'
+    - condition: redis.enabled
+      name: redis
+      repository: file://../redis
+      version: '*'
+    - condition: storj.enabled
+      name: storj
+      repository: file://../storj
+      version: '*'
+    description: Deploy a container registry to Kubernetes using Helm.
+    digest: 24bbdcdf484a9270ec3dc89a6423d18a2fd6cf7e5f4449636b30e46889576d2d
+    name: registry
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/registry-22.3.0/registry-22.3.0.tgz
+    version: 22.3.0
+  - apiVersion: v2
+    appVersion: 2.7.1
+    created: "2022-03-07T14:18:01.52871946Z"
+    dependencies:
+    - condition: auth.enabled
+      name: auth
+      repository: file://../auth
+      version: '*'
+    - condition: redis.enabled
+      name: redis
+      repository: file://../redis
+      version: '*'
+    description: Deploy the registry process
+    digest: f0edb8168c3fb1d1a9b64b697c7a7a748890aa3007e1011d16c4e8dfb4fe4901
+    name: registry
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/registry-2.7.1/registry-2.7.1.tgz
+    version: 2.7.1
+  storj:
+  - apiVersion: v2
+    appVersion: latest
+    created: "2022-03-08T22:42:49.829317813Z"
+    description: A Helm chart that supports deploying a storj gateway as a sidecar.
+    digest: efebd69f6ea71aa8c61345cfb05c4ec0b4b8c83013da6ad719784b0bc240b01e
+    name: storj
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/storj-22.3.0/storj-22.3.0.tgz
+    version: 22.3.0
 generated: "2022-03-07T14:18:00.964537926Z"
