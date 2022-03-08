@@ -1,4 +1,5 @@
-{{- $clusterConfig := dict "Chart" (dict "Name" "redis") "Values" .Values.redis "Release" .Release -}}
+{{- $redisConfig := dict "Chart" (dict "Name" "redis") "Values" .Values.redis "Release" .Release -}}
+{{- $storjConfig := dict "Chart" (dict "Name" "storj") "Values" .Values.storj "Release" .Release -}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -64,7 +65,26 @@ spec:
             {{- with .Values.extraVolumeMounts }}
             {{- toYaml . | nindent 12 }}
             {{- end }}
-        {{- include "redis.cluster.sidecar" $clusterConfig | nindent 8 }}
+        {{- if .Values.ui.enabled }}
+        - name: ui
+          image: {{ .Values.ui.image.repository }}:{{ .Values.ui.image.tag }}
+          imagePullPolicy: {{ .Values.ui.image.pullPolicy }}
+          env:
+            - name: REGISTRY_HOST
+              value: 127.0.0.1:5000
+            - name: PORT
+              value: "5002"
+          ports:
+            - name: web
+              containerPort: 5002
+              protocol: TCP
+        {{- end }}
+        {{- if .Values.redis.enabled }}
+        {{- include "redis.cluster.sidecar" $redisConfig | nindent 8 }}
+        {{- end }}
+        {{- if .Values.storj.enabled }}
+        {{- include "storj.sidecar" $storjConfig | nindent 8 }}
+        {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
@@ -85,7 +105,9 @@ spec:
             {{- else }}
             secretName: {{ include "registry.fullname" . }}-config
             {{- end }}
-        {{- include "redis.cluster.volume" $clusterConfig | nindent 8 }}
+        {{- if .Values.redis.enabled }}
+        {{- include "redis.cluster.volume" $redisConfig | nindent 8 }}
+        {{- end }}
         {{- with .Values.extraVolumes }}
         {{- toYaml . | nindent 8 }}
         {{- end }}

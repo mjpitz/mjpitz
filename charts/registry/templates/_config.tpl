@@ -20,6 +20,19 @@ http:
 
 storage:
   {{- .Values.config.storage | toYaml | nindent 2 }}
+  {{- if .Values.storj.enabled }}
+  s3:
+    accesskey: {{ .Values.storj.config.accessKeyId }}
+    secretkey: {{ .Values.storj.config.secretAccessKey }}
+    regionendpoint: http://127.0.0.1:7777
+    bucket: {{ .Values.storj.config.bucket }}
+#      v4auth: true
+#      chunksize: 5242880
+#      multipartcopychunksize: 33554432
+#      multipartcopymaxconcurrency: 100
+#      multipartcopythresholdsize: 33554432
+#      rootdirectory: /s3/object/name/prefix
+  {{- end }}
   {{- if .Values.redis.enabled }}
   cache:
     blobdescriptor: redis

@@ -2,7 +2,7 @@
 {{- $authEnabled := .Values.auth.enabled }}
 {{- $authFullName := dict "Chart" (dict "Name" "auth") "Values" .Values.redis "Release" .Release | include "auth.fullname" -}}
 {{- $registryFullName := include "registry.fullname" . -}}
-{{- $ghpagesEnabled := .Values.ghpages.enabled -}}
+{{- $uiEnabled := .Values.ui.enabled -}}
 {{- $v1Networking := semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion -}}
 {{- if $v1Networking -}}
 apiVersion: networking.k8s.io/v1
@@ -68,15 +68,15 @@ spec:
                 name: {{ $registryFullName }}
                 port:
                   name: http
-          {{- if $ghpagesEnabled }}
-          # send the rest to gh-pages
+          {{- if $uiEnabled }}
+          # send the rest to the ui
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: {{ $registryFullName }}-ghpages
+                name: {{ $registryFullName }}
                 port:
-                  name: http
+                  name: web
           {{- end }}
         {{- else }}
           {{- if $authEnabled }}
@@ -98,12 +98,12 @@ spec:
             backend:
               serviceName: {{ $registryFullName }}
               servicePort: 5000
-          {{- if $ghpagesEnabled }}
-          # send the rest to gh-pages
+          {{- if $uiEnabled }}
+          # send the rest to the ui
           - path: /
             backend:
-              serviceName: {{ $registryFullName }}-ghpages
-              servicePort: 80
+              serviceName: {{ $registryFullName }}
+              servicePort: 5002
           {{- end }}
         {{- end }}
     {{- end }}
