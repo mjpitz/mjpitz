@@ -1,0 +1,6 @@
+apiVersion: v2
+name: storj
+description: A Helm chart that supports deploying a storj gateway as a sidecar.
+type: application
+version: 22.3.0
+appVersion: latest

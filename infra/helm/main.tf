@@ -121,3 +121,22 @@ resource "helm_release" "registry" {
   create_namespace  = true
   atomic            = true
 }
+
+resource "helm_release" "storj_registry" {
+  depends_on = [
+    helm_release.ingress_nginx,
+  ]
+
+  chart     = "./storj-registry"
+  namespace = "storj-registry"
+  name      = "storj-registry"
+
+  values = [
+    file("./storj-registry/values.yaml"),
+    file("./storj-registry/secret.yaml"),
+  ]
+
+  dependency_update = true
+  create_namespace  = true
+  atomic            = true
+}

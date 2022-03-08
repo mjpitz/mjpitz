@@ -1,9 +1,9 @@
 apiVersion: v2
 name: registry
-description: Deploy the registry process
+description: Deploy a container registry to Kubernetes using Helm.
 type: application
-version: 2.7.1
-appVersion: 2.7.1
+version: 22.3.0
+appVersion: 2.8.0
 dependencies:
   - name: auth
     repository: "file://../auth"
@@ -13,3 +13,7 @@ dependencies:
     repository: "file://../redis"
     version: "*"
     condition: redis.enabled
+  - name: storj
+    repository: "file://../storj"
+    version: "*"
+    condition: storj.enabled

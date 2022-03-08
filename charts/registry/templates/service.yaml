@@ -15,37 +15,11 @@ spec:
       targetPort: debug
       protocol: TCP
       name: debug
+    {{- if .Values.ui.enabled }}
+    - port: 5002
+      targetPort: web
+      protocol: TCP
+      name: web
+    {{- end }}
   selector:
     {{- include "registry.selectorLabels" . | nindent 4 }}
-{{- if .Values.ghpages.enabled }}
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: {{ include "registry.fullname" . }}-ghpages
-spec:
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 80
-      name: http
-    - protocol: TCP
-      port: 443
-      targetPort: 443
-      name: https
----
-apiVersion: v1
-kind: Endpoints
-metadata:
-  name: {{ include "registry.fullname" . }}-ghpages
-subsets:
-  - addresses:
-      {{- range $ip := .Values.ghpages.ips }}
-      - ip: {{ $ip }}
-      {{- end }}
-    ports:
-      - port: 80
-        name: http
-      - port: 443
-        name: https
-{{- end }}

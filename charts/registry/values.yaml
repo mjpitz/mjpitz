@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: registry
+  repository: distribution/distribution
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
@@ -275,11 +275,21 @@ redis:
       maxactive: 64
       idletimeout: 300s
 
-ghpages:
-  # - when enabled, the / request on the ingress will route to GitHub pages.
+ui:
   enabled: false
-  ips:
-    - 185.199.111.153
-    - 185.199.110.153
-    - 185.199.109.153
-    - 185.199.108.153
+
+  image:
+    repository: jc21/registry-ui
+    tag: 2.0.2
+    pullPolicy: IfNotPresent
+
+storj:
+  # -- when enabled, this will configure the registry to use Storj as a backend.
+  enabled: false
+
+  config:
+    accessKeyId: ""
+    secretAccessKey: ""
+    accessGrant: ""
+    bucket: ""
+    region: ""

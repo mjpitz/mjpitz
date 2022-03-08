@@ -94,3 +94,6 @@ registry:
     metrics:
       serviceMonitor:
         enabled: true
+
+  ui:
+    enabled: false
