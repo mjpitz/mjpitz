@@ -1,0 +1,9 @@
+apiVersion: v2
+type: application
+name: registry
+version: 0.0.0
+appVersion: 0.0.0
+dependencies:
+  - name: registry
+    repository: file://../../../charts/registry
+    version: "*"
