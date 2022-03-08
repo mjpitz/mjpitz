@@ -1,6 +1,12 @@
 apiVersion: v2
-name: auth
-description: Deploy the auth process
 type: application
-version: 1.6.0
+name: auth
+description: Deploy an token authorization server for the registry.
+sources:
+  - https://github.com/cesanta/docker_auth
+  - https://github.com/mjpitz/mjpitz/tree/main/charts/auth
+maintainers:
+  - name: Mya Pitzeruse
+    url: https://mjpitz.com
+version: 22.3.0
 appVersion: 1.6.0

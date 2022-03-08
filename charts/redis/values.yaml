@@ -75,6 +75,25 @@ externalConfig:
     name: ""
 
 config:
+  databases: 1
+
+  maxMemory:
+    size: ""
+    evictionPolicy: allkeys-lru
+
+  data:
+    directory: ""
+    appendOnlyFile:
+      enabled: false
+      fsync: everysec
+    snapshot:
+      enabled: false
+      schedules:
+        - [3600, 1]   #   * After 3600 seconds (an hour) if at least 1 key changed
+        - [300, 100]  #   * After 300 seconds (5 minutes) if at least 100 keys changed
+        - [60, 10000] #   * After 60 seconds if at least 10000 keys changed
+      compression: true
+
   username: ""
   password: ""
 

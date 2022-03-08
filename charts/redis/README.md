@@ -19,8 +19,8 @@ First, you'll need to add the dependency.
 # Chart.yaml
 dependencies:
   - name: redis
-    repository: TBD
-    version: 6.2.6
+    repository: https://mjpitz.com
+    version: 22.3.0
     condition: redis.enabled
 ```
 

@@ -1,6 +1,12 @@
 apiVersion: v2
-name: redis
-description: Deploy elastic Redis cluster fronted by envoy.
 type: application
-version: 6.2.6
+name: redis
+description: Deploy an elastic Redis cluster fronted by an envoy sidecar.
+sources:
+  - https://github.com/redis/redis
+  - https://github.com/mjpitz/mjpitz/tree/main/charts/redis
+maintainers:
+  - name: Mya Pitzeruse
+    url: https://mjpitz.com
+version: 22.3.0
 appVersion: 6.2.6
