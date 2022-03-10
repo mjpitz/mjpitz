@@ -3,15 +3,21 @@
 # Declare variables to be passed into your templates.
 
 image:
+  # -- The repository hosting the storjlabs/gateway image.
   repository: storjlabs/gateway
+  # -- The pull policy to use for the gateway image.
   pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
+  # -- Overrides the image tag whose default is the chart appVersion.
   tag: latest
 
+# -- Specify the secret containing the registry credentials.
 imagePullSecrets: []
+# -- Override the name of the release.
 nameOverride: ""
+# -- Override the full name of the release.
 fullnameOverride: ""
 
+# -- Specify the security context for the `storj` container.
 securityContext: {}
   # capabilities:
   #   drop:
@@ -20,6 +26,7 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
+# -- Specify the resources for the pod.
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
@@ -34,12 +41,20 @@ resources: {}
 
 externalConfig:
   secretRef:
+    # -- Specify the name of the secret containing the raw configuration. The keys in the secret must match the other
+    #    properties in this configuration.
     name: ""
+    # -- The secret key name identifying the S3 access key id.
     accessKeyName: s3-access-key
+    # -- The secret key name identifying the S3 secret key.
     secretKeyName: s3-secret-key
+    # -- The secret key name identifying the Storj access grant.
     accessGrantName: storj-access-grant
 
 config:
+  # -- An access key id that's shared between the gateway and S3 client.
   accessKeyId: ""
+  # -- A secret key that's shared between the gateway and S3 client.
   secretAccessKey: ""
+  # -- The access grant providing access to the Storj network.
   accessGrant: ""

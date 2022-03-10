@@ -1,6 +1,8 @@
 apiVersion: v2
-name: storj
-description: A Helm chart that supports deploying a storj gateway as a sidecar.
 type: application
-version: 22.3.0
+name: storj
+description: |
+  Easily add a Storj S3 gateway to any Deployment, DaemonSet, or StatefulSet using a sidecar. This chart optionally
+  deploys the required configuration and provides template functions that render the necessary sidecar components.
+version: 22.3.1
 appVersion: latest

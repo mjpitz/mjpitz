@@ -8,6 +8,7 @@ chart-docs:
 	helm-docs -c charts/auth --dry-run | prettier --parser markdown > charts/auth/README.md
 	helm-docs -c charts/redis --dry-run | prettier --parser markdown > charts/redis/README.md
 	helm-docs -c charts/registry --dry-run | prettier --parser markdown > charts/registry/README.md
+	helm-docs -c charts/storj --dry-run | prettier --parser markdown > charts/storj/README.md
 
 bin: bin.yaml
 	bin-vendor
