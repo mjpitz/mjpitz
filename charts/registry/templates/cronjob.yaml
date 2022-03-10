@@ -1,0 +1,74 @@
+{{- $redisConfig := dict "Chart" (dict "Name" "redis") "Values" .Values.redis "Release" .Release -}}
+{{- $storjConfig := dict "Chart" (dict "Name" "storj") "Values" .Values.storj "Release" .Release -}}
+{{- if not .Values.storj.enabled }}
+{{- if semverCompare ">=1.21-0" .Capabilities.KubeVersion.GitVersion -}}
+apiVersion: batch/v1
+{{- else }}
+apiVersion: batch/v1beta1
+{{- end }}
+kind: CronJob
+metadata:
+  name: {{ include "registry.fullname" . }}-garbage-collect
+  labels:
+    {{- include "registry.labels" . | nindent 4 }}
+spec:
+  suspend: {{ .Values.gc.enabled | not | toString }}
+  schedule: {{ .Values.gc.schedule }}
+  jobTemplate:
+    metadata:
+      labels:
+        {{- include "registry.labels" . | nindent 8 }}
+    spec:
+      template:
+        spec:
+          {{- with .Values.imagePullSecrets }}
+          imagePullSecrets:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          serviceAccountName: {{ include "registry.serviceAccountName" . }}
+          securityContext:
+            {{- toYaml .Values.podSecurityContext | nindent 12 }}
+          containers:
+            - name: {{ .Chart.Name }}
+              securityContext:
+                {{- toYaml .Values.securityContext | nindent 16 }}
+              image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+              imagePullPolicy: {{ .Values.image.pullPolicy }}
+              command:
+                - sh
+              args:
+                - -c
+                - |
+                  env -i /bin/registry garbage-collect /etc/docker/registry/config.yml
+              resources:
+                {{- toYaml .Values.resources | nindent 16 }}
+              volumeMounts:
+                - mountPath: /etc/docker/registry
+                  name: config
+                {{- with .Values.extraVolumeMounts }}
+                {{- toYaml . | nindent 16 }}
+                {{- end }}
+          {{- with .Values.nodeSelector }}
+          nodeSelector:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.affinity }}
+          affinity:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.tolerations }}
+          tolerations:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          volumes:
+            - name: config
+              secret:
+                {{- if .Values.externalConfig.secretRef.name }}
+                secretName: {{ .Values.externalConfig.secretRef.name }}
+                {{- else }}
+                secretName: {{ include "registry.fullname" . }}-config
+                {{- end }}
+            {{- with .Values.extraVolumes }}
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
+{{- end }}

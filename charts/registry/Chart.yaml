@@ -1,8 +1,16 @@
 apiVersion: v2
-name: registry
-description: Deploy a container registry to Kubernetes using Helm.
 type: application
-version: 22.3.0
+name: registry
+description: |
+  Easily deploy and configure a production-ready container registry backed by your favorite cloud storage provider. 
+  Optionally add a highly-available, partition-tolerant Redis cache that's fronted by Envoy.
+sources:
+  - https://github.com/distribution/distribution
+  - https://github.com/mjpitz/mjpitz/tree/main/charts/registry
+maintainers:
+  - name: Mya Pitzeruse
+    url: https://mjpitz.com
+version: 22.3.1
 appVersion: 2.8.0
 dependencies:
   - name: auth

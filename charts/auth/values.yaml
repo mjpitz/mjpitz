@@ -2,32 +2,41 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+# -- The number of registry authorization servers to deploy.
 replicaCount: 1
 
 image:
+  # -- The repository hosting the container registry auth image.
   repository: cesanta/docker_auth
+  # -- The pull policy to use for the registry auth image.
   pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
+  # -- Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
+# -- Specify the secret containing the registry credentials.
 imagePullSecrets: []
+# -- Override the name of the release.
 nameOverride: ""
+# -- Override the full name of the release.
 fullnameOverride: ""
 
 serviceAccount:
-  # Specifies whether a service account should be created
+  # -- Specifies whether a service account should be created.
   create: true
-  # Annotations to add to the service account
+  # -- Annotations to add to the service account.
   annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
+  # -- The name of the service account to use. If not set and create is true, a name is generated using the fullname
+  #    template.
   name: ""
 
+# -- Annotations to add to the pod, typically used for assume roles.
 podAnnotations: {}
 
+# -- Specify the security context for the entire pod.
 podSecurityContext: {}
   # fsGroup: 2000
 
+# -- Specify the security context for the `registry` container.
 securityContext: {}
   # capabilities:
   #   drop:
@@ -37,8 +46,10 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
+  # -- Specify the type of service to create.
   type: ClusterIP
 
+# -- Specify the resources for the pod.
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
@@ -52,34 +63,54 @@ resources: {}
   #   memory: 128Mi
 
 autoscaling:
+  # -- Enable autoscaling for the deployment.
   enabled: false
+  # -- Specify the minimum number of replicas.
   minReplicas: 1
+  # -- Specify the maximum number of replicas.
   maxReplicas: 100
+  # -- Specify the percent CPU utilization that causes the pods to autoscale.
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
+# -- Specify the node selector used to control which nodes registry pods are deployed to.
 nodeSelector: {}
 
+# -- Specify taints that the registry pods are willing to tolerate.
 tolerations: []
 
+# -- Specify affinity rules for the pods.
 affinity: {}
 
+# -- Add additional volumes to the pod.
 extraVolumes: []
+#  - name: data
+#    emptyDir: {}
 
+# -- Add additional volume mounts to the pod.
 extraVolumeMounts: []
+#  - name: data
+#    mountPath: /var/lib/registry-auth
+#    readOnly: false
 
 externalConfig:
   secretRef:
+    # -- Specify the name of the secret containing the raw configuration.
     name: ""
 
 # https://github.com/cesanta/docker_auth/blob/master/examples/reference.yml
 config:
   token:
+    # -- Configure the name of the token issuer.
     issuer: "Acme Auth Server"
+    # -- Configure the expiration.
     expiration: 900
+    # -- The path to the certificate used for verifying tokens.
     certificate: ""
+    # -- The path to the key used for signing tokens.
     key: ""
 
+  # -- Configure Google authentication.
   google_auth: {}
 #    domain: "example.com"
 #    client_id: "1223123456-somethingsomething.apps.googleusercontent.com"
@@ -88,6 +119,7 @@ config:
 #    token_db: "/somewhere/to/put/google_tokens.ldb"
 #    http_timeout: 10
 
+  # -- Configure GitHub authentication.
   github_auth: {}
 #    organization: "acme"
 #    client_id: "1223123456"
@@ -108,6 +140,7 @@ config:
 #    github_api_uri: "https://github.acme.com/api/v3"
 #    registry_url: localhost:5000
 
+  # -- Configure OIDC authentication.
   oidc_auth: {}
 #    issuer: "my_issuer_url"
 #    redirect_url: "my_redirect_uri/oidc_auth"
@@ -118,6 +151,7 @@ config:
 #    http_timeout: 10
 #    registry_url: "url_of_my_beautiful_docker_registry"
 
+  # -- Configure GitLab authentication.
   gitlab_auth: {}
 #    client_id: "1223123456"
 #    client_secret: "verysecret"
@@ -139,6 +173,7 @@ config:
 #    grant_type: "authorization_code"
 #    redirect_uri: "https://localhost:5001/gitlab_auth"
 
+  # -- Configure LDAP authentication.
   ldap_auth: {}
 #    addr: ldap.example.com:636
 #    tls: always
@@ -155,6 +190,7 @@ config:
 #        attribute: memberOf
 #        parse_cn: true
 
+  # -- Configure Mongo authentication.
   mongo_auth: {}
 #    dial_info:
 #      addrs: ["localhost"]
@@ -165,19 +201,23 @@ config:
 #      enable_tls: false
 #    collection: "users"
 
+  # -- Configure SQL authentication.
   xorm_auth: {}
 #    database_type: "mysql"
 #    conn_string: "username:password@/database_name?charset=utf8"
 
+  # -- Configure external authentication.
   ext_auth: {}
 #    command: "/usr/local/bin/my_auth"
 #    args: [ "--flag", "--more", "--flags" ]
 
+  # -- Configure static authentication.
   users: {}
 #    "admin":
 #      # use `htpasswd -nB USERNAME` to generate.
 #      password: "$2y$05$RpL90nfw/BJwcWbSI0a1LuyVAWj2Bb2bd3rn9hqp66FQptwsV3EOK"  # badadmin
 
+  # -- Configure Mongo authorization.
   acl_mongo: {}
 #    dial_info:
 #      addrs: ["localhost"]
@@ -189,20 +229,23 @@ config:
 #    collection: "acl"
 #    cache_ttl: "1m"
 
+  # -- Configure SQL authorization.
   acl_xorm: {}
 #    database_type: "mysql"
 #    conn_string: "username:password@/database_name?charset=utf8"
 #    cache_ttl: "1m"
 
+  # -- Configure casbin authorization.
   casbin_authz: {}
 #    model_path: "path/to/model"
 #    policy_path: "path/to/csv"
 
+  # -- Configure external authorization.
   ext_authz: {}
 #    command: "/usr/local/bin/my_authz"
 #    args: ["--flag", "--more", "--flags"]
 
-  # - Control what users are able to do. Access is denied by default.
+  # -- Control what users are able to do. Access is denied by default.
   acl: []
 #    - match: {account: "admin"}
 #      actions: ["*"]

@@ -72,6 +72,8 @@ spec:
           env:
             - name: REGISTRY_HOST
               value: 127.0.0.1:5000
+            - name: REGISTRY_DOMAIN
+              value: {{ .Values.ui.config.domain | quote }}
             - name: PORT
               value: "5002"
           ports:

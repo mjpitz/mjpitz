@@ -1,12 +1,14 @@
 apiVersion: v2
 type: application
 name: redis
-description: Deploy an elastic Redis cluster fronted by an envoy sidecar.
+description: |
+  Deploy a highly-available, partition-tolerant Redis cluster fronted by an envoy sidecar. Envoy partitions keys among
+  members of the cluster using a consistent hashing algorithm making it great as a best-effort cache.
 sources:
   - https://github.com/redis/redis
   - https://github.com/mjpitz/mjpitz/tree/main/charts/redis
 maintainers:
   - name: Mya Pitzeruse
     url: https://mjpitz.com
-version: 22.3.0
+version: 22.3.1
 appVersion: 6.2.6

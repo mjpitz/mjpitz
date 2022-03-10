@@ -2,32 +2,41 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+# -- The number of redis instances to deploy.
 replicaCount: 1
 
 image:
+  # -- The repository hosting the redis image.
   repository: redis
+  # -- The pull policy to use for the registry image.
   pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
+  # -- Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
+# -- Specify the secret containing the registry credentials.
 imagePullSecrets: []
+# -- Override the name of the release.
 nameOverride: ""
+# -- Override the full name of the release.
 fullnameOverride: ""
 
 serviceAccount:
-  # Specifies whether a service account should be created
+  # -- Specifies whether a service account should be created.
   create: true
-  # Annotations to add to the service account
+  # -- Annotations to add to the service account.
   annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
+  # -- The name of the service account to use. If not set and create is true, a name is generated using the fullname
+  #    template.
   name: ""
 
+# -- Annotations to add to the pod, typically used for assume roles.
 podAnnotations: {}
 
+# -- Specify the security context for the entire pod.
 podSecurityContext: {}
   # fsGroup: 2000
 
+# -- Specify the security context for the `redis` container.
 securityContext: {}
   # capabilities:
   #   drop:
@@ -36,6 +45,7 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
+# -- Specify the resources for the pod.
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
@@ -49,58 +59,90 @@ resources: {}
   #   memory: 128Mi
 
 autoscaling:
+  # -- Enable autoscaling for the deployment.
   enabled: false
+  # -- Specify the minimum number of replicas.
   minReplicas: 1
+  # -- Specify the maximum number of replicas.
   maxReplicas: 100
+  # -- Specify the percent CPU utilization that causes the pods to autoscale.
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
+# -- Specify the node selector used to control which nodes registry pods are deployed to.
 nodeSelector: {}
 
+# -- Specify taints that the registry pods are willing to tolerate.
 tolerations: []
 
+# -- Specify affinity rules for the pods.
 affinity: {}
-
-extraVolumes: []
-
-extraVolumeMounts: []
 
 metrics:
   serviceMonitor:
+    # -- Add a Prometheus ServiceMonitor that scrapes the registry deployment.
     enabled: false
+    # -- How frequently prometheus should pull metrics from your registry deployment.
     interval: 10s
+
+# -- Add additional volumes to the pod.
+extraVolumes: []
+#  - name: data
+#    emptyDir: {}
+
+# -- Add additional volume mounts to the pod.
+extraVolumeMounts: []
+#  - name: data
+#    mountPath: /data
+#    readOnly: false
 
 externalConfig:
   secretRef:
+    # -- Specify the name of the secret containing the raw configuration.
     name: ""
 
 config:
+  # -- How many databases to make available.
   databases: 1
 
   maxMemory:
+    # -- The number of bytes representing the maximum amount of memory that can be consumed.
     size: ""
+    # -- The eviction policy to use when the maximum memory is reached or exceeded.
     evictionPolicy: allkeys-lru
 
   data:
+    # -- Where the append-only file and snapshots should be stored.
     directory: ""
     appendOnlyFile:
+      # -- Whether to enable an append-only file.
       enabled: false
+      # -- When fsyncs should occur when using an append-only file.
       fsync: everysec
     snapshot:
+      # -- Whether to enable snapshots.
       enabled: false
+      # -- When to take a snapshot. [ seconds, key changes ]
       schedules:
         - [3600, 1]   #   * After 3600 seconds (an hour) if at least 1 key changed
         - [300, 100]  #   * After 300 seconds (5 minutes) if at least 100 keys changed
         - [60, 10000] #   * After 60 seconds if at least 10000 keys changed
+      # -- Compress the snapshot.
       compression: true
 
+  # -- Specify the username used for authentication.
   username: ""
+  # -- Specify the password used for authentication.
   password: ""
 
 cluster:
+  # -- Enable the Envoy cluster.
   enabled: true
 
   image:
+    # -- The repository hosting the Envoy proxy.
     repository: envoyproxy/envoy
+    # -- The pull policy used when pulling the Envoy proxy.
     pullPolicy: IfNotPresent
+    # -- The version of Envoy to run.
     tag: "v1.21-latest"
