@@ -1,6 +1,10 @@
 registry:
   replicaCount: 1
 
+  image:
+    repository: ghcr.io/elek/distribution
+    tag: mniewrzal-80ce0748
+
   ingress:
     enabled: true
     annotations:
@@ -92,12 +96,6 @@ registry:
     metrics:
       serviceMonitor:
         enabled: true
-
-  storj:
-    enabled: true
-    config:
-      bucket: docker-test
-      region: us1
 
   ui:
     enabled: false

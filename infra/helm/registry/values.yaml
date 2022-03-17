@@ -13,11 +13,11 @@ registry:
       nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
       nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
     hosts:
-      - host: registry.pitz.tech
+      - host: img.pitz.tech
     tls:
       - secretName: registry-tls
         hosts:
-          - registry.pitz.tech
+          - img.pitz.tech
 
   extraVolumes:
     - name: token-cert
@@ -64,8 +64,8 @@ registry:
     config:
       token:
         autoRedirect: true
-        realm: "https://registry.pitz.tech/auth"
-        service: "registry.pitz.tech"
+        realm: "https://img.pitz.tech/auth"
+        service: "img.pitz.tech"
         issuer: "Registry Auth"
         certificate: "/etc/docker/auth/token/tls.crt"
         key: "/etc/docker/auth/token/tls.key"
