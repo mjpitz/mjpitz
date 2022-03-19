@@ -7,7 +7,7 @@ external-dns:
     - mya.sh
     - ocr.sh
     - pitz.tech
-  txtOwnerId: "mya-nyc."
+  txtOwnerId: "mya-nyc"
   txtPrefix: "mya-nyc."
   policy: sync
   provider: cloudflare

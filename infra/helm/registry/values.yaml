@@ -14,10 +14,12 @@ registry:
       nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
     hosts:
       - host: img.pitz.tech
+      - host: ocr.sh
     tls:
       - secretName: registry-tls
         hosts:
           - img.pitz.tech
+          - ocr.sh
 
   extraVolumes:
     - name: token-cert
