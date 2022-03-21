@@ -1,0 +1,26 @@
+aliases:
+  # original deps.cloud alias
+  - name: archive
+    backend:
+      address: depscloud-artifacts.sfo2.cdn.digitaloceanspaces.com
+      port: 443
+      protocol: https
+    tls:
+      issuer:
+        name: letsencrypt-prod
+    ingress:
+      class: nginx
+      address: archive.deps.cloud
+
+  # new pitz.tech address
+  - name: dist
+    backend:
+      address: mya-artifacts.nyc3.cdn.digitaloceanspaces.com
+      port: 443
+      protocol: https
+    tls:
+      issuer:
+        name: letsencrypt-prod
+    ingress:
+      class: nginx
+      address: dist.pitz.tech
