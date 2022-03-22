@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "dist.fullname" . }}
+  labels:
+    {{- include "dist.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  externalName: {{ .Values.service.externalName }}
+  ports:
+    - port: 80
+      targetPort: http
+      protocol: TCP
+      name: http
+    - port: 443
+      targetPort: https
+      protocol: TCP
+      name: https
