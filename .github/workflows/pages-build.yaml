@@ -1,4 +1,4 @@
-name: Build Site
+name: pages-build
 
 on:
   pull_request:
