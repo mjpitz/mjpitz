@@ -5,21 +5,23 @@ on:
     branches:
       - main
     paths:
-      - content/
-      - layouts/
-      - resources/
-      - static/
-      - themes/
+      - .github/workflows/site.yaml
+      - content/**
+      - layouts/**
+      - resources/**
+      - static/**
+      - themes/**
       - config.toml
   push:
     branches:
       - main
     paths:
-      - content/
-      - layouts/
-      - resources/
-      - static/
-      - themes/
+      - .github/workflows/site.yaml
+      - content/**
+      - layouts/**
+      - resources/**
+      - static/**
+      - themes/**
       - config.toml
 
 jobs:
