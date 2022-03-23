@@ -3,6 +3,24 @@ entries:
   auth:
   - apiVersion: v2
     appVersion: 1.6.0
+    created: "2022-03-23T13:54:48.789187142Z"
+    description: |
+      Deploy a container registry token authorization server. Easily add authentication and authorization to your container
+      container registry and control what images authenticated and unauthenticated users are allowed to pull.
+    digest: b491eb1807514e7e5e4cb4a66fd71a6bd29e3fc0025b1af204b4504563c62aef
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: auth
+    sources:
+    - https://github.com/cesanta/docker_auth
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/auth
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/auth-22.3.2/auth-22.3.2.tgz
+    version: 22.3.2
+  - apiVersion: v2
+    appVersion: 1.6.0
     created: "2022-03-10T13:36:40.930144821Z"
     description: |
       Deploy a container registry token authorization server. Easily add authentication and authorization to your container
@@ -48,6 +66,24 @@ entries:
   redis:
   - apiVersion: v2
     appVersion: 6.2.6
+    created: "2022-03-23T13:54:49.020538734Z"
+    description: |
+      Deploy a highly-available, partition-tolerant Redis cluster fronted by an envoy sidecar. Envoy partitions keys among
+      members of the cluster using a consistent hashing algorithm making it great as a best-effort cache.
+    digest: 284c6a9e219a25028e43cba3759a069276204816f05a54708490bb460caee92f
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: redis
+    sources:
+    - https://github.com/redis/redis
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/redis
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/redis-22.3.2/redis-22.3.2.tgz
+    version: 22.3.2
+  - apiVersion: v2
+    appVersion: 6.2.6
     created: "2022-03-10T13:36:41.143838321Z"
     description: |
       Deploy a highly-available, partition-tolerant Redis cluster fronted by an envoy sidecar. Envoy partitions keys among
@@ -91,6 +127,35 @@ entries:
     - https://github.com/mjpitz/mjpitz/releases/download/redis-6.2.6/redis-6.2.6.tgz
     version: 6.2.6
   registry:
+  - apiVersion: v2
+    appVersion: 2.8.0
+    created: "2022-03-23T13:54:49.260775181Z"
+    dependencies:
+    - condition: auth.enabled
+      name: auth
+      repository: file://../auth
+      version: '*'
+    - condition: redis.enabled
+      name: redis
+      repository: file://../redis
+      version: '*'
+    - condition: storj.enabled
+      name: storj
+      repository: file://../storj
+      version: '*'
+    description: "Easily deploy and configure a production-ready container registry backed by your favorite cloud storage provider. \nOptionally add a highly-available, partition-tolerant Redis cache that's fronted by Envoy.\n"
+    digest: cbb71721b3501f7df6b1c402610dfc2941754ac5b1f17f5a070e4c382ba46776
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: registry
+    sources:
+    - https://github.com/distribution/distribution
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/registry
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/registry-22.3.3/registry-22.3.3.tgz
+    version: 22.3.3
   - apiVersion: v2
     appVersion: 2.8.0
     created: "2022-03-10T13:36:41.375391314Z"
@@ -163,6 +228,18 @@ entries:
     - https://github.com/mjpitz/mjpitz/releases/download/registry-2.7.1/registry-2.7.1.tgz
     version: 2.7.1
   storj:
+  - apiVersion: v2
+    appVersion: latest
+    created: "2022-03-23T13:54:49.472790957Z"
+    description: |
+      Easily add a Storj S3 gateway to any Deployment, DaemonSet, or StatefulSet using a sidecar. This chart optionally
+      deploys the required configuration and provides template functions that render the necessary sidecar components.
+    digest: 4255792298f16cad4823ddb0ada830d34486f0d909b9e84bd8f233006f364808
+    name: storj
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/storj-22.3.2/storj-22.3.2.tgz
+    version: 22.3.2
   - apiVersion: v2
     appVersion: latest
     created: "2022-03-08T22:42:49.829317813Z"
