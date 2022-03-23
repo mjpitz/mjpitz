@@ -4,8 +4,8 @@ terraform {
     skip_metadata_api_check     = true
     endpoint                    = "https://nyc3.digitaloceanspaces.com"
     region                      = "us-east-1"
-    bucket                      = "mya-tfstate"
-    key                         = "infra/helm/terraform.tfstate"
+    bucket                      = "mya-terraform"
+    key                         = "infra/helm/terraform.terraform"
   }
 }
 

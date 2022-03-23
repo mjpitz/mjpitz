@@ -40,7 +40,7 @@ registry:
       s3:
         region: "nyc3"
         regionendpoint: "nyc3.digitaloceanspaces.com"
-        bucket: "mya-containers"
+        bucket: "mya-images"
         encrypt: false
         secure: true
       maintenance:

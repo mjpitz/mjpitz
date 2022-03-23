@@ -3,7 +3,7 @@ fullnameOverride: ""
 
 service:
   type: ExternalName
-  externalName: mya-artifacts.nyc3.cdn.digitaloceanspaces.com
+  externalName: mya-assets.nyc3.cdn.digitaloceanspaces.com
   port: https
 
 ingress:
@@ -13,7 +13,7 @@ ingress:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/enable-cors: "true"
-    nginx.ingress.kubernetes.io/rewrite-target: "https://mya-artifacts.nyc3.cdn.digitaloceanspaces.com/$1"
+    nginx.ingress.kubernetes.io/rewrite-target: "https://mya-assets.nyc3.cdn.digitaloceanspaces.com/$1"
   hosts:
     - host: dist.pitz.tech
     - host: archive.deps.cloud

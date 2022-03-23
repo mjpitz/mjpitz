@@ -4,13 +4,13 @@ terraform {
     skip_metadata_api_check     = true
     endpoint                    = "https://nyc3.digitaloceanspaces.com"
     region                      = "us-east-1"
-    bucket                      = "mya-tfstate"
+    bucket                      = "mya-terraform"
     key                         = "infra/do/admin/terraform.tfstate"
   }
 }
 
 resource "digitalocean_spaces_bucket" "tfstate" {
-  name   = "mya-tfstate"
+  name   = "mya-terraform"
   region = "nyc3"
   acl    = "private"
 
@@ -18,25 +18,15 @@ resource "digitalocean_spaces_bucket" "tfstate" {
     enabled = true
   }
 
-  lifecycle_rule {
-    enabled = true
-
-    expiration {
-      days = 14
-    }
-
-    noncurrent_version_expiration {
-      days = 7
-    }
-  }
+  # intentionally not expiring here
 }
 
-resource "digitalocean_project" "mya" {
+data "digitalocean_project" "mya" {
   name = "mya"
 }
 
 resource "digitalocean_project_resources" "resource_allocation" {
-  project   = digitalocean_project.mya.id
+  project   = data.digitalocean_project.mya.id
   resources = [
     digitalocean_spaces_bucket.tfstate.urn,
   ]

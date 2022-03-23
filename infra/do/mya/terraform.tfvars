@@ -24,17 +24,12 @@ clusters = [
 
 spaces = [
   {
-    name: "mya-artifacts",
+    name: "mya-assets",
     region : "nyc3",
     acl : "private",
   },
   {
-    name: "mya-backups",
-    region : "nyc3",
-    acl : "private",
-  },
-  {
-    name: "mya-containers",
+    name: "mya-images",
     region: "nyc3",
     acl: "private",
   },
@@ -42,6 +37,6 @@ spaces = [
 
 cdn = [
   {
-    space: "mya-artifacts",
+    space: "mya-assets",
   },
 ]
