@@ -1,6 +1,6 @@
 # auth
 
-![Version: 22.3.1](https://img.shields.io/badge/Version-22.3.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.6.0](https://img.shields.io/badge/AppVersion-1.6.0-informational?style=flat-square)
+![Version: 22.3.2](https://img.shields.io/badge/Version-22.3.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.6.0](https://img.shields.io/badge/AppVersion-1.6.0-informational?style=flat-square)
 
 Deploy a container registry token authorization server. Easily add authentication and authorization to your container
 container registry and control what images authenticated and unauthenticated users are allowed to pull.
