@@ -72,22 +72,18 @@ registry:
         certificate: "/etc/docker/auth/token/tls.crt"
         key: "/etc/docker/auth/token/tls.key"
       acl:
-        - actions:
-            - '*'
+        - actions: [ "*" ]
           comment: Admin can do it all
           match: { account: admin }
-        - actions:
-            - pull
+        - actions: [ "*" ]
+          comment: The web user can query the api
+          match: { account: "web" }
+        - actions: [ "pull" ]
           comment: Anonymous users can pull depscloud
           match: { account: "", name: depscloud/* }
-        - actions:
-            - pull
+        - actions: [ "pull" ]
           comment: Anonymous users can pull mjpitz
           match: { account: "", name: mjpitz/* }
-        - actions:
-            - "*"
-          comment: Anonymous users can query the api
-          match: { account: "", type: "registry", name: "catalog" }
 
   redis:
     enabled: true
@@ -98,4 +94,7 @@ registry:
         enabled: true
 
   ui:
-    enabled: false
+    enabled: true
+
+    config:
+      domain: img.pitz.tech

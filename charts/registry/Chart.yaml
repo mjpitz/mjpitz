@@ -10,7 +10,7 @@ sources:
 maintainers:
   - name: Mya Pitzeruse
     url: https://mjpitz.com
-version: 22.3.1
+version: 22.3.2
 appVersion: 2.8.0
 dependencies:
   - name: auth

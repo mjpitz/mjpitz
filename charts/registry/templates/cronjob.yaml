@@ -13,7 +13,7 @@ metadata:
     {{- include "registry.labels" . | nindent 4 }}
 spec:
   suspend: {{ .Values.gc.enabled | not | toString }}
-  schedule: {{ .Values.gc.schedule }}
+  schedule: {{ .Values.gc.schedule | quote }}
   jobTemplate:
     metadata:
       labels:
@@ -21,6 +21,7 @@ spec:
     spec:
       template:
         spec:
+          restartPolicy: Never
           {{- with .Values.imagePullSecrets }}
           imagePullSecrets:
             {{- toYaml . | nindent 12 }}

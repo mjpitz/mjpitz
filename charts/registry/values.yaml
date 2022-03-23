@@ -331,15 +331,27 @@ ui:
 
   image:
     # -- The image that contains the registry UI.
-    repository: jc21/registry-ui
+    repository: klausmeyer/docker-registry-browser
     # -- The tag of the image that contains the registry UI.
-    tag: 2.0.2
+    tag: 1.4.0
     # -- The policy used when pulling the UI image.
     pullPolicy: IfNotPresent
 
   config:
     # -- Configure the domain for the UI to render push/pull.
     domain: ""
+
+    auth:
+      token:
+        # -- Specify the username for token based authentication.
+        username: ""
+        # -- Specify the password for the token based authentication.
+        password: ""
+      basic:
+        # -- Specify the username for basic authentication.
+        username: ""
+        # -- Specify the password for basic authentication.
+        password: ""
 
 gc:
   # -- Whether to enable the garbage collection process. This is not supported when using the Storj sidecar.
