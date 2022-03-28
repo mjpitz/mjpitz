@@ -66,14 +66,14 @@ static_resources:
                 prefix_routes:
                   catch_all_route:
                     cluster: redis
-			  	{{- if .Values.config.username }}
-				downstream_auth_username:
-				  inline_string: {{ .Values.config.username }}
-			  	{{- end }}
-				{{- if .Values.config.password }}
-				downstream_auth_password:
-				  inline_string: {{ .Values.config.password }}
-			  	{{- end }}
+                {{- if .Values.config.username }}
+                downstream_auth_username:
+                  inline_string: {{ .Values.config.username }}
+                {{- end }}
+                {{- if .Values.config.password }}
+                downstream_auth_password:
+                  inline_string: {{ .Values.config.password }}
+                {{- end }}
   clusters:
     - name: redis
       type: STRICT_DNS
