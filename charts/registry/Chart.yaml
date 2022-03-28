@@ -10,18 +10,18 @@ sources:
 maintainers:
   - name: Mya Pitzeruse
     url: https://mjpitz.com
-version: 22.3.3
+version: 22.3.4
 appVersion: 2.8.0
 dependencies:
   - name: auth
-    repository: "file://../auth"
-    version: "*"
+    repository: https://mjpitz.com
+    version: 22.3.2
     condition: auth.enabled
   - name: redis
-    repository: "file://../redis"
-    version: "*"
+    repository: https://mjpitz.com
+    version: 22.3.3
     condition: redis.enabled
   - name: storj
-    repository: "file://../storj"
-    version: "*"
+    repository: https://mjpitz.com
+    version: 22.3.2
     condition: storj.enabled
