@@ -3,12 +3,12 @@ type: application
 name: auth
 description: |
   Deploy a container registry token authorization server. Easily add authentication and authorization to your container
-  container registry and control what images authenticated and unauthenticated users are allowed to pull.
+  registry and control what images authenticated and unauthenticated users are allowed to pull.
 sources:
   - https://github.com/cesanta/docker_auth
   - https://github.com/mjpitz/mjpitz/tree/main/charts/auth
 maintainers:
   - name: Mya Pitzeruse
     url: https://mjpitz.com
-version: 22.3.2
+version: 22.3.3
 appVersion: 1.6.0
