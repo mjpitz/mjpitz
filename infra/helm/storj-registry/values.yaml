@@ -2,8 +2,8 @@ registry:
   replicaCount: 1
 
   image:
-    repository: ghcr.io/elek/distribution
-    tag: mniewrzal-80ce0748
+    repository: ghcr.io/mniewrzal/distribution
+    tag: 0.1
 
   ingress:
     enabled: true
@@ -68,26 +68,18 @@ registry:
         certificate: "/etc/docker/auth/token/tls.crt"
         key: "/etc/docker/auth/token/tls.key"
       acl:
-        - actions:
-            - '*'
+        - actions: [ "*" ]
           comment: Admin can do it all
           match: { account: admin }
-        - actions:
-            - pull
-          comment: Anonymous users can pull library repositories
-          match: { account: "", name: library/* }
-        - actions:
-            - pull
+        - actions: [ "*" ]
+          comment: The web user can query the api
+          match: { account: "web" }
+        - actions: [ "pull" ]
           comment: Anonymous users can pull depscloud
           match: { account: "", name: depscloud/* }
-        - actions:
-            - pull
+        - actions: [ "pull" ]
           comment: Anonymous users can pull mjpitz
           match: { account: "", name: mjpitz/* }
-        - actions:
-            - "*"
-          comment: Anonymous users can query the api
-          match: { account: "", type: "registry", name: "catalog" }
 
   redis:
     enabled: true
@@ -98,6 +90,6 @@ registry:
         enabled: true
 
   ui:
-    enabled: false
-
-# force
+    enabled: true
+    config:
+      domain: proxy.pitz.tech
