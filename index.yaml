@@ -183,6 +183,35 @@ entries:
   registry:
   - apiVersion: v2
     appVersion: 2.8.0
+    created: "2022-03-29T16:48:57.258118045Z"
+    dependencies:
+    - condition: auth.enabled
+      name: auth
+      repository: https://mjpitz.com
+      version: 22.3.3
+    - condition: redis.enabled
+      name: redis
+      repository: https://mjpitz.com
+      version: 22.3.4
+    - condition: storj.enabled
+      name: storj
+      repository: https://mjpitz.com
+      version: 22.3.3
+    description: "Easily deploy and configure a production-ready container registry backed by your favorite cloud storage provider. \nOptionally add a highly-available, partition-tolerant Redis cache that's fronted by Envoy.\n"
+    digest: 0d832bf02b5de5d8d8fe9343efb1485b9a1978b3cb76862dcc85f8e3202bedf1
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: registry
+    sources:
+    - https://github.com/distribution/distribution
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/registry
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/registry-22.3.5/registry-22.3.5.tgz
+    version: 22.3.5
+  - apiVersion: v2
+    appVersion: 2.8.0
     created: "2022-03-28T19:55:47.265949014Z"
     dependencies:
     - condition: auth.enabled
