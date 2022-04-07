@@ -1,0 +1,49 @@
+maddy:
+  replicaCount: 1
+
+  service:
+    annotations:
+      external-dns.alpha.kubernetes.io/hostname: mx.pitz.tech
+
+  metrics:
+    serviceMonitor:
+      enabled: true
+
+  extraVolumes:
+    - name: tls
+      secret:
+        secretName: maddy-tls
+
+  extraVolumeMounts:
+    - name: tls
+      mountPath: /etc/maddy/tls/
+      readOnly: true
+
+  persistence:
+    storageClass: "do-block-storage"
+
+  config:
+    domains:
+      mx: mx.pitz.tech
+      primary: pitz.tech
+    tls:
+      certPath: "/etc/maddy/tls/tls.crt"
+      keyPath: "/etc/maddy/tls/tls.key"
+
+  mta_sts:
+    enabled: true
+
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: "nginx"
+        kubernetes.io/tls-acme: "true"
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+        nginx.ingress.kubernetes.io/enable-cors: "true"
+        nginx.ingress.kubernetes.io/ssl-redirect: "true"
+      hosts:
+        - host: mta-sts.pitz.tech
+      tls:
+        - secretName: maddy-mta-sts-tls
+          hosts:
+            - mta-sts.pitz.tech

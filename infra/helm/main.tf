@@ -158,3 +158,27 @@ resource "helm_release" "dist" {
   create_namespace  = true
   atomic            = true
 }
+
+
+resource "helm_release" "maddy" {
+  depends_on = [
+    helm_release.kube_prometheus_stack,
+    helm_release.cert_manager,
+    helm_release.external_dns,
+  ]
+
+  chart     = "./maddy"
+  namespace = "email"
+  name      = "maddy"
+
+  values = [
+    file("./maddy/values.yaml"),
+  ]
+
+  dependency_update = true
+  create_namespace  = true
+
+  # don't do these here
+  atomic = false
+  wait   = false
+}

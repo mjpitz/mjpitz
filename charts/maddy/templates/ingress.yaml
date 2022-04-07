@@ -1,0 +1,53 @@
+{{- if and .Values.mta_sts.enabled .Values.mta_sts.ingress.enabled -}}
+{{- $v1Networking := semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion -}}
+{{- $fullName := include "maddy.fullname" . -}}
+{{- if $v1Networking -}}
+apiVersion: networking.k8s.io/v1
+{{- else if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
+apiVersion: networking.k8s.io/v1beta1
+{{- else -}}
+apiVersion: extensions/v1beta1
+{{- end }}
+kind: Ingress
+metadata:
+  name: {{ $fullName }}
+  labels:
+    {{- include "maddy.labels" . | nindent 4 }}
+  {{- with .Values.mta_sts.ingress.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  {{- if .Values.mta_sts.ingress.tls }}
+  tls:
+    {{- range .Values.mta_sts.ingress.tls }}
+    - hosts:
+        {{- range .hosts }}
+        - {{ . | quote }}
+        {{- end }}
+      secretName: {{ .secretName }}
+    {{- end }}
+  {{- end }}
+  rules:
+    {{- range .Values.mta_sts.ingress.hosts }}
+    - host: {{ .host | quote }}
+      http:
+        paths:
+        {{- if $v1Networking }}
+          # /v2/ must go to the docker-registry
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ $fullName }}
+                port:
+                  name: http
+        {{- else }}
+          # /v2/ must go to the docker-registry
+          - path: /
+            backend:
+              serviceName: {{ $fullName }}
+              servicePort: 8080
+        {{- end }}
+    {{- end }}
+  {{- end }}

@@ -4,11 +4,15 @@ export SHELL := env PATH=$(PATH) /bin/bash
 clean:
 	rm -rf bin/ node_modules/ public/ resources/_gen/ tmp/
 
+.helm.docs:
+	@helm-docs -c charts/${CHART} --dry-run | prettier --parser markdown > charts/${CHART}/README.md
+
 chart-docs:
-	helm-docs -c charts/auth --dry-run | prettier --parser markdown > charts/auth/README.md
-	helm-docs -c charts/redis --dry-run | prettier --parser markdown > charts/redis/README.md
-	helm-docs -c charts/registry --dry-run | prettier --parser markdown > charts/registry/README.md
-	helm-docs -c charts/storj --dry-run | prettier --parser markdown > charts/storj/README.md
+	@$(MAKE) .helm.docs CHART=auth
+	@$(MAKE) .helm.docs CHART=maddy
+	@$(MAKE) .helm.docs CHART=redis
+	@$(MAKE) .helm.docs CHART=registry
+	@$(MAKE) .helm.docs CHART=storj
 
 bin: bin.yaml
 	bin-vendor

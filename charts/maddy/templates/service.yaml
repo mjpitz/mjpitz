@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "maddy.fullname" . }}
+  labels:
+    {{- include "maddy.labels" . | nindent 4 }}
+  annotations:
+    {{- .Values.service.annotations | toYaml | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - name: smtp
+      port: 25
+      targetPort: smtp
+      protocol: TCP
+    - name: sub-tls
+      port: 465
+      targetPort: sub-tls
+      protocol: TCP
+    - name: sub-plain
+      port: 587
+      targetPort: sub-plain
+      protocol: TCP
+    - name: imap-tls
+      port: 993
+      targetPort: imap-tls
+      protocol: TCP
+    - name: imap-plain
+      port: 143
+      targetPort: imap-plain
+      protocol: TCP
+    - name: debug
+      port: 9749
+      targetPort: debug
+      protocol: TCP
+    {{- if .Values.mta_sts.enabled }}
+    - name: http
+      port: 8080
+      targetPort: http
+      protocol: TCP
+    {{- end }}
+  selector:
+    {{- include "maddy.selectorLabels" . | nindent 4 }}

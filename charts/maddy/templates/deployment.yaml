@@ -1,0 +1,141 @@
+{{- if and .Values.persistence.enabled (.Values.replicaCount | int | eq 1) | not -}}
+{{- fail "can only have one replica when persistence is enabled" -}}
+{{- end -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "maddy.fullname" . }}
+  labels:
+    {{- include "maddy.labels" . | nindent 4 }}
+spec:
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "maddy.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "maddy.labels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "maddy.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command:
+            - /bin/maddy
+            - -config
+            - /etc/maddy/config/maddy.conf
+          ports:
+            - name: smtp
+              containerPort: 1025
+              protocol: TCP
+            - name: sub-tls
+              containerPort: 10465
+              protocol: TCP
+            - name: sub-plain
+              containerPort: 10587
+              protocol: TCP
+            - name: imap-tls
+              containerPort: 10993
+              protocol: TCP
+            - name: imap-plain
+              containerPort: 10143
+              protocol: TCP
+            - name: debug
+              containerPort: 9749
+              protocol: TCP
+          livenessProbe:
+            tcpSocket:
+              port: imap-plain
+          readinessProbe:
+            tcpSocket:
+              port: imap-plain
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - mountPath: /etc/maddy/config
+              name: config
+            {{- if .Values.persistence.enabled }}
+            - mountPath: /data
+              name: data
+            {{- end }}
+            {{- with .Values.extraVolumeMounts }}
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
+        {{- if .Values.mta_sts.enabled }}
+        - name: mta-sts
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: {{ .Values.mta_sts.image.repository }}:{{ .Values.mta_sts.image.tag }}
+          imagePullPolicy: {{ .Values.mta_sts.image.pullPolicy }}
+          env:
+            - name: NGINX_PORT
+              value: "8080"
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /etc/nginx/nginx.conf
+              subPath: nginx.conf
+              name: nginx-config
+              readOnly: true
+            - mountPath: /usr/share/nginx/html/.well-known
+              name: well-known-config
+              readOnly: true
+        {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      volumes:
+        - name: config
+          secret:
+            {{- if .Values.externalConfig.secretRef.name }}
+            secretName: {{ .Values.externalConfig.secretRef.name }}
+            {{- else }}
+            secretName: {{ include "maddy.fullname" . }}-config
+            {{- end }}
+        {{- if .Values.persistence.enabled }}
+        - name: data
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistence.existingClaim | default (include "maddy.fullname" .) }}
+        {{- end }}
+        {{- if .Values.mta_sts.enabled }}
+        - name: nginx-config
+          secret:
+            secretName: {{ include "maddy.fullname" . }}-nginx-config
+        - name: well-known-config
+          secret:
+            secretName: {{ include "maddy.fullname" . }}-well-known-config
+        {{- end }}
+        {{- with .Values.extraVolumes }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}

@@ -1,0 +1,15 @@
+apiVersion: v2
+type: application
+name: maddy
+description: |
+  Easily deploy and configure a maddy mail server. This chart handles a fair bit of setup, however, additional work
+  needs to be done to properly configure all the DNS records. For a complete guide on setting up DNS for maddy, see the
+  user guide: https://maddy.email/tutorials/setting-up/
+sources:
+  - https://github.com/foxcpp/maddy
+  - https://github.com/mjpitz/mjpitz/tree/main/charts/maddy
+maintainers:
+  - name: Mya Pitzeruse
+    url: https://mjpitz.com
+version: 22.4.0
+appVersion: 0.5.4

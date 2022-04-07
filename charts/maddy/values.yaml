@@ -1,0 +1,171 @@
+# Default values for maddy.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# -- The number of registry replicas to deploy.
+replicaCount: 1
+
+image:
+  # -- The repository hosting the email server image.
+  repository: foxcpp/maddy
+  # -- The pull policy to use for the image.
+  pullPolicy: IfNotPresent
+  # -- Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+# -- Specify the secret containing the registry credentials.
+imagePullSecrets: []
+# -- Override the name of the release.
+nameOverride: ""
+# -- Override the full name of the release.
+fullnameOverride: ""
+
+serviceAccount:
+  # -- Specifies whether a service account should be created.
+  create: true
+  # -- Annotations to add to the service account.
+  annotations: {}
+  # -- The name of the service account to use. If not set and create is true, a name is generated using the fullname
+  #    template.
+  name: ""
+
+# -- Annotations to add to the pod, typically used for assume roles.
+podAnnotations: {}
+
+# -- Specify the security context for the entire pod.
+podSecurityContext: {}
+# fsGroup: 2000
+
+# -- Specify the security context for the `registry` container.
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  # -- Specify the type of service to create.
+  type: LoadBalancer
+  # -- Annotations to add to the service, typically used for ingress control.
+  annotations: {}
+
+# -- Specify the resources for the pod.
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+autoscaling:
+  # -- Enable autoscaling for the deployment.
+  enabled: false
+  # -- Specify the minimum number of replicas.
+  minReplicas: 1
+  # -- Specify the maximum number of replicas.
+  maxReplicas: 100
+  # -- Specify the percent CPU utilization that causes the pods to autoscale.
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+# -- Specify the node selector used to control which nodes registry pods are deployed to.
+nodeSelector: {}
+
+# -- Specify taints that the registry pods are willing to tolerate.
+tolerations: []
+
+# -- Specify affinity rules for the pods.
+affinity: {}
+
+metrics:
+  serviceMonitor:
+    # -- Add a Prometheus ServiceMonitor that scrapes the registry deployment.
+    enabled: false
+    # -- How frequently prometheus should pull metrics from your registry deployment.
+    interval: 10s
+
+# -- Add additional volumes to the pod.
+extraVolumes: []
+#  - name: data
+#    emptyDir: {}
+
+# -- Add additional volume mounts to the pod.
+extraVolumeMounts: []
+#  - name: data
+#    mountPath: /var/lib/maddy
+#    readOnly: false
+
+externalConfig:
+  secretRef:
+    # -- Specify the name of the secret containing the raw configuration.
+    name: ""
+
+persistence:
+  # -- Enable persistence for this deployment. This will configure a SQLite driver for storing information.
+  enabled: true
+
+  # -- Specify the name of an existing PersistentVolumeClaim to use.
+  existingClaim: ""
+
+  # -- Configure the access mode of the volume.
+  accessMode: ReadWriteOnce
+
+  resources:
+    # -- Specify the size of the volume.
+    storage: 10Gi
+
+  # -- Specify the storage class that should provision this claim.
+  storageClass: ""
+
+config:
+  domains:
+    # -- Configure the mx domain used by the system. This _should_ align with the ingress address for the service.
+    mx: ""
+    # -- Configure the primary email domain that is managed by this server.
+    primary: ""
+
+  tls:
+    # -- Configure the full chain certificate path for TLS.
+    certPath: ""
+    # -- Configure the private key path for TLS.
+    keyPath: ""
+
+  database:
+    # -- Configure the DSN used to connect to a Postgres database.
+    dsn: ""
+
+mta_sts:
+  # -- Whether to enable MTA-STS to proactively protect against attacks.
+  enabled: false
+
+  image:
+    # -- The repository hosting the nginx server image.
+    repository: nginx
+    # -- The pull policy to use for the nginx image.
+    pullPolicy: IfNotPresent
+    # -- Configure the version of nginx to run.
+    tag: 1.21-alpine
+
+  ingress:
+    # -- Configure an ingress for the MTA-STS well-known configuration.
+    enabled: false
+    # -- Specify annotations for the ingress.
+    annotations: { }
+      # kubernetes.io/ingress.class: nginx
+      # kubernetes.io/tls-acme: "true"
+    hosts:
+      - # -- Specify the domain host for the ingress.
+        host: chart-example.local
+
+    # -- Configure TLS for the ingress.
+    tls: [ ]
+    #  - secretName: chart-example-tls
+    #    hosts:
+    #      - chart-example.local

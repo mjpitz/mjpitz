@@ -1,0 +1,16 @@
+{{- if .Values.persistence.enabled | and (not .Values.persistence.existingClaim ) }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "maddy.fullname" . }}
+  labels:
+    {{- include "maddy.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    - {{ .Values.persistence.accessMode }}
+  resources:
+    requests:
+      {{- .Values.persistence.resources | toYaml | nindent 6 }}
+  storageClassName: {{ .Values.persistence.storageClass }}
+{{- end }}
