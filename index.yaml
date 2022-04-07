@@ -81,6 +81,26 @@ entries:
     urls:
     - https://github.com/mjpitz/mjpitz/releases/download/auth-1.6.0/auth-1.6.0.tgz
     version: 1.6.0
+  maddy:
+  - apiVersion: v2
+    appVersion: 0.5.4
+    created: "2022-04-07T17:06:54.92491065Z"
+    description: |
+      Easily deploy and configure a maddy mail server. This chart handles a fair bit of setup, however, additional work
+      needs to be done to properly configure all the DNS records. For a complete guide on setting up DNS for maddy, see the
+      user guide: https://maddy.email/tutorials/setting-up/
+    digest: 2823766d7a6cd167fd2b778714ffeebb6dc0edacdc291a4b21ad30a4c60470dd
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: maddy
+    sources:
+    - https://github.com/foxcpp/maddy
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/maddy
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/maddy-22.4.0/maddy-22.4.0.tgz
+    version: 22.4.0
   redis:
   - apiVersion: v2
     appVersion: 6.2.6
