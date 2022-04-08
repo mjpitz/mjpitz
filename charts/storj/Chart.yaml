@@ -4,5 +4,11 @@ name: storj
 description: |
   Easily add a Storj S3 gateway to any Deployment, DaemonSet, or StatefulSet using a sidecar. This chart optionally
   deploys the required configuration and provides template functions that render the necessary sidecar components.
-version: 22.3.3
+sources:
+  - https://github.com/storj/gateway-st
+  - https://github.com/mjpitz/mjpitz/tree/main/charts/storj
+maintainers:
+  - name: Mya Pitzeruse
+    url: https://mjpitz.com
+version: 22.4.0
 appVersion: latest
