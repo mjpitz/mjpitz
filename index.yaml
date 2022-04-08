@@ -3,6 +3,24 @@ entries:
   auth:
   - apiVersion: v2
     appVersion: 1.6.0
+    created: "2022-04-08T02:32:07.489582254Z"
+    description: |
+      Deploy a container registry token authorization server. Easily add authentication and authorization to your container
+      registry and control what images authenticated and unauthenticated users are allowed to pull.
+    digest: e5001e59f9354db5a2616b4f612218070084a266de05a9b4e578b05fc5f5a9c1
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: auth
+    sources:
+    - https://github.com/cesanta/docker_auth
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/auth
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/auth-22.4.0/auth-22.4.0.tgz
+    version: 22.4.0
+  - apiVersion: v2
+    appVersion: 1.6.0
     created: "2022-03-28T23:21:04.393939284Z"
     description: |
       Deploy a container registry token authorization server. Easily add authentication and authorization to your container
@@ -102,6 +120,24 @@ entries:
     - https://github.com/mjpitz/mjpitz/releases/download/maddy-22.4.0/maddy-22.4.0.tgz
     version: 22.4.0
   redis:
+  - apiVersion: v2
+    appVersion: 6.2.6
+    created: "2022-04-08T02:32:07.641259428Z"
+    description: |
+      Deploy a highly-available, partition-tolerant Redis cluster fronted by an envoy sidecar. Envoy partitions keys among
+      members of the cluster using a consistent hashing algorithm making it great as a best-effort cache.
+    digest: b8b1cbaa29270fa8e7d896aa07b9cab3bb8f33b6131e6aeefcd6c1aec21d3f92
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: redis
+    sources:
+    - https://github.com/redis/redis
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/redis
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/redis-22.4.0/redis-22.4.0.tgz
+    version: 22.4.0
   - apiVersion: v2
     appVersion: 6.2.6
     created: "2022-03-28T23:21:04.565162512Z"
@@ -360,6 +396,24 @@ entries:
     - https://github.com/mjpitz/mjpitz/releases/download/registry-2.7.1/registry-2.7.1.tgz
     version: 2.7.1
   storj:
+  - apiVersion: v2
+    appVersion: latest
+    created: "2022-04-08T02:32:07.782270241Z"
+    description: |
+      Easily add a Storj S3 gateway to any Deployment, DaemonSet, or StatefulSet using a sidecar. This chart optionally
+      deploys the required configuration and provides template functions that render the necessary sidecar components.
+    digest: d9b54db5469ce102d9ae2f4a8af14f6da30065fd5a922395c85a691ea299f199
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: storj
+    sources:
+    - https://github.com/storj/gateway-st
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/storj
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/storj-22.4.0/storj-22.4.0.tgz
+    version: 22.4.0
   - apiVersion: v2
     appVersion: latest
     created: "2022-03-28T23:21:04.720524435Z"
