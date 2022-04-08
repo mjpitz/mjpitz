@@ -22,9 +22,25 @@ resource "digitalocean_kubernetes_cluster" "clusters" {
     auto_scale = false
     node_count = var.clusters[count.index].node_count
 
-    tags = var.clusters[count.index].node_tags
+    tags   = var.clusters[count.index].node_tags
     labels = var.clusters[count.index].node_labels
   }
 
   tags = var.clusters[count.index].tags
+}
+
+locals {
+  clusters = {for cluster in digitalocean_kubernetes_cluster.clusters : cluster.name => cluster.id}
+}
+
+resource "digitalocean_kubernetes_node_pool" "cluster_pools" {
+  count = length(var.node_pools)
+
+  cluster_id = local.clusters[var.node_pools[count.index].cluster]
+  name       = var.node_pools[count.index].name
+  size       = var.node_pools[count.index].node_size
+  auto_scale = false
+  node_count = var.node_pools[count.index].node_count
+  tags       = var.node_pools[count.index].node_tags
+  labels     = var.node_pools[count.index].node_labels
 }

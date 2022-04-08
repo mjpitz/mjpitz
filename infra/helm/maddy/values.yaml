@@ -5,6 +5,16 @@ maddy:
     annotations:
       external-dns.alpha.kubernetes.io/hostname: mx.pitz.tech
 
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+            - key: "node.pitz.tech/role"
+              operator: In
+              values:
+                - "email"
+
   metrics:
     serviceMonitor:
       enabled: true

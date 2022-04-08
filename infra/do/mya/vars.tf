@@ -19,8 +19,19 @@ variable "clusters" {
     node_size : string,
     node_count : number,
     node_tags : list(string),
-    node_labels : object({}),
+    node_labels : map(string),
     tags : list(string),
+  }))
+}
+
+variable "node_pools" {
+  type = list(object({
+    cluster : string,
+    name : string,
+    node_size : string,
+    node_count : number,
+    node_tags : list(string),
+    node_labels : map(string),
   }))
 }
 

@@ -15,9 +15,23 @@ clusters = [
     network : "mya-nyc",
     kubernetes_version : "1.21",
     node_size : "s-4vcpu-8gb",
-    node_count : 3,
+    node_count : 2,
     node_tags: [],
     node_labels: {},
+    tags: [],
+  },
+]
+
+node_pools = [
+  {
+    cluster : "mya-nyc",
+    name : "mya-nyc-email",
+    node_size : "s-4vcpu-8gb",
+    node_count : 1,
+    node_tags: [],
+    node_labels: {
+      "node.pitz.tech/role" = "email",
+    },
     tags: [],
   },
 ]
@@ -26,7 +40,7 @@ spaces = [
   {
     name: "mya-assets",
     region : "nyc3",
-    acl : "private",
+    acl : "public-read",
   },
   {
     name: "mya-images",
