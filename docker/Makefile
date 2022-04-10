@@ -45,9 +45,9 @@ docker/release:
 		--push
 
 docker/base:
-	@$(MAKE) $(TARGET) BASE_OS=alpine BASE_OS_VERSION=3.14
-	@#$(MAKE) $(TARGET) BASE_OS=ubuntu BASE_OS_VERSION=21.04
-	@#$(MAKE) $(TARGET) BASE_OS=centos BASE_OS_VERSION=7
+	@[[ ! -e $(IMAGE_NAME)/alpine.sh ]] || { $(MAKE) $(TARGET) BASE_OS=alpine BASE_OS_VERSION=3.14; }
+	@[[ ! -e $(IMAGE_NAME)/centos.sh ]] || { $(MAKE) $(TARGET) BASE_OS=centos BASE_OS_VERSION=7; }
+	@[[ ! -e $(IMAGE_NAME)/ubuntu.sh ]] || { $(MAKE) $(TARGET) BASE_OS=ubuntu BASE_OS_VERSION=21.04; }
 
 build:
 	@$(MAKE) docker/base TARGET=docker/build $$( cat $(TARGET)/image.conf | tr $$'\n' ' ' )
