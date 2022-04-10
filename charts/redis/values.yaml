@@ -5,6 +5,12 @@
 # -- The number of redis instances to deploy.
 replicaCount: 1
 
+# -- Configure how the redis cluster will be deployed. This can be Deployment, DaemonSet, or StatefulSet.
+kind: Deployment
+
+# -- Configure the update strategy to use.
+updateStrategy: {}
+
 image:
   # -- The repository hosting the redis image.
   repository: redis
@@ -84,6 +90,18 @@ metrics:
     enabled: false
     # -- How frequently prometheus should pull metrics from your registry deployment.
     interval: 10s
+
+# -- When using a StatefulSet, persistent volume claim templates can be specified for writing data to disk.
+volumeClaimTemplates: []
+#  - metadata:
+#      name: data
+#    spec:
+#      accessModes:
+#        - ReadWriteOnce
+#      resources:
+#        requests:
+#          storage: 10Gi
+#      storageClassName: ""
 
 # -- Add additional volumes to the pod.
 extraVolumes: []

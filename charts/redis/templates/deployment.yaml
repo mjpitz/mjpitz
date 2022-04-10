@@ -1,12 +1,23 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: {{ .Values.kind }}
 metadata:
   name: {{ include "redis.fullname" . }}
   labels:
     {{- include "redis.labels" . | nindent 4 }}
 spec:
-  {{- if not .Values.autoscaling.enabled }}
+  {{- if ne .Values.kind "DeamonSet" | and (not .Values.autoscaling.enabled) }}
   replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  {{- if eq .Values.kind "StatefulSet" }}
+  serviceName: {{ include "redis.fullname" . }}
+  {{- with .Values.volumeClaimTemplates }}
+  volumeClaimTemplates:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  {{- end }}
+  {{- with .Values.updateStrategy }}
+  updateStrategy:
+    {{- toYaml . | nindent 4 }}
   {{- end }}
   selector:
     matchLabels:

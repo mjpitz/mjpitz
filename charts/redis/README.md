@@ -1,6 +1,6 @@
 # redis
 
-![Version: 22.4.0](https://img.shields.io/badge/Version-22.4.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 6.2.6](https://img.shields.io/badge/AppVersion-6.2.6-informational?style=flat-square)
+![Version: 22.4.1](https://img.shields.io/badge/Version-22.4.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 6.2.6](https://img.shields.io/badge/AppVersion-6.2.6-informational?style=flat-square)
 
 Deploy a highly-available, partition-tolerant Redis cluster fronted by an envoy sidecar. Envoy partitions keys among
 members of the cluster using a consistent hashing algorithm making it great as a best-effort cache.
@@ -48,6 +48,7 @@ members of the cluster using a consistent hashing algorithm making it great as a
 | image.repository                           | string | `"redis"`                         | The repository hosting the redis image.                                                                                 |
 | image.tag                                  | string | `""`                              | Overrides the image tag whose default is the chart appVersion.                                                          |
 | imagePullSecrets                           | list   | `[]`                              | Specify the secret containing the registry credentials.                                                                 |
+| kind                                       | string | `"Deployment"`                    | Configure how the redis cluster will be deployed. This can be Deployment, DaemonSet, or StatefulSet.                    |
 | metrics.serviceMonitor.enabled             | bool   | `false`                           | Add a Prometheus ServiceMonitor that scrapes the registry deployment.                                                   |
 | metrics.serviceMonitor.interval            | string | `"10s"`                           | How frequently prometheus should pull metrics from your registry deployment.                                            |
 | nameOverride                               | string | `""`                              | Override the name of the release.                                                                                       |
@@ -61,6 +62,8 @@ members of the cluster using a consistent hashing algorithm making it great as a
 | serviceAccount.create                      | bool   | `true`                            | Specifies whether a service account should be created.                                                                  |
 | serviceAccount.name                        | string | `""`                              | The name of the service account to use. If not set and create is true, a name is generated using the fullname template. |
 | tolerations                                | list   | `[]`                              | Specify taints that the registry pods are willing to tolerate.                                                          |
+| updateStrategy                             | object | `{}`                              | Configure the update strategy to use.                                                                                   |
+| volumeClaimTemplates                       | list   | `[]`                              | When using a StatefulSet, persistent volume claim templates can be specified for writing data to disk.                  |
 
 ---
 
