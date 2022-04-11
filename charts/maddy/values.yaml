@@ -181,3 +181,157 @@ rspamd:
     pullPolicy: IfNotPresent
     # -- Configure the container version of rspamd to run.
     tag: 22.4.0-alpine
+
+  config:
+    # -- Override configuration in the actions.conf file.
+    actions.conf: ""
+    # -- Override configuration in the antivirus.conf file.
+    antivirus.conf: ""
+    # -- Override configuration in the antivirus_group.conf file.
+    antivirus_group.conf: ""
+    # -- Override configuration in the arc.conf file.
+    arc.conf: ""
+    # -- Override configuration in the asn.conf file.
+    asn.conf: ""
+    # -- Override configuration in the chartable.conf file.
+    chartable.conf: ""
+    # -- Override configuration in the classifier-bayes.conf file.
+    classifier-bayes.conf: ""
+    # -- Override configuration in the clickhouse.conf file.
+    clickhouse.conf: ""
+    # -- Override configuration in the composites.conf file.
+    composites.conf: ""
+    # -- Override configuration in the content_group.conf file.
+    content_group.conf: ""
+    # -- Override configuration in the dcc.conf file.
+    dcc.conf: ""
+    # -- Override configuration in the dkim.conf file.
+    dkim.conf: ""
+    # -- Override configuration in the dkim_signing.conf file.
+    dkim_signing.conf: ""
+    # -- Override configuration in the dmarc.conf file.
+    dmarc.conf: ""
+    # -- Override configuration in the elastic.conf file.
+    elastic.conf: ""
+    # -- Override configuration in the emails.conf file.
+    emails.conf: ""
+    # -- Override configuration in the excessb64_group.conf file.
+    excessb64_group.conf: ""
+    # -- Override configuration in the excessqp_group.conf file.
+    excessqp_group.conf: ""
+    # -- Override configuration in the external_services.conf file.
+    external_services.conf: ""
+    # -- Override configuration in the external_services_group.conf file.
+    external_services_group.conf: ""
+    # -- Override configuration in the fann_redis.conf file.
+    fann_redis.conf: ""
+    # -- Override configuration in the file.conf file.
+    file.conf: ""
+    # -- Override configuration in the force_actions.conf file.
+    force_actions.conf: ""
+    # -- Override configuration in the forged_recipients.conf file.
+    forged_recipients.conf: ""
+    # -- Override configuration in the fuzzy_group.conf file.
+    fuzzy_group.conf: ""
+    # -- Override configuration in the greylist.conf file.
+    greylist.conf: ""
+    # -- Override configuration in the groups.conf file.
+    groups.conf: ""
+    # -- Override configuration in the headers_group.conf file.
+    headers_group.conf: ""
+    # -- Override configuration in the hfilter.conf file.
+    hfilter.conf: ""
+    # -- Override configuration in the hfilter_group.conf file.
+    hfilter_group.conf: ""
+    # -- Override configuration in the history_redis.conf file.
+    history_redis.conf: ""
+    # -- Override configuration in the http_headers.conf file.
+    http_headers.conf: ""
+    # -- Override configuration in the logging.inc file.
+    logging.inc: ""
+    # -- Override configuration in the maillist.conf file.
+    maillist.conf: ""
+    # -- Override configuration in the metadata_exporter.conf file.
+    metadata_exporter.conf: ""
+    # -- Override configuration in the metric_exporter.conf file.
+    metric_exporter.conf: ""
+    # -- Override configuration in the metrics.conf file.
+    metrics.conf: ""
+    # -- Override configuration in the mid.conf file.
+    mid.conf: ""
+    # -- Override configuration in the milter_headers.conf file.
+    milter_headers.conf: ""
+    # -- Override configuration in the mime_types.conf file.
+    mime_types.conf: ""
+    # -- Override configuration in the mime_types_group.conf file.
+    mime_types_group.conf: ""
+    # -- Override configuration in the mua_group.conf file.
+    mua_group.conf: ""
+    # -- Override configuration in the multimap.conf file.
+    multimap.conf: ""
+    # -- Override configuration in the mx_check.conf file.
+    mx_check.conf: ""
+    # -- Override configuration in the neural.conf file.
+    neural.conf: ""
+    # -- Override configuration in the neural_group.conf file.
+    neural_group.conf: ""
+    # -- Override configuration in the once_received.conf file.
+    once_received.conf: ""
+    # -- Override configuration in the options.inc file.
+    options.inc: ""
+    # -- Override configuration in the p0f.conf file.
+    p0f.conf: ""
+    # -- Override configuration in the phishing.conf file.
+    phishing.conf: ""
+    # -- Override configuration in the phishing_group.conf file.
+    phishing_group.conf: ""
+    # -- Override configuration in the policies_group.conf file.
+    policies_group.conf: ""
+    # -- Override configuration in the ratelimit.conf file.
+    ratelimit.conf: ""
+    # -- Override configuration in the rbl.conf file.
+    rbl.conf: ""
+    # -- Override configuration in the rbl_group.conf file.
+    rbl_group.conf: ""
+    # -- Override configuration in the redis.conf file.
+    redis.conf: ""
+    # -- Override configuration in the regexp.conf file.
+    regexp.conf: ""
+    # -- Override configuration in the replies.conf file.
+    replies.conf: ""
+    # -- Override configuration in the reputation.conf file.
+    reputation.conf: ""
+    # -- Override configuration in the rmilter_headers.conf file.
+    rmilter_headers.conf: ""
+    # -- Override configuration in the rspamd_update.conf file.
+    rspamd_update.conf: ""
+    # -- Override configuration in the settings.conf file.
+    settings.conf: ""
+    # -- Override configuration in the spamassassin.conf file.
+    spamassassin.conf: ""
+    # -- Override configuration in the spamtrap.conf file.
+    spamtrap.conf: ""
+    # -- Override configuration in the spf.conf file.
+    spf.conf: ""
+    # -- Override configuration in the statistic.conf file.
+    statistic.conf: ""
+    # -- Override configuration in the statistics.conf file.
+    statistics.conf: ""
+    # -- Override configuration in the statistics_group.conf file.
+    statistics_group.conf: ""
+    # -- Override configuration in the subject_group.conf file.
+    subject_group.conf: ""
+    # -- Override configuration in the surbl.conf file.
+    surbl.conf: ""
+    # -- Override configuration in the surbl_group.conf file.
+    surbl_group.conf: ""
+    # -- Override configuration in the trie.conf file.
+    trie.conf: ""
+    # -- Override configuration in the url_redirector.conf file.
+    url_redirector.conf: ""
+    # -- Override configuration in the whitelist.conf file.
+    whitelist.conf: ""
+    # -- Override configuration in the whitelist_group.conf file.
+    whitelist_group.conf: ""
+    # -- Override configuration in the worker-normal.inc file.
+    worker-normal.inc: ""

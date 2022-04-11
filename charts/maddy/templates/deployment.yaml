@@ -20,8 +20,9 @@ spec:
       {{- include "maddy.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
       annotations:
+        checksum/secret: {{ include (print $.Template.BasePath "/secret.yaml") . | sha256sum }}
+      {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
@@ -115,6 +116,10 @@ spec:
             - name: rspamd
               containerPort: 11333
               protocol: TCP
+          volumeMounts:
+            - mountPath: /etc/rspamd/override.d
+              name: rspamd-config
+              readOnly: true
         {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
@@ -148,6 +153,11 @@ spec:
         - name: well-known-config
           secret:
             secretName: {{ include "maddy.fullname" . }}-well-known-config
+        {{- end }}
+        {{- if .Values.rspamd.enabled }}
+        - name: rspamd-config
+          secret:
+            secretName: {{ include "maddy.fullname" . }}-rspamd-overrides
         {{- end }}
         {{- with .Values.extraVolumes }}
         {{- toYaml . | nindent 8 }}

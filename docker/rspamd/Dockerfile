@@ -3,6 +3,8 @@ ARG BASE_OS_VERSION
 
 FROM ${BASE_OS}:${BASE_OS_VERSION}
 
+WORKDIR /home/rspawnd
+
 ARG BASE_OS
 COPY ${BASE_OS}.sh install.sh
 
