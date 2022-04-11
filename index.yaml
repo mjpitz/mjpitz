@@ -102,6 +102,25 @@ entries:
   maddy:
   - apiVersion: v2
     appVersion: 0.5.4
+    created: "2022-04-11T03:48:35.662392988Z"
+    description: |
+      Easily deploy and configure a maddy mail server. This chart handles a fair bit of setup, however, additional work
+      needs to be done to properly configure all the DNS records. For a complete guide on setting up DNS for maddy, see the
+      user guide: https://maddy.email/tutorials/setting-up/
+    digest: 34f524304db598761eee12487e9b060bb19816694df19c341097dbc8396445f8
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: maddy
+    sources:
+    - https://github.com/foxcpp/maddy
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/maddy
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/maddy-22.4.1/maddy-22.4.1.tgz
+    version: 22.4.1
+  - apiVersion: v2
+    appVersion: 0.5.4
     created: "2022-04-07T17:06:54.92491065Z"
     description: |
       Easily deploy and configure a maddy mail server. This chart handles a fair bit of setup, however, additional work
@@ -120,6 +139,24 @@ entries:
     - https://github.com/mjpitz/mjpitz/releases/download/maddy-22.4.0/maddy-22.4.0.tgz
     version: 22.4.0
   redis:
+  - apiVersion: v2
+    appVersion: 6.2.6
+    created: "2022-04-11T03:48:35.766699734Z"
+    description: |
+      Deploy a highly-available, partition-tolerant Redis cluster fronted by an envoy sidecar. Envoy partitions keys among
+      members of the cluster using a consistent hashing algorithm making it great as a best-effort cache.
+    digest: 964f53fd147b3fad0216f94e4c14b2e7f13a1a2da4be842e3583113db4f4cbd3
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: redis
+    sources:
+    - https://github.com/redis/redis
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/redis
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/redis-22.4.1/redis-22.4.1.tgz
+    version: 22.4.1
   - apiVersion: v2
     appVersion: 6.2.6
     created: "2022-04-08T02:32:07.641259428Z"
