@@ -102,6 +102,25 @@ entries:
   maddy:
   - apiVersion: v2
     appVersion: 0.5.4
+    created: "2022-04-11T17:26:45.748277363Z"
+    description: |
+      Easily deploy and configure a maddy mail server. This chart handles a fair bit of setup, however, additional work
+      needs to be done to properly configure all the DNS records. For a complete guide on setting up DNS for maddy, see the
+      user guide: https://maddy.email/tutorials/setting-up/
+    digest: a5cf0e194cff1d31ce6c7edde576d35c6495c4c8d2d9b1b1cb69cd5ea300d8a0
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: maddy
+    sources:
+    - https://github.com/foxcpp/maddy
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/maddy
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/maddy-22.4.2/maddy-22.4.2.tgz
+    version: 22.4.2
+  - apiVersion: v2
+    appVersion: 0.5.4
     created: "2022-04-11T03:48:35.662392988Z"
     description: |
       Easily deploy and configure a maddy mail server. This chart handles a fair bit of setup, however, additional work
