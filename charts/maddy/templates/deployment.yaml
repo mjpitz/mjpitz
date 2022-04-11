@@ -103,6 +103,19 @@ spec:
               name: well-known-config
               readOnly: true
         {{- end }}
+        {{- if .Values.rspamd.enabled }}
+        - name: rspamd
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: {{ .Values.rspamd.image.repository }}:{{ .Values.rspamd.image.tag }}
+          imagePullPolicy: {{ .Values.rspamd.image.pullPolicy }}
+          args:
+            - --insecure
+          ports:
+            - name: rspamd
+              containerPort: 11333
+              protocol: TCP
+        {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

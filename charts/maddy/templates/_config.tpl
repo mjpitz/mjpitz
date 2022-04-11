@@ -80,6 +80,12 @@ msgpipeline local_routing {
     #     deliver_to lmtp tcp://127.0.0.1:8024
     # }
 
+	{{- if .Values.rspamd.enabled }}
+    check {
+    	rspamd
+    }
+    {{- end }}
+
     destination postmaster $(local_domains) {
         modify {
             replace_rcpt &local_rewrites

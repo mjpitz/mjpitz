@@ -169,3 +169,15 @@ mta_sts:
     #  - secretName: chart-example-tls
     #    hosts:
     #      - chart-example.local
+
+rspamd:
+  # -- Whether to enable rspamd to handle spam assignment.
+  enabled: true
+
+  image:
+    # -- The repository hosting the rspamd image
+    repository: ghcr.io/mjpitz/rspamd
+    # -- The pull policy to use for the rspamd image.
+    pullPolicy: IfNotPresent
+    # -- Configure the container version of rspamd to run.
+    tag: 22.4.0-alpine

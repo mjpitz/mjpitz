@@ -12,5 +12,7 @@ spec:
   resources:
     requests:
       {{- .Values.persistence.resources | toYaml | nindent 6 }}
-  storageClassName: {{ .Values.persistence.storageClass }}
+  {{- with .Values.persistence.storageClass }}
+  storageClassName: {{ . }}
+  {{- end }}
 {{- end }}
