@@ -57,3 +57,7 @@ maddy:
         - secretName: maddy-mta-sts-tls
           hosts:
             - mta-sts.pitz.tech
+
+  rspamd:
+    # override specific configuration files here
+    config:

@@ -9,6 +9,10 @@ terraform {
   }
 }
 
+data "external" "sealed_secrets" {
+  program = ["./hash.sh", "./sealed-secrets"]
+}
+
 resource "helm_release" "sealed_secrets" {
   chart     = "./sealed-secrets"
   namespace = "kube-system"
@@ -18,9 +22,18 @@ resource "helm_release" "sealed_secrets" {
     file("./sealed-secrets/values.yaml"),
   ]
 
+  set {
+    name  = "global.terraform.hash"
+    value = data.external.sealed_secrets.result.sha256
+  }
+
   dependency_update = true
   create_namespace  = true
   atomic            = true
+}
+
+data "external" "kube_prometheus_stack" {
+  program = ["./hash.sh", "./kube-prometheus-stack"]
 }
 
 resource "helm_release" "kube_prometheus_stack" {
@@ -36,9 +49,18 @@ resource "helm_release" "kube_prometheus_stack" {
     file("./kube-prometheus-stack/values.yaml"),
   ]
 
+  set {
+    name  = "global.terraform.hash"
+    value = data.external.kube_prometheus_stack.result.sha256
+  }
+
   dependency_update = true
   create_namespace  = true
   atomic            = true
+}
+
+data "external" "cert_manager" {
+  program = ["./hash.sh", "./cert-manager"]
 }
 
 resource "helm_release" "cert_manager" {
@@ -55,9 +77,18 @@ resource "helm_release" "cert_manager" {
     file("./cert-manager/values.yaml"),
   ]
 
+  set {
+    name  = "global.terraform.hash"
+    value = data.external.cert_manager.result.sha256
+  }
+
   dependency_update = true
   create_namespace  = true
   atomic            = true
+}
+
+data "external" "external_dns" {
+  program = ["./hash.sh", "./external-dns"]
 }
 
 resource "helm_release" "external_dns" {
@@ -74,9 +105,18 @@ resource "helm_release" "external_dns" {
     file("./external-dns/values.yaml"),
   ]
 
+  set {
+    name  = "global.terraform.hash"
+    value = data.external.external_dns.result.sha256
+  }
+
   dependency_update = true
   create_namespace  = true
   atomic            = true
+}
+
+data "external" "ingress_nginx" {
+  program = ["./hash.sh", "./ingress-nginx"]
 }
 
 resource "helm_release" "ingress_nginx" {
@@ -95,12 +135,21 @@ resource "helm_release" "ingress_nginx" {
     file("./ingress-nginx/values.yaml"),
   ]
 
+  set {
+    name  = "global.terraform.hash"
+    value = data.external.ingress_nginx.result.sha256
+  }
+
   dependency_update = true
   create_namespace  = true
 
   # don't do these here
   atomic = false
   wait   = false
+}
+
+data "external" "registry" {
+  program = ["./hash.sh", "./registry"]
 }
 
 resource "helm_release" "registry" {
@@ -117,9 +166,18 @@ resource "helm_release" "registry" {
     file("./registry/secret.yaml"),
   ]
 
+  set {
+    name  = "global.terraform.hash"
+    value = data.external.registry.result.sha256
+  }
+
   dependency_update = true
   create_namespace  = true
   atomic            = true
+}
+
+data "external" "storj_registry" {
+  program = ["./hash.sh", "./storj-registry"]
 }
 
 resource "helm_release" "storj_registry" {
@@ -136,9 +194,18 @@ resource "helm_release" "storj_registry" {
     file("./storj-registry/secret.yaml"),
   ]
 
+  set {
+    name  = "global.terraform.hash"
+    value = data.external.storj_registry.result.sha256
+  }
+
   dependency_update = true
   create_namespace  = true
   atomic            = true
+}
+
+data "external" "dist" {
+  program = ["./hash.sh", "./dist"]
 }
 
 resource "helm_release" "dist" {
@@ -154,11 +221,19 @@ resource "helm_release" "dist" {
     file("./dist/values.yaml"),
   ]
 
+  set {
+    name  = "global.terraform.hash"
+    value = data.external.sealed_secrets.result.sha256
+  }
+
   dependency_update = true
   create_namespace  = true
   atomic            = true
 }
 
+data "external" "maddy" {
+  program = ["./hash.sh", "./maddy"]
+}
 
 resource "helm_release" "maddy" {
   depends_on = [
@@ -174,6 +249,11 @@ resource "helm_release" "maddy" {
   values = [
     file("./maddy/values.yaml"),
   ]
+
+  set {
+    name  = "global.terraform.hash"
+    value = data.external.maddy.result.sha256
+  }
 
   dependency_update = true
   create_namespace  = true
