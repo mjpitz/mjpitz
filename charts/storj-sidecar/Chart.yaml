@@ -1,6 +1,6 @@
 apiVersion: v2
 type: application
-name: storj
+name: storj-sidecar
 description: |
   Easily add a Storj S3 gateway to any Deployment, DaemonSet, or StatefulSet using a sidecar. This chart optionally
   deploys the required configuration and provides template functions that render the necessary sidecar components.

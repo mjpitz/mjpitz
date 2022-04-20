@@ -1,8 +1,8 @@
 {{/*
 Render the storj sidecar container.
 */}}
-{{- define "storj.sidecar" -}}
-{{- $defaultSecretName := include "storj.fullname" . | printf "%s-sidecar-config" -}}
+{{- define "storj-sidecar.container" -}}
+{{- $defaultSecretName := include "storj-sidecar.fullname" . | printf "%s-sidecar-config" -}}
 {{- $secretName := .Values.externalConfig.secretRef.name | default $defaultSecretName -}}
 - name: storj
   securityContext:
