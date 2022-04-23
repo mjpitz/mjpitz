@@ -1,9 +1,9 @@
 # storj
 
-![Version: 22.4.0](https://img.shields.io/badge/Version-22.4.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
+![Version: 22.4.1](https://img.shields.io/badge/Version-22.4.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
 
 Easily add a Storj S3 gateway to any Deployment, DaemonSet, or StatefulSet using a sidecar. This chart optionally
-deploys the required configuration and provides template functions that render the necessary sidecar components.
+deploys the required configuration and provides template functions that render the necessary sidecar containers.
 
 ## Maintainers
 
