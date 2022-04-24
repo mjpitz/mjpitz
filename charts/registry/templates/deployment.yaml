@@ -89,10 +89,10 @@ spec:
               protocol: TCP
         {{- end }}
         {{- if .Values.redis.enabled }}
-        {{- include "redis.cluster.sidecar" $redisConfig | nindent 8 }}
+        {{- include "redis.cluster.container" $redisConfig | nindent 8 }}
         {{- end }}
         {{- if .Values.storj.enabled }}
-        {{- include "storj.sidecar" $storjConfig | nindent 8 }}
+        {{- include "storj.container" $storjConfig | nindent 8 }}
         {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
