@@ -483,6 +483,24 @@ entries:
   storj:
   - apiVersion: v2
     appVersion: latest
+    created: "2022-04-24T15:08:52.948219145Z"
+    description: |
+      Easily add a Storj S3 gateway to any Deployment, DaemonSet, or StatefulSet using a sidecar. This chart optionally
+      deploys the required configuration and provides template functions that render the necessary sidecar containers.
+    digest: 46ea8bd367261935b3f96892692a7c1408c56ffead8d14cbad2c300ec4dac130
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: storj
+    sources:
+    - https://github.com/storj/gateway-st
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/storj
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/storj-22.4.1/storj-22.4.1.tgz
+    version: 22.4.1
+  - apiVersion: v2
+    appVersion: latest
     created: "2022-04-08T02:32:07.782270241Z"
     description: |
       Easily add a Storj S3 gateway to any Deployment, DaemonSet, or StatefulSet using a sidecar. This chart optionally
