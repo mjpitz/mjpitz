@@ -1,3 +1,4 @@
+{{- $litestreamConfig := dict "Chart" (dict "Name" "litestream") "Values" .Values.litestream "Release" .Release -}}
 {{- if and .Values.persistence.enabled (.Values.replicaCount | int | eq 1) | not -}}
 {{- fail "can only have one replica when persistence is enabled" -}}
 {{- end -}}
@@ -35,6 +36,10 @@ spec:
       serviceAccountName: {{ include "maddy.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      {{- if .Values.litestream.enabled }}
+      initContainers:
+        {{- include "litestream.init-container" $litestreamConfig | nindent 8 }}
+      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
@@ -121,6 +126,9 @@ spec:
               name: rspamd-config
               readOnly: true
         {{- end }}
+        {{- if .Values.litestream.enabled }}
+        {{- include "litestream.container" $litestreamConfig | nindent 8 }}
+        {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
@@ -158,6 +166,9 @@ spec:
         - name: rspamd-config
           secret:
             secretName: {{ include "maddy.fullname" . }}-rspamd-overrides
+        {{- end }}
+        {{- if .Values.litestream.enabled }}
+        {{- include "litestream.volume" $litestreamConfig | nindent 8 }}
         {{- end }}
         {{- with .Values.extraVolumes }}
         {{- toYaml . | nindent 8 }}

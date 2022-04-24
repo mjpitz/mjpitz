@@ -39,15 +39,15 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: {{ $fullName }}
+                name: {{ $fullName }}-internal
                 port:
                   name: http
         {{- else }}
           # /v2/ must go to the docker-registry
           - path: /
             backend:
-              serviceName: {{ $fullName }}
+              serviceName: {{ $fullName }}-internal
               servicePort: 8080
         {{- end }}
     {{- end }}
-  {{- end }}
+{{- end }}

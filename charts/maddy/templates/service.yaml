@@ -1,3 +1,4 @@
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -29,10 +30,31 @@ spec:
       port: 143
       targetPort: imap-plain
       protocol: TCP
+  selector:
+    {{- include "maddy.selectorLabels" . | nindent 4 }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "maddy.fullname" . }}-internal
+  labels:
+    app.kubernetes.io/component: internal
+    {{- include "maddy.labels" . | nindent 4 }}
+  annotations:
+    {{- .Values.service.annotations | toYaml | nindent 4 }}
+spec:
+  clusterIP: None
+  ports:
     - name: debug
       port: 9749
       targetPort: debug
       protocol: TCP
+    {{- if .Values.litestream.enabled | and .Values.litestream.metrics.enabled }}
+    - name: litestream-http
+      port: {{ .Values.litestream.metrics.port }}
+      targetPort: litestream-http
+      protocol: TCP
+    {{- end }}
     {{- if .Values.mta_sts.enabled }}
     - name: http
       port: 8080

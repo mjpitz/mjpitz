@@ -335,3 +335,22 @@ rspamd:
     whitelist_group.conf: ""
     # -- Override configuration in the worker-normal.inc file.
     worker-normal.inc: ""
+
+litestream:
+  # -- Whether to enable litestream for SQLite backup, recovery, and replication.
+  enabled: false
+
+  extraVolumeMounts:
+    - # -- The name of the data directory to mount. Defaults to the database volume created by `persistence.enabled`.
+      name: data
+      # -- The path where the databases can be located.
+      mountPath: /data
+
+#  config:
+#    dbs:
+#      - path: /data/credentials.db
+#        replicas:
+#          - url: s3://BUCKET/credentials
+#      - path: /data/imapsql.db
+#        replicas:
+#          - url: s3://BUCKET/imapsql

@@ -10,10 +10,16 @@ spec:
     - interval: {{ .Values.metrics.serviceMonitor.interval }}
       path: /metrics
       port: debug
+    {{- if .Values.litestream.enabled | and .Values.litestream.metrics.enabled }}
+    - interval: {{ .Values.metrics.serviceMonitor.interval }}
+      path: /metrics
+      port: litestream-http
+    {{- end }}
   namespaceSelector:
     matchNames:
       - {{ .Release.Namespace }}
   selector:
     matchLabels:
+      app.kubernetes.io/component: internal
       {{- include "maddy.selectorLabels" . | nindent 6 }}
 {{- end }}

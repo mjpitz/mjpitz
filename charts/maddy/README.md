@@ -1,6 +1,6 @@
 # maddy
 
-![Version: 22.4.2](https://img.shields.io/badge/Version-22.4.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.5.4](https://img.shields.io/badge/AppVersion-0.5.4-informational?style=flat-square)
+![Version: 22.4.3](https://img.shields.io/badge/Version-22.4.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.5.4](https://img.shields.io/badge/AppVersion-0.5.4-informational?style=flat-square)
 
 Easily deploy and configure a maddy mail server. This chart handles a fair bit of setup, however, additional work
 needs to be done to properly configure all the DNS records. For a complete guide on setting up DNS for maddy, see the
@@ -16,6 +16,12 @@ user guide: https://maddy.email/tutorials/setting-up/
 
 - <https://github.com/foxcpp/maddy>
 - <https://github.com/mjpitz/mjpitz/tree/main/charts/maddy>
+
+## Requirements
+
+| Repository         | Name       | Version |
+| ------------------ | ---------- | ------- |
+| https://mjpitz.com | litestream | 22.4.0  |
 
 ## Values
 
@@ -39,6 +45,9 @@ user guide: https://maddy.email/tutorials/setting-up/
 | image.repository                             | string | `"foxcpp/maddy"`          | The repository hosting the email server image.                                                                          |
 | image.tag                                    | string | `""`                      | Overrides the image tag whose default is the chart appVersion.                                                          |
 | imagePullSecrets                             | list   | `[]`                      | Specify the secret containing the registry credentials.                                                                 |
+| litestream.enabled                           | bool   | `false`                   | Whether to enable litestream for SQLite backup, recovery, and replication.                                              |
+| litestream.extraVolumeMounts[0].mountPath    | string | `"/data"`                 | The path where the databases can be located.                                                                            |
+| litestream.extraVolumeMounts[0].name         | string | `"data"`                  | The name of the data directory to mount. Defaults to the database volume created by `persistence.enabled`.              |
 | metrics.serviceMonitor.enabled               | bool   | `false`                   | Add a Prometheus ServiceMonitor that scrapes the registry deployment.                                                   |
 | metrics.serviceMonitor.interval              | string | `"10s"`                   | How frequently prometheus should pull metrics from your registry deployment.                                            |
 | mta_sts.enabled                              | bool   | `false`                   | Whether to enable MTA-STS to proactively protect against attacks.                                                       |
