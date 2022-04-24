@@ -1,6 +1,4 @@
-{{/*
-Render the redis configuration file.
-*/}}
+{{/* Render the redis configuration file. */}}
 {{- define "redis.config" -}}
 {{/* TODO : support TLS */}}
 port 6379
@@ -44,9 +42,7 @@ masterauth {{ .Values.config.password }}
 {{- end }}
 {{- end -}}
 
-{{/*
-Render the envoy cluster configuration file.
-*/}}
+{{/* Render the envoy cluster configuration file. */}}
 {{- define "redis.cluster.config" -}}
 static_resources:
   listeners:
@@ -105,11 +101,8 @@ admin:
       port_value: 8001
 {{- end -}}
 
-{{/*
-Render the envoy sidecar container.
-*/}}
-{{- define "redis.cluster.sidecar" -}}
-{{- if .Values.cluster.enabled }}
+{{/* Render the envoy sidecar container. */}}
+{{- define "redis.cluster.container" -}}
 - name: envoy
   image: "{{ .Values.cluster.image.repository }}:{{ .Values.cluster.image.tag }}"
   imagePullPolicy: {{ .Values.cluster.image.pullPolicy }}
@@ -124,16 +117,11 @@ Render the envoy sidecar container.
     - mountPath: /etc/envoy
       name: {{ include "redis.fullname" . }}-cluster-config
       readOnly: true
-{{- end }}
 {{- end -}}
 
-{{/*
-Render the envoy configuration volume thats mount by the sidecar.
-*/}}
+{{/* Render the envoy configuration volume thats mount by the sidecar. */}}
 {{- define "redis.cluster.volume" -}}
-{{- if .Values.cluster.enabled }}
 - name: {{ include "redis.fullname" . }}-cluster-config
   secret:
     secretName: {{ include "redis.fullname" . }}-cluster-config
-{{- end }}
 {{- end -}}

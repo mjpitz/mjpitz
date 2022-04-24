@@ -7,7 +7,7 @@ helm repo add mjpitz https://mjpitz.com
 ```
 
 - [`auth`](auth) - Deploys a replicated token authorization server for use with the `registry`.
-- [`litestream`](litestream) - Easily add a [litstream][] sidecar to any `Deployment`, `DaemonSet`, or `StatefulSet`.
+- [`litestream`](litestream) - Easily add a [litestream][] sidecar to any `Deployment`, `DaemonSet`, or `StatefulSet`.
 - [`maddy`](maddy) - Deploys a maddy email server.
 - [`redis`](redis) - Deploys an inconsistent Redis cluster, intended to be fronted by an [envoy][] sidecar.
 - [`registry`](registry) - Deploys a replicated container registry, with optional caching provided by `redis`.
