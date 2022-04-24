@@ -61,3 +61,26 @@ maddy:
   rspamd:
     # override specific configuration files here
     config:
+
+  litestream:
+    enabled: true
+
+    metrics:
+      enabled: true
+
+    config:
+      dbs:
+        - path: /data/credentials.db
+          replicas:
+            - type: s3
+              bucket: mya-litestream
+              path: maddy/pitz.tech/credentials
+              endpoint: nyc3.digitaloceanspaces.com
+              region: nyc3
+        - path: /data/imapsql.db
+          replicas:
+            - type: s3
+              bucket: mya-litestream
+              path: maddy/pitz.tech/imapsql
+              endpoint: nyc3.digitaloceanspaces.com
+              region: nyc3

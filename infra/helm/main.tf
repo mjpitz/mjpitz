@@ -248,6 +248,7 @@ resource "helm_release" "maddy" {
 
   values = [
     file("./maddy/values.yaml"),
+    file("./maddy/secret.yaml"),
   ]
 
   set {
