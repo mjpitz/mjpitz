@@ -551,23 +551,4 @@ entries:
     urls:
     - https://github.com/mjpitz/mjpitz/releases/download/storj-22.3.0/storj-22.3.0.tgz
     version: 22.3.0
-  storj-sidecar:
-  - apiVersion: v2
-    appVersion: latest
-    created: "2022-04-20T15:19:21.158350149Z"
-    description: |
-      Easily add a Storj S3 gateway to any Deployment, DaemonSet, or StatefulSet using a sidecar. This chart optionally
-      deploys the required configuration and provides template functions that render the necessary sidecar components.
-    digest: c8ccd2f34745559b9218410f1b42767c87b35685d4e86a21dd1a48c9f4fb4718
-    maintainers:
-    - name: Mya Pitzeruse
-      url: https://mjpitz.com
-    name: storj-sidecar
-    sources:
-    - https://github.com/storj/gateway-st
-    - https://github.com/mjpitz/mjpitz/tree/main/charts/storj
-    type: application
-    urls:
-    - https://github.com/mjpitz/mjpitz/releases/download/storj-sidecar-22.4.0/storj-sidecar-22.4.0.tgz
-    version: 22.4.0
 generated: "2022-03-07T14:18:00.964537926Z"
