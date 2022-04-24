@@ -99,6 +99,23 @@ entries:
     urls:
     - https://github.com/mjpitz/mjpitz/releases/download/auth-1.6.0/auth-1.6.0.tgz
     version: 1.6.0
+  litestream:
+  - apiVersion: v2
+    appVersion: 0.3.8
+    created: "2022-04-24T18:41:01.69354715Z"
+    description: "Easily add litestream to any sqlite backed application as a sidecar. This chart optionally deploys the required \nconfiguration and provides template functions that render the necessary init and sidecar containers.\n"
+    digest: 6ca0c48c61d857ece2e7b4372c3a5a6fb2accc5c2b6ae65fcf81a391661e7f4d
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: litestream
+    sources:
+    - https://github.com/benbjohnson/litestream
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/litestream
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/litestream-22.4.0/litestream-22.4.0.tgz
+    version: 22.4.0
   maddy:
   - apiVersion: v2
     appVersion: 0.5.4
