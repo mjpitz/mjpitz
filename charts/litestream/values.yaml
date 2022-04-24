@@ -1,0 +1,77 @@
+# Default values for litestream.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+image:
+  # -- The repository hosting the litestream image.
+  repository: litestream/litestream
+  # -- The pull policy to use for the litestream image.
+  pullPolicy: IfNotPresent
+  # -- Overrides the image tag whose default is the chart appVersion.
+  tag: 0.3.8
+
+# -- Specify the secret containing the registry credentials.
+imagePullSecrets: []
+# -- Override the name of the release.
+nameOverride: ""
+# -- Override the full name of the release.
+fullnameOverride: ""
+
+# -- Specify the security context for the `litestream` container.
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+# -- Specify the resources for the pod.
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+metrics:
+  # -- Whether metrics reporting should be enabled.
+  enabled: false
+  # -- The port to run the metrics server on.
+  port: 9090
+
+# -- Add additional volume mounts to the pod.
+extraVolumeMounts: []
+#  - name: data
+#    mountPath: /var/lib/registry
+#    readOnly: false
+
+externalConfig:
+  secretRef:
+    # -- Specify the name of the secret containing the raw configuration. The secret should have a single
+    #   litestream.yml entry that contains the configuration.
+    name: ""
+
+config:
+  # -- Specify a single access key id to use for all replicas who do not provide their own.
+  accessKeyId: ""
+  # -- Specify a single secret access key to use for all replica who do not provide their own.
+  secretAccessKey: ""
+
+  # -- A list of databases that should be replicated by litestream.
+  dbs: []
+  #  - path: /path/to/local/db
+  #    replicas:
+  #      - type: s3
+  #        bucket: SPACENAME
+  #        path: db
+  #        endpoint: nyc3.digitaloceanspaces.com
+  #        region: nyc3   # set to your region
+  #  - path: /path/to/local/db
+  #    replicas:
+  #      - url: s3://SPACENAME/db
