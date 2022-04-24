@@ -119,6 +119,30 @@ entries:
   maddy:
   - apiVersion: v2
     appVersion: 0.5.4
+    created: "2022-04-24T19:50:22.988784404Z"
+    dependencies:
+    - condition: litestream.enabled
+      name: litestream
+      repository: https://mjpitz.com
+      version: 22.4.0
+    description: |
+      Easily deploy and configure a maddy mail server. This chart handles a fair bit of setup, however, additional work
+      needs to be done to properly configure all the DNS records. For a complete guide on setting up DNS for maddy, see the
+      user guide: https://maddy.email/tutorials/setting-up/
+    digest: 559cd1da352e810efd7b29616186234a00557f6438baf1989063e59463de5359
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: maddy
+    sources:
+    - https://github.com/foxcpp/maddy
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/maddy
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/maddy-22.4.3/maddy-22.4.3.tgz
+    version: 22.4.3
+  - apiVersion: v2
+    appVersion: 0.5.4
     created: "2022-04-11T17:26:45.748277363Z"
     description: |
       Easily deploy and configure a maddy mail server. This chart handles a fair bit of setup, however, additional work
@@ -175,6 +199,24 @@ entries:
     - https://github.com/mjpitz/mjpitz/releases/download/maddy-22.4.0/maddy-22.4.0.tgz
     version: 22.4.0
   redis:
+  - apiVersion: v2
+    appVersion: 6.2.6
+    created: "2022-04-24T19:50:23.094087782Z"
+    description: |
+      Deploy a highly-available, partition-tolerant Redis cluster fronted by an envoy sidecar. Envoy partitions keys among
+      members of the cluster using a consistent hashing algorithm making it great as a best-effort cache.
+    digest: 4951bacf7294c0539e21c78fd4097f3bfa72a7fa817e11b0d300c1763eede1bb
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: redis
+    sources:
+    - https://github.com/redis/redis
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/redis
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/redis-22.4.2/redis-22.4.2.tgz
+    version: 22.4.2
   - apiVersion: v2
     appVersion: 6.2.6
     created: "2022-04-11T03:48:35.766699734Z"
