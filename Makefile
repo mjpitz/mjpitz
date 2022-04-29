@@ -12,6 +12,7 @@ chart-docs:
 	@$(MAKE) .helm.docs CHART=litestream
 	@$(MAKE) .helm.docs CHART=maddy
 	@$(MAKE) .helm.docs CHART=redis
+	@$(MAKE) .helm.docs CHART=redis-queue
 	@$(MAKE) .helm.docs CHART=registry
 	@$(MAKE) .helm.docs CHART=storj
 

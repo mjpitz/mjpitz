@@ -12,6 +12,7 @@ helm repo add mjpitz https://mjpitz.com
 - [`litestream`][litestream-chart] - Easily add a [litestream][] sidecar to any `Deployment`, `DaemonSet`, or `StatefulSet`.
 - [`maddy`][maddy-chart] - Deploys a single-tenant Maddy email server.
 - [`redis`][redis-chart] - Deploys an inconsistent Redis cluster, intended to be fronted by an [envoy][] sidecar.
+- [`redis-queue`][redis-queue-chart] - Deploy a single durable Redis instance, intended to be used as a work queue.
 - [`registry`][registry-chart] - Deploys a replicated container registry, with optional caching provided by `redis`.
 - [`storj`][storj-chart] - Easily add a Storj S3 Gateway as a sidecar to any `Deployment`, `DaemonSet`, or `StatefulSet`.
 
@@ -21,6 +22,7 @@ helm repo add mjpitz https://mjpitz.com
 [litestream-chart]: litestream
 [maddy-chart]: maddy
 [redis-chart]: redis
+[redis-queue-chart]: redis-queue
 [registry-chart]: registry
 [storj-chart]: storj
 

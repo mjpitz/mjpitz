@@ -1,0 +1,13 @@
+apiVersion: v2
+type: application
+name: redis-queue
+description: |
+  Deploy a single durable Redis instance, intended to be used as a work queue.
+sources:
+  - https://github.com/redis/redis
+  - https://github.com/mjpitz/mjpitz/tree/main/charts/redis-queue
+maintainers:
+  - name: Mya Pitzeruse
+    url: https://mjpitz.com
+version: 22.4.0
+appVersion: 6.2.6
