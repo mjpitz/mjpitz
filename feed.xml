@@ -702,7 +702,8 @@ In this post, we will show how to add health checks to your applications.&lt;/p&
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/charts/</guid>
-      <description>Charts 1  helm repo add mjpitz https://mjpitz.com    auth - Deploys a replicated token authorization server for use with the registry. maddy - Deploys a maddy email server. redis - Deploys an inconsistent Redis cluster, intended to be fronted by an envoy sidecar. registry - Deploys a replicated container registry, with optional caching provided by redis. storj - Easily add a Storj S3 Gateway as a sidecar to any Deployment, DaemonSet, or StatefulSet.</description>
+      <description>Charts My personal helm charts are provided under the MIT License. While I&amp;rsquo;m the primary consumer of these charts, I have made them generally available for others to use. You may be able to find some of these charts elsewhere, but many of my deployments vary quite a bit from existing ones.
+1  helm repo add mjpitz https://mjpitz.com    auth - Deploys a replicated token authorization server for use with the registry.</description>
     </item>
     
     <item>

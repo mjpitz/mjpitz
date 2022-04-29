@@ -18,7 +18,8 @@
     <script type="text/javascript" src="https://mjpitz.com/js/anatole-header.min.3252f25a22b06e9062229fa50b222e04393830ad8260421079b1d55ace7605b3.js" integrity="sha256-MlLyWiKwbpBiIp&#43;lCyIuBDk4MK2CYEIQebHVWs52BbM=" crossorigin="anonymous"></script>
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="Charts 1  helm repo add mjpitz https://mjpitz.com    auth - Deploys a replicated token authorization server for use with the registry. maddy - Deploys a maddy email server. redis - Deploys an inconsistent Redis cluster, intended to be fronted by an envoy sidecar. registry - Deploys a replicated container registry, with optional caching provided by redis. storj - Easily add a Storj S3 Gateway as a sidecar to any Deployment, DaemonSet, or StatefulSet."/>
+<meta name="twitter:description" content="Charts My personal helm charts are provided under the MIT License. While I&rsquo;m the primary consumer of these charts, I have made them generally available for others to use. You may be able to find some of these charts elsewhere, but many of my deployments vary quite a bit from existing ones.
+1  helm repo add mjpitz https://mjpitz.com    auth - Deploys a replicated token authorization server for use with the registry."/>
 
 </head>
 <body><div class="sidebar animated fadeInDown">
@@ -101,6 +102,9 @@
         </div>
 
     <h1 id="charts">Charts</h1>
+<p>My personal helm charts are provided under the <a href="https://github.com/mjpitz/mjpitz/tree/main/charts/LICENSE">MIT License</a>. While I&rsquo;m the primary consumer of these charts, I
+have made them generally available for others to use. You may be able to find some of these charts elsewhere, but many
+of my deployments vary quite a bit from existing ones.</p>
 <div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
@@ -111,7 +115,8 @@
 </div>
 </div><ul>
 <li><a href="https://github.com/mjpitz/mjpitz/tree/main/charts/auth"><code>auth</code></a> - Deploys a replicated token authorization server for use with the <code>registry</code>.</li>
-<li><a href="https://github.com/mjpitz/mjpitz/tree/main/charts/maddy"><code>maddy</code></a> - Deploys a maddy email server.</li>
+<li><a href="https://github.com/mjpitz/mjpitz/tree/main/charts/litestream"><code>litestream</code></a> - Easily add a <a href="https://litestream.io">litestream</a> sidecar to any <code>Deployment</code>, <code>DaemonSet</code>, or <code>StatefulSet</code>.</li>
+<li><a href="https://github.com/mjpitz/mjpitz/tree/main/charts/maddy"><code>maddy</code></a> - Deploys a single-tenant Maddy email server.</li>
 <li><a href="https://github.com/mjpitz/mjpitz/tree/main/charts/redis"><code>redis</code></a> - Deploys an inconsistent Redis cluster, intended to be fronted by an <a href="https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/other_protocols/redis">envoy</a> sidecar.</li>
 <li><a href="https://github.com/mjpitz/mjpitz/tree/main/charts/registry"><code>registry</code></a> - Deploys a replicated container registry, with optional caching provided by <code>redis</code>.</li>
 <li><a href="https://github.com/mjpitz/mjpitz/tree/main/charts/storj"><code>storj</code></a> - Easily add a Storj S3 Gateway as a sidecar to any <code>Deployment</code>, <code>DaemonSet</code>, or <code>StatefulSet</code>.</li>
