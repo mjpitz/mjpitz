@@ -351,6 +351,24 @@ entries:
     urls:
     - https://github.com/mjpitz/mjpitz/releases/download/redis-6.2.6/redis-6.2.6.tgz
     version: 6.2.6
+  redis-queue:
+  - apiVersion: v2
+    appVersion: 6.2.6
+    created: "2022-04-29T20:00:22.880460791Z"
+    description: |
+      Deploy a single durable Redis instance, intended to be used as a work queue.
+    digest: c4e1e6a7193c4a986deabbf4f6ef5b6e896d059877cc7ed0dfbdc470239b1a00
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: redis-queue
+    sources:
+    - https://github.com/redis/redis
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/redis-queue
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/redis-queue-22.4.0/redis-queue-22.4.0.tgz
+    version: 22.4.0
   registry:
   - apiVersion: v2
     appVersion: 2.8.0
