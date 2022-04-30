@@ -99,6 +99,37 @@ entries:
     urls:
     - https://github.com/mjpitz/mjpitz/releases/download/auth-1.6.0/auth-1.6.0.tgz
     version: 1.6.0
+  gitea:
+  - apiVersion: v2
+    appVersion: 1.16.6
+    created: "2022-04-30T21:14:30.754358645Z"
+    dependencies:
+    - condition: litestream.enabled
+      name: litestream
+      repository: https://mjpitz.com
+      version: 22.4.0
+    - condition: redis-queue.enabled
+      name: redis-queue
+      repository: https://mjpitz.com
+      version: 22.4.0
+    - condition: redis.enabled
+      name: redis
+      repository: https://mjpitz.com
+      version: 22.4.2
+    description: |
+      Git with a cup of tea. A painless, self-hosted Git Service.
+    digest: 0a7c9b4fb76a1da1fb876bf2cc3684b664472ce0ef55dd926382941b4ac750ca
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: gitea
+    sources:
+    - https://github.com/go-gitea/gitea
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/gitea
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/gitea-22.4.0/gitea-22.4.0.tgz
+    version: 22.4.0
   litestream:
   - apiVersion: v2
     appVersion: 0.3.8
