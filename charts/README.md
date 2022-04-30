@@ -9,6 +9,7 @@ helm repo add mjpitz https://mjpitz.com
 ```
 
 - [`auth`][auth-chart] - Deploys a replicated token authorization server for use with the `registry`.
+- [`gitea`][gitea-chart] - Git with a cup of tea. [Gitea][] is a painless, self-hosted Git Service.
 - [`litestream`][litestream-chart] - Easily add a [litestream][] sidecar to any `Deployment`, `DaemonSet`, or `StatefulSet`.
 - [`maddy`][maddy-chart] - Deploys a single-tenant Maddy email server.
 - [`redis`][redis-chart] - Deploys an inconsistent Redis cluster, intended to be fronted by an [envoy][] sidecar.
@@ -19,6 +20,7 @@ helm repo add mjpitz https://mjpitz.com
 [license]: LICENSE
 
 [auth-chart]: auth
+[gitea-chart]: gitea
 [litestream-chart]: litestream
 [maddy-chart]: maddy
 [redis-chart]: redis
@@ -26,5 +28,6 @@ helm repo add mjpitz https://mjpitz.com
 [registry-chart]: registry
 [storj-chart]: storj
 
+[Gitea]: https://gitea.com
 [litestream]: https://litestream.io
 [envoy]: https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/other_protocols/redis

@@ -1,0 +1,455 @@
+# Default values for gitea.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+image:
+  # -- The repository hosting the gitea server image.
+  repository: gitea/gitea
+  # -- The pull policy to use for the image.
+  pullPolicy: IfNotPresent
+  # -- Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+# -- Specify the secret containing the registry credentials.
+imagePullSecrets: []
+# -- Override the name of the release.
+nameOverride: ""
+# -- Override the full name of the release.
+fullnameOverride: ""
+
+serviceAccount:
+  # -- Specifies whether a service account should be created.
+  create: true
+  # -- Annotations to add to the service account.
+  annotations: {}
+  # -- The name of the service account to use. If not set and create is true, a name is generated using the fullname
+  #    template.
+  name: ""
+
+# -- Annotations to add to the pod, typically used for assume roles.
+podAnnotations: {}
+
+# -- Specify the security context for the entire pod.
+podSecurityContext: {}
+  # fsGroup: 2000
+
+# -- Specify the security context for the `registry` container.
+securityContext:
+  # -- `git` is added as user 1000 to the container and must run as that user.
+  runAsUser: 1000
+  # -- `git` is added as user 1000 to the container and must run as that group.
+  runAsGroup: 1000
+
+service:
+  # -- Specify the type of service to create.
+  type: ClusterIP
+  # -- Annotations to add to the service, typically used for ingress control.
+  annotations: {}
+
+ingress:
+  # -- Configure the ingress for Gitea.
+  enabled: false
+  # -- Specify annotations for the ingress.
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - # -- Specify the domain host for the ingress.
+      host: chart-example.local
+
+  # -- Configure TLS for the ingress.
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+# -- Specify the resources for the pod.
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+# -- Specify the node selector used to control which nodes registry pods are deployed to.
+nodeSelector: {}
+
+# -- Specify taints that the registry pods are willing to tolerate.
+tolerations: []
+
+# -- Specify affinity rules for the pods.
+affinity: {}
+
+metrics:
+  # -- Whether metrics should be enabled.
+  enabled: false
+
+  serviceMonitor:
+    # -- Add a Prometheus ServiceMonitor that scrapes the registry deployment.
+    enabled: false
+    # -- How frequently prometheus should pull metrics from your registry deployment.
+    interval: 10s
+
+# -- Add additional volumes to the pod.
+extraVolumes: []
+#  - name: data
+#    emptyDir: {}
+
+# -- Add additional volume mounts to the pod.
+extraVolumeMounts: []
+#  - name: data
+#    mountPath: /data
+#    readOnly: false
+
+persistence:
+  blobs:
+    # -- Enable persistence for the blob directories.
+    enabled: true
+
+    # -- Specify the name of an existing PersistentVolumeClaim to use.
+    existingClaim: ""
+
+    # -- Configure the access mode of the volume.
+    accessMode: ReadWriteOnce
+
+    resources:
+      # -- Specify the size of the volume.
+      storage: 10Gi
+
+    # -- Specify the storage class that should provision this claim.
+    storageClass: ""
+
+  git:
+    # -- Enable persistence for the Git directories. This directory is managed separately from the SQLite configuration.
+    enabled: true
+
+    # -- Specify the name of an existing PersistentVolumeClaim to use.
+    existingClaim: ""
+
+    # -- Configure the access mode of the volume.
+    accessMode: ReadWriteOnce
+
+    resources:
+      # -- Specify the size of the volume.
+      storage: 10Gi
+
+    # -- Specify the storage class that should provision this claim.
+    storageClass: ""
+
+  # -- Enable persistence for this deployment. This will configure a SQLite driver for storing information.
+  enabled: true
+
+  # -- Specify the name of an existing PersistentVolumeClaim to use.
+  existingClaim: ""
+
+  # -- Configure the access mode of the volume.
+  accessMode: ReadWriteOnce
+
+  resources:
+    # -- Specify the size of the volume.
+    storage: 10Gi
+
+  # -- Specify the storage class that should provision this claim.
+  storageClass: ""
+
+externalConfig:
+  secretRef:
+    # -- Specify the name of the secret containing the raw configuration.
+    name: ""
+
+config:
+  # -- Override configuration for the `DEFAULT` block of the configuration file.
+  overrides: {}
+
+  repository:
+    # -- Override configuration for the `repository` block of the configuration file.
+    overrides: {}
+
+    editor:
+      # -- Override configuration for the `repository.editor` block of the configuration file.
+      overrides: {}
+
+    pullRequest:
+      # -- Override configuration for the `repository.pull-request` block of the configuration file.
+      overrides: {}
+
+    issue:
+      # -- Override configuration for the `repository.issue` block of the configuration file.
+      overrides: {}
+
+    upload:
+      # -- Override configuration for the `repository.upload` block of the configuration file.
+      overrides: {}
+
+    release:
+      # -- Override configuration for the `repository.release` block of the configuration file.
+      overrides: {}
+
+    signing:
+      # -- Override configuration for the `repository.signing` block of the configuration file.
+      overrides: {}
+
+    local:
+      # -- Override configuration for the `repository.local` block of the configuration file.
+      overrides: {}
+
+    mimeMapping:
+      # -- Override configuration for the `repository.mimetype_mapping` block of the configuration file.
+      overrides: {}
+
+  cors:
+    # -- Override configuration for the `cors` block of the configuration file.
+    overrides: {}
+
+  ui:
+    # -- Override configuration for the `ui` block of the configuration file.
+    overrides: {}
+
+  markdown:
+    # -- Override configuration for the `markdown` block of the configuration file.
+    overrides: {}
+
+  server:
+    # -- Override configuration for the `server` block of the configuration file.
+    overrides: {}
+
+  # -- Provide configuration for the backing database. If not provided, SQLite will be used.
+  database:
+    # -- Specify what type of database we're connecting to.
+    type: ""
+    # -- Configure the host of the database server.
+    host: ""
+    # -- Configure the name of the database.
+    name: ""
+    # -- Specify the username used to connect to the database.
+    username: ""
+    # -- Specify the password used to connect to the database.
+    password: ""
+    # -- Database logging.
+    log: false
+    # -- Specify the schema to use.
+    schema: ""
+    # -- Specify the SSL mode to use for the database connection.
+    sslMode: ""
+
+  index:
+    issues:
+      # -- Configure the issue index backend. Can be `elasticsearch`, defaults to `bleve`.
+      type: ""
+      # -- Specify the connection string to connect to an external elasticsearch instance.
+      connectionString: ""
+    code:
+      # -- Enable code search capabilities.
+      enabled: false
+      # -- Configure the code index backend. Can be `elasticsearch`, defaults to `bleve`.
+      type: ""
+      # -- Specify the connection string to connect to an external elasticsearch instance.
+      connectionString: ""
+
+  queues:
+    # -- Specify how queues are managed. If `redis-queue.enabled` is `true`, then this value defaults to `redis`.
+    #    Otherwise, we default to `persistable-channel`.
+    type: ""
+
+    # -- Specify a connection string for the queues. Only applicable for `redis` queues. Example: `redis://127.0.0.1:6379`.
+    connectionString: ""
+
+    issue_indexer:
+      # -- Specify a connection string for the `issue_indexer` queue. Only applicable for `redis` queues. Defaults to
+      #    `config.queues.connectionString`.
+      connectionString: ""
+      # -- Specify which database should be used for the `issue_indexer` queue. Only applicable for `redis` queues.
+      db: 0
+      # -- Specify the length of the `issue_indexer` queue.
+      length: 20
+
+    code_indexer:
+      # -- Specify a connection string for the `code_indexer` queue. Only applicable for `redis` queues. Defaults to
+      #    `config.queues.connectionString`.
+      connectionString: ""
+      # -- Specify which database should be used for the `code_indexer` queue. Only applicable for `redis` queues.
+      db: 1
+      # -- Specify the length of the `code_indexer` queue.
+      length: 20
+
+    notification_service:
+      # -- Specify a connection string for the `notification-service` queue. Only applicable for `redis` queues. Defaults to
+      #    `config.queues.connectionString`.
+      connectionString: ""
+      # -- Specify which database should be used for the `notification-service` queue. Only applicable for `redis` queues.
+      db: 2
+      # -- Specify the length of the `notification-service` queue.
+      length: 20
+
+    task:
+      # -- Specify a connection string for the `task` queue. Only applicable for `redis` queues. Defaults to
+      #    `config.queues.connectionString`.
+      connectionString: ""
+      # -- Specify which database should be used for the `task` queue. Only applicable for `redis` queues.
+      db: 3
+      # -- Specify the length of the `task` queue.
+      length: 20
+
+    mail:
+      # -- Specify a connection string for the `mail` queue. Only applicable for `redis` queues. Defaults to
+      #    `config.queues.connectionString`.
+      connectionString: ""
+      # -- Specify which database should be used for the `mail` queue. Only applicable for `redis` queues.
+      db: 4
+      # -- Specify the length of the `mail` queue.
+      length: 100
+
+    push_update:
+      # -- Specify a connection string for the `push_update` queue. Only applicable for `redis` queues. Defaults to
+      #    `config.queues.connectionString`.
+      connectionString: ""
+      # -- Specify which database should be used for the `push_update` queue. Only applicable for `redis` queues.
+      db: 5
+      # -- Specify the length of the `push_update` queue.
+      length: 20
+
+    repo_stats_update:
+      # -- Specify a connection string for the `repo_stats_update` queue. Only applicable for `redis` queues. Defaults to
+      #    `config.queues.connectionString`.
+      connectionString: ""
+      # -- Specify which database should be used for the `repo_stats_update` queue. Only applicable for `redis` queues.
+      db: 6
+      # -- Specify the length of the `repo_stats_update` queue.
+      length: 20
+
+    repo_archive:
+      # -- Specify a connection string for the `repo-archive` queue. Only applicable for `redis` queues. Defaults to
+      #    `config.queues.connectionString`.
+      connectionString: ""
+      # -- Specify which database should be used for the `repo-archive` queue. Only applicable for `redis` queues.
+      db: 7
+      # -- Specify the length of the `repo-archive` queue.
+      length: 20
+
+    mirror:
+      # -- Specify a connection string for the `mirror` queue. Only applicable for `redis` queues. Defaults to
+      #    `config.queues.connectionString`.
+      connectionString: ""
+      # -- Specify which database should be used for the `mirror` queue. Only applicable for `redis` queues.
+      db: 8
+      # -- Specify the length of the `mirror` queue.
+      length: 1000
+
+    pr_patch_checker:
+      # -- Specify a connection string for the `pr_patch_checker` queue. Only applicable for `redis` queues. Defaults to
+      #    `config.queues.connectionString`.
+      connectionString: ""
+      # -- Specify which database should be used for the `pr_patch_checker` queue. Only applicable for `redis` queues.
+      db: 9
+      # -- Specify the length of the `pr_patch_checker` queue.
+      length: 1000
+
+  security:
+    # -- Set to `true` to lock the installation screen.
+    installLock: false
+    # -- Global secret key used by the Gitea instances.
+    secretKey: ""
+    # -- Secret used to validate communication within Gitea binary.
+    internalToken: ""
+
+  service:
+    # -- Override configuration for the `service` block of the configuration file.
+    overrides: {}
+      # DISABLE_REGISTRATION: true
+
+    explore:
+      # -- Override configuration for the `service.explore` block of the configuration file.
+      overrides: {}
+        # REQUIRE_SIGNIN_VIEW: false
+        # DISABLE_USERS_PAGE: false
+
+  email:
+    # -- The host hosting the email server.
+    host: ""
+    # -- The port hosting the SMTP server.
+    port: 465
+    # -- Who to send emails from.
+    from: ""
+    # -- The username to use when authenticating with the mail server.
+    username: ""
+    # -- The password to use when authenticating with the mail server.
+    password: ""
+
+  picture:
+    # -- Override configuration for the `picture` block of the configuration file.
+    overrides: {}
+
+  attachment:
+    # -- Override configuration for the `attachment` block of the configuration file.
+    overrides: {}
+
+  log:
+    # -- Override configuration for the `log` block of the configuration file.
+    overrides: {}
+
+  metrics:
+    # -- Override configuration for the `metrics` block of the configuration file.
+    overrides: {}
+
+  packages:
+    # -- Enable package management.
+    enabled: true
+
+  lfs:
+    # -- Override configuration for the `lfs` block of the configuration file.
+    overrides: {}
+
+  # -- Provide configuration for the backing blob store.
+  blobs:
+    # -- The endpoint hosting the S3 implementation. Setting this value enables object storage for blobs.
+    endpoint: ""
+    # -- The access key id used to authenticate the session.
+    accessKeyId: ""
+    # -- The secret access key used to authenticate with the S3 implementation.
+    secretAccessKey: ""
+    # -- Specify the bucket to store information in.
+    bucket: ""
+    # -- Specify the region where the blob data is hosted.
+    region: ""
+    # -- Configure SSL for the blob storage.
+    useSSL: true
+
+litestream:
+  # -- Whether litestream should be enabled for SQLite backups.
+  enabled: false
+
+  extraVolumeMounts:
+    - # -- Name of the volume containing the sqlite database.
+      name: gitea
+      # -- Where the volume with the given name needs to be mounted. This may change if you're providing your own volume.
+      mountPath: /data/gitea
+
+  config:
+    # -- Configure the database replicas.
+    dbs:
+      - # -- Replicate the gitea database.
+        path: /data/gitea/gitea.db
+        # -- Configure the replica targets.
+        replicas: []
+
+redis-queue:
+  # -- Set to `true` to enable a redis backed queueing solution. By default, queues are backed using a
+  #    `persistable-channel`.
+  enabled: false
+
+  config:
+    # -- Overrides the default number of databases to match the number of queues that we need.
+    databases: 10
+
+redis:
+  # -- Set to `true` to enable a redis backed cache for sessions and other cachable elements.
+  enabled: false
+
+  cluster:
+    # -- Enables the envoy cluster out of box.
+    enabled: true

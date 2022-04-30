@@ -1,0 +1,28 @@
+apiVersion: v2
+type: application
+name: gitea
+description: |
+  Git with a cup of tea. A painless, self-hosted Git Service.
+sources:
+  - https://github.com/go-gitea/gitea
+  - https://github.com/mjpitz/mjpitz/tree/main/charts/gitea
+maintainers:
+  - name: Mya Pitzeruse
+    url: https://mjpitz.com
+version: 22.4.0
+appVersion: 1.16.6
+dependencies:
+  - name: litestream
+    version: 22.4.0
+    repository: https://mjpitz.com
+    condition: litestream.enabled
+
+  - name: redis-queue
+    version: 22.4.0
+    repository: https://mjpitz.com
+    condition: redis-queue.enabled
+
+  - name: redis
+    version: 22.4.2
+    repository: https://mjpitz.com
+    condition: redis.enabled

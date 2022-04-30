@@ -1,0 +1,171 @@
+{{- $redisConfig := dict "Chart" (dict "Name" "redis") "Values" .Values.redis "Release" .Release -}}
+{{- $litestreamConfig := dict "Chart" (dict "Name" "litestream") "Values" .Values.litestream "Release" .Release -}}
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "gitea.fullname" . }}
+  labels:
+    {{- include "gitea.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  serviceName: {{ include "gitea.fullname" . }}
+  selector:
+    matchLabels:
+      {{- include "gitea.selectorLabels" . | nindent 6 }}
+  volumeClaimTemplates:
+    {{- if not .Values.persistence.blobs.existingClaim | and .Values.persistence.blobs.enabled }}
+    - metadata:
+        name: blobs
+      spec:
+        accessModes:
+          - {{ .Values.persistence.blobs.accessMode }}
+        resources:
+          requests:
+            {{- .Values.persistence.blobs.resources | toYaml | nindent 12 }}
+        {{- with .Values.persistence.blobs.storageClass }}
+        storageClassName: {{ . }}
+        {{- end }}
+    {{- end }}
+    {{- if not .Values.persistence.git.existingClaim | and .Values.persistence.git.enabled }}
+    - metadata:
+        name: git
+      spec:
+        accessModes:
+          - {{ .Values.persistence.git.accessMode }}
+        resources:
+          requests:
+            {{- .Values.persistence.git.resources | toYaml | nindent 12 }}
+        {{- with .Values.persistence.git.storageClass }}
+        storageClassName: {{ . }}
+        {{- end }}
+    {{- end }}
+    {{- if not .Values.persistence.existingClaim | and .Values.persistence.enabled }}
+    - metadata:
+        name: gitea
+      spec:
+        accessModes:
+          - {{ .Values.persistence.accessMode }}
+        resources:
+          requests:
+            {{- .Values.persistence.resources | toYaml | nindent 12 }}
+        {{- with .Values.persistence.storageClass }}
+        storageClassName: {{ . }}
+        {{- end }}
+    {{- end }}
+  template:
+    metadata:
+      annotations:
+        checksum/secret: {{ include (print $.Template.BasePath "/secret.yaml") . | sha256sum }}
+        {{- with .Values.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+      labels:
+        {{- include "gitea.labels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "gitea.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      {{- if .Values.litestream.enabled }}
+      initContainers:
+        {{- include "litestream.init-container" $litestreamConfig | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          {{- with .Values.securityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command:
+            - sh
+            - -c
+            - |
+              mkdir -p /data/gitea/conf;
+              cp /etc/gitea/app.ini /data/gitea/conf/app.ini;
+              gitea
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+            - name: ssh
+              containerPort: 2222
+              protocol: TCP
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - mountPath: /etc/gitea
+              name: config
+            - mountPath: /data/scratch
+              name: scratch
+            {{- if .Values.persistence.blobs.enabled | or .Values.persistence.blobs.existingClaim }}
+            - mountPath: /data/blobs
+              name: blobs
+            {{- end }}
+            {{- if .Values.persistence.git.enabled | or .Values.persistence.git.existingClaim }}
+            - mountPath: /data/git
+              name: git
+            {{- end }}
+            {{- if .Values.persistence.enabled | or .Values.persistence.existingClaim }}
+            - mountPath: /data/gitea
+              name: gitea
+            {{- end }}
+            {{- with .Values.extraVolumeMounts }}
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
+        {{- if .Values.litestream.enabled }}
+        {{- include "litestream.container" $litestreamConfig | nindent 8 }}
+        {{- end }}
+        {{- if .Values.redis.cluster.enabled | and .Values.redis.enabled }}
+        {{- include "redis.cluster.container" $redisConfig | nindent 8 }}
+        {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      volumes:
+        - name: config
+          secret:
+            {{- if .Values.externalConfig.secretRef.name }}
+            secretName: {{ .Values.externalConfig.secretRef.name }}
+            {{- else }}
+            secretName: {{ include "gitea.fullname" . }}-config
+            {{- end }}
+        - name: scratch
+          emptyDir: {}
+        {{ if .Values.persistence.blobs.existingClaim }}
+        - name: blobs
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistence.blobs.existingClaim }}
+        {{- end }}
+        {{ if .Values.persistence.git.existingClaim }}
+        - name: git
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistence.git.existingClaim }}
+        {{- end }}
+        {{ if .Values.persistence.existingClaim }}
+        - name: gitea
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistence.existingClaim }}
+        {{- end }}
+        {{- with .Values.extraVolumes }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+        {{- if .Values.litestream.enabled }}
+        {{- include "litestream.volume" $litestreamConfig | nindent 8 }}
+        {{- end }}
+        {{- if .Values.redis.cluster.enabled | and .Values.redis.enabled }}
+        {{- include "redis.cluster.volume" $redisConfig | nindent 8 }}
+        {{- end }}
