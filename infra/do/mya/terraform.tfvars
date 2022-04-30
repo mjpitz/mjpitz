@@ -51,7 +51,12 @@ spaces = [
     name: "mya-litestream",
     region: "nyc3",
     acl: "private",
-  }
+  },
+  {
+    name: "mya-gitea",
+    region: "nyc3",
+    acl: "private",
+  },
 ]
 
 cdn = [
