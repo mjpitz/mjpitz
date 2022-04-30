@@ -1,0 +1,71 @@
+gitea:
+  enabled: true
+
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: "nginx"
+      kubernetes.io/tls-acme: "true"
+      cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      nginx.ingress.kubernetes.io/enable-cors: "true"
+      nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    hosts:
+      - host: code.pitz.tech
+    tls:
+      - secretName: gitea-tls
+        hosts:
+          - code.pitz.tech
+
+  persistence:
+    blobs:
+      enabled: false
+
+  config:
+    server:
+      overrides:
+        DISABLE_SSH: true
+
+    service:
+      overrides:
+        DISABLE_REGISTRATION: true
+        REQUIRE_SIGNIN_VIEW: true
+
+      explore:
+        overrides:
+          REQUIRE_SIGNIN_VIEW: false
+          DISABLE_USERS_PAGE: false
+
+    security:
+      installLock: true
+
+    email:
+      host: mx.pitz.tech
+      from: "Gitea <gitea@pitz.tech>"
+
+    blobs:
+      endpoint: nyc3.digitaloceanspaces.com
+      bucket: mya-gitea
+      region: nyc3
+      useSSL: true
+
+  # -- Backup the database using litestream.
+  litestream:
+    enabled: true
+
+    config:
+      dbs:
+        - path: /data/gitea/gitea.db
+          replicas:
+            - type: s3
+              bucket: mya-litestream
+              path: gitea/code.pitz.tech/
+              endpoint: nyc3.digitaloceanspaces.com
+              region: nyc3
+
+  # -- Use Redis-backed queues.
+  redis-queue:
+    enabled: true
+
+  # -- Cache data in redis.
+  redis:
+    enabled: true

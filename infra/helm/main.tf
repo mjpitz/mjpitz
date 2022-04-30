@@ -263,3 +263,34 @@ resource "helm_release" "maddy" {
   atomic = false
   wait   = false
 }
+
+data "external" "gitea" {
+  program = ["./hash.sh", "./gitea"]
+}
+
+resource "helm_release" "gitea" {
+  depends_on = [
+    helm_release.ingress_nginx,
+  ]
+
+  chart     = "./gitea"
+  namespace = "vcs"
+  name      = "gitea"
+
+  values = [
+    file("./gitea/values.yaml"),
+    file("./gitea/secret.yaml"),
+  ]
+
+  set {
+    name  = "global.terraform.hash"
+    value = data.external.gitea.result.sha256
+  }
+
+  dependency_update = true
+  create_namespace  = true
+
+  # don't do these here
+  atomic = false
+  wait   = false
+}
