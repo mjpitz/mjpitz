@@ -48,7 +48,7 @@ spaces = [
     acl: "private",
   },
   {
-    name: "mya-litestream",
+    name: "mya-maddy",
     region: "nyc3",
     acl: "private",
   },

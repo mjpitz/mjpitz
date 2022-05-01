@@ -9,10 +9,12 @@ metadata:
   labels:
     {{- include "maddy.labels" . | nindent 4 }}
 spec:
+  {{- if .Values.persistence.enabled }}
   strategy:
     rollingUpdate:
       maxUnavailable: 1
       maxSurge: 1
+  {{- end }}
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}

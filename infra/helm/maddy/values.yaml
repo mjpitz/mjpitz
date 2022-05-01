@@ -73,14 +73,14 @@ maddy:
         - path: /data/credentials.db
           replicas:
             - type: s3
-              bucket: mya-litestream
-              path: maddy/pitz.tech/credentials
+              bucket: mya-maddy
+              path: litestream/credentials
               endpoint: nyc3.digitaloceanspaces.com
               region: nyc3
         - path: /data/imapsql.db
           replicas:
             - type: s3
-              bucket: mya-litestream
-              path: maddy/pitz.tech/imapsql
+              bucket: mya-maddy
+              path: litestream/imapsql
               endpoint: nyc3.digitaloceanspaces.com
               region: nyc3

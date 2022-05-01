@@ -57,8 +57,8 @@ gitea:
         - path: /data/gitea/gitea.db
           replicas:
             - type: s3
-              bucket: mya-litestream
-              path: gitea/code.pitz.tech/
+              bucket: mya-gitea
+              path: litestream/
               endpoint: nyc3.digitaloceanspaces.com
               region: nyc3
 
