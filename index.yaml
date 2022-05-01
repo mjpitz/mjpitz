@@ -99,6 +99,32 @@ entries:
     urls:
     - https://github.com/mjpitz/mjpitz/releases/download/auth-1.6.0/auth-1.6.0.tgz
     version: 1.6.0
+  drone:
+  - apiVersion: v2
+    appVersion: 2.11.1
+    created: "2022-05-01T17:23:16.707711902Z"
+    dependencies:
+    - condition: litestream.enabled
+      name: litestream
+      repository: https://mjpitz.com
+      version: 22.4.0
+    - condition: redis-queue.enabled
+      name: redis-queue
+      repository: https://mjpitz.com
+      version: 22.4.0
+    description: "Easily deploy a Drone.IO, a container-native, continuous delivery platform. This chart provisions a Drone server \ninstance intended for smaller\n"
+    digest: ce4e7cb86d5bdd6c70d7f4bb9962f71eab13f7f975119fa3d0c603f12a22d7fd
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: drone
+    sources:
+    - https://github.com/harness/drone
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/drone
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/drone-22.5.0/drone-22.5.0.tgz
+    version: 22.5.0
   gitea:
   - apiVersion: v2
     appVersion: 1.16.6
