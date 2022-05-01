@@ -1,0 +1,99 @@
+{{- $litestreamConfig := dict "Chart" (dict "Name" "litestream") "Values" .Values.litestream "Release" .Release -}}
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "drone.fullname" . }}
+  labels:
+    {{- include "drone.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  serviceName: {{ include "drone.fullname" . }}
+  selector:
+    matchLabels:
+      {{- include "drone.selectorLabels" . | nindent 6 }}
+  {{- if not .Values.persistence.existingClaim | and .Values.persistence.enabled }}
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes:
+          - {{ .Values.persistence.accessMode }}
+        resources:
+          requests:
+            {{- .Values.persistence.resources | toYaml | nindent 12 }}
+        {{- with .Values.persistence.storageClass }}
+        storageClassName: {{ . }}
+        {{- end }}
+  {{- end }}
+  template:
+    metadata:
+      annotations:
+        checksum/secret: {{ include (print $.Template.BasePath "/secret.yaml") . | sha256sum }}
+        {{- with .Values.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+      labels:
+        {{- include "drone.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "drone.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      {{- if .Values.litestream.enabled }}
+      initContainers:
+        {{- include "litestream.init-container" $litestreamConfig | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args:
+            - -env-file
+            - /etc/drone/drone.env
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - mountPath: /etc/drone
+              name: config
+            - mountPath: /data
+              name: data
+        {{- if .Values.litestream.enabled }}
+        {{- include "litestream.container" $litestreamConfig | nindent 8 }}
+        {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      volumes:
+        - name: config
+          secret:
+            {{- if .Values.externalConfig.secretRef.name }}
+            secretName: {{ .Values.externalConfig.secretRef.name }}
+            {{- else }}
+            secretName: {{ include "drone.fullname" . }}-config
+            {{- end }}
+        {{ if .Values.persistence.existingClaim }}
+        - name: data
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistence.existingClaim }}
+        {{- end }}
+        {{- if .Values.litestream.enabled }}
+        {{- include "litestream.volume" $litestreamConfig | nindent 8 }}
+        {{- end }}

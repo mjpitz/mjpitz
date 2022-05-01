@@ -57,6 +57,11 @@ spaces = [
     region: "nyc3",
     acl: "private",
   },
+  {
+    name: "mya-drone",
+    region: "nyc3",
+    acl: "private",
+  },
 ]
 
 cdn = [

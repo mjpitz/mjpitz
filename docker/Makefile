@@ -27,7 +27,7 @@ docker/build:
 		--tag $(SKAFFOLD_DEFAULT_REPO)/$(IMAGE_NAME):latest-$(BASE_OS) \
 		--tag $(SKAFFOLD_DEFAULT_REPO)/$(IMAGE_NAME):$(IMAGE_VERSION)-$(BASE_OS) \
 		--tag $(SKAFFOLD_DEFAULT_REPO)/$(IMAGE_NAME):$(IMAGE_VERSION)-$(BASE_OS)$(BASE_OS_VERSION) \
-		--file ./Dockerfile
+		--file ./$(IMAGE_NAME)/Dockerfile
 
 docker/release:
 	docker buildx build ./$(IMAGE_NAME) \
@@ -42,12 +42,11 @@ docker/release:
 		--tag $(SKAFFOLD_DEFAULT_REPO)/$(IMAGE_NAME):latest-$(BASE_OS) \
 		--tag $(SKAFFOLD_DEFAULT_REPO)/$(IMAGE_NAME):$(IMAGE_VERSION)-$(BASE_OS) \
 		--tag $(SKAFFOLD_DEFAULT_REPO)/$(IMAGE_NAME):$(IMAGE_VERSION)-$(BASE_OS)$(BASE_OS_VERSION) \
-		--file ./Dockerfile \
+		--file ./$(IMAGE_NAME)/Dockerfile \
 		--push
 
 docker/base:
 	@[[ ! -e $(IMAGE_NAME)/alpine.sh ]] || { $(MAKE) $(TARGET) BASE_OS=alpine BASE_OS_VERSION=3.14; }
-	@[[ ! -e $(IMAGE_NAME)/centos.sh ]] || { $(MAKE) $(TARGET) BASE_OS=centos BASE_OS_VERSION=7; }
 	@[[ ! -e $(IMAGE_NAME)/ubuntu.sh ]] || { $(MAKE) $(TARGET) BASE_OS=ubuntu BASE_OS_VERSION=20.04; }
 
 build:

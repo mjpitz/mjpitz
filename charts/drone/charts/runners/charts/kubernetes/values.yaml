@@ -1,0 +1,87 @@
+# Default values for kubernetes.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+global:
+  rpc:
+    # -- This is used to authenticate the RPC connection to the server. The server and runners must be provided the same
+    #    secret value.
+    secret: ""
+    # -- Configure the public host address of drone.
+    host: ""
+    # -- Configure the protocol used by drone.
+    proto: ""
+
+image:
+  # -- Where can the image be found.
+  repository: drone/drone-runner-kube
+  # -- Specify the pull policy for the image.
+  pullPolicy: Always
+  # -- Configure which version of the image to use.
+  tag: ""
+
+# -- Specify the secret containing the registry credentials.
+imagePullSecrets: []
+# -- Override the name of the release.
+nameOverride: ""
+# -- Override the full name of the release.
+fullnameOverride: ""
+
+serviceAccount:
+  # -- Specifies whether a service account should be created.
+  create: true
+  # -- Annotations to add to the service account.
+  annotations: {}
+  # -- The name of the service account to use. If not set and create is true, a name is generated using the fullname
+  #    template.
+  name: ""
+
+# -- Annotations to add to the pod, typically used for assume roles.
+podAnnotations: {}
+
+# -- Specify the security context for the entire pod.
+podSecurityContext: {}
+  # fsGroup: 2000
+
+# -- Specify the security context for the kubernetes runner container.
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+# -- Specify the resources for the kubernetes runner container.
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+# -- Specify the node selector used to control which nodes pods are deployed to.
+nodeSelector: {}
+
+# -- Specify taints that the pods are willing to tolerate.
+tolerations: []
+
+# -- Specify affinity rules for the pods.
+affinity: {}
+
+config:
+  overrides: {}
+
+  rpc:
+    # -- This is used to authenticate the RPC connection to the server. The server and runners must be provided the same
+    #    secret value.
+    secret: ""
+    # -- Configure the public host address of drone.
+    host: ""
+    # -- Configure the protocol used by drone.
+    proto: ""

@@ -1,0 +1,328 @@
+# Default values for drone.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+global:
+  rpc:
+    # -- This is used to authenticate the RPC connection to the server. The server and runners must be provided the same
+    #    secret value.
+    secret: ""
+    # -- Configure the public host address of drone.
+    host: ""
+    # -- Configure the protocol used by drone.
+    proto: ""
+
+# -- Override the name of the release.
+nameOverride: ""
+# -- Override the full name of the release.
+fullnameOverride: ""
+
+## CONFIG
+
+externalConfig:
+  secretRef:
+    # -- Specify the name of the secret containing the raw configuration.
+    name: ""
+
+config:
+  overrides: {}
+#    DRONE_REGISTRATION_CLOSED
+#    DRONE_REPOSITORY_FILTER
+#    DRONE_STARLARK_ENABLED
+#    DRONE_STARLARK_STEP_LIMIT
+#    DRONE_USER_CREATE
+#    DRONE_USER_FILTER
+#    DRONE_LOGS_DEBUG
+#    DRONE_LOGS_TRACE
+
+  bitbucket:
+    enabled: false
+    # -- Configures the Bitbucket OAuth client id.
+    clientId: ""
+    # -- Configures the Bitbucket OAuth client secret.
+    clientSecret: ""
+    # -- Configures detailed trace logging for the Bitbucket authentication provide. This should be used to troubleshoot
+    #    problems with login when installing Drone server.
+    debug: false
+
+  git:
+    enabled: false
+    # -- Configures Drone to authenticate when cloning public repositories. This is only required when your source code
+    #    management system (e.g. GitHub Enterprise) has private mode enabled.
+    alwaysAuth: false
+    # -- Overrides the default git username used to authenticate and clone private repositories.
+    username: ""
+    # -- Overrides the default git password used to authenticate and clone private repositories.
+    password: ""
+
+  gitea:
+    enabled: false
+    # -- Configures the Gitea OAuth client id.
+    clientId: ""
+    # -- Configures the Gitea OAuth client secret.
+    clientSecret: ""
+    # -- Configures the Gitea server address. Example: `https://try.gitea.io`.
+    server: ""
+    # -- Disables tls verification when establishing a connection to the remote Gitea server.
+    skipVerify: false
+
+  gitee:
+    enabled: false
+    # -- Configures the Gitee OAuth authorize redirect url.
+    redirectUrl: ""
+    # -- A list of additional OAuth scopes.
+    scope: []
+    # -- Disables TLS verification when establishing a connection to the remote Gitee server.
+    skipVerify: false
+
+  github:
+    enabled: false
+    # -- Configures the GitHub OAuth client id.
+    clientId: ""
+    # -- Configures the GitHub OAuth client secret.
+    clientSecret: ""
+    # -- A list of additional OAuth scopes.
+    scope: []
+    # -- Configures the GitHub server address.
+    server: ""
+    # -- Disables TLS verification when establishing a connection to the remote GitHub server.
+    skipVerify: false
+
+  gitlab:
+    enabled: false
+    # -- Configures the GitLab OAuth client id.
+    clientId: ""
+    # -- Configures the GitLab OAuth client secret.
+    clientSecret: ""
+    # -- Configures the GitLab server address.
+    server: ""
+    # -- Disables TLS verification when establishing a connection to the remote GitLab server.
+    skipVerify: false
+
+  gogs:
+    enabled: false
+    # -- Configures the Gogs server address.
+    server: ""
+    # -- Disables TLS verification when establishing a connection to the remote Gogs server.
+    skipVerify: false
+
+  stash:
+    enabled: false
+    # -- Configures your Bitbucket server consumer key.
+    consumerKey: ""
+    # -- Configures your Bitbucket server private key file.
+    privateKeyFile: ""
+    # -- Configures the Bitbucket server address.
+    server: ""
+    # -- Disables TLS verification when establishing a connection to the remote Bitbucket server.
+    skipVerify: false
+
+  cleanup:
+    enabled: true
+    deadline:
+      # -- Configures the interval after which a pending job will be killed by the reaper.
+      pending: 24h
+      # -- Configures the interval after which a running job will be killed by the reaper.
+      running: 24h
+    # -- Configures the interval at which the reaper is run.
+    interval: 24h
+
+  cookie:
+    # -- Configures the secret key used to sign authentication cookies. If unset, a random value is generated each time
+    #    the server is started.
+    secret: ""
+    # -- Configures the authentication cookie expiration.
+    timeout: 720h
+
+  cron:
+    enabled: true
+    # -- Configures the interval at which the cron scheduler is run. The cron scheduler is not meant to be accurate and
+    #    batches pending jobs every hour by default.
+    interval: 1h
+
+  rpc:
+    # -- This is used to authenticate the RPC connection to the server. The server and runners must be provided the same
+    #    secret value.
+    secret: ""
+
+  database:
+    # -- Configures the database driver name. The default value is the sqlite3 driver. Alternate drivers are postgres
+    #    and mysql.
+    driver: sqlite3
+    # -- Configures the database connection string.
+    datasource: /data/drone.sqlite
+    # -- Set the maximum number of open DB connections from Drone. It is set to 0 by default and must be configured
+    #    before the system is first used.
+    maxConnections: 0
+    # -- Configures the secret key used to encrypt secrets in the database. Encryption is disabled by default and must
+    #    be configured before the system is first used.
+    secret: ""
+
+  blobs:
+    # -- Configures the S3 endpoint. The is often used with S3-compatible services such as Minio.
+    endpoint: ""
+    # -- Configures the S3 bucket name.
+    bucket: ""
+    # -- Configures the S3 client to use path style. The is often used with S3-compatible services such as Minio.
+    pathStyle: false
+    # -- Configures the S3 client to store log files in a bucket subdirectory.
+    prefix: ""
+    # -- The access key id used for authentication.
+    accessKeyId: ""
+    # -- The secret access key used for authentication.
+    secretAccessKey: ""
+    # -- The region where blobs will be stored.
+    region: ""
+
+  validate:
+    # -- Configures the endpoint for the validation plugin, used to enforce custom linting rules for your pipeline configuration.
+    endpoint: ""
+    # -- Shared secret used to create an http-signature.
+    secret: ""
+    # -- Disables TLS verification when establishing a connection to the remote validation server.
+    skipVerify: false
+
+  webhook:
+    # -- Configures a comma-separated list of webhook endpoints, to which global system events are delivered.
+    endpoint: []
+    # -- Provides a comma-separated list of events and actions that trigger webhooks.
+    events: []
+    # -- Shared secret used to create an http-signature.
+    secret: ""
+    # -- Disables TLS verification when establishing a connection to the remote webhook servers.
+    skipVerify: false
+
+# PERMISSIONS
+
+serviceAccount:
+  # -- Specifies whether a service account should be created.
+  create: true
+  # -- Annotations to add to the service account.
+  annotations: {}
+  # -- The name of the service account to use. If not set and create is true, a name is generated using the fullname
+  #    template.
+  name: ""
+
+## NETWORKING
+
+service:
+  # -- Specify the type of service to create.
+  type: ClusterIP
+  # -- Annotations to add to the service, typically used for ingress control.
+  annotations: { }
+
+ingress:
+  # -- Configure the ingress for Drone.
+  enabled: false
+  # -- Specify annotations for the ingress.
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - # -- Specify the domain host for the ingress.
+      host: chart-example.local
+
+  # -- Configure TLS for the ingress.
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+## POD
+
+persistence:
+  # -- Enable persistence for this deployment. This will configure a SQLite driver for storing information.
+  enabled: true
+
+  # -- Specify the name of an existing PersistentVolumeClaim to use.
+  existingClaim: ""
+
+  # -- Configure the access mode of the volume.
+  accessMode: ReadWriteOnce
+
+  resources:
+    # -- Specify the size of the volume.
+    storage: 10Gi
+
+  # -- Specify the storage class that should provision this claim.
+  storageClass: ""
+
+# -- Specify the secret containing the registry credentials.
+imagePullSecrets: []
+
+# -- Annotations to add to the pod, typically used for assume roles.
+podAnnotations: {}
+
+# -- Specify the security context for the entire pod.
+podSecurityContext: {}
+  # fsGroup: 2000
+
+# -- Specify the node selector used to control which nodes pods are deployed to.
+nodeSelector: {}
+
+# -- Specify taints that the pods are willing to tolerate.
+tolerations: []
+
+# -- Specify affinity rules for the pods.
+affinity: {}
+
+## APPLICATION
+
+image:
+  # -- Where can the image be found.
+  repository: ghcr.io/mjpitz/drone-server
+  # -- Specify the pull policy for the image.
+  pullPolicy: IfNotPresent
+  # -- Configure which version of the image to use.
+  tag: 2.11.1-alpine
+
+# -- Specify the security context for the drone container.
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+# -- Specify the resources for the drone container.
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+## SIDECAR
+
+litestream:
+  enabled: false
+
+  extraVolumeMounts:
+    - mountPath: /data
+      name: data
+
+  config:
+    dbs:
+      - path: /data/drone.sqlite
+        replicas: []
+
+## RUNNERS
+
+runners:
+  digitalocean:
+    enabled: false
+
+  kubernetes:
+    enabled: false
+
+## Dependency
+
+redis-queue:
+  # -- Enable redis for task queueing.
+  enabled: false

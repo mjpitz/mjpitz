@@ -294,3 +294,35 @@ resource "helm_release" "gitea" {
   atomic = false
   wait   = false
 }
+
+data "external" "drone" {
+  program = ["./hash.sh", "./drone"]
+}
+
+resource "helm_release" "drone" {
+  depends_on = [
+    helm_release.ingress_nginx,
+    helm_release.gitea,
+  ]
+
+  chart     = "./drone"
+  namespace = "cicd"
+  name      = "drone"
+
+  values = [
+    file("./drone/values.yaml"),
+    file("./drone/secret.yaml"),
+  ]
+
+  set {
+    name  = "global.terraform.hash"
+    value = data.external.drone.result.sha256
+  }
+
+  dependency_update = true
+  create_namespace  = true
+
+  # don't do these here
+  atomic = false
+  wait   = false
+}

@@ -9,6 +9,7 @@ clean:
 
 chart-docs:
 	@$(MAKE) .helm.docs CHART=auth
+	@$(MAKE) .helm.docs CHART=drone
 	@$(MAKE) .helm.docs CHART=gitea
 	@$(MAKE) .helm.docs CHART=litestream
 	@$(MAKE) .helm.docs CHART=maddy

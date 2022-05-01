@@ -1,0 +1,11 @@
+apiVersion: v2
+type: application
+name: digitalocean
+description: Deploy the Drone.IO DigitalOcean Runner.
+sources:
+  - https://github.com/mjpitz/mjpitz/tree/main/charts/drone
+maintainers:
+  - name: Mya Pitzeruse
+    url: https://mjpitz.com
+version: 0.0.0
+appVersion: latest

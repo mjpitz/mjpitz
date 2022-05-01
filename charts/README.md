@@ -9,6 +9,7 @@ helm repo add mjpitz https://mjpitz.com
 ```
 
 - [`auth`][auth-chart] - Deploys a replicated token authorization server for use with the `registry`.
+- [`drone`][drone-chart] - Deploys a [Drone][] server and optionally configure a `digitalocean` or `kubernetes` runner.
 - [`gitea`][gitea-chart] - Git with a cup of tea. [Gitea][] is a painless, self-hosted Git Service.
 - [`litestream`][litestream-chart] - Easily add a [litestream][] sidecar to any `Deployment`, `DaemonSet`, or `StatefulSet`.
 - [`maddy`][maddy-chart] - Deploys a single-tenant Maddy email server.
@@ -20,6 +21,7 @@ helm repo add mjpitz https://mjpitz.com
 [license]: LICENSE
 
 [auth-chart]: auth
+[drone-chart]: drone
 [gitea-chart]: gitea
 [litestream-chart]: litestream
 [maddy-chart]: maddy
@@ -28,6 +30,7 @@ helm repo add mjpitz https://mjpitz.com
 [registry-chart]: registry
 [storj-chart]: storj
 
+[Drone]: https://www.drone.io
 [Gitea]: https://gitea.com
 [litestream]: https://litestream.io
 [envoy]: https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/other_protocols/redis
