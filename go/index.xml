@@ -12,7 +12,9 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/go/cncf2017/</guid>
-      <description></description>
+      
+        <description></description>
+      
     </item>
     
     <item>
@@ -21,7 +23,9 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/go/degrade/</guid>
-      <description></description>
+      
+        <description></description>
+      
     </item>
     
     <item>
@@ -30,7 +34,9 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/go/deps/</guid>
-      <description></description>
+      
+        <description></description>
+      
     </item>
     
     <item>
@@ -39,7 +45,9 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/go/grpc-graphs/</guid>
-      <description></description>
+      
+        <description></description>
+      
     </item>
     
     <item>
@@ -48,7 +56,9 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/go/grpcjava/</guid>
-      <description></description>
+      
+        <description></description>
+      
     </item>
     
     <item>
@@ -57,7 +67,9 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/go/msgdelay/</guid>
-      <description></description>
+      
+        <description></description>
+      
     </item>
     
     <item>
@@ -66,7 +78,9 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/go/ossna2019/</guid>
-      <description></description>
+      
+        <description></description>
+      
     </item>
     
     <item>
@@ -75,7 +89,9 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/go/status/</guid>
-      <description></description>
+      
+        <description></description>
+      
     </item>
     
   </channel>

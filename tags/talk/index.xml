@@ -13,12 +13,14 @@
       <pubDate>Wed, 21 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/media/2019/08/21/moving-to-a-service-mesh/</guid>
-      <description>
+      
+        <description>
 &lt;p&gt;
   Similar to my talk on gRPC Java but with more of a focus on the addition of the service mesh.
 &lt;/p&gt;
 
 </description>
+      
     </item>
     
     <item>
@@ -27,7 +29,8 @@
       <pubDate>Thu, 21 Feb 2019 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/media/2019/02/21/moving-to-grpc-java/</guid>
-      <description>
+      
+        <description>
 &lt;p&gt;
   Historically, Indeed has used Boxcar (Indeed’s proprietary framework) to build distributed systems.
   Over the last year, we have been shifting several of our systems to use gRPC.
@@ -39,6 +42,7 @@
 &lt;/p&gt;
 
 </description>
+      
     </item>
     
   </channel>

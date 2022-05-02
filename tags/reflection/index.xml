@@ -13,10 +13,12 @@
       <pubDate>Mon, 27 Jan 2020 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/blog/2020/01/27/returning-to-indeed/</guid>
-      <description>&lt;p&gt;In November 2018, I decided to return to &lt;a href=&#34;https://indeed.com&#34;&gt;Indeed.com&lt;/a&gt;.
+      
+        <description>&lt;p&gt;In November 2018, I decided to return to &lt;a href=&#34;https://indeed.com&#34;&gt;Indeed.com&lt;/a&gt;.
 The decision to return did not come easy.
 Since then, I have frequently been asked about my reasons for rejoining.
 In this post, I hope to cover my interviewing process and some reasons that I had for returning.&lt;/p&gt;</description>
+      
     </item>
     
     <item>
@@ -25,7 +27,8 @@ In this post, I hope to cover my interviewing process and some reasons that I ha
       <pubDate>Wed, 31 Oct 2018 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/blog/2018/10/31/past-project-reflections-javascript/</guid>
-      <description>&lt;p&gt;Every now and then, a friend of mine reaches out and discuss previous projects we had worked on together.
+      
+        <description>&lt;p&gt;Every now and then, a friend of mine reaches out and discuss previous projects we had worked on together.
 As we looked back at code, there was some obvious lessons that we took away from the project.
 In this post, I reflect on several JavaScript projects that I have worked on over the course of my career.
 In each project, I will try to provide:&lt;/p&gt;
@@ -35,6 +38,7 @@ In each project, I will try to provide:&lt;/p&gt;
 &lt;li&gt;a critique about the approach taken to manage the project&lt;/li&gt;
 &lt;li&gt;what I would’ve done differently&lt;/li&gt;
 &lt;/ul&gt;</description>
+      
     </item>
     
   </channel>

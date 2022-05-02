@@ -13,7 +13,8 @@
       <pubDate>Wed, 16 Jun 2021 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/blog/2021/06/16/rpi-network-bridge/</guid>
-      <description>&lt;p&gt;It doesn&amp;rsquo;t happen a lot, but every so often I come across a device that isn&amp;rsquo;t wi-fi supported.
+      
+        <description>&lt;p&gt;It doesn&amp;rsquo;t happen a lot, but every so often I come across a device that isn&amp;rsquo;t wi-fi supported.
 This latest case was my security system.
 On one hand, I like that my cameras aren&amp;rsquo;t taking up bandwidth on my home network and that the system is largely a closed loop.
 On the other, not having access to my security system without having it tethered into the router is a bit of a pain.
@@ -32,6 +33,7 @@ For the first version of this, I wound up using a 3b+.
 I would likely upgrade this later on when I add the real-time processing.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Today, I show how I set up and configured a Raspberry Pi to act as a WAN client for a connected device.&lt;/p&gt;</description>
+      
     </item>
     
   </channel>

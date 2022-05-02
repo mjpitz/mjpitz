@@ -13,7 +13,8 @@
       <pubDate>Mon, 13 Jul 2020 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/media/2020/07/13/for-the-love-of-programming/</guid>
-      <description>
+      
+        <description>
 &lt;p&gt;
     Join me on the &lt;a href=&#34;https://podcast.womenintechshow.com/&#34;&gt;WomenInTech show&lt;/a&gt;.
     In this episode, Espree and I discuss my journey into tech.
@@ -22,6 +23,7 @@
 &lt;/p&gt;
 
 </description>
+      
     </item>
     
     <item>
@@ -30,7 +32,8 @@
       <pubDate>Thu, 21 Nov 2019 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/media/2019/11/21/cloud-dependencies/</guid>
-      <description>
+      
+        <description>
 &lt;p&gt;
     Join me on the &lt;a href=&#34;https://softwareengineeringdaily.com/&#34;&gt;Software Engineering Daily&lt;/a&gt; podcast. In this
     episode, Jeff and I discuss my personal project deps.cloud. We discuss benefits and tradeoffs to leveraging
@@ -38,6 +41,7 @@
 &lt;/p&gt;
 
 </description>
+      
     </item>
     
   </channel>

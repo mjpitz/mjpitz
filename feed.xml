@@ -13,11 +13,13 @@
       <pubDate>Sun, 20 Feb 2022 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/projects/varys/</guid>
-      <description>&lt;p&gt;A derivation-based secret engine and privileged access management system. This project was inspired by HashiCorp&amp;rsquo;s Vault
+      
+        <description>&lt;p&gt;A derivation-based secret engine and privileged access management system. This project was inspired by HashiCorp&amp;rsquo;s Vault
 project but with the goal of being easier to administer for smaller scale projects.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://img.shields.io/github/languages/top/mjpitz/varys?style=for-the-badge&#34; alt=&#34;Language: Go&#34;&gt;
 &lt;img src=&#34;https://img.shields.io/github/license/mjpitz/varys?style=for-the-badge&#34; alt=&#34;License: AGPL-3.0&#34;&gt;
 &lt;img src=&#34;https://img.shields.io/github/v/release/mjpitz/varys?style=for-the-badge&#34; alt=&#34;Latest release&#34;&gt;&lt;/p&gt;</description>
+      
     </item>
     
     <item>
@@ -26,11 +28,13 @@ project but with the goal of being easier to administer for smaller scale projec
       <pubDate>Sun, 16 Jan 2022 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/blog/2022/01/16/bye-bye-twitter/</guid>
-      <description>&lt;p&gt;Two months ago, I decided to try an experiment. I took my Twitter account that I reserved back in 2012 with hundreds of
+      
+        <description>&lt;p&gt;Two months ago, I decided to try an experiment. I took my Twitter account that I reserved back in 2012 with hundreds of
 followers and deactivated it. Before deactivation, I created a new account and invited folks to follow me there. This
 not only gave me a fresh start, but it also gave me a chance to curate who I follow and who I allow to follow me a bit
 better than I had before. After having it up for a few months, I finally decided to deactivate it. For good. Here&amp;rsquo;s why,
 and how my life has been better because of it.&lt;/p&gt;</description>
+      
     </item>
     
     <item>
@@ -39,11 +43,13 @@ and how my life has been better because of it.&lt;/p&gt;</description>
       <pubDate>Sat, 20 Nov 2021 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/projects/aetherfs/</guid>
-      <description>&lt;p&gt;A virtual file system for small to medium-sized datasets (MB or GB, not TB or PB). Like Docker, but for data. Inspired
+      
+        <description>&lt;p&gt;A virtual file system for small to medium-sized datasets (MB or GB, not TB or PB). Like Docker, but for data. Inspired
 by Indeeds RAD project and Netflix&amp;rsquo;s Hollow library.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://img.shields.io/github/languages/top/mjpitz/aetherfs?style=for-the-badge&#34; alt=&#34;Language: Go&#34;&gt;
 &lt;img src=&#34;https://img.shields.io/github/license/mjpitz/aetherfs?style=for-the-badge&#34; alt=&#34;License: AGPL-3.0&#34;&gt;
 &lt;img src=&#34;https://img.shields.io/github/v/release/mjpitz/aetherfs?style=for-the-badge&#34; alt=&#34;Latest release&#34;&gt;&lt;/p&gt;</description>
+      
     </item>
     
     <item>
@@ -52,7 +58,8 @@ by Indeeds RAD project and Netflix&amp;rsquo;s Hollow library.&lt;/p&gt;
       <pubDate>Wed, 16 Jun 2021 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/blog/2021/06/16/rpi-network-bridge/</guid>
-      <description>&lt;p&gt;It doesn&amp;rsquo;t happen a lot, but every so often I come across a device that isn&amp;rsquo;t wi-fi supported.
+      
+        <description>&lt;p&gt;It doesn&amp;rsquo;t happen a lot, but every so often I come across a device that isn&amp;rsquo;t wi-fi supported.
 This latest case was my security system.
 On one hand, I like that my cameras aren&amp;rsquo;t taking up bandwidth on my home network and that the system is largely a closed loop.
 On the other, not having access to my security system without having it tethered into the router is a bit of a pain.
@@ -71,6 +78,7 @@ For the first version of this, I wound up using a 3b+.
 I would likely upgrade this later on when I add the real-time processing.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Today, I show how I set up and configured a Raspberry Pi to act as a WAN client for a connected device.&lt;/p&gt;</description>
+      
     </item>
     
     <item>
@@ -79,12 +87,14 @@ I would likely upgrade this later on when I add the real-time processing.&lt;/li
       <pubDate>Thu, 22 Apr 2021 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/blog/2021/04/22/ha-redis/</guid>
-      <description>&lt;p&gt;Recently, I&amp;rsquo;ve found myself using &lt;a href=&#34;https://redis.io/&#34;&gt;Redis&lt;/a&gt; for more of the projects that I work on.  Redis can be used in a variety of
+      
+        <description>&lt;p&gt;Recently, I&amp;rsquo;ve found myself using &lt;a href=&#34;https://redis.io/&#34;&gt;Redis&lt;/a&gt; for more of the projects that I work on.  Redis can be used in a variety of
 ways. It provides functionality for queueing, set operations, bitmaps, streams, and so much more. Yet, most of my
 experience with Redis has been as a best-effort cache. Since it&amp;rsquo;s become a staple in my development, I figured it would
 be good to brush up on its operations.&lt;/p&gt;
 &lt;p&gt;In this post, I dive into the variety of ways Redis can be deployed. I&amp;rsquo;ll cover the benefits, tradeoffs, and even some
 uses for each deployment. Finally, I&amp;rsquo;ll describe the deployment that I recently put together.&lt;/p&gt;</description>
+      
     </item>
     
     <item>
@@ -93,7 +103,8 @@ uses for each deployment. Finally, I&amp;rsquo;ll describe the deployment that I
       <pubDate>Thu, 03 Dec 2020 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/blog/2020/12/03/renovate-your-gitops/</guid>
-      <description>&lt;p&gt;Every engineering organization struggles to stay up to date with the latest versions of applications they run.
+      
+        <description>&lt;p&gt;Every engineering organization struggles to stay up to date with the latest versions of applications they run.
 When an organization deploys an open source project, their versions start to drift from day one.
 The longer a project runs without an update, the more likely it is to contain a vulnerability.
 To help applications stay on top of library versions, the project &lt;a href=&#34;https://github.com/renovatebot/&#34;&gt;Renovate&lt;/a&gt; was developed.
@@ -105,6 +116,7 @@ What if Renovate could automatically manage something like a GitOps repository?
 This means organizations would no longer need to tediously query for newer versions of applications.
 Instead, they&amp;rsquo;d automatically receive a pull request when an update becomes available.
 In this blog post, I demonstrate how to set this up for an &lt;a href=&#34;https://github.com/argoproj/argo-cd/&#34;&gt;ArgoCD&lt;/a&gt; GitOps repository.&lt;/p&gt;</description>
+      
     </item>
     
     <item>
@@ -113,13 +125,15 @@ In this blog post, I demonstrate how to set this up for an &lt;a href=&#34;https
       <pubDate>Mon, 30 Nov 2020 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/blog/2020/11/30/pronoun-practice/</guid>
-      <description>&lt;p&gt;Historically, my blog has largely been focused on technology.
+      
+        <description>&lt;p&gt;Historically, my blog has largely been focused on technology.
 This was because of where I was in my career.
 And yet, my career doesn&amp;rsquo;t solely reside in tech.
 As a transgender individual, I frequently need to correct peoples use of my and other peoples pronouns.
 Whenever a transgender person needs to correct someone, we pay an emotional tax.
 While it might seem small at first, you need to consider that individuals full experience.
 In this post, I share techniques I found effective at getting better with pronouns.&lt;/p&gt;</description>
+      
     </item>
     
     <item>
@@ -128,7 +142,8 @@ In this post, I share techniques I found effective at getting better with pronou
       <pubDate>Mon, 23 Nov 2020 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/blog/2020/11/23/service-mesh-rpi/</guid>
-      <description>&lt;p&gt;Many people have asked how to support deploying service mesh to Raspberry Pis.
+      
+        <description>&lt;p&gt;Many people have asked how to support deploying service mesh to Raspberry Pis.
 It wasn&amp;rsquo;t until September that this started to be possible.
 &lt;a href=&#34;https://github.com/linkerd/linkerd2/releases/tag/stable-2.9.0&#34;&gt;Linkerd&lt;/a&gt; recently released support for arm64, but has had support for it in edge versions since August.
 Many &lt;a href=&#34;https://envoyproxy.io/&#34;&gt;envoy&lt;/a&gt; based service mesh have been blocked by support for an arm-compatible envoy image.&lt;/p&gt;
@@ -137,6 +152,7 @@ It has a long history of supporting a variety of execution platforms, operating 
 In 1.2, Hashicorp introduced &lt;a href=&#34;https://www.consul.io/docs/connect&#34;&gt;Consul Connect&lt;/a&gt;, an envoy based service mesh integration.
 This allows Consul to control and direct clients in the service mesh data plane.&lt;/p&gt;
 &lt;p&gt;In this post, I&amp;rsquo;ll demonstrate how to deploy Consul to support a service mesh on Raspberry Pis.&lt;/p&gt;</description>
+      
     </item>
     
     <item>
@@ -145,11 +161,13 @@ This allows Consul to control and direct clients in the service mesh data plane.
       <pubDate>Tue, 10 Nov 2020 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/blog/2020/11/10/path-based-routing-k8s/</guid>
-      <description>&lt;p&gt;Path based routing can be an extremely useful feature.
+      
+        <description>&lt;p&gt;Path based routing can be an extremely useful feature.
 It enables you to serve a single page app and an API on the same domain.
 This can often be helpful when starting a project, but don&amp;rsquo;t want to handle things like &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS&#34;&gt;cross-origin resource sharing&lt;/a&gt;.
 In a recent project, I wanted to split traffic between a static site hosted on GitHub (or S3) and an API running in the cluster.
 In this post, I&amp;rsquo;ll demonstrate some less common approaches to path based routing using &lt;a href=&#34;https://kubernetes.io&#34;&gt;Kubernetes&lt;/a&gt; resources.&lt;/p&gt;</description>
+      
     </item>
     
     <item>
@@ -158,7 +176,8 @@ In this post, I&amp;rsquo;ll demonstrate some less common approaches to path bas
       <pubDate>Tue, 03 Nov 2020 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/blog/2020/11/03/registry-123/</guid>
-      <description>&lt;p&gt;DockerHub&amp;rsquo;s &lt;a href=&#34;https://docs.docker.com/docker-hub/download-rate-limit/&#34;&gt;impending download rate limit&lt;/a&gt; presents an interesting challenge for some.
+      
+        <description>&lt;p&gt;DockerHub&amp;rsquo;s &lt;a href=&#34;https://docs.docker.com/docker-hub/download-rate-limit/&#34;&gt;impending download rate limit&lt;/a&gt; presents an interesting challenge for some.
 From hobbyists to open core ecosystems, projects are trying to find ways insulate their users.
 For my projects, I chose to deploy a simple registry mirror.
 One nice thing about this project is that the system is largely stateless (and cheap to run).
@@ -166,6 +185,7 @@ The &lt;code&gt;docker-registry&lt;/code&gt; and &lt;code&gt;docker-auth&lt;/cod
 The only stateful system you really need to manage is a cache (which isn&amp;rsquo;t mission critical).
 While &lt;a href=&#34;https://goharbor.io/&#34;&gt;Harbor&lt;/a&gt; was appealing, it had a lot more overhead than what I needed.
 In this post, I&amp;rsquo;ll walk you through my deployment.&lt;/p&gt;</description>
+      
     </item>
     
     <item>
@@ -174,11 +194,13 @@ In this post, I&amp;rsquo;ll walk you through my deployment.&lt;/p&gt;</descript
       <pubDate>Wed, 21 Oct 2020 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/blog/2020/10/21/local-ingress-domains-kind/</guid>
-      <description>&lt;p&gt;Tools like &lt;a href=&#34;https://minikube.sigs.k8s.io/docs/&#34;&gt;minikube&lt;/a&gt; and &lt;a href=&#34;https://kind.sigs.k8s.io/&#34;&gt;kind&lt;/a&gt; make it easy to get a &lt;a href=&#34;https://kubernetes.io/&#34;&gt;kubernetes&lt;/a&gt; cluster up and running locally.
+      
+        <description>&lt;p&gt;Tools like &lt;a href=&#34;https://minikube.sigs.k8s.io/docs/&#34;&gt;minikube&lt;/a&gt; and &lt;a href=&#34;https://kind.sigs.k8s.io/&#34;&gt;kind&lt;/a&gt; make it easy to get a &lt;a href=&#34;https://kubernetes.io/&#34;&gt;kubernetes&lt;/a&gt; cluster up and running locally.
 Unfortunately these tools are limited in their capabilities, namely a lack of load balancer support.
 As a result, the community developed solutions like &lt;a href=&#34;https://github.com/txn2/kubefwd&#34;&gt;kubefwd&lt;/a&gt; and &lt;code&gt;minikube tunnel&lt;/code&gt; to expose services.
 While this approach works, keeping a dedicated terminal open during development can be tedeous.
 In this post, I show how to set up an ingress controller in a kind cluster and pair it with a private, locally addressable domain.&lt;/p&gt;</description>
+      
     </item>
     
     <item>
@@ -187,11 +209,13 @@ In this post, I show how to set up an ingress controller in a kind cluster and p
       <pubDate>Mon, 19 Oct 2020 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/blog/2020/10/19/show-us-your-setup/</guid>
-      <description>&lt;p&gt;Indeed had an internal blog series called &amp;ldquo;Show us Your Setup.&amp;rdquo;
+      
+        <description>&lt;p&gt;Indeed had an internal blog series called &amp;ldquo;Show us Your Setup.&amp;rdquo;
 It was a great way to get an idea of others workspaces, the equipment they use, and software they run.
 Recently, I had noticed a few folks doing a walk through of their equipment.
 In this post, I will show and walk through my setup.
 I&amp;rsquo;ll discuss the things I like, and the things I don&amp;rsquo;t.&lt;/p&gt;</description>
+      
     </item>
     
     <item>
@@ -200,10 +224,12 @@ I&amp;rsquo;ll discuss the things I like, and the things I don&amp;rsquo;t.&lt;/
       <pubDate>Mon, 12 Oct 2020 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/blog/2020/10/12/learning-jsonnet/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://jsonnet.org/&#34;&gt;Jsonnet&lt;/a&gt; is a powerful data templating language.
+      
+        <description>&lt;p&gt;&lt;a href=&#34;https://jsonnet.org/&#34;&gt;Jsonnet&lt;/a&gt; is a powerful data templating language.
 It extends JSON with variables, conditionals, functions, imports and more.
 As an engineer who never touched the technology before, I often struggled to understand it.
 In this post, I share my experience learning Jsonnet and my thoughts behind developing a starter.&lt;/p&gt;</description>
+      
     </item>
     
     <item>
@@ -212,11 +238,13 @@ In this post, I share my experience learning Jsonnet and my thoughts behind deve
       <pubDate>Wed, 30 Sep 2020 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/blog/2020/09/30/slos-for-oss/</guid>
-      <description>&lt;p&gt;Open source software has been used to build organizations for years.
+      
+        <description>&lt;p&gt;Open source software has been used to build organizations for years.
 From libraries to complex infrastructure systems, the open source landscape provides a vast sea of solutions.
 For larger infrastructure projects, organizations are asking maintainers for &lt;a href=&#34;https://en.wikipedia.org/wiki/Service-level_objective&#34;&gt;service level objectives&lt;/a&gt; (SLOs).
 Many do not publish or provide any, even when projects come from organizations who likely had SLOs in place.
 In this post, I walk through my process for developing indicators and objectives for open source projects.&lt;/p&gt;</description>
+      
     </item>
     
     <item>
@@ -225,7 +253,9 @@ In this post, I walk through my process for developing indicators and objectives
       <pubDate>Wed, 23 Sep 2020 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/papers/cost-attribution/</guid>
-      <description>This paper details a solution to attributing cost across common infrastructure. The original target for the solution was a hybrid-cloud infrastructure. This led to a comprehensive, yet flexible design. As a result, its concepts are generic and support both cloud and non-cloud ecosystems. The goal is to provide a single view into spend across platforms. It needs to support a large variety of use cases, from leaders analyzing spend to teams understanding the cost of systems they consume.</description>
+      
+        <description>This paper details a solution to attributing cost across common infrastructure. The original target for the solution was a hybrid-cloud infrastructure. This led to a comprehensive, yet flexible design. As a result, its concepts are generic and support both cloud and non-cloud ecosystems. The goal is to provide a single view into spend across platforms. It needs to support a large variety of use cases, from leaders analyzing spend to teams understanding the cost of systems they consume.</description>
+      
     </item>
     
     <item>
@@ -234,12 +264,14 @@ In this post, I walk through my process for developing indicators and objectives
       <pubDate>Mon, 21 Sep 2020 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/blog/2020/09/21/protobuf-experience/</guid>
-      <description>&lt;p&gt;Google&amp;rsquo;s &lt;a href=&#34;https://developers.google.com/protocol-buffers/docs/&#34;&gt;Protocol Buffers&lt;/a&gt; can be a power piece of technology.
+      
+        <description>&lt;p&gt;Google&amp;rsquo;s &lt;a href=&#34;https://developers.google.com/protocol-buffers/docs/&#34;&gt;Protocol Buffers&lt;/a&gt; can be a power piece of technology.
 Yet, I often feel they are undervalued, underutilized, and underappreciated.
 Since joining &lt;a href=&#34;https://www.indeed.com&#34;&gt;Indeed&lt;/a&gt; back in 2013, I&amp;rsquo;ve had a fair amount of experience working with them.
 &lt;a href=&#34;https://engineering.indeedblog.com/blog/2012/12/boxcar-self-balancing-distributed-services-protocol/&#34;&gt;Boxcar&lt;/a&gt; (Indeed&amp;rsquo;s distributed services framework) was built on protocol buffers.
 As a previous maintainer of Boxcar, I&amp;rsquo;ve had hands on experience with low level components of protocol buffers.
 In this post, I discuss many of the benefits to using the technology.&lt;/p&gt;</description>
+      
     </item>
     
     <item>
@@ -248,7 +280,8 @@ In this post, I discuss many of the benefits to using the technology.&lt;/p&gt;<
       <pubDate>Thu, 06 Aug 2020 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/blog/2020/08/06/bfs-over-grpc-stream/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://deps.cloud&#34;&gt;deps.cloud&lt;/a&gt; is an open source project that I started.
+      
+        <description>&lt;p&gt;&lt;a href=&#34;https://deps.cloud&#34;&gt;deps.cloud&lt;/a&gt; is an open source project that I started.
 It&amp;rsquo;s a tool that helps companies understand how their projects relate to one another.
 It does this by parsing files like &lt;code&gt;package.json&lt;/code&gt; and storing the contents in a &lt;a href=&#34;https://en.wikipedia.org/wiki/Graph_(abstract_data_type)&#34;&gt;graph&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;While &lt;a href=&#34;https://en.wikipedia.org/wiki/Graph_database&#34;&gt;graph databases&lt;/a&gt; do exist, finding administrative and engineering support is often hard.
@@ -258,6 +291,7 @@ Since I wanted the workload to be portable, adopting a graph database was a non-
 The problem is that implementing graphs on relational databases tend to be slow.
 While there has been previous efforts, I felt &lt;a href=&#34;https://grpc.io&#34;&gt;gRPC&lt;/a&gt; was able to alleviate many of the problems they faced.
 In this post, I share lessons I learned while implementing such a graph database.&lt;/p&gt;</description>
+      
     </item>
     
     <item>
@@ -266,12 +300,14 @@ In this post, I share lessons I learned while implementing such a graph database
       <pubDate>Mon, 03 Aug 2020 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/blog/2020/08/03/digitalocean-setup/</guid>
-      <description>&lt;p&gt;In a &lt;a href=&#34;https://twitter.com/_mjpitz_/status/1290258134590603269&#34;&gt;Twitter thread&lt;/a&gt; between &lt;a href=&#34;https://twitter.com/vitobotta&#34;&gt;Vito Botta&lt;/a&gt;, &lt;a href=&#34;https://twitter.com/alexellisuk&#34;&gt;Alex Ellis&lt;/a&gt;, and &lt;a href=&#34;https://twitter.com/_mjpitz_&#34;&gt;myself&lt;/a&gt;,
+      
+        <description>&lt;p&gt;In a &lt;a href=&#34;https://twitter.com/_mjpitz_/status/1290258134590603269&#34;&gt;Twitter thread&lt;/a&gt; between &lt;a href=&#34;https://twitter.com/vitobotta&#34;&gt;Vito Botta&lt;/a&gt;, &lt;a href=&#34;https://twitter.com/alexellisuk&#34;&gt;Alex Ellis&lt;/a&gt;, and &lt;a href=&#34;https://twitter.com/_mjpitz_&#34;&gt;myself&lt;/a&gt;,
 we talked about how expensive &lt;a href=&#34;https://digitalocean.com/&#34;&gt;DigitalOcean&lt;/a&gt; can be for personal projects.
 You often start off small with just a cluster for compute.
 Eventually you need a database to store your user&amp;rsquo;s information.
 As time goes on, these needs only continue to grow.
 In this post, I share some cost-saving techniques I&amp;rsquo;ve used to reduce my bill.&lt;/p&gt;</description>
+      
     </item>
     
     <item>
@@ -280,10 +316,12 @@ In this post, I share some cost-saving techniques I&amp;rsquo;ve used to reduce 
       <pubDate>Sun, 02 Aug 2020 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/blog/2020/08/02/repo-impressions-3/</guid>
-      <description>&lt;p&gt;In this post, I bring a conclusion to my recent series on tracking impressions on repositories.
+      
+        <description>&lt;p&gt;In this post, I bring a conclusion to my recent series on tracking impressions on repositories.
 While it&amp;rsquo;s the last in the series, I will likely continue to post updates as time goes on.
 For now, I feel my current approach has yielded a wealth of information that I&amp;rsquo;m still fully digesting.
 In this conclusion, I will walk through how several of my metrics have changed since my &lt;a href=&#34;https://mjpitz.com/blog/2020/07/17/repo-impression-tracking/&#34;&gt;original approach&lt;/a&gt;.&lt;/p&gt;</description>
+      
     </item>
     
     <item>
@@ -292,9 +330,11 @@ In this conclusion, I will walk through how several of my metrics have changed s
       <pubDate>Mon, 27 Jul 2020 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/blog/2020/07/27/repo-impressions-2/</guid>
-      <description>&lt;p&gt;Last week, I put a &lt;a href=&#34;https://mjpitz.com/blog/2020/07/17/repo-impression-tracking&#34;&gt;tracking pixel&lt;/a&gt; on my GitHub repositories.
+      
+        <description>&lt;p&gt;Last week, I put a &lt;a href=&#34;https://mjpitz.com/blog/2020/07/17/repo-impression-tracking&#34;&gt;tracking pixel&lt;/a&gt; on my GitHub repositories.
 And I&amp;rsquo;ve got to say, the results have been really interesting.
 In this post, I follow up on what I&amp;rsquo;ve learned since last week, changes I&amp;rsquo;ve made, and improvements I&amp;rsquo;m working through.&lt;/p&gt;</description>
+      
     </item>
     
     <item>
@@ -303,11 +343,13 @@ In this post, I follow up on what I&amp;rsquo;ve learned since last week, change
       <pubDate>Fri, 17 Jul 2020 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/blog/2020/07/17/repo-impression-tracking/</guid>
-      <description>&lt;p&gt;When working on open source projects, I often wonder how to improve the experience for my users.
+      
+        <description>&lt;p&gt;When working on open source projects, I often wonder how to improve the experience for my users.
 In order to improve my users experience, I first need to be able to measure and monitor it.
 On a website, I have Google Analytics which can help me understand my users paths through my site.
 This capability isn&amp;rsquo;t as accessible on &lt;a href=&#34;https://github.com&#34;&gt;GitHub&lt;/a&gt; or &lt;a href=&#34;https://gitlab.com&#34;&gt;GitLab&lt;/a&gt; as it requires JavaScript execution.
 In this post, I will demonstrate how you can set up &lt;a href=&#34;https://analytics.google.com&#34;&gt;Google Analytics&lt;/a&gt; to track impressions on GitHub repositories.&lt;/p&gt;</description>
+      
     </item>
     
     <item>
@@ -316,7 +358,8 @@ In this post, I will demonstrate how you can set up &lt;a href=&#34;https://anal
       <pubDate>Mon, 13 Jul 2020 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/media/2020/07/13/for-the-love-of-programming/</guid>
-      <description>
+      
+        <description>
 &lt;p&gt;
     Join me on the &lt;a href=&#34;https://podcast.womenintechshow.com/&#34;&gt;WomenInTech show&lt;/a&gt;.
     In this episode, Espree and I discuss my journey into tech.
@@ -325,6 +368,7 @@ In this post, I will demonstrate how you can set up &lt;a href=&#34;https://anal
 &lt;/p&gt;
 
 </description>
+      
     </item>
     
     <item>
@@ -333,10 +377,12 @@ In this post, I will demonstrate how you can set up &lt;a href=&#34;https://anal
       <pubDate>Mon, 20 Apr 2020 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/blog/2020/04/20/k3s-rpi-year1/</guid>
-      <description>&lt;p&gt;Last year, I wrote a series of blog posts covering the set-up of my home lab.
+      
+        <description>&lt;p&gt;Last year, I wrote a series of blog posts covering the set-up of my home lab.
 The &lt;a href=&#34;https://mjpitz.com/blog/2019/04/10/k8s-k3s-rpi-oh-my/&#34;&gt;first&lt;/a&gt; post was on my decision to run &lt;a href=&#34;https://k3s.io/&#34;&gt;Rancher&amp;rsquo;s k3s&lt;/a&gt; on my &lt;a href=&#34;https://www.raspberrypi.org/&#34;&gt;Raspberry Pis&lt;/a&gt;.
 Since then, I&amp;rsquo;ve made a few modifications to how its all managed.
 In this post, I discuss some of these changes I made over the last year.&lt;/p&gt;</description>
+      
     </item>
     
     <item>
@@ -345,10 +391,12 @@ In this post, I discuss some of these changes I made over the last year.&lt;/p&g
       <pubDate>Sun, 05 Apr 2020 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/projects/rpi-cloud-init/</guid>
-      <description>&lt;p&gt;Configuration for my at-home cloud. My goal is to build a modular, relatively low-power system that can function in the
+      
+        <description>&lt;p&gt;Configuration for my at-home cloud. My goal is to build a modular, relatively low-power system that can function in the
 event of an outage or offline scenario.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://img.shields.io/github/languages/top/mjpitz/rpi-cloud-init?style=for-the-badge&#34; alt=&#34;Language: HCL&#34;&gt;
 &lt;img src=&#34;https://img.shields.io/github/license/mjpitz/rpi-cloud-init?style=for-the-badge&#34; alt=&#34;License: MIT&#34;&gt;&lt;/p&gt;</description>
+      
     </item>
     
     <item>
@@ -357,10 +405,12 @@ event of an outage or offline scenario.&lt;/p&gt;
       <pubDate>Mon, 27 Jan 2020 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/blog/2020/01/27/returning-to-indeed/</guid>
-      <description>&lt;p&gt;In November 2018, I decided to return to &lt;a href=&#34;https://indeed.com&#34;&gt;Indeed.com&lt;/a&gt;.
+      
+        <description>&lt;p&gt;In November 2018, I decided to return to &lt;a href=&#34;https://indeed.com&#34;&gt;Indeed.com&lt;/a&gt;.
 The decision to return did not come easy.
 Since then, I have frequently been asked about my reasons for rejoining.
 In this post, I hope to cover my interviewing process and some reasons that I had for returning.&lt;/p&gt;</description>
+      
     </item>
     
     <item>
@@ -369,10 +419,12 @@ In this post, I hope to cover my interviewing process and some reasons that I ha
       <pubDate>Fri, 24 Jan 2020 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/blog/2020/01/24/building-depscloud/</guid>
-      <description>&lt;p&gt;Over the last year, I&amp;rsquo;ve been heavily working on &lt;a href=&#34;https://deps.cloud&#34;&gt;deps.cloud&lt;/a&gt;.
+      
+        <description>&lt;p&gt;Over the last year, I&amp;rsquo;ve been heavily working on &lt;a href=&#34;https://deps.cloud&#34;&gt;deps.cloud&lt;/a&gt;.
 deps.cloud draws it&amp;rsquo;s inspiration from a project that I worked on at &lt;a href=&#34;https://indeed.com&#34;&gt;Indeed.com&lt;/a&gt;.
 Since it&amp;rsquo;s original inception, there had been a heavy push to move it into the open source space.
 In this post, I&amp;rsquo;ll discuss the process and rationale I applied as I rewrote this project in the open.&lt;/p&gt;</description>
+      
     </item>
     
     <item>
@@ -381,7 +433,8 @@ In this post, I&amp;rsquo;ll discuss the process and rationale I applied as I re
       <pubDate>Thu, 21 Nov 2019 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/media/2019/11/21/cloud-dependencies/</guid>
-      <description>
+      
+        <description>
 &lt;p&gt;
     Join me on the &lt;a href=&#34;https://softwareengineeringdaily.com/&#34;&gt;Software Engineering Daily&lt;/a&gt; podcast. In this
     episode, Jeff and I discuss my personal project deps.cloud. We discuss benefits and tradeoffs to leveraging
@@ -389,6 +442,7 @@ In this post, I&amp;rsquo;ll discuss the process and rationale I applied as I re
 &lt;/p&gt;
 
 </description>
+      
     </item>
     
     <item>
@@ -397,7 +451,8 @@ In this post, I&amp;rsquo;ll discuss the process and rationale I applied as I re
       <pubDate>Thu, 17 Oct 2019 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/blog/2019/10/17/kubernetes-service-precheck/</guid>
-      <description>&lt;p&gt;Back in July, I found myself needing to better coordinate deployments of my applications to &lt;a href=&#34;https://kubernetes.io/&#34;&gt;Kubernetes&lt;/a&gt;.
+      
+        <description>&lt;p&gt;Back in July, I found myself needing to better coordinate deployments of my applications to &lt;a href=&#34;https://kubernetes.io/&#34;&gt;Kubernetes&lt;/a&gt;.
 After searching around, I found many ways that people where trying to solve this problem.
 Some used shell scripts to apply multiple YAML files with a fixed time sleep between them.
 Others used shell scripts and tailed the rollout using &lt;code&gt;kubectl rollout status -w&lt;/code&gt;.
@@ -409,6 +464,7 @@ The first was inspecting dependencies within the application itself.
 At Indeed, we leverage our &lt;a href=&#34;http://github.com/indeedeng/status&#34;&gt;status&lt;/a&gt; library to do this.
 The second was to enable services to be checked, independent of the application.&lt;/p&gt;
 &lt;p&gt;In this post, I’ll demonstrate how to use my &lt;a href=&#34;https://hub.docker.com/r/mjpitz/service-precheck&#34;&gt;service-precheck&lt;/a&gt; initialization container (built off of the Alibaba blog post) to ensure upstream systems are up before attempting to start a downstream system.&lt;/p&gt;</description>
+      
     </item>
     
     <item>
@@ -417,12 +473,14 @@ The second was to enable services to be checked, independent of the application.
       <pubDate>Wed, 21 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/media/2019/08/21/moving-to-a-service-mesh/</guid>
-      <description>
+      
+        <description>
 &lt;p&gt;
   Similar to my talk on gRPC Java but with more of a focus on the addition of the service mesh.
 &lt;/p&gt;
 
 </description>
+      
     </item>
     
     <item>
@@ -431,7 +489,8 @@ The second was to enable services to be checked, independent of the application.
       <pubDate>Tue, 07 May 2019 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/blog/2019/05/07/docker-buildx/</guid>
-      <description>&lt;p&gt;When you build a container image, it&amp;rsquo;s typically only built for one platform (&lt;code&gt;linux&lt;/code&gt;) and one architecture (&lt;code&gt;amd64&lt;/code&gt;).
+      
+        <description>&lt;p&gt;When you build a container image, it&amp;rsquo;s typically only built for one platform (&lt;code&gt;linux&lt;/code&gt;) and one architecture (&lt;code&gt;amd64&lt;/code&gt;).
 As the Internet of Things continues to grow, the demand for more &lt;code&gt;arm&lt;/code&gt; images increased as well.
 Traditionally, in order to produce an &lt;code&gt;arm&lt;/code&gt; image, you need an &lt;code&gt;arm&lt;/code&gt; device to do the build on.
 As a result, most projects wind up missing &lt;code&gt;arm&lt;/code&gt; support.&lt;/p&gt;
@@ -439,6 +498,7 @@ As a result, most projects wind up missing &lt;code&gt;arm&lt;/code&gt; support.
 With BuildKit, you build container images across multiple architectures concurrently.
 This core utility backs &lt;code&gt;docker buildx&lt;/code&gt;, a multi-architecture build utility for docker.
 In this post, I&amp;rsquo;ll discuss why you should produce multi-architecture container images and demonstrate how to use &lt;code&gt;docker buildx&lt;/code&gt; to do it.&lt;/p&gt;</description>
+      
     </item>
     
     <item>
@@ -447,8 +507,10 @@ In this post, I&amp;rsquo;ll discuss why you should produce multi-architecture c
       <pubDate>Thu, 02 May 2019 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/blog/2019/05/02/from-apache2-to-mit/</guid>
-      <description>Yesterday, I decided to switch the license that I apply to my personal projects. Many open source projects use the Apache 2.0 license. After reading through it a few times, I liked the level of coverage that it provided. It was however a bit wordy in my opinion. These were often simple little side projects that I was hacking on in my free time.
+      
+        <description>Yesterday, I decided to switch the license that I apply to my personal projects. Many open source projects use the Apache 2.0 license. After reading through it a few times, I liked the level of coverage that it provided. It was however a bit wordy in my opinion. These were often simple little side projects that I was hacking on in my free time.
 After some discussion with others in the community and a few podcasts, I decided to make a switch.</description>
+      
     </item>
     
     <item>
@@ -457,10 +519,12 @@ After some discussion with others in the community and a few podcasts, I decided
       <pubDate>Sun, 21 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/blog/2019/04/21/monitoring-rpi-cluster/</guid>
-      <description>&lt;p&gt;In my last few posts, I talked a bit about my at home development cluster.
+      
+        <description>&lt;p&gt;In my last few posts, I talked a bit about my at home development cluster.
 Due to the flexibility of my cluster, I wanted to provide a monitoring solution that was valuable across each technology I use.
 In this post, I discuss how monitoring is setup on my cluster.
 I&amp;rsquo;ll walk through setting up each node, the Prometheus server, and the Graphana UI.&lt;/p&gt;</description>
+      
     </item>
     
     <item>
@@ -469,9 +533,11 @@ I&amp;rsquo;ll walk through setting up each node, the Prometheus server, and the
       <pubDate>Fri, 12 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/blog/2019/04/12/rpi-cluster-setup/</guid>
-      <description>&lt;p&gt;Previously, I talked about the different orchestration technologies that I&amp;rsquo;ve run on my Raspberry Pi cluster.
+      
+        <description>&lt;p&gt;Previously, I talked about the different orchestration technologies that I&amp;rsquo;ve run on my Raspberry Pi cluster.
 That post was rather high level and only contained details relating to k3s.
 In this post, we&amp;rsquo;ll take a more in depth look at my cluster setup and my management process around it.&lt;/p&gt;</description>
+      
     </item>
     
     <item>
@@ -480,8 +546,10 @@ In this post, we&amp;rsquo;ll take a more in depth look at my cluster setup and 
       <pubDate>Wed, 10 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/blog/2019/04/10/k8s-k3s-rpi-oh-my/</guid>
-      <description>&lt;p&gt;Over the last few days, I&amp;rsquo;ve been revisiting &lt;a href=&#34;https://kubernetes.io&#34;&gt;Kubernetes&lt;/a&gt; on my Raspberry Pi cluster.
+      
+        <description>&lt;p&gt;Over the last few days, I&amp;rsquo;ve been revisiting &lt;a href=&#34;https://kubernetes.io&#34;&gt;Kubernetes&lt;/a&gt; on my Raspberry Pi cluster.
 I hope to share what I learned in the process and some of the tooling that I discovered along the way.&lt;/p&gt;</description>
+      
     </item>
     
     <item>
@@ -490,11 +558,13 @@ I hope to share what I learned in the process and some of the tooling that I dis
       <pubDate>Sun, 17 Mar 2019 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/blog/2019/03/17/64bit-raspberry-pi/</guid>
-      <description>&lt;p&gt;I was quite surprised to see how under documented installing a 64 bit operating system onto a Raspberry Pi is.
+      
+        <description>&lt;p&gt;I was quite surprised to see how under documented installing a 64 bit operating system onto a Raspberry Pi is.
 Many articles out there talk about needing to compile Linux, which sounds oh-so-pleasant.
 One day, I stumbled across a 64bit OpenSUSE version that was compatible, but the installation instructions required a Linux OS to be done properly.
 Since I primarily work on OSX, this presented yet another barrier.&lt;/p&gt;
 &lt;p&gt;After a lot of searching around, I finally found a straight forward and simple way to do it.&lt;/p&gt;</description>
+      
     </item>
     
     <item>
@@ -503,7 +573,8 @@ Since I primarily work on OSX, this presented yet another barrier.&lt;/p&gt;
       <pubDate>Thu, 21 Feb 2019 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/media/2019/02/21/moving-to-grpc-java/</guid>
-      <description>
+      
+        <description>
 &lt;p&gt;
   Historically, Indeed has used Boxcar (Indeed’s proprietary framework) to build distributed systems.
   Over the last year, we have been shifting several of our systems to use gRPC.
@@ -515,6 +586,7 @@ Since I primarily work on OSX, this presented yet another barrier.&lt;/p&gt;
 &lt;/p&gt;
 
 </description>
+      
     </item>
     
     <item>
@@ -523,7 +595,8 @@ Since I primarily work on OSX, this presented yet another barrier.&lt;/p&gt;
       <pubDate>Wed, 30 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/blog/2019/01/30/gitfs-a-fuse-file-system/</guid>
-      <description>&lt;p&gt;During my first employment at Indeed, I cloned every repository down to my machine.
+      
+        <description>&lt;p&gt;During my first employment at Indeed, I cloned every repository down to my machine.
 This approach worked for a while when the number of repositories was small.
 As the organization has grown, the solution quickly became unmanageable.
 While many people do not work across every repository, many are familiar with the pain of setting up a new machine.
@@ -531,6 +604,7 @@ I wrote &lt;a href=&#34;https://github.com/mjpitz/gitfs&#34;&gt;gitfs&lt;/a&gt; 
 First, to reduce the time spent setting up a new development environment.
 Second, to remove the need to figure out where all my projects need to be cloned.
 In this post, I discuss some challenges faced and lessons learned in writing my first file system.&lt;/p&gt;</description>
+      
     </item>
     
     <item>
@@ -539,10 +613,12 @@ In this post, I discuss some challenges faced and lessons learned in writing my 
       <pubDate>Sat, 01 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/projects/depscloud/</guid>
-      <description>&lt;p&gt;Index and query dependencies across your company&amp;rsquo;s private repositories.&lt;/p&gt;
+      
+        <description>&lt;p&gt;Index and query dependencies across your company&amp;rsquo;s private repositories.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://img.shields.io/github/languages/top/depscloud/depscloud?style=for-the-badge&#34; alt=&#34;Language: Go&#34;&gt;
 &lt;img src=&#34;https://img.shields.io/github/license/depscloud/depscloud?style=for-the-badge&#34; alt=&#34;License: MIT&#34;&gt;
 &lt;img src=&#34;https://img.shields.io/github/v/release/depscloud/depscloud?style=for-the-badge&#34; alt=&#34;Latest release&#34;&gt;&lt;/p&gt;</description>
+      
     </item>
     
     <item>
@@ -551,7 +627,8 @@ In this post, I discuss some challenges faced and lessons learned in writing my 
       <pubDate>Wed, 31 Oct 2018 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/blog/2018/10/31/past-project-reflections-javascript/</guid>
-      <description>&lt;p&gt;Every now and then, a friend of mine reaches out and discuss previous projects we had worked on together.
+      
+        <description>&lt;p&gt;Every now and then, a friend of mine reaches out and discuss previous projects we had worked on together.
 As we looked back at code, there was some obvious lessons that we took away from the project.
 In this post, I reflect on several JavaScript projects that I have worked on over the course of my career.
 In each project, I will try to provide:&lt;/p&gt;
@@ -561,6 +638,7 @@ In each project, I will try to provide:&lt;/p&gt;
 &lt;li&gt;a critique about the approach taken to manage the project&lt;/li&gt;
 &lt;li&gt;what I would’ve done differently&lt;/li&gt;
 &lt;/ul&gt;</description>
+      
     </item>
     
     <item>
@@ -569,10 +647,12 @@ In each project, I will try to provide:&lt;/p&gt;
       <pubDate>Sun, 28 Oct 2018 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/blog/2018/10/28/lambda-handler-lifetime/</guid>
-      <description>&lt;p&gt;While working at Dosh, I had pretty heavy exposure to managing NodeJS services running in AWS Lambda.
+      
+        <description>&lt;p&gt;While working at Dosh, I had pretty heavy exposure to managing NodeJS services running in AWS Lambda.
 During that time, I had learned a few things about the platform that can be leveraged when writing Lambda services.
 Some of these lessons may influence how you write services but can also give you some performance boosts.
 It’s important to note that some of the behaviors that I observed about AWS Lambda may not apply to other serverless technologies.&lt;/p&gt;</description>
+      
     </item>
     
     <item>
@@ -581,10 +661,12 @@ It’s important to note that some of the behaviors that I observed about AWS La
       <pubDate>Sat, 27 Oct 2018 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/blog/2018/10/27/lambda-local-development/</guid>
-      <description>&lt;p&gt;While working at Dosh, I had pretty heavy exposure to managing NodeJS services running in AWS Lambda.
+      
+        <description>&lt;p&gt;While working at Dosh, I had pretty heavy exposure to managing NodeJS services running in AWS Lambda.
 During that time, I had learned a few things about the platform that can be leveraged when writing Lambda services.
 Some of these lessons may influence how you write services but can also give you some performance boosts.
 It’s important to note that some of the behaviors that I observed about AWS Lambda may not apply to other serverless technologies.&lt;/p&gt;</description>
+      
     </item>
     
     <item>
@@ -593,7 +675,8 @@ It’s important to note that some of the behaviors that I observed about AWS La
       <pubDate>Mon, 07 May 2018 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/blog/2018/05/07/nodejs-grpc-code-reference/</guid>
-      <description>&lt;p&gt;While working at Indeed, I did a fair amount with &lt;a href=&#34;https://grpc.io/&#34;&gt;gRPC&lt;/a&gt;.
+      
+        <description>&lt;p&gt;While working at Indeed, I did a fair amount with &lt;a href=&#34;https://grpc.io/&#34;&gt;gRPC&lt;/a&gt;.
 I became rather familiar with the Java, Go, NodeJS, and python implementations.
 During my vacation between jobs, I decided to revisit one of my old projects and try to migrate it to using gRPC.
 By doing so, I would be able to support a larger variety of request types (streaming, non-streaming, etc).
@@ -602,6 +685,7 @@ Many of the ones I could get my hands on only demonstrated unary methods and not
 After a lot of time digging through source and a few implementations online, I finally assembled a good reference.&lt;/p&gt;
 &lt;p&gt;In this post, I only wanted to detail what the method calls look like on both ends of the wire.
 There are some additional best practices that should be taken into consideration, but I do not plan on covering those here.&lt;/p&gt;</description>
+      
     </item>
     
     <item>
@@ -610,9 +694,11 @@ There are some additional best practices that should be taken into consideration
       <pubDate>Sat, 01 Apr 2017 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/blog/2017/04/01/spring-component-scanning/</guid>
-      <description>&lt;p&gt;Component scanning packages can be both your best friend and worst nightmare.
+      
+        <description>&lt;p&gt;Component scanning packages can be both your best friend and worst nightmare.
 In this post, I will cover several bad practices when it comes to component scanning.
 In detailing a few of these anti-patterns, I will also offer a few better patterns that are much cleaner to use.&lt;/p&gt;</description>
+      
     </item>
     
     <item>
@@ -621,11 +707,13 @@ In detailing a few of these anti-patterns, I will also offer a few better patter
       <pubDate>Sat, 01 Apr 2017 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/blog/2017/04/01/delaying-message-processing/</guid>
-      <description>&lt;p&gt;At Indeed, we always consider what’s best for the job seeker.
+      
+        <description>&lt;p&gt;At Indeed, we always consider what’s best for the job seeker.
 When a job seeker applies for a job, we want them to have every opportunity to be hired.
 It is unacceptable for a job seeker to miss an employment opportunity because their application was waiting to be processed while the employer makes a hire.
 The team responsible for handling applies to jobs posted on Indeed maintains &lt;a href=&#34;https://en.wikipedia.org/wiki/Service_level_objective&#34;&gt;service level objectives&lt;/a&gt; (SLOs) for application processing time.
 We constantly consider better solutions for processing applications and scaling this system.&lt;/p&gt;</description>
+      
     </item>
     
     <item>
@@ -634,9 +722,11 @@ We constantly consider better solutions for processing applications and scaling 
       <pubDate>Sat, 01 Apr 2017 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/blog/2017/04/01/spring-bean-method-invocation/</guid>
-      <description>&lt;p&gt;In my day to day development, I spend a fair bit of time working with &lt;a href=&#34;https://spring.io/&#34;&gt;Spring&lt;/a&gt; since it offers a lot of scaffolding to get a project off the ground.
+      
+        <description>&lt;p&gt;In my day to day development, I spend a fair bit of time working with &lt;a href=&#34;https://spring.io/&#34;&gt;Spring&lt;/a&gt; since it offers a lot of scaffolding to get a project off the ground.
 At &lt;a href=&#34;https://www.indeed.com/&#34;&gt;Indeed&lt;/a&gt;, I spent a fair bit of time upgrading us from Spring 3 to Spring 4 and came across many good uses of Spring and many bad ones too.
 In this &lt;em&gt;Bad Practices&lt;/em&gt; series, I will talk about some of these bad practices, why they should be avoided, and what you can do instead.&lt;/p&gt;</description>
+      
     </item>
     
     <item>
@@ -645,13 +735,15 @@ In this &lt;em&gt;Bad Practices&lt;/em&gt; series, I will talk about some of the
       <pubDate>Thu, 19 Jan 2017 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/blog/2017/01/19/gracefully-degrading-functionality-using-status/</guid>
-      <description>&lt;p&gt;In a previous &lt;a href=&#34;https://mjpitz.com/blog/2015/07/10/status-java-library-for-system-status-health-checks/&#34;&gt;blog post&lt;/a&gt;, we described how to use our &lt;a href=&#34;https://github.com/indeedeng/status&#34;&gt;Status&lt;/a&gt; library to create a robust health check for your applications.
+      
+        <description>&lt;p&gt;In a previous &lt;a href=&#34;https://mjpitz.com/blog/2015/07/10/status-java-library-for-system-status-health-checks/&#34;&gt;blog post&lt;/a&gt;, we described how to use our &lt;a href=&#34;https://github.com/indeedeng/status&#34;&gt;Status&lt;/a&gt; library to create a robust health check for your applications.
 In this follow-up, we show how you can check and degrade your application during an outage by:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;short-circuiting code paths of your application&lt;/li&gt;
 &lt;li&gt;removing a single application instance from a data center load balancer&lt;/li&gt;
 &lt;li&gt;removing an entire data center from rotation at the DNS level&lt;/li&gt;
 &lt;/ul&gt;</description>
+      
     </item>
     
     <item>
@@ -660,13 +752,15 @@ In this follow-up, we show how you can check and degrade your application during
       <pubDate>Sun, 08 May 2016 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/blog/2016/05/08/docker-machine-dns-resolution-using-consul/</guid>
-      <description>&lt;p&gt;Developers at &lt;a href=&#34;http://www.indeed.com&#34;&gt;Indeed&lt;/a&gt; have &lt;em&gt;recently&lt;/em&gt; switched over to using docker for local development.
+      
+        <description>&lt;p&gt;Developers at &lt;a href=&#34;http://www.indeed.com&#34;&gt;Indeed&lt;/a&gt; have &lt;em&gt;recently&lt;/em&gt; switched over to using docker for local development.
 Being one of the earlier adopters, I fell in love with the type of workflow that it enabled.
 It allowed me to create seamless environments between both my desktop and portable workstation.
 The tooling did this by allowing you to resolve container names as hosts in your web browser.
 For example, if I had a web application named &lt;strong&gt;indigo&lt;/strong&gt; running on port 4000, I could go to http://indigo:4000 to access that application.
 After a few weeks of enjoying the simplicity of this development workflow, I craved a similar type of environment for some of the larger scale projects that I do at home.
 In this blog post, I will cover some of the basics that allowed me to enable this type of development.&lt;/p&gt;</description>
+      
     </item>
     
     <item>
@@ -675,7 +769,8 @@ In this blog post, I will cover some of the basics that allowed me to enable thi
       <pubDate>Sat, 05 Dec 2015 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/blog/2015/12/05/introducing-laas/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/jpitz/laas&#34;&gt;LAAS&lt;/a&gt; is an abbreviation for &lt;a href=&#34;http://leveldb.org/&#34;&gt;LevelDB&lt;/a&gt; as a service.
+      
+        <description>&lt;p&gt;&lt;a href=&#34;https://github.com/jpitz/laas&#34;&gt;LAAS&lt;/a&gt; is an abbreviation for &lt;a href=&#34;http://leveldb.org/&#34;&gt;LevelDB&lt;/a&gt; as a service.
 &lt;a href=&#34;http://leveldb.org/&#34;&gt;LevelDB&lt;/a&gt; is an implementation of a &lt;a href=&#34;https://en.wikipedia.org/wiki/Log-structured_merge-tree&#34;&gt;log structured merge tree&lt;/a&gt; (LSMTree) provided by Google.
 This data structure aimed at providing a high write throughput.
 When attempting to use &lt;a href=&#34;http://leveldb.org/&#34;&gt;LevelDB&lt;/a&gt;, I found it difficult to track down supported libraries in different languages.
@@ -683,6 +778,7 @@ Additionally, the fact that it&amp;rsquo;s labeled as a database and doesn&amp;r
 I wrote &lt;a href=&#34;https://github.com/jpitz/laas&#34;&gt;LAAS&lt;/a&gt; to make the adoption of &lt;a href=&#34;http://leveldb.org/&#34;&gt;LevelDB&lt;/a&gt; easy for any language.
 It does this by introducing a RESTful API to the underlying functionality.
 HTTP request libraries are a dime a dozen, which drove the choice for a RESTful implementation.&lt;/p&gt;</description>
+      
     </item>
     
     <item>
@@ -691,9 +787,11 @@ HTTP request libraries are a dime a dozen, which drove the choice for a RESTful 
       <pubDate>Fri, 10 Jul 2015 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/blog/2015/07/10/status-java-library-for-system-status-health-checks/</guid>
-      <description>&lt;p&gt;We are excited to highlight the open source availability of &lt;a href=&#34;https://github.com/indeedeng/status&#34;&gt;Status&lt;/a&gt;, a Java library that can report a system’s status in a readable format.
+      
+        <description>&lt;p&gt;We are excited to highlight the open source availability of &lt;a href=&#34;https://github.com/indeedeng/status&#34;&gt;Status&lt;/a&gt;, a Java library that can report a system’s status in a readable format.
 The Status library enables dynamic health checks and monitoring of system dependencies.
 In this post, we will show how to add health checks to your applications.&lt;/p&gt;</description>
+      
     </item>
     
     <item>
@@ -702,8 +800,10 @@ In this post, we will show how to add health checks to your applications.&lt;/p&
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/charts/</guid>
-      <description>Charts My personal helm charts are provided under the MIT License. While I&amp;rsquo;m the primary consumer of these charts, I have made them generally available for others to use. You may be able to find some of these charts elsewhere, but many of my deployments vary quite a bit from existing ones.
+      
+        <description>Charts My personal helm charts are provided under the MIT License. While I&amp;rsquo;m the primary consumer of these charts, I have made them generally available for others to use. You may be able to find some of these charts elsewhere, but many of my deployments vary quite a bit from existing ones.
 1  helm repo add mjpitz https://mjpitz.com    auth - Deploys a replicated token authorization server for use with the registry.</description>
+      
     </item>
     
     <item>
@@ -712,7 +812,9 @@ In this post, we will show how to add health checks to your applications.&lt;/p&
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/go/cncf2017/</guid>
-      <description></description>
+      
+        <description></description>
+      
     </item>
     
     <item>
@@ -721,7 +823,9 @@ In this post, we will show how to add health checks to your applications.&lt;/p&
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/go/degrade/</guid>
-      <description></description>
+      
+        <description></description>
+      
     </item>
     
     <item>
@@ -730,7 +834,9 @@ In this post, we will show how to add health checks to your applications.&lt;/p&
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/go/deps/</guid>
-      <description></description>
+      
+        <description></description>
+      
     </item>
     
     <item>
@@ -739,7 +845,9 @@ In this post, we will show how to add health checks to your applications.&lt;/p&
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/go/grpc-graphs/</guid>
-      <description></description>
+      
+        <description></description>
+      
     </item>
     
     <item>
@@ -748,7 +856,9 @@ In this post, we will show how to add health checks to your applications.&lt;/p&
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/go/grpcjava/</guid>
-      <description></description>
+      
+        <description></description>
+      
     </item>
     
     <item>
@@ -757,7 +867,9 @@ In this post, we will show how to add health checks to your applications.&lt;/p&
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/go/msgdelay/</guid>
-      <description></description>
+      
+        <description></description>
+      
     </item>
     
     <item>
@@ -766,7 +878,9 @@ In this post, we will show how to add health checks to your applications.&lt;/p&
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/go/ossna2019/</guid>
-      <description></description>
+      
+        <description></description>
+      
     </item>
     
     <item>
@@ -775,7 +889,9 @@ In this post, we will show how to add health checks to your applications.&lt;/p&
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://mjpitz.com/go/status/</guid>
-      <description></description>
+      
+        <description></description>
+      
     </item>
     
   </channel>
