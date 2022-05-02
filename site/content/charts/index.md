@@ -4,7 +4,7 @@ My personal helm charts are provided under the [MIT License][license]. While I'm
 have made them generally available for others to use. You may be able to find some of these charts elsewhere, but many
 of my deployments vary quite a bit from existing ones.
 
-```shell
+```text
 helm repo add mjpitz https://mjpitz.com
 ```
 
@@ -28,5 +28,6 @@ helm repo add mjpitz https://mjpitz.com
 [registry-chart]: https://github.com/mjpitz/mjpitz/tree/main/charts/registry
 [storj-chart]: https://github.com/mjpitz/mjpitz/tree/main/charts/storj
 
+[Gitea]: https://gitea.io
 [litestream]: https://litestream.io
 [envoy]: https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/other_protocols/redis

@@ -2,7 +2,7 @@ export PATH := $(shell pwd)/bin:$(PATH)
 export SHELL := env PATH=$(PATH) /bin/bash
 
 clean:
-	rm -rf bin/ node_modules/ public/ resources/_gen/ tmp/
+	rm -rf bin/ site/public/ site/resources/_gen/ tmp/
 
 .helm.docs:
 	@helm-docs -c charts/${CHART} --dry-run | prettier --parser markdown > charts/${CHART}/README.md
@@ -21,13 +21,18 @@ chart-docs:
 bin: bin.yaml
 	bin-vendor
 
-deps: build-deps
-	git submodule update --init --recursive
+deps:
+	bash -c "[[ -e site/themes/anatole ]] || git submodule update --init --recursive"
+	bash -c "[[ -e site/themes/anatole/node_modules ]] || { cd site/themes/anatole; npm install; }"
+
+serve:
+	cd site && { hugo serve -D ; }
 
 build:
-	hugo
-	cp public/index.xml public/feed.xml
+	cd site && { \
+		hugo ; \
+		cp public/index.xml public/feed.xml ; \
+	}
 
 test:
 	htmltest
-	# htmltest --conf .htmltest.external.yml

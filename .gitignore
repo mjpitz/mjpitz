@@ -1,5 +1,4 @@
 bin/
-public/
 tmp/
 
 .terraform/
@@ -16,3 +15,6 @@ infra/helm/**/secret.yaml
 infra/helm/**/secret-*.yaml
 infra/helm/**/tls.crt
 infra/helm/**/tls.key
+
+site/public/
+site/resources/_gen

@@ -1,19 +1,15 @@
-body {
-    font-family: atkinson-hyperlegible !important;
-    font-size: 1rem;
+* {
+    font-family: atkinson-hyperlegible,pinghei,pingfang sc,helvetica neue,work sans,hiragino sans gb,sans-serif;
 }
 
-p {
-    font-size: 1rem;
+code, pre, div.highlight * {
+    font-family: monospace !important;
+    font-size: 1.3rem;
+    line-height: 2rem;
 }
 
 li {
-    font-size: 1rem;
-    line-height: 1.9em;
-}
-
-.page-top .nav {
-    font-size: 1rem;
+    line-height: 2.7rem;
 }
 
 .page-top .nav li {
@@ -76,12 +72,4 @@ li {
 
 .content {
     margin-top: 80px;
-}
-
-.hire-package {
-    min-width: 200px;
-    width: 49%;
-    display: inline-block;
-    vertical-align: top;
-    text-align: center;
 }
