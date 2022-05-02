@@ -35,7 +35,7 @@ drone:
     pullPolicy: Always
 
   litestream:
-    enabled: false
+    enabled: true
 
     config:
       dbs:
