@@ -40,8 +40,6 @@ metadata:
   labels:
     app.kubernetes.io/component: internal
     {{- include "maddy.labels" . | nindent 4 }}
-  annotations:
-    {{- .Values.service.annotations | toYaml | nindent 4 }}
 spec:
   clusterIP: None
   ports:
