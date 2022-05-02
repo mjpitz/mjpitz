@@ -1,38 +1,47 @@
 export PATH := $(shell pwd)/bin:$(PATH)
 export SHELL := env PATH=$(PATH) /bin/bash
 
-clean:
-	rm -rf bin/ site/public/ site/resources/_gen/ tmp/
+docker/build:
+	@cd docker && { \
+		find . -mindepth 1 -maxdepth 1 -type d -exec basename {} \; | xargs -I{} make build TARGET={} ; \
+	}
 
-.helm.docs:
-	@helm-docs -c charts/${CHART} --dry-run | prettier --parser markdown > charts/${CHART}/README.md
+helm/docs:
+	@cd charts && { \
+		find . -mindepth 1 -maxdepth 1 -type d -exec basename {} \; | xargs -I{} make docs TARGET={} ; \
+	}
 
-chart-docs:
-	@$(MAKE) .helm.docs CHART=auth
-	@$(MAKE) .helm.docs CHART=drone
-	@$(MAKE) .helm.docs CHART=gitea
-	@$(MAKE) .helm.docs CHART=litestream
-	@$(MAKE) .helm.docs CHART=maddy
-	@$(MAKE) .helm.docs CHART=redis
-	@$(MAKE) .helm.docs CHART=redis-queue
-	@$(MAKE) .helm.docs CHART=registry
-	@$(MAKE) .helm.docs CHART=storj
+site/deps:
+	@bash -c "[[ -e site/themes/anatole ]] || git submodule update --init --recursive"
+	@bash -c "[[ -e site/themes/anatole/node_modules ]] || { cd site/themes/anatole; npm install; }"
 
-bin: bin.yaml
-	bin-vendor
+site/serve:
+	@cd site && { \
+		hugo serve -D ; \
+	}
 
-deps:
-	bash -c "[[ -e site/themes/anatole ]] || git submodule update --init --recursive"
-	bash -c "[[ -e site/themes/anatole/node_modules ]] || { cd site/themes/anatole; npm install; }"
-
-serve:
-	cd site && { hugo serve -D ; }
-
-build:
-	cd site && { \
+site/build:
+	@cd site && { \
 		hugo ; \
 		cp public/index.xml public/feed.xml ; \
 	}
 
-test:
-	htmltest
+site/test:
+	@cd site && { \
+		htmltest ; \
+	}
+
+#### old targets
+
+bin: bin.yaml
+	@bin-vendor
+
+clean:
+	@rm -rf bin/ site/public/ site/resources/_gen/ tmp/
+
+docs: helm/docs
+
+deps: site/deps
+serve: site/serve
+build: site/build
+test: site/test

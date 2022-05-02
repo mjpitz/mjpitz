@@ -1,13 +1,12 @@
 bin/
-tmp/
-
-.terraform/
-.terraform.lock.hcl
-terraform.tfstate
-terraform.tfstate.backup
 
 charts/**/*.lock
 charts/**/*.tgz
+
+infra/**/.terraform/
+infra/**/.terraform.lock.hcl
+infra/**/terraform.tfstate
+infra/**/terraform.tfstate.backup
 
 infra/helm/**/*.lock
 infra/helm/**/*.tgz
@@ -18,3 +17,4 @@ infra/helm/**/tls.key
 
 site/public/
 site/resources/_gen
+site/tmp/
