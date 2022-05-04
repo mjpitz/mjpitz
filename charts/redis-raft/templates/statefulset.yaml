@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: {{ include "redis-queue.fullname" . }}
+  name: {{ include "redis-raft.fullname" . }}
   labels:
-    {{- include "redis-queue.labels" . | nindent 4 }}
+    {{- include "redis-raft.labels" . | nindent 4 }}
 spec:
-  replicas: 1
-  serviceName: {{ include "redis-queue.fullname" . }}
+  replicas: {{ .Values.replicaCount }}
+  serviceName: {{ include "redis-raft.fullname" . }}
   selector:
     matchLabels:
-      {{- include "redis-queue.selectorLabels" . | nindent 6 }}
+      {{- include "redis-raft.selectorLabels" . | nindent 6 }}
   {{- if .Values.persistence.enabled }}
   volumeClaimTemplates:
     - metadata:
@@ -27,18 +27,18 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/secret: {{ include (print $.Template.BasePath "/secret.yaml") . | sha256sum }}
+        checksum/configmap: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
         {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
       labels:
-        {{- include "redis-queue.labels" . | nindent 8 }}
+        {{- include "redis-raft.labels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "redis-queue.serviceAccountName" . }}
+      serviceAccountName: {{ include "redis-raft.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
@@ -47,25 +47,40 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command:
+            - sh
+            - -c
           args:
-            - redis-server
-            - /usr/local/etc/redis/redis.conf
+            - |
+              echo $HOSTNAME | \
+                  sed 's:{{ include "redis-raft.fullname" . }}-::g' | \
+                  xargs -I{} env REDIS_RAFT_MODULE_ID=1{} sh docker-entrypoint.sh \
+                  /redis/etc/redis.conf
           ports:
             - name: redis
               containerPort: 6379
               protocol: TCP
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          lifecycle:
+            postStart:
+              exec:
+                command:
+                  - sh
+                  - /redis/etc/postStart.sh
+                  - {{ include "redis-raft.fullname" . }}
+                  - {{ include "redis-raft.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local:6379
+            preStop:
+              exec:
+                command:
+                  - sh
+                  - /redis/etc/preStop.sh
+                  - {{ include "redis-raft.fullname" . }}
           volumeMounts:
-            - mountPath: /usr/local/etc/redis
-              name: config
-            {{- if .Values.persistence.enabled }}
-            - mountPath: {{ .Values.config.data.directory }}
+            - mountPath: /redis/etc
+              name: etc
+            - mountPath: /redis/data
               name: data
-            {{- end }}
-            {{- with .Values.extraVolumeMounts }}
-            {{- toYaml . | nindent 12 }}
-            {{- end }}
         - name: redis-exporter
           image: quay.io/oliver006/redis_exporter:v1.35.1
           ports:
@@ -85,13 +100,10 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       volumes:
-        - name: config
-          secret:
-            {{- if .Values.externalConfig.secretRef.name }}
-            secretName: {{ .Values.externalConfig.secretRef.name }}
-            {{- else }}
-            secretName: {{ include "redis-queue.fullname" . }}-config
-            {{- end }}
-        {{- with .Values.extraVolumes }}
-        {{- toYaml . | nindent 8 }}
+        - name: etc
+          configMap:
+            name: {{ include "redis-raft.fullname" . }}
+        {{- if not .Values.persistence.enabled }}
+        - name: data
+          emptyDir: {}
         {{- end }}

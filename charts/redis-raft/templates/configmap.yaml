@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "redis-raft.fullname" . }}
+  labels:
+    {{- include "redis-raft.labels" . | nindent 4 }}
+data:
+  # postStart checks the raft state to see if the node is uninitialized. If it's already been initialized, then preStart
+  # won't perform any tasks. If it hasn't been initialized, then preStart will either init or join an existing cluster
+  # (depending on which node it is).
+  postStart.sh: |
+    sleep 5
+    node_id="1${HOSTNAME##${1}-}"
+    if [[ -n "$(/redis/bin/redis-cli --raw RAFT.INFO | grep "state:uninitialized")" ]]; then
+      if [[ "${node_id}" == "10" ]]; then
+        /redis/bin/redis-cli --raw RAFT.CLUSTER INIT
+      else
+        /redis/bin/redis-cli --raw RAFT.CLUSTER JOIN "${2}"
+      fi
+    fi
+
+  # preStop intentionally does not handle the 0th node to prevent the need to juggle init/join targets. This is done
+  # only for later nodes to handle the case where a cluster _might_ be scaling down. Nodes that are restarting will
+  # rejoin the cluster when they come back up.
+  preStop.sh: |
+    node_id="1${HOSTNAME##${1}-}"
+    if [[ "${node_id}" != "10" ]]; then
+      /redis/bin/redis-cli --raw RAFT.NODE REMOVE "${node_id}"
+    fi
+
+  redis.conf: |
+    {{- include "redis-raft.config" . | nindent 4 }}

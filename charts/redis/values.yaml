@@ -12,9 +12,9 @@ kind: Deployment
 updateStrategy: {}
 
 image:
-  # -- The repository hosting the redis image.
+  # -- The repository hosting the image.
   repository: redis
-  # -- The pull policy to use for the registry image.
+  # -- The pull policy to use for the image.
   pullPolicy: IfNotPresent
   # -- Overrides the image tag whose default is the chart appVersion.
   tag: ""
@@ -75,10 +75,10 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
-# -- Specify the node selector used to control which nodes registry pods are deployed to.
+# -- Specify the node selector used to control which nodes pods are deployed to.
 nodeSelector: {}
 
-# -- Specify taints that the registry pods are willing to tolerate.
+# -- Specify taints that the pods are willing to tolerate.
 tolerations: []
 
 # -- Specify affinity rules for the pods.
@@ -86,9 +86,9 @@ affinity: {}
 
 metrics:
   serviceMonitor:
-    # -- Add a Prometheus ServiceMonitor that scrapes the registry deployment.
+    # -- Add a Prometheus ServiceMonitor that scrapes the service.
     enabled: false
-    # -- How frequently prometheus should pull metrics from your registry deployment.
+    # -- How frequently Prometheus should pull metrics from the service.
     interval: 10s
 
 # -- When using a StatefulSet, persistent volume claim templates can be specified for writing data to disk.

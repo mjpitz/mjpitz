@@ -1,14 +1,16 @@
-# Default values for redis-queue.
+# Default values for redis-raft.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+replicaCount: 1
+
 image:
   # -- The repository hosting the redis image.
-  repository: redis
+  repository: ghcr.io/mjpitz/redis-raft
   # -- The pull policy to use for the image.
   pullPolicy: IfNotPresent
   # -- Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: 22.5.0-alpine
 
 # -- Specify the secret containing the registry credentials.
 imagePullSecrets: []
@@ -33,7 +35,7 @@ podAnnotations: {}
 podSecurityContext: {}
   # fsGroup: 2000
 
-# -- Specify the security context for the `redis-queue` container.
+# -- Specify the security context for the `redis-raft` container.
 securityContext: {}
   # capabilities:
   #   drop:
@@ -70,9 +72,9 @@ affinity: {}
 
 metrics:
   serviceMonitor:
-    # -- Add a Prometheus ServiceMonitor that scrapes the service.
+    # -- Add a Prometheus ServiceMonitor that scrapes the deployment.
     enabled: false
-    # -- How frequently prometheus should pull metrics from your service.
+    # -- How frequently prometheus should pull metrics from your deployment.
     interval: 10s
 
 # -- Add additional volumes to the pod.
@@ -102,43 +104,3 @@ persistence:
 
   # -- Specify the storage class that should provision this claim.
   storageClass: ""
-
-externalConfig:
-  secretRef:
-    # -- Specify the name of the secret containing the raw configuration.
-    name: ""
-
-config:
-  # -- How many databases to make available.
-  databases: 16
-
-  maxMemory:
-    # -- The number of bytes representing the maximum amount of memory that can be consumed.
-    size: ""
-    # -- The eviction policy to use when the maximum memory is reached or exceeded.
-    evictionPolicy: allkeys-lru
-
-  data:
-    # -- Where the append-only file and snapshots should be stored.
-    directory: /data
-    appendOnlyFile:
-      # -- Whether to enable an append-only file.
-      enabled: true
-      # -- When fsyncs should occur when using an append-only file.
-      fsync: everysec
-    snapshot:
-      # -- Whether to enable snapshots.
-      enabled: false
-      # -- When to take a snapshot. [ seconds, key changes ]
-      schedules:
-        - [3600, 1]   #   * After 3600 seconds (an hour) if at least 1 key changed
-        - [300, 100]  #   * After 300 seconds (5 minutes) if at least 100 keys changed
-        - [60, 10000] #   * After 60 seconds if at least 10000 keys changed
-      # -- Compress the snapshot.
-      compression: true
-
-  # -- Specify the username used for authentication.
-  username: ""
-
-  # -- Specify the password used for authentication.
-  password: ""

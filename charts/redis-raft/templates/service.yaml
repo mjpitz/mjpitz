@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "redis-raft.fullname" . }}
+  labels:
+    {{- include "redis-raft.labels" . | nindent 4 }}
+spec:
+  clusterIP: None
+  ports:
+    - port: 6379
+      targetPort: redis
+      protocol: TCP
+      name: redis
+    - port: 9121
+      targetPort: metrics
+      protocol: TCP
+      name: metrics
+  selector:
+    {{- include "redis-raft.selectorLabels" . | nindent 4 }}

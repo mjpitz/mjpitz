@@ -6,9 +6,10 @@ description: |
   members of the cluster using a consistent hashing algorithm making it great as a best-effort cache.
 sources:
   - https://github.com/redis/redis
+  - https://github.com/envoyproxy/envoy
   - https://github.com/mjpitz/mjpitz/tree/main/charts/redis
 maintainers:
   - name: Mya Pitzeruse
     url: https://mjpitz.com
-version: 22.4.2
+version: 22.4.3
 appVersion: 6.2.6
