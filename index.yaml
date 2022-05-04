@@ -282,6 +282,25 @@ entries:
   redis:
   - apiVersion: v2
     appVersion: 6.2.6
+    created: "2022-05-04T15:37:39.368104182Z"
+    description: |
+      Deploy a highly-available, partition-tolerant Redis cluster fronted by an envoy sidecar. Envoy partitions keys among
+      members of the cluster using a consistent hashing algorithm making it great as a best-effort cache.
+    digest: d3d6c9a1533bab88a83768757059fb0635c9b433c0db57a5b101e6503b390670
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: redis
+    sources:
+    - https://github.com/redis/redis
+    - https://github.com/envoyproxy/envoy
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/redis
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/redis-22.4.3/redis-22.4.3.tgz
+    version: 22.4.3
+  - apiVersion: v2
+    appVersion: 6.2.6
     created: "2022-04-24T19:50:23.094087782Z"
     description: |
       Deploy a highly-available, partition-tolerant Redis cluster fronted by an envoy sidecar. Envoy partitions keys among
@@ -435,6 +454,23 @@ entries:
   redis-queue:
   - apiVersion: v2
     appVersion: 6.2.6
+    created: "2022-05-04T15:37:39.572032577Z"
+    description: |
+      Deploy a single durable Redis instance, intended to be used as a work queue.
+    digest: 5b0d4fa37ba9f7e9183e4391111f09cb1454c3e8b59a4ba15eb71ef1a647d830
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: redis-queue
+    sources:
+    - https://github.com/redis/redis
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/redis-queue
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/redis-queue-22.4.1/redis-queue-22.4.1.tgz
+    version: 22.4.1
+  - apiVersion: v2
+    appVersion: 6.2.6
     created: "2022-04-29T20:00:22.880460791Z"
     description: |
       Deploy a single durable Redis instance, intended to be used as a work queue.
@@ -450,6 +486,24 @@ entries:
     urls:
     - https://github.com/mjpitz/mjpitz/releases/download/redis-queue-22.4.0/redis-queue-22.4.0.tgz
     version: 22.4.0
+  redis-raft:
+  - apiVersion: v2
+    appVersion: 6.2.6
+    created: "2022-05-04T15:37:39.764241615Z"
+    description: "Deploy a consistent, partition-tolerant Redis cluster backed by the Raft consensus protocol. All supported commands \nare executed in a strongly-consistent manner. See the [RedisRaft][] documentation for more information about supported\ncommands.\n\n[RedisRaft]: https://github.com/RedisLabs/redisraft/blob/master/docs/Using.md#supported-commands\n"
+    digest: 55c655548b4047763edfcbc8abef59fc0d713a507d18bce6f7183043324da16d
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: redis-raft
+    sources:
+    - https://github.com/redis/redis
+    - https://github.com/RedisLabs/redisraft
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/redis-raft
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/redis-raft-22.5.0/redis-raft-22.5.0.tgz
+    version: 22.5.0
   registry:
   - apiVersion: v2
     appVersion: 2.8.0
