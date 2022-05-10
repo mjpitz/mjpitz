@@ -3,15 +3,12 @@ apt-get update -y && env DEBIAN_FRONTEND=noninteractive apt-get install -yq buil
 mkdir -p /redis/src
 cd /redis/src || exit 1
 
-git clone --depth 1 https://github.com/redis/redis.git redis
-# checkout commit
-cd redis || exit 1
-make && make install
-ls && cd ..
+## RedisRaft
 
 git clone --depth 1 https://github.com/RedisLabs/redisraft.git redisraft
-# checkout commit
 cd redisraft || exit 1
+git checkout 4e10fdd7af6c5f33ba7f8d876443ed4416eeea3f
+
 mkdir build && cd build || exit 1
 cmake .. && make
 ls && cd ../..

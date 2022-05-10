@@ -1,0 +1,1 @@
+/redis/bin/redis-server "$@"

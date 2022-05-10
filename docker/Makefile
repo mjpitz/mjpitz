@@ -19,6 +19,8 @@ docker/build:
 		--build-arg "BASE_OS=$(BASE_OS)" \
 		--build-arg "BASE_OS_VERSION=$(BASE_OS_VERSION)" \
 		--build-arg "IMAGE_NAME=$(IMAGE_NAME)" \
+		--build-arg "IMAGE_VERSION=$(IMAGE_VERSION)" \
+		--build-arg "SKAFFOLD_DEFAULT_REPO=$(SKAFFOLD_DEFAULT_REPO)" \
 		--label "org.opencontainers.image.source=$(IMAGE_SOURCE)" \
 		--label "org.opencontainers.image.version=$(IMAGE_VERSION)" \
 		--label "org.opencontainers.image.licenses=$(IMAGE_LICENSES)" \
@@ -35,6 +37,8 @@ docker/release:
 		--build-arg "BASE_OS=$(BASE_OS)" \
 		--build-arg "BASE_OS_VERSION=$(BASE_OS_VERSION)" \
 		--build-arg "IMAGE_NAME=$(IMAGE_NAME)" \
+		--build-arg "IMAGE_VERSION=$(IMAGE_VERSION)" \
+		--build-arg "SKAFFOLD_DEFAULT_REPO=$(SKAFFOLD_DEFAULT_REPO)" \
 		--label "org.opencontainers.image.source=$(IMAGE_SOURCE)" \
 		--label "org.opencontainers.image.version=$(IMAGE_VERSION)" \
 		--label "org.opencontainers.image.licenses=$(IMAGE_LICENSES)" \
