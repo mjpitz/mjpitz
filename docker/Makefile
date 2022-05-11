@@ -1,4 +1,4 @@
-SKAFFOLD_DEFAULT_REPO ?= ghcr.io/mjpitz
+SKAFFOLD_DEFAULT_REPO ?= img.pitz.tech/mya
 
 export IMAGE_NAME ?=
 export IMAGE_VERSION ?=

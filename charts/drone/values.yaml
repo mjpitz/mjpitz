@@ -270,7 +270,7 @@ affinity: {}
 
 image:
   # -- Where can the image be found.
-  repository: ghcr.io/mjpitz/drone-server
+  repository: img.pitz.tech/mya/drone-server
   # -- Specify the pull policy for the image.
   pullPolicy: IfNotPresent
   # -- Configure which version of the image to use.

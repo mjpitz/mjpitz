@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   # -- The repository hosting the redis image.
-  repository: ghcr.io/mjpitz/redis-raft
+  repository: img.pitz.tech/mya/redis-raft
   # -- The pull policy to use for the image.
   pullPolicy: IfNotPresent
   # -- Overrides the image tag whose default is the chart appVersion.

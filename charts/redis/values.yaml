@@ -13,11 +13,11 @@ updateStrategy: {}
 
 image:
   # -- The repository hosting the image.
-  repository: redis
+  repository: img.pitz.tech/mya/redis
   # -- The pull policy to use for the image.
   pullPolicy: IfNotPresent
   # -- Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: 6.2.7-alpine
 
 # -- Specify the secret containing the registry credentials.
 imagePullSecrets: []
