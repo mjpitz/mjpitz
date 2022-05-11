@@ -102,6 +102,31 @@ entries:
   drone:
   - apiVersion: v2
     appVersion: 2.11.1
+    created: "2022-05-11T15:06:56.123185243Z"
+    dependencies:
+    - condition: litestream.enabled
+      name: litestream
+      repository: https://mjpitz.com
+      version: 22.4.0
+    - condition: redis-queue.enabled
+      name: redis-queue
+      repository: https://mjpitz.com
+      version: 22.4.0
+    description: "Easily deploy a Drone.IO, a container-native, continuous delivery platform. This chart provisions a Drone server \ninstance intended for smaller\n"
+    digest: 2dd447be762474d931417840d16a67bf5f665cf1789560b47f9453551b9ed66d
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: drone
+    sources:
+    - https://github.com/harness/drone
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/drone
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/drone-22.5.1/drone-22.5.1.tgz
+    version: 22.5.1
+  - apiVersion: v2
+    appVersion: 2.11.1
     created: "2022-05-01T17:23:16.707711902Z"
     dependencies:
     - condition: litestream.enabled
@@ -282,6 +307,25 @@ entries:
   redis:
   - apiVersion: v2
     appVersion: 6.2.6
+    created: "2022-05-11T15:06:56.312187015Z"
+    description: |
+      Deploy a highly-available, partition-tolerant Redis cluster fronted by an envoy sidecar. Envoy partitions keys among
+      members of the cluster using a consistent hashing algorithm making it great as a best-effort cache.
+    digest: 120d7db8b9b29ed0737a35cc496dda5ded30dbc41fe7fc33d0e8420a5357be9f
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: redis
+    sources:
+    - https://github.com/redis/redis
+    - https://github.com/envoyproxy/envoy
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/redis
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/redis-22.4.4/redis-22.4.4.tgz
+    version: 22.4.4
+  - apiVersion: v2
+    appVersion: 6.2.6
     created: "2022-05-04T15:37:39.368104182Z"
     description: |
       Deploy a highly-available, partition-tolerant Redis cluster fronted by an envoy sidecar. Envoy partitions keys among
@@ -454,6 +498,23 @@ entries:
   redis-queue:
   - apiVersion: v2
     appVersion: 6.2.6
+    created: "2022-05-11T15:06:56.567844617Z"
+    description: |
+      Deploy a single durable Redis instance, intended to be used as a work queue.
+    digest: 946ed77d383a89f182a87cc45f16dab23568620eee6f3dd802ddbfcb539e0329
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: redis-queue
+    sources:
+    - https://github.com/redis/redis
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/redis-queue
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/redis-queue-22.4.2/redis-queue-22.4.2.tgz
+    version: 22.4.2
+  - apiVersion: v2
+    appVersion: 6.2.6
     created: "2022-05-04T15:37:39.572032577Z"
     description: |
       Deploy a single durable Redis instance, intended to be used as a work queue.
@@ -487,6 +548,23 @@ entries:
     - https://github.com/mjpitz/mjpitz/releases/download/redis-queue-22.4.0/redis-queue-22.4.0.tgz
     version: 22.4.0
   redis-raft:
+  - apiVersion: v2
+    appVersion: 6.2.6
+    created: "2022-05-11T15:06:56.774905576Z"
+    description: "Deploy a consistent, partition-tolerant Redis cluster backed by the Raft consensus protocol. All supported commands \nare executed in a strongly-consistent manner. See the [RedisRaft][] documentation for more information about supported\ncommands.\n\n[RedisRaft]: https://github.com/RedisLabs/redisraft/blob/master/docs/Using.md#supported-commands\n"
+    digest: ace5dd82f339906403c16f46358a8313848eb17af0ff7a1b2c0d1468b621d5ba
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: redis-raft
+    sources:
+    - https://github.com/redis/redis
+    - https://github.com/RedisLabs/redisraft
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/redis-raft
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/redis-raft-22.5.1/redis-raft-22.5.1.tgz
+    version: 22.5.1
   - apiVersion: v2
     appVersion: 6.2.6
     created: "2022-05-04T15:37:39.764241615Z"
