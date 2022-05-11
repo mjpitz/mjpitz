@@ -48,9 +48,9 @@ spec:
       targetPort: debug
       protocol: TCP
     {{- if .Values.litestream.enabled | and .Values.litestream.metrics.enabled }}
-    - name: litestream-http
+    - name: litestream
       port: {{ .Values.litestream.metrics.port }}
-      targetPort: litestream-http
+      targetPort: litestream
       protocol: TCP
     {{- end }}
     {{- if .Values.mta_sts.enabled }}

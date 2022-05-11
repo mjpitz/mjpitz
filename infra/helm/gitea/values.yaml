@@ -20,6 +20,11 @@ gitea:
     blobs:
       enabled: false
 
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+
   config:
     server:
       overrides:
@@ -28,11 +33,9 @@ gitea:
     service:
       overrides:
         DISABLE_REGISTRATION: true
-        REQUIRE_SIGNIN_VIEW: true
 
       explore:
         overrides:
-          REQUIRE_SIGNIN_VIEW: false
           DISABLE_USERS_PAGE: false
 
     security:
@@ -52,6 +55,11 @@ gitea:
   litestream:
     enabled: true
 
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+
     config:
       dbs:
         - path: /data/gitea/gitea.db
@@ -66,6 +74,17 @@ gitea:
   redis-queue:
     enabled: true
 
+    image:
+      pullPolicy: Always
+
+    metrics:
+      serviceMonitor:
+        enabled: true
+
   # -- Cache data in redis.
   redis:
     enabled: true
+
+    metrics:
+      serviceMonitor:
+        enabled: true

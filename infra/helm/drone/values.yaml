@@ -34,8 +34,17 @@ drone:
   image:
     pullPolicy: Always
 
+  metrics:
+    serviceMonitor:
+      enabled: true
+
   litestream:
     enabled: true
+
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
 
     config:
       dbs:
@@ -55,3 +64,10 @@ drone:
 
   redis-queue:
     enabled: true
+
+    image:
+      pullPolicy: Always
+
+    metrics:
+      serviceMonitor:
+        enabled: true

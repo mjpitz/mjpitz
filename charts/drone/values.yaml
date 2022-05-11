@@ -298,14 +298,31 @@ resources: {}
   #   cpu: 100m
   #   memory: 128Mi
 
+metrics:
+  serviceMonitor:
+    # -- Enable metric collection for drone.
+    enabled: false
+    # -- Configure the interval at which metrics are collected for drone.
+    interval: 10s
+
 ## SIDECAR
 
 litestream:
+  # -- Whether litestream should be enabled for SQLite backups.
   enabled: false
 
   extraVolumeMounts:
-    - mountPath: /data
+    - # -- Name of the volume containing the sqlite database.
       name: data
+      # -- Where the volume with the given name needs to be mounted. This may change if you're providing your own volume.
+      mountPath: /data
+
+  metrics:
+    serviceMonitor:
+      # -- Enable metric collection for litestream.
+      enabled: false
+      # -- Configure the interval at which metrics are collected for litestream.
+      interval: 10s
 
   config:
     dbs:
@@ -316,9 +333,11 @@ litestream:
 
 runners:
   digitalocean:
+    # -- Enable the DigitalOcean runner.
     enabled: false
 
   kubernetes:
+    # -- Enable the Kubernetes runner [experimental].
     enabled: false
 
 ## Dependency

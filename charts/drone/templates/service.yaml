@@ -11,5 +11,11 @@ spec:
       targetPort: http
       protocol: TCP
       name: http
+    {{- if .Values.litestream.enabled | and .Values.litestream.metrics.enabled }}
+    - port: {{ .Values.litestream.metrics.port }}
+      targetPort: litestream
+      protocol: TCP
+      name: litestream
+    {{- end }}
   selector:
     {{- include "drone.selectorLabels" . | nindent 4 }}

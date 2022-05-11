@@ -1,15 +1,16 @@
 {{- if .Values.metrics.serviceMonitor.enabled }}
+---
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: {{ include "maddy.fullname" . }}
+  name: {{ include "gitea.fullname" . }}
   labels:
-    {{- include "maddy.labels" . | nindent 4 }}
+    {{- include "gitea.labels" . | nindent 4 }}
 spec:
   endpoints:
     - interval: {{ .Values.metrics.serviceMonitor.interval }}
       path: /metrics
-      port: debug
+      port: http
     {{- if .Values.litestream.enabled | and .Values.litestream.metrics.enabled | and .Values.litestream.metrics.serviceMonitor.enabled }}
     - interval: {{ .Values.litestream.metrics.serviceMonitor.interval }}
       path: /metrics
@@ -20,6 +21,5 @@ spec:
       - {{ .Release.Namespace }}
   selector:
     matchLabels:
-      app.kubernetes.io/component: internal
-      {{- include "maddy.selectorLabels" . | nindent 6 }}
+      {{- include "gitea.selectorLabels" . | nindent 6 }}
 {{- end }}

@@ -1,4 +1,5 @@
 {{- define "drone.config" -}}
+DRONE_PROMETHEUS_ANONYMOUS_ACCESS=true
 {{- if .Values.config.bitbucket.enabled }}
 DRONE_BITBUCKET_CLIENT_ID={{ .Values.config.bitbucket.clientId }}
 DRONE_BITBUCKET_CLIENT_SECRET={{ .Values.config.bitbucket.clientSecret }}

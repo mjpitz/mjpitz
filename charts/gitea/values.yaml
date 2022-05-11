@@ -429,6 +429,13 @@ litestream:
       # -- Where the volume with the given name needs to be mounted. This may change if you're providing your own volume.
       mountPath: /data/gitea
 
+  metrics:
+    serviceMonitor:
+      # -- Enable metric collection for litestream.
+      enabled: false
+      # -- Configure the interval at which metrics are collected for litestream.
+      interval: 10s
+
   config:
     # -- Configure the database replicas.
     dbs:

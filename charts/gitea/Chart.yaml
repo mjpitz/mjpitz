@@ -9,7 +9,7 @@ sources:
 maintainers:
   - name: Mya Pitzeruse
     url: https://mjpitz.com
-version: 22.4.0
+version: 22.4.1
 appVersion: 1.16.6
 dependencies:
   - name: litestream
@@ -18,11 +18,11 @@ dependencies:
     condition: litestream.enabled
 
   - name: redis-queue
-    version: 22.4.0
+    version: 22.4.3
     repository: https://mjpitz.com
     condition: redis-queue.enabled
 
   - name: redis
-    version: 22.4.2
+    version: 22.4.5
     repository: https://mjpitz.com
     condition: redis.enabled

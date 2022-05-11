@@ -17,5 +17,11 @@ spec:
       targetPort: ssh
       protocol: TCP
       name: ssh
+    {{- if .Values.litestream.enabled | and .Values.litestream.metrics.enabled }}
+    - port: {{ .Values.litestream.metrics.port }}
+      targetPort: litestream
+      protocol: TCP
+      name: litestream
+    {{- end }}
   selector:
     {{- include "gitea.selectorLabels" . | nindent 4 }}

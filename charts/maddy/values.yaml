@@ -86,9 +86,9 @@ affinity: {}
 
 metrics:
   serviceMonitor:
-    # -- Add a Prometheus ServiceMonitor that scrapes the registry deployment.
+    # -- Enable metric collection for maddy.
     enabled: false
-    # -- How frequently prometheus should pull metrics from your registry deployment.
+    # -- Configure the interval at which metrics are collected for maddy.
     interval: 10s
 
 # -- Add additional volumes to the pod.
@@ -176,11 +176,11 @@ rspamd:
 
   image:
     # -- The repository hosting the rspamd image
-    repository: ghcr.io/mjpitz/rspamd
+    repository: img.pitz.tech/mya/rspamd
     # -- The pull policy to use for the rspamd image.
     pullPolicy: IfNotPresent
     # -- Configure the container version of rspamd to run.
-    tag: 22.4.0-alpine
+    tag: 22.4.1-alpine
 
   config:
     # -- Override configuration in the actions.conf file.
@@ -345,6 +345,13 @@ litestream:
       name: data
       # -- The path where the databases can be located.
       mountPath: /data
+
+  metrics:
+    serviceMonitor:
+      # -- Enable metric collection for litestream.
+      enabled: false
+      # -- Configure the interval at which metrics are collected for litestream.
+      interval: 10s
 
 #  config:
 #    dbs:
