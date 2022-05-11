@@ -46,8 +46,6 @@ registry:
       maintenance:
         uploadpurging:
           enabled: false
-    proxy:
-      remoteurl: "https://registry-1.docker.io/"
 
   auth:
     enabled: true
@@ -73,17 +71,19 @@ registry:
         key: "/etc/docker/auth/token/tls.key"
       acl:
         - actions: [ "*" ]
-          comment: Admin can do it all
-          match: { account: admin }
-        - actions: [ "*" ]
           comment: The web user can query the api
           match: { account: "web" }
+        # mya
+        - actions: [ "*" ]
+          comment: mya can push and pull her images
+          match: { account: "mya", name: mya/* }
+        - actions: [ "pull" ]
+          comment: Anonymous users can pull mya
+          match: { account: "", name: mya/* }
+        # anonymous
         - actions: [ "pull" ]
           comment: Anonymous users can pull depscloud
           match: { account: "", name: depscloud/* }
-        - actions: [ "pull" ]
-          comment: Anonymous users can pull mjpitz
-          match: { account: "", name: mjpitz/* }
 
   redis:
     enabled: true

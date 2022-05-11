@@ -176,34 +176,6 @@ resource "helm_release" "registry" {
   atomic            = true
 }
 
-data "external" "storj_registry" {
-  program = ["./hash.sh", "./storj-registry"]
-}
-
-resource "helm_release" "storj_registry" {
-  depends_on = [
-    helm_release.ingress_nginx,
-  ]
-
-  chart     = "./storj-registry"
-  namespace = "storj-registry"
-  name      = "storj-registry"
-
-  values = [
-    file("./storj-registry/values.yaml"),
-    file("./storj-registry/secret.yaml"),
-  ]
-
-  set {
-    name  = "global.terraform.hash"
-    value = data.external.storj_registry.result.sha256
-  }
-
-  dependency_update = true
-  create_namespace  = true
-  atomic            = true
-}
-
 data "external" "dist" {
   program = ["./hash.sh", "./dist"]
 }
