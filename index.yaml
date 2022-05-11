@@ -307,6 +307,25 @@ entries:
   redis:
   - apiVersion: v2
     appVersion: 6.2.6
+    created: "2022-05-11T15:33:53.902031778Z"
+    description: |
+      Deploy a highly-available, partition-tolerant Redis cluster fronted by an envoy sidecar. Envoy partitions keys among
+      members of the cluster using a consistent hashing algorithm making it great as a best-effort cache.
+    digest: 432fa377eabf24ad457148313731f2f71d93f8b2f22596cefc88b98ae1ed354f
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: redis
+    sources:
+    - https://github.com/redis/redis
+    - https://github.com/envoyproxy/envoy
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/redis
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/redis-22.4.5/redis-22.4.5.tgz
+    version: 22.4.5
+  - apiVersion: v2
+    appVersion: 6.2.6
     created: "2022-05-11T15:06:56.312187015Z"
     description: |
       Deploy a highly-available, partition-tolerant Redis cluster fronted by an envoy sidecar. Envoy partitions keys among
@@ -496,6 +515,23 @@ entries:
     - https://github.com/mjpitz/mjpitz/releases/download/redis-6.2.6/redis-6.2.6.tgz
     version: 6.2.6
   redis-queue:
+  - apiVersion: v2
+    appVersion: 6.2.6
+    created: "2022-05-11T15:33:54.033938764Z"
+    description: |
+      Deploy a single durable Redis instance, intended to be used as a work queue.
+    digest: 9c68acc00fe4c49057c32b2d941071ccde74754ada3168818da58ff4e64316db
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: redis-queue
+    sources:
+    - https://github.com/redis/redis
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/redis-queue
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/redis-queue-22.4.3/redis-queue-22.4.3.tgz
+    version: 22.4.3
   - apiVersion: v2
     appVersion: 6.2.6
     created: "2022-05-11T15:06:56.567844617Z"
