@@ -2,6 +2,7 @@
 {{- define "redis.config" -}}
 {{/* TODO : support TLS */}}
 port 6379
+protected-mode no
 
 tcp-backlog 511
 tcp-keepalive 300
