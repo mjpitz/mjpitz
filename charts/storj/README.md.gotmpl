@@ -1,0 +1,59 @@
+{{ template "chart.header" . }}
+{{ template "chart.deprecationWarning" . }}
+
+{{ template "chart.badgesSection" . }}
+
+{{ template "chart.description" . }}
+
+## Usage
+
+First, add the dependency to your `Chart.yaml` file. Like any dependency, you're going to need to run `helm dep up` to
+fetch the dependency before installing.
+
+```yaml
+# ...
+dependencies:
+  # ...
+  - name: storj
+    version: {{ template "chart.version" . }}
+    repository: https://mjpitz.com
+    condition: storj.enabled
+```
+
+Then, you'll need to add the appropriate block to your `Deployment`, `StatefulSet`, or `DaemonSet`.
+
+```yaml
+{{ print `{{- $storjConfig := dict "Chart" (dict "Name" "storj") "Values" .Values.storj "Release" .Release -}}` }}
+# ...
+spec:
+  # ...
+  template:
+    # ...
+    spec:
+      # ...
+      containers:
+        # ...
+        {{ print `{{- if .Values.storj.enabled }}` }}
+        {{ print `{{- include "storj.container" $storjConfig | nindent 8 }}` }}
+        {{ print `{{- end }}` }}
+```
+
+Finally, we'll need to add some additional configuration to the `values.yaml` file.
+
+```yaml
+# ...
+storj:
+  enabled: false
+```
+
+That should be it.
+
+{{ template "chart.homepageLine" . }}
+
+{{ template "chart.maintainersSection" . }}
+
+{{ template "chart.sourcesSection" . }}
+
+{{ template "chart.requirementsSection" . }}
+
+{{ template "chart.valuesSection" . }}

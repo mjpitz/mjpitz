@@ -42,6 +42,7 @@ jobs:
           fi
 
       - name: Run chart-testing (lint)
+        working-directory: charts
         run: ct lint --config ct.yaml
 
       # TODO: turn back on

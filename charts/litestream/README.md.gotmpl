@@ -1,0 +1,79 @@
+{{ template "chart.header" . }}
+{{ template "chart.deprecationWarning" . }}
+
+{{ template "chart.badgesSection" . }}
+
+{{ template "chart.description" . }}
+
+## Usage
+
+First, add the dependency to your `Chart.yaml` file. Like any dependency, you're going to need to run `helm dep up` to
+fetch the dependency before installing.
+
+```yaml
+# ...
+dependencies:
+  # ...
+  - name: litestream
+    version: {{ template "chart.version" . }}
+    repository: https://mjpitz.com
+    condition: litestream.enabled
+```
+
+Then, you'll need to add the appropriate block to your `Deployment`, `StatefulSet`, or `DaemonSet`.
+
+```yaml
+{{ print `{{- $litestreamConfig := dict "Chart" (dict "Name" "litestream") "Values" .Values.litestream "Release" .Release -}}` }}
+# ...
+spec:
+  # ...
+  template:
+    # ...
+    spec:
+      {{ print `{{- if .Values.litestream.enabled }}` }}
+      # ...
+      initContainers:
+        {{ print `{{- include "litestream.init-container" $litestreamConfig | nindent 8 }}` }}
+      {{ print `{{- end }}` }}
+      # ...
+      containers:
+        # ...
+        {{ print `{{- if .Values.litestream.enabled }}` }}
+        {{ print `{{- include "litestream.container" $litestreamConfig | nindent 8 }}` }}
+        {{ print `{{- end }}` }}
+      volumes:
+        # ...
+        {{ print `{{- if .Values.litestream.enabled }}` }}
+        {{ print `{{- include "litestream.volume" $litestreamConfig | nindent 8 }}` }}
+        {{ print `{{- end }}` }}
+```
+
+Finally, we'll need to add some additional configuration to the `values.yaml` file.
+
+```yaml
+# ...
+litestream:
+  enabled: false
+
+  # customize this as needed
+  extraVolumeMounts:
+    - name: data
+      mountPath: /data/
+
+  config:
+    dbs:
+      - path: /data/db.sqlite
+        replicas: []
+```
+
+That should be it.
+
+{{ template "chart.homepageLine" . }}
+
+{{ template "chart.maintainersSection" . }}
+
+{{ template "chart.sourcesSection" . }}
+
+{{ template "chart.requirementsSection" . }}
+
+{{ template "chart.valuesSection" . }}

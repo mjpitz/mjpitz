@@ -1,0 +1,64 @@
+{{ template "chart.header" . }}
+{{ template "chart.deprecationWarning" . }}
+
+{{ template "chart.badgesSection" . }}
+
+{{ template "chart.description" . }}
+
+## Usage
+
+First, add the dependency to your `Chart.yaml` file. Like any dependency, you're going to need to run `helm dep up` to
+fetch the dependency before installing.
+
+```yaml
+# ...
+dependencies:
+  # ...
+  - name: redis
+    version: {{ template "chart.version" . }}
+    repository: https://mjpitz.com
+    condition: redis.enabled
+```
+
+Then, you'll need to add the appropriate block to your `Deployment`, `StatefulSet`, or `DaemonSet`.
+
+```yaml
+{{ print `{{- $redisConfig := dict "Chart" (dict "Name" "redis") "Values" .Values.redis "Release" .Release -}}` }}
+# ...
+spec:
+  # ...
+  template:
+    # ...
+    spec:
+      # ...
+      containers:
+        # ...
+        {{ print `{{- if .Values.redis.enabled }}` }}
+        {{ print `{{- include "redis.cluster.container" $redisConfig | nindent 8 }}` }}
+        {{ print `{{- end }}` }}
+      volumes:
+        # ...
+        {{ print `{{- if .Values.redis.enabled }}` }}
+        {{ print `{{- include "redis.cluster.volume" $redisConfig | nindent 8 }}` }}
+        {{ print `{{- end }}` }}
+```
+
+Finally, we'll need to add some additional configuration to the `values.yaml` file.
+
+```yaml
+# ...
+redis:
+  enabled: false
+```
+
+That should be it.
+
+{{ template "chart.homepageLine" . }}
+
+{{ template "chart.maintainersSection" . }}
+
+{{ template "chart.sourcesSection" . }}
+
+{{ template "chart.requirementsSection" . }}
+
+{{ template "chart.valuesSection" . }}
