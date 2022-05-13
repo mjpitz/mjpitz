@@ -157,15 +157,15 @@ mta_sts:
     # -- Configure an ingress for the MTA-STS well-known configuration.
     enabled: false
     # -- Specify annotations for the ingress.
-    annotations: { }
+    annotations: {}
       # kubernetes.io/ingress.class: nginx
       # kubernetes.io/tls-acme: "true"
     hosts:
-      - # -- Specify the domain host for the ingress.
+      -  # -- Specify the domain host for the ingress.
         host: chart-example.local
 
     # -- Configure TLS for the ingress.
-    tls: [ ]
+    tls: []
     #  - secretName: chart-example-tls
     #    hosts:
     #      - chart-example.local
@@ -341,7 +341,7 @@ litestream:
   enabled: false
 
   extraVolumeMounts:
-    - # -- The name of the data directory to mount. Defaults to the database volume created by `persistence.enabled`.
+    -  # -- The name of the data directory to mount. Defaults to the database volume created by `persistence.enabled`.
       name: data
       # -- The path where the databases can be located.
       mountPath: /data

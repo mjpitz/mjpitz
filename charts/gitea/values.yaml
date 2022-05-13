@@ -54,7 +54,7 @@ ingress:
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
-    - # -- Specify the domain host for the ingress.
+    -  # -- Specify the domain host for the ingress.
       host: chart-example.local
 
   # -- Configure TLS for the ingress.
@@ -424,7 +424,7 @@ litestream:
   enabled: false
 
   extraVolumeMounts:
-    - # -- Name of the volume containing the sqlite database.
+    -  # -- Name of the volume containing the sqlite database.
       name: gitea
       # -- Where the volume with the given name needs to be mounted. This may change if you're providing your own volume.
       mountPath: /data/gitea
@@ -439,7 +439,7 @@ litestream:
   config:
     # -- Configure the database replicas.
     dbs:
-      - # -- Replicate the gitea database.
+      -  # -- Replicate the gitea database.
         path: /data/gitea/gitea.db
         # -- Configure the replica targets.
         replicas: []

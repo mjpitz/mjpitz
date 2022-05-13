@@ -209,7 +209,7 @@ service:
   # -- Specify the type of service to create.
   type: ClusterIP
   # -- Annotations to add to the service, typically used for ingress control.
-  annotations: { }
+  annotations: {}
 
 ingress:
   # -- Configure the ingress for Drone.
@@ -219,7 +219,7 @@ ingress:
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
-    - # -- Specify the domain host for the ingress.
+    -  # -- Specify the domain host for the ingress.
       host: chart-example.local
 
   # -- Configure TLS for the ingress.
@@ -312,7 +312,7 @@ litestream:
   enabled: false
 
   extraVolumeMounts:
-    - # -- Name of the volume containing the sqlite database.
+    -  # -- Name of the volume containing the sqlite database.
       name: data
       # -- Where the volume with the given name needs to be mounted. This may change if you're providing your own volume.
       mountPath: /data

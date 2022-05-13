@@ -2,7 +2,7 @@ apiVersion: v2
 type: application
 name: drone
 description: |
-  Easily deploy a Drone.IO, a container-native, continuous delivery platform. This chart provisions a Drone server 
+  Easily deploy a Drone.IO, a container-native, continuous delivery platform. This chart provisions a Drone server
   instance intended for smaller
 sources:
   - https://github.com/harness/drone
@@ -10,15 +10,15 @@ sources:
 maintainers:
   - name: Mya Pitzeruse
     url: https://mjpitz.com
-version: 22.5.2
+version: 22.5.3
 appVersion: 2.11.1
 dependencies:
   - name: litestream
-    version: 22.4.0
+    version: 22.4.1
     repository: https://mjpitz.com
     condition: litestream.enabled
 
   - name: redis-queue
-    version: 22.4.3
+    version: 22.4.4
     repository: https://mjpitz.com
     condition: redis-queue.enabled
