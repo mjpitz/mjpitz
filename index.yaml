@@ -120,6 +120,33 @@ entries:
   drone:
   - apiVersion: v2
     appVersion: 2.11.1
+    created: "2022-05-13T02:03:56.667966806Z"
+    dependencies:
+    - condition: litestream.enabled
+      name: litestream
+      repository: https://mjpitz.com
+      version: 22.4.1
+    - condition: redis-queue.enabled
+      name: redis-queue
+      repository: https://mjpitz.com
+      version: 22.4.4
+    description: |
+      Easily deploy a Drone.IO, a container-native, continuous delivery platform. This chart provisions a Drone server
+      instance intended for smaller
+    digest: 16d02c25127bc16800d023d61cba5da09008a213bd7519bd9a2d762f027c28f2
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: drone
+    sources:
+    - https://github.com/harness/drone
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/drone
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/drone-22.5.3/drone-22.5.3.tgz
+    version: 22.5.3
+  - apiVersion: v2
+    appVersion: 2.11.1
     created: "2022-05-11T15:06:56.123185243Z"
     dependencies:
     - condition: litestream.enabled
@@ -169,6 +196,36 @@ entries:
     - https://github.com/mjpitz/mjpitz/releases/download/drone-22.5.0/drone-22.5.0.tgz
     version: 22.5.0
   gitea:
+  - apiVersion: v2
+    appVersion: 1.16.6
+    created: "2022-05-13T02:03:56.785862843Z"
+    dependencies:
+    - condition: litestream.enabled
+      name: litestream
+      repository: https://mjpitz.com
+      version: 22.4.1
+    - condition: redis-queue.enabled
+      name: redis-queue
+      repository: https://mjpitz.com
+      version: 22.4.4
+    - condition: redis.enabled
+      name: redis
+      repository: https://mjpitz.com
+      version: 22.4.6
+    description: |
+      Git with a cup of tea. A painless, self-hosted Git Service.
+    digest: 9a959e9e6df85de49799922a2e524c43880aec6cb0d8b2c19463a470655a98fb
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: gitea
+    sources:
+    - https://github.com/go-gitea/gitea
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/gitea
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/gitea-22.4.2/gitea-22.4.2.tgz
+    version: 22.4.2
   - apiVersion: v2
     appVersion: 1.16.6
     created: "2022-04-30T21:14:30.754358645Z"
@@ -235,6 +292,30 @@ entries:
     - https://github.com/mjpitz/mjpitz/releases/download/litestream-22.4.0/litestream-22.4.0.tgz
     version: 22.4.0
   maddy:
+  - apiVersion: v2
+    appVersion: 0.5.4
+    created: "2022-05-13T02:03:56.891748915Z"
+    dependencies:
+    - condition: litestream.enabled
+      name: litestream
+      repository: https://mjpitz.com
+      version: 22.4.1
+    description: |
+      Easily deploy and configure a maddy mail server. This chart handles a fair bit of setup, however, additional work
+      needs to be done to properly configure all the DNS records. For a complete guide on setting up DNS for maddy, see the
+      user guide: https://maddy.email/tutorials/setting-up/
+    digest: c0667ed35df8cc020a6b2d444a715b6adc80fefc22581ee0a52f1a1633cced26
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: maddy
+    sources:
+    - https://github.com/foxcpp/maddy
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/maddy
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/maddy-22.4.6/maddy-22.4.6.tgz
+    version: 22.4.6
   - apiVersion: v2
     appVersion: 0.5.4
     created: "2022-05-02T17:24:52.022791746Z"
@@ -712,6 +793,35 @@ entries:
     - https://github.com/mjpitz/mjpitz/releases/download/redis-raft-22.5.0/redis-raft-22.5.0.tgz
     version: 22.5.0
   registry:
+  - apiVersion: v2
+    appVersion: 2.8.0
+    created: "2022-05-13T02:03:57.003117116Z"
+    dependencies:
+    - condition: auth.enabled
+      name: auth
+      repository: https://mjpitz.com
+      version: 22.4.1
+    - condition: redis.enabled
+      name: redis
+      repository: https://mjpitz.com
+      version: 22.4.6
+    - condition: storj.enabled
+      name: storj
+      repository: https://mjpitz.com
+      version: 22.4.2
+    description: "Easily deploy and configure a production-ready container registry backed by your favorite cloud storage provider. \nOptionally add a highly-available, partition-tolerant Redis cache that's fronted by Envoy.\n"
+    digest: 19835b395d3a295581a5c4425bd16aa5190b7533ba95b91f4c408f29e3929e28
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: registry
+    sources:
+    - https://github.com/distribution/distribution
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/registry
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/registry-22.4.3/registry-22.4.3.tgz
+    version: 22.4.3
   - apiVersion: v2
     appVersion: 2.8.0
     created: "2022-04-24T20:17:17.724724922Z"
