@@ -3,6 +3,24 @@ entries:
   auth:
   - apiVersion: v2
     appVersion: 1.6.0
+    created: "2022-05-13T01:41:44.581405196Z"
+    description: |
+      Deploy a container registry token authorization server. Easily add authentication and authorization to your container
+      registry and control what images authenticated and unauthenticated users are allowed to pull.
+    digest: c7b75c4832afb5af3c5e0724192977894c4ecf0974e34f8b53340aee70f415f8
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: auth
+    sources:
+    - https://github.com/cesanta/docker_auth
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/auth
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/auth-22.4.1/auth-22.4.1.tgz
+    version: 22.4.1
+  - apiVersion: v2
+    appVersion: 1.6.0
     created: "2022-04-08T02:32:07.489582254Z"
     description: |
       Deploy a container registry token authorization server. Easily add authentication and authorization to your container
@@ -184,6 +202,24 @@ entries:
   litestream:
   - apiVersion: v2
     appVersion: 0.3.8
+    created: "2022-05-13T01:41:44.769767159Z"
+    description: |
+      Easily add litestream to any sqlite backed application as a sidecar. This chart optionally deploys the required
+      configuration and provides template functions that render the necessary init and sidecar containers.
+    digest: c782e74facb1745190aa1ec6b7e38993c4061fd9b2f05b4568129de9a919471f
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: litestream
+    sources:
+    - https://github.com/benbjohnson/litestream
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/litestream
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/litestream-22.4.1/litestream-22.4.1.tgz
+    version: 22.4.1
+  - apiVersion: v2
+    appVersion: 0.3.8
     created: "2022-04-24T18:41:01.69354715Z"
     description: "Easily add litestream to any sqlite backed application as a sidecar. This chart optionally deploys the required \nconfiguration and provides template functions that render the necessary init and sidecar containers.\n"
     digest: 6ca0c48c61d857ece2e7b4372c3a5a6fb2accc5c2b6ae65fcf81a391661e7f4d
@@ -305,6 +341,25 @@ entries:
     - https://github.com/mjpitz/mjpitz/releases/download/maddy-22.4.0/maddy-22.4.0.tgz
     version: 22.4.0
   redis:
+  - apiVersion: v2
+    appVersion: 6.2.6
+    created: "2022-05-13T01:41:44.956016114Z"
+    description: |
+      Deploy a highly-available, partition-tolerant Redis cluster fronted by an envoy sidecar. Envoy partitions keys among
+      members of the cluster using a consistent hashing algorithm making it great as a best-effort cache.
+    digest: 9a159af314d40d9edd0256e765b4e3d74c612785e79e35736a69800576758e58
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: redis
+    sources:
+    - https://github.com/redis/redis
+    - https://github.com/envoyproxy/envoy
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/redis
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/redis-22.4.6/redis-22.4.6.tgz
+    version: 22.4.6
   - apiVersion: v2
     appVersion: 6.2.6
     created: "2022-05-11T15:33:53.902031778Z"
@@ -517,6 +572,23 @@ entries:
   redis-queue:
   - apiVersion: v2
     appVersion: 6.2.6
+    created: "2022-05-13T01:41:45.146655586Z"
+    description: |
+      Deploy a single durable Redis instance, intended to be used as a work queue.
+    digest: b7ba139fff5eed0f5b74de9b53385749c4974252dae40451caa654159860d961
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: redis-queue
+    sources:
+    - https://github.com/redis/redis
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/redis-queue
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/redis-queue-22.4.4/redis-queue-22.4.4.tgz
+    version: 22.4.4
+  - apiVersion: v2
+    appVersion: 6.2.6
     created: "2022-05-11T15:33:54.033938764Z"
     description: |
       Deploy a single durable Redis instance, intended to be used as a work queue.
@@ -584,6 +656,27 @@ entries:
     - https://github.com/mjpitz/mjpitz/releases/download/redis-queue-22.4.0/redis-queue-22.4.0.tgz
     version: 22.4.0
   redis-raft:
+  - apiVersion: v2
+    appVersion: 6.2.6
+    created: "2022-05-13T01:41:45.341215674Z"
+    description: |
+      Deploy a consistent, partition-tolerant Redis cluster backed by the Raft consensus protocol. All supported commands
+      are executed in a strongly-consistent manner. See the
+      [RedisRaft](https://github.com/RedisLabs/redisraft/blob/master/docs/Using.md#supported-commands) documentation for
+      more information about supported commands.
+    digest: a1a5b8ee060eed5f08b4aa2c65df7bf2a1b6856538b5e04107bdf3e505e8e971
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: redis-raft
+    sources:
+    - https://github.com/redis/redis
+    - https://github.com/RedisLabs/redisraft
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/redis-raft
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/redis-raft-22.5.2/redis-raft-22.5.2.tgz
+    version: 22.5.2
   - apiVersion: v2
     appVersion: 6.2.6
     created: "2022-05-11T15:06:56.774905576Z"
@@ -836,6 +929,24 @@ entries:
     - https://github.com/mjpitz/mjpitz/releases/download/registry-2.7.1/registry-2.7.1.tgz
     version: 2.7.1
   storj:
+  - apiVersion: v2
+    appVersion: latest
+    created: "2022-05-13T01:41:45.900196439Z"
+    description: |
+      Easily add a Storj S3 gateway to any Deployment, DaemonSet, or StatefulSet using a sidecar. This chart optionally
+      deploys the required configuration and provides template functions that render the necessary sidecar containers.
+    digest: 97e5313d0218e99a7f8de89e8c33cebacf1e07bf34285fae7d3addc7bd043766
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: storj
+    sources:
+    - https://github.com/storj/gateway-st
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/storj
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/storj-22.4.2/storj-22.4.2.tgz
+    version: 22.4.2
   - apiVersion: v2
     appVersion: latest
     created: "2022-04-24T15:08:52.948219145Z"
