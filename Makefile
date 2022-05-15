@@ -1,15 +1,51 @@
 export PATH := $(shell pwd)/bin:$(PATH)
 export SHELL := env PATH=$(PATH) /bin/bash
 
+#== DOCKER TARGETS
+
 docker/build:
 	@cd docker && { \
 		find . -mindepth 1 -maxdepth 1 -type d -exec basename {} \; | xargs -I{} make build TARGET={} ; \
 	}
 
+#== GRAFANA TARGETS
+
+grafana/deps:
+	@cd monitoring && { \
+		jb install ; \
+	}
+
+grafana/format:
+	@cd monitoring && { \
+		find . -mindepth 1 -maxdepth 1 -type d -exec basename {} \; | egrep -v 'common|out|vendor' | \
+			xargs -I{} make format TARGET={} ; \
+	}
+
+grafana/lint:
+	@cd monitoring && { \
+		find . -mindepth 1 -maxdepth 1 -type d -exec basename {} \; | egrep -v 'common|out|vendor' | \
+			xargs -I{} make lint TARGET={} ; \
+	}
+
+grafana/build:
+	@cd monitoring && { \
+		find . -mindepth 1 -maxdepth 1 -type d -exec basename {} \; | egrep -v 'common|out|vendor' | \
+			xargs -I{} make build TARGET={} ; \
+	}
+
+#== HELM TARGETS
+
 helm/docs:
 	@cd charts && { \
 		find . -mindepth 1 -maxdepth 1 -type d -exec basename {} \; | xargs -I{} make docs TARGET={} ; \
 	}
+
+helm/lint:
+	@cd charts && { \
+		find . -mindepth 1 -maxdepth 1 -type d -exec basename {} \; | xargs -I{} make lint TARGET={} ; \
+	}
+
+#== SITE TARGETS
 
 site/deps:
 	@bash -c "[[ -e site/themes/anatole ]] || git submodule update --init --recursive"
