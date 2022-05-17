@@ -4,11 +4,12 @@ local template = grafana.template;
 local row = grafana.row;
 
 local go = import '../../common/go.libsonnet';
+local process = import '../../common/process.libsonnet';
 
 {
   grafanaDashboards+:: {
-    'grafana_dashboard.yaml':
-      local selector = '$selector' + (
+    'grafana_dashboard_golang.yaml':
+      local selector = 'namespace="$namespace",job="$job"' + (
         if $._config.dashboard.selector != '' then (',' + $._config.dashboard.selector) else ''
       );
 
@@ -32,18 +33,45 @@ local go = import '../../common/go.libsonnet';
         regex: '',
         type: 'datasource',
       })
-      .addTemplate(template.text(
-        'selector',
-        label='selector',
+      .addTemplate(template.new(
+        'namespace',
+        '$datasource',
+        'label_values(namespace)',
+      ))
+      .addTemplate(template.new(
+        'job',
+        '$datasource',
+        'label_values(job)',
       ))
       .addRow(
-        row.new()
+        row.new(
+          title='Overview',
+          showTitle=true,
+          collapse=false,
+        )
         .addPanel(go.info(selector=selector))
         .addPanel(go.goroutines(selector=selector))
         .addPanel(go.threads(selector=selector))
       )
       .addRow(
-        row.new()
+        row.new(
+          title='Process',
+          showTitle=true,
+          collapse=false,
+        )
+        .addPanel(process.cpu(selector=selector))
+        //.addPanel(process.max_fds(selector=selector))
+        .addPanel(process.open_fds(selector=selector))
+        .addPanel(process.resident_memory(selector=selector))
+        .addPanel(process.virtual_memory(selector=selector))
+        //.addPanel(process.virtual_memory_max(selector=selector))
+      )
+      .addRow(
+        row.new(
+          title='Memory',
+          showTitle=true,
+          collapse=true,
+        )
         .addPanel(go.memstats_alloc(selector=selector))
         .addPanel(go.memstats_frees(selector=selector))
         .addPanel(go.memstats_lookups(selector=selector))
@@ -57,7 +85,11 @@ local go = import '../../common/go.libsonnet';
         .addPanel(go.memstats_stack_sys(selector=selector))
       )
       .addRow(
-        row.new()
+        row.new(
+          title='Heap',
+          showTitle=true,
+          collapse=true,
+        )
         .addPanel(go.memstats_heap_alloc(selector=selector))
         .addPanel(go.memstats_heap_idle(selector=selector))
         .addPanel(go.memstats_heap_inuse(selector=selector))
@@ -66,7 +98,11 @@ local go = import '../../common/go.libsonnet';
         .addPanel(go.memstats_heap_sys(selector=selector))
       )
       .addRow(
-        row.new()
+        row.new(
+          title='Garbage Collection',
+          showTitle=true,
+          collapse=true,
+        )
         .addPanel(go.gc_duration(selector=selector))
         .addPanel(go.memstats_next_gc(selector=selector))
         //.addPanel(go.memstats_heap_last_gc_time(selector=selector))

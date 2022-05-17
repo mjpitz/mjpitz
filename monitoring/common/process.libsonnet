@@ -1,6 +1,7 @@
 local grafana = import 'github.com/grafana/grafonnet-lib/grafonnet/grafana.libsonnet';
 local prometheus = grafana.prometheus;
 local graphPanel = grafana.graphPanel;
+local singlestat = grafana.singlestat;
 
 {
   cpu(
@@ -74,7 +75,6 @@ local graphPanel = grafana.graphPanel;
     ],
     legendFormat='{{ instance }}',
   )),
-
 
   virtual_memory_max(
     selector,
