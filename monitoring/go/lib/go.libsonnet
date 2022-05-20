@@ -82,9 +82,9 @@ local prometheus = grafana.prometheus;
   ),
 
   memstats_heap_last_gc_time(selector):: prometheus.target(
-   'go_memstats_last_gc_time_seconds{%s}' % [
-     selector,
-   ],
+    'go_memstats_last_gc_time_seconds{%s}' % [
+      selector,
+    ],
   ),
 
   memstats_lookups(selector):: prometheus.target(

@@ -4,10 +4,10 @@ local db = import './db.libsonnet';
 local instance = import './instance.libsonnet';
 local memory = import './memory.libsonnet';
 local persistence = import './persistence.libsonnet';
-local stats = import './stats.libsonnet';
 local primary = import './primary.libsonnet';
 local replica = import './replica.libsonnet';
 local slowlog = import './slowlog.libsonnet';
+local stats = import './stats.libsonnet';
 
 {
   client: client,

@@ -253,6 +253,6 @@ local gitea = import '../lib/gitea.libsonnet';
             format='short',
           ).addTarget(gitea.webhooks(selector))
         )
-      )
+      ),
   },
 }

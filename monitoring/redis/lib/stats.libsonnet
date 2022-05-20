@@ -163,4 +163,3 @@ local prometheus = grafana.prometheus;
     legendFormat='{{ instance }}',
   ),
 }
-

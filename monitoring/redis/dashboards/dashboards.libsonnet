@@ -46,9 +46,9 @@ local redis = import '../lib/redis.libsonnet';
       ))
       .addRow(
         row.new(
-          title = 'Overview',
-          showTitle = true,
-          collapse = false,
+          title='Overview',
+          showTitle=true,
+          collapse=false,
         )
         .addPanel(
           singlestat.new(
@@ -77,9 +77,9 @@ local redis = import '../lib/redis.libsonnet';
       )
       .addRow(
         row.new(
-          title = 'Commands',
-          showTitle = true,
-          collapse = false,
+          title='Commands',
+          showTitle=true,
+          collapse=false,
         )
         .addPanel(
           graphPanel.new(
@@ -116,9 +116,9 @@ local redis = import '../lib/redis.libsonnet';
       )
       .addRow(
         row.new(
-          title = 'DB',
-          showTitle = true,
-          collapse = false,
+          title='DB',
+          showTitle=true,
+          collapse=false,
         )
         .addPanel(
           graphPanel.new(
@@ -147,9 +147,9 @@ local redis = import '../lib/redis.libsonnet';
       )
       .addRow(
         row.new(
-          title = 'Clients',
-          showTitle = true,
-          collapse = true,
+          title='Clients',
+          showTitle=true,
+          collapse=true,
         )
         .addPanel(
           graphPanel.new(
@@ -186,9 +186,9 @@ local redis = import '../lib/redis.libsonnet';
       )
       .addRow(
         row.new(
-          title = 'Memory',
-          showTitle = true,
-          collapse = true,
+          title='Memory',
+          showTitle=true,
+          collapse=true,
         )
         .addPanel(
           graphPanel.new(
@@ -369,9 +369,9 @@ local redis = import '../lib/redis.libsonnet';
       )
       .addRow(
         row.new(
-          title = 'Persistence',
-          showTitle = true,
-          collapse = true,
+          title='Persistence',
+          showTitle=true,
+          collapse=true,
         )
         .addPanel(
           graphPanel.new(
@@ -496,9 +496,9 @@ local redis = import '../lib/redis.libsonnet';
       )
       .addRow(
         row.new(
-          title = 'Primary',
-          showTitle = true,
-          collapse = true,
+          title='Primary',
+          showTitle=true,
+          collapse=true,
         )
         .addPanel(
           graphPanel.new(
@@ -559,9 +559,9 @@ local redis = import '../lib/redis.libsonnet';
       )
       .addRow(
         row.new(
-          title = 'Replica',
-          showTitle = true,
-          collapse = true,
+          title='Replica',
+          showTitle=true,
+          collapse=true,
         )
         .addPanel(
           graphPanel.new(
@@ -598,9 +598,9 @@ local redis = import '../lib/redis.libsonnet';
       )
       .addRow(
         row.new(
-          title = 'Slowlog',
-          showTitle = true,
-          collapse = true,
+          title='Slowlog',
+          showTitle=true,
+          collapse=true,
         )
         .addPanel(
           graphPanel.new(
@@ -629,9 +629,9 @@ local redis = import '../lib/redis.libsonnet';
       )
       .addRow(
         row.new(
-          title = 'Stats',
-          showTitle = true,
-          collapse = true,
+          title='Stats',
+          showTitle=true,
+          collapse=true,
         )
         .addPanel(
           graphPanel.new(
@@ -809,6 +809,6 @@ local redis = import '../lib/redis.libsonnet';
             format='short',
           ).addTarget(redis.stats.migrate_cached_sockets(selector))
         )
-      )
+      ),
   },
 }
