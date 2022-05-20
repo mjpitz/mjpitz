@@ -71,7 +71,7 @@ local redis = import '../lib/redis.libsonnet';
             'Uptime',
             datasource='$datasource',
             span=6,
-            format='short',
+            format='seconds',
           ).addTarget(redis.instance.uptime(selector))
         )
       )
@@ -83,10 +83,10 @@ local redis = import '../lib/redis.libsonnet';
         )
         .addPanel(
           graphPanel.new(
-            'Duration (milliseconds)',
+            'Duration',
             datasource='$datasource',
             span=4,
-            format='short',
+            format='milliseconds',
           ).addTarget(redis.command.duration(selector))
         )
         .addPanel(
@@ -125,7 +125,7 @@ local redis = import '../lib/redis.libsonnet';
             'Average time to live',
             datasource='$datasource',
             span=4,
-            format='short',
+            format='seconds',
           ).addTarget(redis.db.average_ttl(selector))
         )
         .addPanel(
@@ -195,7 +195,7 @@ local redis = import '../lib/redis.libsonnet';
             'Max configured',
             datasource='$datasource',
             span=4,
-            format='short',
+            format='bytes',
           ).addTarget(redis.memory.max_memory(selector))
         )
         .addPanel(
@@ -203,7 +203,7 @@ local redis = import '../lib/redis.libsonnet';
             'Used',
             datasource='$datasource',
             span=4,
-            format='short',
+            format='bytes',
           ).addTarget(redis.memory.used(selector))
         )
         .addPanel(
@@ -211,7 +211,7 @@ local redis = import '../lib/redis.libsonnet';
             'Dataset',
             datasource='$datasource',
             span=4,
-            format='short',
+            format='bytes',
           ).addTarget(redis.memory.dataset(selector))
         )
         .addPanel(
@@ -219,7 +219,7 @@ local redis = import '../lib/redis.libsonnet';
             'Lua',
             datasource='$datasource',
             span=4,
-            format='short',
+            format='bytes',
           ).addTarget(redis.memory.lua(selector))
         )
         .addPanel(
@@ -227,7 +227,7 @@ local redis = import '../lib/redis.libsonnet';
             'Overhead',
             datasource='$datasource',
             span=4,
-            format='short',
+            format='bytes',
           ).addTarget(redis.memory.overhead(selector))
         )
         .addPanel(
@@ -235,7 +235,7 @@ local redis = import '../lib/redis.libsonnet';
             'Peak',
             datasource='$datasource',
             span=4,
-            format='short',
+            format='bytes',
           ).addTarget(redis.memory.peak(selector))
         )
         .addPanel(
@@ -243,7 +243,7 @@ local redis = import '../lib/redis.libsonnet';
             'RSS',
             datasource='$datasource',
             span=4,
-            format='short',
+            format='bytes',
           ).addTarget(redis.memory.rss(selector))
         )
         .addPanel(
@@ -251,7 +251,7 @@ local redis = import '../lib/redis.libsonnet';
             'Scripts',
             datasource='$datasource',
             span=4,
-            format='short',
+            format='bytes',
           ).addTarget(redis.memory.scripts(selector))
         )
         .addPanel(
@@ -259,7 +259,7 @@ local redis = import '../lib/redis.libsonnet';
             'Start-up',
             datasource='$datasource',
             span=4,
-            format='short',
+            format='bytes',
           ).addTarget(redis.memory.startup(selector))
         )
         .addPanel(
@@ -267,7 +267,7 @@ local redis = import '../lib/redis.libsonnet';
             'Clients',
             datasource='$datasource',
             span=4,
-            format='short',
+            format='bytes',
           ).addTarget(redis.memory.clients(selector))
         )
         .addPanel(
@@ -275,7 +275,7 @@ local redis = import '../lib/redis.libsonnet';
             'Replicas',
             datasource='$datasource',
             span=4,
-            format='short',
+            format='bytes',
           ).addTarget(redis.memory.replicas(selector))
         )
         .addPanel(
@@ -283,7 +283,7 @@ local redis = import '../lib/redis.libsonnet';
             'Fragmentation',
             datasource='$datasource',
             span=4,
-            format='short',
+            format='bytes',
           ).addTarget(redis.memory.fragmentation(selector))
         )
         .addPanel(
@@ -299,7 +299,7 @@ local redis = import '../lib/redis.libsonnet';
             'Eviction',
             datasource='$datasource',
             span=4,
-            format='short',
+            format='bytes',
           ).addTarget(redis.memory.eviction(selector))
         )
         .addPanel(
@@ -307,7 +307,7 @@ local redis = import '../lib/redis.libsonnet';
             'Allocator active',
             datasource='$datasource',
             span=4,
-            format='short',
+            format='bytes',
           ).addTarget(redis.memory.allocator_active(selector))
         )
         .addPanel(
@@ -315,7 +315,7 @@ local redis = import '../lib/redis.libsonnet';
             'Allocator allocated',
             datasource='$datasource',
             span=4,
-            format='short',
+            format='bytes',
           ).addTarget(redis.memory.allocator_allocated(selector))
         )
         .addPanel(
@@ -323,7 +323,7 @@ local redis = import '../lib/redis.libsonnet';
             'Allocator fragmentation',
             datasource='$datasource',
             span=4,
-            format='short',
+            format='bytes',
           ).addTarget(redis.memory.allocator_fragmentation(selector))
         )
         .addPanel(
@@ -339,7 +339,7 @@ local redis = import '../lib/redis.libsonnet';
             'Allocator resident',
             datasource='$datasource',
             span=4,
-            format='short',
+            format='bytes',
           ).addTarget(redis.memory.allocator_resident(selector))
         )
         .addPanel(
@@ -347,7 +347,7 @@ local redis = import '../lib/redis.libsonnet';
             'Allocator rss',
             datasource='$datasource',
             span=4,
-            format='short',
+            format='bytes',
           ).addTarget(redis.memory.allocator_rss(selector))
         )
         .addPanel(
@@ -402,7 +402,7 @@ local redis = import '../lib/redis.libsonnet';
             'RDB save duration',
             datasource='$datasource',
             span=4,
-            format='short',
+            format='seconds',
           ).addTarget(redis.persistence.rdb_save_duration(selector))
         )
         .addPanel(
@@ -410,7 +410,7 @@ local redis = import '../lib/redis.libsonnet';
             'RDB last save duration',
             datasource='$datasource',
             span=4,
-            format='short',
+            format='seconds',
           ).addTarget(redis.persistence.rdb_last_save_duration(selector))
         )
         .addPanel(
@@ -426,7 +426,7 @@ local redis = import '../lib/redis.libsonnet';
             'AOF rewrite duration',
             datasource='$datasource',
             span=4,
-            format='short',
+            format='seconds',
           ).addTarget(redis.persistence.aof_rewrite_duration(selector))
         )
         .addPanel(
@@ -442,7 +442,7 @@ local redis = import '../lib/redis.libsonnet';
             'AOF last cow size',
             datasource='$datasource',
             span=4,
-            format='short',
+            format='bytes',
           ).addTarget(redis.persistence.aof_last_cow_size(selector))
         )
         .addPanel(
@@ -450,7 +450,7 @@ local redis = import '../lib/redis.libsonnet';
             'AOF last rewrite duration',
             datasource='$datasource',
             span=4,
-            format='short',
+            format='seconds',
           ).addTarget(redis.persistence.aof_last_rewrite_duration(selector))
         )
         .addPanel(
@@ -537,7 +537,7 @@ local redis = import '../lib/redis.libsonnet';
             'Replication backlog size',
             datasource='$datasource',
             span=4,
-            format='short',
+            format='bytes',
           ).addTarget(redis.primary.replication_backlog(selector))
         )
         .addPanel(
@@ -553,7 +553,7 @@ local redis = import '../lib/redis.libsonnet';
             'Replication backlog history',
             datasource='$datasource',
             span=4,
-            format='short',
+            format='bytes',
           ).addTarget(redis.primary.replication_backlog_history(selector))
         )
       )
@@ -607,7 +607,7 @@ local redis = import '../lib/redis.libsonnet';
             'Length',
             datasource='$datasource',
             span=4,
-            format='short',
+            format='bytes',
           ).addTarget(redis.slowlog.length(selector))
         )
         .addPanel(
@@ -766,7 +766,7 @@ local redis = import '../lib/redis.libsonnet';
             'Network bytes in',
             datasource='$datasource',
             span=4,
-            format='short',
+            format='bytes',
           ).addTarget(redis.stats.net_input_bytes(selector))
         )
         .addPanel(
@@ -774,7 +774,7 @@ local redis = import '../lib/redis.libsonnet';
             'Network bytes out',
             datasource='$datasource',
             span=4,
-            format='short',
+            format='bytes',
           ).addTarget(redis.stats.net_output_bytes(selector))
         )
         .addPanel(

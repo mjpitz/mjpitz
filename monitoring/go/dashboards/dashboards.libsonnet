@@ -2,9 +2,11 @@ local grafana = import 'github.com/grafana/grafonnet-lib/grafonnet/grafana.libso
 local dashboard = grafana.dashboard;
 local template = grafana.template;
 local row = grafana.row;
+local graphPanel = grafana.graphPanel;
+local singlestat = grafana.singlestat;
 
-local go = import '../../common/go.libsonnet';
-local process = import '../../common/process.libsonnet';
+local go = import '../lib/go.libsonnet';
+local process = import '../lib/process.libsonnet';
 
 {
   grafanaDashboards+:: {
@@ -49,9 +51,30 @@ local process = import '../../common/process.libsonnet';
           showTitle=true,
           collapse=false,
         )
-        .addPanel(go.info(selector=selector))
-        .addPanel(go.goroutines(selector=selector))
-        .addPanel(go.threads(selector=selector))
+        .addPanel(
+          singlestat.new(
+            'Information',
+            datasource='$datasource',
+            span=4,
+            format='short',
+          ).addTarget(go.info(selector))
+        )
+        .addPanel(
+          graphPanel.new(
+            'Goroutines',
+            datasource='$datasource',
+            span=4,
+            format='short',
+          ).addTarget(go.goroutines(selector))
+        )
+        .addPanel(
+          graphPanel.new(
+            'Threads',
+            datasource='$datasource',
+            span=4,
+            format='short',
+          ).addTarget(go.threads(selector))
+        )
       )
       .addRow(
         row.new(
@@ -59,12 +82,46 @@ local process = import '../../common/process.libsonnet';
           showTitle=true,
           collapse=false,
         )
-        .addPanel(process.cpu(selector=selector))
-        //.addPanel(process.max_fds(selector=selector))
-        .addPanel(process.open_fds(selector=selector))
-        .addPanel(process.resident_memory(selector=selector))
-        .addPanel(process.virtual_memory(selector=selector))
-        //.addPanel(process.virtual_memory_max(selector=selector))
+        .addPanel(
+          graphPanel.new(
+            'CPU usage',
+            datasource='$datasource',
+            span=4,
+            format='millicores',
+          ).addTarget(process.cpu(selector))
+        )
+        .addPanel(
+          graphPanel.new(
+            'Open file descriptors',
+            datasource='$datasource',
+            span=4,
+            format='short',
+          ).addTarget(process.open_fds(selector))
+        )
+        .addPanel(
+          graphPanel.new(
+            'Resident memory',
+            datasource='$datasource',
+            span=4,
+            format='bytes',
+          ).addTarget(process.resident_memory(selector))
+        )
+        .addPanel(
+          graphPanel.new(
+            'Virtual memory',
+            datasource='$datasource',
+            span=4,
+            format='bytes',
+          ).addTarget(process.virtual_memory(selector))
+        )
+        .addPanel(
+          graphPanel.new(
+            'Virtual memory max',
+            datasource='$datasource',
+            span=4,
+            format='bytes',
+          ).addTarget(process.virtual_memory_max(selector))
+        )
       )
       .addRow(
         row.new(
@@ -72,17 +129,94 @@ local process = import '../../common/process.libsonnet';
           showTitle=true,
           collapse=true,
         )
-        .addPanel(go.memstats_alloc(selector=selector))
-        .addPanel(go.memstats_frees(selector=selector))
-        .addPanel(go.memstats_lookups(selector=selector))
-        .addPanel(go.memstats_mallocs(selector=selector))
-        .addPanel(go.memstats_mcache_inuse(selector=selector))
-        .addPanel(go.memstats_mcache_sys(selector=selector))
-        .addPanel(go.memstats_mspan_inuse(selector=selector))
-        .addPanel(go.memstats_mspan_sys(selector=selector))
-        .addPanel(go.memstats_other_sys(selector=selector))
-        .addPanel(go.memstats_stack_inuse(selector=selector))
-        .addPanel(go.memstats_stack_sys(selector=selector))
+        .addPanel(
+          graphPanel.new(
+            'Memory allocated',
+            datasource='$datasource',
+            span=4,
+            format='bytes',
+          ).addTarget(go.memstats_alloc(selector))
+        )
+        .addPanel(
+          graphPanel.new(
+            'Memory frees',
+            datasource='$datasource',
+            span=4,
+            format='short',
+          ).addTarget(go.memstats_frees(selector))
+        )
+        .addPanel(
+          graphPanel.new(
+            'Rate of pointer lookups',
+            datasource='$datasource',
+            span=4,
+            format='short',
+          ).addTarget(go.memstats_lookups(selector))
+        )
+        .addPanel(
+          graphPanel.new(
+            'Rate of malloc operations',
+            datasource='$datasource',
+            span=4,
+            format='short',
+          ).addTarget(go.memstats_mallocs(selector))
+        )
+        .addPanel(
+          graphPanel.new(
+            'Memory in-use by mcache structures',
+            datasource='$datasource',
+            span=4,
+            format='bytes',
+          ).addTarget(go.memstats_mcache_inuse(selector))
+        )
+        .addPanel(
+          graphPanel.new(
+            'Memory allocated for mcache structures',
+            datasource='$datasource',
+            span=4,
+            format='bytes',
+          ).addTarget(go.memstats_mcache_sys(selector))
+        )
+        .addPanel(
+          graphPanel.new(
+            'Memory in-use by mspan structures',
+            datasource='$datasource',
+            span=4,
+            format='bytes',
+          ).addTarget(go.memstats_mspan_inuse(selector))
+        )
+        .addPanel(
+          graphPanel.new(
+            'Memory allocated for mspan structures',
+            datasource='$datasource',
+            span=4,
+            format='bytes',
+          ).addTarget(go.memstats_mspan_sys(selector))
+        )
+        .addPanel(
+          graphPanel.new(
+            'Memory allocated by other systems',
+            datasource='$datasource',
+            span=4,
+            format='bytes',
+          ).addTarget(go.memstats_other_sys(selector))
+        )
+        .addPanel(
+          graphPanel.new(
+            'Memory in-use by stack',
+            datasource='$datasource',
+            span=4,
+            format='bytes',
+          ).addTarget(go.memstats_stack_inuse(selector))
+        )
+        .addPanel(
+          graphPanel.new(
+            'Memory allocated for the stack allocator',
+            datasource='$datasource',
+            span=4,
+            format='bytes',
+          ).addTarget(go.memstats_stack_sys(selector))
+        )
       )
       .addRow(
         row.new(
@@ -90,12 +224,54 @@ local process = import '../../common/process.libsonnet';
           showTitle=true,
           collapse=true,
         )
-        .addPanel(go.memstats_heap_alloc(selector=selector))
-        .addPanel(go.memstats_heap_idle(selector=selector))
-        .addPanel(go.memstats_heap_inuse(selector=selector))
-        .addPanel(go.memstats_heap_objects(selector=selector))
-        .addPanel(go.memstats_heap_released(selector=selector))
-        .addPanel(go.memstats_heap_sys(selector=selector))
+        .addPanel(
+          graphPanel.new(
+            'Heap allocated',
+            datasource='$datasource',
+            span=4,
+            format='bytes',
+          ).addTarget(go.memstats_heap_alloc(selector))
+        )
+        .addPanel(
+          graphPanel.new(
+            'Heap idle',
+            datasource='$datasource',
+            span=4,
+            format='bytes',
+          ).addTarget(go.memstats_heap_idle(selector))
+        )
+        .addPanel(
+          graphPanel.new(
+            'Heap in-use',
+            datasource='$datasource',
+            span=4,
+            format='bytes',
+          ).addTarget(go.memstats_heap_inuse(selector))
+        )
+        .addPanel(
+          graphPanel.new(
+            'Rate of object allocations',
+            datasource='$datasource',
+            span=4,
+            format='short',
+          ).addTarget(go.memstats_heap_objects(selector))
+        )
+        .addPanel(
+          graphPanel.new(
+            'Heap released to system',
+            datasource='$datasource',
+            span=4,
+            format='bytes',
+          ).addTarget(go.memstats_heap_released(selector))
+        )
+        .addPanel(
+          graphPanel.new(
+            'Heap obtained from system',
+            datasource='$datasource',
+            span=4,
+            format='bytes',
+          ).addTarget(go.memstats_heap_sys(selector))
+        )
       )
       .addRow(
         row.new(
@@ -103,9 +279,22 @@ local process = import '../../common/process.libsonnet';
           showTitle=true,
           collapse=true,
         )
-        .addPanel(go.gc_duration(selector=selector))
-        .addPanel(go.memstats_next_gc(selector=selector))
-        //.addPanel(go.memstats_heap_last_gc_time(selector=selector))
+        .addPanel(
+          graphPanel.new(
+            'GC duration',
+            datasource='$datasource',
+            span=4,
+            format='seconds',
+          ).addTarget(go.gc_duration(selector))
+        )
+        .addPanel(
+          graphPanel.new(
+            'Memory reclaimed during next gc',
+            datasource='$datasource',
+            span=4,
+            format='bytes',
+          ).addTarget(go.memstats_next_gc(selector))
+        )
       ),
   },
 }

@@ -17,7 +17,7 @@ local prometheus = grafana.prometheus;
   ),
 
   uptime(selector):: prometheus.target(
-    'sum(redis_uptime_in_seconds{%s}) by (namespace, pod)' % [
+    'sum(redis_uptime_in_seconds{%s}) by (pod)' % [
       selector,
     ],
     legendFormat='{{ instance }}',
