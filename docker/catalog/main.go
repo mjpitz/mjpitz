@@ -1,16 +1,13 @@
 // Copyright (C) 2022 Mya Pitzeruse
 // The MIT License (MIT)
 
-//go:build ignore
-// +build ignore
-
 package main
 
 import (
-	"github.com/mjpitz/mjpitz/apps/emc/internal/catalog"
-	"github.com/mjpitz/mjpitz/apps/emc/internal/catalog/grafana"
-	"github.com/mjpitz/mjpitz/apps/emc/internal/catalog/linkgroup"
-	"github.com/mjpitz/mjpitz/apps/emc/internal/catalog/service"
+	"github.com/mjpitz/emc/catalog"
+	"github.com/mjpitz/emc/catalog/grafana"
+	"github.com/mjpitz/emc/catalog/linkgroup"
+	"github.com/mjpitz/emc/catalog/service"
 )
 
 const (
