@@ -1,6 +1,2 @@
-github.com/mjpitz/emc v0.0.0-20220521133411-8e4d7ddd72d3 h1:GH8J00bo6boMwrwKBbKtwoPqkKWXxLK3i9+dOAZrrSM=
-github.com/mjpitz/emc v0.0.0-20220521133411-8e4d7ddd72d3/go.mod h1:8FYSFhYOYjY9KnWEHYFPT6YlqAR2BI1k6QLBMsOazdk=
-github.com/mjpitz/emc v0.0.0-20220521134247-9da0df0c505b h1:UWrC1XIX0l7dNRt2fhjPDeABFja3c5FQxY4B1NWD0/4=
-github.com/mjpitz/emc v0.0.0-20220521134247-9da0df0c505b/go.mod h1:8FYSFhYOYjY9KnWEHYFPT6YlqAR2BI1k6QLBMsOazdk=
-github.com/mjpitz/mjpitz/apps/emc v0.0.0-20220521070011-78ddf70153d2 h1:/zti7QZDvxubwiK+9K3FWRDuUpf93W5IfVXzVfO1xY8=
-github.com/mjpitz/mjpitz/apps/emc v0.0.0-20220521070011-78ddf70153d2/go.mod h1:fEi0k850CmUK9Mv8ELnWY5DowLRXrA3ZEAjMNQPgrTA=
+github.com/mjpitz/emc v0.0.0-20220521172156-50d86b26e494 h1:TE4Ep3C3dKUajB/JtgybC+bKyoVEI81KH2lszz5/TXk=
+github.com/mjpitz/emc v0.0.0-20220521172156-50d86b26e494/go.mod h1:8FYSFhYOYjY9KnWEHYFPT6YlqAR2BI1k6QLBMsOazdk=
