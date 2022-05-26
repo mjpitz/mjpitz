@@ -10,7 +10,7 @@ terraform {
 }
 
 data "external" "sealed_secrets" {
-  program = ["./hash.sh", "./sealed-secrets"]
+  program = ["./scripts/hash.sh", "./sealed-secrets"]
 }
 
 resource "helm_release" "sealed_secrets" {
@@ -33,7 +33,7 @@ resource "helm_release" "sealed_secrets" {
 }
 
 data "external" "kube_prometheus_stack" {
-  program = ["./hash.sh", "./kube-prometheus-stack"]
+  program = ["./scripts/hash.sh", "./kube-prometheus-stack"]
 }
 
 resource "helm_release" "kube_prometheus_stack" {
@@ -60,7 +60,7 @@ resource "helm_release" "kube_prometheus_stack" {
 }
 
 data "external" "cert_manager" {
-  program = ["./hash.sh", "./cert-manager"]
+  program = ["./scripts/hash.sh", "./cert-manager"]
 }
 
 resource "helm_release" "cert_manager" {
@@ -88,7 +88,7 @@ resource "helm_release" "cert_manager" {
 }
 
 data "external" "external_dns" {
-  program = ["./hash.sh", "./external-dns"]
+  program = ["./scripts/hash.sh", "./external-dns"]
 }
 
 resource "helm_release" "external_dns" {
@@ -116,7 +116,7 @@ resource "helm_release" "external_dns" {
 }
 
 data "external" "ingress_nginx" {
-  program = ["./hash.sh", "./ingress-nginx"]
+  program = ["./scripts/hash.sh", "./ingress-nginx"]
 }
 
 resource "helm_release" "ingress_nginx" {
@@ -149,7 +149,7 @@ resource "helm_release" "ingress_nginx" {
 }
 
 data "external" "registry" {
-  program = ["./hash.sh", "./registry"]
+  program = ["./scripts/hash.sh", "./registry"]
 }
 
 resource "helm_release" "registry" {
@@ -177,7 +177,7 @@ resource "helm_release" "registry" {
 }
 
 data "external" "dist" {
-  program = ["./hash.sh", "./dist"]
+  program = ["./scripts/hash.sh", "./dist"]
 }
 
 resource "helm_release" "dist" {
@@ -204,7 +204,7 @@ resource "helm_release" "dist" {
 }
 
 data "external" "maddy" {
-  program = ["./hash.sh", "./maddy"]
+  program = ["./scripts/hash.sh", "./maddy"]
 }
 
 resource "helm_release" "maddy" {
@@ -237,7 +237,7 @@ resource "helm_release" "maddy" {
 }
 
 data "external" "gitea" {
-  program = ["./hash.sh", "./gitea"]
+  program = ["./scripts/hash.sh", "./gitea"]
 }
 
 resource "helm_release" "gitea" {
@@ -268,7 +268,7 @@ resource "helm_release" "gitea" {
 }
 
 data "external" "drone" {
-  program = ["./hash.sh", "./drone"]
+  program = ["./scripts/hash.sh", "./drone"]
 }
 
 resource "helm_release" "drone" {
@@ -297,4 +297,37 @@ resource "helm_release" "drone" {
   # don't do these here
   atomic = false
   wait   = false
+}
+
+data "external" "catalog" {
+  program = ["./scripts/hash.sh", "./catalog"]
+}
+
+resource "helm_release" "catalog" {
+  depends_on = [
+    helm_release.ingress_nginx,
+  ]
+
+  chart     = "./catalog"
+  namespace = "catalog"
+  name      = "catalog"
+
+  values = [
+    file("./catalog/values.yaml"),
+  ]
+
+  set {
+    name  = "global.terraform.hash"
+    value = data.external.catalog.result.sha256
+  }
+
+  set {
+    name = "12factor.deployment.annotations.terraform\\.io/hash"
+    value = data.external.catalog.result.sha256
+  }
+
+  dependency_update = true
+  create_namespace  = true
+  atomic = true
+  wait   = true
 }

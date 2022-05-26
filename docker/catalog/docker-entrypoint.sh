@@ -1,1 +1,1 @@
-/go/bin/catalog -bind_address 0.0.0.0:8080 "$@"
+/go/bin/catalog "$@"
