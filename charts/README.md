@@ -8,6 +8,7 @@ of my deployments vary quite a bit from existing ones.
 helm repo add mjpitz https://mjpitz.com
 ```
 
+- [`12factor`][12factor-chart] - Easily deploy an application that conforms to 12factor application patterns.
 - [`auth`][auth-chart] - Deploys a replicated token authorization server for use with the `registry`.
 - [`drone`][drone-chart] - Deploys a [Drone][] server and optionally configure a `digitalocean` or `kubernetes` runner.
 - [`gitea`][gitea-chart] - Git with a cup of tea. [Gitea][] is a painless, self-hosted Git Service.
@@ -21,6 +22,7 @@ helm repo add mjpitz https://mjpitz.com
 
 [license]: LICENSE
 
+[12factor-chart]: 12factor
 [auth-chart]: auth
 [drone-chart]: drone
 [gitea-chart]: gitea
