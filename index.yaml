@@ -1,5 +1,24 @@
 apiVersion: v1
 entries:
+  12factor:
+  - apiVersion: v2
+    created: "2022-05-26T04:45:57.292983805Z"
+    description: |
+      (beta) Easily deploy any application that conforms to the 12-factor application patterns. Kubernetes helps provide a
+      platform for many of the 12factor patterns. This chart attempts to help streamline the management of configuration,
+      log streams, and execution of administrative tasks.
+    digest: e022a41544c12e7651532a8f591d49089d52b3f4007dfaeb3c547dfbae88f827
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: 12factor
+    sources:
+    - https://12factor.net/
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/12factor
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/12factor-22.5.0/12factor-22.5.0.tgz
+    version: 22.5.0
   auth:
   - apiVersion: v2
     appVersion: 1.6.0
