@@ -7,7 +7,7 @@ local template = grafana.template;
 
 {
   grafanaDashboards+:: {
-    'grafana_dashboard_maddy.yaml':
+    maddy:
       local selector = 'namespace="$namespace",job="$job"' + (
         if $._config.dashboard.selector != '' then (',' + $._config.dashboard.selector) else ''
       );
@@ -51,7 +51,7 @@ local template = grafana.template;
             span=4,
             format='short',
           ).addTarget(prometheus.target(
-            'sum(rate(maddy_smtp_aborted_transactions{%s}[5m])) by (pod, container)' % [ selector ],
+            'sum(rate(maddy_smtp_aborted_transactions{%s}[5m])) by (pod, container)' % [selector],
             legendFormat='{{ instance }}',
           ))
         )
@@ -62,7 +62,7 @@ local template = grafana.template;
             span=4,
             format='short',
           ).addTarget(prometheus.target(
-            'sum(rate(maddy_smtp_failed_commands{%s}[5m])) by (pod, container)' % [ selector ],
+            'sum(rate(maddy_smtp_failed_commands{%s}[5m])) by (pod, container)' % [selector],
             legendFormat='{{ instance }}',
           ))
         )
@@ -73,7 +73,7 @@ local template = grafana.template;
             span=4,
             format='short',
           ).addTarget(prometheus.target(
-            'sum(rate(maddy_smtp_started_transactions{%s}[5m])) by (pod, container)' % [ selector ],
+            'sum(rate(maddy_smtp_started_transactions{%s}[5m])) by (pod, container)' % [selector],
             legendFormat='{{ instance }}',
           ))
         )
@@ -84,7 +84,7 @@ local template = grafana.template;
             span=4,
             format='short',
           ).addTarget(prometheus.target(
-            'sum(rate(maddy_remote_conns_mx_level{%s}[5m])) by (pod, container)' % [ selector ],
+            'sum(rate(maddy_remote_conns_mx_level{%s}[5m])) by (pod, container)' % [selector],
             legendFormat='{{ instance }}',
           ))
         )
@@ -95,10 +95,10 @@ local template = grafana.template;
             span=4,
             format='short',
           ).addTarget(prometheus.target(
-            'sum(rate(maddy_remote_conns_tls_level{%s}[5m])) by (pod, container)' % [ selector ],
+            'sum(rate(maddy_remote_conns_tls_level{%s}[5m])) by (pod, container)' % [selector],
             legendFormat='{{ instance }}',
           ))
         )
-      )
+      ),
   },
 }

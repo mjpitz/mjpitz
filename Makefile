@@ -33,6 +33,12 @@ grafana/build:
 			xargs -I{} make build TARGET={} ; \
 	}
 
+grafana/sync:
+	@cd monitoring && { \
+		find . -mindepth 1 -maxdepth 1 -type d -exec basename {} \; | egrep -v 'common|out|vendor' | \
+			xargs -I{} make sync TARGET={} ; \
+	}
+
 #== HELM TARGETS
 
 helm/docs:

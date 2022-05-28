@@ -10,7 +10,7 @@ local process = import '../lib/process.libsonnet';
 
 {
   grafanaDashboards+:: {
-    'grafana_dashboard_golang.yaml':
+    golang:
       local selector = 'namespace="$namespace",job="$job"' + (
         if $._config.dashboard.selector != '' then (',' + $._config.dashboard.selector) else ''
       );

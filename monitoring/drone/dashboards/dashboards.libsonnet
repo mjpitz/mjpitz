@@ -8,7 +8,7 @@ local drone = import '../lib/drone.libsonnet';
 
 {
   grafanaDashboards+:: {
-    'grafana_dashboard_drone.yaml':
+    drone:
       local selector = 'namespace="$namespace",job="$job"' + (
         if $._config.dashboard.selector != '' then (',' + $._config.dashboard.selector) else ''
       );

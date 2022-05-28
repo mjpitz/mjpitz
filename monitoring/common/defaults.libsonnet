@@ -9,8 +9,8 @@
   // Automatically add a uid to each dashboard based on a base64 encoded md5
   // of the filename and set the timezone to UTC.
   grafanaDashboards:: {
-    [filename]: grafanaDashboards[filename] {
-      uid: std.md5(filename),
+    ['grafana_dashboard_' + filename + '.json']: grafanaDashboards[filename] {
+      uid: std.md5('grafana_dashboard_' + filename + '.yaml'),
       timezone: 'UTC',
 
       // Modify tooltip to only show a single value

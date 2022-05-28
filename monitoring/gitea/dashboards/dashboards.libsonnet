@@ -8,7 +8,7 @@ local gitea = import '../lib/gitea.libsonnet';
 
 {
   grafanaDashboards+:: {
-    'grafana_dashboard_gitea.yaml':
+    gitea:
       local selector = 'namespace="$namespace",job="$job"' + (
         if $._config.dashboard.selector != '' then (',' + $._config.dashboard.selector) else ''
       );

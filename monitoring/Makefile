@@ -22,5 +22,9 @@ build:
 	@echo "==> building $(TARGET)"
 	@mkdir -p out/$(TARGET)
 	@jsonnet -J vendor -V output=alerts -S $(TARGET)/gen.jsonnet > out/$(TARGET)/prometheus_alerts.yaml
-	@jsonnet -J vendor -V output=dashboards -m out/$(TARGET) $(TARGET)/gen.jsonnet
+	@jsonnet -J vendor -V output=dashboards -m out/$(TARGET) $(TARGET)/gen.jsonnet 1>/dev/null
 	@jsonnet -J vendor -V output=rules -S $(TARGET)/gen.jsonnet > out/$(TARGET)/prometheus_rules.yaml
+
+sync:
+	@echo "==> synchronizing $(TARGET)"
+	@bash ./common/sync.sh $(TARGET)
