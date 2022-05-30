@@ -5,14 +5,6 @@
 <h3 align="center">👋 Welcome to my profile!</h3>
 
 <p align="center">
-    <img alt="Black Lives Matter" src="https://img.shields.io/badge/-Black%20Lives%20Matter-gray?style=for-the-badge" />
-    <a href="https://www.thetrevorproject.org/">
-        <img alt="Diversity Makes us Stronger" src="https://img.shields.io/badge/-Diversity%20Makes%20Us%20Stronger-pink?style=for-the-badge&labelColor=silver" /></a>
-</p>
-
-<h3 align="center">About Me</h3>
-
-<p align="center">
     My name is Mya.
     I'm a software engineer who enjoys working with distributed systems.
     Outside of work, I'm passionate about doing more to save our environment ♻️.
