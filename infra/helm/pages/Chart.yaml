@@ -1,0 +1,9 @@
+apiVersion: v2
+type: application
+name: pages
+version: 0.0.0
+appVersion: 0.0.0
+dependencies:
+  - name: 12factor
+    repository: file://../../../charts/12factor
+    version: "*"

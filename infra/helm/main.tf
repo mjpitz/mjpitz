@@ -331,3 +331,36 @@ resource "helm_release" "catalog" {
   atomic = true
   wait   = true
 }
+
+data "external" "pages" {
+  program = ["./scripts/hash.sh", "./pages"]
+}
+
+resource "helm_release" "pages" {
+  depends_on = [
+    helm_release.ingress_nginx,
+  ]
+
+  chart     = "./pages"
+  namespace = "pages"
+  name      = "pages"
+
+  values = [
+    file("./pages/values.yaml"),
+  ]
+
+  set {
+    name  = "global.terraform.hash"
+    value = data.external.catalog.result.sha256
+  }
+
+  set {
+    name = "12factor.deployment.annotations.terraform\\.io/hash"
+    value = data.external.catalog.result.sha256
+  }
+
+  dependency_update = true
+  create_namespace  = true
+  atomic = true
+  wait   = true
+}
