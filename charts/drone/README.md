@@ -1,6 +1,6 @@
 # drone
 
-![Version: 22.5.3](https://img.shields.io/badge/Version-22.5.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.11.1](https://img.shields.io/badge/AppVersion-2.11.1-informational?style=flat-square)
+![Version: 22.5.4](https://img.shields.io/badge/Version-22.5.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.11.1](https://img.shields.io/badge/AppVersion-2.11.1-informational?style=flat-square)
 
 Easily deploy a Drone.IO, a container-native, continuous delivery platform. This chart provisions a Drone server
 instance intended for smaller
@@ -20,7 +20,6 @@ instance intended for smaller
 
 | Repository         | Name        | Version |
 | ------------------ | ----------- | ------- |
-|                    | runners     | \*      |
 | https://mjpitz.com | litestream  | 22.4.1  |
 | https://mjpitz.com | redis-queue | 22.4.4  |
 

@@ -10,7 +10,7 @@ sources:
 maintainers:
   - name: Mya Pitzeruse
     url: https://mjpitz.com
-version: 22.5.3
+version: 22.5.4
 appVersion: 2.11.1
 dependencies:
   - name: litestream
