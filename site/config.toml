@@ -4,7 +4,6 @@ title = "Mya Pitzeruse"
 theme = "anatole"
 enableRobotsTXT = true
 
-
 # Highlighting config
 pygmentsCodeFences = true
 pygmentsUseClasses = false
@@ -13,9 +12,6 @@ pygmentsUseClassic = false
 pygmentsOptions = "linenos=table"
 # See https://help.farbox.com/pygments.html
 pygmentsStyle = "tango"
-
-# Google Analytics
-googleAnalytics = "UA-39314903-5"
 
 [permalinks]
 blog = "/blog/:year/:month/:day/:slug/"

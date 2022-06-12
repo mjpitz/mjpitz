@@ -3,7 +3,7 @@
 
   image:
     repository: img.pitz.tech/mya/pages
-    tag: latest@sha256:9557cccb0aafd0b3dc896fbca0aab8039270dc2d7e577c67f9f9f0f7e0cc53c3
+    tag: latest@sha256:08008b2fbfd22678dec8e0c43a38f9663b3a5cde2edfb61d784e313ce9b6663d
 
   deployment:
     replicaCount: 2
@@ -43,24 +43,14 @@
         nginx.ingress.kubernetes.io/ssl-redirect: "true"
         nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
         nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
-        nginx.ingress.kubernetes.io/server-snippet: |
-          location = /_session/pages.js {}
-          
-          location /_session/ {
-            proxy_set_header Upgrade $http_upgrade;
-            proxy_http_version 1.1;
-            proxy_set_header X-Forwarded-Host $http_host;
-            proxy_set_header X-Forwarded-Proto $scheme;
-            proxy_set_header X-Forwarded-For $remote_addr;
-            proxy_set_header Host $host;
-            proxy_set_header Connection "upgrade";
-            proxy_cache_bypass $http_upgrade;
-          }
+        nginx.ingress.kubernetes.io/connection-proxy-header: "keep-alive,Upgrade"
+        nginx.ingress.kubernetes.io/configuration-snippet: |
+          proxy_set_header Upgrade "websocket";
       hosts:
         - host: mjpitz.com
           paths:
             - path: /
-              pathType: ImplementationSpecific
+              pathType: Prefix
       tls:
         - secretName: pages-tls
           hosts:
