@@ -8,6 +8,9 @@
   deployment:
     replicaCount: 2
 
+    annotations:
+      "roll.k8s.pitz.tech": "040R2WJKGWF0QC8S098E7K73GEWC8677EYZ0DMPPJQW00WXKKMGG"
+
     application:
       envFrom:
         - secretRef:
