@@ -1,0 +1,14 @@
+# Docker
+
+This directory contains the various docker containers that I build maintain, primarily for my own use.
+
+- [catalog](catalog) - A service catalog listing out various services and links associated with them.
+- [drone-server](drone-server) - An unrestricted Drone.IO server image intended for personal use.
+- [redis](redis) - A canonical Redis image for managing in-memory data structures.
+- [redis-raft](redis-raft) - A Redis deployment that's backed by RAFT instead of its traditional replication mechanisms.
+- [rspamd](rspamd) - Boxes rspamd into a container for use as a sidecar with maddy.
+
+## License
+
+Due to the variance in licensing between systems, this directory is not licensed itself. Instead, see the `image.conf` 
+file in each directory for the licensing associated with that container.
