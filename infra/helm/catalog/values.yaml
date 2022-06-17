@@ -32,7 +32,7 @@
         image:
           repository: img.pitz.tech/mya/catalog
           tag: 22.5.0-alpine
-          pullPolicy: IfNotPresent
+          pullPolicy: Always
         ports:
           - name: catalog
             containerPort: 8090

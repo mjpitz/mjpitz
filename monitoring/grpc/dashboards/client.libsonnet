@@ -43,7 +43,11 @@ local client = import '../lib/client.libsonnet';
       'label_values(job)',
     ))
     .addRow(
-      row.new()
+      row.new(
+        title='Overview',
+        showTitle=true,
+        collapse=false,
+      )
       .addPanel(
         graphPanel.new(
           'Client Call Error Rate',
@@ -51,7 +55,7 @@ local client = import '../lib/client.libsonnet';
           span=6,
           format='call/s',
           min=0,
-        ).addTarget(client.errorRate(selector=selector))
+        ).addTarget(client.error_rate(selector=selector))
       )
     )
     .addRow(
@@ -67,7 +71,7 @@ local client = import '../lib/client.libsonnet';
           span=6,
           format='call/s',
           min=0,
-        ).addTarget(client.startRate(selector=selector))
+        ).addTarget(client.start_rate(selector=selector))
       )
       .addPanel(
         graphPanel.new(
@@ -76,7 +80,7 @@ local client = import '../lib/client.libsonnet';
           span=6,
           format='call/s',
           min=0,
-        ).addTarget(client.completionRate(selector=selector))
+        ).addTarget(client.completion_rate(selector=selector))
       )
     )
     .addRow(
@@ -92,7 +96,7 @@ local client = import '../lib/client.libsonnet';
           span=6,
           format='msg/s',
           min=0,
-        ).addTarget(client.messageSendRate(selector=selector))
+        ).addTarget(client.message_send_rate(selector=selector))
       )
       .addPanel(
         graphPanel.new(
@@ -101,7 +105,7 @@ local client = import '../lib/client.libsonnet';
           span=6,
           format='msg/s',
           min=0,
-        ).addTarget(client.messageReceivedRate(selector=selector))
+        ).addTarget(client.message_received_rate(selector=selector))
       )
     )
 }

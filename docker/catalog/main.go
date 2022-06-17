@@ -132,6 +132,7 @@ func main() {
 			service.Description("A registry is a storage and content delivery system, holding named Docker images, available in different tagged versions."),
 			service.LinkGroup(
 				Dashboards,
+				linkgroup.Link(Registry, grafana.Link("e92ac532836465ac8220dde7f6b33fe4", "registry", "registry")),
 				linkgroup.Link(Golang, grafana.Golang("registry", "registry")),
 				linkgroup.Link(Redis, grafana.Redis("registry", "registry-redis")),
 			),

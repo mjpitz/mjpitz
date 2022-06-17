@@ -101,8 +101,8 @@
          "repeat": null,
          "repeatIteration": null,
          "repeatRowId": null,
-         "showTitle": false,
-         "title": "Dashboard Row",
+         "showTitle": true,
+         "title": "Overview",
          "titleSize": "h6",
          "type": "row"
       },
