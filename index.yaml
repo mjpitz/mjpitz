@@ -2,6 +2,24 @@ apiVersion: v1
 entries:
   12factor:
   - apiVersion: v2
+    created: "2022-06-17T21:02:46.134120995Z"
+    description: |
+      (beta) Easily deploy any application that conforms to the 12-factor application patterns. Kubernetes helps provide a
+      platform for many of the 12factor patterns. This chart attempts to help streamline the management of configuration,
+      log streams, and execution of administrative tasks.
+    digest: 3450eeaeba4701eb5817b84794c101be18c85518f29340a8f8b4e796a2076646
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: 12factor
+    sources:
+    - https://12factor.net/
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/12factor
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/12factor-22.5.1/12factor-22.5.1.tgz
+    version: 22.5.1
+  - apiVersion: v2
     created: "2022-05-26T04:45:57.292983805Z"
     description: |
       (beta) Easily deploy any application that conforms to the 12-factor application patterns. Kubernetes helps provide a
@@ -137,6 +155,33 @@ entries:
     - https://github.com/mjpitz/mjpitz/releases/download/auth-1.6.0/auth-1.6.0.tgz
     version: 1.6.0
   drone:
+  - apiVersion: v2
+    appVersion: 2.11.1
+    created: "2022-06-17T21:02:46.279678821Z"
+    dependencies:
+    - condition: litestream.enabled
+      name: litestream
+      repository: https://mjpitz.com
+      version: 22.4.1
+    - condition: redis-queue.enabled
+      name: redis-queue
+      repository: https://mjpitz.com
+      version: 22.4.4
+    description: |
+      Easily deploy a Drone.IO, a container-native, continuous delivery platform. This chart provisions a Drone server
+      instance intended for smaller
+    digest: 71c6c41ad30a25b2041008581f35e7a42400e99d21fbe1762abe88fa2c64239a
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: drone
+    sources:
+    - https://github.com/harness/drone
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/drone
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/drone-22.5.4/drone-22.5.4.tgz
+    version: 22.5.4
   - apiVersion: v2
     appVersion: 2.11.1
     created: "2022-05-13T02:03:56.667966806Z"
@@ -1058,6 +1103,24 @@ entries:
     - https://github.com/mjpitz/mjpitz/releases/download/registry-2.7.1/registry-2.7.1.tgz
     version: 2.7.1
   storj:
+  - apiVersion: v2
+    appVersion: latest
+    created: "2022-06-17T21:02:46.411386792Z"
+    description: |
+      Easily add a Storj S3 gateway to any Deployment, DaemonSet, or StatefulSet using a sidecar. This chart optionally
+      deploys the required configuration and provides template functions that render the necessary sidecar containers.
+    digest: 94550475e592e1bf3a9acfee8257d984ad5708589a46a22f5a3790d8be5b5611
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: storj
+    sources:
+    - https://github.com/storj/gateway-st
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/storj
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/storj-22.4.3/storj-22.4.3.tgz
+    version: 22.4.3
   - apiVersion: v2
     appVersion: latest
     created: "2022-05-13T01:41:45.900196439Z"
