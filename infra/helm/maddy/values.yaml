@@ -3,8 +3,9 @@ maddy:
 
   service:
     annotations:
+      # -- Disable Cloudflare proxy support. Enabling this currently breaks email clients.
+      external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
       external-dns.alpha.kubernetes.io/hostname: mx.pitz.tech
-      external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
 
   affinity:
     nodeAffinity:
