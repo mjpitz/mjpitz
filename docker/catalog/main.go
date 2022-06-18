@@ -5,9 +5,9 @@ package main
 
 import (
 	"github.com/mjpitz/emc/catalog"
-	"github.com/mjpitz/emc/catalog/grafana"
 	"github.com/mjpitz/emc/catalog/linkgroup"
 	"github.com/mjpitz/emc/catalog/service"
+	"github.com/mjpitz/mjpitz/docker/catalog/grafana"
 )
 
 const (
@@ -20,6 +20,7 @@ const (
 	Prometheus   = "Prometheus"
 	Maddy        = "Maddy"
 	Registry     = "Registry"
+	Nginx        = "Nginx"
 
 	// Common link groups
 
@@ -46,6 +47,7 @@ func main() {
 				linkgroup.Link(Drone, grafana.Drone("cicd", "drone")),
 				linkgroup.Link(Golang, grafana.Golang("cicd", "drone")),
 				linkgroup.Link(Litestream, grafana.Litestream("cicd", "drone")),
+				linkgroup.Link(Nginx, grafana.Nginx("deploy.pitz.tech", "drone")),
 				linkgroup.Link(RedisQueue, grafana.Redis("cicd", "drone-redis-queue")),
 			),
 			service.LinkGroup(
@@ -63,6 +65,7 @@ func main() {
 				linkgroup.Link(Gitea, grafana.Gitea("vcs", "gitea")),
 				linkgroup.Link(Golang, grafana.Golang("vcs", "gitea")),
 				linkgroup.Link(Litestream, grafana.Litestream("vcs", "gitea")),
+				linkgroup.Link(Nginx, grafana.Nginx("code.pitz.tech", "kube-prometheus-stack-grafana")),
 				linkgroup.Link(Redis, grafana.Redis("vcs", "gitea-redis")),
 				linkgroup.Link(RedisQueue, grafana.Redis("vcs", "gitea-redis-queue")),
 			),
@@ -79,6 +82,7 @@ func main() {
 			service.LinkGroup(
 				Dashboards,
 				linkgroup.Link(Golang, grafana.Golang("monitoring", "kube-prometheus-stack-grafana")),
+				linkgroup.Link(Nginx, grafana.Nginx("grafana.pitz.tech", "kube-prometheus-stack-grafana")),
 			),
 			service.LinkGroup(
 				Documentation,
@@ -113,11 +117,13 @@ func main() {
 		),
 		catalog.Service(
 			Maddy,
+			service.LogoURL("https://th.bing.com/th/id/OIP.AmxxNcB-gpi9YR96B0kBKwHaHa?pid=ImgDet&rs=1"),
 			service.Description("Maddy Mail Server implements all functionality required to run a e-mail server. It can send messages via SMTP (works as MTA), accept messages via SMTP (works as MX) and store messages while providing access to them via IMAP."),
 			service.LinkGroup(
 				Dashboards,
-				linkgroup.Link(Maddy, grafana.Maddy("email", "maddy-internal")),
 				linkgroup.Link(Golang, grafana.Golang("email", "maddy-internal")),
+				linkgroup.Link(Maddy, grafana.Maddy("email", "maddy-internal")),
+				linkgroup.Link(Nginx, grafana.Nginx("mta-sts.pitz.tech", "maddy")),
 				linkgroup.Link(Litestream, grafana.Litestream("email", "maddy-internal")),
 			),
 			service.LinkGroup(
@@ -132,13 +138,23 @@ func main() {
 			service.Description("A registry is a storage and content delivery system, holding named Docker images, available in different tagged versions."),
 			service.LinkGroup(
 				Dashboards,
-				linkgroup.Link(Registry, grafana.Link("e92ac532836465ac8220dde7f6b33fe4", "registry", "registry")),
 				linkgroup.Link(Golang, grafana.Golang("registry", "registry")),
+				linkgroup.Link(Nginx, grafana.Nginx("img.pitz.tech", "registry")),
+				linkgroup.Link(Registry, grafana.Registry("registry", "registry")),
 				linkgroup.Link(Redis, grafana.Redis("registry", "registry-redis")),
 			),
 			service.LinkGroup(
 				Documentation,
 				linkgroup.Link("docs.docker.com", "https://docs.docker.com/registry/"),
+			),
+		),
+		catalog.Service(
+			Nginx,
+			service.LogoURL("https://www.splunk.com/content/dam/splunk-blogs/images/2017/02/nginx-logo.png"),
+			service.Description("Provides general control over ingress communication into the cluster."),
+			service.LinkGroup(
+				Dashboards,
+				linkgroup.Link(Golang, grafana.Golang("ingress", "ingress-nginx-controller-metrics")),
 			),
 		),
 	)
