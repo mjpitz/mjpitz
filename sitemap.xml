@@ -197,9 +197,6 @@
     <loc>https://mjpitz.com/blog/2015/07/10/status-java-library-for-system-status-health-checks/</loc>
     <lastmod>2015-07-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://mjpitz.com/charts/</loc>
-    <priority>0</priority>
-  </url><url>
     <loc>https://mjpitz.com/go/</loc>
   </url><url>
     <loc>https://mjpitz.com/go/cncf2017/</loc>
@@ -219,5 +216,7 @@
     <loc>https://mjpitz.com/go/status/</loc>
   </url><url>
     <loc>https://mjpitz.com/categories/</loc>
+  </url><url>
+    <loc>https://mjpitz.com/charts/</loc>
   </url>
 </urlset>

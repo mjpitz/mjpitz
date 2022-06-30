@@ -796,18 +796,6 @@ In this post, we will show how to add health checks to your applications.&lt;/p&
     
     <item>
       <title></title>
-      <link>https://mjpitz.com/charts/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://mjpitz.com/charts/</guid>
-      
-        <description>Charts My personal helm charts are provided under the MIT License. While I&amp;rsquo;m the primary consumer of these charts, I have made them generally available for others to use. You may be able to find some of these charts elsewhere, but many of my deployments vary quite a bit from existing ones.
-1  helm repo add mjpitz https://mjpitz.com    auth - Deploys a replicated token authorization server for use with the registry.</description>
-      
-    </item>
-    
-    <item>
-      <title></title>
       <link>https://mjpitz.com/go/cncf2017/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -891,6 +879,18 @@ In this post, we will show how to add health checks to your applications.&lt;/p&
       <guid>https://mjpitz.com/go/status/</guid>
       
         <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Charts</title>
+      <link>https://mjpitz.com/charts/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mjpitz.com/charts/</guid>
+      
+        <description>My personal helm charts are provided under the MIT License. While I&amp;rsquo;m the primary consumer of these charts, I have made them generally available for others to use. You may be able to find some of these charts elsewhere, but many of my deployments vary quite a bit from existing ones.
+1  helm repo add mjpitz https://mjpitz.com    12factor - Easily deploy an application that conforms to 12factor application patterns.</description>
       
     </item>
     
