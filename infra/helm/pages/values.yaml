@@ -3,13 +3,10 @@
 
   image:
     repository: img.pitz.tech/mya/pages
-    tag: latest@sha256:08008b2fbfd22678dec8e0c43a38f9663b3a5cde2edfb61d784e313ce9b6663d
+    tag: latest@sha256:564a7be835fe2f6023a18aecb1c17d26e212075ac3edba0080a962e37a446b47
 
   deployment:
     replicaCount: 2
-
-    annotations:
-      "roll.k8s.pitz.tech": "040R2WJKGWF0QC8S098E7K73GEWC8677EYZ0DMPPJQW00WXKKMGG"
 
     application:
       envFrom:
