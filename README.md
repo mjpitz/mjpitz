@@ -19,14 +19,16 @@
 </p>
 
 <p align="center">
+    <a href="https://mjpitz.com/charts/">
+        <img alt="Helm Charts" src="https://img.shields.io/badge/-Helm%20Charts-silver?style=for-the-badge" /></a>
+    <a href="https://github.com/mjpitz/mjpitz/tree/main/docker">
+        <img alt="Container Images" src="https://img.shields.io/badge/-Container%20Images-silver?style=for-the-badge" /></a>
     <a href="https://mjpitz.com/blog/">
         <img alt="Blog" src="https://img.shields.io/badge/-Blog-silver?style=for-the-badge" /></a>
     <a href="https://mjpitz.com/papers/">
-        <img alt="Papers" src="https://img.shields.io/badge/-Papers-silver?style=for-the-badge" /></a>
+        <img alt="Papers" src="https://img.shields.io/badge/-Papers-pink?style=for-the-badge" /></a>
     <a href="https://mjpitz.com/media/">
         <img alt="Presentations" src="https://img.shields.io/badge/-Presentations-pink?style=for-the-badge" /></a>
-    <a href="https://github.com/mjpitz/homestead">
-        <img alt="Homestead" src="https://img.shields.io/badge/-Homestead-282?style=for-the-badge" /></a>
 </p>
 
 <h3 align="center">Contact / Connect</h3>
