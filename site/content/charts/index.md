@@ -1,13 +1,16 @@
-# Charts
+---
+title: "Charts"
+---
 
 My personal helm charts are provided under the [MIT License][license]. While I'm the primary consumer of these charts, I
 have made them generally available for others to use. You may be able to find some of these charts elsewhere, but many
 of my deployments vary quite a bit from existing ones.
 
-```text
+```shell
 helm repo add mjpitz https://mjpitz.com
 ```
 
+- [`12factor`][12factor-chart] - Easily deploy an application that conforms to 12factor application patterns.
 - [`auth`][auth-chart] - Deploys a replicated token authorization server for use with the `registry`.
 - [`drone`][drone-chart] - Deploys a [Drone][] server and optionally configure a `digitalocean` or `kubernetes` runner.
 - [`gitea`][gitea-chart] - Git with a cup of tea. [Gitea][] is a painless, self-hosted Git Service.
@@ -21,6 +24,7 @@ helm repo add mjpitz https://mjpitz.com
 
 [license]: https://github.com/mjpitz/mjpitz/tree/main/charts/LICENSE
 
+[12factor-chart]: https://github.com/mjpitz/mjpitz/tree/main/charts/12factor
 [auth-chart]: https://github.com/mjpitz/mjpitz/tree/main/charts/auth
 [drone-chart]: https://github.com/mjpitz/mjpitz/tree/main/charts/drone
 [gitea-chart]: https://github.com/mjpitz/mjpitz/tree/main/charts/gitea
