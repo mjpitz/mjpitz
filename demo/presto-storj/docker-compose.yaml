@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  presto:
+    image: img.pitz.tech/mya/presto:latest-alpine
+    volumes:
+      - ./catalog:/opt/presto/etc/catalog
+    ports:
+      - 8080:8080
