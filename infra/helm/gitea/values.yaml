@@ -27,6 +27,16 @@ gitea:
       enabled: true
 
   config:
+    repository:
+      overrides:
+        DISABLE_STARS: true
+        DEFAULT_BRANCH: main
+
+    ui:
+      overrides:
+        DEFAULT_THEME: arc-green
+        USE_SERVICE_WORKER: true
+
     server:
       overrides:
         DISABLE_SSH: true
@@ -74,9 +84,6 @@ gitea:
   # -- Use Redis-backed queues.
   redis-queue:
     enabled: true
-
-    image:
-      pullPolicy: Always
 
     metrics:
       serviceMonitor:
