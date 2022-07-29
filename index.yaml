@@ -261,6 +261,36 @@ entries:
     version: 22.5.0
   gitea:
   - apiVersion: v2
+    appVersion: 1.16.9
+    created: "2022-07-29T15:56:01.020465322Z"
+    dependencies:
+    - condition: litestream.enabled
+      name: litestream
+      repository: https://mjpitz.com
+      version: 22.4.1
+    - condition: redis-queue.enabled
+      name: redis-queue
+      repository: https://mjpitz.com
+      version: 22.4.4
+    - condition: redis.enabled
+      name: redis
+      repository: https://mjpitz.com
+      version: 22.4.6
+    description: |
+      Git with a cup of tea. A painless, self-hosted Git Service.
+    digest: 159f775dadde04e3c37a48ecd299454a4d013280423e25c2f15f6856ffee57c1
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: gitea
+    sources:
+    - https://github.com/go-gitea/gitea
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/gitea
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/gitea-22.4.3/gitea-22.4.3.tgz
+    version: 22.4.3
+  - apiVersion: v2
     appVersion: 1.16.6
     created: "2022-05-13T02:03:56.785862843Z"
     dependencies:
