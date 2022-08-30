@@ -2,6 +2,24 @@ apiVersion: v1
 entries:
   12factor:
   - apiVersion: v2
+    created: "2022-08-30T19:43:54.03357277Z"
+    description: |
+      (beta) Easily deploy any application that conforms to the 12-factor application patterns. Kubernetes helps provide a
+      platform for many of the 12factor patterns. This chart attempts to help streamline the management of configuration,
+      log streams, and execution of administrative tasks.
+    digest: 3889d8c6b3b5b57e72259742976c84b5dd4c97f1a3470806677d09806002e5f7
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: 12factor
+    sources:
+    - https://12factor.net/
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/12factor
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/12factor-22.5.2/12factor-22.5.2.tgz
+    version: 22.5.2
+  - apiVersion: v2
     created: "2022-06-17T21:02:46.134120995Z"
     description: |
       (beta) Easily deploy any application that conforms to the 12-factor application patterns. Kubernetes helps provide a
@@ -260,36 +278,6 @@ entries:
     - https://github.com/mjpitz/mjpitz/releases/download/drone-22.5.0/drone-22.5.0.tgz
     version: 22.5.0
   gitea:
-  - apiVersion: v2
-    appVersion: 1.16.9
-    created: "2022-07-29T15:56:01.020465322Z"
-    dependencies:
-    - condition: litestream.enabled
-      name: litestream
-      repository: https://mjpitz.com
-      version: 22.4.1
-    - condition: redis-queue.enabled
-      name: redis-queue
-      repository: https://mjpitz.com
-      version: 22.4.4
-    - condition: redis.enabled
-      name: redis
-      repository: https://mjpitz.com
-      version: 22.4.6
-    description: |
-      Git with a cup of tea. A painless, self-hosted Git Service.
-    digest: 159f775dadde04e3c37a48ecd299454a4d013280423e25c2f15f6856ffee57c1
-    maintainers:
-    - name: Mya Pitzeruse
-      url: https://mjpitz.com
-    name: gitea
-    sources:
-    - https://github.com/go-gitea/gitea
-    - https://github.com/mjpitz/mjpitz/tree/main/charts/gitea
-    type: application
-    urls:
-    - https://github.com/mjpitz/mjpitz/releases/download/gitea-22.4.3/gitea-22.4.3.tgz
-    version: 22.4.3
   - apiVersion: v2
     appVersion: 1.16.6
     created: "2022-05-13T02:03:56.785862843Z"
