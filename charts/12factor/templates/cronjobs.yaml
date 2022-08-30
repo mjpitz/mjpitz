@@ -24,6 +24,10 @@ spec:
             app.kubernetes.io/component: {{ printf "task-%s" .name }}
             {{- $labels | nindent 12 }}
         spec:
+          {{- with $deployment.volumes }}
+          volumes:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           containers:
             - name: {{ .name }}
               {{- if .securityContext }}
@@ -55,6 +59,10 @@ spec:
               {{- with .resources }}
               resources:
                 {{- toYaml . | nindent 16 }}
+              {{- end }}
+              {{- with .volumeMounts }}
+              volumeMounts:
+                {{- toYaml . | nindent 4 }}
               {{- end }}
           {{- with $deployment.nodeSelector }}
           nodeSelector:

@@ -29,6 +29,10 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       serviceAccountName: {{ include "12factor.serviceAccountName" . }}
+      {{- with .Values.deployment.volumes }}
+      volumes:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       containers:
         {{- include "12factor.container" $app | nindent 8 }}
         {{- range .Values.deployment.sidecars }}

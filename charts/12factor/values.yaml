@@ -46,6 +46,9 @@ deployment:
   # -- Specify secret names containing registry credentials that should be added to this deployment.
   imagePullSecrets: []
 
+  # -- Specify volumes that should be included with the deployment.
+  volumes: []
+
   application:
     # -- Specify the security context to assign to the application container.
     securityContext: {}
@@ -55,6 +58,9 @@ deployment:
 
     # -- Load additional environment variables from secrets or config maps.
     envFrom: []
+
+    # -- Mount configuration files into the container.
+    volumeMounts: []
 
     # -- Specify the entrypoint command for the container.
     command: []
@@ -108,6 +114,7 @@ deployment:
     #     pullPolicy: IfNotPresent
     #   env: []
     #   envFrom: []
+    #   volumeMounts: []
     #   command: []
     #   args: []
     #   ports: []
@@ -126,6 +133,7 @@ deployment:
     #   securityContext: {}
     #   env: []
     #   envFrom: []
+    #   volumeMounts: []
     #   command: []
     #   args: []
     #   resources: {}

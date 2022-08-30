@@ -96,6 +96,10 @@ Render a 12factor container
   resources:
     {{- toYaml . | nindent 4 }}
   {{- end }}
+  {{- with .volumeMounts }}
+  volumeMounts:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
   {{- if .checks }}
   {{- with .checks.startup }}
   startupProbe:
