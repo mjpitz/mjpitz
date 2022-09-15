@@ -38,8 +38,13 @@ spec:
                 readOnlyRootFilesystem: true
                 runAsNonRoot: true
               {{- end }}
+              {{- if .image }}
+              image: "{{ .image.repository }}:{{ .image.tag }}"
+              imagePullPolicy: {{ .image.pullPolicy }}
+              {{- else }}
               image: "{{ $image.repository }}:{{ $image.tag }}"
               imagePullPolicy: {{ $image.pullPolicy }}
+              {{- end }}
               {{- with .env }}
               env:
                 {{- toYaml . | nindent 16 }}

@@ -131,6 +131,10 @@ deployment:
     #   schedule: ""
     #   suspend: false
     #   securityContext: {}
+    #   image:
+    #     repository: ""
+    #     tag: ""
+    #     pullPolicy: IfNotPresent
     #   env: []
     #   envFrom: []
     #   volumeMounts: []

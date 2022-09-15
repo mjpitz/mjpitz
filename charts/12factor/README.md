@@ -1,6 +1,6 @@
 # 12factor
 
-![Version: 22.5.2](https://img.shields.io/badge/Version-22.5.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 22.5.3](https://img.shields.io/badge/Version-22.5.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 (beta) Easily deploy any application that conforms to the 12-factor application patterns. Kubernetes helps provide a
 platform for many of the 12factor patterns. This chart attempts to help streamline the management of configuration,
