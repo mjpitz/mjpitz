@@ -5,6 +5,7 @@ on:
     branches:
       - main
     paths:
+      - .github/workflows/charts-lint-and-test.yaml
       - charts/**
 
 jobs:
