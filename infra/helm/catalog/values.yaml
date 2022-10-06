@@ -3,7 +3,7 @@
 
   image:
     repository: quay.io/oauth2-proxy/oauth2-proxy
-    tag: v7.2.0
+    tag: v7.3.0
 
   deployment:
     replicaCount: 1
