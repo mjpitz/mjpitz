@@ -3,10 +3,10 @@ entries:
   12factor:
   - apiVersion: v2
     created: "2022-09-15T13:24:36.039812972Z"
-    description: |
-      (beta) Easily deploy any application that conforms to the 12-factor application patterns. Kubernetes helps provide a
-      platform for many of the 12factor patterns. This chart attempts to help streamline the management of configuration,
-      log streams, and execution of administrative tasks.
+    description: '(beta) Easily deploy any application that conforms to the 12-factor
+      application patterns. Kubernetes helps provide a platform for many of the 12factor
+      patterns. This chart attempts to help streamline the management of configuration,
+      log streams, and execution of administrative tasks. '
     digest: 5ed4925c4fa1907a67ad26f7dc0941dcb04a526a53343ed05ac23dc83155916f
     maintainers:
     - name: Mya Pitzeruse
@@ -21,10 +21,10 @@ entries:
     version: 22.5.3
   - apiVersion: v2
     created: "2022-08-30T19:43:54.03357277Z"
-    description: |
-      (beta) Easily deploy any application that conforms to the 12-factor application patterns. Kubernetes helps provide a
-      platform for many of the 12factor patterns. This chart attempts to help streamline the management of configuration,
-      log streams, and execution of administrative tasks.
+    description: '(beta) Easily deploy any application that conforms to the 12-factor
+      application patterns. Kubernetes helps provide a platform for many of the 12factor
+      patterns. This chart attempts to help streamline the management of configuration,
+      log streams, and execution of administrative tasks. '
     digest: 3889d8c6b3b5b57e72259742976c84b5dd4c97f1a3470806677d09806002e5f7
     maintainers:
     - name: Mya Pitzeruse
@@ -39,10 +39,10 @@ entries:
     version: 22.5.2
   - apiVersion: v2
     created: "2022-06-17T21:02:46.134120995Z"
-    description: |
-      (beta) Easily deploy any application that conforms to the 12-factor application patterns. Kubernetes helps provide a
-      platform for many of the 12factor patterns. This chart attempts to help streamline the management of configuration,
-      log streams, and execution of administrative tasks.
+    description: '(beta) Easily deploy any application that conforms to the 12-factor
+      application patterns. Kubernetes helps provide a platform for many of the 12factor
+      patterns. This chart attempts to help streamline the management of configuration,
+      log streams, and execution of administrative tasks. '
     digest: 3450eeaeba4701eb5817b84794c101be18c85518f29340a8f8b4e796a2076646
     maintainers:
     - name: Mya Pitzeruse
@@ -57,10 +57,10 @@ entries:
     version: 22.5.1
   - apiVersion: v2
     created: "2022-05-26T04:45:57.292983805Z"
-    description: |
-      (beta) Easily deploy any application that conforms to the 12-factor application patterns. Kubernetes helps provide a
-      platform for many of the 12factor patterns. This chart attempts to help streamline the management of configuration,
-      log streams, and execution of administrative tasks.
+    description: '(beta) Easily deploy any application that conforms to the 12-factor
+      application patterns. Kubernetes helps provide a platform for many of the 12factor
+      patterns. This chart attempts to help streamline the management of configuration,
+      log streams, and execution of administrative tasks. '
     digest: e022a41544c12e7651532a8f591d49089d52b3f4007dfaeb3c547dfbae88f827
     maintainers:
     - name: Mya Pitzeruse
@@ -77,9 +77,9 @@ entries:
   - apiVersion: v2
     appVersion: 1.6.0
     created: "2022-05-13T01:41:44.581405196Z"
-    description: |
-      Deploy a container registry token authorization server. Easily add authentication and authorization to your container
-      registry and control what images authenticated and unauthenticated users are allowed to pull.
+    description: 'Deploy a container registry token authorization server. Easily add
+      authentication and authorization to your container registry and control what
+      images authenticated and unauthenticated users are allowed to pull. '
     digest: c7b75c4832afb5af3c5e0724192977894c4ecf0974e34f8b53340aee70f415f8
     maintainers:
     - name: Mya Pitzeruse
@@ -95,9 +95,9 @@ entries:
   - apiVersion: v2
     appVersion: 1.6.0
     created: "2022-04-08T02:32:07.489582254Z"
-    description: |
-      Deploy a container registry token authorization server. Easily add authentication and authorization to your container
-      registry and control what images authenticated and unauthenticated users are allowed to pull.
+    description: 'Deploy a container registry token authorization server. Easily add
+      authentication and authorization to your container registry and control what
+      images authenticated and unauthenticated users are allowed to pull. '
     digest: e5001e59f9354db5a2616b4f612218070084a266de05a9b4e578b05fc5f5a9c1
     maintainers:
     - name: Mya Pitzeruse
@@ -113,9 +113,9 @@ entries:
   - apiVersion: v2
     appVersion: 1.6.0
     created: "2022-03-28T23:21:04.393939284Z"
-    description: |
-      Deploy a container registry token authorization server. Easily add authentication and authorization to your container
-      registry and control what images authenticated and unauthenticated users are allowed to pull.
+    description: 'Deploy a container registry token authorization server. Easily add
+      authentication and authorization to your container registry and control what
+      images authenticated and unauthenticated users are allowed to pull. '
     digest: 6b3750890ef33f5e0efacf8325c8f143ca771c51dd2efa16f0c03f09d9744bb6
     maintainers:
     - name: Mya Pitzeruse
@@ -131,9 +131,9 @@ entries:
   - apiVersion: v2
     appVersion: 1.6.0
     created: "2022-03-23T13:54:48.789187142Z"
-    description: |
-      Deploy a container registry token authorization server. Easily add authentication and authorization to your container
-      container registry and control what images authenticated and unauthenticated users are allowed to pull.
+    description: 'Deploy a container registry token authorization server. Easily add
+      authentication and authorization to your container container registry and control
+      what images authenticated and unauthenticated users are allowed to pull. '
     digest: b491eb1807514e7e5e4cb4a66fd71a6bd29e3fc0025b1af204b4504563c62aef
     maintainers:
     - name: Mya Pitzeruse
@@ -149,9 +149,9 @@ entries:
   - apiVersion: v2
     appVersion: 1.6.0
     created: "2022-03-10T13:36:40.930144821Z"
-    description: |
-      Deploy a container registry token authorization server. Easily add authentication and authorization to your container
-      container registry and control what images authenticated and unauthenticated users are allowed to pull.
+    description: 'Deploy a container registry token authorization server. Easily add
+      authentication and authorization to your container container registry and control
+      what images authenticated and unauthenticated users are allowed to pull. '
     digest: f79167a6fcd12991b4db864af125aa4abf536ea5fed7c341e93192290402a874
     maintainers:
     - name: Mya Pitzeruse
@@ -203,9 +203,8 @@ entries:
       name: redis-queue
       repository: https://mjpitz.com
       version: 22.4.4
-    description: |
-      Easily deploy a Drone.IO, a container-native, continuous delivery platform. This chart provisions a Drone server
-      instance intended for smaller
+    description: 'Easily deploy a Drone.IO, a container-native, continuous delivery
+      platform. This chart provisions a Drone server instance intended for smaller '
     digest: 71c6c41ad30a25b2041008581f35e7a42400e99d21fbe1762abe88fa2c64239a
     maintainers:
     - name: Mya Pitzeruse
@@ -230,9 +229,8 @@ entries:
       name: redis-queue
       repository: https://mjpitz.com
       version: 22.4.4
-    description: |
-      Easily deploy a Drone.IO, a container-native, continuous delivery platform. This chart provisions a Drone server
-      instance intended for smaller
+    description: 'Easily deploy a Drone.IO, a container-native, continuous delivery
+      platform. This chart provisions a Drone server instance intended for smaller '
     digest: 16d02c25127bc16800d023d61cba5da09008a213bd7519bd9a2d762f027c28f2
     maintainers:
     - name: Mya Pitzeruse
@@ -257,7 +255,8 @@ entries:
       name: redis-queue
       repository: https://mjpitz.com
       version: 22.4.0
-    description: "Easily deploy a Drone.IO, a container-native, continuous delivery platform. This chart provisions a Drone server \ninstance intended for smaller\n"
+    description: 'Easily deploy a Drone.IO, a container-native, continuous delivery
+      platform. This chart provisions a Drone server  instance intended for smaller '
     digest: 2dd447be762474d931417840d16a67bf5f665cf1789560b47f9453551b9ed66d
     maintainers:
     - name: Mya Pitzeruse
@@ -282,7 +281,8 @@ entries:
       name: redis-queue
       repository: https://mjpitz.com
       version: 22.4.0
-    description: "Easily deploy a Drone.IO, a container-native, continuous delivery platform. This chart provisions a Drone server \ninstance intended for smaller\n"
+    description: 'Easily deploy a Drone.IO, a container-native, continuous delivery
+      platform. This chart provisions a Drone server  instance intended for smaller '
     digest: ce4e7cb86d5bdd6c70d7f4bb9962f71eab13f7f975119fa3d0c603f12a22d7fd
     maintainers:
     - name: Mya Pitzeruse
@@ -312,8 +312,7 @@ entries:
       name: redis
       repository: https://mjpitz.com
       version: 22.4.6
-    description: |
-      Git with a cup of tea. A painless, self-hosted Git Service.
+    description: 'Git with a cup of tea. A painless, self-hosted Git Service. '
     digest: 9a959e9e6df85de49799922a2e524c43880aec6cb0d8b2c19463a470655a98fb
     maintainers:
     - name: Mya Pitzeruse
@@ -342,8 +341,7 @@ entries:
       name: redis
       repository: https://mjpitz.com
       version: 22.4.2
-    description: |
-      Git with a cup of tea. A painless, self-hosted Git Service.
+    description: 'Git with a cup of tea. A painless, self-hosted Git Service. '
     digest: 0a7c9b4fb76a1da1fb876bf2cc3684b664472ce0ef55dd926382941b4ac750ca
     maintainers:
     - name: Mya Pitzeruse
@@ -360,9 +358,9 @@ entries:
   - apiVersion: v2
     appVersion: 0.3.8
     created: "2022-05-13T01:41:44.769767159Z"
-    description: |
-      Easily add litestream to any sqlite backed application as a sidecar. This chart optionally deploys the required
-      configuration and provides template functions that render the necessary init and sidecar containers.
+    description: 'Easily add litestream to any sqlite backed application as a sidecar.
+      This chart optionally deploys the required configuration and provides template
+      functions that render the necessary init and sidecar containers. '
     digest: c782e74facb1745190aa1ec6b7e38993c4061fd9b2f05b4568129de9a919471f
     maintainers:
     - name: Mya Pitzeruse
@@ -378,7 +376,9 @@ entries:
   - apiVersion: v2
     appVersion: 0.3.8
     created: "2022-04-24T18:41:01.69354715Z"
-    description: "Easily add litestream to any sqlite backed application as a sidecar. This chart optionally deploys the required \nconfiguration and provides template functions that render the necessary init and sidecar containers.\n"
+    description: 'Easily add litestream to any sqlite backed application as a sidecar.
+      This chart optionally deploys the required  configuration and provides template
+      functions that render the necessary init and sidecar containers. '
     digest: 6ca0c48c61d857ece2e7b4372c3a5a6fb2accc5c2b6ae65fcf81a391661e7f4d
     maintainers:
     - name: Mya Pitzeruse
@@ -400,10 +400,10 @@ entries:
       name: litestream
       repository: https://mjpitz.com
       version: 22.4.1
-    description: |
-      Easily deploy and configure a maddy mail server. This chart handles a fair bit of setup, however, additional work
-      needs to be done to properly configure all the DNS records. For a complete guide on setting up DNS for maddy, see the
-      user guide: https://maddy.email/tutorials/setting-up/
+    description: 'Easily deploy and configure a maddy mail server. This chart handles
+      a fair bit of setup, however, additional work needs to be done to properly configure
+      all the DNS records. For a complete guide on setting up DNS for maddy, see the
+      user guide: https://maddy.email/tutorials/setting-up/ '
     digest: c0667ed35df8cc020a6b2d444a715b6adc80fefc22581ee0a52f1a1633cced26
     maintainers:
     - name: Mya Pitzeruse
@@ -424,10 +424,10 @@ entries:
       name: litestream
       repository: https://mjpitz.com
       version: 22.4.0
-    description: |
-      Easily deploy and configure a maddy mail server. This chart handles a fair bit of setup, however, additional work
-      needs to be done to properly configure all the DNS records. For a complete guide on setting up DNS for maddy, see the
-      user guide: https://maddy.email/tutorials/setting-up/
+    description: 'Easily deploy and configure a maddy mail server. This chart handles
+      a fair bit of setup, however, additional work needs to be done to properly configure
+      all the DNS records. For a complete guide on setting up DNS for maddy, see the
+      user guide: https://maddy.email/tutorials/setting-up/ '
     digest: ba94f5517bafdf4256d3a8b84535693f86bb32d94cf2c2447a1abbb78bf2a810
     maintainers:
     - name: Mya Pitzeruse
@@ -448,10 +448,10 @@ entries:
       name: litestream
       repository: https://mjpitz.com
       version: 22.4.0
-    description: |
-      Easily deploy and configure a maddy mail server. This chart handles a fair bit of setup, however, additional work
-      needs to be done to properly configure all the DNS records. For a complete guide on setting up DNS for maddy, see the
-      user guide: https://maddy.email/tutorials/setting-up/
+    description: 'Easily deploy and configure a maddy mail server. This chart handles
+      a fair bit of setup, however, additional work needs to be done to properly configure
+      all the DNS records. For a complete guide on setting up DNS for maddy, see the
+      user guide: https://maddy.email/tutorials/setting-up/ '
     digest: 559cd1da352e810efd7b29616186234a00557f6438baf1989063e59463de5359
     maintainers:
     - name: Mya Pitzeruse
@@ -467,10 +467,10 @@ entries:
   - apiVersion: v2
     appVersion: 0.5.4
     created: "2022-04-11T17:26:45.748277363Z"
-    description: |
-      Easily deploy and configure a maddy mail server. This chart handles a fair bit of setup, however, additional work
-      needs to be done to properly configure all the DNS records. For a complete guide on setting up DNS for maddy, see the
-      user guide: https://maddy.email/tutorials/setting-up/
+    description: 'Easily deploy and configure a maddy mail server. This chart handles
+      a fair bit of setup, however, additional work needs to be done to properly configure
+      all the DNS records. For a complete guide on setting up DNS for maddy, see the
+      user guide: https://maddy.email/tutorials/setting-up/ '
     digest: a5cf0e194cff1d31ce6c7edde576d35c6495c4c8d2d9b1b1cb69cd5ea300d8a0
     maintainers:
     - name: Mya Pitzeruse
@@ -486,10 +486,10 @@ entries:
   - apiVersion: v2
     appVersion: 0.5.4
     created: "2022-04-11T03:48:35.662392988Z"
-    description: |
-      Easily deploy and configure a maddy mail server. This chart handles a fair bit of setup, however, additional work
-      needs to be done to properly configure all the DNS records. For a complete guide on setting up DNS for maddy, see the
-      user guide: https://maddy.email/tutorials/setting-up/
+    description: 'Easily deploy and configure a maddy mail server. This chart handles
+      a fair bit of setup, however, additional work needs to be done to properly configure
+      all the DNS records. For a complete guide on setting up DNS for maddy, see the
+      user guide: https://maddy.email/tutorials/setting-up/ '
     digest: 34f524304db598761eee12487e9b060bb19816694df19c341097dbc8396445f8
     maintainers:
     - name: Mya Pitzeruse
@@ -505,10 +505,10 @@ entries:
   - apiVersion: v2
     appVersion: 0.5.4
     created: "2022-04-07T17:06:54.92491065Z"
-    description: |
-      Easily deploy and configure a maddy mail server. This chart handles a fair bit of setup, however, additional work
-      needs to be done to properly configure all the DNS records. For a complete guide on setting up DNS for maddy, see the
-      user guide: https://maddy.email/tutorials/setting-up/
+    description: 'Easily deploy and configure a maddy mail server. This chart handles
+      a fair bit of setup, however, additional work needs to be done to properly configure
+      all the DNS records. For a complete guide on setting up DNS for maddy, see the
+      user guide: https://maddy.email/tutorials/setting-up/ '
     digest: 2823766d7a6cd167fd2b778714ffeebb6dc0edacdc291a4b21ad30a4c60470dd
     maintainers:
     - name: Mya Pitzeruse
@@ -525,9 +525,9 @@ entries:
   - apiVersion: v2
     appVersion: 6.2.6
     created: "2022-05-13T01:41:44.956016114Z"
-    description: |
-      Deploy a highly-available, partition-tolerant Redis cluster fronted by an envoy sidecar. Envoy partitions keys among
-      members of the cluster using a consistent hashing algorithm making it great as a best-effort cache.
+    description: 'Deploy a highly-available, partition-tolerant Redis cluster fronted
+      by an envoy sidecar. Envoy partitions keys among members of the cluster using
+      a consistent hashing algorithm making it great as a best-effort cache. '
     digest: 9a159af314d40d9edd0256e765b4e3d74c612785e79e35736a69800576758e58
     maintainers:
     - name: Mya Pitzeruse
@@ -544,9 +544,9 @@ entries:
   - apiVersion: v2
     appVersion: 6.2.6
     created: "2022-05-11T15:33:53.902031778Z"
-    description: |
-      Deploy a highly-available, partition-tolerant Redis cluster fronted by an envoy sidecar. Envoy partitions keys among
-      members of the cluster using a consistent hashing algorithm making it great as a best-effort cache.
+    description: 'Deploy a highly-available, partition-tolerant Redis cluster fronted
+      by an envoy sidecar. Envoy partitions keys among members of the cluster using
+      a consistent hashing algorithm making it great as a best-effort cache. '
     digest: 432fa377eabf24ad457148313731f2f71d93f8b2f22596cefc88b98ae1ed354f
     maintainers:
     - name: Mya Pitzeruse
@@ -563,9 +563,9 @@ entries:
   - apiVersion: v2
     appVersion: 6.2.6
     created: "2022-05-11T15:06:56.312187015Z"
-    description: |
-      Deploy a highly-available, partition-tolerant Redis cluster fronted by an envoy sidecar. Envoy partitions keys among
-      members of the cluster using a consistent hashing algorithm making it great as a best-effort cache.
+    description: 'Deploy a highly-available, partition-tolerant Redis cluster fronted
+      by an envoy sidecar. Envoy partitions keys among members of the cluster using
+      a consistent hashing algorithm making it great as a best-effort cache. '
     digest: 120d7db8b9b29ed0737a35cc496dda5ded30dbc41fe7fc33d0e8420a5357be9f
     maintainers:
     - name: Mya Pitzeruse
@@ -582,9 +582,9 @@ entries:
   - apiVersion: v2
     appVersion: 6.2.6
     created: "2022-05-04T15:37:39.368104182Z"
-    description: |
-      Deploy a highly-available, partition-tolerant Redis cluster fronted by an envoy sidecar. Envoy partitions keys among
-      members of the cluster using a consistent hashing algorithm making it great as a best-effort cache.
+    description: 'Deploy a highly-available, partition-tolerant Redis cluster fronted
+      by an envoy sidecar. Envoy partitions keys among members of the cluster using
+      a consistent hashing algorithm making it great as a best-effort cache. '
     digest: d3d6c9a1533bab88a83768757059fb0635c9b433c0db57a5b101e6503b390670
     maintainers:
     - name: Mya Pitzeruse
@@ -601,9 +601,9 @@ entries:
   - apiVersion: v2
     appVersion: 6.2.6
     created: "2022-04-24T19:50:23.094087782Z"
-    description: |
-      Deploy a highly-available, partition-tolerant Redis cluster fronted by an envoy sidecar. Envoy partitions keys among
-      members of the cluster using a consistent hashing algorithm making it great as a best-effort cache.
+    description: 'Deploy a highly-available, partition-tolerant Redis cluster fronted
+      by an envoy sidecar. Envoy partitions keys among members of the cluster using
+      a consistent hashing algorithm making it great as a best-effort cache. '
     digest: 4951bacf7294c0539e21c78fd4097f3bfa72a7fa817e11b0d300c1763eede1bb
     maintainers:
     - name: Mya Pitzeruse
@@ -619,9 +619,9 @@ entries:
   - apiVersion: v2
     appVersion: 6.2.6
     created: "2022-04-11T03:48:35.766699734Z"
-    description: |
-      Deploy a highly-available, partition-tolerant Redis cluster fronted by an envoy sidecar. Envoy partitions keys among
-      members of the cluster using a consistent hashing algorithm making it great as a best-effort cache.
+    description: 'Deploy a highly-available, partition-tolerant Redis cluster fronted
+      by an envoy sidecar. Envoy partitions keys among members of the cluster using
+      a consistent hashing algorithm making it great as a best-effort cache. '
     digest: 964f53fd147b3fad0216f94e4c14b2e7f13a1a2da4be842e3583113db4f4cbd3
     maintainers:
     - name: Mya Pitzeruse
@@ -637,9 +637,9 @@ entries:
   - apiVersion: v2
     appVersion: 6.2.6
     created: "2022-04-08T02:32:07.641259428Z"
-    description: |
-      Deploy a highly-available, partition-tolerant Redis cluster fronted by an envoy sidecar. Envoy partitions keys among
-      members of the cluster using a consistent hashing algorithm making it great as a best-effort cache.
+    description: 'Deploy a highly-available, partition-tolerant Redis cluster fronted
+      by an envoy sidecar. Envoy partitions keys among members of the cluster using
+      a consistent hashing algorithm making it great as a best-effort cache. '
     digest: b8b1cbaa29270fa8e7d896aa07b9cab3bb8f33b6131e6aeefcd6c1aec21d3f92
     maintainers:
     - name: Mya Pitzeruse
@@ -655,9 +655,9 @@ entries:
   - apiVersion: v2
     appVersion: 6.2.6
     created: "2022-03-28T23:21:04.565162512Z"
-    description: |
-      Deploy a highly-available, partition-tolerant Redis cluster fronted by an envoy sidecar. Envoy partitions keys among
-      members of the cluster using a consistent hashing algorithm making it great as a best-effort cache.
+    description: 'Deploy a highly-available, partition-tolerant Redis cluster fronted
+      by an envoy sidecar. Envoy partitions keys among members of the cluster using
+      a consistent hashing algorithm making it great as a best-effort cache. '
     digest: 043303ccd6aac7c8818d1ad4fd3189195ee17c0cd102c6b99b634ad246ba8a6d
     maintainers:
     - name: Mya Pitzeruse
@@ -673,9 +673,9 @@ entries:
   - apiVersion: v2
     appVersion: 6.2.6
     created: "2022-03-28T17:18:32.245343722Z"
-    description: |
-      Deploy a highly-available, partition-tolerant Redis cluster fronted by an envoy sidecar. Envoy partitions keys among
-      members of the cluster using a consistent hashing algorithm making it great as a best-effort cache.
+    description: 'Deploy a highly-available, partition-tolerant Redis cluster fronted
+      by an envoy sidecar. Envoy partitions keys among members of the cluster using
+      a consistent hashing algorithm making it great as a best-effort cache. '
     digest: 7776f1998773b3d43ba42c386e5d13aa41b11f55d1144e4f3099637b22aa45e1
     maintainers:
     - name: Mya Pitzeruse
@@ -691,9 +691,9 @@ entries:
   - apiVersion: v2
     appVersion: 6.2.6
     created: "2022-03-23T13:54:49.020538734Z"
-    description: |
-      Deploy a highly-available, partition-tolerant Redis cluster fronted by an envoy sidecar. Envoy partitions keys among
-      members of the cluster using a consistent hashing algorithm making it great as a best-effort cache.
+    description: 'Deploy a highly-available, partition-tolerant Redis cluster fronted
+      by an envoy sidecar. Envoy partitions keys among members of the cluster using
+      a consistent hashing algorithm making it great as a best-effort cache. '
     digest: 284c6a9e219a25028e43cba3759a069276204816f05a54708490bb460caee92f
     maintainers:
     - name: Mya Pitzeruse
@@ -709,9 +709,9 @@ entries:
   - apiVersion: v2
     appVersion: 6.2.6
     created: "2022-03-10T13:36:41.143838321Z"
-    description: |
-      Deploy a highly-available, partition-tolerant Redis cluster fronted by an envoy sidecar. Envoy partitions keys among
-      members of the cluster using a consistent hashing algorithm making it great as a best-effort cache.
+    description: 'Deploy a highly-available, partition-tolerant Redis cluster fronted
+      by an envoy sidecar. Envoy partitions keys among members of the cluster using
+      a consistent hashing algorithm making it great as a best-effort cache. '
     digest: 6f2a9ff344bf62aeb4c2a41564200215f36e4975686eca1a906bf20f3ca08f86
     maintainers:
     - name: Mya Pitzeruse
@@ -754,8 +754,8 @@ entries:
   - apiVersion: v2
     appVersion: 6.2.6
     created: "2022-05-13T01:41:45.146655586Z"
-    description: |
-      Deploy a single durable Redis instance, intended to be used as a work queue.
+    description: 'Deploy a single durable Redis instance, intended to be used as a
+      work queue. '
     digest: b7ba139fff5eed0f5b74de9b53385749c4974252dae40451caa654159860d961
     maintainers:
     - name: Mya Pitzeruse
@@ -771,8 +771,8 @@ entries:
   - apiVersion: v2
     appVersion: 6.2.6
     created: "2022-05-11T15:33:54.033938764Z"
-    description: |
-      Deploy a single durable Redis instance, intended to be used as a work queue.
+    description: 'Deploy a single durable Redis instance, intended to be used as a
+      work queue. '
     digest: 9c68acc00fe4c49057c32b2d941071ccde74754ada3168818da58ff4e64316db
     maintainers:
     - name: Mya Pitzeruse
@@ -788,8 +788,8 @@ entries:
   - apiVersion: v2
     appVersion: 6.2.6
     created: "2022-05-11T15:06:56.567844617Z"
-    description: |
-      Deploy a single durable Redis instance, intended to be used as a work queue.
+    description: 'Deploy a single durable Redis instance, intended to be used as a
+      work queue. '
     digest: 946ed77d383a89f182a87cc45f16dab23568620eee6f3dd802ddbfcb539e0329
     maintainers:
     - name: Mya Pitzeruse
@@ -805,8 +805,8 @@ entries:
   - apiVersion: v2
     appVersion: 6.2.6
     created: "2022-05-04T15:37:39.572032577Z"
-    description: |
-      Deploy a single durable Redis instance, intended to be used as a work queue.
+    description: 'Deploy a single durable Redis instance, intended to be used as a
+      work queue. '
     digest: 5b0d4fa37ba9f7e9183e4391111f09cb1454c3e8b59a4ba15eb71ef1a647d830
     maintainers:
     - name: Mya Pitzeruse
@@ -822,8 +822,8 @@ entries:
   - apiVersion: v2
     appVersion: 6.2.6
     created: "2022-04-29T20:00:22.880460791Z"
-    description: |
-      Deploy a single durable Redis instance, intended to be used as a work queue.
+    description: 'Deploy a single durable Redis instance, intended to be used as a
+      work queue. '
     digest: c4e1e6a7193c4a986deabbf4f6ef5b6e896d059877cc7ed0dfbdc470239b1a00
     maintainers:
     - name: Mya Pitzeruse
@@ -840,11 +840,10 @@ entries:
   - apiVersion: v2
     appVersion: 6.2.6
     created: "2022-05-13T01:41:45.341215674Z"
-    description: |
-      Deploy a consistent, partition-tolerant Redis cluster backed by the Raft consensus protocol. All supported commands
-      are executed in a strongly-consistent manner. See the
-      [RedisRaft](https://github.com/RedisLabs/redisraft/blob/master/docs/Using.md#supported-commands) documentation for
-      more information about supported commands.
+    description: 'Deploy a consistent, partition-tolerant Redis cluster backed by
+      the Raft consensus protocol. All supported commands are executed in a strongly-consistent
+      manner. See the [RedisRaft](https://github.com/RedisLabs/redisraft/blob/master/docs/Using.md#supported-commands)
+      documentation for more information about supported commands. '
     digest: a1a5b8ee060eed5f08b4aa2c65df7bf2a1b6856538b5e04107bdf3e505e8e971
     maintainers:
     - name: Mya Pitzeruse
@@ -861,7 +860,10 @@ entries:
   - apiVersion: v2
     appVersion: 6.2.6
     created: "2022-05-11T15:06:56.774905576Z"
-    description: "Deploy a consistent, partition-tolerant Redis cluster backed by the Raft consensus protocol. All supported commands \nare executed in a strongly-consistent manner. See the [RedisRaft][] documentation for more information about supported\ncommands.\n\n[RedisRaft]: https://github.com/RedisLabs/redisraft/blob/master/docs/Using.md#supported-commands\n"
+    description: 'Deploy a consistent, partition-tolerant Redis cluster backed by
+      the Raft consensus protocol. All supported commands  are executed in a strongly-consistent
+      manner. See the [RedisRaft][] documentation for more information about supported
+      commands.  [RedisRaft]: https://github.com/RedisLabs/redisraft/blob/master/docs/Using.md#supported-commands '
     digest: ace5dd82f339906403c16f46358a8313848eb17af0ff7a1b2c0d1468b621d5ba
     maintainers:
     - name: Mya Pitzeruse
@@ -878,7 +880,10 @@ entries:
   - apiVersion: v2
     appVersion: 6.2.6
     created: "2022-05-04T15:37:39.764241615Z"
-    description: "Deploy a consistent, partition-tolerant Redis cluster backed by the Raft consensus protocol. All supported commands \nare executed in a strongly-consistent manner. See the [RedisRaft][] documentation for more information about supported\ncommands.\n\n[RedisRaft]: https://github.com/RedisLabs/redisraft/blob/master/docs/Using.md#supported-commands\n"
+    description: 'Deploy a consistent, partition-tolerant Redis cluster backed by
+      the Raft consensus protocol. All supported commands  are executed in a strongly-consistent
+      manner. See the [RedisRaft][] documentation for more information about supported
+      commands.  [RedisRaft]: https://github.com/RedisLabs/redisraft/blob/master/docs/Using.md#supported-commands '
     digest: 55c655548b4047763edfcbc8abef59fc0d713a507d18bce6f7183043324da16d
     maintainers:
     - name: Mya Pitzeruse
@@ -895,6 +900,37 @@ entries:
   registry:
   - apiVersion: v2
     appVersion: 2.8.0
+    created: "2022-10-06T19:36:14.701502525Z"
+    dependencies:
+    - condition: auth.enabled
+      name: auth
+      repository: https://mjpitz.com
+      version: 22.4.1
+    - condition: redis.enabled
+      name: redis
+      repository: https://mjpitz.com
+      version: 22.4.6
+    - condition: storj.enabled
+      name: storj
+      repository: https://mjpitz.com
+      version: 22.4.3
+    description: 'Easily deploy and configure a production-ready container registry
+      backed by your favorite cloud storage provider.  Optionally add a highly-available,
+      partition-tolerant Redis cache that''s fronted by Envoy. '
+    digest: f59c01d931c176c5b87668eccd2a86177f50463853bd58aafe7b765b7f5c43f8
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: registry
+    sources:
+    - https://github.com/distribution/distribution
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/registry
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/registry-22.4.4/registry-22.4.4.tgz
+    version: 22.4.4
+  - apiVersion: v2
+    appVersion: 2.8.0
     created: "2022-05-13T02:03:57.003117116Z"
     dependencies:
     - condition: auth.enabled
@@ -909,7 +945,9 @@ entries:
       name: storj
       repository: https://mjpitz.com
       version: 22.4.2
-    description: "Easily deploy and configure a production-ready container registry backed by your favorite cloud storage provider. \nOptionally add a highly-available, partition-tolerant Redis cache that's fronted by Envoy.\n"
+    description: 'Easily deploy and configure a production-ready container registry
+      backed by your favorite cloud storage provider.  Optionally add a highly-available,
+      partition-tolerant Redis cache that''s fronted by Envoy. '
     digest: 19835b395d3a295581a5c4425bd16aa5190b7533ba95b91f4c408f29e3929e28
     maintainers:
     - name: Mya Pitzeruse
@@ -938,7 +976,9 @@ entries:
       name: storj
       repository: https://mjpitz.com
       version: 22.4.1
-    description: "Easily deploy and configure a production-ready container registry backed by your favorite cloud storage provider. \nOptionally add a highly-available, partition-tolerant Redis cache that's fronted by Envoy.\n"
+    description: 'Easily deploy and configure a production-ready container registry
+      backed by your favorite cloud storage provider.  Optionally add a highly-available,
+      partition-tolerant Redis cache that''s fronted by Envoy. '
     digest: 2914257a5c5553666778458033bee8079cfa50f0e0c5a31a53aa64f1d163ab5c
     maintainers:
     - name: Mya Pitzeruse
@@ -967,7 +1007,9 @@ entries:
       name: storj
       repository: https://mjpitz.com
       version: 22.4.0
-    description: "Easily deploy and configure a production-ready container registry backed by your favorite cloud storage provider. \nOptionally add a highly-available, partition-tolerant Redis cache that's fronted by Envoy.\n"
+    description: 'Easily deploy and configure a production-ready container registry
+      backed by your favorite cloud storage provider.  Optionally add a highly-available,
+      partition-tolerant Redis cache that''s fronted by Envoy. '
     digest: 1c26198fd8f04e2217ff4abd2826088ef4519875291663caf96d2a5fcd83d71e
     maintainers:
     - name: Mya Pitzeruse
@@ -996,7 +1038,9 @@ entries:
       name: storj
       repository: https://mjpitz.com
       version: 22.3.3
-    description: "Easily deploy and configure a production-ready container registry backed by your favorite cloud storage provider. \nOptionally add a highly-available, partition-tolerant Redis cache that's fronted by Envoy.\n"
+    description: 'Easily deploy and configure a production-ready container registry
+      backed by your favorite cloud storage provider.  Optionally add a highly-available,
+      partition-tolerant Redis cache that''s fronted by Envoy. '
     digest: 0d832bf02b5de5d8d8fe9343efb1485b9a1978b3cb76862dcc85f8e3202bedf1
     maintainers:
     - name: Mya Pitzeruse
@@ -1025,7 +1069,9 @@ entries:
       name: storj
       repository: https://mjpitz.com
       version: 22.3.2
-    description: "Easily deploy and configure a production-ready container registry backed by your favorite cloud storage provider. \nOptionally add a highly-available, partition-tolerant Redis cache that's fronted by Envoy.\n"
+    description: 'Easily deploy and configure a production-ready container registry
+      backed by your favorite cloud storage provider.  Optionally add a highly-available,
+      partition-tolerant Redis cache that''s fronted by Envoy. '
     digest: 0557d2b8d9f8afd707271081b9d6aa8699513e3467ee6211d6badecf941cc51e
     maintainers:
     - name: Mya Pitzeruse
@@ -1054,7 +1100,9 @@ entries:
       name: storj
       repository: file://../storj
       version: '*'
-    description: "Easily deploy and configure a production-ready container registry backed by your favorite cloud storage provider. \nOptionally add a highly-available, partition-tolerant Redis cache that's fronted by Envoy.\n"
+    description: 'Easily deploy and configure a production-ready container registry
+      backed by your favorite cloud storage provider.  Optionally add a highly-available,
+      partition-tolerant Redis cache that''s fronted by Envoy. '
     digest: cbb71721b3501f7df6b1c402610dfc2941754ac5b1f17f5a070e4c382ba46776
     maintainers:
     - name: Mya Pitzeruse
@@ -1083,7 +1131,9 @@ entries:
       name: storj
       repository: file://../storj
       version: '*'
-    description: "Easily deploy and configure a production-ready container registry backed by your favorite cloud storage provider. \nOptionally add a highly-available, partition-tolerant Redis cache that's fronted by Envoy.\n"
+    description: 'Easily deploy and configure a production-ready container registry
+      backed by your favorite cloud storage provider.  Optionally add a highly-available,
+      partition-tolerant Redis cache that''s fronted by Envoy. '
     digest: edd48eaf235d9a2dc90b352bc83be2575063114cdfdbfea09a79b8ee5e5fbf8a
     maintainers:
     - name: Mya Pitzeruse
@@ -1142,9 +1192,9 @@ entries:
   - apiVersion: v2
     appVersion: latest
     created: "2022-06-17T21:02:46.411386792Z"
-    description: |
-      Easily add a Storj S3 gateway to any Deployment, DaemonSet, or StatefulSet using a sidecar. This chart optionally
-      deploys the required configuration and provides template functions that render the necessary sidecar containers.
+    description: 'Easily add a Storj S3 gateway to any Deployment, DaemonSet, or StatefulSet
+      using a sidecar. This chart optionally deploys the required configuration and
+      provides template functions that render the necessary sidecar containers. '
     digest: 94550475e592e1bf3a9acfee8257d984ad5708589a46a22f5a3790d8be5b5611
     maintainers:
     - name: Mya Pitzeruse
@@ -1160,9 +1210,9 @@ entries:
   - apiVersion: v2
     appVersion: latest
     created: "2022-05-13T01:41:45.900196439Z"
-    description: |
-      Easily add a Storj S3 gateway to any Deployment, DaemonSet, or StatefulSet using a sidecar. This chart optionally
-      deploys the required configuration and provides template functions that render the necessary sidecar containers.
+    description: 'Easily add a Storj S3 gateway to any Deployment, DaemonSet, or StatefulSet
+      using a sidecar. This chart optionally deploys the required configuration and
+      provides template functions that render the necessary sidecar containers. '
     digest: 97e5313d0218e99a7f8de89e8c33cebacf1e07bf34285fae7d3addc7bd043766
     maintainers:
     - name: Mya Pitzeruse
@@ -1178,9 +1228,9 @@ entries:
   - apiVersion: v2
     appVersion: latest
     created: "2022-04-24T15:08:52.948219145Z"
-    description: |
-      Easily add a Storj S3 gateway to any Deployment, DaemonSet, or StatefulSet using a sidecar. This chart optionally
-      deploys the required configuration and provides template functions that render the necessary sidecar containers.
+    description: 'Easily add a Storj S3 gateway to any Deployment, DaemonSet, or StatefulSet
+      using a sidecar. This chart optionally deploys the required configuration and
+      provides template functions that render the necessary sidecar containers. '
     digest: 46ea8bd367261935b3f96892692a7c1408c56ffead8d14cbad2c300ec4dac130
     maintainers:
     - name: Mya Pitzeruse
@@ -1196,9 +1246,9 @@ entries:
   - apiVersion: v2
     appVersion: latest
     created: "2022-04-08T02:32:07.782270241Z"
-    description: |
-      Easily add a Storj S3 gateway to any Deployment, DaemonSet, or StatefulSet using a sidecar. This chart optionally
-      deploys the required configuration and provides template functions that render the necessary sidecar components.
+    description: 'Easily add a Storj S3 gateway to any Deployment, DaemonSet, or StatefulSet
+      using a sidecar. This chart optionally deploys the required configuration and
+      provides template functions that render the necessary sidecar components. '
     digest: d9b54db5469ce102d9ae2f4a8af14f6da30065fd5a922395c85a691ea299f199
     maintainers:
     - name: Mya Pitzeruse
@@ -1214,9 +1264,9 @@ entries:
   - apiVersion: v2
     appVersion: latest
     created: "2022-03-28T23:21:04.720524435Z"
-    description: |
-      Easily add a Storj S3 gateway to any Deployment, DaemonSet, or StatefulSet using a sidecar. This chart optionally
-      deploys the required configuration and provides template functions that render the necessary sidecar components.
+    description: 'Easily add a Storj S3 gateway to any Deployment, DaemonSet, or StatefulSet
+      using a sidecar. This chart optionally deploys the required configuration and
+      provides template functions that render the necessary sidecar components. '
     digest: 32ca3e3600d2e4b2eab8f5a5283c0290a0f7ee7a6a66f9aa4f31446009a51e1c
     name: storj
     type: application
@@ -1226,9 +1276,9 @@ entries:
   - apiVersion: v2
     appVersion: latest
     created: "2022-03-23T13:54:49.472790957Z"
-    description: |
-      Easily add a Storj S3 gateway to any Deployment, DaemonSet, or StatefulSet using a sidecar. This chart optionally
-      deploys the required configuration and provides template functions that render the necessary sidecar components.
+    description: 'Easily add a Storj S3 gateway to any Deployment, DaemonSet, or StatefulSet
+      using a sidecar. This chart optionally deploys the required configuration and
+      provides template functions that render the necessary sidecar components. '
     digest: 4255792298f16cad4823ddb0ada830d34486f0d909b9e84bd8f233006f364808
     name: storj
     type: application
@@ -1245,4 +1295,4 @@ entries:
     urls:
     - https://github.com/mjpitz/mjpitz/releases/download/storj-22.3.0/storj-22.3.0.tgz
     version: 22.3.0
-generated: "2022-03-07T14:18:00.964537926Z"
+generated: "2022-10-06T19:36:14.701683126Z"
