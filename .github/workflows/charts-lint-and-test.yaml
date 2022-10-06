@@ -35,6 +35,7 @@ jobs:
           version: v3.3.0
 
       - name: Run chart-testing (list-changed)
+        working-directory: charts
         id: list-changed
         run: |
           changed=$(ct list-changed --config ct.yaml)
