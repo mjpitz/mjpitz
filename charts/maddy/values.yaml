@@ -151,7 +151,7 @@ mta_sts:
     # -- The pull policy to use for the nginx image.
     pullPolicy: IfNotPresent
     # -- Configure the version of nginx to run.
-    tag: 1.21-alpine
+    tag: 1.23-alpine
 
   ingress:
     # -- Configure an ingress for the MTA-STS well-known configuration.
