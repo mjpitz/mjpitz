@@ -1,6 +1,6 @@
 # redis
 
-![Version: 22.4.6](https://img.shields.io/badge/Version-22.4.6-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 6.2.6](https://img.shields.io/badge/AppVersion-6.2.6-informational?style=flat-square)
+![Version: 22.4.7](https://img.shields.io/badge/Version-22.4.7-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 6.2.6](https://img.shields.io/badge/AppVersion-6.2.6-informational?style=flat-square)
 
 Deploy a highly-available, partition-tolerant Redis cluster fronted by an envoy sidecar. Envoy partitions keys among
 members of the cluster using a consistent hashing algorithm making it great as a best-effort cache.
@@ -15,7 +15,7 @@ fetch the dependency before installing.
 dependencies:
   # ...
   - name: redis
-    version: 22.4.6
+    version: 22.4.7
     repository: https://mjpitz.com
     condition: redis.enabled
 ```
@@ -77,7 +77,7 @@ That should be it.
 | cluster.enabled                            | bool   | `true`                            | Enable the Envoy cluster.                                                                                               |
 | cluster.image.pullPolicy                   | string | `"IfNotPresent"`                  | The pull policy used when pulling the Envoy proxy.                                                                      |
 | cluster.image.repository                   | string | `"envoyproxy/envoy"`              | The repository hosting the Envoy proxy.                                                                                 |
-| cluster.image.tag                          | string | `"v1.21-latest"`                  | The version of Envoy to run.                                                                                            |
+| cluster.image.tag                          | string | `"v1.23-latest"`                  | The version of Envoy to run.                                                                                            |
 | config.data.appendOnlyFile.enabled         | bool   | `false`                           | Whether to enable an append-only file.                                                                                  |
 | config.data.appendOnlyFile.fsync           | string | `"everysec"`                      | When fsyncs should occur when using an append-only file.                                                                |
 | config.data.directory                      | string | `""`                              | Where the append-only file and snapshots should be stored.                                                              |
