@@ -356,6 +356,24 @@ entries:
     version: 22.4.0
   litestream:
   - apiVersion: v2
+    appVersion: 0.3.9
+    created: "2022-10-13T18:13:39.085738101Z"
+    description: 'Easily add litestream to any sqlite backed application as a sidecar.
+      This chart optionally deploys the required configuration and provides template
+      functions that render the necessary init and sidecar containers. '
+    digest: 953f6529da7b79d74e68d152abeba4ccbb0194635c8763bcde78c05530e8181f
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: litestream
+    sources:
+    - https://github.com/benbjohnson/litestream
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/litestream
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/litestream-22.4.2/litestream-22.4.2.tgz
+    version: 22.4.2
+  - apiVersion: v2
     appVersion: 0.3.8
     created: "2022-05-13T01:41:44.769767159Z"
     description: 'Easily add litestream to any sqlite backed application as a sidecar.
@@ -1314,4 +1332,4 @@ entries:
     urls:
     - https://github.com/mjpitz/mjpitz/releases/download/storj-22.3.0/storj-22.3.0.tgz
     version: 22.3.0
-generated: "2022-10-13T18:10:59.623582938Z"
+generated: "2022-10-13T18:13:39.085846603Z"
