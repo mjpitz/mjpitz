@@ -524,6 +524,25 @@ entries:
   redis:
   - apiVersion: v2
     appVersion: 6.2.6
+    created: "2022-10-13T18:10:59.623223636Z"
+    description: 'Deploy a highly-available, partition-tolerant Redis cluster fronted
+      by an envoy sidecar. Envoy partitions keys among members of the cluster using
+      a consistent hashing algorithm making it great as a best-effort cache. '
+    digest: 79862c1f257a44d380c2d84d78c9d75d1eb46a775f1e5377179263feb28bb706
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: redis
+    sources:
+    - https://github.com/redis/redis
+    - https://github.com/envoyproxy/envoy
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/redis
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/redis-22.4.7/redis-22.4.7.tgz
+    version: 22.4.7
+  - apiVersion: v2
+    appVersion: 6.2.6
     created: "2022-05-13T01:41:44.956016114Z"
     description: 'Deploy a highly-available, partition-tolerant Redis cluster fronted
       by an envoy sidecar. Envoy partitions keys among members of the cluster using
@@ -1295,4 +1314,4 @@ entries:
     urls:
     - https://github.com/mjpitz/mjpitz/releases/download/storj-22.3.0/storj-22.3.0.tgz
     version: 22.3.0
-generated: "2022-10-06T19:36:14.701683126Z"
+generated: "2022-10-13T18:10:59.623582938Z"
