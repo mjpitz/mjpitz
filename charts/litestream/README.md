@@ -1,6 +1,6 @@
 # litestream
 
-![Version: 22.4.1](https://img.shields.io/badge/Version-22.4.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.3.8](https://img.shields.io/badge/AppVersion-0.3.8-informational?style=flat-square)
+![Version: 22.4.2](https://img.shields.io/badge/Version-22.4.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.3.9](https://img.shields.io/badge/AppVersion-0.3.9-informational?style=flat-square)
 
 Easily add litestream to any sqlite backed application as a sidecar. This chart optionally deploys the required
 configuration and provides template functions that render the necessary init and sidecar containers.
@@ -15,7 +15,7 @@ fetch the dependency before installing.
 dependencies:
   # ...
   - name: litestream
-    version: 22.4.1
+    version: 22.4.2
     repository: https://mjpitz.com
     condition: litestream.enabled
 ```
@@ -91,7 +91,7 @@ That should be it.
 | fullnameOverride              | string | `""`                      | Override the full name of the release.                                                                                                                 |
 | image.pullPolicy              | string | `"IfNotPresent"`          | The pull policy to use for the litestream image.                                                                                                       |
 | image.repository              | string | `"litestream/litestream"` | The repository hosting the litestream image.                                                                                                           |
-| image.tag                     | string | `"0.3.8"`                 | Overrides the image tag whose default is the chart appVersion.                                                                                         |
+| image.tag                     | string | `"0.3.9"`                 | Overrides the image tag whose default is the chart appVersion.                                                                                         |
 | imagePullSecrets              | list   | `[]`                      | Specify the secret containing the registry credentials.                                                                                                |
 | metrics.enabled               | bool   | `false`                   | Whether metrics reporting should be enabled.                                                                                                           |
 | metrics.port                  | int    | `9090`                    | The port to run the metrics server on.                                                                                                                 |
