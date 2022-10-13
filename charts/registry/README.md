@@ -1,6 +1,6 @@
 # registry
 
-![Version: 22.4.4](https://img.shields.io/badge/Version-22.4.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.8.0](https://img.shields.io/badge/AppVersion-2.8.0-informational?style=flat-square)
+![Version: 22.4.5](https://img.shields.io/badge/Version-22.4.5-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.8.0](https://img.shields.io/badge/AppVersion-2.8.0-informational?style=flat-square)
 
 Easily deploy and configure a production-ready container registry backed by your favorite cloud storage provider.
 Optionally add a highly-available, partition-tolerant Redis cache that's fronted by Envoy.
@@ -97,7 +97,7 @@ Optionally add a highly-available, partition-tolerant Redis cache that's fronted
 | ui.enabled                                 | bool   | `false`                                | Whether to enable a UI for exploring the registry.                                                                                                                |
 | ui.image.pullPolicy                        | string | `"IfNotPresent"`                       | The policy used when pulling the UI image.                                                                                                                        |
 | ui.image.repository                        | string | `"klausmeyer/docker-registry-browser"` | The image that contains the registry UI.                                                                                                                          |
-| ui.image.tag                               | string | `"1.4.0"`                              | The tag of the image that contains the registry UI.                                                                                                               |
+| ui.image.tag                               | string | `"1.5.0"`                              | The tag of the image that contains the registry UI.                                                                                                               |
 
 ---
 
