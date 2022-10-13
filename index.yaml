@@ -412,6 +412,30 @@ entries:
   maddy:
   - apiVersion: v2
     appVersion: 0.5.4
+    created: "2022-10-13T18:18:45.494583427Z"
+    dependencies:
+    - condition: litestream.enabled
+      name: litestream
+      repository: https://mjpitz.com
+      version: 22.4.1
+    description: 'Easily deploy and configure a maddy mail server. This chart handles
+      a fair bit of setup, however, additional work needs to be done to properly configure
+      all the DNS records. For a complete guide on setting up DNS for maddy, see the
+      user guide: https://maddy.email/tutorials/setting-up/ '
+    digest: 6f740ad6242f1208d1180cb026602ae9dddec15d91245fa02651738dc99b2f4a
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: maddy
+    sources:
+    - https://github.com/foxcpp/maddy
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/maddy
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/maddy-22.4.7/maddy-22.4.7.tgz
+    version: 22.4.7
+  - apiVersion: v2
+    appVersion: 0.5.4
     created: "2022-05-13T02:03:56.891748915Z"
     dependencies:
     - condition: litestream.enabled
@@ -1363,4 +1387,4 @@ entries:
     urls:
     - https://github.com/mjpitz/mjpitz/releases/download/storj-22.3.0/storj-22.3.0.tgz
     version: 22.3.0
-generated: "2022-10-13T18:16:14.479249626Z"
+generated: "2022-10-13T18:18:45.494848126Z"
