@@ -3,7 +3,7 @@
 
   image:
     repository: img.pitz.tech/mya/pages
-    tag: latest@sha256:3c3a8cb8a08e90321e303751249c38de5a65e45178914e02d69cf30ff2b22b66
+    tag: latest@sha256:724dc7923ee35997f36623a1e18a5e94a7835134cbca042b162d4704600849b6
 
   deployment:
     replicaCount: 2
