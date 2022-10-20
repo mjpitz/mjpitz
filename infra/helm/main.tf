@@ -351,12 +351,45 @@ resource "helm_release" "pages" {
 
   set {
     name  = "global.terraform.hash"
-    value = data.external.catalog.result.sha256
+    value = data.external.pages.result.sha256
   }
 
   set {
     name = "12factor.deployment.annotations.terraform\\.io/hash"
-    value = data.external.catalog.result.sha256
+    value = data.external.pages.result.sha256
+  }
+
+  dependency_update = true
+  create_namespace  = true
+  atomic = true
+  wait   = true
+}
+
+data "external" "go" {
+  program = ["./scripts/hash.sh", "./go"]
+}
+
+resource "helm_release" "go" {
+  depends_on = [
+    helm_release.ingress_nginx,
+  ]
+
+  chart     = "./go"
+  namespace = "go"
+  name      = "pages"
+
+  values = [
+    file("./go/values.yaml"),
+  ]
+
+  set {
+    name  = "global.terraform.hash"
+    value = data.external.go.result.sha256
+  }
+
+  set {
+    name = "12factor.deployment.annotations.terraform\\.io/hash"
+    value = data.external.go.result.sha256
   }
 
   dependency_update = true
