@@ -3,7 +3,7 @@
 
   image:
     repository: img.pitz.tech/mya/pages
-    tag: latest@sha256:3c3a8cb8a08e90321e303751249c38de5a65e45178914e02d69cf30ff2b22b66
+    tag: latest@sha256:5f8a24adaa738ac54cac8af03227a4d42852b62171f78f517de9c330d1780f92
 
   deployment:
     replicaCount: 2
@@ -11,7 +11,8 @@
     application:
       envFrom:
         - secretRef:
-            name: pages-secret
+            name: pages-env
+
       ports:
         - name: http
           containerPort: 8080
@@ -19,6 +20,15 @@
         - name: debug
           containerPort: 8081
           protocol: TCP
+
+      volumeMounts:
+        - name: config
+          mountPath: /etc/pages/conf
+
+    volumes:
+      - name: config
+        secret:
+          secretName: pages-secret
 
   networking:
     service:
@@ -51,10 +61,15 @@
           paths:
             - path: /
               pathType: Prefix
+        - host: go.pitz.tech
+          paths:
+            - path: /
+              pathType: Prefix
       tls:
         - secretName: pages-tls
           hosts:
             - mjpitz.com
+            - go.pitz.tech
 
 metrics:
   serviceMonitor:
