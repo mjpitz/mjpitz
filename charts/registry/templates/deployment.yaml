@@ -77,8 +77,6 @@ spec:
           env:
             - name: PORT
               value: "5002"
-            - name: SORT_TAGS_BY
-              value: version
             - name: DOCKER_REGISTRY_URL
               value: http://127.0.0.1:5000
             - name: PUBLIC_REGISTRY_URL

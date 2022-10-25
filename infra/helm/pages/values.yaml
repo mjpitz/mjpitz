@@ -65,11 +65,16 @@
           paths:
             - path: /
               pathType: Prefix
+        - host: cloud.pitz.tech
+          paths:
+            - path: /
+              pathType: Prefix
       tls:
         - secretName: pages-tls
           hosts:
             - mjpitz.com
             - go.pitz.tech
+            - cloud.pitz.tech
 
 metrics:
   serviceMonitor:

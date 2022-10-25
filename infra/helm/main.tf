@@ -299,39 +299,6 @@ resource "helm_release" "drone" {
   wait   = false
 }
 
-data "external" "catalog" {
-  program = ["./scripts/hash.sh", "./catalog"]
-}
-
-resource "helm_release" "catalog" {
-  depends_on = [
-    helm_release.ingress_nginx,
-  ]
-
-  chart     = "./catalog"
-  namespace = "catalog"
-  name      = "catalog"
-
-  values = [
-    file("./catalog/values.yaml"),
-  ]
-
-  set {
-    name  = "global.terraform.hash"
-    value = data.external.catalog.result.sha256
-  }
-
-  set {
-    name = "12factor.deployment.annotations.terraform\\.io/hash"
-    value = data.external.catalog.result.sha256
-  }
-
-  dependency_update = true
-  create_namespace  = true
-  atomic = true
-  wait   = true
-}
-
 data "external" "pages" {
   program = ["./scripts/hash.sh", "./pages"]
 }
