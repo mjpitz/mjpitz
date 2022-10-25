@@ -1,0 +1,275 @@
+{
+  "Services": [
+    {
+      "Label": "Drone",
+      "LogoURL": "https://alikhil.github.io/images/posts/drone-logo.png",
+      "Description": "Drone is a self-service Continuous Integration platform for busy development teams.",
+      "URL": "https://deploy.pitz.tech",
+      "Metadata": null,
+      "LinkGroups": [
+        {
+          "Label": "Dashboards",
+          "Links": [
+            {
+              "Label": "Drone",
+              "URL": "https://grafana.pitz.tech/d/2c241b4cea8d493ef632bf33b10d04cf?var-job=drone\u0026var-namespace=cicd"
+            },
+            {
+              "Label": "Golang",
+              "URL": "https://grafana.pitz.tech/d/8cd750f455ca9fc93a465fd9a34993cc?var-job=drone\u0026var-namespace=cicd"
+            },
+            {
+              "Label": "Litestream",
+              "URL": "https://grafana.pitz.tech/d/bf44e72e619451e2c85cda80fe17b28b?var-job=drone\u0026var-namespace=cicd"
+            },
+            {
+              "Label": "Nginx",
+              "URL": "https://grafana.pitz.tech/d/a8f89b836aba65c315725d17eba6bdfb?var-host=deploy.pitz.tech\u0026var-ingress=drone"
+            },
+            {
+              "Label": "Redis Queue",
+              "URL": "https://grafana.pitz.tech/d/36cf4a03d9f16d8a4221fecbbd2ff5c6?var-job=drone-redis-queue\u0026var-namespace=cicd"
+            }
+          ]
+        },
+        {
+          "Label": "Documentation",
+          "Links": [
+            {
+              "Label": "docs.drone.io",
+              "URL": "https://docs.drone.io/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Label": "Gitea",
+      "LogoURL": "https://th.bing.com/th/id/OIP.vTBHIhs_ZVwADrlakNWr2gHaHa?pid=ImgDet\u0026rs=1",
+      "Description": "Gitea is an open-source forge software package for hosting software development version control using Git as well as other collaborative features like bug tracking, wikis and code review.",
+      "URL": "https://code.pitz.tech",
+      "Metadata": null,
+      "LinkGroups": [
+        {
+          "Label": "Dashboards",
+          "Links": [
+            {
+              "Label": "Gitea",
+              "URL": "https://grafana.pitz.tech/d/354a485fe64f93ea707a7f6e061ff71b?var-job=gitea\u0026var-namespace=vcs"
+            },
+            {
+              "Label": "Golang",
+              "URL": "https://grafana.pitz.tech/d/8cd750f455ca9fc93a465fd9a34993cc?var-job=gitea\u0026var-namespace=vcs"
+            },
+            {
+              "Label": "Litestream",
+              "URL": "https://grafana.pitz.tech/d/bf44e72e619451e2c85cda80fe17b28b?var-job=gitea\u0026var-namespace=vcs"
+            },
+            {
+              "Label": "Nginx",
+              "URL": "https://grafana.pitz.tech/d/a8f89b836aba65c315725d17eba6bdfb?var-host=code.pitz.tech\u0026var-ingress=kube-prometheus-stack-grafana"
+            },
+            {
+              "Label": "Redis",
+              "URL": "https://grafana.pitz.tech/d/36cf4a03d9f16d8a4221fecbbd2ff5c6?var-job=gitea-redis\u0026var-namespace=vcs"
+            },
+            {
+              "Label": "Redis Queue",
+              "URL": "https://grafana.pitz.tech/d/36cf4a03d9f16d8a4221fecbbd2ff5c6?var-job=gitea-redis-queue\u0026var-namespace=vcs"
+            }
+          ]
+        },
+        {
+          "Label": "Documentation",
+          "Links": [
+            {
+              "Label": "docs.gitea.io",
+              "URL": "https://docs.gitea.io/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Label": "Grafana",
+      "LogoURL": "https://logodix.com/logo/1736692.png",
+      "Description": "Query, visualize, alert on, and understand your data no matter where it’s stored. With Grafana you can create, explore and share all of your data through beautiful, flexible dashboards.",
+      "URL": "https://grafana.pitz.tech",
+      "Metadata": null,
+      "LinkGroups": [
+        {
+          "Label": "Dashboards",
+          "Links": [
+            {
+              "Label": "Golang",
+              "URL": "https://grafana.pitz.tech/d/8cd750f455ca9fc93a465fd9a34993cc?var-job=kube-prometheus-stack-grafana\u0026var-namespace=monitoring"
+            },
+            {
+              "Label": "Nginx",
+              "URL": "https://grafana.pitz.tech/d/a8f89b836aba65c315725d17eba6bdfb?var-host=grafana.pitz.tech\u0026var-ingress=kube-prometheus-stack-grafana"
+            }
+          ]
+        },
+        {
+          "Label": "Documentation",
+          "Links": [
+            {
+              "Label": "grafana.com",
+              "URL": "https://grafana.com/docs/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Label": "AlertManager",
+      "LogoURL": "https://res.cloudinary.com/practicaldev/image/fetch/s--LW4NmNdM--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/g60cdrr4ywgbnm1j7d3u.jpg",
+      "Description": "AlertManager handles alerts sent by client applications such as the prometheus server.",
+      "URL": "",
+      "Metadata": null,
+      "LinkGroups": [
+        {
+          "Label": "Dashboards",
+          "Links": [
+            {
+              "Label": "Golang",
+              "URL": "https://grafana.pitz.tech/d/8cd750f455ca9fc93a465fd9a34993cc?var-job=kube-prometheus-stack-alertmanager\u0026var-namespace=monitoring"
+            }
+          ]
+        },
+        {
+          "Label": "Documentation",
+          "Links": [
+            {
+              "Label": "prometheus.io",
+              "URL": "https://prometheus.io/docs/alerting/latest/overview/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Label": "Prometheus",
+      "LogoURL": "https://res.cloudinary.com/practicaldev/image/fetch/s--LW4NmNdM--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/g60cdrr4ywgbnm1j7d3u.jpg",
+      "Description": "Prometheus is an open-source systems monitoring and alerting toolkit.",
+      "URL": "",
+      "Metadata": null,
+      "LinkGroups": [
+        {
+          "Label": "Dashboards",
+          "Links": [
+            {
+              "Label": "Golang",
+              "URL": "https://grafana.pitz.tech/d/8cd750f455ca9fc93a465fd9a34993cc?var-job=kube-prometheus-stack-prometheus\u0026var-namespace=monitoring"
+            }
+          ]
+        },
+        {
+          "Label": "Documentation",
+          "Links": [
+            {
+              "Label": "prometheus.io",
+              "URL": "https://prometheus.io/docs/introduction/overview/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Label": "Maddy",
+      "LogoURL": "https://th.bing.com/th/id/OIP.AmxxNcB-gpi9YR96B0kBKwHaHa?pid=ImgDet\u0026rs=1",
+      "Description": "Maddy Mail Server implements all functionality required to run a e-mail server. It can send messages via SMTP (works as MTA), accept messages via SMTP (works as MX) and store messages while providing access to them via IMAP.",
+      "URL": "",
+      "Metadata": null,
+      "LinkGroups": [
+        {
+          "Label": "Dashboards",
+          "Links": [
+            {
+              "Label": "Golang",
+              "URL": "https://grafana.pitz.tech/d/8cd750f455ca9fc93a465fd9a34993cc?var-job=maddy-internal\u0026var-namespace=email"
+            },
+            {
+              "Label": "Maddy",
+              "URL": "https://grafana.pitz.tech/d/82a7b6b2c9516ef16c08616edc8a90c1?var-job=maddy-internal\u0026var-namespace=email"
+            },
+            {
+              "Label": "Nginx",
+              "URL": "https://grafana.pitz.tech/d/a8f89b836aba65c315725d17eba6bdfb?var-host=mta-sts.pitz.tech\u0026var-ingress=maddy"
+            },
+            {
+              "Label": "Litestream",
+              "URL": "https://grafana.pitz.tech/d/bf44e72e619451e2c85cda80fe17b28b?var-job=maddy-internal\u0026var-namespace=email"
+            }
+          ]
+        },
+        {
+          "Label": "Documentation",
+          "Links": [
+            {
+              "Label": "maddy.email",
+              "URL": "https://maddy.email/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Label": "Registry",
+      "LogoURL": "https://th.bing.com/th/id/OIP.t7fUu4Fb0-0KGLuz4sM7nwHaHa?pid=ImgDet\u0026rs=1",
+      "Description": "A registry is a storage and content delivery system, holding named Docker images, available in different tagged versions.",
+      "URL": "https://img.pitz.tech",
+      "Metadata": null,
+      "LinkGroups": [
+        {
+          "Label": "Dashboards",
+          "Links": [
+            {
+              "Label": "Golang",
+              "URL": "https://grafana.pitz.tech/d/8cd750f455ca9fc93a465fd9a34993cc?var-job=registry\u0026var-namespace=registry"
+            },
+            {
+              "Label": "Nginx",
+              "URL": "https://grafana.pitz.tech/d/a8f89b836aba65c315725d17eba6bdfb?var-host=img.pitz.tech\u0026var-ingress=registry"
+            },
+            {
+              "Label": "Registry",
+              "URL": "https://grafana.pitz.tech/d/e92ac532836465ac8220dde7f6b33fe4?var-job=registry\u0026var-namespace=registry"
+            },
+            {
+              "Label": "Redis",
+              "URL": "https://grafana.pitz.tech/d/36cf4a03d9f16d8a4221fecbbd2ff5c6?var-job=registry-redis\u0026var-namespace=registry"
+            }
+          ]
+        },
+        {
+          "Label": "Documentation",
+          "Links": [
+            {
+              "Label": "docs.docker.com",
+              "URL": "https://docs.docker.com/registry/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Label": "Nginx",
+      "LogoURL": "https://www.splunk.com/content/dam/splunk-blogs/images/2017/02/nginx-logo.png",
+      "Description": "Provides general control over ingress communication into the cluster.",
+      "URL": "",
+      "Metadata": null,
+      "LinkGroups": [
+        {
+          "Label": "Dashboards",
+          "Links": [
+            {
+              "Label": "Golang",
+              "URL": "https://grafana.pitz.tech/d/8cd750f455ca9fc93a465fd9a34993cc?var-job=ingress-nginx-controller-metrics\u0026var-namespace=ingress"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

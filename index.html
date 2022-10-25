@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Service Catalog</title>
+
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #eaeaea;
+      padding: 60px 0;
+      margin: 0;
+      line-height: 1.5rem;
+    }
+
+    div.catalog {
+      max-width: 1600px;
+      min-width: 1200px;
+      margin: 0 auto;
+    }
+
+    div.row {
+      display: flex;
+    }
+
+    div.col {
+      flex: auto;
+    }
+
+    div.col-50 {
+      max-width: 50%;
+      min-width: 50%;
+    }
+
+    div.col-65 {
+      max-width: 65%;
+      min-width: 65%;
+    }
+
+    div.col-35 {
+      max-width: 35%;
+      min-width: 35%;
+    }
+
+    div.catalog h1 {
+      text-align: center;
+      font-size: 3rem;
+      margin-bottom: 35px;
+    }
+
+    div.catalog div.service {
+      background-color: #fff;
+      border: 1px solid #aaa;
+      padding: 20px 26px;
+      border-radius: 5px;
+      margin: 9px 18px;
+    }
+
+    div.catalog div.service img.logo {
+      max-height: 48px;
+      margin-right: 10px;
+    }
+
+    div.catalog div.service h2.name {
+      display: inline-block;
+      vertical-align: top;
+      margin: 13px 0;
+    }
+
+    div.catalog div.service p.url {}
+    div.catalog div.service p.description {}
+
+    div.catalog div.service div.metadata {
+      margin: 10px 0;
+    }
+
+    div.catalog div.service div.link-group {}
+    div.catalog div.service div.link-group h3.label {}
+    div.catalog div.service div.link-group li.link {}
+  </style>
+</head>
+
+<body>
+  <div class="catalog"><div class="row">
+    <div class="col col-50">
+      <div class="service">
+        <div class="row">
+          <div class="col col-65" style="padding-right: 10px">
+            <div>
+              <img class="logo" src="https://alikhil.github.io/images/posts/drone-logo.png" />
+
+              <h2 class="name">Drone</h2>
+            </div>
+            <p class="url"><a href="https://deploy.pitz.tech">https://deploy.pitz.tech</a></p>
+            <p class="description">Drone is a self-service Continuous Integration platform for busy development teams.</p>
+          </div>
+
+          <div class="col col-35">
+            <div class="link-group">
+              <h3 class="label">Dashboards</h3>
+              <ul>
+                <li class="link">
+                  <a href="https://grafana.pitz.tech/d/2c241b4cea8d493ef632bf33b10d04cf?var-job=drone&amp;var-namespace=cicd">Drone</a>
+                </li>
+                <li class="link">
+                  <a href="https://grafana.pitz.tech/d/8cd750f455ca9fc93a465fd9a34993cc?var-job=drone&amp;var-namespace=cicd">Golang</a>
+                </li>
+                <li class="link">
+                  <a href="https://grafana.pitz.tech/d/bf44e72e619451e2c85cda80fe17b28b?var-job=drone&amp;var-namespace=cicd">Litestream</a>
+                </li>
+                <li class="link">
+                  <a href="https://grafana.pitz.tech/d/a8f89b836aba65c315725d17eba6bdfb?var-host=deploy.pitz.tech&amp;var-ingress=drone">Nginx</a>
+                </li>
+                <li class="link">
+                  <a href="https://grafana.pitz.tech/d/36cf4a03d9f16d8a4221fecbbd2ff5c6?var-job=drone-redis-queue&amp;var-namespace=cicd">Redis Queue</a>
+                </li>
+              </ul>
+            </div>
+            <div class="link-group">
+              <h3 class="label">Documentation</h3>
+              <ul>
+                <li class="link">
+                  <a href="https://docs.drone.io/">docs.drone.io</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col col-50">
+      <div class="service">
+        <div class="row">
+          <div class="col col-65" style="padding-right: 10px">
+            <div>
+              <img class="logo" src="https://th.bing.com/th/id/OIP.vTBHIhs_ZVwADrlakNWr2gHaHa?pid=ImgDet&amp;rs=1" />
+
+              <h2 class="name">Gitea</h2>
+            </div>
+            <p class="url"><a href="https://code.pitz.tech">https://code.pitz.tech</a></p>
+            <p class="description">Gitea is an open-source forge software package for hosting software development version control using Git as well as other collaborative features like bug tracking, wikis and code review.</p>
+          </div>
+
+          <div class="col col-35">
+            <div class="link-group">
+              <h3 class="label">Dashboards</h3>
+              <ul>
+                <li class="link">
+                  <a href="https://grafana.pitz.tech/d/354a485fe64f93ea707a7f6e061ff71b?var-job=gitea&amp;var-namespace=vcs">Gitea</a>
+                </li>
+                <li class="link">
+                  <a href="https://grafana.pitz.tech/d/8cd750f455ca9fc93a465fd9a34993cc?var-job=gitea&amp;var-namespace=vcs">Golang</a>
+                </li>
+                <li class="link">
+                  <a href="https://grafana.pitz.tech/d/bf44e72e619451e2c85cda80fe17b28b?var-job=gitea&amp;var-namespace=vcs">Litestream</a>
+                </li>
+                <li class="link">
+                  <a href="https://grafana.pitz.tech/d/a8f89b836aba65c315725d17eba6bdfb?var-host=code.pitz.tech&amp;var-ingress=kube-prometheus-stack-grafana">Nginx</a>
+                </li>
+                <li class="link">
+                  <a href="https://grafana.pitz.tech/d/36cf4a03d9f16d8a4221fecbbd2ff5c6?var-job=gitea-redis&amp;var-namespace=vcs">Redis</a>
+                </li>
+                <li class="link">
+                  <a href="https://grafana.pitz.tech/d/36cf4a03d9f16d8a4221fecbbd2ff5c6?var-job=gitea-redis-queue&amp;var-namespace=vcs">Redis Queue</a>
+                </li>
+              </ul>
+            </div>
+            <div class="link-group">
+              <h3 class="label">Documentation</h3>
+              <ul>
+                <li class="link">
+                  <a href="https://docs.gitea.io/">docs.gitea.io</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div></div><div class="row">
+    <div class="col col-50">
+      <div class="service">
+        <div class="row">
+          <div class="col col-65" style="padding-right: 10px">
+            <div>
+              <img class="logo" src="https://logodix.com/logo/1736692.png" />
+
+              <h2 class="name">Grafana</h2>
+            </div>
+            <p class="url"><a href="https://grafana.pitz.tech">https://grafana.pitz.tech</a></p>
+            <p class="description">Query, visualize, alert on, and understand your data no matter where it’s stored. With Grafana you can create, explore and share all of your data through beautiful, flexible dashboards.</p>
+          </div>
+
+          <div class="col col-35">
+            <div class="link-group">
+              <h3 class="label">Dashboards</h3>
+              <ul>
+                <li class="link">
+                  <a href="https://grafana.pitz.tech/d/8cd750f455ca9fc93a465fd9a34993cc?var-job=kube-prometheus-stack-grafana&amp;var-namespace=monitoring">Golang</a>
+                </li>
+                <li class="link">
+                  <a href="https://grafana.pitz.tech/d/a8f89b836aba65c315725d17eba6bdfb?var-host=grafana.pitz.tech&amp;var-ingress=kube-prometheus-stack-grafana">Nginx</a>
+                </li>
+              </ul>
+            </div>
+            <div class="link-group">
+              <h3 class="label">Documentation</h3>
+              <ul>
+                <li class="link">
+                  <a href="https://grafana.com/docs/">grafana.com</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col col-50">
+      <div class="service">
+        <div class="row">
+          <div class="col col-65" style="padding-right: 10px">
+            <div>
+              <img class="logo" src="https://res.cloudinary.com/practicaldev/image/fetch/s--LW4NmNdM--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/g60cdrr4ywgbnm1j7d3u.jpg" />
+
+              <h2 class="name">AlertManager</h2>
+            </div>
+            <p class="description">AlertManager handles alerts sent by client applications such as the prometheus server.</p>
+          </div>
+
+          <div class="col col-35">
+            <div class="link-group">
+              <h3 class="label">Dashboards</h3>
+              <ul>
+                <li class="link">
+                  <a href="https://grafana.pitz.tech/d/8cd750f455ca9fc93a465fd9a34993cc?var-job=kube-prometheus-stack-alertmanager&amp;var-namespace=monitoring">Golang</a>
+                </li>
+              </ul>
+            </div>
+            <div class="link-group">
+              <h3 class="label">Documentation</h3>
+              <ul>
+                <li class="link">
+                  <a href="https://prometheus.io/docs/alerting/latest/overview/">prometheus.io</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div></div><div class="row">
+    <div class="col col-50">
+      <div class="service">
+        <div class="row">
+          <div class="col col-65" style="padding-right: 10px">
+            <div>
+              <img class="logo" src="https://res.cloudinary.com/practicaldev/image/fetch/s--LW4NmNdM--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/g60cdrr4ywgbnm1j7d3u.jpg" />
+
+              <h2 class="name">Prometheus</h2>
+            </div>
+            <p class="description">Prometheus is an open-source systems monitoring and alerting toolkit.</p>
+          </div>
+
+          <div class="col col-35">
+            <div class="link-group">
+              <h3 class="label">Dashboards</h3>
+              <ul>
+                <li class="link">
+                  <a href="https://grafana.pitz.tech/d/8cd750f455ca9fc93a465fd9a34993cc?var-job=kube-prometheus-stack-prometheus&amp;var-namespace=monitoring">Golang</a>
+                </li>
+              </ul>
+            </div>
+            <div class="link-group">
+              <h3 class="label">Documentation</h3>
+              <ul>
+                <li class="link">
+                  <a href="https://prometheus.io/docs/introduction/overview/">prometheus.io</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col col-50">
+      <div class="service">
+        <div class="row">
+          <div class="col col-65" style="padding-right: 10px">
+            <div>
+              <img class="logo" src="https://th.bing.com/th/id/OIP.AmxxNcB-gpi9YR96B0kBKwHaHa?pid=ImgDet&amp;rs=1" />
+
+              <h2 class="name">Maddy</h2>
+            </div>
+            <p class="description">Maddy Mail Server implements all functionality required to run a e-mail server. It can send messages via SMTP (works as MTA), accept messages via SMTP (works as MX) and store messages while providing access to them via IMAP.</p>
+          </div>
+
+          <div class="col col-35">
+            <div class="link-group">
+              <h3 class="label">Dashboards</h3>
+              <ul>
+                <li class="link">
+                  <a href="https://grafana.pitz.tech/d/8cd750f455ca9fc93a465fd9a34993cc?var-job=maddy-internal&amp;var-namespace=email">Golang</a>
+                </li>
+                <li class="link">
+                  <a href="https://grafana.pitz.tech/d/82a7b6b2c9516ef16c08616edc8a90c1?var-job=maddy-internal&amp;var-namespace=email">Maddy</a>
+                </li>
+                <li class="link">
+                  <a href="https://grafana.pitz.tech/d/a8f89b836aba65c315725d17eba6bdfb?var-host=mta-sts.pitz.tech&amp;var-ingress=maddy">Nginx</a>
+                </li>
+                <li class="link">
+                  <a href="https://grafana.pitz.tech/d/bf44e72e619451e2c85cda80fe17b28b?var-job=maddy-internal&amp;var-namespace=email">Litestream</a>
+                </li>
+              </ul>
+            </div>
+            <div class="link-group">
+              <h3 class="label">Documentation</h3>
+              <ul>
+                <li class="link">
+                  <a href="https://maddy.email/">maddy.email</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div></div><div class="row">
+    <div class="col col-50">
+      <div class="service">
+        <div class="row">
+          <div class="col col-65" style="padding-right: 10px">
+            <div>
+              <img class="logo" src="https://th.bing.com/th/id/OIP.t7fUu4Fb0-0KGLuz4sM7nwHaHa?pid=ImgDet&amp;rs=1" />
+
+              <h2 class="name">Registry</h2>
+            </div>
+            <p class="url"><a href="https://img.pitz.tech">https://img.pitz.tech</a></p>
+            <p class="description">A registry is a storage and content delivery system, holding named Docker images, available in different tagged versions.</p>
+          </div>
+
+          <div class="col col-35">
+            <div class="link-group">
+              <h3 class="label">Dashboards</h3>
+              <ul>
+                <li class="link">
+                  <a href="https://grafana.pitz.tech/d/8cd750f455ca9fc93a465fd9a34993cc?var-job=registry&amp;var-namespace=registry">Golang</a>
+                </li>
+                <li class="link">
+                  <a href="https://grafana.pitz.tech/d/a8f89b836aba65c315725d17eba6bdfb?var-host=img.pitz.tech&amp;var-ingress=registry">Nginx</a>
+                </li>
+                <li class="link">
+                  <a href="https://grafana.pitz.tech/d/e92ac532836465ac8220dde7f6b33fe4?var-job=registry&amp;var-namespace=registry">Registry</a>
+                </li>
+                <li class="link">
+                  <a href="https://grafana.pitz.tech/d/36cf4a03d9f16d8a4221fecbbd2ff5c6?var-job=registry-redis&amp;var-namespace=registry">Redis</a>
+                </li>
+              </ul>
+            </div>
+            <div class="link-group">
+              <h3 class="label">Documentation</h3>
+              <ul>
+                <li class="link">
+                  <a href="https://docs.docker.com/registry/">docs.docker.com</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col col-50">
+      <div class="service">
+        <div class="row">
+          <div class="col col-65" style="padding-right: 10px">
+            <div>
+              <img class="logo" src="https://www.splunk.com/content/dam/splunk-blogs/images/2017/02/nginx-logo.png" />
+
+              <h2 class="name">Nginx</h2>
+            </div>
+            <p class="description">Provides general control over ingress communication into the cluster.</p>
+          </div>
+
+          <div class="col col-35">
+            <div class="link-group">
+              <h3 class="label">Dashboards</h3>
+              <ul>
+                <li class="link">
+                  <a href="https://grafana.pitz.tech/d/8cd750f455ca9fc93a465fd9a34993cc?var-job=ingress-nginx-controller-metrics&amp;var-namespace=ingress">Golang</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div></div>
+  </div>
+</body>
+</html>
