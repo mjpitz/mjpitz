@@ -7,3 +7,4 @@ dependencies:
   - name: 12factor
     repository: file://../../../charts/12factor
     version: "*"
+    alias: pages

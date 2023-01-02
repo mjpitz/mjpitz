@@ -1,4 +1,4 @@
-12factor:
+pages:
   nameOverride: pages
 
   image:
