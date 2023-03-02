@@ -6,5 +6,5 @@ appVersion: 0.0.0
 dependencies:
   - name: sealed-secrets
     repository: https://bitnami-labs.github.io/sealed-secrets
-    version: 2.7.4
+    version: 2.7.5
     condition: sealed-secrets.enabled
