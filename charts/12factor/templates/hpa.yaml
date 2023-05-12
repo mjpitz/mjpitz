@@ -25,4 +25,7 @@ spec:
         name: memory
         targetAverageUtilization: {{ . }}
     {{- end }}
+    {{- with .Values.deployment.autoscaling.metrics }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
 {{- end }}
