@@ -2,6 +2,24 @@ apiVersion: v1
 entries:
   12factor:
   - apiVersion: v2
+    created: "2023-05-12T04:09:31.170370568Z"
+    description: 'Easily deploy any application that conforms to the 12-factor application
+      patterns. Kubernetes helps provide a  platform for many of the 12factor patterns.
+      This chart attempts to help streamline the management of configuration, log
+      streams, and execution of administrative tasks. '
+    digest: 9591997b09bdcfe2e18eff3e2d3028b257f9c8907690680c7831679a7eace52f
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: 12factor
+    sources:
+    - https://12factor.net/
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/12factor
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/12factor-22.5.5/12factor-22.5.5.tgz
+    version: 22.5.5
+  - apiVersion: v2
     created: "2023-05-12T03:40:01.623936326Z"
     description: 'Easily deploy any application that conforms to the 12-factor application
       patterns. Kubernetes helps provide a  platform for many of the 12factor patterns.
@@ -1436,4 +1454,4 @@ entries:
     urls:
     - https://github.com/mjpitz/mjpitz/releases/download/storj-22.3.0/storj-22.3.0.tgz
     version: 22.3.0
-generated: "2023-05-12T03:40:01.625584024Z"
+generated: "2023-05-12T04:09:31.170530271Z"
