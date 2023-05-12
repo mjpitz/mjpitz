@@ -1,8 +1,8 @@
 # 12factor
 
-![Version: 22.5.3](https://img.shields.io/badge/Version-22.5.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 22.5.4](https://img.shields.io/badge/Version-22.5.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
-(beta) Easily deploy any application that conforms to the 12-factor application patterns. Kubernetes helps provide a
+Easily deploy any application that conforms to the 12-factor application patterns. Kubernetes helps provide a
 platform for many of the 12factor patterns. This chart attempts to help streamline the management of configuration,
 log streams, and execution of administrative tasks.
 
@@ -58,8 +58,9 @@ log streams, and execution of administrative tasks.
 | networking.ingress.hosts[0].paths[0].path                | string | `"/"`                      | The path to match on.                                                                                                                                                                                                                       |
 | networking.ingress.hosts[0].paths[0].pathType            | string | `"ImplementationSpecific"` |                                                                                                                                                                                                                                             |
 | networking.ingress.tls                                   | list   | `[]`                       | Configure TLS certificates for the ingress to use.                                                                                                                                                                                          |
+| networking.service.annotations                           | object | `{}`                       | Additional annotations to include on the service.                                                                                                                                                                                           |
 | networking.service.clusterIP                             | string | `""`                       | Explicitly claim an IP address or specify None for a headless service.                                                                                                                                                                      |
-| networking.service.ports                                 | list   | `[]`                       | Enumerate the ports on the application to expose. These should be well-known ports.                                                                                                                                                         |
+| networking.service.ports                                 | list   | `[]`                       | Enumerate the ports on the application to expose. These should be well-known ports. If none are provided, no service will be created.                                                                                                       |
 | networking.service.type                                  | string | `"ClusterIP"`              | The kind of service that should be used to expose this application.                                                                                                                                                                         |
 | serviceAccount.annotations                               | object | `{}`                       | Annotations to add to the service account.                                                                                                                                                                                                  |
 | serviceAccount.create                                    | bool   | `true`                     | Specifies whether a service account should be created.                                                                                                                                                                                      |

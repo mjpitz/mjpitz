@@ -1,3 +1,4 @@
+{{- if .Values.networking.service.ports }}
 apiVersion: v1
 kind: Service
 metadata:
@@ -5,6 +6,10 @@ metadata:
   labels:
     app.kubernetes.io/component: app
     {{- include "12factor.labels" . | nindent 4 }}
+  {{- with .Values.networking.service.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 spec:
   type: {{ .Values.networking.service.type }}
   clusterIP: {{ .Values.networking.service.clusterIP }}
@@ -13,3 +18,4 @@ spec:
   selector:
     app.kubernetes.io/component: app
     {{- include "12factor.selectorLabels" . | nindent 4 }}
+{{- end }}

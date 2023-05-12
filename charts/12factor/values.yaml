@@ -155,13 +155,17 @@ deployment:
 
 networking:
   service:
+    # -- Additional annotations to include on the service.
+    annotations: {}
+
     # -- The kind of service that should be used to expose this application.
     type: ClusterIP
 
     # -- Explicitly claim an IP address or specify None for a headless service.
     clusterIP: ""
 
-    # -- Enumerate the ports on the application to expose. These should be well-known ports.
+    # -- Enumerate the ports on the application to expose. These should be well-known ports. If none are provided,
+    #    no service will be created.
     ports: []
       # - name: http
       #   port: 80
