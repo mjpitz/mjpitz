@@ -52,6 +52,10 @@ registry:
     enabled: true
     replicaCount: 2
 
+    token:
+      cert: ""
+      key: ""
+
     extraVolumes:
       - name: token-cert
         secret:

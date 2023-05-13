@@ -10,8 +10,7 @@ infra/**/terraform.tfstate.backup
 
 infra/helm/**/*.lock
 infra/helm/**/*.tgz
-infra/helm/**/secret.yaml
-infra/helm/**/secret-*.yaml
+infra/helm/**/secret.yaml.dec
 infra/helm/**/tls.crt
 infra/helm/**/tls.key
 

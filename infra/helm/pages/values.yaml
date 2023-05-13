@@ -76,6 +76,24 @@ pages:
             - go.pitz.tech
             - cloud.pitz.tech
 
+  config:
+    sites:
+      - domain: mjpitz.com
+        url: https://github.com/mjpitz/mjpitz.git
+        branch: gh-pages
+        interval: 5m
+      - domain: cloud.pitz.tech
+        url: https://github.com/mjpitz/mjpitz.git
+        branch: cloud
+        interval: 30m
+      - domain: go.pitz.tech
+        url: https://github.com/mjpitz/myago.git
+        branch: site
+        interval: 30m
+    admin:
+      username: ""
+      password: ""
+
 metrics:
   serviceMonitor:
     interval: 10s

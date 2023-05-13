@@ -14,3 +14,6 @@ external-dns:
   cloudflare:
     secretName: "cloudflare-api-token"
     proxied: false
+
+cloudflare:
+  apiToken: ""

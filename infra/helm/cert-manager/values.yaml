@@ -6,3 +6,6 @@ cert-manager:
 
     servicemonitor:
       enabled: true
+
+cloudflare:
+  apiToken: ""

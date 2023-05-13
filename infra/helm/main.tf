@@ -9,44 +9,22 @@ terraform {
   }
 }
 
-data "external" "sealed_secrets" {
-  program = ["./scripts/hash.sh", "./sealed-secrets"]
-}
-
-resource "helm_release" "sealed_secrets" {
-  chart     = "./sealed-secrets"
-  namespace = "kube-system"
-  name      = "sealed-secrets"
-
-  values = [
-    file("./sealed-secrets/values.yaml"),
-  ]
-
-  set {
-    name  = "global.terraform.hash"
-    value = data.external.sealed_secrets.result.sha256
-  }
-
-  dependency_update = true
-  create_namespace  = true
-  atomic            = true
-}
-
 data "external" "kube_prometheus_stack" {
   program = ["./scripts/hash.sh", "./kube-prometheus-stack"]
 }
 
-resource "helm_release" "kube_prometheus_stack" {
-  depends_on = [
-    helm_release.sealed_secrets,
-  ]
+data "external" "kube_prometheus_stack_secrets" {
+  program = ["helm", "secrets", "decrypt", "--terraform", "./kube-prometheus-stack/values-secret.yaml"]
+}
 
+resource "helm_release" "kube_prometheus_stack" {
   chart     = "./kube-prometheus-stack"
   namespace = "monitoring"
   name      = "kube-prometheus-stack"
 
   values = [
     file("./kube-prometheus-stack/values.yaml"),
+    base64decode(data.external.kube_prometheus_stack_secrets.result.content_base64),
   ]
 
   set {
@@ -63,9 +41,12 @@ data "external" "cert_manager" {
   program = ["./scripts/hash.sh", "./cert-manager"]
 }
 
+data "external" "cert_manager_secrets" {
+  program = ["helm", "secrets", "decrypt", "--terraform", "./cert-manager/values-secret.yaml"]
+}
+
 resource "helm_release" "cert_manager" {
   depends_on = [
-    helm_release.sealed_secrets,
     helm_release.kube_prometheus_stack,
   ]
 
@@ -75,6 +56,7 @@ resource "helm_release" "cert_manager" {
 
   values = [
     file("./cert-manager/values.yaml"),
+    base64decode(data.external.cert_manager_secrets.result.content_base64),
   ]
 
   set {
@@ -91,9 +73,12 @@ data "external" "external_dns" {
   program = ["./scripts/hash.sh", "./external-dns"]
 }
 
+data "external" "external_dns_secrets" {
+  program = ["helm", "secrets", "decrypt", "--terraform", "./external-dns/values-secret.yaml"]
+}
+
 resource "helm_release" "external_dns" {
   depends_on = [
-    helm_release.sealed_secrets,
     helm_release.kube_prometheus_stack,
   ]
 
@@ -103,6 +88,7 @@ resource "helm_release" "external_dns" {
 
   values = [
     file("./external-dns/values.yaml"),
+    base64decode(data.external.external_dns_secrets.result.content_base64),
   ]
 
   set {
@@ -121,7 +107,6 @@ data "external" "ingress_nginx" {
 
 resource "helm_release" "ingress_nginx" {
   depends_on = [
-    helm_release.sealed_secrets,
     helm_release.kube_prometheus_stack,
     helm_release.cert_manager,
     helm_release.external_dns,
@@ -152,6 +137,10 @@ data "external" "registry" {
   program = ["./scripts/hash.sh", "./registry"]
 }
 
+data "external" "registry_secrets" {
+  program = ["helm", "secrets", "decrypt", "--terraform", "./registry/values-secret.yaml"]
+}
+
 resource "helm_release" "registry" {
   depends_on = [
     helm_release.ingress_nginx,
@@ -163,7 +152,7 @@ resource "helm_release" "registry" {
 
   values = [
     file("./registry/values.yaml"),
-    file("./registry/secret.yaml"),
+    base64decode(data.external.registry_secrets.result.content_base64),
   ]
 
   set {
@@ -195,7 +184,7 @@ resource "helm_release" "dist" {
 
   set {
     name  = "global.terraform.hash"
-    value = data.external.sealed_secrets.result.sha256
+    value = data.external.dist.result.sha256
   }
 
   dependency_update = true
@@ -205,6 +194,10 @@ resource "helm_release" "dist" {
 
 data "external" "maddy" {
   program = ["./scripts/hash.sh", "./maddy"]
+}
+
+data "external" "maddy_secrets" {
+  program = ["helm", "secrets", "decrypt", "--terraform", "./maddy/values-secret.yaml"]
 }
 
 resource "helm_release" "maddy" {
@@ -220,7 +213,7 @@ resource "helm_release" "maddy" {
 
   values = [
     file("./maddy/values.yaml"),
-    file("./maddy/secret.yaml"),
+    base64decode(data.external.maddy_secrets.result.content_base64),
   ]
 
   set {
@@ -240,6 +233,10 @@ data "external" "gitea" {
   program = ["./scripts/hash.sh", "./gitea"]
 }
 
+data "external" "gitea_secrets" {
+  program = ["helm", "secrets", "decrypt", "--terraform", "./gitea/values-secret.yaml"]
+}
+
 resource "helm_release" "gitea" {
   depends_on = [
     helm_release.ingress_nginx,
@@ -251,7 +248,7 @@ resource "helm_release" "gitea" {
 
   values = [
     file("./gitea/values.yaml"),
-    file("./gitea/secret.yaml"),
+    base64decode(data.external.gitea_secrets.result.content_base64),
   ]
 
   set {
@@ -271,6 +268,10 @@ data "external" "drone" {
   program = ["./scripts/hash.sh", "./drone"]
 }
 
+data "external" "drone_secrets" {
+  program = ["helm", "secrets", "decrypt", "--terraform", "./drone/values-secret.yaml"]
+}
+
 resource "helm_release" "drone" {
   depends_on = [
     helm_release.ingress_nginx,
@@ -283,7 +284,7 @@ resource "helm_release" "drone" {
 
   values = [
     file("./drone/values.yaml"),
-    file("./drone/secret.yaml"),
+    base64decode(data.external.drone_secrets.result.content_base64),
   ]
 
   set {
@@ -303,6 +304,10 @@ data "external" "pages" {
   program = ["./scripts/hash.sh", "./pages"]
 }
 
+data "external" "pages_secrets" {
+  program = ["helm", "secrets", "decrypt", "--terraform", "./pages/values-secret.yaml"]
+}
+
 resource "helm_release" "pages" {
   depends_on = [
     helm_release.ingress_nginx,
@@ -314,6 +319,7 @@ resource "helm_release" "pages" {
 
   values = [
     file("./pages/values.yaml"),
+    base64decode(data.external.pages_secrets.result.content_base64),
   ]
 
   set {
@@ -322,12 +328,12 @@ resource "helm_release" "pages" {
   }
 
   set {
-    name = "12factor.deployment.annotations.terraform\\.io/hash"
+    name  = "12factor.deployment.annotations.terraform\\.io/hash"
     value = data.external.pages.result.sha256
   }
 
   dependency_update = true
   create_namespace  = true
-  atomic = true
-  wait   = true
+  atomic            = true
+  wait              = true
 }

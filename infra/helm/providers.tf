@@ -1,13 +1,13 @@
 terraform {
   required_providers {
     digitalocean = {
-      source = "digitalocean/digitalocean"
-      version = "~> 2.0"
+      source  = "digitalocean/digitalocean"
+      version = "2.28.1"
     }
 
     helm = {
-      source = "hashicorp/helm"
-      version = "~> 2.0"
+      source  = "hashicorp/helm"
+      version = "2.9.0"
     }
   }
 }
@@ -27,8 +27,8 @@ data "digitalocean_kubernetes_cluster" "mya_nyc" {
 
 provider "helm" {
   kubernetes {
-    host                   = data.digitalocean_kubernetes_cluster.mya_nyc.endpoint
-    token                  = data.digitalocean_kubernetes_cluster.mya_nyc.kube_config[0].token
+    host  = data.digitalocean_kubernetes_cluster.mya_nyc.endpoint
+    token = data.digitalocean_kubernetes_cluster.mya_nyc.kube_config[0].token
     cluster_ca_certificate = base64decode(
       data.digitalocean_kubernetes_cluster.mya_nyc.kube_config[0].cluster_ca_certificate
     )

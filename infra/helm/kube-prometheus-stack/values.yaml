@@ -70,3 +70,7 @@ kube-prometheus-stack:
             resources:
               requests:
                 storage: 10Gi
+
+grafana:
+  giteaClientId: ""
+  giteaClientSecret: ""
