@@ -1,0 +1,18 @@
+{{- if .Values.imagePullSecrets }}
+{{- $auths := dict }}
+{{- range .Values.imagePullSecrets }}
+{{- $auth := printf "%s:%s" .username .password | b64enc }}
+{{- $entry := dict "username" .username "password" .password "auth" $auth }}
+{{- $auths = set $auths .registry $entry }}
+{{- end }}
+{{- $dockerConfig := dict "auths" $auths }}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ include "12factor.fullname" . }}-pull-secrets
+  labels:
+    {{- include "12factor.labels" . | nindent 4 }}
+type: kubernetes.io/dockerconfigjson
+data:
+  .dockerconfigjson: {{ toJson $dockerConfig | b64enc | quote }}
+{{- end }}

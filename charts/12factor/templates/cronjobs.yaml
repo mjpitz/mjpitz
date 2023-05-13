@@ -1,6 +1,8 @@
 {{- $fullname := include "12factor.fullname" . }}
+{{- $serviceAccountName := include "12factor.serviceAccountName" . }}
 {{- $labels := include "12factor.labels" . }}
 {{- $image := .Values.image }}
+{{- $imagePullSecrets := .Values.imagePullSecrets }}
 {{- $deployment := .Values.deployment }}
 {{- range .Values.deployment.tasks }}
 apiVersion: batch/v1
@@ -28,6 +30,14 @@ spec:
           volumes:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+          {{- if $imagePullSecrets }}
+          imagePullSecrets:
+            - name: {{ $fullname }}-pull-secrets
+          {{- else if $deployment.imagePullSecrets }}
+          imagePullSecrets:
+            {{- $deployment.imagePullSecrets | toYaml | nindent 12 }}
+          {{- end }}
+          serviceAccountName: {{ $serviceAccountName }}
           containers:
             - name: {{ .name }}
               {{- if .securityContext }}

@@ -15,6 +15,12 @@ image:
   # -- How the container should be pulled.
   pullPolicy: IfNotPresent
 
+# -- Provide credentials to private registries without the fuss of kubectl or generating a docker config.
+imagePullSecrets: []
+#  - registry: "ghcr.io"
+#    username: ""
+#    password: ""
+
 serviceAccount:
   # -- Specifies whether a service account should be created.
   create: true
@@ -44,24 +50,24 @@ deployment:
     #    resources as well as metrics that have nothing to do with kubernetes. For more information, see the docs.
     #    [[documentation](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/#autoscaling-on-metrics-not-related-to-kubernetes-objects)]
     metrics: []
-      #- type: Object
-      #  object:
-      #    target:
-      #      kind: Service
-      #      name: metrics-exporter
-      #    metricName: seconds
-      #    targetValue: 100
+      # - type: Object
+      #   object:
+      #     target:
+      #       kind: Service
+      #       name: metrics-exporter
+      #     metricName: seconds
+      #     targetValue: 100
       #
-      #- type: External
-      #  external:
-      #    metric:
-      #      name: queue_messages_ready
-      #      selector:
-      #        matchLabels:
-      #          queue: "worker_tasks"
-      #    target:
-      #      type: AverageValue
-      #      averageValue: 30
+      # - type: External
+      #   external:
+      #     metric:
+      #       name: queue_messages_ready
+      #       selector:
+      #         matchLabels:
+      #           queue: "worker_tasks"
+      #     target:
+      #       type: AverageValue
+      #       averageValue: 30
 
   # -- Annotations are added to pods within the deployment.
   annotations: {}

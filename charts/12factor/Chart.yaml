@@ -2,7 +2,7 @@ apiVersion: v2
 type: application
 name: 12factor
 description: |
-  Easily deploy any application that conforms to the 12-factor application patterns. Kubernetes helps provide a 
+  Easily deploy any application that conforms to the 12-factor application patterns. Kubernetes helps provide a
   platform for many of the 12factor patterns. This chart attempts to help streamline the management of configuration,
   log streams, and execution of administrative tasks.
 sources:
@@ -11,4 +11,4 @@ sources:
 maintainers:
   - name: Mya Pitzeruse
     url: https://mjpitz.com
-version: 22.5.5
+version: 22.5.6

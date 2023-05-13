@@ -24,9 +24,12 @@ spec:
         app.kubernetes.io/component: app
         {{- include "12factor.labels" . | nindent 8 }}
     spec:
-      {{- with .Values.deployment.imagePullSecrets }}
+      {{- if .Values.imagePullSecrets }}
       imagePullSecrets:
-        {{- toYaml . | nindent 8 }}
+        - name: {{ include "12factor.fullname" . }}-pull-secrets
+      {{- else if .Values.deployment.imagePullSecrets }}
+      imagePullSecrets:
+        {{- .Values.deployment.imagePullSecrets | toYaml | nindent 8 }}
       {{- end }}
       serviceAccountName: {{ include "12factor.serviceAccountName" . }}
       {{- with .Values.deployment.volumes }}

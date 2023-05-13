@@ -44,6 +44,11 @@ grafana/sync:	# synchronize the built dashboards and alerts for deployment.
 
 #== HELM TARGETS
 
+helm/deps:	# update dependencies for helm charts.
+	@cd charts && { \
+		find . -mindepth 1 -maxdepth 1 -type d -exec basename {} \; | xargs -I{} make deps TARGET={} ; \
+	}
+
 helm/docs:	# generate documentation for helm charts.
 	@cd charts && { \
 		find . -mindepth 1 -maxdepth 1 -type d -exec basename {} \; | xargs -I{} make docs TARGET={} ; \
@@ -52,6 +57,13 @@ helm/docs:	# generate documentation for helm charts.
 helm/lint:	# lint helm charts.
 	@cd charts && { \
 		find . -mindepth 1 -maxdepth 1 -type d -exec basename {} \; | xargs -I{} make lint TARGET={} ; \
+	}
+
+#== HELM TARGETS
+
+infra/helm/deps:	# update dependencies for helm charts.
+	@cd infra/helm && { \
+		find . -mindepth 1 -maxdepth 2 -name Chart.yaml -exec dirname {} \; | xargs -I{} bash -c 'echo "==> {}"; helm dep up --skip-refresh {}' ; \
 	}
 
 #== SITE TARGETS
