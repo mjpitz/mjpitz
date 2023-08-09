@@ -17,7 +17,7 @@ deployment scheme with less infrastructure. Feel free to poke around, but I doub
 
 Secret management is handled using one-password. All secret data is stored in a vault that I have access to, and it's
 injected into the environment similar to how my old envy workflow used to work. The big improvement here is that now I
-have a recovery path for when I change machines without needing to fuss around with.
+have a recovery path for when I change machines without needing to fuss around with kubernetes secrets.
 
 ```shell
 brew install 1password-cli
