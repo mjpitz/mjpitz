@@ -1,5 +1,5 @@
-export PATH := $(shell pwd)/bin:$(PATH)
-export SHELL := env PATH=$(PATH) /bin/bash
+#export PATH := "$(shell pwd)/bin:$(PATH)"
+#export SHELL := env PATH="$(PATH)" /bin/bash
 
 help:
 	@cat Makefile | egrep '^[a-zA-Z]+/[a-zA-Z]+:'
@@ -63,7 +63,7 @@ helm/lint:	# lint helm charts.
 
 infra/helm/deps:	# update dependencies for helm charts.
 	@cd infra/helm && { \
-		find . -mindepth 1 -maxdepth 2 -name Chart.yaml -exec dirname {} \; | xargs -I{} bash -c 'echo "==> {}"; helm dep up --skip-refresh {}' ; \
+		find . -mindepth 1 -maxdepth 2 -name Chart.yaml -exec dirname {} \; | xargs -I{} bash -c 'echo "==> {}"; helm dep up {}' ; \
 	}
 
 #== SITE TARGETS

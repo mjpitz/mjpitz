@@ -75,6 +75,7 @@ registry:
         issuer: "Registry Auth"
         certificate: "/etc/docker/auth/token/tls.crt"
         key: "/etc/docker/auth/token/tls.key"
+
       acl:
         - actions: [ "*" ]
           comment: The web user can query the api
@@ -101,6 +102,18 @@ registry:
           comment: Anonymous users can pull depscloud
           match: { account: "", name: depscloud/* }
 
+      # htpasswd -nbB username password
+      users:
+        "": { }
+        depscloud:
+          password: $2y$05$mhfW7VdH9O1xh6Qte6tmi.lpIfT/csuDO4dvbxpQE6i8LB/X.W6Hu
+        dreamboothy:
+          password: $2y$05$ku.LYGK6oIm84INyhnWqCex/50tBc6ZB78.yylT4T8xnZNDEh2ItC
+        mya:
+          password: $2y$05$o5SeZ.Ux/KhyxJb.0tNgIOwop9ma3bldtCQVbjwgIjNs3AOA1wmH.
+        web:
+          password: $2y$05$UWVnmRVM98v9H55bdfJa8uItWG0s3UtYKi04CncTgSmkpVjaGBR2i
+
   redis:
     enabled: true
     replicaCount: 3
@@ -114,3 +127,7 @@ registry:
 
     config:
       domain: img.pitz.tech
+      auth:
+        token:
+          username: web
+          password: ""
