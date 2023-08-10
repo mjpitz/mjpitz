@@ -1,6 +1,6 @@
 # gitea
 
-![Version: 22.4.4](https://img.shields.io/badge/Version-22.4.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.16.9](https://img.shields.io/badge/AppVersion-1.16.9-informational?style=flat-square)
+![Version: 22.4.5](https://img.shields.io/badge/Version-22.4.5-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.16.9](https://img.shields.io/badge/AppVersion-1.16.9-informational?style=flat-square)
 
 Git with a cup of tea. A painless, self-hosted Git Service.
 
@@ -20,7 +20,7 @@ Git with a cup of tea. A painless, self-hosted Git Service.
 | Repository         | Name        | Version |
 | ------------------ | ----------- | ------- |
 | https://mjpitz.com | litestream  | 22.4.2  |
-| https://mjpitz.com | redis       | 22.4.6  |
+| https://mjpitz.com | redis       | 22.4.7  |
 | https://mjpitz.com | redis-queue | 22.4.4  |
 
 ## Values
