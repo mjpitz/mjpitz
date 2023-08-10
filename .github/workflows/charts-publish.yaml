@@ -37,6 +37,9 @@ jobs:
 
           passphrase_file="$gpg_dir/passphrase"
           echo "$GPG_PASSPHRASE" > "$passphrase_file"
+          
+          ls "$gpg_dir"
+          cat "$keyring" | gpg --show-keys
 
           echo "CR_PASSPHRASE_FILE=$passphrase_file" >> "$GITHUB_ENV"
           echo "CR_KEYRING=$keyring" >> "$GITHUB_ENV"
