@@ -29,18 +29,14 @@ jobs:
 
       - name: Prepare GPG key
         run: |
-          gpg_dir=.cr-gpg
-          mkdir "$gpg_dir"
+          mkdir .cr-gpg
 
-          keyring="$gpg_dir/secring.gpg"
+          keyring=".cr-gpg/secring.gpg"
           base64 -d <<< "$GPG_KEYRING_BASE64" > "$keyring"
 
-          passphrase_file="$gpg_dir/passphrase"
+          passphrase_file=".cr-gpg/passphrase"
           echo "$GPG_PASSPHRASE" > "$passphrase_file"
           
-          ls "$gpg_dir"
-          cat "$keyring" | gpg --show-keys
-
           echo "CR_PASSPHRASE_FILE=$passphrase_file" >> "$GITHUB_ENV"
           echo "CR_KEYRING=$keyring" >> "$GITHUB_ENV"
         env:
