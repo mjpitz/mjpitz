@@ -247,6 +247,32 @@ entries:
   drone:
   - apiVersion: v2
     appVersion: 2.11.1
+    created: "2023-08-10T02:44:06.799953037Z"
+    dependencies:
+    - condition: litestream.enabled
+      name: litestream
+      repository: https://mjpitz.com
+      version: 22.4.2
+    - condition: redis-queue.enabled
+      name: redis-queue
+      repository: https://mjpitz.com
+      version: 22.4.4
+    description: 'Easily deploy a Drone.IO, a container-native, continuous delivery
+      platform. This chart provisions a Drone server instance intended for smaller '
+    digest: 52b35650b3daf60d61079e7754256f9e4798f35b169872c94873ae75584b6196
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: drone
+    sources:
+    - https://github.com/harness/drone
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/drone
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/drone-22.5.5/drone-22.5.5.tgz
+    version: 22.5.5
+  - apiVersion: v2
+    appVersion: 2.11.1
     created: "2022-06-17T21:02:46.279678821Z"
     dependencies:
     - condition: litestream.enabled
@@ -350,6 +376,35 @@ entries:
     - https://github.com/mjpitz/mjpitz/releases/download/drone-22.5.0/drone-22.5.0.tgz
     version: 22.5.0
   gitea:
+  - apiVersion: v2
+    appVersion: 1.16.9
+    created: "2023-08-10T02:44:06.956713276Z"
+    dependencies:
+    - condition: litestream.enabled
+      name: litestream
+      repository: https://mjpitz.com
+      version: 22.4.2
+    - condition: redis-queue.enabled
+      name: redis-queue
+      repository: https://mjpitz.com
+      version: 22.4.4
+    - condition: redis.enabled
+      name: redis
+      repository: https://mjpitz.com
+      version: 22.4.6
+    description: 'Git with a cup of tea. A painless, self-hosted Git Service. '
+    digest: c1530ea632d3f9deb1ad2d10b2a21fa012b8adf76a8068cd386d6c65558a1a29
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: gitea
+    sources:
+    - https://github.com/go-gitea/gitea
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/gitea
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/gitea-22.4.4/gitea-22.4.4.tgz
+    version: 22.4.4
   - apiVersion: v2
     appVersion: 1.16.6
     created: "2022-05-13T02:03:56.785862843Z"
@@ -464,6 +519,30 @@ entries:
     - https://github.com/mjpitz/mjpitz/releases/download/litestream-22.4.0/litestream-22.4.0.tgz
     version: 22.4.0
   maddy:
+  - apiVersion: v2
+    appVersion: 0.5.4
+    created: "2023-08-10T02:44:07.106437036Z"
+    dependencies:
+    - condition: litestream.enabled
+      name: litestream
+      repository: https://mjpitz.com
+      version: 22.4.2
+    description: 'Easily deploy and configure a maddy mail server. This chart handles
+      a fair bit of setup, however, additional work needs to be done to properly configure
+      all the DNS records. For a complete guide on setting up DNS for maddy, see the
+      user guide: https://maddy.email/tutorials/setting-up/ '
+    digest: 6f9a18393f88c197f15bd631b00437eccce49c1af73aa44c42b78c9b973f94d4
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: maddy
+    sources:
+    - https://github.com/foxcpp/maddy
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/maddy
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/maddy-22.4.8/maddy-22.4.8.tgz
+    version: 22.4.8
   - apiVersion: v2
     appVersion: 0.5.4
     created: "2022-10-13T18:18:45.494583427Z"
@@ -1472,4 +1551,4 @@ entries:
     urls:
     - https://github.com/mjpitz/mjpitz/releases/download/storj-22.3.0/storj-22.3.0.tgz
     version: 22.3.0
-generated: "2023-05-13T20:13:43.75764646Z"
+generated: "2023-08-10T02:44:07.106638038Z"
