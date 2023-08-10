@@ -6,4 +6,4 @@ appVersion: 0.0.0 # unused
 dependencies:
   - name: cert-manager
     repository: https://charts.jetstack.io
-    version: v1.11.0
+    version: v1.12.3
