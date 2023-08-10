@@ -204,7 +204,7 @@
 
     ,
         "url" : "https:\/\/mjpitz.com\/charts\/",
-        "wordCount" : "207",
+        "wordCount" : "262",
         "genre" : [ ],
         "keywords" : [ ]
     }
@@ -296,7 +296,7 @@
             &copy;
             
             Mya Pitzeruse
-            2022
+            2023
 
 
             
@@ -482,6 +482,18 @@ of my deployments vary quite a bit from existing ones.</p>
 <li><a href="https://github.com/mjpitz/mjpitz/tree/main/charts/registry"><code>registry</code></a> - Deploys a replicated container registry, with optional caching provided by <code>redis</code>.</li>
 <li><a href="https://github.com/mjpitz/mjpitz/tree/main/charts/storj"><code>storj</code></a> - Easily add a Storj S3 Gateway as a sidecar to any <code>Deployment</code>, <code>DaemonSet</code>, or <code>StatefulSet</code>.</li>
 </ul>
+<h2 id="provenance-and-integrity">Provenance and Integrity</h2>
+<p>I recently introduced GPG signing to my helm charts. If you&rsquo;d like to verify signatures before deployment, you can
+receive my GPG public key from <a href="https://keyserver.ubuntu.com/pks/lookup?op=get&amp;search=0xfd0f1e353074e15a4883bc630fca5e3c09dfb314">Ubuntu&rsquo;s Keyserver</a> using the following command:</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">gpg --recv-keys 0x0fca5e3c09dfb314
+</code></pre></td></tr></table>
+</div>
+</div><p>Once you&rsquo;ve received my GPG key, you can verify charts during install using the <code>helm install --verify</code>.</p>
 
     </div>
     <div class="post-footer">
@@ -502,7 +514,7 @@ of my deployments vary quite a bit from existing ones.</p>
             &copy;
             
             Mya Pitzeruse
-            2022
+            2023
 
 
             
