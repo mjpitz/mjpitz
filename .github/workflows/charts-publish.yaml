@@ -51,3 +51,4 @@ jobs:
           config: charts/cr.yaml
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          CR_SIGN: "true"
