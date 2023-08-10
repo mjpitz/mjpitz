@@ -378,6 +378,35 @@ entries:
   gitea:
   - apiVersion: v2
     appVersion: 1.16.9
+    created: "2023-08-10T03:39:13.80643391Z"
+    dependencies:
+    - condition: litestream.enabled
+      name: litestream
+      repository: https://mjpitz.com
+      version: 22.4.2
+    - condition: redis-queue.enabled
+      name: redis-queue
+      repository: https://mjpitz.com
+      version: 22.4.4
+    - condition: redis.enabled
+      name: redis
+      repository: https://mjpitz.com
+      version: 22.4.7
+    description: 'Git with a cup of tea. A painless, self-hosted Git Service. '
+    digest: 3eaf58ad242502d48e56f137e79280bbc74fc61691154c15cc22c97ca15b8fbc
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: gitea
+    sources:
+    - https://github.com/go-gitea/gitea
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/gitea
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/gitea-22.4.5/gitea-22.4.5.tgz
+    version: 22.4.5
+  - apiVersion: v2
+    appVersion: 1.16.9
     created: "2023-08-10T02:44:06.956713276Z"
     dependencies:
     - condition: litestream.enabled
@@ -1094,6 +1123,37 @@ entries:
   registry:
   - apiVersion: v2
     appVersion: 2.8.0
+    created: "2023-08-10T03:39:13.943913603Z"
+    dependencies:
+    - condition: auth.enabled
+      name: auth
+      repository: https://mjpitz.com
+      version: 22.4.1
+    - condition: redis.enabled
+      name: redis
+      repository: https://mjpitz.com
+      version: 22.4.7
+    - condition: storj.enabled
+      name: storj
+      repository: https://mjpitz.com
+      version: 22.4.3
+    description: 'Easily deploy and configure a production-ready container registry
+      backed by your favorite cloud storage provider.  Optionally add a highly-available,
+      partition-tolerant Redis cache that''s fronted by Envoy. '
+    digest: f5cb0abde5684cb1140bdc21430abfb43a9a099ba509863ca8d6c33df932e9a5
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: registry
+    sources:
+    - https://github.com/distribution/distribution
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/registry
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/registry-22.4.7/registry-22.4.7.tgz
+    version: 22.4.7
+  - apiVersion: v2
+    appVersion: 2.8.0
     created: "2022-10-25T17:59:16.007724903Z"
     dependencies:
     - condition: auth.enabled
@@ -1551,4 +1611,4 @@ entries:
     urls:
     - https://github.com/mjpitz/mjpitz/releases/download/storj-22.3.0/storj-22.3.0.tgz
     version: 22.3.0
-generated: "2023-08-10T02:44:07.106638038Z"
+generated: "2023-08-10T03:39:13.944185913Z"
