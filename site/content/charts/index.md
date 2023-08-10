@@ -22,6 +22,19 @@ helm repo add mjpitz https://mjpitz.com
 - [`registry`][registry-chart] - Deploys a replicated container registry, with optional caching provided by `redis`.
 - [`storj`][storj-chart] - Easily add a Storj S3 Gateway as a sidecar to any `Deployment`, `DaemonSet`, or `StatefulSet`.
 
+## Provenance and Integrity
+
+I recently introduced GPG signing to my helm charts. If you'd like to verify signatures before deployment, you can 
+receive my GPG public key from [Ubuntu's Keyserver][] using the following command:
+
+```shell
+gpg --recv-keys 0x0fca5e3c09dfb314
+```
+
+Once you've received my GPG key, you can verify charts during install using the `helm install --verify`.
+
+[Ubuntu's Keyserver]: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xfd0f1e353074e15a4883bc630fca5e3c09dfb314
+
 [license]: https://github.com/mjpitz/mjpitz/tree/main/charts/LICENSE
 
 [12factor-chart]: https://github.com/mjpitz/mjpitz/tree/main/charts/12factor
