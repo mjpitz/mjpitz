@@ -1,8 +1,7 @@
 apiVersion: v2
 type: application
 name: registry
-version: 0.0.0
-appVersion: 0.0.0
+version: 23.8.9
 dependencies:
   - name: registry
     repository: file://../../../charts/registry

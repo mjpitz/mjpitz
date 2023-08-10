@@ -1,8 +1,7 @@
 apiVersion: v2
 type: application
 name: external-dns
-version: 0.0.0    # unused
-appVersion: 0.0.0 # unused
+version: 23.8.9
 dependencies:
   - name: external-dns
     repository: https://charts.bitnami.com/bitnami
