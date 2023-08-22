@@ -31,7 +31,12 @@
         <img alt="Presentations" src="https://img.shields.io/badge/-Presentations-pink?style=for-the-badge" /></a>
 </p>
 
-<h3 align="center">Contact / Connect</h3>
+<p align="center">
+    <a href="https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xfd0f1e353074e15a4883bc630fca5e3c09dfb314">
+        <img alt="GPG: 0fca5e3c09dfb314" src="https://img.shields.io/badge/GPG-0fca5e3c09dfb314-pink?style=for-the-badge&labelColor=silver" /></a>
+</p>
+
+<h3 align="center">📞 - Contact / Connect - 📞</h3>
 
 <p align="center">
     <i>Don't hesitate to contact me!</i>
@@ -45,7 +50,32 @@
         <img alt="Project Interest Form" src="https://img.shields.io/badge/-Project%20Interest%20Form-blue?style=for-the-badge" /></a>
 </p>
 
-<h3 align="center">Recent Blog Posts</h3>
+<h3 align="center">📖 - Favorite Books - 📖</h3>
+
+<p align="center">
+    Hold Me Tight - Dr. Sue Johnson EdD -
+    [<a href="https://www.amazon.com/Hold-Me-Tight-Conversations-Lifetime/dp/031611300X?tag=mjpitz-20">Amazon</a>]
+    [<a href="https://www.amazon.com/Hold-Me-Tight-Conversations-Lifetime-ebook/dp/B0011UGLQK?tag=mjpitz-20">Kindle</a>]
+    [<a href="https://www.amazon.com/Hold-Me-Tight-Conversations-Lifetime/dp/B084G9QFZY?tag=mjpitz-20">Audible</a>]
+    </br>
+    Superbosses - Sydney Finkelstein -
+    [<a href="https://www.amazon.com/Superbosses-Exceptional-Leaders-Master-Talent/dp/1591847834?tag=mjpitz-20">Amazon</a>]
+    [<a href="https://www.amazon.com/Superbosses-Exceptional-Leaders-Master-Talent-ebook/dp/B00XIYGHYI?tag=mjpitz-20">Kindle</a>]
+    [<a href="https://www.amazon.com/Superbosses-Sydney-Finkelstein-audiobook/dp/B01AKIYMTG?tag=mjpitz-20">Audible</a>]
+    </br>
+    Dare to Lead - Brené Brown -
+    [<a href="https://www.amazon.com/Dare-Lead-Brave-Conversations-Hearts/dp/0399592520?tag=mjpitz-20">Amazon</a>]
+    [<a href="https://www.amazon.com/Dare-Lead-Brave-Conversations-Hearts-ebook/dp/B07CWGFPS7?tag=mjpitz-20">Kindle</a>]
+    [<a href="https://www.amazon.com/Dare-to-Lead-Brene-Brown-audiobook/dp/B07DJYFLX8?tag=mjpitz-20">Audible</a>]
+    </br>
+    Team Topologies - Matthew Skelton and Manuel Pais -
+    [<a href="https://www.amazon.com/Team-Topologies-Organizing-Business-Technology/dp/1942788819?tag=mjpitz-20">Amazon</a>]
+    [<a href="https://www.amazon.com/Team-Topologies-Organizing-Business-Technology-ebook/dp/B09JWT9S4D?tag=mjpitz-20">Kindle</a>]
+    [<a href="https://www.amazon.com/Team-Topologies-Organizing-Business-Technology/dp/B07VWYNGCQ?tag=mjpitz-20">Audible</a>]
+    </br>
+</p>
+
+<h3 align="center">📰 - Recent Blog Posts - 📰</h3>
 
 <p align="center">
     <a href="https://mjpitz.com/blog/2022/01/16/bye-bye-twitter/">Bye-Bye Twitter</a> - January 17th 2022 <br/>
