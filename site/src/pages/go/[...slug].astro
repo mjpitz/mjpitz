@@ -1,0 +1,27 @@
+---
+export async function getStaticPaths() {
+    return [
+        { slug: "cncf2017", destination: "https://www.youtube.com/watch?v=aQ2d9iLDR8Y"},
+        { slug: "degrade", destination: "https://engineering.indeedblog.com/blog/2017/01/degrade-functionality/"},
+        { slug: "deps", destination: "https://softwareengineeringdaily.com/2019/11/23/cloud-dependencies-with-mya-pitzeruse/"},
+        { slug: "grpc-graphs", destination: "https://docs.google.com/presentation/d/1HdfoLFiBvfeBHRZEHx8DxcJEXqz5tDVvr6OIUkIihVw/edit?usp=sharing"},
+        { slug: "grpcjava", destination: "https://www.youtube.com/watch?v=vFBuvWVIcYQ"},
+        { slug: "msgdelay", destination: "https://engineering.indeedblog.com/blog/2017/06/delaying-messages/"},
+        { slug: "ossna2019", destination: "https://www.youtube.com/watch?v=UkrFuGgxMu0"},
+        { slug: "status", destination: "https://engineering.indeedblog.com/blog/2015/07/status-java-library-for-system-status-health-checks/"},
+    ].map(
+        (props) => ({
+            params: {slug: props.slug},
+            props,
+        })
+    )
+}
+
+const {slug} = Astro.params;
+const {destination} = Astro.props;
+---
+<!DOCTYPE html>
+<html>
+<head><meta http-equiv="refresh" content={`0; url=`+destination}></head>
+<body><script define:vars={{ destination }}>window.location.href=destination;</script></body>
+</html>

@@ -1,0 +1,71 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header title={SITE_TITLE} />
+		<main>
+			<h3 align="center">👋 Welcome to my profile!</h3>
+
+			<p align="center">
+				My name is Mya.
+				I'm a software engineer who enjoys working with distributed systems.
+				Outside of work, I'm passionate about doing more to save our environment ♻️.
+				While much of my learning has been confined to my own space, I look forward to sharing my knowledge with others.
+			</p>
+
+			<p align="center">
+				<a href="https://www.google.com/search?q=pronunciation+maya">
+					<img alt="Name Pronunciation" src="https://img.shields.io/badge/Pronunciation%20%F0%9F%94%88-mai·uh-silver?style=for-the-badge&labelColor=silver" /></a>
+				&nbsp;
+				<a href="https://pronoun.is/she">
+					<img alt="Pronouns: she / her" src="https://img.shields.io/badge/Pronouns-she%2Fher-pink?style=for-the-badge&labelColor=silver" /></a>
+			</p>
+
+			<p align="center">
+				<a href="https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xfd0f1e353074e15a4883bc630fca5e3c09dfb314">
+					<img alt="GPG: 0fca5e3c09dfb314" src="https://img.shields.io/badge/GPG-0fca5e3c09dfb314-pink?style=for-the-badge&labelColor=silver" /></a>
+			</p>
+
+			<h3 align="center">📖 - Favorite Books - 📖</h3>
+
+			<p align="center">
+				Hold Me Tight - Dr. Sue Johnson EdD
+				<br/>
+				[<a href="https://www.amazon.com/Hold-Me-Tight-Conversations-Lifetime/dp/031611300X?tag=mjpitz-20">Amazon</a>]
+				[<a href="https://www.amazon.com/Hold-Me-Tight-Conversations-Lifetime-ebook/dp/B0011UGLQK?tag=mjpitz-20">Kindle</a>]
+				[<a href="https://www.amazon.com/Hold-Me-Tight-Conversations-Lifetime/dp/B084G9QFZY?tag=mjpitz-20">Audible</a>]
+			</p>
+			<p align="center">
+				Superbosses - Sydney Finkelstein
+				<br/>
+				[<a href="https://www.amazon.com/Superbosses-Exceptional-Leaders-Master-Talent/dp/1591847834?tag=mjpitz-20">Amazon</a>]
+				[<a href="https://www.amazon.com/Superbosses-Exceptional-Leaders-Master-Talent-ebook/dp/B00XIYGHYI?tag=mjpitz-20">Kindle</a>]
+				[<a href="https://www.amazon.com/Superbosses-Sydney-Finkelstein-audiobook/dp/B01AKIYMTG?tag=mjpitz-20">Audible</a>]
+			</p>
+			<p align="center">
+				Dare to Lead - Brené Brown
+				<br/>
+				[<a href="https://www.amazon.com/Dare-Lead-Brave-Conversations-Hearts/dp/0399592520?tag=mjpitz-20">Amazon</a>]
+				[<a href="https://www.amazon.com/Dare-Lead-Brave-Conversations-Hearts-ebook/dp/B07CWGFPS7?tag=mjpitz-20">Kindle</a>]
+				[<a href="https://www.amazon.com/Dare-to-Lead-Brene-Brown-audiobook/dp/B07DJYFLX8?tag=mjpitz-20">Audible</a>]
+			</p>
+			<p align="center">
+				Team Topologies - Matthew Skelton and Manuel Pais
+				<br/>
+				[<a href="https://www.amazon.com/Team-Topologies-Organizing-Business-Technology/dp/1942788819?tag=mjpitz-20">Amazon</a>]
+				[<a href="https://www.amazon.com/Team-Topologies-Organizing-Business-Technology-ebook/dp/B09JWT9S4D?tag=mjpitz-20">Kindle</a>]
+				[<a href="https://www.amazon.com/Team-Topologies-Organizing-Business-Technology/dp/B07VWYNGCQ?tag=mjpitz-20">Audible</a>]
+			</p>
+		</main>
+		<Footer />
+	</body>
+</html>
