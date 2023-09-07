@@ -2,14 +2,7 @@
     <img src="https://mjpitz.com/img/banner.png"/>
 </p>
 
-<h3 align="center">👋 Welcome to my profile!</h3>
-
-<p align="center">
-    My name is Mya.
-    I'm a software engineer who enjoys working with distributed systems.
-    Outside of work, I'm passionate about doing more to save our environment ♻️.
-    While much of my learning has been confined to my own space, I look forward to sharing my knowledge with others.
-</p>
+<h3 align="center">👋 Welcome! My name is Mya.</h3>
 
 <p align="center">
     <a href="https://www.google.com/search?q=pronunciation+maya">
@@ -19,36 +12,18 @@
 </p>
 
 <p align="center">
-    <a href="https://mjpitz.com/charts/">
-        <img alt="Helm Charts" src="https://img.shields.io/badge/-Helm%20Charts-silver?style=for-the-badge" /></a>
-    <a href="https://github.com/mjpitz/mjpitz/tree/main/docker">
-        <img alt="Container Images" src="https://img.shields.io/badge/-Container%20Images-silver?style=for-the-badge" /></a>
-    <a href="https://mjpitz.com/blog/">
-        <img alt="Blog" src="https://img.shields.io/badge/-Blog-silver?style=for-the-badge" /></a>
-    <a href="https://mjpitz.com/papers/">
-        <img alt="Papers" src="https://img.shields.io/badge/-Papers-pink?style=for-the-badge" /></a>
-    <a href="https://mjpitz.com/media/">
-        <img alt="Presentations" src="https://img.shields.io/badge/-Presentations-pink?style=for-the-badge" /></a>
-</p>
-
-<p align="center">
-    <a href="https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xfd0f1e353074e15a4883bc630fca5e3c09dfb314">
-        <img alt="GPG: 0fca5e3c09dfb314" src="https://img.shields.io/badge/GPG-0fca5e3c09dfb314-pink?style=for-the-badge&labelColor=silver" /></a>
-</p>
-
-<h3 align="center">📞 - Contact / Connect - 📞</h3>
-
-<p align="center">
-    <i>Don't hesitate to contact me!</i>
-    I'm always happy to chat 😊
-</p>
-
-<p align="center">
     <a href="https://linkedin.com/in/mjpitz">
         <img alt="LinkedIn" src="https://img.shields.io/badge/-Linked%20In-gray?style=for-the-badge&logo=linkedin" /></a>
-    <a href="https://forms.gle/uCMy38ZLEchfNuka9">
-        <img alt="Project Interest Form" src="https://img.shields.io/badge/-Project%20Interest%20Form-blue?style=for-the-badge" /></a>
 </p>
+
+<p align="center">
+    I'm a software engineer who enjoys working with distributed systems.
+    Outside of work, I'm an avid hockey player and enjoy spending time in my garden.
+    I'm passionate about doing more to save our environment ♻️.
+    While much of my learning has been confined to my own space, I look forward to sharing my knowledge with others.
+</p>
+
+<br/><br/>
 
 <h3 align="center">📖 - Favorite Books - 📖</h3>
 
@@ -82,6 +57,8 @@
     <a href="https://mjpitz.com/blog/2021/06/16/rpi-network-bridge/">Extending my Security System with a Raspberry Pi Network Bridge</a> - June 16th 2021 <br/>
 </p>
 
+<br/><br/>
+
 <h3 align="center">⚒️ - Tools and Technologies - ⚒️</h3>
 
 <p align="center">
@@ -100,3 +77,22 @@
     <img width="96" height="64" alt="Prometheus" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prometheus/prometheus-original-wordmark.svg" />
 </p>
 
+<br/><br/>
+
+<p align="center">
+    <a href="https://mjpitz.com/charts/">
+        <img alt="Helm Charts" src="https://img.shields.io/badge/-Helm%20Charts-silver?style=for-the-badge" /></a>
+    <a href="https://github.com/mjpitz/mjpitz/tree/main/docker">
+        <img alt="Container Images" src="https://img.shields.io/badge/-Container%20Images-silver?style=for-the-badge" /></a>
+    <a href="https://mjpitz.com/blog/">
+        <img alt="Blog" src="https://img.shields.io/badge/-Blog-silver?style=for-the-badge" /></a>
+    <a href="https://mjpitz.com/papers/">
+        <img alt="Papers" src="https://img.shields.io/badge/-Papers-pink?style=for-the-badge" /></a>
+    <a href="https://mjpitz.com/media/">
+        <img alt="Media" src="https://img.shields.io/badge/-Media-pink?style=for-the-badge" /></a>
+</p>
+
+<p align="center">
+    <a href="https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xfd0f1e353074e15a4883bc630fca5e3c09dfb314">
+        <img alt="GPG: 0fca5e3c09dfb314" src="https://img.shields.io/badge/GPG-0fca5e3c09dfb314-pink?style=for-the-badge&labelColor=silver" /></a>
+</p>
