@@ -16,6 +16,5 @@ infra/helm/**/secret.yaml.dec
 infra/helm/**/tls.crt
 infra/helm/**/tls.key
 
-site/public/
 site/resources/_gen
 site/tmp/

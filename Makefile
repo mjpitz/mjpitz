@@ -1,6 +1,3 @@
-#export PATH := "$(shell pwd)/bin:$(PATH)"
-#export SHELL := env PATH="$(PATH)" /bin/bash
-
 help:
 	@cat Makefile | egrep '^[a-zA-Z]+/[a-zA-Z]+:'
 
@@ -69,24 +66,16 @@ infra/helm/deps:	# update dependencies for helm charts.
 #== SITE TARGETS
 
 site/deps:	# install dependencies needed for the site.
-	@bash -c "[[ -e site/themes/anatole ]] || git submodule update --init --recursive"
-	@bash -c "[[ -e site/themes/anatole/node_modules ]] || { cd site/themes/anatole; npm install; }"
+	@cd site && npm install
 
 site/serve:	# generate the website for development.
-	@cd site && { \
-		hugo serve -D ; \
-	}
+	@cd site && npm start
 
 site/build:	# generate the website for production.
-	@cd site && { \
-		hugo ; \
-		cp public/index.xml public/feed.xml ; \
-	}
+	@cd site && npm run build
 
 site/test:	# test the site for errors.
-	@cd site && { \
-		htmltest ; \
-	}
+	@cd site && npm run test
 
 #### old targets
 
@@ -94,7 +83,7 @@ bin: bin.yaml
 	@bin-vendor
 
 clean:
-	@rm -rf bin/ site/public/ site/resources/_gen/ tmp/
+	@rm -rf site/dist/
 
 docs: helm/docs
 
