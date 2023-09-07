@@ -1,487 +1,20 @@
-<!DOCTYPE html>
-<html
-  dir="ltr"
-  lang="en"
-  data-theme=""
-  class="html"
-><head>
-    <title>
-        
-        Mya Pitzeruse
-        |
-        Docker Machine DNS Resolution using Consul
-
-
-        
-
-
-        
-    </title>
-
-    
-    <meta charset="utf-8" /><meta name="generator" content="Hugo 0.81.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-    <meta name="author" content="Mya Pitzeruse" />
-    <meta
-            name="description"
-            content="
-      Mom | Homesteader | Software Engineer
-
-
-    "
-    />
-    
-    
-    
-    
-    <link
-            rel="stylesheet"
-            href="/scss/main.min.b2e0cb07595e3519ab1193bb421914e06c0e26b0cc561fef23b3c6131d4d2ffa.css"
-            integrity="sha256-suDLB1leNRmrEZO7QhkU4GwOJrDMVh/vI7PGEx1NL/o="
-            crossorigin="anonymous"
-            type="text/css"
-    />
-
-    
-
-    
-    <link
-            rel="stylesheet"
-            href="/css/markupHighlight.min.31b0a1f317f55c529a460897848c97436bb138b19c399b37de70d463a8bf6ed5.css"
-            integrity="sha256-MbCh8xf1XFKaRgiXhIyXQ2uxOLGcOZs33nDUY6i/btU="
-            crossorigin="anonymous"
-            type="text/css"
-    />
-    
-    
-    <link
-            rel="stylesheet"
-            href="/css/overrides.min.2d385947a11fbf61dff71c6e1c2c2efa0a51dcf47be66f416fb97b3cca833a65.css"
-            integrity="sha256-LThZR6Efv2Hf9xxuHCwu&#43;gpR3PR75m9Bb7l7PMqDOmU="
-            crossorigin="anonymous"
-            media="screen"
-    />
-
-    
-    
-    <link
-            rel="stylesheet"
-            href="/fontawesome/css/fontawesome.min.b1c4e6a10bdbab01f33fff9d78816ee68cf9a9a731f07668afd546a79924cb80.css"
-            integrity="sha256-scTmoQvbqwHzP/&#43;deIFu5oz5qacx8HZor9VGp5kky4A="
-            crossorigin="anonymous"
-            type="text/css"
-    />
-    
-    <link
-            rel="stylesheet"
-            href="/fontawesome/css/solid.min.423dee17c62f55fa733a4ee13e00d523dfce88cc4f4ab4549a24ba36bd9de681.css"
-            integrity="sha256-Qj3uF8YvVfpzOk7hPgDVI9/OiMxPSrRUmiS6Nr2d5oE="
-            crossorigin="anonymous"
-            type="text/css"
-    />
-    
-    <link
-            rel="stylesheet"
-            href="/fontawesome/css/brands.min.b7d54133b27e5b4de15245b8e143de3e8ed2d674c706137274cedc9953f31917.css"
-            integrity="sha256-t9VBM7J&#43;W03hUkW44UPePo7S1nTHBhNydM7cmVPzGRc="
-            crossorigin="anonymous"
-            type="text/css"
-    />
-    
-    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png" />
-
-    <link rel="canonical" href="https://mjpitz.com/blog/2016/05/08/docker-machine-dns-resolution-using-consul/">
-
-    
-    
-    
-    
-    <script
-            type="text/javascript"
-            src="/js/anatole-header.min.46e6a54097480084f8f52c20ca1aa7425b4fad17029a887fd4017b12e311a72d.js"
-            integrity="sha256-RualQJdIAIT49SwgyhqnQltPrRcCmoh/1AF7EuMRpy0="
-            crossorigin="anonymous"
-    ></script>
-
-    
-    
-    
-    <script
-            type="text/javascript"
-            src="/js/anatole-theme-switcher.min.5557c8ff5617a01067ac258fd70b9b992506e379317b0da51e5e0f6e018b408a.js"
-            integrity="sha256-VVfI/1YXoBBnrCWP1wubmSUG43kxew2lHl4PbgGLQIo="
-            crossorigin="anonymous"
-    ></script>
-
-    
-
-    
-
-
-    
-    <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Docker Machine DNS Resolution using Consul"/>
-<meta name="twitter:description" content="Developers at Indeed have recently switched over to using docker for local development.
+<!DOCTYPE html><html lang="en" data-astro-cid-bvzihdzo><head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v3.0.5"><!-- Font preloads --><link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin><link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://mjpitz.com/blog/2016/05/08/docker-machine-dns-resolution-using-consul/"><!-- Primary Meta Tags --><title>Docker Machine DNS Resolution using Consul</title><meta name="title" content="Docker Machine DNS Resolution using Consul"><meta name="description" content=""><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://mjpitz.com/blog/2016/05/08/docker-machine-dns-resolution-using-consul/"><meta property="og:title" content="Docker Machine DNS Resolution using Consul"><meta property="og:description" content=""><meta property="og:image" content="https://mjpitz.com/blog-placeholder-1.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://mjpitz.com/blog/2016/05/08/docker-machine-dns-resolution-using-consul/"><meta property="twitter:title" content="Docker Machine DNS Resolution using Consul"><meta property="twitter:description" content=""><meta property="twitter:image" content="https://mjpitz.com/blog-placeholder-1.jpg"><link rel="stylesheet" href="/_astro/_...slug_.e98600b1.css" />
+<style type="text/css">main[data-astro-cid-bvzihdzo]{width:calc(100% - 2em);max-width:100%;margin:0}.hero-image[data-astro-cid-bvzihdzo]{width:100%}.hero-image[data-astro-cid-bvzihdzo] img[data-astro-cid-bvzihdzo]{display:block;margin:0 auto;border-radius:12px;box-shadow:var(--box-shadow)}.prose[data-astro-cid-bvzihdzo]{width:720px;max-width:calc(100% - 2em);margin:auto;padding:1em;color:var(--color-text)}.title[data-astro-cid-bvzihdzo]{margin-bottom:1em;padding:1em 0;text-align:center;line-height:1}.title[data-astro-cid-bvzihdzo] h1[data-astro-cid-bvzihdzo]{margin:0 0 .5em}.date[data-astro-cid-bvzihdzo]{margin-bottom:.5em;color:var(--color-text)}.last-updated-on[data-astro-cid-bvzihdzo]{font-style:italic}
+</style><script type="module">const t=document.querySelector('.theme-switch input[type="checkbox"]'),e=localStorage.getItem("theme");e&&(document.documentElement.setAttribute("data-theme",e),e==="dark"&&(t.checked=!0));function m(c){c.target.checked?(document.documentElement.setAttribute("data-theme","dark"),localStorage.setItem("theme","dark")):(document.documentElement.setAttribute("data-theme","light"),localStorage.setItem("theme","light"))}t.addEventListener("change",m,!1);
+</script></head><body data-astro-cid-bvzihdzo><header data-astro-cid-3ef6ksr2><nav data-astro-cid-3ef6ksr2><div class="theme-switch-wrapper"><label class="theme-switch" for="checkbox"><input type="checkbox" id="checkbox"><div class="slider"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#FCD53F" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#FCD53F" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></div></label></div><h2 data-astro-cid-3ef6ksr2><a href="/" data-astro-cid-3ef6ksr2>Mya Pitzeruse</a></h2><div class="internal-links" data-astro-cid-3ef6ksr2><a href="/" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg>Home</a><a href="/blog" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg>Blog</a><a href="/charts" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg>Charts</a><a href="/media" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg>Media</a><a href="/papers" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg>Papers</a></div><div class="social-links" data-astro-cid-3ef6ksr2><a href="https://github.com/mjpitz" target="_blank" data-astro-cid-3ef6ksr2><span class="sr-only" data-astro-cid-3ef6ksr2>GitHub</span><svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-3ef6ksr2></path></svg></a><a href="https://www.linkedin.com/in/mjpitz/" target="_blank" data-astro-cid-3ef6ksr2><span class="sr-only" data-astro-cid-3ef6ksr2>LinkedIn</span><svg viewBox="0 0 50 50" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M41,4H9C6.24,4,4,6.24,4,9v32c0,2.76,2.24,5,5,5h32c2.76,0,5-2.24,5-5V9C46,6.24,43.76,4,41,4z M17,20v19h-6V20H17z M11,14.47c0-1.4,1.2-2.47,3-2.47s2.93,1.07,3,2.47c0,1.4-1.12,2.53-3,2.53C12.2,17,11,15.87,11,14.47z M39,39h-6c0,0,0-9.26,0-10 c0-2-1-4-3.5-4.04h-0.08C27,24.96,26,27.02,26,29c0,0.91,0,10,0,10h-6V20h6v2.56c0,0,1.93-2.56,5.81-2.56 c3.97,0,7.19,2.73,7.19,8.26V39z" data-astro-cid-3ef6ksr2></path></svg></a><a href="/rss.xml" target="_blank" data-astro-cid-3ef6ksr2><span class="sr-only" data-astro-cid-3ef6ksr2>RSS</span><svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M1,5v2c1.081,0,2.128,0.211,3.113,0.628c0.952,0.403,1.808,0.98,2.543,1.715s1.312,1.591,1.715,2.543 C8.789,12.872,9,13.919,9,15h2C11,9.477,6.523,5,1,5z M4,10c-1.105,0-2,0.895-2,2s0.895,2,2,2s2-0.895,2-2S5.105,10,4,10z M1,1v2 c1.621,0,3.192,0.317,4.67,0.942c1.429,0.604,2.712,1.47,3.815,2.573c1.103,1.103,1.968,2.386,2.573,3.815 C12.683,11.808,13,13.379,13,15h2C15,7.268,8.732,1,1,1z" data-astro-cid-3ef6ksr2></path></svg></a></div></nav></header><main data-astro-cid-bvzihdzo><article data-astro-cid-bvzihdzo><div class="hero-image" data-astro-cid-bvzihdzo><img width="1020" height="510" src="/img/blog-placeholder-4.jpg" alt="" data-astro-cid-bvzihdzo></div><div class="prose" data-astro-cid-bvzihdzo><div class="title" data-astro-cid-bvzihdzo><div class="date" data-astro-cid-bvzihdzo><time datetime="2016-05-08T00:00:00.000Z">May 8, 2016</time></div><h1 data-astro-cid-bvzihdzo>Docker Machine DNS Resolution using Consul</h1><hr data-astro-cid-bvzihdzo></div><p>Developers at <a href="http://www.indeed.com">Indeed</a> have <em>recently</em> switched over to using docker for local development.
 Being one of the earlier adopters, I fell in love with the type of workflow that it enabled.
 It allowed me to create seamless environments between both my desktop and portable workstation.
 The tooling did this by allowing you to resolve container names as hosts in your web browser.
-For example, if I had a web application named indigo running on port 4000, I could go to http://indigo:4000 to access that application.
-After a few weeks of enjoying the simplicity of this development workflow, I craved a similar type of environment for some of the larger scale projects that I do at home.
-In this blog post, I will cover some of the basics that allowed me to enable this type of development."/>
-
-
-
-    
-    <meta property="og:title" content="Docker Machine DNS Resolution using Consul" />
-<meta property="og:description" content="Developers at Indeed have recently switched over to using docker for local development.
-Being one of the earlier adopters, I fell in love with the type of workflow that it enabled.
-It allowed me to create seamless environments between both my desktop and portable workstation.
-The tooling did this by allowing you to resolve container names as hosts in your web browser.
-For example, if I had a web application named indigo running on port 4000, I could go to http://indigo:4000 to access that application.
-After a few weeks of enjoying the simplicity of this development workflow, I craved a similar type of environment for some of the larger scale projects that I do at home.
-In this blog post, I will cover some of the basics that allowed me to enable this type of development." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://mjpitz.com/blog/2016/05/08/docker-machine-dns-resolution-using-consul/" /><meta property="article:section" content="blog" />
-<meta property="article:published_time" content="2016-05-08T00:00:00&#43;00:00" />
-<meta property="article:modified_time" content="2016-05-08T00:00:00&#43;00:00" /><meta property="og:site_name" content="Mya Pitzeruse" />
-
-
-
-
-    
-    
-  
-  
-  <script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
-        "articleSection": "blog",
-        "name": "Docker Machine DNS Resolution using Consul",
-        "headline": "Docker Machine DNS Resolution using Consul",
-        "alternativeHeadline": "",
-        "description": "
-      
-        \u003cp\u003eDevelopers at \u003ca href=\u0022http:\/\/www.indeed.com\u0022\u003eIndeed\u003c\/a\u003e have \u003cem\u003erecently\u003c\/em\u003e switched over to using docker for local development.\nBeing one of the earlier adopters, I fell in love with the type of workflow that it enabled.\nIt allowed me to create seamless environments between both my desktop and portable workstation.\nThe tooling did this by allowing you to resolve container names as hosts in your web browser.\nFor example, if I had a web application named \u003cstrong\u003eindigo\u003c\/strong\u003e running on port 4000, I could go to http:\/\/indigo:4000 to access that application.\nAfter a few weeks of enjoying the simplicity of this development workflow, I craved a similar type of environment for some of the larger scale projects that I do at home.\nIn this blog post, I will cover some of the basics that allowed me to enable this type of development.\u003c\/p\u003e
-
-
-      
-
-
-    ",
-        "inLanguage": "en-us",
-        "isFamilyFriendly": "true",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https:\/\/mjpitz.com\/blog\/2016\/05\/08\/docker-machine-dns-resolution-using-consul\/"
-        },
-        "author" : {
-            "@type": "Person",
-            "name": "Mya Pitzeruse"
-        },
-        "creator" : {
-            "@type": "Person",
-            "name": "Mya Pitzeruse"
-        },
-        "accountablePerson" : {
-            "@type": "Person",
-            "name": "Mya Pitzeruse"
-        },
-        "copyrightHolder" : {
-            "@type": "Person",
-            "name": "Mya Pitzeruse"
-        },
-        "copyrightYear" : "2016",
-        "dateCreated": "2016-05-08T00:00:00.00Z",
-        "datePublished": "2016-05-08T00:00:00.00Z",
-        "dateModified": "2016-05-08T00:00:00.00Z",
-        "publisher":{
-            "@type":"Organization",
-            "name": "Mya Pitzeruse",
-            "url": "https://mjpitz.com/",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "https:\/\/mjpitz.com\/img\/favicon-32x32.png",
-                "width":"32",
-                "height":"32"
-            }
-        },
-        "image": 
-      [
-      ]
-
-    ,
-        "url" : "https:\/\/mjpitz.com\/blog\/2016\/05\/08\/docker-machine-dns-resolution-using-consul\/",
-        "wordCount" : "1175",
-        "genre" : [ ],
-        "keywords" : [ 
-      
-      "software development"
-
-    ]
-    }
-  </script>
-
-
-
-</head>
-<body
-    
-      class="body theme--light"
-
-    
-  >
-    <div class="wrapper">
-      <aside
-        
-          class="wrapper__sidebar"
-
-        
-      ><div
-  class="sidebar
-    animated fadeInDown
-
-  "
->
-  <div class="sidebar__content">
-    <div class="sidebar__introduction">
-      <img
-        class="sidebar__introduction-profileimage"
-        src="/img/mjpitz.jpeg"
-        alt="profile picture"
-      />
-      
-        <div class="sidebar__introduction-title">
-          <a href="/">Mya Pitzeruse</a>
-        </div>
-
-      
-      <div class="sidebar__introduction-description">
-        <p>Mom | Homesteader | Software Engineer</p>
-      </div>
-    </div>
-    <ul class="sidebar__list">
-      
-        <li class="sidebar__list-item">
-          <a
-            href="https://github.com/mjpitz"
-            target="_blank"
-            rel="noopener"
-            aria-label="GitHub"
-            title="GitHub"
-          >
-            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
-          </a>
-        </li>
-
-      
-        <li class="sidebar__list-item">
-          <a
-            href="https://www.linkedin.com/in/mjpitz/"
-            target="_blank"
-            rel="noopener"
-            aria-label="LinkedIn"
-            title="LinkedIn"
-          >
-            <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
-          </a>
-        </li>
-
-      
-        <li class="sidebar__list-item">
-          <a
-            href="/index.xml"
-            target="_blank"
-            rel="noopener"
-            aria-label="Feed"
-            title="Feed"
-          >
-            <i class="fas fa-rss fa-2x" aria-hidden="true"></i>
-          </a>
-        </li>
-
-      
-    </ul>
-  </div><footer class="footer footer__sidebar">
-    <ul class="footer__list">
-        <li class="footer__item">
-            &copy;
-            
-            Mya Pitzeruse
-            2023
-
-
-            
-        </li>
-        
-    </ul>
-</footer>
-  
-  <script
-    type="text/javascript"
-    src="/js/medium-zoom.min.fae9ac8895995fe91958b3954be11e96025824a04770726a3531e119ddd2d576.js"
-    integrity="sha256-&#43;umsiJWZX&#43;kZWLOVS&#43;EelgJYJKBHcHJqNTHhGd3S1XY="
-    crossorigin="anonymous"
-  ></script></div>
-</aside>
-      <main
-        
-          class="wrapper__main"
-
-        
-      >
-        <header class="header"><div
-  class="
-    animated fadeInDown
-
-  "
->
-  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
-    <span aria-hidden="true" class="navbar-burger__line"></span>
-    <span aria-hidden="true" class="navbar-burger__line"></span>
-    <span aria-hidden="true" class="navbar-burger__line"></span>
-  </a>
-  <nav class="nav">
-    <ul class="nav__list" id="navMenu">
-      
-      
-      
-        
-        
-          <li class="nav__list-item">
-            <a
-              
-              href="/"
-              
-              title=""
-              >Home</a
-            >
-          </li>
-
-        
-
-
-      
-        
-        
-          <li class="nav__list-item">
-            <a
-              
-              href="/blog/"
-              
-              title=""
-              >Blog</a
-            >
-          </li>
-
-        
-
-
-      
-        
-        
-          <li class="nav__list-item">
-            <a
-              
-              href="/charts/"
-              
-              title=""
-              >Charts</a
-            >
-          </li>
-
-        
-
-
-      
-        
-        
-          <li class="nav__list-item">
-            <a
-              
-              href="/media/"
-              
-              title=""
-              >Media</a
-            >
-          </li>
-
-        
-
-
-      
-        
-        
-          <li class="nav__list-item">
-            <a
-              
-              href="/papers/"
-              
-              title=""
-              >Papers</a
-            >
-          </li>
-
-        
-
-
-      
-        
-        
-          <li class="nav__list-item">
-            <a
-              
-              href="/projects/"
-              
-              title=""
-              >Projects</a
-            >
-          </li>
-
-        
-
-
-      
-    </ul>
-    <ul class="nav__list nav__list--end">
-      
-      
-        <li class="nav__list-item">
-          <div class="themeswitch">
-            <a title="Switch Theme">
-              <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
-            </a>
-          </div>
-        </li>
-
-      
-    </ul>
-  </nav>
-</div>
-</header>
-<div class="post animated fadeInDown">
-    <div class="post-content">
-
-      <div class="post-title">
-        <h3>Docker Machine DNS Resolution using Consul</h3>
-        
-        <div class="info">
-          <i class="fa fa-sun-o"></i><span class="date">Sun, May 8, 2016</span>
-          <i class="fa fa-clock-o"></i><span class="reading-time">6-minute read</span>
-        </div>
-        
-        </div>
-
-    <p>Developers at <a href="http://www.indeed.com">Indeed</a> have <em>recently</em> switched over to using docker for local development.
-Being one of the earlier adopters, I fell in love with the type of workflow that it enabled.
-It allowed me to create seamless environments between both my desktop and portable workstation.
-The tooling did this by allowing you to resolve container names as hosts in your web browser.
-For example, if I had a web application named <strong>indigo</strong> running on port 4000, I could go to http://indigo:4000 to access that application.
+For example, if I had a web application named <strong>indigo</strong> running on port 4000, I could go to <a href="http://indigo:4000">http://indigo:4000</a> to access that application.
 After a few weeks of enjoying the simplicity of this development workflow, I craved a similar type of environment for some of the larger scale projects that I do at home.
 In this blog post, I will cover some of the basics that allowed me to enable this type of development.</p>
-<!-- raw HTML omitted -->
+<!--more-->
+<br>
+<div class="alert alert-success">
+<b>Note:</b> I recently moved all of these utilities out into a separate code repository to make lives easier.
+<a href="https://github.com/jpitz/docker-utils">https://github.com/jpitz/docker-utils</a>
+</div>
+<br>
 <h2 id="getting-started">Getting Started</h2>
 <p>To start, I want to explain the main differences between my workflow and the <a href="http://www.indeed.com">Indeed</a> workflow.
 I started using <a href="https://docs.docker.com/machine/install-machine">docker-machine</a> and <a href="https://docs.docker.com/compose/install/">docker-compose</a> as soon as I could.
@@ -495,46 +28,46 @@ dnsmasq allows me to do this quickly and with very few lines of code.</p>
 <p>In order to be able to follow the examples and tutorial below, first insure that you have <a href="https://docs.docker.com/machine/install-machine">docker-machine</a> installed on your machine.
 Optionally, you can install <a href="https://docs.docker.com/compose/install/">docker-compose</a> as it allows for machines to be created through definition inheritance rather than requiring a local docker registry.
 I have provided the versions that are currently running on my box for each below.</p>
-<pre><code>[jpitz@jpitz ~/Development dev 2/2]
-$ docker-machine --version
-docker-machine version 0.7.0, build a650a40
-
-[jpitz@jpitz ~/Development dev 2/2]
-$ docker-compose --version
-docker-compose version 1.7.0, build unknown
-</code></pre><h2 id="basic-setup">Basic Setup</h2>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #e1e4e8">[jpitz@jpitz ~/Development dev 2/2]</span></span>
+<span class="line"><span style="color: #e1e4e8">$ docker-machine --version</span></span>
+<span class="line"><span style="color: #e1e4e8">docker-machine version 0.7.0, build a650a40</span></span>
+<span class="line"><span style="color: #e1e4e8"></span></span>
+<span class="line"><span style="color: #e1e4e8">[jpitz@jpitz ~/Development dev 2/2]</span></span>
+<span class="line"><span style="color: #e1e4e8">$ docker-compose --version</span></span>
+<span class="line"><span style="color: #e1e4e8">docker-compose version 1.7.0, build unknown</span></span></code></pre>
+<h2 id="basic-setup">Basic Setup</h2>
 <p>First, we need to get the docker instance inside of the machine to behave in a more expected way.
 To do this, we set the bind ip of the docker engine to be one we can reference at a later time.</p>
-<pre><code>docker-machine create \
-    --engine-opt bip=172.30.254.1/24 \
-    --driver virtualbox \
-    default
-</code></pre><p>Next, ensure that your environment variables are set correctly.
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #e1e4e8">docker-machine create \</span></span>
+<span class="line"><span style="color: #e1e4e8">    --engine-opt bip=172.30.254.1/24 \</span></span>
+<span class="line"><span style="color: #e1e4e8">    --driver virtualbox \</span></span>
+<span class="line"><span style="color: #e1e4e8">    default</span></span></code></pre>
+<p>Next, ensure that your environment variables are set correctly.
 You can do this by evaluating the result of the docker-machine env command.</p>
-<pre><code>eval $(docker-machine env default)
-</code></pre><p>Now that our docker-machine is up and running, we can stand up our consul instance.
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #e1e4e8">eval $(docker-machine env default)</span></span></code></pre>
+<p>Now that our docker-machine is up and running, we can stand up our consul instance.
 This consul instance will be used to register applications as nodes and resolve hostnames to docker-machine ips.
 In the command below, we are doing several port mappings.
-The first maps the docker-machine&rsquo;s port 53 (tcp) to port 53 (udp) of the consul container.
+The first maps the docker-machine’s port 53 (tcp) to port 53 (udp) of the consul container.
 We bind this port because requests for DNS resolution come in on port 53.
 By binding this port back to the host machine, it exposes the DNS resolution capabilities of consul.
-The second maps the docker-machine&rsquo;s port 8301 (tcp) to port 8301 (udp) of the consul container.
+The second maps the docker-machine’s port 8301 (tcp) to port 8301 (udp) of the consul container.
 These two ports play an important role in the DNS resolution process.
 Port 8301 allows us to have consul instances be able to communicate with other instances of consul.
 We expose this so that we can have various docker-machines speaking to one another.
 Lastly, we map the consul web interface back to the docker machine to allow for direct communication with the consul api.</p>
-<pre><code>docker run -dt -h node \
-    --name=&quot;consul&quot; \
-    --hostname=&quot;consul&quot; \
-    -p 53:53/udp \
-    -p 8301:8301/udp \
-    -p 8500:8500 \
-    progrium/consul \
-    -dc=default \
-    -server \
-    -bootstrap \
-    -advertise $(docker-machine ip default)
-</code></pre><p>Now that we have an instance of consul running, we need to register some nodes to be able to resolve.
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #e1e4e8">docker run -dt -h node \</span></span>
+<span class="line"><span style="color: #e1e4e8">    --name="consul" \</span></span>
+<span class="line"><span style="color: #e1e4e8">    --hostname="consul" \</span></span>
+<span class="line"><span style="color: #e1e4e8">    -p 53:53/udp \</span></span>
+<span class="line"><span style="color: #e1e4e8">    -p 8301:8301/udp \</span></span>
+<span class="line"><span style="color: #e1e4e8">    -p 8500:8500 \</span></span>
+<span class="line"><span style="color: #e1e4e8">    progrium/consul \</span></span>
+<span class="line"><span style="color: #e1e4e8">    -dc=default \</span></span>
+<span class="line"><span style="color: #e1e4e8">    -server \</span></span>
+<span class="line"><span style="color: #e1e4e8">    -bootstrap \</span></span>
+<span class="line"><span style="color: #e1e4e8">    -advertise $(docker-machine ip default)</span></span></code></pre>
+<p>Now that we have an instance of consul running, we need to register some nodes to be able to resolve.
 Using the <a href="https://github.com/jpitz/dotfiles/blob/master/bin/docker-dns-register">docker-dns-register</a> command, we can retrieve the ip of a provided container name and register it as a node with the consul instance.
 The <a href="https://github.com/jpitz/dotfiles/blob/master/bin/docker-dns-register-all">docker-dns-register-all</a> command will retrieve a list of all running containers for the current docker-machine and register each as a node with the consul instance.
 Run the <code>docker-dns-register consul</code> command to register consul as a node with itself.</p>
@@ -542,45 +75,47 @@ Run the <code>docker-dns-register consul</code> command to register consul as a 
 This logic is encapsulated withing the <a href="https://github.com/jpitz/dotfiles/blob/master/bin/docker-dns-configure">docker-dns-configure</a> command.
 The process can be broken down to four simple steps.</p>
 <ol>
-<li>For each available network, add &lsquo;node.consul&rsquo; to possible search domains (if necessary).</li>
+<li>For each available network, add ‘node.consul’ to possible search domains (if necessary).</li>
 <li>Set the proper nameserver for the node.consul instance in the resolveconf <code>/etc/resolver/node.consul</code>.</li>
 <li>Update the routing table to point requests to 172.30.254.0 through gateway $(docker-machine ip default)</li>
 <li>Restart dnsmasq to pick of new DNS configurations</li>
 </ol>
 <p>Using your web browser you should now be able to resolve <a href="http://consul:8500/ui/">http://consul:8500/ui/</a>.
-And that&rsquo;s it!
+And that’s it!
 Anytime, you start a new docker container, simply re-run the <code>docker-dns-register ${container-name}</code> command and you will be able to access it using <code>http://${container_name}:${your_port}/</code>.</p>
 <h2 id="practical-applications">Practical Applications</h2>
 <p>There are many practical applications for this technique.
 Applications often have dependencies like <a href="https://hub.docker.com/_/mongo/">MongoDB</a> or <a href="https://hub.docker.com/_/mysql/">MySQL</a>.
 Using this technique we can enable container to container based communication without needing to manually link containers.
-Another application of this DNS resolution is it&rsquo;s integration with <a href="https://github.com/hashicorp/consul-template">consul-template</a>.
+Another application of this DNS resolution is it’s integration with <a href="https://github.com/hashicorp/consul-template">consul-template</a>.
 <a href="https://github.com/hashicorp/consul-template">consul-template</a> can be used to set up a dynamic proxy daemon that watches a consul instance and writes out proxy configurations.</p>
 <h3 id="container-to-container-communication">Container-to-Container Communication</h3>
 <p>A popular approach to making containers able to communicate with each other is through linking.
-This is considered the &lsquo;legacy&rsquo; way to do things as it requires additional overhead.
+This is considered the ‘legacy’ way to do things as it requires additional overhead.
 A better approach would be to use the DNS to resolve dependencies.
 It removes the overhead and offers a more fluent approach to building software in a local development mode and in a production environment.
 Say we have application requires a <a href="https://hub.docker.com/_/mongo/">MongoDB</a> and a <a href="https://hub.docker.com/_/mysql/">MySQL</a>.
 Using the docker-run wrapper, we can quickly stand up an instance of each.</p>
-<pre><code>docker-run --name=&quot;mongo&quot; --hostname=&quot;mongo&quot; mongo
-docker-run --name=&quot;mysql&quot; --hostname=&quot;mysql&quot; -e &quot;MYSQL_ROOT_PASSWORD=root&quot; mysql
-</code></pre><p>The docker-run wrapper adds consul as a DNS resolver using the <code>--dns</code> flag and as a search domain using <code>--dns-search</code>.
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #e1e4e8">docker-run --name="mongo" --hostname="mongo" mongo</span></span>
+<span class="line"><span style="color: #e1e4e8">docker-run --name="mysql" --hostname="mysql" -e "MYSQL_ROOT_PASSWORD=root" mysql</span></span></code></pre>
+<p>The docker-run wrapper adds consul as a DNS resolver using the <code>--dns</code> flag and as a search domain using <code>--dns-search</code>.
 It also kicks the tool off as a daemon using the <code>-d</code> flag.</p>
 <p>After registering the new containers, you can test connecting to your services using the command link clients as well as the browser.</p>
-<pre><code>mongo --host mongo
-mysql -h mysql -uroot -proot
-</code></pre><h3 id="consul-template-proxy-and-dnsmasq">Consul Template Proxy and dnsmasq</h3>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #e1e4e8">mongo --host mongo</span></span>
+<span class="line"><span style="color: #e1e4e8">mysql -h mysql -uroot -proot</span></span></code></pre>
+<h3 id="consul-template-proxy-and-dnsmasq">Consul Template Proxy and dnsmasq</h3>
 <p>Using <a href="https://wiki.debian.org/HowTo/dnsmasq">dnsmasq</a>, developers can set up a local domain for their machine.
 For my machine, I set up <code>jpitz.local</code>.
 The blog post <a href="https://passingcuriosity.com/2013/dnsmasq-dev-osx/">here</a> does a great job explaining how to setup development domains.</p>
 <p><a href="https://github.com/hashicorp/consul-template">consul-template</a> is a tool developed by hashicorp that monitors a consul instance.
-It&rsquo;s specifically used to dynamically re-write configurations based on services and nodes registered in the instance.
+It’s specifically used to dynamically re-write configurations based on services and nodes registered in the instance.
 Such configurations can be nginx proxy configurations, apache vhost configurations, or HASProxy configurations.
 The <a href="https://github.com/hashicorp/consul-template">consul-template</a> GitHub page has some excellent examples to follow.
 For my environment, I set up proxies to resolve to subdomains off of jpitz.local.</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<pre>{{ range nodes }}
+{{ .Name }}.jpitz.local
+{{ end }}
+</pre>
 <p>Enjoy!</p>
 <h2 id="references">References</h2>
 <ul>
@@ -589,41 +124,6 @@ For my environment, I set up proxies to resolve to subdomains off of jpitz.local
 <li><a href="https://docs.docker.com/compose/install/">docker-compose</a></li>
 <li>docker-dns commands from <a href="https://github.com/jpitz/dotfiles">dotfiles</a></li>
 <li>docker-run wrapper from <a href="https://github.com/jpitz/dotfiles">dotfiles</a></li>
-</ul>
-    </div>
-    <div class="post-footer">
-      <div class="info">
-        
-        <span><a class="tag" href="/tags/software-development/">software development</a></span>
-
-
-      </div>
-    </div>
-
-    
-</div>
-
-
-      </main>
-    </div><footer class="footer footer__base">
-    <ul class="footer__list">
-        <li class="footer__item">
-            &copy;
-            
-            Mya Pitzeruse
-            2023
-
-
-            
-        </li>
-        
-    </ul>
-</footer>
-  
-  <script
-    type="text/javascript"
-    src="/js/medium-zoom.min.fae9ac8895995fe91958b3954be11e96025824a04770726a3531e119ddd2d576.js"
-    integrity="sha256-&#43;umsiJWZX&#43;kZWLOVS&#43;EelgJYJKBHcHJqNTHhGd3S1XY="
-    crossorigin="anonymous"
-  ></script></body>
-</html>
+</ul></div></article></main><footer data-astro-cid-sz7xmlte>
+&copy; 2023&nbsp;Mya Pitzeruse. All rights reserved.
+<div class="social-links" data-astro-cid-sz7xmlte><a href="https://github.com/mjpitz" target="_blank" data-astro-cid-sz7xmlte><span class="sr-only" data-astro-cid-sz7xmlte>GitHub</span><svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-sz7xmlte><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-sz7xmlte></path></svg></a><a href="https://www.linkedin.com/in/mjpitz/" target="_blank" data-astro-cid-sz7xmlte><span class="sr-only" data-astro-cid-sz7xmlte>LinkedIn</span><svg viewBox="0 0 50 50" aria-hidden="true" width="32" height="32" data-astro-cid-sz7xmlte><path fill="currentColor" d="M41,4H9C6.24,4,4,6.24,4,9v32c0,2.76,2.24,5,5,5h32c2.76,0,5-2.24,5-5V9C46,6.24,43.76,4,41,4z M17,20v19h-6V20H17z M11,14.47c0-1.4,1.2-2.47,3-2.47s2.93,1.07,3,2.47c0,1.4-1.12,2.53-3,2.53C12.2,17,11,15.87,11,14.47z M39,39h-6c0,0,0-9.26,0-10 c0-2-1-4-3.5-4.04h-0.08C27,24.96,26,27.02,26,29c0,0.91,0,10,0,10h-6V20h6v2.56c0,0,1.93-2.56,5.81-2.56 c3.97,0,7.19,2.73,7.19,8.26V39z" data-astro-cid-sz7xmlte></path></svg></a><a href="/rss.xml" target="_blank" data-astro-cid-sz7xmlte><span class="sr-only" data-astro-cid-sz7xmlte>RSS</span><svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-sz7xmlte><path fill="currentColor" d="M1,5v2c1.081,0,2.128,0.211,3.113,0.628c0.952,0.403,1.808,0.98,2.543,1.715s1.312,1.591,1.715,2.543 C8.789,12.872,9,13.919,9,15h2C11,9.477,6.523,5,1,5z M4,10c-1.105,0-2,0.895-2,2s0.895,2,2,2s2-0.895,2-2S5.105,10,4,10z M1,1v2 c1.621,0,3.192,0.317,4.67,0.942c1.429,0.604,2.712,1.47,3.815,2.573c1.103,1.103,1.968,2.386,2.573,3.815 C12.683,11.808,13,13.379,13,15h2C15,7.268,8.732,1,1,1z" data-astro-cid-sz7xmlte></path></svg></a></div></footer></body></html>

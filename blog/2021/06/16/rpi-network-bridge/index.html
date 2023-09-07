@@ -1,522 +1,18 @@
-<!DOCTYPE html>
-<html
-  dir="ltr"
-  lang="en"
-  data-theme=""
-  class="html"
-><head>
-    <title>
-        
-        Mya Pitzeruse
-        |
-        Extending my Security System with a Raspberry Pi Network Bridge
-
-
-        
-
-
-        
-    </title>
-
-    
-    <meta charset="utf-8" /><meta name="generator" content="Hugo 0.81.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-    <meta name="author" content="Mya Pitzeruse" />
-    <meta
-            name="description"
-            content="
-      Mom | Homesteader | Software Engineer
-
-
-    "
-    />
-    
-    
-    
-    
-    <link
-            rel="stylesheet"
-            href="/scss/main.min.b2e0cb07595e3519ab1193bb421914e06c0e26b0cc561fef23b3c6131d4d2ffa.css"
-            integrity="sha256-suDLB1leNRmrEZO7QhkU4GwOJrDMVh/vI7PGEx1NL/o="
-            crossorigin="anonymous"
-            type="text/css"
-    />
-
-    
-
-    
-    <link
-            rel="stylesheet"
-            href="/css/markupHighlight.min.31b0a1f317f55c529a460897848c97436bb138b19c399b37de70d463a8bf6ed5.css"
-            integrity="sha256-MbCh8xf1XFKaRgiXhIyXQ2uxOLGcOZs33nDUY6i/btU="
-            crossorigin="anonymous"
-            type="text/css"
-    />
-    
-    
-    <link
-            rel="stylesheet"
-            href="/css/overrides.min.2d385947a11fbf61dff71c6e1c2c2efa0a51dcf47be66f416fb97b3cca833a65.css"
-            integrity="sha256-LThZR6Efv2Hf9xxuHCwu&#43;gpR3PR75m9Bb7l7PMqDOmU="
-            crossorigin="anonymous"
-            media="screen"
-    />
-
-    
-    
-    <link
-            rel="stylesheet"
-            href="/fontawesome/css/fontawesome.min.b1c4e6a10bdbab01f33fff9d78816ee68cf9a9a731f07668afd546a79924cb80.css"
-            integrity="sha256-scTmoQvbqwHzP/&#43;deIFu5oz5qacx8HZor9VGp5kky4A="
-            crossorigin="anonymous"
-            type="text/css"
-    />
-    
-    <link
-            rel="stylesheet"
-            href="/fontawesome/css/solid.min.423dee17c62f55fa733a4ee13e00d523dfce88cc4f4ab4549a24ba36bd9de681.css"
-            integrity="sha256-Qj3uF8YvVfpzOk7hPgDVI9/OiMxPSrRUmiS6Nr2d5oE="
-            crossorigin="anonymous"
-            type="text/css"
-    />
-    
-    <link
-            rel="stylesheet"
-            href="/fontawesome/css/brands.min.b7d54133b27e5b4de15245b8e143de3e8ed2d674c706137274cedc9953f31917.css"
-            integrity="sha256-t9VBM7J&#43;W03hUkW44UPePo7S1nTHBhNydM7cmVPzGRc="
-            crossorigin="anonymous"
-            type="text/css"
-    />
-    
-    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png" />
-
-    <link rel="canonical" href="https://mjpitz.com/blog/2021/06/16/rpi-network-bridge/">
-
-    
-    
-    
-    
-    <script
-            type="text/javascript"
-            src="/js/anatole-header.min.46e6a54097480084f8f52c20ca1aa7425b4fad17029a887fd4017b12e311a72d.js"
-            integrity="sha256-RualQJdIAIT49SwgyhqnQltPrRcCmoh/1AF7EuMRpy0="
-            crossorigin="anonymous"
-    ></script>
-
-    
-    
-    
-    <script
-            type="text/javascript"
-            src="/js/anatole-theme-switcher.min.5557c8ff5617a01067ac258fd70b9b992506e379317b0da51e5e0f6e018b408a.js"
-            integrity="sha256-VVfI/1YXoBBnrCWP1wubmSUG43kxew2lHl4PbgGLQIo="
-            crossorigin="anonymous"
-    ></script>
-
-    
-
-    
-
-
-    
-    <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Extending my Security System with a Raspberry Pi Network Bridge"/>
-<meta name="twitter:description" content="It doesn&rsquo;t happen a lot, but every so often I come across a device that isn&rsquo;t wi-fi supported.
+<!DOCTYPE html><html lang="en" data-astro-cid-bvzihdzo><head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v3.0.5"><!-- Font preloads --><link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin><link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://mjpitz.com/blog/2021/06/16/rpi-network-bridge/"><!-- Primary Meta Tags --><title>Extending my Security System with a Raspberry Pi Network Bridge</title><meta name="title" content="Extending my Security System with a Raspberry Pi Network Bridge"><meta name="description" content=""><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://mjpitz.com/blog/2021/06/16/rpi-network-bridge/"><meta property="og:title" content="Extending my Security System with a Raspberry Pi Network Bridge"><meta property="og:description" content=""><meta property="og:image" content="https://mjpitz.com/blog-placeholder-1.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://mjpitz.com/blog/2021/06/16/rpi-network-bridge/"><meta property="twitter:title" content="Extending my Security System with a Raspberry Pi Network Bridge"><meta property="twitter:description" content=""><meta property="twitter:image" content="https://mjpitz.com/blog-placeholder-1.jpg"><link rel="stylesheet" href="/_astro/_...slug_.e98600b1.css" />
+<style type="text/css">main[data-astro-cid-bvzihdzo]{width:calc(100% - 2em);max-width:100%;margin:0}.hero-image[data-astro-cid-bvzihdzo]{width:100%}.hero-image[data-astro-cid-bvzihdzo] img[data-astro-cid-bvzihdzo]{display:block;margin:0 auto;border-radius:12px;box-shadow:var(--box-shadow)}.prose[data-astro-cid-bvzihdzo]{width:720px;max-width:calc(100% - 2em);margin:auto;padding:1em;color:var(--color-text)}.title[data-astro-cid-bvzihdzo]{margin-bottom:1em;padding:1em 0;text-align:center;line-height:1}.title[data-astro-cid-bvzihdzo] h1[data-astro-cid-bvzihdzo]{margin:0 0 .5em}.date[data-astro-cid-bvzihdzo]{margin-bottom:.5em;color:var(--color-text)}.last-updated-on[data-astro-cid-bvzihdzo]{font-style:italic}
+</style><script type="module">const t=document.querySelector('.theme-switch input[type="checkbox"]'),e=localStorage.getItem("theme");e&&(document.documentElement.setAttribute("data-theme",e),e==="dark"&&(t.checked=!0));function m(c){c.target.checked?(document.documentElement.setAttribute("data-theme","dark"),localStorage.setItem("theme","dark")):(document.documentElement.setAttribute("data-theme","light"),localStorage.setItem("theme","light"))}t.addEventListener("change",m,!1);
+</script></head><body data-astro-cid-bvzihdzo><header data-astro-cid-3ef6ksr2><nav data-astro-cid-3ef6ksr2><div class="theme-switch-wrapper"><label class="theme-switch" for="checkbox"><input type="checkbox" id="checkbox"><div class="slider"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#FCD53F" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#FCD53F" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></div></label></div><h2 data-astro-cid-3ef6ksr2><a href="/" data-astro-cid-3ef6ksr2>Mya Pitzeruse</a></h2><div class="internal-links" data-astro-cid-3ef6ksr2><a href="/" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg>Home</a><a href="/blog" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg>Blog</a><a href="/charts" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg>Charts</a><a href="/media" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg>Media</a><a href="/papers" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg>Papers</a></div><div class="social-links" data-astro-cid-3ef6ksr2><a href="https://github.com/mjpitz" target="_blank" data-astro-cid-3ef6ksr2><span class="sr-only" data-astro-cid-3ef6ksr2>GitHub</span><svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-3ef6ksr2></path></svg></a><a href="https://www.linkedin.com/in/mjpitz/" target="_blank" data-astro-cid-3ef6ksr2><span class="sr-only" data-astro-cid-3ef6ksr2>LinkedIn</span><svg viewBox="0 0 50 50" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M41,4H9C6.24,4,4,6.24,4,9v32c0,2.76,2.24,5,5,5h32c2.76,0,5-2.24,5-5V9C46,6.24,43.76,4,41,4z M17,20v19h-6V20H17z M11,14.47c0-1.4,1.2-2.47,3-2.47s2.93,1.07,3,2.47c0,1.4-1.12,2.53-3,2.53C12.2,17,11,15.87,11,14.47z M39,39h-6c0,0,0-9.26,0-10 c0-2-1-4-3.5-4.04h-0.08C27,24.96,26,27.02,26,29c0,0.91,0,10,0,10h-6V20h6v2.56c0,0,1.93-2.56,5.81-2.56 c3.97,0,7.19,2.73,7.19,8.26V39z" data-astro-cid-3ef6ksr2></path></svg></a><a href="/rss.xml" target="_blank" data-astro-cid-3ef6ksr2><span class="sr-only" data-astro-cid-3ef6ksr2>RSS</span><svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M1,5v2c1.081,0,2.128,0.211,3.113,0.628c0.952,0.403,1.808,0.98,2.543,1.715s1.312,1.591,1.715,2.543 C8.789,12.872,9,13.919,9,15h2C11,9.477,6.523,5,1,5z M4,10c-1.105,0-2,0.895-2,2s0.895,2,2,2s2-0.895,2-2S5.105,10,4,10z M1,1v2 c1.621,0,3.192,0.317,4.67,0.942c1.429,0.604,2.712,1.47,3.815,2.573c1.103,1.103,1.968,2.386,2.573,3.815 C12.683,11.808,13,13.379,13,15h2C15,7.268,8.732,1,1,1z" data-astro-cid-3ef6ksr2></path></svg></a></div></nav></header><main data-astro-cid-bvzihdzo><article data-astro-cid-bvzihdzo><div class="hero-image" data-astro-cid-bvzihdzo><img width="1020" height="510" src="/img/blog-placeholder-4.jpg" alt="" data-astro-cid-bvzihdzo></div><div class="prose" data-astro-cid-bvzihdzo><div class="title" data-astro-cid-bvzihdzo><div class="date" data-astro-cid-bvzihdzo><time datetime="2021-06-16T00:00:00.000Z">Jun 16, 2021</time></div><h1 data-astro-cid-bvzihdzo>Extending my Security System with a Raspberry Pi Network Bridge</h1><hr data-astro-cid-bvzihdzo></div><p>It doesn’t happen a lot, but every so often I come across a device that isn’t wi-fi supported.
 This latest case was my security system.
-On one hand, I like that my cameras aren&rsquo;t taking up bandwidth on my home network and that the system is largely a closed loop.
+On one hand, I like that my cameras aren’t taking up bandwidth on my home network and that the system is largely a closed loop.
 On the other, not having access to my security system without having it tethered into the router is a bit of a pain.
-For one, my home networking setup isn&rsquo;t that elegant (yet).
+For one, my home networking setup isn’t that elegant (yet).
 Second, the last thing I want to do is have more stuff out in the open, co-located with my router.
 So I decided to get a little creative.
-Sure, I could&rsquo;ve bought a wi-fi adapter, but where&rsquo;s the fun in that.
-On top of that, I had some other reasons:
-
-I didn&rsquo;t want to spend money on an adapter for this system.
-Even though they aren&rsquo;t that expensive, I would likely need to wait for one to come in which would probably happen after I left for my trip.
-Eventually, I want to do some real-time video processing and having a device closer to the box is promising.
-This would let me process data straight from the box rather than needing to transmit all that information over wi-fi to another machine.
-Finally, I already have more than a dozen pis around.
-For the first version of this, I wound up using a 3b&#43;.
-I would likely upgrade this later on when I add the real-time processing.
-
-Today, I show how I set up and configured a Raspberry Pi to act as a WAN client for a connected device."/>
-
-
-
-    
-    <meta property="og:title" content="Extending my Security System with a Raspberry Pi Network Bridge" />
-<meta property="og:description" content="It doesn&rsquo;t happen a lot, but every so often I come across a device that isn&rsquo;t wi-fi supported.
-This latest case was my security system.
-On one hand, I like that my cameras aren&rsquo;t taking up bandwidth on my home network and that the system is largely a closed loop.
-On the other, not having access to my security system without having it tethered into the router is a bit of a pain.
-For one, my home networking setup isn&rsquo;t that elegant (yet).
-Second, the last thing I want to do is have more stuff out in the open, co-located with my router.
-So I decided to get a little creative.
-Sure, I could&rsquo;ve bought a wi-fi adapter, but where&rsquo;s the fun in that.
-On top of that, I had some other reasons:
-
-I didn&rsquo;t want to spend money on an adapter for this system.
-Even though they aren&rsquo;t that expensive, I would likely need to wait for one to come in which would probably happen after I left for my trip.
-Eventually, I want to do some real-time video processing and having a device closer to the box is promising.
-This would let me process data straight from the box rather than needing to transmit all that information over wi-fi to another machine.
-Finally, I already have more than a dozen pis around.
-For the first version of this, I wound up using a 3b&#43;.
-I would likely upgrade this later on when I add the real-time processing.
-
-Today, I show how I set up and configured a Raspberry Pi to act as a WAN client for a connected device." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://mjpitz.com/blog/2021/06/16/rpi-network-bridge/" /><meta property="article:section" content="blog" />
-<meta property="article:published_time" content="2021-06-16T00:00:00&#43;00:00" />
-<meta property="article:modified_time" content="2021-06-16T00:00:00&#43;00:00" /><meta property="og:site_name" content="Mya Pitzeruse" />
-
-
-
-
-    
-    
-  
-  
-  <script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
-        "articleSection": "blog",
-        "name": "Extending my Security System with a Raspberry Pi Network Bridge",
-        "headline": "Extending my Security System with a Raspberry Pi Network Bridge",
-        "alternativeHeadline": "",
-        "description": "
-      
-        \u003cp\u003eIt doesn\u0026rsquo;t happen a lot, but every so often I come across a device that isn\u0026rsquo;t wi-fi supported.\nThis latest case was my security system.\nOn one hand, I like that my cameras aren\u0026rsquo;t taking up bandwidth on my home network and that the system is largely a closed loop.\nOn the other, not having access to my security system without having it tethered into the router is a bit of a pain.\nFor one, my home networking setup isn\u0026rsquo;t that elegant (yet).\nSecond, the last thing I want to do is have more stuff out in the open, co-located with my router.\nSo I decided to get a little creative.\nSure, I could\u0026rsquo;ve bought a wi-fi adapter, but where\u0026rsquo;s the fun in that.\nOn top of that, I had some other reasons:\u003c\/p\u003e\n\u003col\u003e\n\u003cli\u003eI didn\u0026rsquo;t want to spend money on an adapter for this system.\nEven though they aren\u0026rsquo;t that expensive, I would likely need to wait for one to come in which would probably happen \u003cem\u003eafter\u003c\/em\u003e I left for my trip.\u003c\/li\u003e\n\u003cli\u003eEventually, I want to do some real-time video processing and having a device closer to the box is promising.\nThis would let me process data straight from the box rather than needing to transmit all that information over wi-fi to another machine.\u003c\/li\u003e\n\u003cli\u003eFinally, I already have more than a dozen pis around.\nFor the first version of this, I wound up using a 3b\u002b.\nI would likely upgrade this later on when I add the real-time processing.\u003c\/li\u003e\n\u003c\/ol\u003e\n\u003cp\u003eToday, I show how I set up and configured a Raspberry Pi to act as a WAN client for a connected device.\u003c\/p\u003e
-
-
-      
-
-
-    ",
-        "inLanguage": "en-us",
-        "isFamilyFriendly": "true",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https:\/\/mjpitz.com\/blog\/2021\/06\/16\/rpi-network-bridge\/"
-        },
-        "author" : {
-            "@type": "Person",
-            "name": "Mya Pitzeruse"
-        },
-        "creator" : {
-            "@type": "Person",
-            "name": "Mya Pitzeruse"
-        },
-        "accountablePerson" : {
-            "@type": "Person",
-            "name": "Mya Pitzeruse"
-        },
-        "copyrightHolder" : {
-            "@type": "Person",
-            "name": "Mya Pitzeruse"
-        },
-        "copyrightYear" : "2021",
-        "dateCreated": "2021-06-16T00:00:00.00Z",
-        "datePublished": "2021-06-16T00:00:00.00Z",
-        "dateModified": "2021-06-16T00:00:00.00Z",
-        "publisher":{
-            "@type":"Organization",
-            "name": "Mya Pitzeruse",
-            "url": "https://mjpitz.com/",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "https:\/\/mjpitz.com\/img\/favicon-32x32.png",
-                "width":"32",
-                "height":"32"
-            }
-        },
-        "image": 
-      [
-      ]
-
-    ,
-        "url" : "https:\/\/mjpitz.com\/blog\/2021\/06\/16\/rpi-network-bridge\/",
-        "wordCount" : "1909",
-        "genre" : [ ],
-        "keywords" : [ 
-      
-      "software development"
-
-    
-      
-        ,
-
-      
-      "homestead"
-
-    ]
-    }
-  </script>
-
-
-
-</head>
-<body
-    
-      class="body theme--light"
-
-    
-  >
-    <div class="wrapper">
-      <aside
-        
-          class="wrapper__sidebar"
-
-        
-      ><div
-  class="sidebar
-    animated fadeInDown
-
-  "
->
-  <div class="sidebar__content">
-    <div class="sidebar__introduction">
-      <img
-        class="sidebar__introduction-profileimage"
-        src="/img/mjpitz.jpeg"
-        alt="profile picture"
-      />
-      
-        <div class="sidebar__introduction-title">
-          <a href="/">Mya Pitzeruse</a>
-        </div>
-
-      
-      <div class="sidebar__introduction-description">
-        <p>Mom | Homesteader | Software Engineer</p>
-      </div>
-    </div>
-    <ul class="sidebar__list">
-      
-        <li class="sidebar__list-item">
-          <a
-            href="https://github.com/mjpitz"
-            target="_blank"
-            rel="noopener"
-            aria-label="GitHub"
-            title="GitHub"
-          >
-            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
-          </a>
-        </li>
-
-      
-        <li class="sidebar__list-item">
-          <a
-            href="https://www.linkedin.com/in/mjpitz/"
-            target="_blank"
-            rel="noopener"
-            aria-label="LinkedIn"
-            title="LinkedIn"
-          >
-            <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
-          </a>
-        </li>
-
-      
-        <li class="sidebar__list-item">
-          <a
-            href="/index.xml"
-            target="_blank"
-            rel="noopener"
-            aria-label="Feed"
-            title="Feed"
-          >
-            <i class="fas fa-rss fa-2x" aria-hidden="true"></i>
-          </a>
-        </li>
-
-      
-    </ul>
-  </div><footer class="footer footer__sidebar">
-    <ul class="footer__list">
-        <li class="footer__item">
-            &copy;
-            
-            Mya Pitzeruse
-            2023
-
-
-            
-        </li>
-        
-    </ul>
-</footer>
-  
-  <script
-    type="text/javascript"
-    src="/js/medium-zoom.min.fae9ac8895995fe91958b3954be11e96025824a04770726a3531e119ddd2d576.js"
-    integrity="sha256-&#43;umsiJWZX&#43;kZWLOVS&#43;EelgJYJKBHcHJqNTHhGd3S1XY="
-    crossorigin="anonymous"
-  ></script></div>
-</aside>
-      <main
-        
-          class="wrapper__main"
-
-        
-      >
-        <header class="header"><div
-  class="
-    animated fadeInDown
-
-  "
->
-  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
-    <span aria-hidden="true" class="navbar-burger__line"></span>
-    <span aria-hidden="true" class="navbar-burger__line"></span>
-    <span aria-hidden="true" class="navbar-burger__line"></span>
-  </a>
-  <nav class="nav">
-    <ul class="nav__list" id="navMenu">
-      
-      
-      
-        
-        
-          <li class="nav__list-item">
-            <a
-              
-              href="/"
-              
-              title=""
-              >Home</a
-            >
-          </li>
-
-        
-
-
-      
-        
-        
-          <li class="nav__list-item">
-            <a
-              
-              href="/blog/"
-              
-              title=""
-              >Blog</a
-            >
-          </li>
-
-        
-
-
-      
-        
-        
-          <li class="nav__list-item">
-            <a
-              
-              href="/charts/"
-              
-              title=""
-              >Charts</a
-            >
-          </li>
-
-        
-
-
-      
-        
-        
-          <li class="nav__list-item">
-            <a
-              
-              href="/media/"
-              
-              title=""
-              >Media</a
-            >
-          </li>
-
-        
-
-
-      
-        
-        
-          <li class="nav__list-item">
-            <a
-              
-              href="/papers/"
-              
-              title=""
-              >Papers</a
-            >
-          </li>
-
-        
-
-
-      
-        
-        
-          <li class="nav__list-item">
-            <a
-              
-              href="/projects/"
-              
-              title=""
-              >Projects</a
-            >
-          </li>
-
-        
-
-
-      
-    </ul>
-    <ul class="nav__list nav__list--end">
-      
-      
-        <li class="nav__list-item">
-          <div class="themeswitch">
-            <a title="Switch Theme">
-              <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
-            </a>
-          </div>
-        </li>
-
-      
-    </ul>
-  </nav>
-</div>
-</header>
-<div class="post animated fadeInDown">
-    <div class="post-content">
-
-      <div class="post-title">
-        <h3>Extending my Security System with a Raspberry Pi Network Bridge</h3>
-        
-        <div class="info">
-          <i class="fa fa-sun-o"></i><span class="date">Wed, Jun 16, 2021</span>
-          <i class="fa fa-clock-o"></i><span class="reading-time">9-minute read</span>
-        </div>
-        
-        </div>
-
-    <p>It doesn&rsquo;t happen a lot, but every so often I come across a device that isn&rsquo;t wi-fi supported.
-This latest case was my security system.
-On one hand, I like that my cameras aren&rsquo;t taking up bandwidth on my home network and that the system is largely a closed loop.
-On the other, not having access to my security system without having it tethered into the router is a bit of a pain.
-For one, my home networking setup isn&rsquo;t that elegant (yet).
-Second, the last thing I want to do is have more stuff out in the open, co-located with my router.
-So I decided to get a little creative.
-Sure, I could&rsquo;ve bought a wi-fi adapter, but where&rsquo;s the fun in that.
+Sure, I could’ve bought a wi-fi adapter, but where’s the fun in that.
 On top of that, I had some other reasons:</p>
 <ol>
-<li>I didn&rsquo;t want to spend money on an adapter for this system.
-Even though they aren&rsquo;t that expensive, I would likely need to wait for one to come in which would probably happen <em>after</em> I left for my trip.</li>
+<li>I didn’t want to spend money on an adapter for this system.
+Even though they aren’t that expensive, I would likely need to wait for one to come in which would probably happen <em>after</em> I left for my trip.</li>
 <li>Eventually, I want to do some real-time video processing and having a device closer to the box is promising.
 This would let me process data straight from the box rather than needing to transmit all that information over wi-fi to another machine.</li>
 <li>Finally, I already have more than a dozen pis around.
@@ -524,6 +20,7 @@ For the first version of this, I wound up using a 3b+.
 I would likely upgrade this later on when I add the real-time processing.</li>
 </ol>
 <p>Today, I show how I set up and configured a Raspberry Pi to act as a WAN client for a connected device.</p>
+<!--more-->
 <p>There are a handful of similar guides out there, but finding one for this specific direction / configuration was difficult.
 Here are some similar guides I used as reference:</p>
 <ul>
@@ -532,24 +29,24 @@ Here are some similar guides I used as reference:</p>
 <li><a href="https://raspberrypi.stackexchange.com/questions/88214/setting-up-a-raspberry-pi-as-an-access-point-the-easy-way">Setting up a Raspberry Pi as an access point</a></li>
 <li><a href="https://willhaley.com/blog/raspberry-pi-wifi-ethernet-bridge/">Raspberry Pi 4 Model B WiFi Ethernet Bridge</a></li>
 </ul>
-<p>Of these guides, &ldquo;Raspberry Pi 4 Model B WiFi Ethernet Bridge&rdquo; is the closest.
+<p>Of these guides, “Raspberry Pi 4 Model B WiFi Ethernet Bridge” is the closest.
 Unlike many of these guides, I run an Ubuntu arm64 image instead of Raspbian OS.
 The process is largely the same, but some tooling is different.
 For example, Ubuntu works with netplan by default.
-In addition to that, we have a slightly higher resource footprint, but it&rsquo;s not the biggest concern for what this little one is doing.
-To help provide a little context as to what&rsquo;s going on here, I&rsquo;ve put together this diagram (and alt-text):</p>
+In addition to that, we have a slightly higher resource footprint, but it’s not the biggest concern for what this little one is doing.
+To help provide a little context as to what’s going on here, I’ve put together this diagram (and alt-text):</p>
 <p><a href="https://mermaid-js.github.io/mermaid-live-editor/edit/#eyJjb2RlIjoiZ3JhcGggVERcbiAgICBjMShDYW1lcmEgMSlcbiAgICBjMihDYW1lcmEgMilcbiAgICBjLihDYW1lcmEgLi4uKVxuICAgIGNuKENhbWVyYSBOKVxuICAgIGh1YihTZWN1cml0eSBIdWIgPGJyPiBldGgwIC0gMTkyLjE2OC4xMC4yKVxuICAgIHBpKFJhc3BiZXJyeSBQaSA8YnI-IHdsYW4wIC0gMTkyLjE2OC40LjMwIDxicj4gZXRoMCAtIDE5Mi4xNjguMTAuMSlcbiAgICBtZShNeWEncyBMYXB0b3AgPGJyPiB3bGFuMCAtIDE5Mi4xNjguNC4xMClcbiAgICByb3V0ZXIoV2ktZmkgUm91dGVyKVxuXG4gICAgcm91dGVyIC0uLXx3aS1maXwgbWVcbiAgICByb3V0ZXIgLS4tfHdpLWZpfCBwaVxuXG4gICAgcGkgLS0tfGV0aGVybmV8IGh1YlxuICBcbiAgICBodWIgLS0tIGMxXG4gICAgaHViIC0tLSBjMlxuICAgIGh1YiAtLS0gYy5cbiAgICBodWIgLS0tIGNuXG4iLCJtZXJtYWlkIjoie1xuICBcInRoZW1lXCI6IFwiZGVmYXVsdFwiXG59IiwidXBkYXRlRWRpdG9yIjpmYWxzZSwiYXV0b1N5bmMiOnRydWUsInVwZGF0ZURpYWdyYW0iOmZhbHNlfQ"><img src="https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVERcbiAgICBjMShDYW1lcmEgMSlcbiAgICBjMihDYW1lcmEgMilcbiAgICBjLihDYW1lcmEgLi4uKVxuICAgIGNuKENhbWVyYSBOKVxuICAgIGh1YihTZWN1cml0eSBIdWIgPGJyPiBldGgwIC0gMTkyLjE2OC4xMC4yKVxuICAgIHBpKFJhc3BiZXJyeSBQaSA8YnI-IHdsYW4wIC0gMTkyLjE2OC40LjMwIDxicj4gZXRoMCAtIDE5Mi4xNjguMTAuMSlcbiAgICBtZShNeWEncyBMYXB0b3AgPGJyPiB3bGFuMCAtIDE5Mi4xNjguNC4xMClcbiAgICByb3V0ZXIoV2ktZmkgUm91dGVyKVxuXG4gICAgcm91dGVyIC0uLXx3aS1maXwgbWVcbiAgICByb3V0ZXIgLS4tfHdpLWZpfCBwaVxuXG4gICAgcGkgLS0tfGV0aGVybmV0fCBodWJcbiAgXG4gICAgaHViIC0tLSBjMVxuICAgIGh1YiAtLS0gYzJcbiAgICBodWIgLS0tIGMuXG4gICAgaHViIC0tLSBjblxuIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZSwiYXV0b1N5bmMiOnRydWUsInVwZGF0ZURpYWdyYW0iOmZhbHNlfQ" alt="Alt-text below."></a></p>
 <p>Alt-text for diagram:</p>
 <ul>
-<li>At the top, there&rsquo;s a wi-fi router that&rsquo;s connected to the public internet who&rsquo;s <code>wlan0</code> interface holds the <code>192.168.4.1</code> IP address.</li>
+<li>At the top, there’s a wi-fi router that’s connected to the public internet who’s <code>wlan0</code> interface holds the <code>192.168.4.1</code> IP address.</li>
 <li>Connected to the router over wi-fi are two machines.
 <ul>
-<li>First is Mya&rsquo;s laptop who&rsquo;s <code>wlan0</code> interface holds the <code>192.168.4.10</code> IP address.</li>
-<li>Second is a Raspberry Pi board who&rsquo;s <code>wlan0</code> interface holds the <code>192.168.4.30</code> IP address
-and who&rsquo;s <code>eth0</code> interface holds the <code>192.168.10.1</code> IP address.</li>
+<li>First is Mya’s laptop who’s <code>wlan0</code> interface holds the <code>192.168.4.10</code> IP address.</li>
+<li>Second is a Raspberry Pi board who’s <code>wlan0</code> interface holds the <code>192.168.4.30</code> IP address
+and who’s <code>eth0</code> interface holds the <code>192.168.10.1</code> IP address.</li>
 </ul>
 </li>
-<li>The Security hub connects to the Raspberry Pi&rsquo;s using an ethernet cable.</li>
+<li>The Security hub connects to the Raspberry Pi’s using an ethernet cable.</li>
 <li>Some number of cameras connect to the security hub using a cable.</li>
 </ul>
 <h2 id="flash-the-image">Flash the Image</h2>
@@ -557,52 +54,36 @@ and who&rsquo;s <code>eth0</code> interface holds the <code>192.168.10.1</code> 
 This gives it a similar look and feel to many of the other microcomputers I have around the house.
 In addition to that, I get some reasonable default security configurations with that setup (i.e. private key access, no root, custom user, etc).
 To get a machine up and running, follow Steps 1 - 4 on the projects <a href="https://github.com/mjpitz/rpi-cloud-init/blob/main/README.md">README.md</a>.</p>
-<p>Once the board is running, we&rsquo;ll need to make some additional modifications to the networking setup.
+<p>Once the board is running, we’ll need to make some additional modifications to the networking setup.
 The <code>network-config</code> provided in the <code>cloud-init</code> setup generates <code>/etc/netplan/50-cloud-init.yaml</code>.
 We will be creating a new <code>/etc/netplan/60-static-eth0.yaml</code> file with the following contents.</p>
-<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">network</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">version</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">2</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">ethernets</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">eth0</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">dhcp4</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">false</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">dhcp6</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">false</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">addresses</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">192.168.10.1</span><span style="color:#000">/24]</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">gateway4</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">192.168.10.1</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">nameservers</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">addresses</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">192.168.10.1</span><span style="color:#000;font-weight:bold">]</span><span style="color:#f8f8f8;text-decoration:underline">   
-</span></code></pre></td></tr></table>
-</div>
-</div><p>This configures the devices <code>eth0</code> interface to use the static IP <code>192.168.10.1</code>.
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #85E89D">network</span><span style="color: #E1E4E8">:</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #85E89D">version</span><span style="color: #E1E4E8">: </span><span style="color: #79B8FF">2</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #85E89D">ethernets</span><span style="color: #E1E4E8">:</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #85E89D">eth0</span><span style="color: #E1E4E8">:</span></span>
+<span class="line"><span style="color: #E1E4E8">      </span><span style="color: #85E89D">dhcp4</span><span style="color: #E1E4E8">: </span><span style="color: #79B8FF">false</span></span>
+<span class="line"><span style="color: #E1E4E8">      </span><span style="color: #85E89D">dhcp6</span><span style="color: #E1E4E8">: </span><span style="color: #79B8FF">false</span></span>
+<span class="line"><span style="color: #E1E4E8">      </span><span style="color: #85E89D">addresses</span><span style="color: #E1E4E8">: [</span><span style="color: #9ECBFF">192.168.10.1/24</span><span style="color: #E1E4E8">]</span></span>
+<span class="line"><span style="color: #E1E4E8">      </span><span style="color: #85E89D">gateway4</span><span style="color: #E1E4E8">: </span><span style="color: #79B8FF">192.168.10.1</span></span>
+<span class="line"><span style="color: #E1E4E8">      </span><span style="color: #85E89D">nameservers</span><span style="color: #E1E4E8">:</span></span>
+<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #85E89D">addresses</span><span style="color: #E1E4E8">: [</span><span style="color: #79B8FF">192.168.10.1</span><span style="color: #E1E4E8">]   </span></span></code></pre>
+<p>This configures the devices <code>eth0</code> interface to use the static IP <code>192.168.10.1</code>.
 With the new file, we need to generate and apply the changes.</p>
-<pre><code>$ sudo netplan generate
-$ sudo netplan apply
-</code></pre><p>We can verify the changes by inspecting the <code>ifconfig</code> (you may need to <code>apt-get install net-tools</code>).</p>
-<pre><code>$ ifconfig
-mjpitz@ip-192-168-4-74:~$ ifconfig
-eth0: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500
-        inet 192.168.10.1  netmask 255.255.255.0  broadcast 192.168.10.255    ###### expected change
-
-lo: flags=73&lt;UP,LOOPBACK,RUNNING&gt;  mtu 65536
-        inet 127.0.0.1  netmask 255.0.0.0
-
-wlan0: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500
-        inet 192.168.4.30  netmask 255.255.255.0  broadcast 192.168.4.255
-
-</code></pre><h2 id="software">Software</h2>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #e1e4e8">$ sudo netplan generate</span></span>
+<span class="line"><span style="color: #e1e4e8">$ sudo netplan apply</span></span></code></pre>
+<p>We can verify the changes by inspecting the <code>ifconfig</code> (you may need to <code>apt-get install net-tools</code>).</p>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #e1e4e8">$ ifconfig</span></span>
+<span class="line"><span style="color: #e1e4e8">mjpitz@ip-192-168-4-74:~$ ifconfig</span></span>
+<span class="line"><span style="color: #e1e4e8">eth0: flags=4163&#x3C;UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500</span></span>
+<span class="line"><span style="color: #e1e4e8">        inet 192.168.10.1  netmask 255.255.255.0  broadcast 192.168.10.255    ###### expected change</span></span>
+<span class="line"><span style="color: #e1e4e8"></span></span>
+<span class="line"><span style="color: #e1e4e8">lo: flags=73&#x3C;UP,LOOPBACK,RUNNING>  mtu 65536</span></span>
+<span class="line"><span style="color: #e1e4e8">        inet 127.0.0.1  netmask 255.0.0.0</span></span>
+<span class="line"><span style="color: #e1e4e8"></span></span>
+<span class="line"><span style="color: #e1e4e8">wlan0: flags=4163&#x3C;UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500</span></span>
+<span class="line"><span style="color: #e1e4e8">        inet 192.168.4.30  netmask 255.255.255.0  broadcast 192.168.4.255</span></span>
+<span class="line"><span style="color: #e1e4e8"></span></span></code></pre>
+<h2 id="software">Software</h2>
 <p>In order to get this to work, I needed to install some basic software components.</p>
 <ul>
 <li><code>isc-dhcp-server</code> is responsible for providing configuration to machines on the underlying network.</li>
@@ -610,67 +91,67 @@ wlan0: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500
 <li><code>netfilter-persistent</code> and <code>iptables-persistent</code> preserve firewall and iptables rules on reboot (respectively). We will be using iptables to act as our core routing layer.</li>
 </ul>
 <p>You can install these components using <code>apt-get</code>.</p>
-<pre><code>$ sudo apt-get update -y &amp;&amp; sudo apt-get install -y isc-dhcp-server dnsmasq
-$ sudo DEBIAN_FRONTEND=noninteractive apt install -y netfilter-persistent iptables-persistent
-</code></pre><p>Once installed, we&rsquo;ll need to configure each system.
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #e1e4e8">$ sudo apt-get update -y &#x26;&#x26; sudo apt-get install -y isc-dhcp-server dnsmasq</span></span>
+<span class="line"><span style="color: #e1e4e8">$ sudo DEBIAN_FRONTEND=noninteractive apt install -y netfilter-persistent iptables-persistent</span></span></code></pre>
+<p>Once installed, we’ll need to configure each system.
 Note, dnsmasq may be having trouble starting up.
-This is OK, we&rsquo;ll fix it.</p>
+This is OK, we’ll fix it.</p>
 <h3 id="dhcp">dhcp</h3>
-<p>First up, let&rsquo;s configure dhcp.
+<p>First up, let’s configure dhcp.
 dhcp delivers network configuration to devices attempting to connect to a given router.
-For some reason, I couldn&rsquo;t get the system to work without this installed.
-I know dnsmasq supports dhcp, but without this process I was getting an error and couldn&rsquo;t obtain a network address.</p>
-<pre><code>dnsmasq-dhcp[3685]: DHCP packet received on eth0 which has no address
-</code></pre><p>First, we&rsquo;ll want to modify <code>/etc/default/isc-dhcp-server</code> to point <code>INTERFACESv4=&quot;eth0&quot;</code>.
+For some reason, I couldn’t get the system to work without this installed.
+I know dnsmasq supports dhcp, but without this process I was getting an error and couldn’t obtain a network address.</p>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #e1e4e8">dnsmasq-dhcp[3685]: DHCP packet received on eth0 which has no address</span></span></code></pre>
+<p>First, we’ll want to modify <code>/etc/default/isc-dhcp-server</code> to point <code>INTERFACESv4="eth0"</code>.
 This will ensure that the dhcp server responds to dhcp requests (similar to how your wi-fi router works).
-Next we need to configure the dhcp server to know about the subnet that we&rsquo;re allocating to it.
-To do this, we&rsquo;ll edit <code>/etc/dhcp/dhcpd.conf</code> to contain the following contents:</p>
-<pre><code># communicates that the Raspberry Pi will act as a router for requests.
-host router {
-  hardware ethernet &quot;mac of eth0, obtained from ifconfig.eth0.ether attribute&quot;;
-  fixed-address 192.168.10.1;
-}
-
-# communicates how to manage the associated subnet(s)
-subnet 192.168.10.0 netmask 255.255.255.0 {
-  range 192.168.10.2 192.168.10.254;
-  option routers 192.168.10.1;
-  option dns-name-servers 192.168.10.1;
-}
-</code></pre><p>Once dhcp has been configured, we&rsquo;ll need to restart the service.</p>
-<pre><code>$ sudo service isc-dhcp-server restart
-</code></pre><p>Once the dhcp server has been restarted, it should be operating with the new configuration.
-We can verify that it&rsquo;s running properly using <code>sudo service isc-dhcp-server status</code> or by tailing logs with <code>sudo journalctl -u isc-dhcp-server</code>.</p>
+Next we need to configure the dhcp server to know about the subnet that we’re allocating to it.
+To do this, we’ll edit <code>/etc/dhcp/dhcpd.conf</code> to contain the following contents:</p>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #e1e4e8"># communicates that the Raspberry Pi will act as a router for requests.</span></span>
+<span class="line"><span style="color: #e1e4e8">host router {</span></span>
+<span class="line"><span style="color: #e1e4e8">  hardware ethernet "mac of eth0, obtained from ifconfig.eth0.ether attribute";</span></span>
+<span class="line"><span style="color: #e1e4e8">  fixed-address 192.168.10.1;</span></span>
+<span class="line"><span style="color: #e1e4e8">}</span></span>
+<span class="line"><span style="color: #e1e4e8"></span></span>
+<span class="line"><span style="color: #e1e4e8"># communicates how to manage the associated subnet(s)</span></span>
+<span class="line"><span style="color: #e1e4e8">subnet 192.168.10.0 netmask 255.255.255.0 {</span></span>
+<span class="line"><span style="color: #e1e4e8">  range 192.168.10.2 192.168.10.254;</span></span>
+<span class="line"><span style="color: #e1e4e8">  option routers 192.168.10.1;</span></span>
+<span class="line"><span style="color: #e1e4e8">  option dns-name-servers 192.168.10.1;</span></span>
+<span class="line"><span style="color: #e1e4e8">}</span></span></code></pre>
+<p>Once dhcp has been configured, we’ll need to restart the service.</p>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #e1e4e8">$ sudo service isc-dhcp-server restart</span></span></code></pre>
+<p>Once the dhcp server has been restarted, it should be operating with the new configuration.
+We can verify that it’s running properly using <code>sudo service isc-dhcp-server status</code> or by tailing logs with <code>sudo journalctl -u isc-dhcp-server</code>.</p>
 <h3 id="dnsmasq">dnsmasq</h3>
-<p>Next we&rsquo;re going to configure dnsmasq.
+<p>Next we’re going to configure dnsmasq.
 dnsmasq provides discovery logic for requests via a DNS interface.
-In the default configuration, it conflicts with systemd-resolved (which is why the service likely couldn&rsquo;t start).
-We&rsquo;ll be modifying its configuration to bind dnsmasq to <code>eth0</code> allowing it to respond to requests there instead of conflicting on <code>wlan0</code>.
-To do so, we&rsquo;ll backup the existing configuration and create a new file.</p>
-<pre><code>$ sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig
-</code></pre><p>Next, we&rsquo;ll create a new <code>/etc/dnsmasq.conf</code> with the following content.</p>
-<pre><code>interface=eth0                              # what interface to bind to.
-listen-address=192.168.10.1                 # what addresses to listen on.
-bind-interfaces                             # binds to all interfaces, even if we're only listening on some.
-server=192.168.4.1                          # sets the upstream router as a dns server for delegation.
-dhcp-range=192.168.10.2,192.168.10.254,12h  # configures the lease time for dhcp requests.
-</code></pre><p>Once we configure dnsmasq, we&rsquo;ll need to restart it for our changes to take effect.</p>
-<pre><code>$ sudo service dnsmasq restart
-</code></pre><p>Once restarted, dnsmasq should come up without an issue.
+In the default configuration, it conflicts with systemd-resolved (which is why the service likely couldn’t start).
+We’ll be modifying its configuration to bind dnsmasq to <code>eth0</code> allowing it to respond to requests there instead of conflicting on <code>wlan0</code>.
+To do so, we’ll backup the existing configuration and create a new file.</p>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #e1e4e8">$ sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig</span></span></code></pre>
+<p>Next, we’ll create a new <code>/etc/dnsmasq.conf</code> with the following content.</p>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #e1e4e8">interface=eth0                              # what interface to bind to.</span></span>
+<span class="line"><span style="color: #e1e4e8">listen-address=192.168.10.1                 # what addresses to listen on.</span></span>
+<span class="line"><span style="color: #e1e4e8">bind-interfaces                             # binds to all interfaces, even if we're only listening on some.</span></span>
+<span class="line"><span style="color: #e1e4e8">server=192.168.4.1                          # sets the upstream router as a dns server for delegation.</span></span>
+<span class="line"><span style="color: #e1e4e8">dhcp-range=192.168.10.2,192.168.10.254,12h  # configures the lease time for dhcp requests.</span></span></code></pre>
+<p>Once we configure dnsmasq, we’ll need to restart it for our changes to take effect.</p>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #e1e4e8">$ sudo service dnsmasq restart</span></span></code></pre>
+<p>Once restarted, dnsmasq should come up without an issue.
 We can check its status using <code>sudo service dnsmasq status</code> or by tailing logs with <code>sudo journalctl -u dnsmasq</code>.
 Before requests can successfully pass through the Raspberry Pi, we need to configure some lower level networking.</p>
 <h3 id="linux-networking">Linux networking</h3>
 <p>The last part of this configuration requires modifying the (GNU/?)Linux networking components.
-To do this, we&rsquo;ll first want to configure the kernel to do packet forwarding for IPv4.
+To do this, we’ll first want to configure the kernel to do packet forwarding for IPv4.
 Open <code>/etc/sysctl.conf</code>, uncomment the line containing <code>net.ipv4.ip_forward=1</code>, and save.
 To reload the configuration without a full system reboot, run the following command.</p>
-<pre><code>$ sudo sysctl --system
-</code></pre><p>Next, we&rsquo;ll instruct IP tables to allow masquerading over the <code>wlan0</code> interface.
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #e1e4e8">$ sudo sysctl --system</span></span></code></pre>
+<p>Next, we’ll instruct IP tables to allow masquerading over the <code>wlan0</code> interface.
 This allows requests to pass through the network interfaces with very little software in between.
-Once modified, we&rsquo;ll need to persist changes using <code>netfilter-persistent</code> so changes persist between reboots.</p>
-<pre><code>$ sudo iptables -t nat -A POSTROUTING -o wlan0 -j MASQUERADE
-$ sudo netfilter-persistent save
-</code></pre><h3 id="verifying-client">Verifying client</h3>
+Once modified, we’ll need to persist changes using <code>netfilter-persistent</code> so changes persist between reboots.</p>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #e1e4e8">$ sudo iptables -t nat -A POSTROUTING -o wlan0 -j MASQUERADE</span></span>
+<span class="line"><span style="color: #e1e4e8">$ sudo netfilter-persistent save</span></span></code></pre>
+<h3 id="verifying-client">Verifying client</h3>
 <p>Once all of this is done, traffic should flow from the connected device through to other devices on the network or internet.
 We can verify this by connecting a device to the Raspberry Pi.
 It should successfully negotiate an IP address from the dhcp server (likely <code>192.168.10.2</code>).
@@ -678,7 +159,7 @@ In addition to that, we should be able to make requests from the client (i.e. th
 <p>Once I connected my system, I saw that it successfully obtain an IP from the server using the UI they provide.
 After, I sent a test email to make sure the request would successfully go through.
 While doing this, I brought up a terminal on the Raspberry Pi to watch the traffic flow (<code>sudo tcpdump -X -i eth0</code>).
-At this point, I&rsquo;m leagues ahead of where I was before.
+At this point, I’m leagues ahead of where I was before.
 When I went to set up cloud backups, I learned that needed to be done through their mobile app.
 As a result, I needed to expose the client application ports through the Raspberry Pi in order to connect from my devices.</p>
 <h3 id="exposing-ports">Exposing ports</h3>
@@ -689,57 +170,22 @@ To quickly proxy these ports, we can use our good ole friend <code>iptables</cod
 By executing the following commands, we can successfully route requests from a port on the Raspberry Pi to a port on the client.
 Note, <code>${CLIENT_IP}</code> should be the IP your client obtained.
 <code>${PORT}</code> would be the port you want to expose.</p>
-<pre><code>$ sudo iptables -A PREROUTING -t nat -i wlan0 -p tcp --dport ${PORT} -j DNAT --to ${CLIENT_IP}:${PORT}
-$ sudo iptables -A FORWARD -p tcp -d ${CLIENT_IP} --dport ${PORT} -j ACCEPT
-</code></pre><p>Note that in my case, the RTSP port needed to also be exposed over <code>udp</code> for better streaming support.
-If you&rsquo;re exposing ports through a Raspberry Pi, you&rsquo;ll need to verify what protocols to expose them over.
-Also, don&rsquo;t forget to save your updated IP table rules, otherwise changes will be lost on reboot.</p>
-<pre><code>$ sudo netfilter-persistent save
-</code></pre><h2 id="conclusion">Conclusion</h2>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #e1e4e8">$ sudo iptables -A PREROUTING -t nat -i wlan0 -p tcp --dport ${PORT} -j DNAT --to ${CLIENT_IP}:${PORT}</span></span>
+<span class="line"><span style="color: #e1e4e8">$ sudo iptables -A FORWARD -p tcp -d ${CLIENT_IP} --dport ${PORT} -j ACCEPT</span></span></code></pre>
+<p>Note that in my case, the RTSP port needed to also be exposed over <code>udp</code> for better streaming support.
+If you’re exposing ports through a Raspberry Pi, you’ll need to verify what protocols to expose them over.
+Also, don’t forget to save your updated IP table rules, otherwise changes will be lost on reboot.</p>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #e1e4e8">$ sudo netfilter-persistent save</span></span></code></pre>
+<h2 id="conclusion">Conclusion</h2>
 <p>That was it.
 Once everything was setup, I was able to connect to the real-time stream from my devices and monitor my whole system.
 The mobile application also connected to the security system fine and was able to let me configure cloud backups.
 While this is where I stop today, I have some more plans for this in the future.
 As I prepare for some upcoming trips, I want to make sure I can access this system outside of my home network safely and securely.
-While I don&rsquo;t expect this to become a regular pattern I&rsquo;ll deploy, it was extremely useful to set up in this case.</p>
+While I don’t expect this to become a regular pattern I’ll deploy, it was extremely useful to set up in this case.</p>
 <p>If you plan on doing this on your own network, be sure to use the proper values for your router and network topology.
 For example, my wireless system uses <code>192.168.4.1</code>.
 Yours might be something different.
-When it comes to configuring the network for the Raspberry Pi&rsquo;s ethernet port, you can pick any unused range on your network.</p>
-    </div>
-    <div class="post-footer">
-      <div class="info">
-        
-        <span><a class="tag" href="/tags/software-development/">software development</a><a class="tag" href="/tags/homestead/">homestead</a></span>
-
-
-      </div>
-    </div>
-
-    
-</div>
-
-
-      </main>
-    </div><footer class="footer footer__base">
-    <ul class="footer__list">
-        <li class="footer__item">
-            &copy;
-            
-            Mya Pitzeruse
-            2023
-
-
-            
-        </li>
-        
-    </ul>
-</footer>
-  
-  <script
-    type="text/javascript"
-    src="/js/medium-zoom.min.fae9ac8895995fe91958b3954be11e96025824a04770726a3531e119ddd2d576.js"
-    integrity="sha256-&#43;umsiJWZX&#43;kZWLOVS&#43;EelgJYJKBHcHJqNTHhGd3S1XY="
-    crossorigin="anonymous"
-  ></script></body>
-</html>
+When it comes to configuring the network for the Raspberry Pi’s ethernet port, you can pick any unused range on your network.</p></div></article></main><footer data-astro-cid-sz7xmlte>
+&copy; 2023&nbsp;Mya Pitzeruse. All rights reserved.
+<div class="social-links" data-astro-cid-sz7xmlte><a href="https://github.com/mjpitz" target="_blank" data-astro-cid-sz7xmlte><span class="sr-only" data-astro-cid-sz7xmlte>GitHub</span><svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-sz7xmlte><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-sz7xmlte></path></svg></a><a href="https://www.linkedin.com/in/mjpitz/" target="_blank" data-astro-cid-sz7xmlte><span class="sr-only" data-astro-cid-sz7xmlte>LinkedIn</span><svg viewBox="0 0 50 50" aria-hidden="true" width="32" height="32" data-astro-cid-sz7xmlte><path fill="currentColor" d="M41,4H9C6.24,4,4,6.24,4,9v32c0,2.76,2.24,5,5,5h32c2.76,0,5-2.24,5-5V9C46,6.24,43.76,4,41,4z M17,20v19h-6V20H17z M11,14.47c0-1.4,1.2-2.47,3-2.47s2.93,1.07,3,2.47c0,1.4-1.12,2.53-3,2.53C12.2,17,11,15.87,11,14.47z M39,39h-6c0,0,0-9.26,0-10 c0-2-1-4-3.5-4.04h-0.08C27,24.96,26,27.02,26,29c0,0.91,0,10,0,10h-6V20h6v2.56c0,0,1.93-2.56,5.81-2.56 c3.97,0,7.19,2.73,7.19,8.26V39z" data-astro-cid-sz7xmlte></path></svg></a><a href="/rss.xml" target="_blank" data-astro-cid-sz7xmlte><span class="sr-only" data-astro-cid-sz7xmlte>RSS</span><svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-sz7xmlte><path fill="currentColor" d="M1,5v2c1.081,0,2.128,0.211,3.113,0.628c0.952,0.403,1.808,0.98,2.543,1.715s1.312,1.591,1.715,2.543 C8.789,12.872,9,13.919,9,15h2C11,9.477,6.523,5,1,5z M4,10c-1.105,0-2,0.895-2,2s0.895,2,2,2s2-0.895,2-2S5.105,10,4,10z M1,1v2 c1.621,0,3.192,0.317,4.67,0.942c1.429,0.604,2.712,1.47,3.815,2.573c1.103,1.103,1.968,2.386,2.573,3.815 C12.683,11.808,13,13.379,13,15h2C15,7.268,8.732,1,1,1z" data-astro-cid-sz7xmlte></path></svg></a></div></footer></body></html>

@@ -1,580 +1,95 @@
-<!DOCTYPE html>
-<html
-  dir="ltr"
-  lang="en"
-  data-theme=""
-  class="html"
-><head>
-    <title>
-        
-        Mya Pitzeruse
-        |
-        AWS Lambda - Handler Lifetime
-
-
-        
-
-
-        
-    </title>
-
-    
-    <meta charset="utf-8" /><meta name="generator" content="Hugo 0.81.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-    <meta name="author" content="Mya Pitzeruse" />
-    <meta
-            name="description"
-            content="
-      Mom | Homesteader | Software Engineer
-
-
-    "
-    />
-    
-    
-    
-    
-    <link
-            rel="stylesheet"
-            href="/scss/main.min.b2e0cb07595e3519ab1193bb421914e06c0e26b0cc561fef23b3c6131d4d2ffa.css"
-            integrity="sha256-suDLB1leNRmrEZO7QhkU4GwOJrDMVh/vI7PGEx1NL/o="
-            crossorigin="anonymous"
-            type="text/css"
-    />
-
-    
-
-    
-    <link
-            rel="stylesheet"
-            href="/css/markupHighlight.min.31b0a1f317f55c529a460897848c97436bb138b19c399b37de70d463a8bf6ed5.css"
-            integrity="sha256-MbCh8xf1XFKaRgiXhIyXQ2uxOLGcOZs33nDUY6i/btU="
-            crossorigin="anonymous"
-            type="text/css"
-    />
-    
-    
-    <link
-            rel="stylesheet"
-            href="/css/overrides.min.2d385947a11fbf61dff71c6e1c2c2efa0a51dcf47be66f416fb97b3cca833a65.css"
-            integrity="sha256-LThZR6Efv2Hf9xxuHCwu&#43;gpR3PR75m9Bb7l7PMqDOmU="
-            crossorigin="anonymous"
-            media="screen"
-    />
-
-    
-    
-    <link
-            rel="stylesheet"
-            href="/fontawesome/css/fontawesome.min.b1c4e6a10bdbab01f33fff9d78816ee68cf9a9a731f07668afd546a79924cb80.css"
-            integrity="sha256-scTmoQvbqwHzP/&#43;deIFu5oz5qacx8HZor9VGp5kky4A="
-            crossorigin="anonymous"
-            type="text/css"
-    />
-    
-    <link
-            rel="stylesheet"
-            href="/fontawesome/css/solid.min.423dee17c62f55fa733a4ee13e00d523dfce88cc4f4ab4549a24ba36bd9de681.css"
-            integrity="sha256-Qj3uF8YvVfpzOk7hPgDVI9/OiMxPSrRUmiS6Nr2d5oE="
-            crossorigin="anonymous"
-            type="text/css"
-    />
-    
-    <link
-            rel="stylesheet"
-            href="/fontawesome/css/brands.min.b7d54133b27e5b4de15245b8e143de3e8ed2d674c706137274cedc9953f31917.css"
-            integrity="sha256-t9VBM7J&#43;W03hUkW44UPePo7S1nTHBhNydM7cmVPzGRc="
-            crossorigin="anonymous"
-            type="text/css"
-    />
-    
-    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png" />
-
-    <link rel="canonical" href="https://mjpitz.com/blog/2018/10/28/lambda-handler-lifetime/">
-
-    
-    
-    
-    
-    <script
-            type="text/javascript"
-            src="/js/anatole-header.min.46e6a54097480084f8f52c20ca1aa7425b4fad17029a887fd4017b12e311a72d.js"
-            integrity="sha256-RualQJdIAIT49SwgyhqnQltPrRcCmoh/1AF7EuMRpy0="
-            crossorigin="anonymous"
-    ></script>
-
-    
-    
-    
-    <script
-            type="text/javascript"
-            src="/js/anatole-theme-switcher.min.5557c8ff5617a01067ac258fd70b9b992506e379317b0da51e5e0f6e018b408a.js"
-            integrity="sha256-VVfI/1YXoBBnrCWP1wubmSUG43kxew2lHl4PbgGLQIo="
-            crossorigin="anonymous"
-    ></script>
-
-    
-
-    
-
-
-    
-    <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="AWS Lambda - Handler Lifetime"/>
-<meta name="twitter:description" content="While working at Dosh, I had pretty heavy exposure to managing NodeJS services running in AWS Lambda.
-During that time, I had learned a few things about the platform that can be leveraged when writing Lambda services.
-Some of these lessons may influence how you write services but can also give you some performance boosts.
-It’s important to note that some of the behaviors that I observed about AWS Lambda may not apply to other serverless technologies."/>
-
-
-
-    
-    <meta property="og:title" content="AWS Lambda - Handler Lifetime" />
-<meta property="og:description" content="While working at Dosh, I had pretty heavy exposure to managing NodeJS services running in AWS Lambda.
-During that time, I had learned a few things about the platform that can be leveraged when writing Lambda services.
-Some of these lessons may influence how you write services but can also give you some performance boosts.
-It’s important to note that some of the behaviors that I observed about AWS Lambda may not apply to other serverless technologies." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://mjpitz.com/blog/2018/10/28/lambda-handler-lifetime/" /><meta property="article:section" content="blog" />
-<meta property="article:published_time" content="2018-10-28T00:00:00&#43;00:00" />
-<meta property="article:modified_time" content="2018-10-28T00:00:00&#43;00:00" /><meta property="og:site_name" content="Mya Pitzeruse" />
-
-
-
-
-    
-    
-  
-  
-  <script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
-        "articleSection": "blog",
-        "name": "AWS Lambda - Handler Lifetime",
-        "headline": "AWS Lambda - Handler Lifetime",
-        "alternativeHeadline": "",
-        "description": "
-      
-        \u003cp\u003eWhile working at Dosh, I had pretty heavy exposure to managing NodeJS services running in AWS Lambda.\nDuring that time, I had learned a few things about the platform that can be leveraged when writing Lambda services.\nSome of these lessons may influence how you write services but can also give you some performance boosts.\nIt’s important to note that some of the behaviors that I observed about AWS Lambda may not apply to other serverless technologies.\u003c\/p\u003e
-
-
-      
-
-
-    ",
-        "inLanguage": "en-us",
-        "isFamilyFriendly": "true",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https:\/\/mjpitz.com\/blog\/2018\/10\/28\/lambda-handler-lifetime\/"
-        },
-        "author" : {
-            "@type": "Person",
-            "name": "Mya Pitzeruse"
-        },
-        "creator" : {
-            "@type": "Person",
-            "name": "Mya Pitzeruse"
-        },
-        "accountablePerson" : {
-            "@type": "Person",
-            "name": "Mya Pitzeruse"
-        },
-        "copyrightHolder" : {
-            "@type": "Person",
-            "name": "Mya Pitzeruse"
-        },
-        "copyrightYear" : "2018",
-        "dateCreated": "2018-10-28T00:00:00.00Z",
-        "datePublished": "2018-10-28T00:00:00.00Z",
-        "dateModified": "2018-10-28T00:00:00.00Z",
-        "publisher":{
-            "@type":"Organization",
-            "name": "Mya Pitzeruse",
-            "url": "https://mjpitz.com/",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "https:\/\/mjpitz.com\/img\/favicon-32x32.png",
-                "width":"32",
-                "height":"32"
-            }
-        },
-        "image": 
-      [
-      ]
-
-    ,
-        "url" : "https:\/\/mjpitz.com\/blog\/2018\/10\/28\/lambda-handler-lifetime\/",
-        "wordCount" : "369",
-        "genre" : [ ],
-        "keywords" : [ 
-      
-      "software development"
-
-    ]
-    }
-  </script>
-
-
-
-</head>
-<body
-    
-      class="body theme--light"
-
-    
-  >
-    <div class="wrapper">
-      <aside
-        
-          class="wrapper__sidebar"
-
-        
-      ><div
-  class="sidebar
-    animated fadeInDown
-
-  "
->
-  <div class="sidebar__content">
-    <div class="sidebar__introduction">
-      <img
-        class="sidebar__introduction-profileimage"
-        src="/img/mjpitz.jpeg"
-        alt="profile picture"
-      />
-      
-        <div class="sidebar__introduction-title">
-          <a href="/">Mya Pitzeruse</a>
-        </div>
-
-      
-      <div class="sidebar__introduction-description">
-        <p>Mom | Homesteader | Software Engineer</p>
-      </div>
-    </div>
-    <ul class="sidebar__list">
-      
-        <li class="sidebar__list-item">
-          <a
-            href="https://github.com/mjpitz"
-            target="_blank"
-            rel="noopener"
-            aria-label="GitHub"
-            title="GitHub"
-          >
-            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
-          </a>
-        </li>
-
-      
-        <li class="sidebar__list-item">
-          <a
-            href="https://www.linkedin.com/in/mjpitz/"
-            target="_blank"
-            rel="noopener"
-            aria-label="LinkedIn"
-            title="LinkedIn"
-          >
-            <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
-          </a>
-        </li>
-
-      
-        <li class="sidebar__list-item">
-          <a
-            href="/index.xml"
-            target="_blank"
-            rel="noopener"
-            aria-label="Feed"
-            title="Feed"
-          >
-            <i class="fas fa-rss fa-2x" aria-hidden="true"></i>
-          </a>
-        </li>
-
-      
-    </ul>
-  </div><footer class="footer footer__sidebar">
-    <ul class="footer__list">
-        <li class="footer__item">
-            &copy;
-            
-            Mya Pitzeruse
-            2023
-
-
-            
-        </li>
-        
-    </ul>
-</footer>
-  
-  <script
-    type="text/javascript"
-    src="/js/medium-zoom.min.fae9ac8895995fe91958b3954be11e96025824a04770726a3531e119ddd2d576.js"
-    integrity="sha256-&#43;umsiJWZX&#43;kZWLOVS&#43;EelgJYJKBHcHJqNTHhGd3S1XY="
-    crossorigin="anonymous"
-  ></script></div>
-</aside>
-      <main
-        
-          class="wrapper__main"
-
-        
-      >
-        <header class="header"><div
-  class="
-    animated fadeInDown
-
-  "
->
-  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
-    <span aria-hidden="true" class="navbar-burger__line"></span>
-    <span aria-hidden="true" class="navbar-burger__line"></span>
-    <span aria-hidden="true" class="navbar-burger__line"></span>
-  </a>
-  <nav class="nav">
-    <ul class="nav__list" id="navMenu">
-      
-      
-      
-        
-        
-          <li class="nav__list-item">
-            <a
-              
-              href="/"
-              
-              title=""
-              >Home</a
-            >
-          </li>
-
-        
-
-
-      
-        
-        
-          <li class="nav__list-item">
-            <a
-              
-              href="/blog/"
-              
-              title=""
-              >Blog</a
-            >
-          </li>
-
-        
-
-
-      
-        
-        
-          <li class="nav__list-item">
-            <a
-              
-              href="/charts/"
-              
-              title=""
-              >Charts</a
-            >
-          </li>
-
-        
-
-
-      
-        
-        
-          <li class="nav__list-item">
-            <a
-              
-              href="/media/"
-              
-              title=""
-              >Media</a
-            >
-          </li>
-
-        
-
-
-      
-        
-        
-          <li class="nav__list-item">
-            <a
-              
-              href="/papers/"
-              
-              title=""
-              >Papers</a
-            >
-          </li>
-
-        
-
-
-      
-        
-        
-          <li class="nav__list-item">
-            <a
-              
-              href="/projects/"
-              
-              title=""
-              >Projects</a
-            >
-          </li>
-
-        
-
-
-      
-    </ul>
-    <ul class="nav__list nav__list--end">
-      
-      
-        <li class="nav__list-item">
-          <div class="themeswitch">
-            <a title="Switch Theme">
-              <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
-            </a>
-          </div>
-        </li>
-
-      
-    </ul>
-  </nav>
-</div>
-</header>
-<div class="post animated fadeInDown">
-    <div class="post-content">
-
-      <div class="post-title">
-        <h3>AWS Lambda - Handler Lifetime</h3>
-        
-        <div class="info">
-          <i class="fa fa-sun-o"></i><span class="date">Sun, Oct 28, 2018</span>
-          <i class="fa fa-clock-o"></i><span class="reading-time">2-minute read</span>
-        </div>
-        
-        </div>
-
-    <p>While working at Dosh, I had pretty heavy exposure to managing NodeJS services running in AWS Lambda.
+<!DOCTYPE html><html lang="en" data-astro-cid-bvzihdzo><head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v3.0.5"><!-- Font preloads --><link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin><link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://mjpitz.com/blog/2018/10/28/lambda-handler-lifetime/"><!-- Primary Meta Tags --><title>AWS Lambda - Handler Lifetime</title><meta name="title" content="AWS Lambda - Handler Lifetime"><meta name="description" content=""><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://mjpitz.com/blog/2018/10/28/lambda-handler-lifetime/"><meta property="og:title" content="AWS Lambda - Handler Lifetime"><meta property="og:description" content=""><meta property="og:image" content="https://mjpitz.com/blog-placeholder-1.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://mjpitz.com/blog/2018/10/28/lambda-handler-lifetime/"><meta property="twitter:title" content="AWS Lambda - Handler Lifetime"><meta property="twitter:description" content=""><meta property="twitter:image" content="https://mjpitz.com/blog-placeholder-1.jpg"><link rel="stylesheet" href="/_astro/_...slug_.e98600b1.css" />
+<style type="text/css">main[data-astro-cid-bvzihdzo]{width:calc(100% - 2em);max-width:100%;margin:0}.hero-image[data-astro-cid-bvzihdzo]{width:100%}.hero-image[data-astro-cid-bvzihdzo] img[data-astro-cid-bvzihdzo]{display:block;margin:0 auto;border-radius:12px;box-shadow:var(--box-shadow)}.prose[data-astro-cid-bvzihdzo]{width:720px;max-width:calc(100% - 2em);margin:auto;padding:1em;color:var(--color-text)}.title[data-astro-cid-bvzihdzo]{margin-bottom:1em;padding:1em 0;text-align:center;line-height:1}.title[data-astro-cid-bvzihdzo] h1[data-astro-cid-bvzihdzo]{margin:0 0 .5em}.date[data-astro-cid-bvzihdzo]{margin-bottom:.5em;color:var(--color-text)}.last-updated-on[data-astro-cid-bvzihdzo]{font-style:italic}
+</style><script type="module">const t=document.querySelector('.theme-switch input[type="checkbox"]'),e=localStorage.getItem("theme");e&&(document.documentElement.setAttribute("data-theme",e),e==="dark"&&(t.checked=!0));function m(c){c.target.checked?(document.documentElement.setAttribute("data-theme","dark"),localStorage.setItem("theme","dark")):(document.documentElement.setAttribute("data-theme","light"),localStorage.setItem("theme","light"))}t.addEventListener("change",m,!1);
+</script></head><body data-astro-cid-bvzihdzo><header data-astro-cid-3ef6ksr2><nav data-astro-cid-3ef6ksr2><div class="theme-switch-wrapper"><label class="theme-switch" for="checkbox"><input type="checkbox" id="checkbox"><div class="slider"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#FCD53F" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#FCD53F" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></div></label></div><h2 data-astro-cid-3ef6ksr2><a href="/" data-astro-cid-3ef6ksr2>Mya Pitzeruse</a></h2><div class="internal-links" data-astro-cid-3ef6ksr2><a href="/" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg>Home</a><a href="/blog" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg>Blog</a><a href="/charts" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg>Charts</a><a href="/media" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg>Media</a><a href="/papers" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg>Papers</a></div><div class="social-links" data-astro-cid-3ef6ksr2><a href="https://github.com/mjpitz" target="_blank" data-astro-cid-3ef6ksr2><span class="sr-only" data-astro-cid-3ef6ksr2>GitHub</span><svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-3ef6ksr2></path></svg></a><a href="https://www.linkedin.com/in/mjpitz/" target="_blank" data-astro-cid-3ef6ksr2><span class="sr-only" data-astro-cid-3ef6ksr2>LinkedIn</span><svg viewBox="0 0 50 50" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M41,4H9C6.24,4,4,6.24,4,9v32c0,2.76,2.24,5,5,5h32c2.76,0,5-2.24,5-5V9C46,6.24,43.76,4,41,4z M17,20v19h-6V20H17z M11,14.47c0-1.4,1.2-2.47,3-2.47s2.93,1.07,3,2.47c0,1.4-1.12,2.53-3,2.53C12.2,17,11,15.87,11,14.47z M39,39h-6c0,0,0-9.26,0-10 c0-2-1-4-3.5-4.04h-0.08C27,24.96,26,27.02,26,29c0,0.91,0,10,0,10h-6V20h6v2.56c0,0,1.93-2.56,5.81-2.56 c3.97,0,7.19,2.73,7.19,8.26V39z" data-astro-cid-3ef6ksr2></path></svg></a><a href="/rss.xml" target="_blank" data-astro-cid-3ef6ksr2><span class="sr-only" data-astro-cid-3ef6ksr2>RSS</span><svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M1,5v2c1.081,0,2.128,0.211,3.113,0.628c0.952,0.403,1.808,0.98,2.543,1.715s1.312,1.591,1.715,2.543 C8.789,12.872,9,13.919,9,15h2C11,9.477,6.523,5,1,5z M4,10c-1.105,0-2,0.895-2,2s0.895,2,2,2s2-0.895,2-2S5.105,10,4,10z M1,1v2 c1.621,0,3.192,0.317,4.67,0.942c1.429,0.604,2.712,1.47,3.815,2.573c1.103,1.103,1.968,2.386,2.573,3.815 C12.683,11.808,13,13.379,13,15h2C15,7.268,8.732,1,1,1z" data-astro-cid-3ef6ksr2></path></svg></a></div></nav></header><main data-astro-cid-bvzihdzo><article data-astro-cid-bvzihdzo><div class="hero-image" data-astro-cid-bvzihdzo><img width="1020" height="510" src="/img/blog-placeholder-3.jpg" alt="" data-astro-cid-bvzihdzo></div><div class="prose" data-astro-cid-bvzihdzo><div class="title" data-astro-cid-bvzihdzo><div class="date" data-astro-cid-bvzihdzo><time datetime="2018-10-28T00:00:00.000Z">Oct 28, 2018</time></div><h1 data-astro-cid-bvzihdzo>AWS Lambda - Handler Lifetime</h1><hr data-astro-cid-bvzihdzo></div><p>While working at Dosh, I had pretty heavy exposure to managing NodeJS services running in AWS Lambda.
 During that time, I had learned a few things about the platform that can be leveraged when writing Lambda services.
 Some of these lessons may influence how you write services but can also give you some performance boosts.
 It’s important to note that some of the behaviors that I observed about AWS Lambda may not apply to other serverless technologies.</p>
-<!-- raw HTML omitted -->
+<!--more-->
+<hr>
 <p>When I first began working on AWS Lambda, I was skeptical.
 I remember a conversation with my manager where I made the comment about how Lambda feels like we are writing PHP transaction scripts all over again.
 As time went on, I learned a few things about the way that AWS Lambda manages it’s containers under the hood.
 By far, the biggest thing I took away was how long the lifespan of a Lambda function actually is.
 Consider the following Typescript handler:
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
-<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#000">APIGatewayEvent</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">Callback</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">Context</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">Handler</span> <span style="color:#000;font-weight:bold">}</span> <span style="color:#204a87;font-weight:bold">from</span> <span style="color:#4e9a06">&#39;aws-lambda&#39;</span><span style="color:#000;font-weight:bold">;</span>
-<span style="color:#204a87;font-weight:bold">import</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#204a87;font-weight:bold">as</span> <span style="color:#000">uuidv4</span> <span style="color:#204a87;font-weight:bold">from</span> <span style="color:#4e9a06">&#34;uuid/v4&#34;</span><span style="color:#000;font-weight:bold">;</span>
-
-<span style="color:#204a87;font-weight:bold">const</span> <span style="color:#000">instanceId</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">uuidv4</span><span style="color:#000;font-weight:bold">();</span>
-
-<span style="color:#204a87;font-weight:bold">export</span> <span style="color:#204a87;font-weight:bold">const</span> <span style="color:#000">hello</span>: <span style="color:#204a87;font-weight:bold">Handler</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">event</span>: <span style="color:#204a87;font-weight:bold">APIGatewayEvent</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">context</span>: <span style="color:#204a87;font-weight:bold">Context</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">cb</span>: <span style="color:#204a87;font-weight:bold">Callback</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">=&gt;</span> <span style="color:#000;font-weight:bold">{</span>
-  <span style="color:#204a87;font-weight:bold">const</span> <span style="color:#000">response</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">{</span>
-    <span style="color:#000">statusCode</span>: <span style="color:#204a87;font-weight:bold">200</span><span style="color:#000;font-weight:bold">,</span>
-    <span style="color:#000">headers</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">{</span>
-        <span style="color:#4e9a06">&#34;Content-Type&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;application/json&#34;</span><span style="color:#000;font-weight:bold">,</span>
-    <span style="color:#000;font-weight:bold">},</span>
-    <span style="color:#000">body</span>: <span style="color:#204a87;font-weight:bold">JSON.stringify</span><span style="color:#000;font-weight:bold">({</span>
-      <span style="color:#000">message</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#39;Go Serverless Webpack (Typescript) v1.0! Your function executed successfully!&#39;</span><span style="color:#000;font-weight:bold">,</span>
-      <span style="color:#000">instanceId</span><span style="color:#000;font-weight:bold">,</span>
-      <span style="color:#000">input</span>: <span style="color:#204a87;font-weight:bold">event</span><span style="color:#000;font-weight:bold">,</span>
-    <span style="color:#000;font-weight:bold">}),</span>
-  <span style="color:#000;font-weight:bold">};</span>
-
-  <span style="color:#000">cb</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">response</span><span style="color:#000;font-weight:bold">);</span>
-<span style="color:#000;font-weight:bold">}</span>
-</code></pre></td></tr></table>
+<br><br></p>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #F97583">import</span><span style="color: #E1E4E8"> { APIGatewayEvent, Callback, Context, Handler } </span><span style="color: #F97583">from</span><span style="color: #E1E4E8"> </span><span style="color: #9ECBFF">'aws-lambda'</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"><span style="color: #F97583">import</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">*</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">as</span><span style="color: #E1E4E8"> uuidv4 </span><span style="color: #F97583">from</span><span style="color: #E1E4E8"> </span><span style="color: #9ECBFF">"uuid/v4"</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #F97583">const</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">instanceId</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">uuidv4</span><span style="color: #E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #F97583">export</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">const</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">hello</span><span style="color: #F97583">:</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">Handler</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> (</span><span style="color: #FFAB70">event</span><span style="color: #F97583">:</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">APIGatewayEvent</span><span style="color: #E1E4E8">, </span><span style="color: #FFAB70">context</span><span style="color: #F97583">:</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">Context</span><span style="color: #E1E4E8">, </span><span style="color: #FFAB70">cb</span><span style="color: #F97583">:</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">Callback</span><span style="color: #E1E4E8">) </span><span style="color: #F97583">=></span><span style="color: #E1E4E8"> {</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #F97583">const</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">response</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> {</span></span>
+<span class="line"><span style="color: #E1E4E8">    statusCode: </span><span style="color: #79B8FF">200</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">    headers: {</span></span>
+<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #9ECBFF">"Content-Type"</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">"application/json"</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">    },</span></span>
+<span class="line"><span style="color: #E1E4E8">    body: </span><span style="color: #79B8FF">JSON</span><span style="color: #E1E4E8">.</span><span style="color: #B392F0">stringify</span><span style="color: #E1E4E8">({</span></span>
+<span class="line"><span style="color: #E1E4E8">      message: </span><span style="color: #9ECBFF">'Go Serverless Webpack (Typescript) v1.0! Your function executed successfully!'</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">      instanceId,</span></span>
+<span class="line"><span style="color: #E1E4E8">      input: event,</span></span>
+<span class="line"><span style="color: #E1E4E8">    }),</span></span>
+<span class="line"><span style="color: #E1E4E8">  };</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #B392F0">cb</span><span style="color: #E1E4E8">(</span><span style="color: #79B8FF">null</span><span style="color: #E1E4E8">, response);</span></span>
+<span class="line"><span style="color: #E1E4E8">}</span></span></code></pre>
+<br>
+My initial understanding of AWS Lambda was that every execution of a handler, would result in a new context.
+To me, that meant that instanceId would be different for every execution of the function.
+In fact, you can see this using the [serverless-offline](https://www.npmjs.com/package/serverless-offline) plugin (a common utility for locally testing AWS Lambda functions).
+<br><br>
+<div>
+    <div style="text-align:center">
+        <p><i>Execution 1</i></p>
+        <img src="/img/offline-execution-1.png" alt="Execution 1" title="Execution 1">
+    </div>
+    <br>
+    <div style="text-align:center">
+        <p><i>Execution 2</i></p>
+        <img src="/img/offline-execution-2.png" alt="Execution 2" title="Execution 2">
+    </div>
+    <br>
+    <div style="text-align:center">
+        <p><i>Execution 3</i></p>
+        <img src="/img/offline-execution-3.png" alt="Execution 3" title="Execution 3">
+    </div>
+    <br>
 </div>
-</div><!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<br>
+Once I got into production, we saw a very different type of behavior.
+Instead of seeing one instanceId per request, we saw many requests being handled my the same instanceId.
+<br><br>
+<div class="row">
+    <div style="text-align:center">
+        <img src="/img/executions-per-instance.png" alt="Executions/Instance" title="Executions/Instance">
+    </div>
+</div>
+<br>
+What this meant was that the application container for a Lambda function was spun up and reused to service **multiple** requests.
+This was the first bit of insight into how AWS makes Lambda functions work efficiently.
+One way I’ve been able to think about the underlying infrastructure was equating it to an elastic container pool. 
+Lambda (or the container pool), maintains some minimum number of provisioned instances responsible for servicing traffic.
+When a request comes in, Lambda attempts to pull from it’s pool of existing containers.
+If we were able to find an existing container, then it is used to service the current request. 
+If we were unable to find an existing container, then we spin up a new one to service the current request (cold start). 
+When a request completes, its container is returned to the pool for reuse.
+After some idle time, containers are shut down to keep resources to a minimum.
+In practice, this process is distributed across a cluster of machines so that there is no single point of failure.
 <p>From an engineering standpoint, this means that we can write lambda functions a lot like how we write your typical HTTP server.
 Services that load some data at start up can continue to benefit by doing that once and then re-using the loaded data for subsequent requests.
 Many of our reliability patterns can continue to be applied, such as circuit breaking, persistent connections, and distributed tracing.
-All in all, working in AWS Lambda isn&rsquo;t all that different from your typical application development.
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+All in all, working in AWS Lambda isn’t all that different from your typical application development.
+<br><br></p>
 <p><em>Update: 2018-10-29</em></p>
 <p>I went and took a look at some larger windows of time.
-Over a 24 hour window, I found some lambda&rsquo;s running all day and even all night.
+Over a 24 hour window, I found some lambda’s running all day and even all night.
 The image below shows a provisioned lambda running from 9pm to 2am US Central Time.
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
-<!-- raw HTML omitted -->
+<br><br></p>
+<div class="row">
+    <div style="text-align:center">
+        <img src="/img/long-running-lambda.png" alt="Long Running Lambda" title="Long Running Lambda">
     </div>
-    <div class="post-footer">
-      <div class="info">
-        
-        <span><a class="tag" href="/tags/software-development/">software development</a></span>
-
-
-      </div>
-    </div>
-
-    
 </div>
-
-
-      </main>
-    </div><footer class="footer footer__base">
-    <ul class="footer__list">
-        <li class="footer__item">
-            &copy;
-            
-            Mya Pitzeruse
-            2023
-
-
-            
-        </li>
-        
-    </ul>
-</footer>
-  
-  <script
-    type="text/javascript"
-    src="/js/medium-zoom.min.fae9ac8895995fe91958b3954be11e96025824a04770726a3531e119ddd2d576.js"
-    integrity="sha256-&#43;umsiJWZX&#43;kZWLOVS&#43;EelgJYJKBHcHJqNTHhGd3S1XY="
-    crossorigin="anonymous"
-  ></script></body>
-</html>
+<br></div></article></main><footer data-astro-cid-sz7xmlte>
+&copy; 2023&nbsp;Mya Pitzeruse. All rights reserved.
+<div class="social-links" data-astro-cid-sz7xmlte><a href="https://github.com/mjpitz" target="_blank" data-astro-cid-sz7xmlte><span class="sr-only" data-astro-cid-sz7xmlte>GitHub</span><svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-sz7xmlte><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-sz7xmlte></path></svg></a><a href="https://www.linkedin.com/in/mjpitz/" target="_blank" data-astro-cid-sz7xmlte><span class="sr-only" data-astro-cid-sz7xmlte>LinkedIn</span><svg viewBox="0 0 50 50" aria-hidden="true" width="32" height="32" data-astro-cid-sz7xmlte><path fill="currentColor" d="M41,4H9C6.24,4,4,6.24,4,9v32c0,2.76,2.24,5,5,5h32c2.76,0,5-2.24,5-5V9C46,6.24,43.76,4,41,4z M17,20v19h-6V20H17z M11,14.47c0-1.4,1.2-2.47,3-2.47s2.93,1.07,3,2.47c0,1.4-1.12,2.53-3,2.53C12.2,17,11,15.87,11,14.47z M39,39h-6c0,0,0-9.26,0-10 c0-2-1-4-3.5-4.04h-0.08C27,24.96,26,27.02,26,29c0,0.91,0,10,0,10h-6V20h6v2.56c0,0,1.93-2.56,5.81-2.56 c3.97,0,7.19,2.73,7.19,8.26V39z" data-astro-cid-sz7xmlte></path></svg></a><a href="/rss.xml" target="_blank" data-astro-cid-sz7xmlte><span class="sr-only" data-astro-cid-sz7xmlte>RSS</span><svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-sz7xmlte><path fill="currentColor" d="M1,5v2c1.081,0,2.128,0.211,3.113,0.628c0.952,0.403,1.808,0.98,2.543,1.715s1.312,1.591,1.715,2.543 C8.789,12.872,9,13.919,9,15h2C11,9.477,6.523,5,1,5z M4,10c-1.105,0-2,0.895-2,2s0.895,2,2,2s2-0.895,2-2S5.105,10,4,10z M1,1v2 c1.621,0,3.192,0.317,4.67,0.942c1.429,0.604,2.712,1.47,3.815,2.573c1.103,1.103,1.968,2.386,2.573,3.815 C12.683,11.808,13,13.379,13,15h2C15,7.268,8.732,1,1,1z" data-astro-cid-sz7xmlte></path></svg></a></div></footer></body></html>

@@ -1,474 +1,10 @@
-<!DOCTYPE html>
-<html
-  dir="ltr"
-  lang="en"
-  data-theme=""
-  class="html"
-><head>
-    <title>
-        
-        Mya Pitzeruse
-        |
-        Status: A Java Library For Robust System Status Health Checks
-
-
-        
-
-
-        
-    </title>
-
-    
-    <meta charset="utf-8" /><meta name="generator" content="Hugo 0.81.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-    <meta name="author" content="Mya Pitzeruse" />
-    <meta
-            name="description"
-            content="
-      Mom | Homesteader | Software Engineer
-
-
-    "
-    />
-    
-    
-    
-    
-    <link
-            rel="stylesheet"
-            href="/scss/main.min.b2e0cb07595e3519ab1193bb421914e06c0e26b0cc561fef23b3c6131d4d2ffa.css"
-            integrity="sha256-suDLB1leNRmrEZO7QhkU4GwOJrDMVh/vI7PGEx1NL/o="
-            crossorigin="anonymous"
-            type="text/css"
-    />
-
-    
-
-    
-    <link
-            rel="stylesheet"
-            href="/css/markupHighlight.min.31b0a1f317f55c529a460897848c97436bb138b19c399b37de70d463a8bf6ed5.css"
-            integrity="sha256-MbCh8xf1XFKaRgiXhIyXQ2uxOLGcOZs33nDUY6i/btU="
-            crossorigin="anonymous"
-            type="text/css"
-    />
-    
-    
-    <link
-            rel="stylesheet"
-            href="/css/overrides.min.2d385947a11fbf61dff71c6e1c2c2efa0a51dcf47be66f416fb97b3cca833a65.css"
-            integrity="sha256-LThZR6Efv2Hf9xxuHCwu&#43;gpR3PR75m9Bb7l7PMqDOmU="
-            crossorigin="anonymous"
-            media="screen"
-    />
-
-    
-    
-    <link
-            rel="stylesheet"
-            href="/fontawesome/css/fontawesome.min.b1c4e6a10bdbab01f33fff9d78816ee68cf9a9a731f07668afd546a79924cb80.css"
-            integrity="sha256-scTmoQvbqwHzP/&#43;deIFu5oz5qacx8HZor9VGp5kky4A="
-            crossorigin="anonymous"
-            type="text/css"
-    />
-    
-    <link
-            rel="stylesheet"
-            href="/fontawesome/css/solid.min.423dee17c62f55fa733a4ee13e00d523dfce88cc4f4ab4549a24ba36bd9de681.css"
-            integrity="sha256-Qj3uF8YvVfpzOk7hPgDVI9/OiMxPSrRUmiS6Nr2d5oE="
-            crossorigin="anonymous"
-            type="text/css"
-    />
-    
-    <link
-            rel="stylesheet"
-            href="/fontawesome/css/brands.min.b7d54133b27e5b4de15245b8e143de3e8ed2d674c706137274cedc9953f31917.css"
-            integrity="sha256-t9VBM7J&#43;W03hUkW44UPePo7S1nTHBhNydM7cmVPzGRc="
-            crossorigin="anonymous"
-            type="text/css"
-    />
-    
-    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png" />
-
-    <link rel="canonical" href="http://engineering.indeedblog.com/blog/2015/07/status-java-library-for-system-status-health-checks/">
-
-    
-    
-    
-    
-    <script
-            type="text/javascript"
-            src="/js/anatole-header.min.46e6a54097480084f8f52c20ca1aa7425b4fad17029a887fd4017b12e311a72d.js"
-            integrity="sha256-RualQJdIAIT49SwgyhqnQltPrRcCmoh/1AF7EuMRpy0="
-            crossorigin="anonymous"
-    ></script>
-
-    
-    
-    
-    <script
-            type="text/javascript"
-            src="/js/anatole-theme-switcher.min.5557c8ff5617a01067ac258fd70b9b992506e379317b0da51e5e0f6e018b408a.js"
-            integrity="sha256-VVfI/1YXoBBnrCWP1wubmSUG43kxew2lHl4PbgGLQIo="
-            crossorigin="anonymous"
-    ></script>
-
-    
-
-    
-
-
-    
-    <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Status: A Java Library For Robust System Status Health Checks"/>
-<meta name="twitter:description" content="We are excited to highlight the open source availability of Status, a Java library that can report a system’s status in a readable format.
-The Status library enables dynamic health checks and monitoring of system dependencies.
-In this post, we will show how to add health checks to your applications."/>
-
-
-
-    
-    <meta property="og:title" content="Status: A Java Library For Robust System Status Health Checks" />
-<meta property="og:description" content="We are excited to highlight the open source availability of Status, a Java library that can report a system’s status in a readable format.
-The Status library enables dynamic health checks and monitoring of system dependencies.
-In this post, we will show how to add health checks to your applications." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://mjpitz.com/blog/2015/07/10/status-java-library-for-system-status-health-checks/" /><meta property="article:section" content="blog" />
-<meta property="article:published_time" content="2015-07-10T00:00:00&#43;00:00" />
-<meta property="article:modified_time" content="2015-07-10T00:00:00&#43;00:00" /><meta property="og:site_name" content="Mya Pitzeruse" />
-
-
-
-
-    
-    
-  
-  
-  <script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
-        "articleSection": "blog",
-        "name": "Status: A Java Library For Robust System Status Health Checks",
-        "headline": "Status: A Java Library For Robust System Status Health Checks",
-        "alternativeHeadline": "",
-        "description": "
-      
-        \u003cp\u003eWe are excited to highlight the open source availability of \u003ca href=\u0022https:\/\/github.com\/indeedeng\/status\u0022\u003eStatus\u003c\/a\u003e, a Java library that can report a system’s status in a readable format.\nThe Status library enables dynamic health checks and monitoring of system dependencies.\nIn this post, we will show how to add health checks to your applications.\u003c\/p\u003e
-
-
-      
-
-
-    ",
-        "inLanguage": "en-us",
-        "isFamilyFriendly": "true",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https:\/\/mjpitz.com\/blog\/2015\/07\/10\/status-java-library-for-system-status-health-checks\/"
-        },
-        "author" : {
-            "@type": "Person",
-            "name": "Mya Pitzeruse"
-        },
-        "creator" : {
-            "@type": "Person",
-            "name": "Mya Pitzeruse"
-        },
-        "accountablePerson" : {
-            "@type": "Person",
-            "name": "Mya Pitzeruse"
-        },
-        "copyrightHolder" : {
-            "@type": "Person",
-            "name": "Mya Pitzeruse"
-        },
-        "copyrightYear" : "2015",
-        "dateCreated": "2015-07-10T00:00:00.00Z",
-        "datePublished": "2015-07-10T00:00:00.00Z",
-        "dateModified": "2015-07-10T00:00:00.00Z",
-        "publisher":{
-            "@type":"Organization",
-            "name": "Mya Pitzeruse",
-            "url": "https://mjpitz.com/",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "https:\/\/mjpitz.com\/img\/favicon-32x32.png",
-                "width":"32",
-                "height":"32"
-            }
-        },
-        "image": 
-      [
-      ]
-
-    ,
-        "url" : "https:\/\/mjpitz.com\/blog\/2015\/07\/10\/status-java-library-for-system-status-health-checks\/",
-        "wordCount" : "927",
-        "genre" : [ ],
-        "keywords" : [ 
-      
-      "software development"
-
-    ]
-    }
-  </script>
-
-
-
-</head>
-<body
-    
-      class="body theme--light"
-
-    
-  >
-    <div class="wrapper">
-      <aside
-        
-          class="wrapper__sidebar"
-
-        
-      ><div
-  class="sidebar
-    animated fadeInDown
-
-  "
->
-  <div class="sidebar__content">
-    <div class="sidebar__introduction">
-      <img
-        class="sidebar__introduction-profileimage"
-        src="/img/mjpitz.jpeg"
-        alt="profile picture"
-      />
-      
-        <div class="sidebar__introduction-title">
-          <a href="/">Mya Pitzeruse</a>
-        </div>
-
-      
-      <div class="sidebar__introduction-description">
-        <p>Mom | Homesteader | Software Engineer</p>
-      </div>
-    </div>
-    <ul class="sidebar__list">
-      
-        <li class="sidebar__list-item">
-          <a
-            href="https://github.com/mjpitz"
-            target="_blank"
-            rel="noopener"
-            aria-label="GitHub"
-            title="GitHub"
-          >
-            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
-          </a>
-        </li>
-
-      
-        <li class="sidebar__list-item">
-          <a
-            href="https://www.linkedin.com/in/mjpitz/"
-            target="_blank"
-            rel="noopener"
-            aria-label="LinkedIn"
-            title="LinkedIn"
-          >
-            <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
-          </a>
-        </li>
-
-      
-        <li class="sidebar__list-item">
-          <a
-            href="/index.xml"
-            target="_blank"
-            rel="noopener"
-            aria-label="Feed"
-            title="Feed"
-          >
-            <i class="fas fa-rss fa-2x" aria-hidden="true"></i>
-          </a>
-        </li>
-
-      
-    </ul>
-  </div><footer class="footer footer__sidebar">
-    <ul class="footer__list">
-        <li class="footer__item">
-            &copy;
-            
-            Mya Pitzeruse
-            2023
-
-
-            
-        </li>
-        
-    </ul>
-</footer>
-  
-  <script
-    type="text/javascript"
-    src="/js/medium-zoom.min.fae9ac8895995fe91958b3954be11e96025824a04770726a3531e119ddd2d576.js"
-    integrity="sha256-&#43;umsiJWZX&#43;kZWLOVS&#43;EelgJYJKBHcHJqNTHhGd3S1XY="
-    crossorigin="anonymous"
-  ></script></div>
-</aside>
-      <main
-        
-          class="wrapper__main"
-
-        
-      >
-        <header class="header"><div
-  class="
-    animated fadeInDown
-
-  "
->
-  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
-    <span aria-hidden="true" class="navbar-burger__line"></span>
-    <span aria-hidden="true" class="navbar-burger__line"></span>
-    <span aria-hidden="true" class="navbar-burger__line"></span>
-  </a>
-  <nav class="nav">
-    <ul class="nav__list" id="navMenu">
-      
-      
-      
-        
-        
-          <li class="nav__list-item">
-            <a
-              
-              href="/"
-              
-              title=""
-              >Home</a
-            >
-          </li>
-
-        
-
-
-      
-        
-        
-          <li class="nav__list-item">
-            <a
-              
-              href="/blog/"
-              
-              title=""
-              >Blog</a
-            >
-          </li>
-
-        
-
-
-      
-        
-        
-          <li class="nav__list-item">
-            <a
-              
-              href="/charts/"
-              
-              title=""
-              >Charts</a
-            >
-          </li>
-
-        
-
-
-      
-        
-        
-          <li class="nav__list-item">
-            <a
-              
-              href="/media/"
-              
-              title=""
-              >Media</a
-            >
-          </li>
-
-        
-
-
-      
-        
-        
-          <li class="nav__list-item">
-            <a
-              
-              href="/papers/"
-              
-              title=""
-              >Papers</a
-            >
-          </li>
-
-        
-
-
-      
-        
-        
-          <li class="nav__list-item">
-            <a
-              
-              href="/projects/"
-              
-              title=""
-              >Projects</a
-            >
-          </li>
-
-        
-
-
-      
-    </ul>
-    <ul class="nav__list nav__list--end">
-      
-      
-        <li class="nav__list-item">
-          <div class="themeswitch">
-            <a title="Switch Theme">
-              <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
-            </a>
-          </div>
-        </li>
-
-      
-    </ul>
-  </nav>
-</div>
-</header>
-<div class="post animated fadeInDown">
-    <div class="post-content">
-
-      <div class="post-title">
-        <h3>Status: A Java Library For Robust System Status Health Checks</h3>
-        
-        <div class="info">
-          <i class="fa fa-sun-o"></i><span class="date">Fri, Jul 10, 2015</span>
-          <i class="fa fa-clock-o"></i><span class="reading-time">5-minute read</span>
-        </div>
-        
-        </div>
-
-    <p>We are excited to highlight the open source availability of <a href="https://github.com/indeedeng/status">Status</a>, a Java library that can report a system’s status in a readable format.
+<!DOCTYPE html><html lang="en" data-astro-cid-bvzihdzo><head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v3.0.5"><!-- Font preloads --><link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin><link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://mjpitz.com/blog/2015/07/10/status-java-library-for-system-status-health-checks/"><!-- Primary Meta Tags --><title>Status: A Java Library For Robust System Status Health Checks</title><meta name="title" content="Status: A Java Library For Robust System Status Health Checks"><meta name="description" content=""><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://mjpitz.com/blog/2015/07/10/status-java-library-for-system-status-health-checks/"><meta property="og:title" content="Status: A Java Library For Robust System Status Health Checks"><meta property="og:description" content=""><meta property="og:image" content="https://mjpitz.com/blog-placeholder-1.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://mjpitz.com/blog/2015/07/10/status-java-library-for-system-status-health-checks/"><meta property="twitter:title" content="Status: A Java Library For Robust System Status Health Checks"><meta property="twitter:description" content=""><meta property="twitter:image" content="https://mjpitz.com/blog-placeholder-1.jpg"><link rel="stylesheet" href="/_astro/_...slug_.e98600b1.css" />
+<style type="text/css">main[data-astro-cid-bvzihdzo]{width:calc(100% - 2em);max-width:100%;margin:0}.hero-image[data-astro-cid-bvzihdzo]{width:100%}.hero-image[data-astro-cid-bvzihdzo] img[data-astro-cid-bvzihdzo]{display:block;margin:0 auto;border-radius:12px;box-shadow:var(--box-shadow)}.prose[data-astro-cid-bvzihdzo]{width:720px;max-width:calc(100% - 2em);margin:auto;padding:1em;color:var(--color-text)}.title[data-astro-cid-bvzihdzo]{margin-bottom:1em;padding:1em 0;text-align:center;line-height:1}.title[data-astro-cid-bvzihdzo] h1[data-astro-cid-bvzihdzo]{margin:0 0 .5em}.date[data-astro-cid-bvzihdzo]{margin-bottom:.5em;color:var(--color-text)}.last-updated-on[data-astro-cid-bvzihdzo]{font-style:italic}
+</style><script type="module">const t=document.querySelector('.theme-switch input[type="checkbox"]'),e=localStorage.getItem("theme");e&&(document.documentElement.setAttribute("data-theme",e),e==="dark"&&(t.checked=!0));function m(c){c.target.checked?(document.documentElement.setAttribute("data-theme","dark"),localStorage.setItem("theme","dark")):(document.documentElement.setAttribute("data-theme","light"),localStorage.setItem("theme","light"))}t.addEventListener("change",m,!1);
+</script></head><body data-astro-cid-bvzihdzo><header data-astro-cid-3ef6ksr2><nav data-astro-cid-3ef6ksr2><div class="theme-switch-wrapper"><label class="theme-switch" for="checkbox"><input type="checkbox" id="checkbox"><div class="slider"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#FCD53F" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#FCD53F" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></div></label></div><h2 data-astro-cid-3ef6ksr2><a href="/" data-astro-cid-3ef6ksr2>Mya Pitzeruse</a></h2><div class="internal-links" data-astro-cid-3ef6ksr2><a href="/" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg>Home</a><a href="/blog" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg>Blog</a><a href="/charts" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg>Charts</a><a href="/media" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg>Media</a><a href="/papers" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg>Papers</a></div><div class="social-links" data-astro-cid-3ef6ksr2><a href="https://github.com/mjpitz" target="_blank" data-astro-cid-3ef6ksr2><span class="sr-only" data-astro-cid-3ef6ksr2>GitHub</span><svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-3ef6ksr2></path></svg></a><a href="https://www.linkedin.com/in/mjpitz/" target="_blank" data-astro-cid-3ef6ksr2><span class="sr-only" data-astro-cid-3ef6ksr2>LinkedIn</span><svg viewBox="0 0 50 50" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M41,4H9C6.24,4,4,6.24,4,9v32c0,2.76,2.24,5,5,5h32c2.76,0,5-2.24,5-5V9C46,6.24,43.76,4,41,4z M17,20v19h-6V20H17z M11,14.47c0-1.4,1.2-2.47,3-2.47s2.93,1.07,3,2.47c0,1.4-1.12,2.53-3,2.53C12.2,17,11,15.87,11,14.47z M39,39h-6c0,0,0-9.26,0-10 c0-2-1-4-3.5-4.04h-0.08C27,24.96,26,27.02,26,29c0,0.91,0,10,0,10h-6V20h6v2.56c0,0,1.93-2.56,5.81-2.56 c3.97,0,7.19,2.73,7.19,8.26V39z" data-astro-cid-3ef6ksr2></path></svg></a><a href="/rss.xml" target="_blank" data-astro-cid-3ef6ksr2><span class="sr-only" data-astro-cid-3ef6ksr2>RSS</span><svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M1,5v2c1.081,0,2.128,0.211,3.113,0.628c0.952,0.403,1.808,0.98,2.543,1.715s1.312,1.591,1.715,2.543 C8.789,12.872,9,13.919,9,15h2C11,9.477,6.523,5,1,5z M4,10c-1.105,0-2,0.895-2,2s0.895,2,2,2s2-0.895,2-2S5.105,10,4,10z M1,1v2 c1.621,0,3.192,0.317,4.67,0.942c1.429,0.604,2.712,1.47,3.815,2.573c1.103,1.103,1.968,2.386,2.573,3.815 C12.683,11.808,13,13.379,13,15h2C15,7.268,8.732,1,1,1z" data-astro-cid-3ef6ksr2></path></svg></a></div></nav></header><main data-astro-cid-bvzihdzo><article data-astro-cid-bvzihdzo><div class="hero-image" data-astro-cid-bvzihdzo><img width="1020" height="510" src="/img/blog-placeholder-2.jpg" alt="" data-astro-cid-bvzihdzo></div><div class="prose" data-astro-cid-bvzihdzo><div class="title" data-astro-cid-bvzihdzo><div class="date" data-astro-cid-bvzihdzo><time datetime="2015-07-10T00:00:00.000Z">Jul 10, 2015</time></div><h1 data-astro-cid-bvzihdzo>Status: A Java Library For Robust System Status Health Checks</h1><hr data-astro-cid-bvzihdzo></div><p>We are excited to highlight the open source availability of <a href="https://github.com/indeedeng/status">Status</a>, a Java library that can report a system’s status in a readable format.
 The Status library enables dynamic health checks and monitoring of system dependencies.
 In this post, we will show how to add health checks to your applications.</p>
+<!--more-->
 <h2 id="why-use-system-status-health-checks">Why use system status health checks?</h2>
 <p>Health checks play an important role at Indeed. We set up and run large-scale services and applications every day.
 Health checks allow us to see the problematic components at an endpoint, rather than combing through logs.</p>
@@ -491,205 +27,97 @@ System states include:</p>
 <p>Follow these instructions to start using the <a href="https://github.com/indeedeng/status">Status</a> library:</p>
 <p>Extend the <a href="https://github.com/indeedeng/status/blob/master/status-core/src/main/java/com/indeed/status/core/AbstractDependencyManager.java">AbstractDependencyManager</a>.
 The dependency manager will keep track of all your dependencies.</p>
-<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#204a87;font-weight:bold">public</span> <span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">MyDependencyManager</span> <span style="color:#204a87;font-weight:bold">extends</span> <span style="color:#000">AbstractDependencyManager</span> <span style="color:#ce5c00;font-weight:bold">{</span>
-  <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">MyDependencyManager</span><span style="color:#ce5c00;font-weight:bold">()</span> <span style="color:#ce5c00;font-weight:bold">{</span>
-    <span style="color:#204a87;font-weight:bold">super</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;MyApplication&#34;</span><span style="color:#ce5c00;font-weight:bold">);</span>
-  <span style="color:#ce5c00;font-weight:bold">}</span>
-<span style="color:#ce5c00;font-weight:bold">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>Extend <a href="https://github.com/indeedeng/status/blob/master/status-core/src/main/java/com/indeed/status/core/PingableDependency.java">PingableDependency</a> for each component that your application requires to run.</p>
-<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#204a87;font-weight:bold">public</span> <span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">MyDependency</span> <span style="color:#204a87;font-weight:bold">extends</span> <span style="color:#000">PingableDependency</span> <span style="color:#ce5c00;font-weight:bold">{</span>
-  <span style="color:#5c35cc;font-weight:bold">@Override</span>
-  <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">ping</span><span style="color:#ce5c00;font-weight:bold">()</span> <span style="color:#204a87;font-weight:bold">throws</span> <span style="color:#000">Exception</span> <span style="color:#ce5c00;font-weight:bold">{</span>
-    <span style="color:#8f5902;font-style:italic">// Throw exception if considered unhealthy or unavailable
-</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#ce5c00;font-weight:bold">}</span>
-<span style="color:#ce5c00;font-weight:bold">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>Extending the <a href="https://github.com/indeedeng/status/blob/master/status-core/src/main/java/com/indeed/status/core/PingableDependency.java">PingableDependency</a> class is the simplest way to incorporate a dependency into your application.
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #F97583">public</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">class</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">MyDependencyManager</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">extends</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">AbstractDependencyManager</span><span style="color: #E1E4E8"> {</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #F97583">public</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">MyDependencyManager</span><span style="color: #E1E4E8">() {</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #79B8FF">super</span><span style="color: #E1E4E8">(</span><span style="color: #9ECBFF">"MyApplication"</span><span style="color: #E1E4E8">);</span></span>
+<span class="line"><span style="color: #E1E4E8">  }</span></span>
+<span class="line"><span style="color: #E1E4E8">}</span></span></code></pre>
+<p>Extend <a href="https://github.com/indeedeng/status/blob/master/status-core/src/main/java/com/indeed/status/core/PingableDependency.java">PingableDependency</a> for each component that your application requires to run.</p>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #F97583">public</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">class</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">MyDependency</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">extends</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">PingableDependency</span><span style="color: #E1E4E8"> {</span></span>
+<span class="line"><span style="color: #E1E4E8">  @</span><span style="color: #F97583">Override</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #F97583">public</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">void</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">ping</span><span style="color: #E1E4E8">() </span><span style="color: #F97583">throws</span><span style="color: #E1E4E8"> Exception {</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #6A737D">// Throw exception if considered unhealthy or unavailable</span></span>
+<span class="line"><span style="color: #E1E4E8">  }</span></span>
+<span class="line"><span style="color: #E1E4E8">}</span></span></code></pre>
+<p>Extending the <a href="https://github.com/indeedeng/status/blob/master/status-core/src/main/java/com/indeed/status/core/PingableDependency.java">PingableDependency</a> class is the simplest way to incorporate a dependency into your application.
 Alternatively, you can extend <a href="https://github.com/indeedeng/status/blob/master/status-core/src/main/java/com/indeed/status/core/AbstractDependency.java">AbstractDependency</a> or <a href="https://github.com/indeedeng/status/blob/master/status-core/src/main/java/com/indeed/status/core/ComparableDependency.java">ComparableDependency</a> to get more control over the state of a dependency.
 You can control how your dependency affects the system’s condition by providing an <a href="https://github.com/indeedeng/status/blob/fff009ad24d1641afe6d792e582e374e8e5f63a6/status-core/src/main/java/com/indeed/status/core/Urgency.java">Urgency</a> level.</p>
 <p>Add your new dependencies to your dependency manager.</p>
-<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000">dependencyManager</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">addDependency</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">myDependency</span><span style="color:#ce5c00;font-weight:bold">);</span>
-<span style="color:#8f5902;font-style:italic">// ...
-</span></code></pre></td></tr></table>
-</div>
-</div><p>For web-based applications and services, create an <a href="https://github.com/indeedeng/status/blob/master/status-web/src/main/java/com/indeed/status/web/AbstractDaemonCheckReportServlet.java">AbstractDaemonCheckReportServlet</a> that will report the status of your application.</p>
-<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#204a87;font-weight:bold">public</span> <span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">StatusServlet</span> <span style="color:#204a87;font-weight:bold">extends</span> <span style="color:#000">AbstractDaemonCheckReportServlet</span> <span style="color:#ce5c00;font-weight:bold">{</span>
-  <span style="color:#204a87;font-weight:bold">private</span> <span style="color:#204a87;font-weight:bold">final</span> <span style="color:#000">AbstractDependencyManager</span> <span style="color:#000">manager</span><span style="color:#ce5c00;font-weight:bold">;</span>
- 
-  <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">StatusServlet</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">AbstractDependencyManager</span> <span style="color:#000">manager</span><span style="color:#ce5c00;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">{</span>
-    <span style="color:#204a87;font-weight:bold">this</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">manager</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">manager</span><span style="color:#ce5c00;font-weight:bold">;</span>
-  <span style="color:#ce5c00;font-weight:bold">}</span>
- 
-  <span style="color:#5c35cc;font-weight:bold">@Override</span>
-  <span style="color:#204a87;font-weight:bold">protected</span> <span style="color:#000">AbstractDependencyManager</span> <span style="color:#000">newManager</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">ServletConfig</span> <span style="color:#000">config</span><span style="color:#ce5c00;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">{</span>
-    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">manager</span><span style="color:#ce5c00;font-weight:bold">;</span>
-  <span style="color:#ce5c00;font-weight:bold">}</span>
-<span style="color:#ce5c00;font-weight:bold">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>Once this process is complete and your application is running, you should be able to access the servlet to read a JSON representation of your application status.</p>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #E1E4E8">dependencyManager.</span><span style="color: #B392F0">addDependency</span><span style="color: #E1E4E8">(myDependency);</span></span>
+<span class="line"><span style="color: #6A737D">// ...</span></span></code></pre>
+<p>For web-based applications and services, create an <a href="https://github.com/indeedeng/status/blob/master/status-web/src/main/java/com/indeed/status/web/AbstractDaemonCheckReportServlet.java">AbstractDaemonCheckReportServlet</a> that will report the status of your application.</p>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #F97583">public</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">class</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">StatusServlet</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">extends</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">AbstractDaemonCheckReportServlet</span><span style="color: #E1E4E8"> {</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #F97583">private</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">final</span><span style="color: #E1E4E8"> AbstractDependencyManager manager;</span></span>
+<span class="line"><span style="color: #E1E4E8"> </span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #F97583">public</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">StatusServlet</span><span style="color: #E1E4E8">(AbstractDependencyManager </span><span style="color: #FFAB70">manager</span><span style="color: #E1E4E8">) {</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #79B8FF">this</span><span style="color: #E1E4E8">.manager </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> manager;</span></span>
+<span class="line"><span style="color: #E1E4E8">  }</span></span>
+<span class="line"><span style="color: #E1E4E8"> </span></span>
+<span class="line"><span style="color: #E1E4E8">  @</span><span style="color: #F97583">Override</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #F97583">protected</span><span style="color: #E1E4E8"> AbstractDependencyManager </span><span style="color: #B392F0">newManager</span><span style="color: #E1E4E8">(ServletConfig </span><span style="color: #FFAB70">config</span><span style="color: #E1E4E8">) {</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> manager;</span></span>
+<span class="line"><span style="color: #E1E4E8">  }</span></span>
+<span class="line"><span style="color: #E1E4E8">}</span></span></code></pre>
+<p>Once this process is complete and your application is running, you should be able to access the servlet to read a JSON representation of your application status.</p>
 <p>Below is a sample response returned by the servlet.
 If the application is in an OUTAGE condition, the servlet returns a 500 status code.
 Associating the health check outcome with an HTTP status code enables integration with systems (like <a href="https://consul.io/">Consul</a>) that make routing decisions based on application health.
 Otherwise, the servlet returns a 200 since it can still process requests.
 In this case, the application may gracefully degrade less-critical functionality that depends on unhealthy code paths.</p>
-<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#000;font-weight:bold">{</span>
-  <span style="color:#204a87;font-weight:bold">&#34;hostname&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;pitz.local&#34;</span><span style="color:#000;font-weight:bold">,</span>
-  <span style="color:#204a87;font-weight:bold">&#34;duration&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">19</span><span style="color:#000;font-weight:bold">,</span>
-  <span style="color:#204a87;font-weight:bold">&#34;condition&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;OUTAGE&#34;</span><span style="color:#000;font-weight:bold">,</span>
-  <span style="color:#204a87;font-weight:bold">&#34;dcStatus&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;FAILOVER&#34;</span><span style="color:#000;font-weight:bold">,</span>
-  <span style="color:#204a87;font-weight:bold">&#34;appname&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;crm.api&#34;</span><span style="color:#000;font-weight:bold">,</span>
-  <span style="color:#204a87;font-weight:bold">&#34;catalinaBase&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;/var/local/tomcat&#34;</span><span style="color:#000;font-weight:bold">,</span>
-  <span style="color:#204a87;font-weight:bold">&#34;leastRecentlyExecutedDate&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;2015-02-24T22:48:37.782-0600&#34;</span><span style="color:#000;font-weight:bold">,</span>
-  <span style="color:#204a87;font-weight:bold">&#34;leastRecentlyExecutedTimestamp&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">1424839717782</span><span style="color:#000;font-weight:bold">,</span>
-  <span style="color:#204a87;font-weight:bold">&#34;results&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">{</span>
-    <span style="color:#204a87;font-weight:bold">&#34;OUTAGE&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">[{</span>
-      <span style="color:#204a87;font-weight:bold">&#34;status&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;OUTAGE&#34;</span><span style="color:#000;font-weight:bold">,</span>
-      <span style="color:#204a87;font-weight:bold">&#34;description&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;mysql&#34;</span><span style="color:#000;font-weight:bold">,</span>
-      <span style="color:#204a87;font-weight:bold">&#34;errorMessage&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;Exception thrown during ping&#34;</span><span style="color:#000;font-weight:bold">,</span>
-      <span style="color:#204a87;font-weight:bold">&#34;timestamp&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">1424839717782</span><span style="color:#000;font-weight:bold">,</span>
-      <span style="color:#204a87;font-weight:bold">&#34;duration&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">18</span><span style="color:#000;font-weight:bold">,</span>
-      <span style="color:#204a87;font-weight:bold">&#34;lastKnownGoodTimestamp&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span>
-      <span style="color:#204a87;font-weight:bold">&#34;period&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span>
-      <span style="color:#204a87;font-weight:bold">&#34;id&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;mysql&#34;</span><span style="color:#000;font-weight:bold">,</span>
-      <span style="color:#204a87;font-weight:bold">&#34;urgency&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;Required: Failure of this dependency would result in complete system outage&#34;</span><span style="color:#000;font-weight:bold">,</span>
-      <span style="color:#204a87;font-weight:bold">&#34;documentationUrl&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;http://www.mysql.com/&#34;</span><span style="color:#000;font-weight:bold">,</span>
-      <span style="color:#204a87;font-weight:bold">&#34;thrown&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">{</span>
-        <span style="color:#204a87;font-weight:bold">&#34;exception&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;RuntimeException&#34;</span><span style="color:#000;font-weight:bold">,</span>
-        <span style="color:#204a87;font-weight:bold">&#34;message&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;Failed to communicate with the following tables:
-</span><span style="color:#4e9a06">          user_authorities, oauth_code, oauth_approvals, oauth_client_token,
-</span><span style="color:#4e9a06">          oauth_refresh_token, oauth_client_details, oauth_access_token&#34;</span><span style="color:#000;font-weight:bold">,</span>
-        <span style="color:#204a87;font-weight:bold">&#34;stack&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">[</span>
-          <span style="color:#4e9a06">&#34;io.github.jpitz.example.MySQLDependency.ping(MySQLDependency.java:68)&#34;</span><span style="color:#000;font-weight:bold">,</span>
-          <span style="color:#4e9a06">&#34;com.indeed.status.core.PingableDependency.call(PingableDependency.java:59)&#34;</span><span style="color:#000;font-weight:bold">,</span>
-          <span style="color:#4e9a06">&#34;com.indeed.status.core.PingableDependency.call(PingableDependency.java:15)&#34;</span><span style="color:#000;font-weight:bold">,</span>
-          <span style="color:#4e9a06">&#34;java.util.concurrent.FutureTask.run(FutureTask.java:262)&#34;</span><span style="color:#000;font-weight:bold">,</span>
-          <span style="color:#4e9a06">&#34;java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)&#34;</span><span style="color:#000;font-weight:bold">,</span>
-          <span style="color:#4e9a06">&#34;java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)&#34;</span><span style="color:#000;font-weight:bold">,</span>
-          <span style="color:#4e9a06">&#34;java.lang.Thread.run(Thread.java:745)&#34;</span>
-        <span style="color:#000;font-weight:bold">]</span>
-      <span style="color:#000;font-weight:bold">},</span>
-      <span style="color:#204a87;font-weight:bold">&#34;date&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;2015-02-24T22:48:37.782-0600&#34;</span>
-    <span style="color:#000;font-weight:bold">}],</span>
-    <span style="color:#204a87;font-weight:bold">&#34;OK&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">[{</span>
-      <span style="color:#204a87;font-weight:bold">&#34;status&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;OK&#34;</span><span style="color:#000;font-weight:bold">,</span>
-      <span style="color:#204a87;font-weight:bold">&#34;description&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;mongo&#34;</span><span style="color:#000;font-weight:bold">,</span>
-      <span style="color:#204a87;font-weight:bold">&#34;errorMessage&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;ok&#34;</span><span style="color:#000;font-weight:bold">,</span>
-      <span style="color:#204a87;font-weight:bold">&#34;timestamp&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">1424839717782</span><span style="color:#000;font-weight:bold">,</span>
-      <span style="color:#204a87;font-weight:bold">&#34;duration&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span>
-      <span style="color:#204a87;font-weight:bold">&#34;lastKnownGoodTimestamp&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span>
-      <span style="color:#204a87;font-weight:bold">&#34;period&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span>
-      <span style="color:#204a87;font-weight:bold">&#34;id&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;mongo&#34;</span><span style="color:#000;font-weight:bold">,</span>
-      <span style="color:#204a87;font-weight:bold">&#34;urgency&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;Required: Failure of this dependency would result in complete system outage&#34;</span><span style="color:#000;font-weight:bold">,</span>
-      <span style="color:#204a87;font-weight:bold">&#34;documentationUrl&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;http://www.mongodb.org/&#34;</span><span style="color:#000;font-weight:bold">,</span>
-      <span style="color:#204a87;font-weight:bold">&#34;date&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;2015-02-24T22:48:37.782-0600&#34;</span>
-    <span style="color:#000;font-weight:bold">}]</span>
-  <span style="color:#000;font-weight:bold">}</span>
-<span style="color:#000;font-weight:bold">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>This report includes these key fields to help you evaluate the health of a system and the health of a dependency:</p>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #E1E4E8">{</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #79B8FF">"hostname"</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">"pitz.local"</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #79B8FF">"duration"</span><span style="color: #E1E4E8">: </span><span style="color: #79B8FF">19</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #79B8FF">"condition"</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">"OUTAGE"</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #79B8FF">"dcStatus"</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">"FAILOVER"</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #79B8FF">"appname"</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">"crm.api"</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #79B8FF">"catalinaBase"</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">"/var/local/tomcat"</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #79B8FF">"leastRecentlyExecutedDate"</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">"2015-02-24T22:48:37.782-0600"</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #79B8FF">"leastRecentlyExecutedTimestamp"</span><span style="color: #E1E4E8">: </span><span style="color: #79B8FF">1424839717782</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #79B8FF">"results"</span><span style="color: #E1E4E8">: {</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #79B8FF">"OUTAGE"</span><span style="color: #E1E4E8">: [{</span></span>
+<span class="line"><span style="color: #E1E4E8">      </span><span style="color: #79B8FF">"status"</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">"OUTAGE"</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">      </span><span style="color: #79B8FF">"description"</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">"mysql"</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">      </span><span style="color: #79B8FF">"errorMessage"</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">"Exception thrown during ping"</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">      </span><span style="color: #79B8FF">"timestamp"</span><span style="color: #E1E4E8">: </span><span style="color: #79B8FF">1424839717782</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">      </span><span style="color: #79B8FF">"duration"</span><span style="color: #E1E4E8">: </span><span style="color: #79B8FF">18</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">      </span><span style="color: #79B8FF">"lastKnownGoodTimestamp"</span><span style="color: #E1E4E8">: </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">      </span><span style="color: #79B8FF">"period"</span><span style="color: #E1E4E8">: </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">      </span><span style="color: #79B8FF">"id"</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">"mysql"</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">      </span><span style="color: #79B8FF">"urgency"</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">"Required: Failure of this dependency would result in complete system outage"</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">      </span><span style="color: #79B8FF">"documentationUrl"</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">"http://www.mysql.com/"</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">      </span><span style="color: #79B8FF">"thrown"</span><span style="color: #E1E4E8">: {</span></span>
+<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #79B8FF">"exception"</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">"RuntimeException"</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #79B8FF">"message"</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">"Failed to communicate with the following tables:</span></span>
+<span class="line"><span style="color: #9ECBFF">          user_authorities, oauth_code, oauth_approvals, oauth_client_token,</span></span>
+<span class="line"><span style="color: #9ECBFF">          oauth_refresh_token, oauth_client_details, oauth_access_token"</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #79B8FF">"stack"</span><span style="color: #E1E4E8">: [</span></span>
+<span class="line"><span style="color: #E1E4E8">          </span><span style="color: #9ECBFF">"io.github.jpitz.example.MySQLDependency.ping(MySQLDependency.java:68)"</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">          </span><span style="color: #9ECBFF">"com.indeed.status.core.PingableDependency.call(PingableDependency.java:59)"</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">          </span><span style="color: #9ECBFF">"com.indeed.status.core.PingableDependency.call(PingableDependency.java:15)"</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">          </span><span style="color: #9ECBFF">"java.util.concurrent.FutureTask.run(FutureTask.java:262)"</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">          </span><span style="color: #9ECBFF">"java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)"</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">          </span><span style="color: #9ECBFF">"java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)"</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">          </span><span style="color: #9ECBFF">"java.lang.Thread.run(Thread.java:745)"</span></span>
+<span class="line"><span style="color: #E1E4E8">        ]</span></span>
+<span class="line"><span style="color: #E1E4E8">      },</span></span>
+<span class="line"><span style="color: #E1E4E8">      </span><span style="color: #79B8FF">"date"</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">"2015-02-24T22:48:37.782-0600"</span></span>
+<span class="line"><span style="color: #E1E4E8">    }],</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #79B8FF">"OK"</span><span style="color: #E1E4E8">: [{</span></span>
+<span class="line"><span style="color: #E1E4E8">      </span><span style="color: #79B8FF">"status"</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">"OK"</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">      </span><span style="color: #79B8FF">"description"</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">"mongo"</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">      </span><span style="color: #79B8FF">"errorMessage"</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">"ok"</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">      </span><span style="color: #79B8FF">"timestamp"</span><span style="color: #E1E4E8">: </span><span style="color: #79B8FF">1424839717782</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">      </span><span style="color: #79B8FF">"duration"</span><span style="color: #E1E4E8">: </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">      </span><span style="color: #79B8FF">"lastKnownGoodTimestamp"</span><span style="color: #E1E4E8">: </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">      </span><span style="color: #79B8FF">"period"</span><span style="color: #E1E4E8">: </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">      </span><span style="color: #79B8FF">"id"</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">"mongo"</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">      </span><span style="color: #79B8FF">"urgency"</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">"Required: Failure of this dependency would result in complete system outage"</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">      </span><span style="color: #79B8FF">"documentationUrl"</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">"http://www.mongodb.org/"</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">      </span><span style="color: #79B8FF">"date"</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">"2015-02-24T22:48:37.782-0600"</span></span>
+<span class="line"><span style="color: #E1E4E8">    }]</span></span>
+<span class="line"><span style="color: #E1E4E8">  }</span></span>
+<span class="line"><span style="color: #E1E4E8">}</span></span></code></pre>
+<p>This report includes these key fields to help you evaluate the health of a system and the health of a dependency:</p>
 <ul>
 <li><code>condition</code> - Identifies the current health of the system as a whole.</li>
 <li><code>leastRecentlyExecutedDate</code> - The last date and time that the report was updated.</li>
@@ -704,41 +132,6 @@ In this case, the application may gracefully degrade less-critical functionality
 <h2 id="learn-more-about-status">Learn more about Status</h2>
 <p>Stay tuned for a <a href="/blog/2017/01/19/gracefully-degrading-functionality-using-status/">future post</a> about using the Status library, in which we’ll show how to gracefully degrade unhealthy applications.
 To get started, read our <a href="http://opensource.indeedeng.io/status/docs/quick-start/">quick start guide</a> and take a look at the <a href="https://github.com/indeedeng/status/tree/master/status-samples">samples</a>.
-If you need help, you can reach out to us on <a href="https://github.com/indeedeng/">GitHub</a> or <a href="https://twitter.com/indeedeng">Twitter</a>.</p>
-    </div>
-    <div class="post-footer">
-      <div class="info">
-        
-        <span><a class="tag" href="/tags/software-development/">software development</a></span>
-
-
-      </div>
-    </div>
-
-    
-</div>
-
-
-      </main>
-    </div><footer class="footer footer__base">
-    <ul class="footer__list">
-        <li class="footer__item">
-            &copy;
-            
-            Mya Pitzeruse
-            2023
-
-
-            
-        </li>
-        
-    </ul>
-</footer>
-  
-  <script
-    type="text/javascript"
-    src="/js/medium-zoom.min.fae9ac8895995fe91958b3954be11e96025824a04770726a3531e119ddd2d576.js"
-    integrity="sha256-&#43;umsiJWZX&#43;kZWLOVS&#43;EelgJYJKBHcHJqNTHhGd3S1XY="
-    crossorigin="anonymous"
-  ></script></body>
-</html>
+If you need help, you can reach out to us on <a href="https://github.com/indeedeng/">GitHub</a> or <a href="https://twitter.com/indeedeng">Twitter</a>.</p></div></article></main><footer data-astro-cid-sz7xmlte>
+&copy; 2023&nbsp;Mya Pitzeruse. All rights reserved.
+<div class="social-links" data-astro-cid-sz7xmlte><a href="https://github.com/mjpitz" target="_blank" data-astro-cid-sz7xmlte><span class="sr-only" data-astro-cid-sz7xmlte>GitHub</span><svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-sz7xmlte><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-sz7xmlte></path></svg></a><a href="https://www.linkedin.com/in/mjpitz/" target="_blank" data-astro-cid-sz7xmlte><span class="sr-only" data-astro-cid-sz7xmlte>LinkedIn</span><svg viewBox="0 0 50 50" aria-hidden="true" width="32" height="32" data-astro-cid-sz7xmlte><path fill="currentColor" d="M41,4H9C6.24,4,4,6.24,4,9v32c0,2.76,2.24,5,5,5h32c2.76,0,5-2.24,5-5V9C46,6.24,43.76,4,41,4z M17,20v19h-6V20H17z M11,14.47c0-1.4,1.2-2.47,3-2.47s2.93,1.07,3,2.47c0,1.4-1.12,2.53-3,2.53C12.2,17,11,15.87,11,14.47z M39,39h-6c0,0,0-9.26,0-10 c0-2-1-4-3.5-4.04h-0.08C27,24.96,26,27.02,26,29c0,0.91,0,10,0,10h-6V20h6v2.56c0,0,1.93-2.56,5.81-2.56 c3.97,0,7.19,2.73,7.19,8.26V39z" data-astro-cid-sz7xmlte></path></svg></a><a href="/rss.xml" target="_blank" data-astro-cid-sz7xmlte><span class="sr-only" data-astro-cid-sz7xmlte>RSS</span><svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-sz7xmlte><path fill="currentColor" d="M1,5v2c1.081,0,2.128,0.211,3.113,0.628c0.952,0.403,1.808,0.98,2.543,1.715s1.312,1.591,1.715,2.543 C8.789,12.872,9,13.919,9,15h2C11,9.477,6.523,5,1,5z M4,10c-1.105,0-2,0.895-2,2s0.895,2,2,2s2-0.895,2-2S5.105,10,4,10z M1,1v2 c1.621,0,3.192,0.317,4.67,0.942c1.429,0.604,2.712,1.47,3.815,2.573c1.103,1.103,1.968,2.386,2.573,3.815 C12.683,11.808,13,13.379,13,15h2C15,7.268,8.732,1,1,1z" data-astro-cid-sz7xmlte></path></svg></a></div></footer></body></html>
