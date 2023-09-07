@@ -23,9 +23,9 @@
     While much of my learning has been confined to my own space, I look forward to sharing my knowledge with others.
 </p>
 
-<br/><br/>
+<br/>
 
-<h3 align="center">📖 - Favorite Books - 📖</h3>
+<h3 align="center">📖 Favorite Books 📖</h3>
 
 <p align="center">
     Hold Me Tight - Dr. Sue Johnson EdD -
@@ -50,7 +50,7 @@
     </br>
 </p>
 
-<h3 align="center">📰 - Recent Blog Posts - 📰</h3>
+<h3 align="center">📰 Recent Blog Posts 📰</h3>
 
 <p align="center">
     <a href="https://mjpitz.com/blog/2022/01/16/bye-bye-twitter/">Bye-Bye Twitter</a> - January 17th 2022 <br/>
@@ -59,7 +59,7 @@
 
 <br/><br/>
 
-<h3 align="center">⚒️ - Tools and Technologies - ⚒️</h3>
+<h3 align="center">⚒️ Tools and Technologies ⚒️</h3>
 
 <p align="center">
     <img width="96" height="64" alt="Git" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-plain-wordmark.svg" />&nbsp;
@@ -90,9 +90,4 @@
         <img alt="Papers" src="https://img.shields.io/badge/-Papers-pink?style=for-the-badge" /></a>
     <a href="https://mjpitz.com/media/">
         <img alt="Media" src="https://img.shields.io/badge/-Media-pink?style=for-the-badge" /></a>
-</p>
-
-<p align="center">
-    <a href="https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xfd0f1e353074e15a4883bc630fca5e3c09dfb314">
-        <img alt="GPG: 0fca5e3c09dfb314" src="https://img.shields.io/badge/GPG-0fca5e3c09dfb314-pink?style=for-the-badge&labelColor=silver" /></a>
 </p>
