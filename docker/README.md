@@ -8,6 +8,7 @@ This directory contains the various docker containers that I build maintain, pri
 - [redis](redis) - A canonical Redis image for managing in-memory data structures.
 - [redis-raft](redis-raft) - A Redis deployment that's backed by RAFT instead of its traditional replication mechanisms.
 - [rspamd](rspamd) - Boxes rspamd into a container for use as a sidecar with maddy.
+- [taky](taky) - An open source TAK Server implementation in python.
 
 ## License
 
