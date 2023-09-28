@@ -13,6 +13,7 @@ helm repo add mjpitz https://mjpitz.com
 - [`gitea`][gitea-chart] - Git with a cup of tea. [Gitea][] is a painless, self-hosted Git Service.
 - [`litestream`][litestream-chart] - Easily add a [litestream][] sidecar to any `Deployment`, `DaemonSet`, or `StatefulSet`.
 - [`maddy`][maddy-chart] - Deploys a single-tenant Maddy email server.
+- [`raw`][raw-chart] - Deploys raw Kubernetes resources to the cluster.
 - [`redis`][redis-chart] - Deploys an inconsistent Redis cluster, intended to be fronted by an [envoy][] sidecar.
 - [`redis-queue`][redis-queue-chart] - Deploy a single durable Redis instance, intended to be used as a work queue.
 - [`redis-raft`][redis-raft-chart] - Deploy a consistent, partition-tolerant Redis cluster backed by the Raft consensus protocol.
@@ -25,6 +26,7 @@ helm repo add mjpitz https://mjpitz.com
 [gitea-chart]: gitea
 [litestream-chart]: litestream
 [maddy-chart]: maddy
+[raw-chart]: raw
 [redis-chart]: redis
 [redis-queue-chart]: redis-queue
 [redis-raft-chart]: redis-raft

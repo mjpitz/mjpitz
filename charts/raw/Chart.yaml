@@ -1,0 +1,12 @@
+apiVersion: v2
+type: application
+name: raw
+description: |
+  Fork of the incubator/raw chart.
+sources:
+  - https://github.com/mjpitz/mjpitz/tree/main/charts/raw
+maintainers:
+  - name: Mya Pitzeruse
+    url: https://mjpitz.com
+version: 22.9.0
+appVersion: ""
