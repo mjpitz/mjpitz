@@ -725,6 +725,21 @@ entries:
     urls:
     - https://github.com/mjpitz/mjpitz/releases/download/maddy-22.4.0/maddy-22.4.0.tgz
     version: 22.4.0
+  raw:
+  - apiVersion: v2
+    created: "2023-09-28T23:07:32.495485067Z"
+    description: 'Fork of the incubator/raw chart. '
+    digest: d8a499dbf72271cbdb49dd2435af2e560a626ea1354d434dceb2741269717332
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: raw
+    sources:
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/raw
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/raw-22.9.0/raw-22.9.0.tgz
+    version: 22.9.0
   redis:
   - apiVersion: v2
     appVersion: 6.2.6
@@ -1611,4 +1626,4 @@ entries:
     urls:
     - https://github.com/mjpitz/mjpitz/releases/download/storj-22.3.0/storj-22.3.0.tgz
     version: 22.3.0
-generated: "2023-08-10T03:39:13.944185913Z"
+generated: "2023-09-28T23:07:32.496225036Z"
