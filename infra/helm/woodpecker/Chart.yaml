@@ -3,6 +3,9 @@ type: application
 name: woodpecker
 version: 0.3.2
 dependencies:
+  - name: nfs-server-provisioner
+    repository: https://helm.wso2.com
+    version: 1.1.0
   - name: woodpecker
     repository: https://woodpecker-ci.org/
     version: 0.3.2
