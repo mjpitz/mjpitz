@@ -1483,6 +1483,23 @@ entries:
     urls:
     - https://github.com/mjpitz/mjpitz/releases/download/registry-2.7.1/registry-2.7.1.tgz
     version: 2.7.1
+  renovate:
+  - apiVersion: v2
+    appVersion: 35.14.4
+    created: "2023-10-08T14:23:47.136752284Z"
+    description: 'Renovate enables teams to stay on top of the latest versions of
+      their software dependencies. '
+    digest: f56aab965a9671460770d436770a9ee480f1ff3259fe75e487a60726c5f5e50c
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: renovate
+    sources:
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/auth
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/renovate-23.10.0/renovate-23.10.0.tgz
+    version: 23.10.0
   storj:
   - apiVersion: v2
     appVersion: latest
@@ -1590,4 +1607,4 @@ entries:
     urls:
     - https://github.com/mjpitz/mjpitz/releases/download/storj-22.3.0/storj-22.3.0.tgz
     version: 22.3.0
-generated: "2023-09-28T23:07:32.496225036Z"
+generated: "2023-10-08T14:23:47.136873885Z"
