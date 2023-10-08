@@ -1,0 +1,8 @@
+apiVersion: v2
+type: application
+name: renovate
+version: 23.10.0
+dependencies:
+  - name: renovate
+    repository: file://../../../charts/renovate
+    version: "*"

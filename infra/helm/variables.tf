@@ -92,3 +92,13 @@ variable "registry_auth_token_key" {
   type      = string
   sensitive = true
 }
+
+variable "renovate_token" {
+  type      = string
+  sensitive = true
+}
+
+variable "renovate_github_token" {
+  type      = string
+  sensitive = true
+}

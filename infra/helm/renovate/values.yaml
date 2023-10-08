@@ -1,0 +1,10 @@
+renovate:
+  config:
+    autodiscover: true
+    endpoint: http://gitea.vcs.svc.cluster.local/api/v1
+    platform: gitea
+    username: renovate
+    gitAuthor: "Renovate Bot <renovate@noreply.code.pitz.tech>"
+    onboardingConfig:
+      $schema: 'https://docs.renovatebot.com/renovate-schema.json'
+      extends: ['config:base']
