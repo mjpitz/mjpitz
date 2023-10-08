@@ -1,8 +1,40 @@
-{{- if .Values.woodpecker.agent.env.WOODPECKER_BACKEND_K8S_NAMESPACE }}
+{{- if .Values.woodpecker.agent.env.WOODPECKER_BACKEND_K8S_NAMESPACE | eq .Release.Namespace | not }}
 ---
 apiVersion: v1
 kind: Namespace
 metadata:
   name: {{ .Values.woodpecker.agent.env.WOODPECKER_BACKEND_K8S_NAMESPACE }}
   labels: {}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: {{ .Values.woodpecker.agent.env.WOODPECKER_BACKEND_K8S_NAMESPACE }}
+  name: woodpecker-agent
+rules:
+  - apiGroups: [''] # '' indicates core apiGroup (don't remove)
+    resources: ['persistentvolumeclaims']
+    verbs: ['create','delete']
+  - apiGroups: ['']
+    resources: ['services']
+    verbs: ['create','delete']
+  - apiGroups: ['']
+    resources:
+      - pods
+      - pods/log
+    verbs: ['watch','create','delete','get','list']
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  namespace: {{ .Values.woodpecker.agent.env.WOODPECKER_BACKEND_K8S_NAMESPACE }}
+  name: woodpecker-agent
+subjects:
+  - kind: ServiceAccount
+    name: woodpecker-agent
+    namespace: {{ .Release.Namespace }}
+roleRef:
+  kind: Role
+  name: woodpecker-agent
+  apiGroup: rbac.authorization.k8s.io
 {{- end }}
