@@ -18,6 +18,7 @@ helm repo add mjpitz https://mjpitz.com
 - [`redis-queue`][redis-queue-chart] - Deploy a single durable Redis instance, intended to be used as a work queue.
 - [`redis-raft`][redis-raft-chart] - Deploy a consistent, partition-tolerant Redis cluster backed by the Raft consensus protocol.
 - [`registry`][registry-chart] - Deploys a replicated container registry, with optional caching provided by `redis`.
+- [`renovate`][renovate-chart] - Deploys Renovate for automatically managing your software dependencies.
 - [`storj`][storj-chart] - Easily add a Storj S3 Gateway as a sidecar to any `Deployment`, `DaemonSet`, or `StatefulSet`.
 
 [12factor-chart]: 12factor
@@ -31,6 +32,7 @@ helm repo add mjpitz https://mjpitz.com
 [redis-queue-chart]: redis-queue
 [redis-raft-chart]: redis-raft
 [registry-chart]: registry
+[renovate-chart]: renovate
 [storj-chart]: storj
 
 [Drone]: https://www.drone.io
