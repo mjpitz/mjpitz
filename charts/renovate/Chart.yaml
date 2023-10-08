@@ -1,0 +1,12 @@
+apiVersion: v2
+type: application
+name: renovate
+description: |
+  Renovate enables teams to stay on top of the latest versions of their software dependencies.
+sources:
+  - https://github.com/mjpitz/mjpitz/tree/main/charts/auth
+maintainers:
+  - name: Mya Pitzeruse
+    url: https://mjpitz.com
+version: 23.10.0
+appVersion: 35.14.4

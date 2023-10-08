@@ -1,0 +1,102 @@
+# Default values for renovate.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# -- Configure the schedule of the renovate CronJob.
+schedule: '@hourly'
+
+# -- Specify the time zone in which the cron schedule should be executed.
+timeZone: ''
+
+# -- Suspend pauses the CronJob.
+suspend: false
+
+# -- Configured how many failed jobs will remain in the pod history.
+failedJobsHistoryLimit: 1
+
+# -- Configure how many successful jobs will remain in the pod history.
+successfulJobsHistoryLimit: 3
+
+image:
+  # -- The repository hosting the container image.
+  repository: renovate/renovate
+  # -- The pull policy to use for the image.
+  pullPolicy: IfNotPresent
+  # -- Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+# -- Specify the secret containing the registry credentials.
+imagePullSecrets: []
+# -- Override the name of the release.
+nameOverride: ""
+# -- Override the full name of the release.
+fullnameOverride: ""
+
+serviceAccount:
+  # -- Specifies whether a service account should be created.
+  create: true
+  # -- Annotations to add to the service account.
+  annotations: {}
+  # -- The name of the service account to use. If not set and create is true, a name is generated using the fullname
+  #    template.
+  name: ""
+
+# -- Annotations to add to the pod, typically used for assume roles.
+podAnnotations: {}
+
+# -- Specify the security context for the entire pod.
+podSecurityContext: {}
+  # fsGroup: 2000
+
+# -- Specify the security context for the `registry` container.
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+# -- Environment variables provided to the application.
+env: []
+
+# -- Load additional environment variables from secrets or config maps.
+envFrom: []
+
+# -- Specify the resources for the pod.
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+# -- Specify the node selector used to control which nodes registry pods are deployed to.
+nodeSelector: {}
+
+# -- Specify taints that the registry pods are willing to tolerate.
+tolerations: []
+
+# -- Specify affinity rules for the pods.
+affinity: {}
+
+externalConfig:
+  secretRef:
+    # -- Specify the name of the secret containing the raw configuration.
+    name: ""
+
+# -- Specify configuration specifically for the self-hosted renovate bot.
+#    https://docs.renovatebot.com/self-hosted-configuration/
+config: {}
+#  platform: 'gitea'
+#  token: ''
+#  autodiscover: true
+
+github:
+  # -- Specify the GitHub token used increase GitHub API rate limits when generating release notes.
+  token: ""
