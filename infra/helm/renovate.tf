@@ -1,3 +1,13 @@
+variable "renovate_token" {
+  type      = string
+  sensitive = true
+}
+
+variable "renovate_github_token" {
+  type      = string
+  sensitive = true
+}
+
 data "external" "renovate" {
   program = ["./scripts/hash.sh", "./renovate"]
 }

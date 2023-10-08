@@ -1,3 +1,13 @@
+variable "grafana_gitea_client_id" {
+  type      = string
+  sensitive = true
+}
+
+variable "grafana_gitea_client_secret" {
+  type      = string
+  sensitive = true
+}
+
 data "external" "kube_prometheus_stack" {
   program = ["./scripts/hash.sh", "./kube-prometheus-stack"]
 }

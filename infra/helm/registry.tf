@@ -1,3 +1,33 @@
+variable "registry_http_secret" {
+  type      = string
+  sensitive = true
+}
+
+variable "registry_storage_s3_accesskey" {
+  type      = string
+  sensitive = true
+}
+
+variable "registry_storage_s3_secretkey" {
+  type      = string
+  sensitive = true
+}
+
+variable "registry_ui_password" {
+  type      = string
+  sensitive = true
+}
+
+variable "registry_auth_token_cert" {
+  type      = string
+  sensitive = true
+}
+
+variable "registry_auth_token_key" {
+  type      = string
+  sensitive = true
+}
+
 data "external" "registry" {
   program = ["./scripts/hash.sh", "./registry"]
 }

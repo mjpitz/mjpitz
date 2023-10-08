@@ -1,0 +1,8 @@
+{{- if .Values.woodpecker.agent.env.WOODPECKER_BACKEND_K8S_NAMESPACE }}
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: {{ .Values.woodpecker.agent.env.WOODPECKER_BACKEND_K8S_NAMESPACE }}
+  labels: {}
+{{- end }}

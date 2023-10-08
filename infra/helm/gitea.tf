@@ -1,3 +1,33 @@
+variable "gitea_security_secret_key" {
+  type      = string
+  sensitive = true
+}
+
+variable "gitea_security_internal_token" {
+  type      = string
+  sensitive = true
+}
+
+variable "gitea_email_username" {
+  type      = string
+  sensitive = true
+}
+
+variable "gitea_email_password" {
+  type      = string
+  sensitive = true
+}
+
+variable "gitea_blobs_access_key_id" {
+  type      = string
+  sensitive = true
+}
+
+variable "gitea_blobs_secret_access_key" {
+  type      = string
+  sensitive = true
+}
+
 data "external" "gitea" {
   program = ["./scripts/hash.sh", "./gitea"]
 }
