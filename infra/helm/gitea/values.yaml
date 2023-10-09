@@ -62,6 +62,10 @@ gitea:
       region: nyc3
       useSSL: true
 
+    webhook:
+      allowed:
+        - "*.vcs.svc.cluster.local"
+
   # -- Backup the database using litestream.
   litestream:
     enabled: true

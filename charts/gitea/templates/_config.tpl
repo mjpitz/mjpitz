@@ -265,6 +265,12 @@ MINIO_BUCKET = {{ .Values.config.blobs.bucket }}
 MINIO_LOCATION = {{ .Values.config.blobs.region }}
 MINIO_USE_SSL = {{ .Values.config.blobs.useSSL }}
 
+[webhook]
+DELIVER_TIMEOUT = {{ .Values.config.webhook.deliveryTimeout }}
+{{- if .Values.config.webhook.allowed }}
+ALLOWED_HOST_LIST = {{ .Values.config.webhook.allowed | join "," }}
+{{- end }}
+
 [other]
 SHOW_FOOTER_BRANDING = false
 SHOW_FOOTER_VERSION = true

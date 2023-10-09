@@ -419,6 +419,12 @@ config:
     # -- Configure SSL for the blob storage.
     useSSL: true
 
+  webhook:
+    # -- Delivery timeout (in seconds) for sending webhooks.
+    deliveryTimeout: 5
+    # -- Specify the allowed hosts that are able to receive webhooks.
+    allowed: []
+
 litestream:
   # -- Whether litestream should be enabled for SQLite backups.
   enabled: false

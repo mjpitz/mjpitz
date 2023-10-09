@@ -1,6 +1,6 @@
 # gitea
 
-![Version: 22.4.5](https://img.shields.io/badge/Version-22.4.5-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.16.9](https://img.shields.io/badge/AppVersion-1.16.9-informational?style=flat-square)
+![Version: 23.10.0](https://img.shields.io/badge/Version-23.10.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.20.5](https://img.shields.io/badge/AppVersion-1.20.5-informational?style=flat-square)
 
 Git with a cup of tea. A painless, self-hosted Git Service.
 
@@ -111,6 +111,8 @@ Git with a cup of tea. A painless, self-hosted Git Service.
 | config.service.explore.overrides                    | object | `{}`                                                                                               | Override configuration for the `service.explore` block of the configuration file.                                                                        |
 | config.service.overrides                            | object | `{}`                                                                                               | Override configuration for the `service` block of the configuration file.                                                                                |
 | config.ui.overrides                                 | object | `{}`                                                                                               | Override configuration for the `ui` block of the configuration file.                                                                                     |
+| config.webhook.allowed                              | list   | `[]`                                                                                               | Specify the allowed hosts that are able to receive webhooks.                                                                                             |
+| config.webhook.deliveryTimeout                      | int    | `5`                                                                                                | Delivery timeout (in seconds) for sending webhooks.                                                                                                      |
 | externalConfig.secretRef.name                       | string | `""`                                                                                               | Specify the name of the secret containing the raw configuration.                                                                                         |
 | extraVolumeMounts                                   | list   | `[]`                                                                                               | Add additional volume mounts to the pod.                                                                                                                 |
 | extraVolumes                                        | list   | `[]`                                                                                               | Add additional volumes to the pod.                                                                                                                       |
