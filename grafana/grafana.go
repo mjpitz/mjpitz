@@ -32,10 +32,6 @@ func (g Grafana) Redis(namespace, job string) string {
 	return g.Link("36cf4a03d9f16d8a4221fecbbd2ff5c6", "namespace", namespace, "job", job)
 }
 
-func (g Grafana) Drone(namespace, job string) string {
-	return g.Link("2c241b4cea8d493ef632bf33b10d04cf", "namespace", namespace, "job", job)
-}
-
 func (g Grafana) Litestream(namespace, job string) string {
 	return g.Link("bf44e72e619451e2c85cda80fe17b28b", "namespace", namespace, "job", job)
 }
@@ -58,7 +54,7 @@ func (g Grafana) Nginx(host, ingress string) string {
 
 // default instance
 
-var grafana = Grafana("https://grafana.pitz.tech")
+var grafana = Grafana("https://metrics.pitz.tech")
 
 func Link(dashboard, namespace, job string) string {
 	return grafana.Link(dashboard, namespace, job)
@@ -70,10 +66,6 @@ func Maddy(namespace, job string) string {
 
 func Redis(namespace, job string) string {
 	return grafana.Redis(namespace, job)
-}
-
-func Drone(namespace, job string) string {
-	return grafana.Drone(namespace, job)
 }
 
 func Litestream(namespace, job string) string {

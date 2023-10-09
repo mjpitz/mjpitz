@@ -14,7 +14,6 @@ import (
 const (
 	// Services
 
-	Drone        = "Drone"
 	Gitea        = "Gitea"
 	Grafana      = "Grafana"
 	AlertManager = "AlertManager"
@@ -22,6 +21,7 @@ const (
 	Maddy        = "Maddy"
 	Registry     = "Registry"
 	Nginx        = "Nginx"
+	Woodpecker   = "Woodpecker"
 
 	// Common link groups
 
@@ -39,21 +39,18 @@ const (
 func main() {
 	catalog.Serve(
 		catalog.Service(
-			Drone,
-			service.LogoURL("https://alikhil.github.io/images/posts/drone-logo.png"),
-			service.URL("https://deploy.pitz.tech"),
-			service.Description("Drone is a self-service Continuous Integration platform for busy development teams."),
+			Woodpecker,
+			service.LogoURL("https://static-00.iconduck.com/assets.00/woodpecker-ci-icon-256x234-z0q9t1vt.png"),
+			service.URL("https://build.pitz.tech"),
+			service.Description("Woodpecker is a simple CI engine with great extensibility."),
 			service.LinkGroup(
 				Dashboards,
-				linkgroup.Link(Drone, grafana.Drone("cicd", "drone")),
-				linkgroup.Link(Golang, grafana.Golang("cicd", "drone")),
-				linkgroup.Link(Litestream, grafana.Litestream("cicd", "drone")),
-				linkgroup.Link(Nginx, grafana.Nginx("deploy.pitz.tech", "drone")),
-				linkgroup.Link(RedisQueue, grafana.Redis("cicd", "drone-redis-queue")),
+				linkgroup.Link(Golang, grafana.Golang("vcs", "woodpecker")),
+				linkgroup.Link(Nginx, grafana.Nginx("build.pitz.tech", "woodpecker-server")),
 			),
 			service.LinkGroup(
 				Documentation,
-				linkgroup.Link("docs.drone.io", "https://docs.drone.io/"),
+				linkgroup.Link("woodpecker-ci.org/docs", "https://woodpecker-ci.org/docs/intro"),
 			),
 		),
 		catalog.Service(
