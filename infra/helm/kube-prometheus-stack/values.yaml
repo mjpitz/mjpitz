@@ -15,15 +15,15 @@ kube-prometheus-stack:
         nginx.ingress.kubernetes.io/ssl-redirect: "true"
         external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
       hosts:
-        - grafana.pitz.tech
+        - metrics.pitz.tech
       tls:
         - secretName: grafana-tls
           hosts:
-            - grafana.pitz.tech
+            - metrics.pitz.tech
     envFromSecret: grafana-env-secrets
     grafana.ini:
       server:
-        root_url: https://grafana.pitz.tech
+        root_url: https://metrics.pitz.tech
         disable_initial_admin_creation: true
       auth:
         disable_login_form: true
