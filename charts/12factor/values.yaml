@@ -83,7 +83,7 @@ deployment:
     securityContext: {}
 
     # -- Environment variables provided to the application.
-    env: []
+    env: {}
 
     # -- Load additional environment variables from secrets or config maps.
     envFrom: []
@@ -141,7 +141,7 @@ deployment:
     #     repository: ""
     #     tag: ""
     #     pullPolicy: IfNotPresent
-    #   env: []
+    #   env: {}
     #   envFrom: []
     #   volumeMounts: []
     #   command: []
@@ -164,7 +164,7 @@ deployment:
     #     repository: ""
     #     tag: ""
     #     pullPolicy: IfNotPresent
-    #   env: []
+    #   env: {}
     #   envFrom: []
     #   volumeMounts: []
     #   command: []

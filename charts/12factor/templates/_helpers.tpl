@@ -74,7 +74,14 @@ Render a 12factor container
   imagePullPolicy: {{ .image.pullPolicy }}
   {{- with .env }}
   env:
+    {{- if kindIs (dict | kindOf) . }}
+    {{- range $key, $value := . }}
+    - name: {{ $key }}
+      value: {{ $value | quote }}
+    {{- end }}
+    {{- else }}
     {{- toYaml . | nindent 4 }}
+    {{- end }}
   {{- end }}
   {{- with .envFrom }}
   envFrom:

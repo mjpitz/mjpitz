@@ -57,7 +57,14 @@ spec:
               {{- end }}
               {{- with .env }}
               env:
+                {{- if kindIs (dict | kindOf) . }}
+                {{- range $key, $value := . }}
+                - name: {{ $key }}
+                  value: {{ $value | quote }}
+                {{- end }}
+                {{- else }}
                 {{- toYaml . | nindent 16 }}
+                {{- end }}
               {{- end }}
               {{- with .envFrom }}
               envFrom:

@@ -1,0 +1,10 @@
+deployment:
+  application:
+    env:
+      KEY_1: VALUE_1
+      KEY_2: VALUE_2
+
+  tasks:
+    - env:
+        KEY_1: VALUE_1
+        KEY_2: VALUE_2
