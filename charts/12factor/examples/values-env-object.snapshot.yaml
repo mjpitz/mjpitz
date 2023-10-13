@@ -1,0 +1,93 @@
+---
+# Source: 12factor/templates/serviceaccount.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: 12factor-env-object
+  labels:
+    helm.sh/chart: 12factor-22.5.8
+    app.kubernetes.io/name: env-object
+    app.kubernetes.io/instance: 12factor
+    app.kubernetes.io/managed-by: Helm
+---
+# Source: 12factor/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: 12factor-env-object
+  labels:
+    helm.sh/chart: 12factor-22.5.8
+    app.kubernetes.io/name: env-object
+    app.kubernetes.io/instance: 12factor
+    app.kubernetes.io/managed-by: Helm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: app
+      app.kubernetes.io/name: env-object
+      app.kubernetes.io/instance: 12factor
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/component: app
+        helm.sh/chart: 12factor-22.5.8
+        app.kubernetes.io/name: env-object
+        app.kubernetes.io/instance: 12factor
+        app.kubernetes.io/managed-by: Helm
+    spec:
+      serviceAccountName: 12factor-env-object
+      containers:
+        - name: app
+          image: "nginx:"
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: KEY_1
+              value: "VALUE_1"
+            - name: KEY_2
+              value: "VALUE_2"
+---
+# Source: 12factor/templates/cronjobs.yaml
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: 12factor-env-object-task-app
+  labels:
+    helm.sh/chart: 12factor-22.5.8
+    app.kubernetes.io/name: env-object
+    app.kubernetes.io/instance: 12factor
+    app.kubernetes.io/managed-by: Helm
+spec:
+  schedule: 
+  suspend: 
+  jobTemplate:
+    metadata:
+      labels:
+        app.kubernetes.io/component: task-app
+        helm.sh/chart: 12factor-22.5.8
+        app.kubernetes.io/name: env-object
+        app.kubernetes.io/instance: 12factor
+        app.kubernetes.io/managed-by: Helm
+    spec:
+      template:
+        metadata:
+          labels:
+            app.kubernetes.io/component: task-app
+            helm.sh/chart: 12factor-22.5.8
+            app.kubernetes.io/name: env-object
+            app.kubernetes.io/instance: 12factor
+            app.kubernetes.io/managed-by: Helm
+        spec:
+          serviceAccountName: 12factor-env-object
+          containers:
+            - name: app
+              securityContext:
+                readOnlyRootFilesystem: true
+                runAsNonRoot: true
+              image: "nginx:"
+              imagePullPolicy: IfNotPresent
+              env:
+                - name: KEY_1
+                  value: "VALUE_1"
+                - name: KEY_2
+                  value: "VALUE_2"

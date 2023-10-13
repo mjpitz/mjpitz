@@ -14,7 +14,12 @@ spec:
   type: {{ .Values.networking.service.type }}
   clusterIP: {{ .Values.networking.service.clusterIP }}
   ports:
-    {{- .Values.networking.service.ports | toYaml | nindent 4 }}
+    {{- range .Values.networking.service.ports }}
+    - name: {{ .name | required "networking.service.ports.name must be specified" }}
+      port: {{ .port | required "networking.service.ports.port must be specified" }}
+      targetPort: {{ .targetPort | required "networking.service.ports.targetPort must be specified" }}
+      protocol: {{ .protocol | default "TCP" }}
+    {{- end }}
   selector:
     app.kubernetes.io/component: app
     {{- include "12factor.selectorLabels" . | nindent 4 }}

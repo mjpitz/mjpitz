@@ -72,7 +72,7 @@ deployment:
   # -- Annotations are added to pods within the deployment.
   annotations: {}
 
-  # -- Specify secret names containing registry credentials that should be added to this deployment.
+  # -- Specify additional secret names containing registry credentials that should be added to this deployment.
   imagePullSecrets: []
 
   # -- Specify volumes that should be included with the deployment.
@@ -83,7 +83,7 @@ deployment:
     securityContext: {}
 
     # -- Environment variables provided to the application.
-    env: {}
+    env:
 
     # -- Load additional environment variables from secrets or config maps.
     envFrom: []
@@ -101,7 +101,6 @@ deployment:
     ports: []
       # - name: http
       #   containerPort: 8080
-      #   protocol: TCP
 
     checks:
       # -- Used to indicate that the container has started successfully. If specified, no other checks are run until this
@@ -141,7 +140,7 @@ deployment:
     #     repository: ""
     #     tag: ""
     #     pullPolicy: IfNotPresent
-    #   env: {}
+    #   env: []
     #   envFrom: []
     #   volumeMounts: []
     #   command: []
@@ -164,7 +163,7 @@ deployment:
     #     repository: ""
     #     tag: ""
     #     pullPolicy: IfNotPresent
-    #   env: {}
+    #   env: []
     #   envFrom: []
     #   volumeMounts: []
     #   command: []
@@ -199,11 +198,11 @@ networking:
       # - name: http
       #   port: 80
       #   targetPort: http
-      #   protocol: TCP
 
   ingress:
     # -- Enable ingress addressing. In order for ingress addressing to work, there must be an `http` port exposed on the
-    #    service in order for ingress to work.
+    #    service in order for ingress to work. This can be configured on a per host-path definition or using the
+    #    `portName` value.
     enabled: false
 
     # -- The name of the ingress class to use (if not set via an annotation).
@@ -213,16 +212,38 @@ networking:
     annotations: {}
       # kubernetes.io/ingress.class: nginx
       # kubernetes.io/tls-acme: "true"
+
+    # -- The name of the service port we're attempting to expose.
+    portName: http
+
     hosts:
       - # -- The host the ingress should route to this deployment.
         host: chart-example.local
         paths:
           - # -- The path to match on.
             path: /
+            # -- Configure the behavior of the ingress route. This defaults to ImplementationSpecific for backwards
+            #    compatibility.
             pathType: ImplementationSpecific
+            # -- Override the service port this path routes to. If not configured, the default portName is used.
+            portName: ""
 
     # -- Configure TLS certificates for the ingress to use.
     tls: []
     #  - secretName: chart-example-tls
     #    hosts:
     #      - chart-example.local
+
+metrics:
+  # -- Whether metrics collection should be enabled. If this is enabled, then the application should expose a metrics
+  #    endpoint (port and path) for data collection. `portName` can be used to configure the name of the port used to
+  #    collect metrics.
+  enabled: false
+
+  endpoints:
+    - # -- The name of the container port hosting the metrics endpoint.
+      portName: metrics
+
+      # -- Extra configuration to supply the podMetricsEndpoint entry. To get an idea of what additional configuration may
+      #    be specified, see `kubectl explain podmonitor.spec.podMetricsEndpoints`.
+      podMonitor: {}

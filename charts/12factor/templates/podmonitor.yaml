@@ -1,0 +1,20 @@
+{{- if .Values.metrics.enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: {{ include "12factor.fullname" . }}
+  labels:
+    {{- include "12factor.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: app
+      {{- include "12factor.selectorLabels" . | nindent 6 }}
+  podMetricsEndpoints:
+    {{- range .Values.metrics.endpoints }}
+    - port: {{ .portName }}
+      {{- with .podMonitor }}
+      {{- toYaml . | nindent 6 }}
+      {{- end }}
+    {{- end }}
+{{- end }}

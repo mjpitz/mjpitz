@@ -1,13 +1,19 @@
+nameOverride: array-env
+
 deployment:
   application:
+    name: app
     env:
+      # -- Use arrays for environment variables.
       - name: KEY_1
         value: "VALUE_1"
       - name: KEY_2
         value: "VALUE_2"
 
   tasks:
-    - env:
+    - name: app
+      env:
+        # -- Use arrays for environment variables.
         - name: KEY_1
           value: "VALUE_1"
         - name: KEY_2

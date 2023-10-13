@@ -1,0 +1,13 @@
+nameOverride: metrics
+
+deployment:
+  application:
+    ports:
+      - name: metrics
+        containerPort: 9001
+
+metrics:
+  enabled: true
+  endpoints:
+    - portName: metrics
+      podMonitor: {}

@@ -52,10 +52,10 @@ spec:
               service:
                 name: {{ $fullName }}
                 port:
-                  name: http
+                  name: {{ .portName | default $networking.ingress.portName }}
               {{- else }}
               serviceName: {{ $fullName }}
-              servicePort: http
+              servicePort: {{ .portName | default $networking.ingress.portName }}
               {{- end }}
           {{- end }}
     {{- end }}

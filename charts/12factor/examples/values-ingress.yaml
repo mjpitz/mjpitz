@@ -1,0 +1,18 @@
+nameOverride: ingress
+
+deployment:
+  application:
+    ports:
+      - name: http
+        containerPort: 8080
+
+networking:
+  service:
+    ports:
+      - name: http
+        port: 80
+        targetPort: http
+
+  ingress:
+    enabled: true
+    portName: http

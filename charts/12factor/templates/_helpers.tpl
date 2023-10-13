@@ -97,7 +97,11 @@ Render a 12factor container
   {{- end }}
   {{- with .ports }}
   ports:
-    {{- toYaml . | nindent 4 }}
+    {{- range . }}
+    - name: {{ .name | required "containers.ports.name must be specified" }}
+      containerPort: {{ .containerPort | required "containers.ports.containerPort must be specified" }}
+      protocol: {{ .protocol | default "TCP" }}
+    {{- end }}
   {{- end }}
   {{- with .resources }}
   resources:

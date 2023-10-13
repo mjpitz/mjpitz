@@ -1,0 +1,6 @@
+nameOverride: autoscaling
+
+deployment:
+  autoscaling:
+    enabled: true
+    targetCPUUtilizationPercentage: 80

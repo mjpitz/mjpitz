@@ -1,0 +1,94 @@
+---
+# Source: 12factor/templates/serviceaccount.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: 12factor-ingress
+  labels:
+    helm.sh/chart: 12factor-22.5.8
+    app.kubernetes.io/name: ingress
+    app.kubernetes.io/instance: 12factor
+    app.kubernetes.io/managed-by: Helm
+---
+# Source: 12factor/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: 12factor-ingress
+  labels:
+    app.kubernetes.io/component: app
+    helm.sh/chart: 12factor-22.5.8
+    app.kubernetes.io/name: ingress
+    app.kubernetes.io/instance: 12factor
+    app.kubernetes.io/managed-by: Helm
+spec:
+  type: ClusterIP
+  clusterIP: 
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
+      protocol: TCP
+  selector:
+    app.kubernetes.io/component: app
+    app.kubernetes.io/name: ingress
+    app.kubernetes.io/instance: 12factor
+---
+# Source: 12factor/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: 12factor-ingress
+  labels:
+    helm.sh/chart: 12factor-22.5.8
+    app.kubernetes.io/name: ingress
+    app.kubernetes.io/instance: 12factor
+    app.kubernetes.io/managed-by: Helm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: app
+      app.kubernetes.io/name: ingress
+      app.kubernetes.io/instance: 12factor
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/component: app
+        helm.sh/chart: 12factor-22.5.8
+        app.kubernetes.io/name: ingress
+        app.kubernetes.io/instance: 12factor
+        app.kubernetes.io/managed-by: Helm
+    spec:
+      serviceAccountName: 12factor-ingress
+      containers:
+        - name: app
+          image: "nginx:"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+---
+# Source: 12factor/templates/ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: 12factor-ingress
+  labels:
+    helm.sh/chart: 12factor-22.5.8
+    app.kubernetes.io/name: ingress
+    app.kubernetes.io/instance: 12factor
+    app.kubernetes.io/managed-by: Helm
+spec:
+  rules:
+    - host: "chart-example.local"
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: 12factor-ingress
+                port:
+                  name: http
