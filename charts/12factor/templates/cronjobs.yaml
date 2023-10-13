@@ -5,6 +5,7 @@
 {{- $imagePullSecrets := .Values.imagePullSecrets }}
 {{- $deployment := .Values.deployment }}
 {{- range .Values.deployment.tasks }}
+---
 apiVersion: batch/v1
 kind: CronJob
 metadata:
@@ -30,12 +31,14 @@ spec:
           volumes:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          {{- if $imagePullSecrets }}
+          {{- if $imagePullSecrets | or $deployment.imagePullSecrets }}
           imagePullSecrets:
+            {{- if $imagePullSecrets }}
             - name: {{ $fullname }}-pull-secrets
-          {{- else if $deployment.imagePullSecrets }}
-          imagePullSecrets:
-            {{- $deployment.imagePullSecrets | toYaml | nindent 12 }}
+            {{- end }}
+            {{- with $deployment.imagePullSecrets }}
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
           {{- end }}
           serviceAccountName: {{ $serviceAccountName }}
           containers:
@@ -84,7 +87,7 @@ spec:
               {{- end }}
               {{- with .volumeMounts }}
               volumeMounts:
-                {{- toYaml . | nindent 4 }}
+                {{- toYaml . | nindent 16 }}
               {{- end }}
           {{- with $deployment.nodeSelector }}
           nodeSelector:

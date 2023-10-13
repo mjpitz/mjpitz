@@ -1,0 +1,107 @@
+---
+# Source: 12factor/templates/serviceaccount.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: 12factor-hooks
+  labels:
+    helm.sh/chart: 12factor-22.5.9
+    app.kubernetes.io/name: hooks
+    app.kubernetes.io/instance: 12factor
+    app.kubernetes.io/managed-by: Helm
+---
+# Source: 12factor/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: 12factor-hooks
+  labels:
+    helm.sh/chart: 12factor-22.5.9
+    app.kubernetes.io/name: hooks
+    app.kubernetes.io/instance: 12factor
+    app.kubernetes.io/managed-by: Helm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: app
+      app.kubernetes.io/name: hooks
+      app.kubernetes.io/instance: 12factor
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/component: app
+        helm.sh/chart: 12factor-22.5.9
+        app.kubernetes.io/name: hooks
+        app.kubernetes.io/instance: 12factor
+        app.kubernetes.io/managed-by: Helm
+    spec:
+      serviceAccountName: 12factor-hooks
+      containers:
+        - name: app
+          image: "nginx:"
+          imagePullPolicy: IfNotPresent
+---
+# Source: 12factor/templates/hooks.yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: 12factor-hooks-hook-db-migrate
+  labels:
+    app.kubernetes.io/component: hook-db-migrate
+    helm.sh/chart: 12factor-22.5.9
+    app.kubernetes.io/name: hooks
+    app.kubernetes.io/instance: 12factor
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    helm.sh/hook: pre-install,pre-upgrade
+spec:
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/component: hook-db-migrate
+        helm.sh/chart: 12factor-22.5.9
+        app.kubernetes.io/name: hooks
+        app.kubernetes.io/instance: 12factor
+        app.kubernetes.io/managed-by: Helm
+    spec:
+      serviceAccountName: 12factor-hooks
+      containers:
+        - name: db-migrate
+          securityContext:
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+          image: "nginx:"
+          imagePullPolicy: IfNotPresent
+---
+# Source: 12factor/templates/hooks.yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: 12factor-hooks-hook-db-rollback
+  labels:
+    app.kubernetes.io/component: hook-db-rollback
+    helm.sh/chart: 12factor-22.5.9
+    app.kubernetes.io/name: hooks
+    app.kubernetes.io/instance: 12factor
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    helm.sh/hook: pre-rollback
+spec:
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/component: hook-db-rollback
+        helm.sh/chart: 12factor-22.5.9
+        app.kubernetes.io/name: hooks
+        app.kubernetes.io/instance: 12factor
+        app.kubernetes.io/managed-by: Helm
+    spec:
+      serviceAccountName: 12factor-hooks
+      containers:
+        - name: db-rollback
+          securityContext:
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+          image: "nginx:"
+          imagePullPolicy: IfNotPresent

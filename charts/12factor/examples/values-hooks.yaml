@@ -1,0 +1,7 @@
+nameOverride: hooks
+
+hooks:
+  - name: db-migrate
+    triggers: [ pre-install, pre-upgrade ]
+  - name: db-rollback
+    triggers: [ pre-rollback ]

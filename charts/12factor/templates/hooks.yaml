@@ -1,0 +1,105 @@
+{{- $fullname := include "12factor.fullname" . }}
+{{- $serviceAccountName := include "12factor.serviceAccountName" . }}
+{{- $labels := include "12factor.labels" . }}
+{{- $image := .Values.image }}
+{{- $imagePullSecrets := .Values.imagePullSecrets }}
+{{- $deployment := .Values.deployment }}
+{{- range .Values.hooks }}
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ printf "%s-hook-%s" $fullname .name }}
+  labels:
+    app.kubernetes.io/component: {{ printf "hook-%s" .name }}
+    {{- $labels | nindent 4 }}
+  annotations:
+    helm.sh/hook: {{ .triggers | join "," }}
+    {{- with .weight }}
+    helm.sh/hook-weight: {{ . | toString | quote }}
+    {{- end }}
+    {{- with .deletionPolicy }}
+    helm.sh/hook-delete-policy: {{ . | join "," }}
+    {{- end }}
+spec:
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/component: {{ printf "hook-%s" .name }}
+        {{- $labels | nindent 8 }}
+    spec:
+      {{- with $deployment.volumes }}
+      volumes:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- if $imagePullSecrets | or $deployment.imagePullSecrets }}
+      imagePullSecrets:
+        {{- if $imagePullSecrets }}
+        - name: {{ include "12factor.fullname" . }}-pull-secrets
+        {{- end }}
+        {{- with $deployment.imagePullSecrets }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+      {{- end }}
+      serviceAccountName: {{ $serviceAccountName }}
+      containers:
+        - name: {{ .name }}
+          {{- if .securityContext }}
+          securityContext:
+            {{- toYaml .securityContext | nindent 12 }}
+          {{- else }}
+          securityContext:
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+          {{- end }}
+          {{- if .image }}
+          image: "{{ .image.repository }}:{{ .image.tag }}"
+          imagePullPolicy: {{ .image.pullPolicy }}
+          {{- else }}
+          image: "{{ $image.repository }}:{{ $image.tag }}"
+          imagePullPolicy: {{ $image.pullPolicy }}
+          {{- end }}
+          {{- with .env }}
+          env:
+            {{- if kindIs (dict | kindOf) . }}
+            {{- range $key, $value := . }}
+            - name: {{ $key }}
+              value: {{ $value | quote }}
+            {{- end }}
+            {{- else }}
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
+          {{- end }}
+          {{- with .envFrom }}
+          envFrom:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .command }}
+          command:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .args }}
+          args:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .volumeMounts }}
+          volumeMounts:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+      {{- with $deployment.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with $deployment.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with $deployment.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+{{- end }}

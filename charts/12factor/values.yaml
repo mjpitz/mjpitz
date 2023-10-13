@@ -30,6 +30,25 @@ serviceAccount:
   #    template.
   name: ""
 
+# -- Hooks provide tie-ins to the release lifecycle. They're particularly useful for running database migration and
+#    backup jobs.
+hooks: []
+  # - name: ""
+  #   triggers: [pre-install,pre-upgrade]
+  #   weight: 0
+  #   resourcePolicy: keep
+  #   deletionPolicy: [before-hook-creation,hook-succeeded]
+  #   securityContext: {}
+  #   image:
+  #     repository: ""
+  #     tag: ""
+  #     pullPolicy: IfNotPresent
+  #   env: []
+  #   envFrom: []
+  #   command: []
+  #   args: []
+  #   resources: {}
+
 deployment:
   # -- The number of pods to deploy.
   replicaCount: 1
@@ -82,7 +101,7 @@ deployment:
     # -- Specify the security context to assign to the application container.
     securityContext: {}
 
-    # -- Environment variables provided to the application.
+    # -- (object/list) Environment variables provided to the application.
     env:
 
     # -- Load additional environment variables from secrets or config maps.

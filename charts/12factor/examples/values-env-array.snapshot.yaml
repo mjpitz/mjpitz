@@ -5,7 +5,7 @@ kind: ServiceAccount
 metadata:
   name: 12factor-array-env
   labels:
-    helm.sh/chart: 12factor-22.5.8
+    helm.sh/chart: 12factor-22.5.9
     app.kubernetes.io/name: array-env
     app.kubernetes.io/instance: 12factor
     app.kubernetes.io/managed-by: Helm
@@ -16,7 +16,7 @@ kind: Deployment
 metadata:
   name: 12factor-array-env
   labels:
-    helm.sh/chart: 12factor-22.5.8
+    helm.sh/chart: 12factor-22.5.9
     app.kubernetes.io/name: array-env
     app.kubernetes.io/instance: 12factor
     app.kubernetes.io/managed-by: Helm
@@ -31,7 +31,7 @@ spec:
     metadata:
       labels:
         app.kubernetes.io/component: app
-        helm.sh/chart: 12factor-22.5.8
+        helm.sh/chart: 12factor-22.5.9
         app.kubernetes.io/name: array-env
         app.kubernetes.io/instance: 12factor
         app.kubernetes.io/managed-by: Helm
@@ -53,7 +53,7 @@ kind: CronJob
 metadata:
   name: 12factor-array-env-task-app
   labels:
-    helm.sh/chart: 12factor-22.5.8
+    helm.sh/chart: 12factor-22.5.9
     app.kubernetes.io/name: array-env
     app.kubernetes.io/instance: 12factor
     app.kubernetes.io/managed-by: Helm
@@ -64,7 +64,7 @@ spec:
     metadata:
       labels:
         app.kubernetes.io/component: task-app
-        helm.sh/chart: 12factor-22.5.8
+        helm.sh/chart: 12factor-22.5.9
         app.kubernetes.io/name: array-env
         app.kubernetes.io/instance: 12factor
         app.kubernetes.io/managed-by: Helm
@@ -73,7 +73,7 @@ spec:
         metadata:
           labels:
             app.kubernetes.io/component: task-app
-            helm.sh/chart: 12factor-22.5.8
+            helm.sh/chart: 12factor-22.5.9
             app.kubernetes.io/name: array-env
             app.kubernetes.io/instance: 12factor
             app.kubernetes.io/managed-by: Helm
