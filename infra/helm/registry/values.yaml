@@ -85,22 +85,29 @@ registry:
           comment: mya can push and pull her images
           match: { account: "mya", name: mya/* }
         - actions: [ "*" ]
+          comment: mya can push and pull woodpeckerci images
+          match: { account: "mya", name: woodpeckerci/* }
+        - actions: [ "*" ]
           comment: mya can push and pull dreamboothy images
           match: { account: "mya", name: dreamboothy/* }
-        - actions: [ "pull" ]
-          comment: Anonymous users can pull mya
-          match: { account: "", name: mya/* }
         # dreamboothy
         - actions: [ "*" ]
           comment: dreamboothy can push and pull their images
           match: { account: "dreamboothy", name: dreamboothy/* }
-        # anonymous
+        # depscloud
         - actions: [ "*" ]
           comment: depscloud can push and pull their images
           match: { account: "depscloud", name: depscloud/* }
+        # anonymous
         - actions: [ "pull" ]
           comment: Anonymous users can pull depscloud
           match: { account: "", name: depscloud/* }
+        - actions: [ "pull" ]
+          comment: Anonymous users can pull mya
+          match: { account: "", name: mya/* }
+        - actions: [ "pull" ]
+          comment: Anonymous users can pull woodpeckerci images
+          match: { account: "", name: woodpeckerci/* }
 
       # htpasswd -nbB username password
       users:

@@ -60,6 +60,11 @@ resource "helm_release" "woodpecker" {
     value = var.woodpecker_encryption_key
   }
 
+  set {
+    name  = "global.terraform.hash"
+    value = data.external.woodpecker.result.sha256
+  }
+
   dependency_update = true
   create_namespace  = true
   atomic            = true

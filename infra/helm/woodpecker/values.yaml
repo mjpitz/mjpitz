@@ -13,6 +13,9 @@ nfs-server-provisioner:
 
 woodpecker:
   agent:
+    image:
+      registry: img.pitz.tech
+
     replicaCount: 1
     env:
       WOODPECKER_SERVER: "woodpecker-server.vcs.svc.cluster.local:9000"
@@ -32,6 +35,13 @@ woodpecker:
       WOODPECKER_AGENT_SECRET: ""
 
   server:
+    image:
+      registry: img.pitz.tech
+
+    metrics:
+      enabled: true
+      port: 9001
+
     statefulSet:
       replicaCount: 1
 
@@ -51,7 +61,6 @@ woodpecker:
       WOODPECKER_DATABASE_DRIVER: "sqlite3"
       WOODPECKER_DATABASE_DATASOURCE: "woodpecker.sqlite"
       WOODPECKER_ENCRYPTION_KEY: ""
-      WOODPECKER_METRICS_SERVER_ADDR: ":9001"
 
     ingress:
       enabled: true
@@ -73,4 +82,3 @@ woodpecker:
         - secretName: woodpecker-tls
           hosts:
             - build.pitz.tech
-
