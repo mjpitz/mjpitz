@@ -514,6 +514,42 @@
                },
                "type": "array"
             },
+            "topologySpreadConstraints": {
+               "items": {
+                  "properties": {
+                     "labelSelector": {
+                        "properties": { },
+                        "type": "object"
+                     },
+                     "matchLabelKeys": {
+                        "items": {
+                           "type": "string"
+                        },
+                        "type": "array"
+                     },
+                     "maxSkew": {
+                        "type": "integer"
+                     },
+                     "minDomains": {
+                        "type": "integer"
+                     },
+                     "nodeAffinityPolicy": {
+                        "type": "string"
+                     },
+                     "nodeTaintsPolicy": {
+                        "type": "string"
+                     },
+                     "topologyKey": {
+                        "type": "string"
+                     },
+                     "whenUnsatisfiable": {
+                        "type": "string"
+                     }
+                  },
+                  "type": "object"
+               },
+               "type": "array"
+            },
             "volumes": {
                "items": {
                   "properties": { },

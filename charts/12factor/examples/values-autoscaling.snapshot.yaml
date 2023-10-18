@@ -5,7 +5,7 @@ kind: ServiceAccount
 metadata:
   name: 12factor-autoscaling
   labels:
-    helm.sh/chart: 12factor-22.5.9
+    helm.sh/chart: 12factor-22.5.10
     app.kubernetes.io/name: autoscaling
     app.kubernetes.io/instance: 12factor
     app.kubernetes.io/managed-by: Helm
@@ -16,7 +16,7 @@ kind: Deployment
 metadata:
   name: 12factor-autoscaling
   labels:
-    helm.sh/chart: 12factor-22.5.9
+    helm.sh/chart: 12factor-22.5.10
     app.kubernetes.io/name: autoscaling
     app.kubernetes.io/instance: 12factor
     app.kubernetes.io/managed-by: Helm
@@ -30,7 +30,7 @@ spec:
     metadata:
       labels:
         app.kubernetes.io/component: app
-        helm.sh/chart: 12factor-22.5.9
+        helm.sh/chart: 12factor-22.5.10
         app.kubernetes.io/name: autoscaling
         app.kubernetes.io/instance: 12factor
         app.kubernetes.io/managed-by: Helm
@@ -47,7 +47,7 @@ kind: HorizontalPodAutoscaler
 metadata:
   name: 12factor-autoscaling
   labels:
-    helm.sh/chart: 12factor-22.5.9
+    helm.sh/chart: 12factor-22.5.10
     app.kubernetes.io/name: autoscaling
     app.kubernetes.io/instance: 12factor
     app.kubernetes.io/managed-by: Helm

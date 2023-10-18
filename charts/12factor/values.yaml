@@ -200,6 +200,13 @@ deployment:
   #    set of nodes or spreading them across different zones and regions.
   affinity: {}
 
+  # -- Specify how pods should be spread across your infrastructure. This is typically done across hostnames to provide
+  #    machine level redundancy and availability zones to provide higher availability in production systems.
+  topologySpreadConstraints: []
+#    - topologyKey: topology.kubernetes.io/zone
+#      whenUnsatisfiable: ScheduleAnyway
+#      maxSkew: 1
+
 networking:
   service:
     # -- Additional annotations to include on the service.

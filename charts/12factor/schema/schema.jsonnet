@@ -169,6 +169,16 @@ local utilization = {
                 podAffinity: object({}),
                 podAntiAffinity: object({}),
             }),
+            topologySpreadConstraints: list(object({
+                topologyKey: string,
+                whenUnsatisfiable: string,
+                maxSkew: integer,
+                labelSelector: object({}),
+                matchLabelKeys: list(string),
+                minDomains: integer,
+                nodeAffinityPolicy: string,
+                nodeTaintsPolicy: string,
+            })),
         }),
         networking: object({
             service: object({
