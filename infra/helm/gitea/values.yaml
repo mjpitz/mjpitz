@@ -9,6 +9,7 @@ gitea:
       cert-manager.io/cluster-issuer: "letsencrypt-prod"
       nginx.ingress.kubernetes.io/enable-cors: "true"
       nginx.ingress.kubernetes.io/ssl-redirect: "true"
+      nginx.ingress.kubernetes.io/proxy-body-size: "0m"
       external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
     hosts:
       - host: code.pitz.tech
