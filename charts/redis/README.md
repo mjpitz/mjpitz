@@ -1,6 +1,6 @@
 # redis
 
-![Version: 22.4.7](https://img.shields.io/badge/Version-22.4.7-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 6.2.6](https://img.shields.io/badge/AppVersion-6.2.6-informational?style=flat-square)
+![Version: 22.4.8](https://img.shields.io/badge/Version-22.4.8-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 6.2.6](https://img.shields.io/badge/AppVersion-6.2.6-informational?style=flat-square)
 
 Deploy a highly-available, partition-tolerant Redis cluster fronted by an envoy sidecar. Envoy partitions keys among
 members of the cluster using a consistent hashing algorithm making it great as a best-effort cache.
@@ -15,7 +15,7 @@ fetch the dependency before installing.
 dependencies:
   # ...
   - name: redis
-    version: 22.4.7
+    version: 22.4.8
     repository: https://mjpitz.com
     condition: redis.enabled
 ```

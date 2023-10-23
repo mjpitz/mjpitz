@@ -11,4 +11,10 @@ sources:
 maintainers:
   - name: Mya Pitzeruse
     url: https://mjpitz.com
-version: 22.5.10
+version: 22.5.11
+annotations:
+  artifacthub.io/category: integration-delivery
+  artifacthub.io/license: MIT
+  artifacthub.io/signKey: |
+    fingerprint: FD0F1E353074E15A4883BC630FCA5E3C09DFB314
+    url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x0fca5e3c09dfb314

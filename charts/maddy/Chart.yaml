@@ -11,10 +11,16 @@ sources:
 maintainers:
   - name: Mya Pitzeruse
     url: https://mjpitz.com
-version: 22.4.8
+version: 22.4.9
 appVersion: 0.5.4
 dependencies:
   - name: litestream
     version: 22.4.2
     repository: https://mjpitz.com
     condition: litestream.enabled
+annotations:
+  artifacthub.io/category: integration-delivery
+  artifacthub.io/license: MIT
+  artifacthub.io/signKey: |
+    fingerprint: FD0F1E353074E15A4883BC630FCA5E3C09DFB314
+    url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x0fca5e3c09dfb314

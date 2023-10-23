@@ -1,6 +1,6 @@
 # registry
 
-![Version: 22.4.7](https://img.shields.io/badge/Version-22.4.7-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.8.0](https://img.shields.io/badge/AppVersion-2.8.0-informational?style=flat-square)
+![Version: 22.4.8](https://img.shields.io/badge/Version-22.4.8-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.8.0](https://img.shields.io/badge/AppVersion-2.8.0-informational?style=flat-square)
 
 Easily deploy and configure a production-ready container registry backed by your favorite cloud storage provider.
 Optionally add a highly-available, partition-tolerant Redis cache that's fronted by Envoy.
