@@ -13,8 +13,8 @@ nfs-server-provisioner:
 
 woodpecker:
   agent:
-    image:
-      registry: img.pitz.tech
+#    image:
+#      registry: img.pitz.tech
 
     replicaCount: 1
     env:
@@ -35,8 +35,8 @@ woodpecker:
       WOODPECKER_AGENT_SECRET: ""
 
   server:
-    image:
-      registry: img.pitz.tech
+#    image:
+#      registry: img.pitz.tech
 
     metrics:
       enabled: true

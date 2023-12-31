@@ -1,6 +1,9 @@
 gitea:
   enabled: true
 
+  image:
+    tag: nightly
+
   ingress:
     enabled: true
     annotations:

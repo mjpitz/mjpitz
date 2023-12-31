@@ -183,7 +183,7 @@ PASSWORD_COMPLEXITY           = spec
 
 [mailer]
 ENABLED = {{ .Values.config.email.host | empty | not | ternary "true" "false" }}
-HOST = {{ .Values.config.email.host }}:{{ .Values.config.email.port }}
+SMTP_ADDR = {{ .Values.config.email.host }}:{{ .Values.config.email.port }}
 FROM = {{ .Values.config.email.from }}
 USER = {{ .Values.config.email.username }}
 PASSWD = {{ .Values.config.email.password }}
