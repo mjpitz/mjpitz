@@ -91,3 +91,8 @@
     <a href="https://mjpitz.com/media/">
         <img alt="Media" src="https://img.shields.io/badge/-Media-pink?style=for-the-badge" /></a>
 </p>
+
+<br/><br/>
+<p align="center">
+    All projects adopt the Contributor Covenant <a href="https://github.com/mjpitz/mjpitz/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a>.
+</p>
