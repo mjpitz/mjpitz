@@ -163,4 +163,4 @@ cluster:
     # -- The pull policy used when pulling the Envoy proxy.
     pullPolicy: IfNotPresent
     # -- The version of Envoy to run.
-    tag: "v1.23-latest"
+    tag: "v1.29-latest"
