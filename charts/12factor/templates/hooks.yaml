@@ -42,6 +42,7 @@ spec:
         {{- end }}
       {{- end }}
       serviceAccountName: {{ $serviceAccountName }}
+      restartPolicy: {{ .restartPolicy | default "Always" }}
       containers:
         - name: {{ .name }}
           {{- if .securityContext }}

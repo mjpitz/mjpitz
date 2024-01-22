@@ -11,7 +11,7 @@ sources:
 maintainers:
   - name: Mya Pitzeruse
     url: https://mjpitz.com
-version: 22.5.11
+version: 24.1.0
 annotations:
   artifacthub.io/category: integration-delivery
   artifacthub.io/license: MIT
