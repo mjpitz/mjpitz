@@ -8,6 +8,30 @@ entries:
         fingerprint: FD0F1E353074E15A4883BC630FCA5E3C09DFB314
         url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x0fca5e3c09dfb314
     apiVersion: v2
+    created: "2024-01-22T17:17:53.276450558Z"
+    description: 'Easily deploy any application that conforms to the 12-factor application
+      patterns. Kubernetes helps provide a platform for many of the 12factor patterns.
+      This chart attempts to help streamline the management of configuration, log
+      streams, and execution of administrative tasks. '
+    digest: b1be62a6790c974b3844aada77dc991b29cabc1653c19ce29906c805cc8b850c
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: 12factor
+    sources:
+    - https://12factor.net/
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/12factor
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/12factor-24.1.0/12factor-24.1.0.tgz
+    version: 24.1.0
+  - annotations:
+      artifacthub.io/category: integration-delivery
+      artifacthub.io/license: MIT
+      artifacthub.io/signKey: |
+        fingerprint: FD0F1E353074E15A4883BC630FCA5E3C09DFB314
+        url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x0fca5e3c09dfb314
+    apiVersion: v2
     created: "2023-10-23T16:13:20.612785345Z"
     description: 'Easily deploy any application that conforms to the 12-factor application
       patterns. Kubernetes helps provide a platform for many of the 12factor patterns.
@@ -2089,4 +2113,4 @@ entries:
     urls:
     - https://github.com/mjpitz/mjpitz/releases/download/storj-22.3.0/storj-22.3.0.tgz
     version: 22.3.0
-generated: "2023-12-31T16:30:53.019770471Z"
+generated: "2024-01-22T17:17:53.276620102Z"
