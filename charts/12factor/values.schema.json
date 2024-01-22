@@ -469,6 +469,9 @@
                         "properties": { },
                         "type": "object"
                      },
+                     "restartPolicy": {
+                        "type": "string"
+                     },
                      "schedule": {
                         "type": "string"
                      },
@@ -639,6 +642,9 @@
                "resources": {
                   "properties": { },
                   "type": "object"
+               },
+               "restartPolicy": {
+                  "type": "string"
                },
                "securityContext": {
                   "properties": { },

@@ -5,7 +5,7 @@ kind: ServiceAccount
 metadata:
   name: 12factor-hooks
   labels:
-    helm.sh/chart: 12factor-22.5.10
+    helm.sh/chart: 12factor-24.1.0
     app.kubernetes.io/name: hooks
     app.kubernetes.io/instance: 12factor
     app.kubernetes.io/managed-by: Helm
@@ -16,7 +16,7 @@ kind: Deployment
 metadata:
   name: 12factor-hooks
   labels:
-    helm.sh/chart: 12factor-22.5.10
+    helm.sh/chart: 12factor-24.1.0
     app.kubernetes.io/name: hooks
     app.kubernetes.io/instance: 12factor
     app.kubernetes.io/managed-by: Helm
@@ -31,7 +31,7 @@ spec:
     metadata:
       labels:
         app.kubernetes.io/component: app
-        helm.sh/chart: 12factor-22.5.10
+        helm.sh/chart: 12factor-24.1.0
         app.kubernetes.io/name: hooks
         app.kubernetes.io/instance: 12factor
         app.kubernetes.io/managed-by: Helm
@@ -49,7 +49,7 @@ metadata:
   name: 12factor-hooks-hook-db-migrate
   labels:
     app.kubernetes.io/component: hook-db-migrate
-    helm.sh/chart: 12factor-22.5.10
+    helm.sh/chart: 12factor-24.1.0
     app.kubernetes.io/name: hooks
     app.kubernetes.io/instance: 12factor
     app.kubernetes.io/managed-by: Helm
@@ -60,12 +60,13 @@ spec:
     metadata:
       labels:
         app.kubernetes.io/component: hook-db-migrate
-        helm.sh/chart: 12factor-22.5.10
+        helm.sh/chart: 12factor-24.1.0
         app.kubernetes.io/name: hooks
         app.kubernetes.io/instance: 12factor
         app.kubernetes.io/managed-by: Helm
     spec:
       serviceAccountName: 12factor-hooks
+      restartPolicy: Always
       containers:
         - name: db-migrate
           securityContext:
@@ -81,7 +82,7 @@ metadata:
   name: 12factor-hooks-hook-db-rollback
   labels:
     app.kubernetes.io/component: hook-db-rollback
-    helm.sh/chart: 12factor-22.5.10
+    helm.sh/chart: 12factor-24.1.0
     app.kubernetes.io/name: hooks
     app.kubernetes.io/instance: 12factor
     app.kubernetes.io/managed-by: Helm
@@ -92,12 +93,13 @@ spec:
     metadata:
       labels:
         app.kubernetes.io/component: hook-db-rollback
-        helm.sh/chart: 12factor-22.5.10
+        helm.sh/chart: 12factor-24.1.0
         app.kubernetes.io/name: hooks
         app.kubernetes.io/instance: 12factor
         app.kubernetes.io/managed-by: Helm
     spec:
       serviceAccountName: 12factor-hooks
+      restartPolicy: Always
       containers:
         - name: db-rollback
           securityContext:

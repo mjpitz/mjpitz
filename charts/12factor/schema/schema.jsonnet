@@ -76,6 +76,7 @@ local utilization = {
                 resourcePolicy: string,
                 deletionPolicy: list(string),
                 securityContext: object({}),
+                restartPolicy: string,
                 image: object({
                     repository: string,
                     tag: string,
@@ -144,6 +145,7 @@ local utilization = {
                 schedule: string,
                 suspend: boolean,
                 securityContext: object({}),
+                restartPolicy: string,
                 image: object({
                     repository: string,
                     tag: string,
