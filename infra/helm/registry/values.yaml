@@ -15,12 +15,10 @@ registry:
       external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
     hosts:
       - host: img.pitz.tech
-      - host: ocr.sh
     tls:
       - secretName: registry-tls
         hosts:
           - img.pitz.tech
-          - ocr.sh
 
   extraVolumes:
     - name: token-cert

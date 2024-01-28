@@ -3,7 +3,7 @@ pages:
 
   image:
     repository: img.pitz.tech/mya/pages
-    tag: latest@sha256:de69725411c287c979fea4c5bc7995a44c823b5132f52f5be19d5833c042bc76
+    tag: latest@sha256:fdc27d7687407d6eb9c78b7f6c3ec517f62fb9b86a9f99bfe74cbc64eb785ca1
 
   deployment:
     replicaCount: 2
@@ -87,9 +87,10 @@ pages:
         branch: cloud
         interval: 30m
       - domain: go.pitz.tech
-        url: https://github.com/mjpitz/myago.git
-        branch: site
+        url: https://code.pitz.tech/pitz-tech/go.git
+        branch: main
         interval: 30m
+        directory: site
     admin:
       username: ""
       password: ""
