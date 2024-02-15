@@ -1,14 +1,14 @@
 # renovate
 
-![Version: 23.10.1](https://img.shields.io/badge/Version-23.10.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 35.14.4](https://img.shields.io/badge/AppVersion-35.14.4-informational?style=flat-square)
+![Version: 23.10.2](https://img.shields.io/badge/Version-23.10.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 35.14.4](https://img.shields.io/badge/AppVersion-35.14.4-informational?style=flat-square)
 
 Renovate enables teams to stay on top of the latest versions of their software dependencies.
 
 ## Maintainers
 
-| Name          | Email | Url                  |
-| ------------- | ----- | -------------------- |
-| Mya Pitzeruse |       | <https://mjpitz.com> |
+| Name          | Email | Url              |
+| ------------- | ----- | ---------------- |
+| Mya Pitzeruse |       | <https://mya.sh> |
 
 ## Source Code
 

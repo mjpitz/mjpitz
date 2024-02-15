@@ -1,14 +1,14 @@
 # redis-queue
 
-![Version: 22.4.5](https://img.shields.io/badge/Version-22.4.5-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 6.2.6](https://img.shields.io/badge/AppVersion-6.2.6-informational?style=flat-square)
+![Version: 22.4.6](https://img.shields.io/badge/Version-22.4.6-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 6.2.6](https://img.shields.io/badge/AppVersion-6.2.6-informational?style=flat-square)
 
 Deploy a single durable Redis instance, intended to be used as a work queue.
 
 ## Maintainers
 
-| Name          | Email | Url                  |
-| ------------- | ----- | -------------------- |
-| Mya Pitzeruse |       | <https://mjpitz.com> |
+| Name          | Email | Url              |
+| ------------- | ----- | ---------------- |
+| Mya Pitzeruse |       | <https://mya.sh> |
 
 ## Source Code
 

@@ -10,8 +10,8 @@ sources:
   - https://github.com/mjpitz/mjpitz/tree/main/charts/12factor
 maintainers:
   - name: Mya Pitzeruse
-    url: https://mjpitz.com
-version: 24.1.0
+    url: https://mya.sh
+version: 24.1.2
 annotations:
   artifacthub.io/category: integration-delivery
   artifacthub.io/license: MIT

@@ -8,21 +8,21 @@ sources:
   - https://github.com/mjpitz/mjpitz/tree/main/charts/gitea
 maintainers:
   - name: Mya Pitzeruse
-    url: https://mjpitz.com
-version: 23.12.1
+    url: https://mya.sh
+version: 23.12.2
 appVersion: 1.21.3
 dependencies:
   - name: litestream
     version: 22.4.2
-    repository: https://mjpitz.com
+    repository: https://mya.sh
     condition: litestream.enabled
   - name: redis-queue
     version: 22.4.4
-    repository: https://mjpitz.com
+    repository: https://mya.sh
     condition: redis-queue.enabled
   - name: redis
     version: 22.4.7
-    repository: https://mjpitz.com
+    repository: https://mya.sh
     condition: redis.enabled
 annotations:
   artifacthub.io/category: integration-delivery

@@ -1,6 +1,6 @@
 # 12factor
 
-![Version: 24.1.0](https://img.shields.io/badge/Version-24.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 24.1.2](https://img.shields.io/badge/Version-24.1.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 Easily deploy any application that conforms to the 12-factor application patterns. Kubernetes helps provide a
 platform for many of the 12factor patterns. This chart attempts to help streamline the management of configuration,
@@ -8,9 +8,9 @@ log streams, and execution of administrative tasks.
 
 ## Maintainers
 
-| Name          | Email | Url                  |
-| ------------- | ----- | -------------------- |
-| Mya Pitzeruse |       | <https://mjpitz.com> |
+| Name          | Email | Url              |
+| ------------- | ----- | ---------------- |
+| Mya Pitzeruse |       | <https://mya.sh> |
 
 ## Source Code
 

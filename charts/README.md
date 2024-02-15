@@ -4,7 +4,7 @@ While I'm the primary consumer of these charts, I have made them generally avail
 to find some of these charts elsewhere, but many of my deployments vary quite a bit from existing ones.
 
 ```shell
-helm repo add mjpitz https://mjpitz.com
+helm repo add mya https://mya.sh
 ```
 
 - [`12factor`][12factor-chart] - Easily deploy an application that conforms to 12factor application patterns.

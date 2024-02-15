@@ -8,8 +8,8 @@ sources:
   - https://github.com/mjpitz/mjpitz/tree/main/charts/redis-queue
 maintainers:
   - name: Mya Pitzeruse
-    url: https://mjpitz.com
-version: 22.4.5
+    url: https://mya.sh
+version: 22.4.6
 appVersion: 6.2.6
 annotations:
   artifacthub.io/category: integration-delivery

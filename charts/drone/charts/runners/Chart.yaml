@@ -5,7 +5,7 @@ sources:
   - https://github.com/mjpitz/mjpitz/tree/main/charts/drone
 maintainers:
   - name: Mya Pitzeruse
-    url: https://mjpitz.com
+    url: https://mya.sh
 version: 0.0.0
 appVersion: latest
 dependencies:

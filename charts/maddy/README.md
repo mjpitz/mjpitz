@@ -1,6 +1,6 @@
 # maddy
 
-![Version: 22.4.9](https://img.shields.io/badge/Version-22.4.9-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.5.4](https://img.shields.io/badge/AppVersion-0.5.4-informational?style=flat-square)
+![Version: 22.4.10](https://img.shields.io/badge/Version-22.4.10-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.5.4](https://img.shields.io/badge/AppVersion-0.5.4-informational?style=flat-square)
 
 Easily deploy and configure a maddy mail server. This chart handles a fair bit of setup, however, additional work
 needs to be done to properly configure all the DNS records. For a complete guide on setting up DNS for maddy, see the
@@ -8,9 +8,9 @@ user guide: https://maddy.email/tutorials/setting-up/
 
 ## Maintainers
 
-| Name          | Email | Url                  |
-| ------------- | ----- | -------------------- |
-| Mya Pitzeruse |       | <https://mjpitz.com> |
+| Name          | Email | Url              |
+| ------------- | ----- | ---------------- |
+| Mya Pitzeruse |       | <https://mya.sh> |
 
 ## Source Code
 
@@ -19,9 +19,9 @@ user guide: https://maddy.email/tutorials/setting-up/
 
 ## Requirements
 
-| Repository         | Name       | Version |
-| ------------------ | ---------- | ------- |
-| https://mjpitz.com | litestream | 22.4.2  |
+| Repository     | Name       | Version |
+| -------------- | ---------- | ------- |
+| https://mya.sh | litestream | 22.4.3  |
 
 ## Values
 

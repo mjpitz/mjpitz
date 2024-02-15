@@ -1,15 +1,113 @@
+# digitalocean
+
+![Version: 0.0.0](https://img.shields.io/badge/Version-0.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
+
+Deploy the Drone.IO DigitalOcean Runner.
+
+## Maintainers
+
+| Name          | Email | Url              |
+| ------------- | ----- | ---------------- |
+| Mya Pitzeruse |       | <https://mya.sh> |
+
+## Source Code
+
+- <https://github.com/mjpitz/mjpitz/tree/main/charts/drone>
+
+## Values
+
+| Key                        | Type   | Default                             | Description                                                                                                                   |
+| -------------------------- | ------ | ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| affinity                   | object | `{}`                                | Specify affinity rules for the pods.                                                                                          |
+| config.overrides           | object | `{}`                                |                                                                                                                               |
+| config.privateKeyFile      | string | `""`                                |                                                                                                                               |
+| config.publicKeyFile       | string | `""`                                |                                                                                                                               |
+| config.rpc.host            | string | `""`                                | Configure the public host address of drone.                                                                                   |
+| config.rpc.proto           | string | `""`                                | Configure the protocol used by drone.                                                                                         |
+| config.rpc.secret          | string | `""`                                | This is used to authenticate the RPC connection to the server. The server and runners must be provided the same secret value. |
+| fullnameOverride           | string | `""`                                | Override the full name of the release.                                                                                        |
+| global.rpc.host            | string | `""`                                | Configure the public host address of drone.                                                                                   |
+| global.rpc.proto           | string | `""`                                | Configure the protocol used by drone.                                                                                         |
+| global.rpc.secret          | string | `""`                                | This is used to authenticate the RPC connection to the server. The server and runners must be provided the same secret value. |
+| image.pullPolicy           | string | `"Always"`                          | Specify the pull policy for the image.                                                                                        |
+| image.repository           | string | `"drone/drone-runner-digitalocean"` | Where can the image be found.                                                                                                 |
+| image.tag                  | string | `""`                                | Configure which version of the image to use.                                                                                  |
+| imagePullSecrets           | list   | `[]`                                | Specify the secret containing the registry credentials.                                                                       |
+| nameOverride               | string | `""`                                | Override the name of the release.                                                                                             |
+| nodeSelector               | object | `{}`                                | Specify the node selector used to control which nodes pods are deployed to.                                                   |
+| podAnnotations             | object | `{}`                                | Annotations to add to the pod, typically used for assume roles.                                                               |
+| podSecurityContext         | object | `{}`                                | Specify the security context for the entire pod.                                                                              |
+| resources                  | object | `{}`                                | Specify the resources for the digitalocean runner container.                                                                  |
+| securityContext            | object | `{}`                                | Specify the security context for the digitalocean runner container.                                                           |
+| serviceAccount.annotations | object | `{}`                                | Annotations to add to the service account.                                                                                    |
+| serviceAccount.create      | bool   | `true`                              | Specifies whether a service account should be created.                                                                        |
+| serviceAccount.name        | string | `""`                                | The name of the service account to use. If not set and create is true, a name is generated using the fullname template.       |
+| tolerations                | list   | `[]`                                | Specify taints that the pods are willing to tolerate.                                                                         |
+
+---
+
+Autogenerated from chart metadata using [helm-docs v1.11.0](https://github.com/norwoodj/helm-docs/releases/v1.11.0)
+
+# kubernetes
+
+![Version: 0.0.0](https://img.shields.io/badge/Version-0.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
+
+Deploy the Drone.IO Kubernetes Runner.
+
+## Maintainers
+
+| Name          | Email | Url              |
+| ------------- | ----- | ---------------- |
+| Mya Pitzeruse |       | <https://mya.sh> |
+
+## Source Code
+
+- <https://github.com/mjpitz/mjpitz/tree/main/charts/drone>
+
+## Values
+
+| Key                        | Type   | Default                     | Description                                                                                                                   |
+| -------------------------- | ------ | --------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| affinity                   | object | `{}`                        | Specify affinity rules for the pods.                                                                                          |
+| config.overrides           | object | `{}`                        |                                                                                                                               |
+| config.rpc.host            | string | `""`                        | Configure the public host address of drone.                                                                                   |
+| config.rpc.proto           | string | `""`                        | Configure the protocol used by drone.                                                                                         |
+| config.rpc.secret          | string | `""`                        | This is used to authenticate the RPC connection to the server. The server and runners must be provided the same secret value. |
+| fullnameOverride           | string | `""`                        | Override the full name of the release.                                                                                        |
+| global.rpc.host            | string | `""`                        | Configure the public host address of drone.                                                                                   |
+| global.rpc.proto           | string | `""`                        | Configure the protocol used by drone.                                                                                         |
+| global.rpc.secret          | string | `""`                        | This is used to authenticate the RPC connection to the server. The server and runners must be provided the same secret value. |
+| image.pullPolicy           | string | `"Always"`                  | Specify the pull policy for the image.                                                                                        |
+| image.repository           | string | `"drone/drone-runner-kube"` | Where can the image be found.                                                                                                 |
+| image.tag                  | string | `""`                        | Configure which version of the image to use.                                                                                  |
+| imagePullSecrets           | list   | `[]`                        | Specify the secret containing the registry credentials.                                                                       |
+| nameOverride               | string | `""`                        | Override the name of the release.                                                                                             |
+| nodeSelector               | object | `{}`                        | Specify the node selector used to control which nodes pods are deployed to.                                                   |
+| podAnnotations             | object | `{}`                        | Annotations to add to the pod, typically used for assume roles.                                                               |
+| podSecurityContext         | object | `{}`                        | Specify the security context for the entire pod.                                                                              |
+| resources                  | object | `{}`                        | Specify the resources for the kubernetes runner container.                                                                    |
+| securityContext            | object | `{}`                        | Specify the security context for the kubernetes runner container.                                                             |
+| serviceAccount.annotations | object | `{}`                        | Annotations to add to the service account.                                                                                    |
+| serviceAccount.create      | bool   | `true`                      | Specifies whether a service account should be created.                                                                        |
+| serviceAccount.name        | string | `""`                        | The name of the service account to use. If not set and create is true, a name is generated using the fullname template.       |
+| tolerations                | list   | `[]`                        | Specify taints that the pods are willing to tolerate.                                                                         |
+
+---
+
+Autogenerated from chart metadata using [helm-docs v1.11.0](https://github.com/norwoodj/helm-docs/releases/v1.11.0)
+
 # drone
 
-![Version: 22.5.6](https://img.shields.io/badge/Version-22.5.6-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.11.1](https://img.shields.io/badge/AppVersion-2.11.1-informational?style=flat-square)
+![Version: 22.5.7](https://img.shields.io/badge/Version-22.5.7-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.11.1](https://img.shields.io/badge/AppVersion-2.11.1-informational?style=flat-square)
 
 Easily deploy a Drone.IO, a container-native, continuous delivery platform. This chart provisions a Drone server
 instance intended for smaller
 
 ## Maintainers
 
-| Name          | Email | Url                  |
-| ------------- | ----- | -------------------- |
-| Mya Pitzeruse |       | <https://mjpitz.com> |
+| Name          | Email | Url              |
+| ------------- | ----- | ---------------- |
+| Mya Pitzeruse |       | <https://mya.sh> |
 
 ## Source Code
 
@@ -18,10 +116,10 @@ instance intended for smaller
 
 ## Requirements
 
-| Repository         | Name        | Version |
-| ------------------ | ----------- | ------- |
-| https://mjpitz.com | litestream  | 22.4.2  |
-| https://mjpitz.com | redis-queue | 22.4.4  |
+| Repository     | Name        | Version |
+| -------------- | ----------- | ------- |
+| https://mya.sh | litestream  | 22.4.2  |
+| https://mya.sh | redis-queue | 22.4.4  |
 
 ## Values
 
@@ -145,9 +243,9 @@ Autogenerated from chart metadata using [helm-docs v1.11.0](https://github.com/n
 
 ## Maintainers
 
-| Name          | Email | Url                  |
-| ------------- | ----- | -------------------- |
-| Mya Pitzeruse |       | <https://mjpitz.com> |
+| Name          | Email | Url              |
+| ------------- | ----- | ---------------- |
+| Mya Pitzeruse |       | <https://mya.sh> |
 
 ## Source Code
 
@@ -159,104 +257,6 @@ Autogenerated from chart metadata using [helm-docs v1.11.0](https://github.com/n
 | ---------- | ------------ | ------- |
 |            | digitalocean | \*      |
 |            | kubernetes   | \*      |
-
----
-
-Autogenerated from chart metadata using [helm-docs v1.11.0](https://github.com/norwoodj/helm-docs/releases/v1.11.0)
-
-# digitalocean
-
-![Version: 0.0.0](https://img.shields.io/badge/Version-0.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
-
-Deploy the Drone.IO DigitalOcean Runner.
-
-## Maintainers
-
-| Name          | Email | Url                  |
-| ------------- | ----- | -------------------- |
-| Mya Pitzeruse |       | <https://mjpitz.com> |
-
-## Source Code
-
-- <https://github.com/mjpitz/mjpitz/tree/main/charts/drone>
-
-## Values
-
-| Key                        | Type   | Default                             | Description                                                                                                                   |
-| -------------------------- | ------ | ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| affinity                   | object | `{}`                                | Specify affinity rules for the pods.                                                                                          |
-| config.overrides           | object | `{}`                                |                                                                                                                               |
-| config.privateKeyFile      | string | `""`                                |                                                                                                                               |
-| config.publicKeyFile       | string | `""`                                |                                                                                                                               |
-| config.rpc.host            | string | `""`                                | Configure the public host address of drone.                                                                                   |
-| config.rpc.proto           | string | `""`                                | Configure the protocol used by drone.                                                                                         |
-| config.rpc.secret          | string | `""`                                | This is used to authenticate the RPC connection to the server. The server and runners must be provided the same secret value. |
-| fullnameOverride           | string | `""`                                | Override the full name of the release.                                                                                        |
-| global.rpc.host            | string | `""`                                | Configure the public host address of drone.                                                                                   |
-| global.rpc.proto           | string | `""`                                | Configure the protocol used by drone.                                                                                         |
-| global.rpc.secret          | string | `""`                                | This is used to authenticate the RPC connection to the server. The server and runners must be provided the same secret value. |
-| image.pullPolicy           | string | `"Always"`                          | Specify the pull policy for the image.                                                                                        |
-| image.repository           | string | `"drone/drone-runner-digitalocean"` | Where can the image be found.                                                                                                 |
-| image.tag                  | string | `""`                                | Configure which version of the image to use.                                                                                  |
-| imagePullSecrets           | list   | `[]`                                | Specify the secret containing the registry credentials.                                                                       |
-| nameOverride               | string | `""`                                | Override the name of the release.                                                                                             |
-| nodeSelector               | object | `{}`                                | Specify the node selector used to control which nodes pods are deployed to.                                                   |
-| podAnnotations             | object | `{}`                                | Annotations to add to the pod, typically used for assume roles.                                                               |
-| podSecurityContext         | object | `{}`                                | Specify the security context for the entire pod.                                                                              |
-| resources                  | object | `{}`                                | Specify the resources for the digitalocean runner container.                                                                  |
-| securityContext            | object | `{}`                                | Specify the security context for the digitalocean runner container.                                                           |
-| serviceAccount.annotations | object | `{}`                                | Annotations to add to the service account.                                                                                    |
-| serviceAccount.create      | bool   | `true`                              | Specifies whether a service account should be created.                                                                        |
-| serviceAccount.name        | string | `""`                                | The name of the service account to use. If not set and create is true, a name is generated using the fullname template.       |
-| tolerations                | list   | `[]`                                | Specify taints that the pods are willing to tolerate.                                                                         |
-
----
-
-Autogenerated from chart metadata using [helm-docs v1.11.0](https://github.com/norwoodj/helm-docs/releases/v1.11.0)
-
-# kubernetes
-
-![Version: 0.0.0](https://img.shields.io/badge/Version-0.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
-
-Deploy the Drone.IO Kubernetes Runner.
-
-## Maintainers
-
-| Name          | Email | Url                  |
-| ------------- | ----- | -------------------- |
-| Mya Pitzeruse |       | <https://mjpitz.com> |
-
-## Source Code
-
-- <https://github.com/mjpitz/mjpitz/tree/main/charts/drone>
-
-## Values
-
-| Key                        | Type   | Default                     | Description                                                                                                                   |
-| -------------------------- | ------ | --------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| affinity                   | object | `{}`                        | Specify affinity rules for the pods.                                                                                          |
-| config.overrides           | object | `{}`                        |                                                                                                                               |
-| config.rpc.host            | string | `""`                        | Configure the public host address of drone.                                                                                   |
-| config.rpc.proto           | string | `""`                        | Configure the protocol used by drone.                                                                                         |
-| config.rpc.secret          | string | `""`                        | This is used to authenticate the RPC connection to the server. The server and runners must be provided the same secret value. |
-| fullnameOverride           | string | `""`                        | Override the full name of the release.                                                                                        |
-| global.rpc.host            | string | `""`                        | Configure the public host address of drone.                                                                                   |
-| global.rpc.proto           | string | `""`                        | Configure the protocol used by drone.                                                                                         |
-| global.rpc.secret          | string | `""`                        | This is used to authenticate the RPC connection to the server. The server and runners must be provided the same secret value. |
-| image.pullPolicy           | string | `"Always"`                  | Specify the pull policy for the image.                                                                                        |
-| image.repository           | string | `"drone/drone-runner-kube"` | Where can the image be found.                                                                                                 |
-| image.tag                  | string | `""`                        | Configure which version of the image to use.                                                                                  |
-| imagePullSecrets           | list   | `[]`                        | Specify the secret containing the registry credentials.                                                                       |
-| nameOverride               | string | `""`                        | Override the name of the release.                                                                                             |
-| nodeSelector               | object | `{}`                        | Specify the node selector used to control which nodes pods are deployed to.                                                   |
-| podAnnotations             | object | `{}`                        | Annotations to add to the pod, typically used for assume roles.                                                               |
-| podSecurityContext         | object | `{}`                        | Specify the security context for the entire pod.                                                                              |
-| resources                  | object | `{}`                        | Specify the resources for the kubernetes runner container.                                                                    |
-| securityContext            | object | `{}`                        | Specify the security context for the kubernetes runner container.                                                             |
-| serviceAccount.annotations | object | `{}`                        | Annotations to add to the service account.                                                                                    |
-| serviceAccount.create      | bool   | `true`                      | Specifies whether a service account should be created.                                                                        |
-| serviceAccount.name        | string | `""`                        | The name of the service account to use. If not set and create is true, a name is generated using the fullname template.       |
-| tolerations                | list   | `[]`                        | Specify taints that the pods are willing to tolerate.                                                                         |
 
 ---
 

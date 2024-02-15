@@ -1,6 +1,6 @@
 # redis-raft
 
-![Version: 22.5.3](https://img.shields.io/badge/Version-22.5.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 6.2.6](https://img.shields.io/badge/AppVersion-6.2.6-informational?style=flat-square)
+![Version: 22.5.4](https://img.shields.io/badge/Version-22.5.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 6.2.6](https://img.shields.io/badge/AppVersion-6.2.6-informational?style=flat-square)
 
 Deploy a consistent, partition-tolerant Redis cluster backed by the Raft consensus protocol. All supported commands
 are executed in a strongly-consistent manner. See the
@@ -9,9 +9,9 @@ more information about supported commands.
 
 ## Maintainers
 
-| Name          | Email | Url                  |
-| ------------- | ----- | -------------------- |
-| Mya Pitzeruse |       | <https://mjpitz.com> |
+| Name          | Email | Url              |
+| ------------- | ----- | ---------------- |
+| Mya Pitzeruse |       | <https://mya.sh> |
 
 ## Source Code
 

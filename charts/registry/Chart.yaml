@@ -9,20 +9,20 @@ sources:
   - https://github.com/mjpitz/mjpitz/tree/main/charts/registry
 maintainers:
   - name: Mya Pitzeruse
-    url: https://mjpitz.com
-version: 22.4.8
+    url: https://mya.sh
+version: 22.4.9
 appVersion: 2.8.0
 dependencies:
   - name: auth
-    repository: https://mjpitz.com
+    repository: https://mya.sh
     version: 22.4.1
     condition: auth.enabled
   - name: redis
-    repository: https://mjpitz.com
+    repository: https://mya.sh
     version: 22.4.7
     condition: redis.enabled
   - name: storj
-    repository: https://mjpitz.com
+    repository: https://mya.sh
     version: 22.4.3
     condition: storj.enabled
 annotations:

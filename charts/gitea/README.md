@@ -1,14 +1,14 @@
 # gitea
 
-![Version: 23.12.1](https://img.shields.io/badge/Version-23.12.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.21.3](https://img.shields.io/badge/AppVersion-1.21.3-informational?style=flat-square)
+![Version: 23.12.2](https://img.shields.io/badge/Version-23.12.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.21.3](https://img.shields.io/badge/AppVersion-1.21.3-informational?style=flat-square)
 
 Git with a cup of tea. A painless, self-hosted Git Service.
 
 ## Maintainers
 
-| Name          | Email | Url                  |
-| ------------- | ----- | -------------------- |
-| Mya Pitzeruse |       | <https://mjpitz.com> |
+| Name          | Email | Url              |
+| ------------- | ----- | ---------------- |
+| Mya Pitzeruse |       | <https://mya.sh> |
 
 ## Source Code
 
@@ -17,11 +17,11 @@ Git with a cup of tea. A painless, self-hosted Git Service.
 
 ## Requirements
 
-| Repository         | Name        | Version |
-| ------------------ | ----------- | ------- |
-| https://mjpitz.com | litestream  | 22.4.2  |
-| https://mjpitz.com | redis       | 22.4.7  |
-| https://mjpitz.com | redis-queue | 22.4.4  |
+| Repository     | Name        | Version |
+| -------------- | ----------- | ------- |
+| https://mya.sh | litestream  | 22.4.2  |
+| https://mya.sh | redis       | 22.4.7  |
+| https://mya.sh | redis-queue | 22.4.4  |
 
 ## Values
 

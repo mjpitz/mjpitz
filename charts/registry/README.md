@@ -1,15 +1,15 @@
 # registry
 
-![Version: 22.4.8](https://img.shields.io/badge/Version-22.4.8-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.8.0](https://img.shields.io/badge/AppVersion-2.8.0-informational?style=flat-square)
+![Version: 22.4.9](https://img.shields.io/badge/Version-22.4.9-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.8.0](https://img.shields.io/badge/AppVersion-2.8.0-informational?style=flat-square)
 
 Easily deploy and configure a production-ready container registry backed by your favorite cloud storage provider.
 Optionally add a highly-available, partition-tolerant Redis cache that's fronted by Envoy.
 
 ## Maintainers
 
-| Name          | Email | Url                  |
-| ------------- | ----- | -------------------- |
-| Mya Pitzeruse |       | <https://mjpitz.com> |
+| Name          | Email | Url              |
+| ------------- | ----- | ---------------- |
+| Mya Pitzeruse |       | <https://mya.sh> |
 
 ## Source Code
 
@@ -18,11 +18,11 @@ Optionally add a highly-available, partition-tolerant Redis cache that's fronted
 
 ## Requirements
 
-| Repository         | Name  | Version |
-| ------------------ | ----- | ------- |
-| https://mjpitz.com | auth  | 22.4.1  |
-| https://mjpitz.com | redis | 22.4.7  |
-| https://mjpitz.com | storj | 22.4.3  |
+| Repository     | Name  | Version |
+| -------------- | ----- | ------- |
+| https://mya.sh | auth  | 22.4.1  |
+| https://mya.sh | redis | 22.4.7  |
+| https://mya.sh | storj | 22.4.3  |
 
 ## Values
 

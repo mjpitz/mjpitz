@@ -10,13 +10,13 @@ sources:
   - https://github.com/mjpitz/mjpitz/tree/main/charts/maddy
 maintainers:
   - name: Mya Pitzeruse
-    url: https://mjpitz.com
-version: 22.4.9
+    url: https://mya.sh
+version: 22.4.10
 appVersion: 0.5.4
 dependencies:
   - name: litestream
-    version: 22.4.2
-    repository: https://mjpitz.com
+    version: 22.4.3
+    repository: https://mya.sh
     condition: litestream.enabled
 annotations:
   artifacthub.io/category: integration-delivery
