@@ -71,7 +71,7 @@ It used a few tools like [jsonnet-bundler] which allows for package management.
 With a few modifications, I was able to get a more modular structure in place.
 
 [deps.cloud]: https://deps.cloud/
-[successor to a previous system]: https://mjpitz.com/blog/2020/01/24/building-depscloud/
+[successor to a previous system]: https://mya.sh/blog/2020/01/24/building-depscloud/
 [gRPC]: https://grpc.io
 
 ### jsonnet-monitoring-starter

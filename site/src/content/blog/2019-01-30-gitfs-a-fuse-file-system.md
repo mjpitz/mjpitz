@@ -46,23 +46,23 @@ $ cd mjpitz/
 $ ls
 OpenGrok           gitfs            jgrapht     proto2-3
 consul-api         grpc-java        laas        rpi
-docker-clickhouse  grpc.github.io   mjpitz.com  seo-portal
+docker-clickhouse  grpc.github.io   mya.sh  seo-portal
 docker-utils       grpcsh           mp          serverless-plugin-simulate
 dotfiles           hbase-docker     okhttp      simple-daemon-node
 envoy              idea-framework   proctor     spring-config-repo
 generator-idea     java-gitlab-api  proctorjs
 
 [mjpitz@mjpitz ~/Development/code/github.com/mjpitz 1/1]
-$ cd mjpitz.com/
+$ cd mya.sh/
 
-[mjpitz@mjpitz ~/Development/code/github.com/mjpitz/mjpitz.com master 1/1]
+[mjpitz@mjpitz ~/Development/code/github.com/mjpitz/mya.sh master 1/1]
 $ ls
 Gemfile       _drafts    _posts              go              statics
 Gemfile.lock  _includes  _site               index.html
 _config.yml   _layouts   docker-compose.yml  pages
 _data         _plugins   error.html          s3_website.yml
 
-[mjpitz@mjpitz ~/Development/code/github.com/mjpitz/mjpitz.com master 1/1]
+[mjpitz@mjpitz ~/Development/code/github.com/mjpitz/mya.sh master 1/1]
 $
 ```
 

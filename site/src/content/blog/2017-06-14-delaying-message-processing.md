@@ -5,7 +5,7 @@ heroImage: '/img/blog-placeholder-4.jpg'
 description: ""
 
 slug: 2017/06/14/delaying-message-processing
-canonical: http://engineering.indeedblog.com/blog/2017/06/delaying-messages/
+canonical: https://engineering.indeedblog.com/blog/2017/06/delaying-messages/
 tags:
   - software development
 
