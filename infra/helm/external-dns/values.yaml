@@ -3,9 +3,7 @@ external-dns:
   domainFilters:
     - deps.cloud
     - mjpitz.com
-    - mjpitz.net
     - mya.sh
-    - ocr.sh
     - pitz.tech
   txtOwnerId: "mya-nyc"
   txtPrefix: "mya-nyc."

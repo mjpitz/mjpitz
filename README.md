@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://mjpitz.com/img/banner.png"/>
+    <img src="https://mya.sh/img/banner.png"/>
 </p>
 
 <h3 align="center">👋 Welcome! My name is Mya.</h3>
@@ -53,8 +53,8 @@
 <h3 align="center">📰 Recent Blog Posts 📰</h3>
 
 <p align="center">
-    <a href="https://mjpitz.com/blog/2022/01/16/bye-bye-twitter/">Bye-Bye Twitter</a> - January 17th 2022 <br/>
-    <a href="https://mjpitz.com/blog/2021/06/16/rpi-network-bridge/">Extending my Security System with a Raspberry Pi Network Bridge</a> - June 16th 2021 <br/>
+    <a href="https://mya.sh/blog/2022/01/16/bye-bye-twitter/">Bye-Bye Twitter</a> - January 17th 2022 <br/>
+    <a href="https://mya.sh/blog/2021/06/16/rpi-network-bridge/">Extending my Security System with a Raspberry Pi Network Bridge</a> - June 16th 2021 <br/>
 </p>
 
 <br/><br/>
@@ -80,15 +80,15 @@
 <br/><br/>
 
 <p align="center">
-    <a href="https://mjpitz.com/charts/">
+    <a href="https://mya.sh/charts/">
         <img alt="Helm Charts" src="https://img.shields.io/badge/-Helm%20Charts-silver?style=for-the-badge" /></a>
     <a href="https://github.com/mjpitz/mjpitz/tree/main/docker">
         <img alt="Container Images" src="https://img.shields.io/badge/-Container%20Images-silver?style=for-the-badge" /></a>
-    <a href="https://mjpitz.com/blog/">
+    <a href="https://mya.sh/blog/">
         <img alt="Blog" src="https://img.shields.io/badge/-Blog-silver?style=for-the-badge" /></a>
-    <a href="https://mjpitz.com/papers/">
+    <a href="https://mya.sh/papers/">
         <img alt="Papers" src="https://img.shields.io/badge/-Papers-pink?style=for-the-badge" /></a>
-    <a href="https://mjpitz.com/media/">
+    <a href="https://mya.sh/media/">
         <img alt="Media" src="https://img.shields.io/badge/-Media-pink?style=for-the-badge" /></a>
 </p>
 

@@ -61,6 +61,10 @@ pages:
           paths:
             - path: /
               pathType: Prefix
+        - host: mya.sh
+          paths:
+            - path: /
+              pathType: Prefix
         - host: go.pitz.tech
           paths:
             - path: /
@@ -73,12 +77,17 @@ pages:
         - secretName: pages-tls
           hosts:
             - mjpitz.com
+            - mya.sh
             - go.pitz.tech
             - cloud.pitz.tech
 
   config:
     sites:
       - domain: mjpitz.com
+        url: https://github.com/mjpitz/mjpitz.git
+        branch: gh-pages
+        interval: 5m
+      - domain: mya.sh
         url: https://github.com/mjpitz/mjpitz.git
         branch: gh-pages
         interval: 5m
