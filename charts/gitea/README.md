@@ -1,6 +1,6 @@
 # gitea
 
-![Version: 23.12.3](https://img.shields.io/badge/Version-23.12.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.21.3](https://img.shields.io/badge/AppVersion-1.21.3-informational?style=flat-square)
+![Version: 23.12.4](https://img.shields.io/badge/Version-23.12.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.21.6](https://img.shields.io/badge/AppVersion-1.21.6-informational?style=flat-square)
 
 Git with a cup of tea. A painless, self-hosted Git Service.
 
@@ -119,7 +119,7 @@ Git with a cup of tea. A painless, self-hosted Git Service.
 | fullnameOverride                                    | string | `""`                                                                                               | Override the full name of the release.                                                                                                                   |
 | image.pullPolicy                                    | string | `"IfNotPresent"`                                                                                   | The pull policy to use for the image.                                                                                                                    |
 | image.repository                                    | string | `"gitea/gitea"`                                                                                    | The repository hosting the gitea server image.                                                                                                           |
-| image.tag                                           | string | `"1.21.3"`                                                                                         | Overrides the image tag whose default is the chart appVersion.                                                                                           |
+| image.tag                                           | string | `"1.21.6"`                                                                                         | Overrides the image tag whose default is the chart appVersion.                                                                                           |
 | imagePullSecrets                                    | list   | `[]`                                                                                               | Specify the secret containing the registry credentials.                                                                                                  |
 | ingress.annotations                                 | object | `{}`                                                                                               | Specify annotations for the ingress.                                                                                                                     |
 | ingress.enabled                                     | bool   | `false`                                                                                            | Configure the ingress for Gitea.                                                                                                                         |

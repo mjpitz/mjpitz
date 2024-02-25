@@ -9,8 +9,8 @@ sources:
 maintainers:
   - name: Mya Pitzeruse
     url: https://mya.sh
-version: 23.12.3
-appVersion: 1.21.3
+version: 23.12.4
+appVersion: 1.21.6
 dependencies:
   - name: litestream
     version: 22.4.4

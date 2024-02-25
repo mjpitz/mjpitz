@@ -10,8 +10,8 @@ sources:
 maintainers:
   - name: Mya Pitzeruse
     url: https://mya.sh
-version: 22.4.3
-appVersion: 1.6.0
+version: 22.4.4
+appVersion: 1.12.0
 annotations:
   artifacthub.io/category: integration-delivery
   artifacthub.io/license: MIT
