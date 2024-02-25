@@ -22,7 +22,7 @@ helm repo add mya https://mya.sh
 - [`storj`][storj-chart] - Easily add a Storj S3 Gateway as a sidecar to any `Deployment`, `DaemonSet`, or `StatefulSet`.
 
 [12factor-chart]: 12factor
-[auth-chart]: auth
+[auth-chart]: registry/charts/auth
 [drone-chart]: drone
 [gitea-chart]: gitea
 [litestream-chart]: litestream
