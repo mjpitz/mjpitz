@@ -11,7 +11,7 @@ image:
   # -- The pull policy to use for the registry image.
   pullPolicy: IfNotPresent
   # -- Overrides the image tag whose default is the chart appVersion.
-  tag: 2.8.0
+  tag: 2.8.3
 
 # -- Specify the secret containing the registry credentials.
 imagePullSecrets: []
