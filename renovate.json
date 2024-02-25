@@ -4,5 +4,55 @@
   ],
   "excludeCommitPaths": [
     "site/**"
+  ],
+  "packageRules": [
+    {
+      "matchCategories": ["helm"],
+      "matchUpdateTypes": ["patch", "minor"],
+      "groupName": "Helm (non-major)",
+      "groupSlug": "helm-non-major"
+    },
+    {
+      "matchCategories": ["helm"],
+      "matchUpdateTypes": ["major"],
+      "groupName": "Helm (major)",
+      "groupSlug": "helm-major"
+    },
+    {
+      "matchCategories": ["docker"],
+      "matchUpdateTypes": ["patch", "minor"],
+      "groupName": "Docker (non-major)",
+      "groupSlug": "docker-non-major"
+    },
+    {
+      "matchCategories": ["docker"],
+      "matchUpdateTypes": ["major"],
+      "groupName": "Docker (major)",
+      "groupSlug": "docker-major"
+    },
+    {
+      "matchCategories": ["terraform"],
+      "matchUpdateTypes": ["patch", "minor"],
+      "groupName": "Terraform (non-major)",
+      "groupSlug": "terraform-non-major"
+    },
+    {
+      "matchCategories": ["terraform"],
+      "matchUpdateTypes": ["major"],
+      "groupName": "Terraform (major)",
+      "groupSlug": "terraform-major"
+    },
+    {
+      "matchCategories": ["js"],
+      "matchUpdateTypes": ["patch", "minor"],
+      "groupName": "JS (non-major)",
+      "groupSlug": "js-non-major"
+    },
+    {
+      "matchCategories": ["js"],
+      "matchUpdateTypes": ["major"],
+      "groupName": "JS (major)",
+      "groupSlug": "js-major"
+    }
   ]
 }
