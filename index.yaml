@@ -445,6 +445,38 @@ entries:
         url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x0fca5e3c09dfb314
     apiVersion: v2
     appVersion: 2.11.1
+    created: "2024-02-25T16:19:35.261377036Z"
+    dependencies:
+    - condition: litestream.enabled
+      name: litestream
+      repository: https://mya.sh
+      version: 22.4.4
+    - condition: redis-queue.enabled
+      name: redis-queue
+      repository: https://mya.sh
+      version: 22.4.6
+    description: 'Easily deploy a Drone.IO, a container-native, continuous delivery
+      platform. This chart provisions a Drone server instance intended for smaller '
+    digest: f553102d696612476fc4d03caa3a281061ef8bd9c1692aa785931db45d8d940f
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mya.sh
+    name: drone
+    sources:
+    - https://github.com/harness/drone
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/drone
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/drone-22.5.8/drone-22.5.8.tgz
+    version: 22.5.8
+  - annotations:
+      artifacthub.io/category: integration-delivery
+      artifacthub.io/license: MIT
+      artifacthub.io/signKey: |
+        fingerprint: FD0F1E353074E15A4883BC630FCA5E3C09DFB314
+        url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x0fca5e3c09dfb314
+    apiVersion: v2
+    appVersion: 2.11.1
     created: "2024-02-15T04:16:03.396708619Z"
     dependencies:
     - condition: litestream.enabled
@@ -632,6 +664,41 @@ entries:
     - https://github.com/mjpitz/mjpitz/releases/download/drone-22.5.0/drone-22.5.0.tgz
     version: 22.5.0
   gitea:
+  - annotations:
+      artifacthub.io/category: integration-delivery
+      artifacthub.io/license: MIT
+      artifacthub.io/signKey: |
+        fingerprint: FD0F1E353074E15A4883BC630FCA5E3C09DFB314
+        url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x0fca5e3c09dfb314
+    apiVersion: v2
+    appVersion: 1.21.3
+    created: "2024-02-25T16:19:35.368481105Z"
+    dependencies:
+    - condition: litestream.enabled
+      name: litestream
+      repository: https://mya.sh
+      version: 22.4.4
+    - condition: redis-queue.enabled
+      name: redis-queue
+      repository: https://mya.sh
+      version: 22.4.6
+    - condition: redis.enabled
+      name: redis
+      repository: https://mya.sh
+      version: 22.4.9
+    description: 'Git with a cup of tea. A painless, self-hosted Git Service. '
+    digest: af0ca86f0c4e7f64987259cbddb25535cf9c11b2cf1b178ffa11b04f866da654
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mya.sh
+    name: gitea
+    sources:
+    - https://github.com/go-gitea/gitea
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/gitea
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/gitea-23.12.3/gitea-23.12.3.tgz
+    version: 23.12.3
   - annotations:
       artifacthub.io/category: integration-delivery
       artifacthub.io/license: MIT
@@ -890,6 +957,30 @@ entries:
         fingerprint: FD0F1E353074E15A4883BC630FCA5E3C09DFB314
         url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x0fca5e3c09dfb314
     apiVersion: v2
+    appVersion: 0.3.13
+    created: "2024-02-25T16:19:35.515825404Z"
+    description: 'Easily add litestream to any sqlite backed application as a sidecar.
+      This chart optionally deploys the required configuration and provides template
+      functions that render the necessary init and sidecar containers. '
+    digest: d23809c0b4147160cecd9d760178a6c0e8bab6f16c477039b5c8d863121c4d57
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mya.sh
+    name: litestream
+    sources:
+    - https://github.com/benbjohnson/litestream
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/litestream
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/litestream-22.4.5/litestream-22.4.5.tgz
+    version: 22.4.5
+  - annotations:
+      artifacthub.io/category: database
+      artifacthub.io/license: MIT
+      artifacthub.io/signKey: |
+        fingerprint: FD0F1E353074E15A4883BC630FCA5E3C09DFB314
+        url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x0fca5e3c09dfb314
+    apiVersion: v2
     appVersion: 0.3.9
     created: "2024-02-15T04:16:03.608503531Z"
     description: 'Easily add litestream to any sqlite backed application as a sidecar.
@@ -986,6 +1077,36 @@ entries:
     - https://github.com/mjpitz/mjpitz/releases/download/litestream-22.4.0/litestream-22.4.0.tgz
     version: 22.4.0
   maddy:
+  - annotations:
+      artifacthub.io/category: integration-delivery
+      artifacthub.io/license: MIT
+      artifacthub.io/signKey: |
+        fingerprint: FD0F1E353074E15A4883BC630FCA5E3C09DFB314
+        url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x0fca5e3c09dfb314
+    apiVersion: v2
+    appVersion: 0.5.4
+    created: "2024-02-25T16:19:35.620151464Z"
+    dependencies:
+    - condition: litestream.enabled
+      name: litestream
+      repository: https://mya.sh
+      version: 22.4.4
+    description: 'Easily deploy and configure a maddy mail server. This chart handles
+      a fair bit of setup, however, additional work needs to be done to properly configure
+      all the DNS records. For a complete guide on setting up DNS for maddy, see the
+      user guide: https://maddy.email/tutorials/setting-up/ '
+    digest: 63f155e347cc359460b1a608f34ac843715c5a9e16061dc4d32842859c8d314f
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mya.sh
+    name: maddy
+    sources:
+    - https://github.com/foxcpp/maddy
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/maddy
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/maddy-22.4.11/maddy-22.4.11.tgz
+    version: 22.4.11
   - annotations:
       artifacthub.io/category: integration-delivery
       artifacthub.io/license: MIT
@@ -1279,6 +1400,31 @@ entries:
     - https://github.com/mjpitz/mjpitz/releases/download/raw-22.9.0/raw-22.9.0.tgz
     version: 22.9.0
   redis:
+  - annotations:
+      artifacthub.io/category: integration-delivery
+      artifacthub.io/license: MIT
+      artifacthub.io/signKey: |
+        fingerprint: FD0F1E353074E15A4883BC630FCA5E3C09DFB314
+        url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x0fca5e3c09dfb314
+    apiVersion: v2
+    appVersion: 6.2.6
+    created: "2024-02-25T16:19:35.722724063Z"
+    description: 'Deploy a highly-available, partition-tolerant Redis cluster fronted
+      by an envoy sidecar. Envoy partitions keys among members of the cluster using
+      a consistent hashing algorithm making it great as a best-effort cache. '
+    digest: 31cdf4cc9a9b2a7c6ddd36cb8a7a851af8db6c809a5b00f8deff8a3a82928b54
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mya.sh
+    name: redis
+    sources:
+    - https://github.com/redis/redis
+    - https://github.com/envoyproxy/envoy
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/redis
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/redis-22.4.10/redis-22.4.10.tgz
+    version: 22.4.10
   - annotations:
       artifacthub.io/category: integration-delivery
       artifacthub.io/license: MIT
@@ -1786,6 +1932,43 @@ entries:
     - https://github.com/mjpitz/mjpitz/releases/download/redis-raft-22.5.0/redis-raft-22.5.0.tgz
     version: 22.5.0
   registry:
+  - annotations:
+      artifacthub.io/category: integration-delivery
+      artifacthub.io/license: MIT
+      artifacthub.io/signKey: |
+        fingerprint: FD0F1E353074E15A4883BC630FCA5E3C09DFB314
+        url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x0fca5e3c09dfb314
+    apiVersion: v2
+    appVersion: 2.8.0
+    created: "2024-02-25T16:19:35.83777805Z"
+    dependencies:
+    - condition: auth.enabled
+      name: auth
+      repository: ""
+      version: '*'
+    - condition: redis.enabled
+      name: redis
+      repository: https://mya.sh
+      version: 22.4.9
+    - condition: storj.enabled
+      name: storj
+      repository: https://mya.sh
+      version: 22.4.5
+    description: 'Easily deploy and configure a production-ready container registry
+      backed by your favorite cloud storage provider.  Optionally add a highly-available,
+      partition-tolerant Redis cache that''s fronted by Envoy. '
+    digest: da2ae6912c018942d840547a50918e9927a87ccd6e817dec33989f1787017a0c
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mya.sh
+    name: registry
+    sources:
+    - https://github.com/distribution/distribution
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/registry
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/registry-22.4.10/registry-22.4.10.tgz
+    version: 22.4.10
   - annotations:
       artifacthub.io/category: integration-delivery
       artifacthub.io/license: MIT
@@ -2459,4 +2642,4 @@ entries:
     urls:
     - https://github.com/mjpitz/mjpitz/releases/download/storj-22.3.0/storj-22.3.0.tgz
     version: 22.3.0
-generated: "2024-02-15T04:16:04.410385758Z"
+generated: "2024-02-25T16:19:35.838077017Z"
