@@ -8,7 +8,7 @@ image:
   # -- The pull policy to use for the litestream image.
   pullPolicy: IfNotPresent
   # -- Overrides the image tag whose default is the chart appVersion.
-  tag: 0.3.9
+  tag: 0.3.13
 
 # -- Specify the secret containing the registry credentials.
 imagePullSecrets: []

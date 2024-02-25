@@ -8,7 +8,6 @@ helm repo add mya https://mya.sh
 ```
 
 - [`12factor`][12factor-chart] - Easily deploy an application that conforms to 12factor application patterns.
-- [`auth`][auth-chart] - Deploys a replicated token authorization server for use with the `registry`.
 - [`drone`][drone-chart] - Deploys a [Drone][] server and optionally configure a `digitalocean` or `kubernetes` runner.
 - [`gitea`][gitea-chart] - Git with a cup of tea. [Gitea][] is a painless, self-hosted Git Service.
 - [`litestream`][litestream-chart] - Easily add a [litestream][] sidecar to any `Deployment`, `DaemonSet`, or `StatefulSet`.
@@ -22,7 +21,6 @@ helm repo add mya https://mya.sh
 - [`storj`][storj-chart] - Easily add a Storj S3 Gateway as a sidecar to any `Deployment`, `DaemonSet`, or `StatefulSet`.
 
 [12factor-chart]: 12factor
-[auth-chart]: auth
 [drone-chart]: drone
 [gitea-chart]: gitea
 [litestream-chart]: litestream

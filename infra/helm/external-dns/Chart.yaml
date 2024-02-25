@@ -5,4 +5,4 @@ version: 23.8.9
 dependencies:
   - name: external-dns
     repository: https://charts.bitnami.com/bitnami
-    version: 6.23.3
+    version: 6.34.2

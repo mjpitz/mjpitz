@@ -10,20 +10,19 @@ sources:
 maintainers:
   - name: Mya Pitzeruse
     url: https://mya.sh
-version: 22.4.9
+version: 22.4.10
 appVersion: 2.8.0
 dependencies:
   - name: auth
-    repository: https://mya.sh
-    version: 22.4.1
+    version: "*"
     condition: auth.enabled
   - name: redis
     repository: https://mya.sh
-    version: 22.4.7
+    version: 22.4.9
     condition: redis.enabled
   - name: storj
     repository: https://mya.sh
-    version: 22.4.3
+    version: 22.4.5
     condition: storj.enabled
 annotations:
   artifacthub.io/category: integration-delivery
