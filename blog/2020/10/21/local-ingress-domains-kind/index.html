@@ -1,7 +1,7 @@
-<!DOCTYPE html><html lang="en" data-astro-cid-bvzihdzo><head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v3.0.5"><!-- Font preloads --><link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin><link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://mya.sh/blog/2020/10/21/local-ingress-domains-kind/"><!-- Primary Meta Tags --><title>Local Ingress Domains for your Kind Cluster</title><meta name="title" content="Local Ingress Domains for your Kind Cluster"><meta name="description" content=""><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://mya.sh/blog/2020/10/21/local-ingress-domains-kind/"><meta property="og:title" content="Local Ingress Domains for your Kind Cluster"><meta property="og:description" content=""><meta property="og:image" content="https://mya.sh/blog-placeholder-1.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://mya.sh/blog/2020/10/21/local-ingress-domains-kind/"><meta property="twitter:title" content="Local Ingress Domains for your Kind Cluster"><meta property="twitter:description" content=""><meta property="twitter:image" content="https://mya.sh/blog-placeholder-1.jpg"><link rel="stylesheet" href="/_astro/_...slug_.e98600b1.css" />
-<style type="text/css">main[data-astro-cid-bvzihdzo]{width:calc(100% - 2em);max-width:100%;margin:0}.hero-image[data-astro-cid-bvzihdzo]{width:100%}.hero-image[data-astro-cid-bvzihdzo] img[data-astro-cid-bvzihdzo]{display:block;margin:0 auto;border-radius:12px;box-shadow:var(--box-shadow)}.prose[data-astro-cid-bvzihdzo]{width:720px;max-width:calc(100% - 2em);margin:auto;padding:1em;color:var(--color-text)}.title[data-astro-cid-bvzihdzo]{margin-bottom:1em;padding:1em 0;text-align:center;line-height:1}.title[data-astro-cid-bvzihdzo] h1[data-astro-cid-bvzihdzo]{margin:0 0 .5em}.date[data-astro-cid-bvzihdzo]{margin-bottom:.5em;color:var(--color-text)}.last-updated-on[data-astro-cid-bvzihdzo]{font-style:italic}
+<!DOCTYPE html><html lang="en" data-astro-cid-bvzihdzo> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v3.6.4"><!-- Font preloads --><link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin><link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://mya.sh/blog/2020/10/21/local-ingress-domains-kind/"><!-- Primary Meta Tags --><title>Local Ingress Domains for your Kind Cluster</title><meta name="title" content="Local Ingress Domains for your Kind Cluster"><meta name="description" content=""><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://mya.sh/blog/2020/10/21/local-ingress-domains-kind/"><meta property="og:title" content="Local Ingress Domains for your Kind Cluster"><meta property="og:description" content=""><meta property="og:image" content="https://mya.sh/blog-placeholder-1.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://mya.sh/blog/2020/10/21/local-ingress-domains-kind/"><meta property="twitter:title" content="Local Ingress Domains for your Kind Cluster"><meta property="twitter:description" content=""><meta property="twitter:image" content="https://mya.sh/blog-placeholder-1.jpg"><link rel="stylesheet" href="/_astro/_slug_.e98600b1.css" />
+<style>main[data-astro-cid-bvzihdzo]{width:calc(100% - 2em);max-width:100%;margin:0}.hero-image[data-astro-cid-bvzihdzo]{width:100%}.hero-image[data-astro-cid-bvzihdzo] img[data-astro-cid-bvzihdzo]{display:block;margin:0 auto;border-radius:12px;box-shadow:var(--box-shadow)}.prose[data-astro-cid-bvzihdzo]{width:720px;max-width:calc(100% - 2em);margin:auto;padding:1em;color:var(--color-text)}.title[data-astro-cid-bvzihdzo]{margin-bottom:1em;padding:1em 0;text-align:center;line-height:1}.title[data-astro-cid-bvzihdzo] h1[data-astro-cid-bvzihdzo]{margin:0 0 .5em}.date[data-astro-cid-bvzihdzo]{margin-bottom:.5em;color:var(--color-text)}.last-updated-on[data-astro-cid-bvzihdzo]{font-style:italic}
 </style><script type="module">const t=document.querySelector('.theme-switch input[type="checkbox"]'),e=localStorage.getItem("theme");e&&(document.documentElement.setAttribute("data-theme",e),e==="dark"&&(t.checked=!0));function m(c){c.target.checked?(document.documentElement.setAttribute("data-theme","dark"),localStorage.setItem("theme","dark")):(document.documentElement.setAttribute("data-theme","light"),localStorage.setItem("theme","light"))}t.addEventListener("change",m,!1);
-</script></head><body data-astro-cid-bvzihdzo><header data-astro-cid-3ef6ksr2><nav data-astro-cid-3ef6ksr2><div class="theme-switch-wrapper"><label class="theme-switch" for="checkbox"><input type="checkbox" id="checkbox"><div class="slider"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#FCD53F" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#FCD53F" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></div></label></div><h2 data-astro-cid-3ef6ksr2><a href="/" data-astro-cid-3ef6ksr2>Mya Pitzeruse</a></h2><div class="internal-links" data-astro-cid-3ef6ksr2><a href="/" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg>Home</a><a href="/blog" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg>Blog</a><a href="/charts" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg>Charts</a><a href="/media" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg>Media</a><a href="/hockey" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg>Hockey</a></div><div class="social-links" data-astro-cid-3ef6ksr2><a href="https://github.com/mjpitz" target="_blank" data-astro-cid-3ef6ksr2><span class="sr-only" data-astro-cid-3ef6ksr2>GitHub</span><svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-3ef6ksr2></path></svg></a><a href="https://www.linkedin.com/in/mjpitz/" target="_blank" data-astro-cid-3ef6ksr2><span class="sr-only" data-astro-cid-3ef6ksr2>LinkedIn</span><svg viewBox="0 0 50 50" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M41,4H9C6.24,4,4,6.24,4,9v32c0,2.76,2.24,5,5,5h32c2.76,0,5-2.24,5-5V9C46,6.24,43.76,4,41,4z M17,20v19h-6V20H17z M11,14.47c0-1.4,1.2-2.47,3-2.47s2.93,1.07,3,2.47c0,1.4-1.12,2.53-3,2.53C12.2,17,11,15.87,11,14.47z M39,39h-6c0,0,0-9.26,0-10 c0-2-1-4-3.5-4.04h-0.08C27,24.96,26,27.02,26,29c0,0.91,0,10,0,10h-6V20h6v2.56c0,0,1.93-2.56,5.81-2.56 c3.97,0,7.19,2.73,7.19,8.26V39z" data-astro-cid-3ef6ksr2></path></svg></a><a href="/rss.xml" target="_blank" data-astro-cid-3ef6ksr2><span class="sr-only" data-astro-cid-3ef6ksr2>RSS</span><svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M1,5v2c1.081,0,2.128,0.211,3.113,0.628c0.952,0.403,1.808,0.98,2.543,1.715s1.312,1.591,1.715,2.543 C8.789,12.872,9,13.919,9,15h2C11,9.477,6.523,5,1,5z M4,10c-1.105,0-2,0.895-2,2s0.895,2,2,2s2-0.895,2-2S5.105,10,4,10z M1,1v2 c1.621,0,3.192,0.317,4.67,0.942c1.429,0.604,2.712,1.47,3.815,2.573c1.103,1.103,1.968,2.386,2.573,3.815 C12.683,11.808,13,13.379,13,15h2C15,7.268,8.732,1,1,1z" data-astro-cid-3ef6ksr2></path></svg></a></div></nav></header><main data-astro-cid-bvzihdzo><article data-astro-cid-bvzihdzo><div class="hero-image" data-astro-cid-bvzihdzo><img width="1020" height="510" src="/img/blog-placeholder-5.jpg" alt="" data-astro-cid-bvzihdzo></div><div class="prose" data-astro-cid-bvzihdzo><div class="title" data-astro-cid-bvzihdzo><div class="date" data-astro-cid-bvzihdzo><time datetime="2020-10-21T00:00:00.000Z">Oct 21, 2020</time></div><h1 data-astro-cid-bvzihdzo>Local Ingress Domains for your Kind Cluster</h1><hr data-astro-cid-bvzihdzo></div><p>Tools like <a href="https://minikube.sigs.k8s.io/docs/">minikube</a> and <a href="https://kind.sigs.k8s.io/">kind</a> make it easy to get a <a href="https://kubernetes.io/">kubernetes</a> cluster up and running locally.
+</script></head> <body data-astro-cid-bvzihdzo> <header data-astro-cid-3ef6ksr2> <nav data-astro-cid-3ef6ksr2> <div class="theme-switch-wrapper"> <label class="theme-switch" for="checkbox"> <input type="checkbox" id="checkbox"> <div class="slider"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#FCD53F" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"> <circle cx="12" cy="12" r="5"></circle> <line x1="12" y1="1" x2="12" y2="3"></line> <line x1="12" y1="21" x2="12" y2="23"></line> <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line> <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line> <line x1="1" y1="12" x2="3" y2="12"></line> <line x1="21" y1="12" x2="23" y2="12"></line> <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line> <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line> </svg> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#FCD53F" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"> <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path> </svg> </div> </label>  </div> <h2 data-astro-cid-3ef6ksr2><a href="/" data-astro-cid-3ef6ksr2>Mya Pitzeruse</a></h2> <div class="internal-links" data-astro-cid-3ef6ksr2> <a href="/" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg> Home </a>  <a href="/blog" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg> Blog </a>  <a href="/charts" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg> Charts </a>  <a href="/media" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg> Media </a>  <a href="/hockey" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg> Hockey </a>  </div> <div class="social-links" data-astro-cid-3ef6ksr2> <a href="https://github.com/mjpitz" target="_blank" data-astro-cid-3ef6ksr2> <span class="sr-only" data-astro-cid-3ef6ksr2>GitHub</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2> <path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-3ef6ksr2></path> </svg> </a> <a href="https://www.linkedin.com/in/mjpitz/" target="_blank" data-astro-cid-3ef6ksr2> <span class="sr-only" data-astro-cid-3ef6ksr2>LinkedIn</span> <svg viewBox="0 0 50 50" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2> <path fill="currentColor" d="M41,4H9C6.24,4,4,6.24,4,9v32c0,2.76,2.24,5,5,5h32c2.76,0,5-2.24,5-5V9C46,6.24,43.76,4,41,4z M17,20v19h-6V20H17z M11,14.47c0-1.4,1.2-2.47,3-2.47s2.93,1.07,3,2.47c0,1.4-1.12,2.53-3,2.53C12.2,17,11,15.87,11,14.47z M39,39h-6c0,0,0-9.26,0-10 c0-2-1-4-3.5-4.04h-0.08C27,24.96,26,27.02,26,29c0,0.91,0,10,0,10h-6V20h6v2.56c0,0,1.93-2.56,5.81-2.56 c3.97,0,7.19,2.73,7.19,8.26V39z" data-astro-cid-3ef6ksr2></path> </svg> </a> <a href="/rss.xml" target="_blank" data-astro-cid-3ef6ksr2> <span class="sr-only" data-astro-cid-3ef6ksr2>RSS</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2> <path fill="currentColor" d="M1,5v2c1.081,0,2.128,0.211,3.113,0.628c0.952,0.403,1.808,0.98,2.543,1.715s1.312,1.591,1.715,2.543 C8.789,12.872,9,13.919,9,15h2C11,9.477,6.523,5,1,5z M4,10c-1.105,0-2,0.895-2,2s0.895,2,2,2s2-0.895,2-2S5.105,10,4,10z M1,1v2 c1.621,0,3.192,0.317,4.67,0.942c1.429,0.604,2.712,1.47,3.815,2.573c1.103,1.103,1.968,2.386,2.573,3.815 C12.683,11.808,13,13.379,13,15h2C15,7.268,8.732,1,1,1z" data-astro-cid-3ef6ksr2></path> </svg> </a> </div> </nav> </header>  <main data-astro-cid-bvzihdzo> <article data-astro-cid-bvzihdzo> <div class="hero-image" data-astro-cid-bvzihdzo> <img width="1020" height="510" src="/img/blog-placeholder-5.jpg" alt="" data-astro-cid-bvzihdzo> </div> <div class="prose" data-astro-cid-bvzihdzo> <div class="title" data-astro-cid-bvzihdzo> <div class="date" data-astro-cid-bvzihdzo> <time datetime="2020-10-21T00:00:00.000Z"> Oct 21, 2020 </time>  </div> <h1 data-astro-cid-bvzihdzo>Local Ingress Domains for your Kind Cluster</h1> <hr data-astro-cid-bvzihdzo> </div>  <p>Tools like <a href="https://minikube.sigs.k8s.io/docs/">minikube</a> and <a href="https://kind.sigs.k8s.io/">kind</a> make it easy to get a <a href="https://kubernetes.io/">kubernetes</a> cluster up and running locally.
 Unfortunately these tools are limited in their capabilities, namely a lack of load balancer support.
 As a result, the community developed solutions like <a href="https://github.com/txn2/kubefwd">kubefwd</a> and <code>minikube tunnel</code> to expose services.
 While this approach works, keeping a dedicated terminal open during development can be tedeous.
@@ -12,7 +12,7 @@ In this post, I show how to set up an ingress controller in a kind cluster and p
 Using dnsmasq, we’re able to setup a synthetic domain thats managed by localhost.
 Before getting started, let’s install dnsmasq.
 On OSX, you can install dnsmasq using <a href="https://brew.sh/">homebrew</a>.</p>
-<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #e1e4e8">brew install dnsmasq</span></span></code></pre>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span>brew install dnsmasq</span></span></code></pre>
 <p>The default configuration for dnsmasq on OSX can be found at <code>/usr/local/etc/dnsmasq.conf</code>.
 To configure a local private domain, add an address line to the end of the file.
 When choosing a domain, I suggest avoiding <code>.local</code> and <code>.dev</code> top level domains (TLD).
@@ -20,64 +20,64 @@ When choosing a domain, I suggest avoiding <code>.local</code> and <code>.dev</c
 Using one will result in DNS query leaks, which may be problematic for organizations.
 <code>.dev</code> has historically been used by engineers, but recent browser changes now require TLS for communication.
 I’ve recently taken to the non-existent <code>.hack</code> TLD.</p>
-<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #e1e4e8">address=/mjpitz.hack/127.0.0.1</span></span>
-<span class="line"><span style="color: #e1e4e8">server=8.8.8.8</span></span>
-<span class="line"><span style="color: #e1e4e8">server=8.8.4.4</span></span></code></pre>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span>address=/mjpitz.hack/127.0.0.1</span></span>
+<span class="line"><span>server=8.8.8.8</span></span>
+<span class="line"><span>server=8.8.4.4</span></span></code></pre>
 <p><strong>Edit #1:</strong> I recently ran into an issue with this setup.
 I also add the Google nameservers to list.</p>
 <p>Once configured, you’ll need to start (or restart) the dnsmasq service.</p>
-<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #e1e4e8">sudo brew services start dnsmasq</span></span>
-<span class="line"><span style="color: #e1e4e8"># or</span></span>
-<span class="line"><span style="color: #e1e4e8">sudo brew services restart dnsmasq</span></span></code></pre>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span>sudo brew services start dnsmasq</span></span>
+<span class="line"><span># or</span></span>
+<span class="line"><span>sudo brew services restart dnsmasq</span></span></code></pre>
 <p>You can verify that dnsmasq picked up your configuration using the <code>dig</code> command.
 For now, you’ll need to explicitly point it at localhost.</p>
-<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #e1e4e8">$ dig @127.0.0.1 test.mjpitz.hack</span></span>
-<span class="line"><span style="color: #e1e4e8"></span></span>
-<span class="line"><span style="color: #e1e4e8">; &#x3C;&#x3C;>> DiG 9.10.6 &#x3C;&#x3C;>> test.mjpitz.hack</span></span>
-<span class="line"><span style="color: #e1e4e8">;; global options: +cmd</span></span>
-<span class="line"><span style="color: #e1e4e8">;; Got answer:</span></span>
-<span class="line"><span style="color: #e1e4e8">;; ->>HEADER&#x3C;&#x3C;- opcode: QUERY, status: NOERROR, id: 30399</span></span>
-<span class="line"><span style="color: #e1e4e8">;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1</span></span>
-<span class="line"><span style="color: #e1e4e8"></span></span>
-<span class="line"><span style="color: #e1e4e8">;; OPT PSEUDOSECTION:</span></span>
-<span class="line"><span style="color: #e1e4e8">; EDNS: version: 0, flags:; udp: 4096</span></span>
-<span class="line"><span style="color: #e1e4e8">;; QUESTION SECTION:</span></span>
-<span class="line"><span style="color: #e1e4e8">;test.mjpitz.hack.		IN	A</span></span>
-<span class="line"><span style="color: #e1e4e8"></span></span>
-<span class="line"><span style="color: #e1e4e8">;; ANSWER SECTION:</span></span>
-<span class="line"><span style="color: #e1e4e8">test.mjpitz.hack.	0	IN	A	127.0.0.1</span></span>
-<span class="line"><span style="color: #e1e4e8"></span></span>
-<span class="line"><span style="color: #e1e4e8">;; Query time: 0 msec</span></span>
-<span class="line"><span style="color: #e1e4e8">;; SERVER: 127.0.0.1#53(127.0.0.1)</span></span>
-<span class="line"><span style="color: #e1e4e8">;; WHEN: Wed Oct 21 21:12:02 CDT 2020</span></span>
-<span class="line"><span style="color: #e1e4e8">;; MSG SIZE  rcvd: 61</span></span></code></pre>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span>$ dig @127.0.0.1 test.mjpitz.hack</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>; &#x3C;&#x3C;>> DiG 9.10.6 &#x3C;&#x3C;>> test.mjpitz.hack</span></span>
+<span class="line"><span>;; global options: +cmd</span></span>
+<span class="line"><span>;; Got answer:</span></span>
+<span class="line"><span>;; ->>HEADER&#x3C;&#x3C;- opcode: QUERY, status: NOERROR, id: 30399</span></span>
+<span class="line"><span>;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>;; OPT PSEUDOSECTION:</span></span>
+<span class="line"><span>; EDNS: version: 0, flags:; udp: 4096</span></span>
+<span class="line"><span>;; QUESTION SECTION:</span></span>
+<span class="line"><span>;test.mjpitz.hack.		IN	A</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>;; ANSWER SECTION:</span></span>
+<span class="line"><span>test.mjpitz.hack.	0	IN	A	127.0.0.1</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>;; Query time: 0 msec</span></span>
+<span class="line"><span>;; SERVER: 127.0.0.1#53(127.0.0.1)</span></span>
+<span class="line"><span>;; WHEN: Wed Oct 21 21:12:02 CDT 2020</span></span>
+<span class="line"><span>;; MSG SIZE  rcvd: 61</span></span></code></pre>
 <h2 id="configure-the-resolver">Configure the resolver</h2>
 <p>Once we’ve configured dnsmaq, we’ll need to setup a resolver.
 Create a file under <code>/etc/resolver</code> with the name of the domain from earlier.
 The file should contain a <code>domain</code>, <code>search</code>, and <code>nameserver</code>.
 The <code>nameserver</code> should point to <code>127.0.0.1</code>.</p>
-<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #e1e4e8">sudo mkdir /etc/resolver/</span></span>
-<span class="line"><span style="color: #e1e4e8"></span></span>
-<span class="line"><span style="color: #e1e4e8">cat &#x3C;&#x3C;EOF | sudo tee /etc/resolver/mjpitz.hack</span></span>
-<span class="line"><span style="color: #e1e4e8">domain mjpitz.hack</span></span>
-<span class="line"><span style="color: #e1e4e8">search mjpitz.hack</span></span>
-<span class="line"><span style="color: #e1e4e8">nameserver 127.0.0.1</span></span>
-<span class="line"><span style="color: #e1e4e8">EOF</span></span></code></pre>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span>sudo mkdir /etc/resolver/</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>cat &#x3C;&#x3C;EOF | sudo tee /etc/resolver/mjpitz.hack</span></span>
+<span class="line"><span>domain mjpitz.hack</span></span>
+<span class="line"><span>search mjpitz.hack</span></span>
+<span class="line"><span>nameserver 127.0.0.1</span></span>
+<span class="line"><span>EOF</span></span></code></pre>
 <p>Once we configure the resolver, we’ll need to restart the <code>mDNSResponder</code>.
 The easiest way to do this is by sending a hang up.
 This will cause the process to be restarted gracefully.</p>
-<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #e1e4e8">sudo killall -HUP mDNSResponder</span></span></code></pre>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span>sudo killall -HUP mDNSResponder</span></span></code></pre>
 <p>Once restarted, verify the new resolver was picked up using the <code>scutil</code> command.</p>
-<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #e1e4e8">scutil --dns</span></span>
-<span class="line"><span style="color: #e1e4e8"></span></span>
-<span class="line"><span style="color: #e1e4e8"># ...</span></span>
-<span class="line"><span style="color: #e1e4e8"></span></span>
-<span class="line"><span style="color: #e1e4e8">resolver #8</span></span>
-<span class="line"><span style="color: #e1e4e8">  domain   : mjpitz.hack</span></span>
-<span class="line"><span style="color: #e1e4e8">  search domain[0] : mjpitz.hack</span></span>
-<span class="line"><span style="color: #e1e4e8">  nameserver[0] : 127.0.0.1</span></span>
-<span class="line"><span style="color: #e1e4e8">  flags    : Request A records, Request AAAA records</span></span>
-<span class="line"><span style="color: #e1e4e8">  reach    : 0x00030002 (Reachable,Local Address,Directly Reachable Address)</span></span></code></pre>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span>scutil --dns</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># ...</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>resolver #8</span></span>
+<span class="line"><span>  domain   : mjpitz.hack</span></span>
+<span class="line"><span>  search domain[0] : mjpitz.hack</span></span>
+<span class="line"><span>  nameserver[0] : 127.0.0.1</span></span>
+<span class="line"><span>  flags    : Request A records, Request AAAA records</span></span>
+<span class="line"><span>  reach    : 0x00030002 (Reachable,Local Address,Directly Reachable Address)</span></span></code></pre>
 <h2 id="configure-network-manager">Configure network manager</h2>
 <p>The last step of the process is to add your local DNS server to your network manager.
 I personally find this easiest to do through the <em>Network Preferences</em> section.
@@ -92,89 +92,89 @@ This relies on the server entries that were added to <code>dnsmasq.conf</code>.<
 To test, we’ll use the same <code>dig</code> command from earlier.
 Instead of pointing it at localhost this time, we’ll omit the target.
 The result should be the same.</p>
-<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #e1e4e8">$ dig test.mjpitz.hack</span></span>
-<span class="line"><span style="color: #e1e4e8"></span></span>
-<span class="line"><span style="color: #e1e4e8">; &#x3C;&#x3C;>> DiG 9.10.6 &#x3C;&#x3C;>> test.mjpitz.hack</span></span>
-<span class="line"><span style="color: #e1e4e8">;; global options: +cmd</span></span>
-<span class="line"><span style="color: #e1e4e8">;; Got answer:</span></span>
-<span class="line"><span style="color: #e1e4e8">;; ->>HEADER&#x3C;&#x3C;- opcode: QUERY, status: NOERROR, id: 29448</span></span>
-<span class="line"><span style="color: #e1e4e8">;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1</span></span>
-<span class="line"><span style="color: #e1e4e8"></span></span>
-<span class="line"><span style="color: #e1e4e8">;; OPT PSEUDOSECTION:</span></span>
-<span class="line"><span style="color: #e1e4e8">; EDNS: version: 0, flags:; udp: 4096</span></span>
-<span class="line"><span style="color: #e1e4e8">;; QUESTION SECTION:</span></span>
-<span class="line"><span style="color: #e1e4e8">;test.mjpitz.hack.		IN	A</span></span>
-<span class="line"><span style="color: #e1e4e8"></span></span>
-<span class="line"><span style="color: #e1e4e8">;; ANSWER SECTION:</span></span>
-<span class="line"><span style="color: #e1e4e8">test.mjpitz.hack.	0	IN	A	127.0.0.1</span></span>
-<span class="line"><span style="color: #e1e4e8"></span></span>
-<span class="line"><span style="color: #e1e4e8">;; Query time: 0 msec</span></span>
-<span class="line"><span style="color: #e1e4e8">;; SERVER: 127.0.0.1#53(127.0.0.1)</span></span>
-<span class="line"><span style="color: #e1e4e8">;; WHEN: Wed Oct 21 21:12:02 CDT 2020</span></span>
-<span class="line"><span style="color: #e1e4e8">;; MSG SIZE  rcvd: 61</span></span></code></pre>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span>$ dig test.mjpitz.hack</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>; &#x3C;&#x3C;>> DiG 9.10.6 &#x3C;&#x3C;>> test.mjpitz.hack</span></span>
+<span class="line"><span>;; global options: +cmd</span></span>
+<span class="line"><span>;; Got answer:</span></span>
+<span class="line"><span>;; ->>HEADER&#x3C;&#x3C;- opcode: QUERY, status: NOERROR, id: 29448</span></span>
+<span class="line"><span>;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>;; OPT PSEUDOSECTION:</span></span>
+<span class="line"><span>; EDNS: version: 0, flags:; udp: 4096</span></span>
+<span class="line"><span>;; QUESTION SECTION:</span></span>
+<span class="line"><span>;test.mjpitz.hack.		IN	A</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>;; ANSWER SECTION:</span></span>
+<span class="line"><span>test.mjpitz.hack.	0	IN	A	127.0.0.1</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>;; Query time: 0 msec</span></span>
+<span class="line"><span>;; SERVER: 127.0.0.1#53(127.0.0.1)</span></span>
+<span class="line"><span>;; WHEN: Wed Oct 21 21:12:02 CDT 2020</span></span>
+<span class="line"><span>;; MSG SIZE  rcvd: 61</span></span></code></pre>
 <p>Now that we’ve got a synthetic domain that routes properly, we can deploy and configure our kind cluster.</p>
 <h2 id="creating-the-cluster">Creating the cluster</h2>
 <p>Before creating the cluster, be sure you have kind installed and are on the latest version.</p>
-<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #e1e4e8">brew install kind</span></span></code></pre>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span>brew install kind</span></span></code></pre>
 <p>Once installed, we can follow the directions as outlined in the <a href="https://kind.sigs.k8s.io/docs/user/ingress/">documentation</a>.
 As we follow along, lets dive into some of the configuration a bit more.
 First, we’re creating a cluster configuration which adds port mappings for both HTTP and HTTPS.
 Below, I’ve provided a modified configuration that binds the ports to localhost instead of <code>0.0.0.0</code>.</p>
-<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #6A737D"># cluster.yaml</span></span>
-<span class="line"><span style="color: #85E89D">kind</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">Cluster</span></span>
-<span class="line"><span style="color: #85E89D">apiVersion</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">kind.x-k8s.io/v1alpha4</span></span>
-<span class="line"><span style="color: #85E89D">nodes</span><span style="color: #E1E4E8">:</span></span>
-<span class="line"><span style="color: #E1E4E8">- </span><span style="color: #85E89D">role</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">control-plane</span></span>
-<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #85E89D">kubeadmConfigPatches</span><span style="color: #E1E4E8">:</span></span>
-<span class="line"><span style="color: #E1E4E8">  - </span><span style="color: #F97583">|</span></span>
-<span class="line"><span style="color: #9ECBFF">    kind: InitConfiguration</span></span>
-<span class="line"><span style="color: #9ECBFF">    nodeRegistration:</span></span>
-<span class="line"><span style="color: #9ECBFF">      kubeletExtraArgs:</span></span>
-<span class="line"><span style="color: #9ECBFF">        node-labels: "ingress-ready=true"</span></span>
-<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #85E89D">extraPortMappings</span><span style="color: #E1E4E8">:</span></span>
-<span class="line"><span style="color: #E1E4E8">  - </span><span style="color: #85E89D">containerPort</span><span style="color: #E1E4E8">: </span><span style="color: #79B8FF">80</span></span>
-<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #85E89D">hostPort</span><span style="color: #E1E4E8">: </span><span style="color: #79B8FF">80</span></span>
-<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #85E89D">listenAddress</span><span style="color: #E1E4E8">: </span><span style="color: #79B8FF">127.0.0.1</span><span style="color: #E1E4E8">  </span><span style="color: #6A737D"># omit for 0.0.0.0</span></span>
-<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #85E89D">protocol</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">TCP</span></span>
-<span class="line"><span style="color: #E1E4E8">  - </span><span style="color: #85E89D">containerPort</span><span style="color: #E1E4E8">: </span><span style="color: #79B8FF">443</span></span>
-<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #85E89D">hostPort</span><span style="color: #E1E4E8">: </span><span style="color: #79B8FF">443</span></span>
-<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #85E89D">listenAddress</span><span style="color: #E1E4E8">: </span><span style="color: #79B8FF">127.0.0.1</span><span style="color: #E1E4E8">  </span><span style="color: #6A737D"># omit for 0.0.0.0</span></span>
-<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #85E89D">protocol</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">TCP</span></span>
-<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #6A737D">#image: kindest/node:v1.16.4 # configure kubernetes version</span></span></code></pre>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#6A737D"># cluster.yaml</span></span>
+<span class="line"><span style="color:#85E89D">kind</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">Cluster</span></span>
+<span class="line"><span style="color:#85E89D">apiVersion</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">kind.x-k8s.io/v1alpha4</span></span>
+<span class="line"><span style="color:#85E89D">nodes</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">- </span><span style="color:#85E89D">role</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">control-plane</span></span>
+<span class="line"><span style="color:#85E89D">  kubeadmConfigPatches</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#F97583">|</span></span>
+<span class="line"><span style="color:#9ECBFF">    kind: InitConfiguration</span></span>
+<span class="line"><span style="color:#9ECBFF">    nodeRegistration:</span></span>
+<span class="line"><span style="color:#9ECBFF">      kubeletExtraArgs:</span></span>
+<span class="line"><span style="color:#9ECBFF">        node-labels: "ingress-ready=true"</span></span>
+<span class="line"><span style="color:#85E89D">  extraPortMappings</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#85E89D">containerPort</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">80</span></span>
+<span class="line"><span style="color:#85E89D">    hostPort</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">80</span></span>
+<span class="line"><span style="color:#85E89D">    listenAddress</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">127.0.0.1</span><span style="color:#6A737D">  # omit for 0.0.0.0</span></span>
+<span class="line"><span style="color:#85E89D">    protocol</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">TCP</span></span>
+<span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#85E89D">containerPort</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">443</span></span>
+<span class="line"><span style="color:#85E89D">    hostPort</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">443</span></span>
+<span class="line"><span style="color:#85E89D">    listenAddress</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">127.0.0.1</span><span style="color:#6A737D">  # omit for 0.0.0.0</span></span>
+<span class="line"><span style="color:#85E89D">    protocol</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">TCP</span></span>
+<span class="line"><span style="color:#6A737D">  #image: kindest/node:v1.16.4 # configure kubernetes version</span></span></code></pre>
 <p>Using this configuration, we can create a cluster.</p>
-<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #e1e4e8">kind create cluster --config cluster.yaml</span></span></code></pre>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span>kind create cluster --config cluster.yaml</span></span></code></pre>
 <p>Once the cluster is up and running, verify that port <code>80</code> and <code>443</code> bound properly.
 You can do this by inspecting the docker container.</p>
-<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #e1e4e8">$ docker ps</span></span>
-<span class="line"><span style="color: #e1e4e8">CONTAINER ID        IMAGE                  COMMAND                  CREATED              STATUS              PORTS                                                                     NAMES</span></span>
-<span class="line"><span style="color: #e1e4e8">db95e53f6876        kindest/node:v1.19.1   "/usr/local/bin/entr…"   About a minute ago   Up About a minute   127.0.0.1:80->80/tcp, 127.0.0.1:443->443/tcp, 127.0.0.1:55416->6443/tcp   kind-control-plane</span></span></code></pre>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span>$ docker ps</span></span>
+<span class="line"><span>CONTAINER ID        IMAGE                  COMMAND                  CREATED              STATUS              PORTS                                                                     NAMES</span></span>
+<span class="line"><span>db95e53f6876        kindest/node:v1.19.1   "/usr/local/bin/entr…"   About a minute ago   Up About a minute   127.0.0.1:80->80/tcp, 127.0.0.1:443->443/tcp, 127.0.0.1:55416->6443/tcp   kind-control-plane</span></span></code></pre>
 <h2 id="deploying-an-ingress-controller">Deploying an ingress controller</h2>
 <p>Once your cluster is up and running, it’s time to deploy an ingress controller.
 Ingress controllers enable routing of HTTP requests based on the <code>Host</code> header.
 While it’s tempting to use your ingress controller of choice, let’s start simply with ingress-nginx.</p>
-<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #e1e4e8">kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/kind/deploy.yaml</span></span></code></pre>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span>kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/kind/deploy.yaml</span></span></code></pre>
 <p>Looking at the configuration, we see that the service uses a <code>NodePort</code> instead of your typical <code>LoadBalancer</code>.
 This routes communication arriving on the node’s port <code>80</code> and  <code>443</code> to ingress-nginx’s port <code>80</code> and <code>443</code>, respectively.</p>
-<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #85E89D">apiVersion</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">v1</span></span>
-<span class="line"><span style="color: #85E89D">kind</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">Service</span></span>
-<span class="line"><span style="color: #85E89D">metadata</span><span style="color: #E1E4E8">:</span></span>
-<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #85E89D">labels</span><span style="color: #E1E4E8">:</span></span>
-<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #6A737D"># ...</span></span>
-<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #85E89D">name</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">ingress-nginx-controller</span></span>
-<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #85E89D">namespace</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">ingress-nginx</span></span>
-<span class="line"><span style="color: #85E89D">spec</span><span style="color: #E1E4E8">:</span></span>
-<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #85E89D">type</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">NodePort</span></span>
-<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #85E89D">ports</span><span style="color: #E1E4E8">:</span></span>
-<span class="line"><span style="color: #E1E4E8">    - </span><span style="color: #85E89D">name</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">http</span></span>
-<span class="line"><span style="color: #E1E4E8">      </span><span style="color: #85E89D">port</span><span style="color: #E1E4E8">: </span><span style="color: #79B8FF">80</span></span>
-<span class="line"><span style="color: #E1E4E8">      </span><span style="color: #85E89D">protocol</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">TCP</span></span>
-<span class="line"><span style="color: #E1E4E8">      </span><span style="color: #85E89D">targetPort</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">http</span></span>
-<span class="line"><span style="color: #E1E4E8">    - </span><span style="color: #85E89D">name</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">https</span></span>
-<span class="line"><span style="color: #E1E4E8">      </span><span style="color: #85E89D">port</span><span style="color: #E1E4E8">: </span><span style="color: #79B8FF">443</span></span>
-<span class="line"><span style="color: #E1E4E8">      </span><span style="color: #85E89D">protocol</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">TCP</span></span>
-<span class="line"><span style="color: #E1E4E8">      </span><span style="color: #85E89D">targetPort</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">https</span></span>
-<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #85E89D">selector</span><span style="color: #E1E4E8">:</span></span>
-<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #6A737D"># ...</span></span></code></pre>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#85E89D">apiVersion</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">v1</span></span>
+<span class="line"><span style="color:#85E89D">kind</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">Service</span></span>
+<span class="line"><span style="color:#85E89D">metadata</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  labels</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#6A737D">    # ...</span></span>
+<span class="line"><span style="color:#85E89D">  name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">ingress-nginx-controller</span></span>
+<span class="line"><span style="color:#85E89D">  namespace</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">ingress-nginx</span></span>
+<span class="line"><span style="color:#85E89D">spec</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  type</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">NodePort</span></span>
+<span class="line"><span style="color:#85E89D">  ports</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    - </span><span style="color:#85E89D">name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">http</span></span>
+<span class="line"><span style="color:#85E89D">      port</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">80</span></span>
+<span class="line"><span style="color:#85E89D">      protocol</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">TCP</span></span>
+<span class="line"><span style="color:#85E89D">      targetPort</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">http</span></span>
+<span class="line"><span style="color:#E1E4E8">    - </span><span style="color:#85E89D">name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">https</span></span>
+<span class="line"><span style="color:#85E89D">      port</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">443</span></span>
+<span class="line"><span style="color:#85E89D">      protocol</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">TCP</span></span>
+<span class="line"><span style="color:#85E89D">      targetPort</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">https</span></span>
+<span class="line"><span style="color:#85E89D">  selector</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#6A737D">    # ...</span></span></code></pre>
 <p>If you decide to deploy your own custom ingress controller, you need to ensure that its service is set up similarly.</p>
 <h2 id="putting-it-all-together">Putting it all together</h2>
 <p><em>So, what does this mean exactly?</em></p>
@@ -191,34 +191,34 @@ Managing path based routing can be a headache and often doesn’t align with how
 By leveraging a local private domain, we make our dev ecosystem look and feel much closer to production.
 Let’s take a look at this in action using the example from the kind documentation.
 Instead of using path based routing, let’s set up two ingress definitions with our fake domain.</p>
-<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #B392F0">---</span></span>
-<span class="line"><span style="color: #85E89D">apiVersion</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">networking.k8s.io/v1beta1</span></span>
-<span class="line"><span style="color: #85E89D">kind</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">Ingress</span></span>
-<span class="line"><span style="color: #85E89D">metadata</span><span style="color: #E1E4E8">:</span></span>
-<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #85E89D">name</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">foo.mjpitz.hack</span></span>
-<span class="line"><span style="color: #85E89D">spec</span><span style="color: #E1E4E8">:</span></span>
-<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #85E89D">rules</span><span style="color: #E1E4E8">:</span></span>
-<span class="line"><span style="color: #E1E4E8">  - </span><span style="color: #85E89D">host</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">foo.mjpitz.hack</span></span>
-<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #85E89D">http</span><span style="color: #E1E4E8">:</span></span>
-<span class="line"><span style="color: #E1E4E8">      </span><span style="color: #85E89D">paths</span><span style="color: #E1E4E8">:</span></span>
-<span class="line"><span style="color: #E1E4E8">      - </span><span style="color: #85E89D">path</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">/</span></span>
-<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #85E89D">backend</span><span style="color: #E1E4E8">:</span></span>
-<span class="line"><span style="color: #E1E4E8">          </span><span style="color: #85E89D">serviceName</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">foo-service</span></span>
-<span class="line"><span style="color: #E1E4E8">          </span><span style="color: #85E89D">servicePort</span><span style="color: #E1E4E8">: </span><span style="color: #79B8FF">5678</span></span>
-<span class="line"><span style="color: #B392F0">---</span></span>
-<span class="line"><span style="color: #85E89D">apiVersion</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">networking.k8s.io/v1beta1</span></span>
-<span class="line"><span style="color: #85E89D">kind</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">Ingress</span></span>
-<span class="line"><span style="color: #85E89D">metadata</span><span style="color: #E1E4E8">:</span></span>
-<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #85E89D">name</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">bar.mjpitz.hack</span></span>
-<span class="line"><span style="color: #85E89D">spec</span><span style="color: #E1E4E8">:</span></span>
-<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #85E89D">rules</span><span style="color: #E1E4E8">:</span></span>
-<span class="line"><span style="color: #E1E4E8">  - </span><span style="color: #85E89D">host</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">bar.mjpitz.hack</span></span>
-<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #85E89D">http</span><span style="color: #E1E4E8">:</span></span>
-<span class="line"><span style="color: #E1E4E8">      </span><span style="color: #85E89D">paths</span><span style="color: #E1E4E8">:</span></span>
-<span class="line"><span style="color: #E1E4E8">      - </span><span style="color: #85E89D">path</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">/</span></span>
-<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #85E89D">backend</span><span style="color: #E1E4E8">:</span></span>
-<span class="line"><span style="color: #E1E4E8">          </span><span style="color: #85E89D">serviceName</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">bar-service</span></span>
-<span class="line"><span style="color: #E1E4E8">          </span><span style="color: #85E89D">servicePort</span><span style="color: #E1E4E8">: </span><span style="color: #79B8FF">5678</span></span></code></pre>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#B392F0">---</span></span>
+<span class="line"><span style="color:#85E89D">apiVersion</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">networking.k8s.io/v1beta1</span></span>
+<span class="line"><span style="color:#85E89D">kind</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">Ingress</span></span>
+<span class="line"><span style="color:#85E89D">metadata</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">foo.mjpitz.hack</span></span>
+<span class="line"><span style="color:#85E89D">spec</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  rules</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#85E89D">host</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">foo.mjpitz.hack</span></span>
+<span class="line"><span style="color:#85E89D">    http</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">      paths</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">      - </span><span style="color:#85E89D">path</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">/</span></span>
+<span class="line"><span style="color:#85E89D">        backend</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">          serviceName</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">foo-service</span></span>
+<span class="line"><span style="color:#85E89D">          servicePort</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">5678</span></span>
+<span class="line"><span style="color:#B392F0">---</span></span>
+<span class="line"><span style="color:#85E89D">apiVersion</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">networking.k8s.io/v1beta1</span></span>
+<span class="line"><span style="color:#85E89D">kind</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">Ingress</span></span>
+<span class="line"><span style="color:#85E89D">metadata</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">bar.mjpitz.hack</span></span>
+<span class="line"><span style="color:#85E89D">spec</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  rules</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#85E89D">host</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">bar.mjpitz.hack</span></span>
+<span class="line"><span style="color:#85E89D">    http</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">      paths</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">      - </span><span style="color:#85E89D">path</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">/</span></span>
+<span class="line"><span style="color:#85E89D">        backend</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">          serviceName</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">bar-service</span></span>
+<span class="line"><span style="color:#85E89D">          servicePort</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">5678</span></span></code></pre>
 <p>And just like that, you’re off to communicating with your services using an ingress.</p>
 <p><img src="/img/2020-10-21-foo.png" alt="foo.mjpitz.hack"></p>
 <p><img src="/img/2020-10-21-bar.png" alt="bar.mjpitz.hack"></p>
@@ -226,6 +226,6 @@ Instead of using path based routing, let’s set up two ingress definitions with
 No need to fuss with long running process.
 Just simple, straightforward, ingress definitions.</p>
 <p>I hope you enjoyed this post and hope it helps simplify your developer workflow.
-Thanks for reading!</p></div></article></main><footer data-astro-cid-sz7xmlte>
+Thanks for reading!</p>  </div> </article> </main> <footer data-astro-cid-sz7xmlte>
 &copy; 2024&nbsp;Mya Pitzeruse. All rights reserved.
-<div class="social-links" data-astro-cid-sz7xmlte><a href="https://github.com/mjpitz" target="_blank" data-astro-cid-sz7xmlte><span class="sr-only" data-astro-cid-sz7xmlte>GitHub</span><svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-sz7xmlte><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-sz7xmlte></path></svg></a><a href="https://www.linkedin.com/in/mjpitz/" target="_blank" data-astro-cid-sz7xmlte><span class="sr-only" data-astro-cid-sz7xmlte>LinkedIn</span><svg viewBox="0 0 50 50" aria-hidden="true" width="32" height="32" data-astro-cid-sz7xmlte><path fill="currentColor" d="M41,4H9C6.24,4,4,6.24,4,9v32c0,2.76,2.24,5,5,5h32c2.76,0,5-2.24,5-5V9C46,6.24,43.76,4,41,4z M17,20v19h-6V20H17z M11,14.47c0-1.4,1.2-2.47,3-2.47s2.93,1.07,3,2.47c0,1.4-1.12,2.53-3,2.53C12.2,17,11,15.87,11,14.47z M39,39h-6c0,0,0-9.26,0-10 c0-2-1-4-3.5-4.04h-0.08C27,24.96,26,27.02,26,29c0,0.91,0,10,0,10h-6V20h6v2.56c0,0,1.93-2.56,5.81-2.56 c3.97,0,7.19,2.73,7.19,8.26V39z" data-astro-cid-sz7xmlte></path></svg></a><a href="/rss.xml" target="_blank" data-astro-cid-sz7xmlte><span class="sr-only" data-astro-cid-sz7xmlte>RSS</span><svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-sz7xmlte><path fill="currentColor" d="M1,5v2c1.081,0,2.128,0.211,3.113,0.628c0.952,0.403,1.808,0.98,2.543,1.715s1.312,1.591,1.715,2.543 C8.789,12.872,9,13.919,9,15h2C11,9.477,6.523,5,1,5z M4,10c-1.105,0-2,0.895-2,2s0.895,2,2,2s2-0.895,2-2S5.105,10,4,10z M1,1v2 c1.621,0,3.192,0.317,4.67,0.942c1.429,0.604,2.712,1.47,3.815,2.573c1.103,1.103,1.968,2.386,2.573,3.815 C12.683,11.808,13,13.379,13,15h2C15,7.268,8.732,1,1,1z" data-astro-cid-sz7xmlte></path></svg></a></div></footer></body></html>
+<div class="social-links" data-astro-cid-sz7xmlte> <a href="https://github.com/mjpitz" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>GitHub</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-sz7xmlte> <path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-sz7xmlte></path> </svg> </a> <a href="https://www.linkedin.com/in/mjpitz/" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>LinkedIn</span> <svg viewBox="0 0 50 50" aria-hidden="true" width="32" height="32" data-astro-cid-sz7xmlte> <path fill="currentColor" d="M41,4H9C6.24,4,4,6.24,4,9v32c0,2.76,2.24,5,5,5h32c2.76,0,5-2.24,5-5V9C46,6.24,43.76,4,41,4z M17,20v19h-6V20H17z M11,14.47c0-1.4,1.2-2.47,3-2.47s2.93,1.07,3,2.47c0,1.4-1.12,2.53-3,2.53C12.2,17,11,15.87,11,14.47z M39,39h-6c0,0,0-9.26,0-10 c0-2-1-4-3.5-4.04h-0.08C27,24.96,26,27.02,26,29c0,0.91,0,10,0,10h-6V20h6v2.56c0,0,1.93-2.56,5.81-2.56 c3.97,0,7.19,2.73,7.19,8.26V39z" data-astro-cid-sz7xmlte></path> </svg> </a> <a href="/rss.xml" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>RSS</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-sz7xmlte> <path fill="currentColor" d="M1,5v2c1.081,0,2.128,0.211,3.113,0.628c0.952,0.403,1.808,0.98,2.543,1.715s1.312,1.591,1.715,2.543 C8.789,12.872,9,13.919,9,15h2C11,9.477,6.523,5,1,5z M4,10c-1.105,0-2,0.895-2,2s0.895,2,2,2s2-0.895,2-2S5.105,10,4,10z M1,1v2 c1.621,0,3.192,0.317,4.67,0.942c1.429,0.604,2.712,1.47,3.815,2.573c1.103,1.103,1.968,2.386,2.573,3.815 C12.683,11.808,13,13.379,13,15h2C15,7.268,8.732,1,1,1z" data-astro-cid-sz7xmlte></path> </svg> </a> </div> </footer>  </body></html>
