@@ -2,9 +2,6 @@
   "extends": [
     "config:base"
   ],
-  "excludeCommitPaths": [
-    "site/**"
-  ],
   "packageRules": [
     {
       "matchCategories": ["helm"],
@@ -53,6 +50,18 @@
       "matchUpdateTypes": ["major"],
       "groupName": "JS (major)",
       "groupSlug": "js-major"
+    },
+    {
+      "matchCategories": ["ci"],
+      "matchUpdateTypes": ["patch", "minor"],
+      "groupName": "CI (non-major)",
+      "groupSlug": "ci-non-major"
+    },
+    {
+      "matchCategories": ["ci"],
+      "matchUpdateTypes": ["major"],
+      "groupName": "CI (major)",
+      "groupSlug": "ci-major"
     }
   ]
 }
