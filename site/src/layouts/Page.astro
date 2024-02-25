@@ -7,7 +7,7 @@ import FormattedDate from '../components/FormattedDate.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, heroImage } = Astro.props;
+const { title, description, heroImage } = Astro.props.frontmatter || Astro.props;
 ---
 
 <html lang="en">
