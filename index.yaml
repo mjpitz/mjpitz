@@ -671,6 +671,41 @@ entries:
         fingerprint: FD0F1E353074E15A4883BC630FCA5E3C09DFB314
         url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x0fca5e3c09dfb314
     apiVersion: v2
+    appVersion: 1.21.6
+    created: "2024-02-25T16:28:31.370038569Z"
+    dependencies:
+    - condition: litestream.enabled
+      name: litestream
+      repository: https://mya.sh
+      version: 22.4.4
+    - condition: redis-queue.enabled
+      name: redis-queue
+      repository: https://mya.sh
+      version: 22.4.6
+    - condition: redis.enabled
+      name: redis
+      repository: https://mya.sh
+      version: 22.4.9
+    description: 'Git with a cup of tea. A painless, self-hosted Git Service. '
+    digest: 88a6c8ece0ce45f8713c1d3d977c895d7db17e1dc420c86d8fe01e6a6359cfcf
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mya.sh
+    name: gitea
+    sources:
+    - https://github.com/go-gitea/gitea
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/gitea
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/gitea-23.12.4/gitea-23.12.4.tgz
+    version: 23.12.4
+  - annotations:
+      artifacthub.io/category: integration-delivery
+      artifacthub.io/license: MIT
+      artifacthub.io/signKey: |
+        fingerprint: FD0F1E353074E15A4883BC630FCA5E3C09DFB314
+        url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x0fca5e3c09dfb314
+    apiVersion: v2
     appVersion: 1.21.3
     created: "2024-02-25T16:19:35.368481105Z"
     dependencies:
@@ -1077,6 +1112,36 @@ entries:
     - https://github.com/mjpitz/mjpitz/releases/download/litestream-22.4.0/litestream-22.4.0.tgz
     version: 22.4.0
   maddy:
+  - annotations:
+      artifacthub.io/category: integration-delivery
+      artifacthub.io/license: MIT
+      artifacthub.io/signKey: |
+        fingerprint: FD0F1E353074E15A4883BC630FCA5E3C09DFB314
+        url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x0fca5e3c09dfb314
+    apiVersion: v2
+    appVersion: 0.7.1
+    created: "2024-02-25T16:28:31.48338047Z"
+    dependencies:
+    - condition: litestream.enabled
+      name: litestream
+      repository: https://mya.sh
+      version: 22.4.4
+    description: 'Easily deploy and configure a maddy mail server. This chart handles
+      a fair bit of setup, however, additional work needs to be done to properly configure
+      all the DNS records. For a complete guide on setting up DNS for maddy, see the
+      user guide: https://maddy.email/tutorials/setting-up/ '
+    digest: 2071edb9c2499c48c885e36cf186b45077e37e43a4198c451c5f0572f5e1284b
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mya.sh
+    name: maddy
+    sources:
+    - https://github.com/foxcpp/maddy
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/maddy
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/maddy-22.4.12/maddy-22.4.12.tgz
+    version: 22.4.12
   - annotations:
       artifacthub.io/category: integration-delivery
       artifacthub.io/license: MIT
@@ -1939,6 +2004,43 @@ entries:
         fingerprint: FD0F1E353074E15A4883BC630FCA5E3C09DFB314
         url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x0fca5e3c09dfb314
     apiVersion: v2
+    appVersion: 2.8.3
+    created: "2024-02-25T16:28:31.573170533Z"
+    dependencies:
+    - condition: auth.enabled
+      name: auth
+      repository: ""
+      version: '*'
+    - condition: redis.enabled
+      name: redis
+      repository: https://mya.sh
+      version: 22.4.9
+    - condition: storj.enabled
+      name: storj
+      repository: https://mya.sh
+      version: 22.4.5
+    description: 'Easily deploy and configure a production-ready container registry
+      backed by your favorite cloud storage provider.  Optionally add a highly-available,
+      partition-tolerant Redis cache that''s fronted by Envoy. '
+    digest: cc464d502c3fa4130b59ddc53eeeb2b71f3b7492e8b747317e4487ee84259422
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mya.sh
+    name: registry
+    sources:
+    - https://github.com/distribution/distribution
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/registry
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/registry-22.4.11/registry-22.4.11.tgz
+    version: 22.4.11
+  - annotations:
+      artifacthub.io/category: integration-delivery
+      artifacthub.io/license: MIT
+      artifacthub.io/signKey: |
+        fingerprint: FD0F1E353074E15A4883BC630FCA5E3C09DFB314
+        url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x0fca5e3c09dfb314
+    apiVersion: v2
     appVersion: 2.8.0
     created: "2024-02-25T16:19:35.83777805Z"
     dependencies:
@@ -2642,4 +2744,4 @@ entries:
     urls:
     - https://github.com/mjpitz/mjpitz/releases/download/storj-22.3.0/storj-22.3.0.tgz
     version: 22.3.0
-generated: "2024-02-25T16:19:35.838077017Z"
+generated: "2024-02-25T16:28:31.573500766Z"
