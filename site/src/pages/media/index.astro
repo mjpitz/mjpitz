@@ -34,17 +34,17 @@ const posts = (await getCollection('media'))
 				text-decoration: none;
 				transition: 0.2s ease;
 			}
-			ul li:first-child {
-				width: 100%;
-				margin-bottom: 1rem;
-				text-align: center;
-			}
-			ul li:first-child img {
-				width: 100%;
-			}
-			ul li:first-child .title {
-				font-size: 2.369rem;
-			}
+			//ul li:first-child {
+			//	width: 100%;
+			//	margin-bottom: 1rem;
+			//	text-align: center;
+			//}
+			//ul li:first-child img {
+			//	width: 100%;
+			//}
+			//ul li:first-child .title {
+			//	font-size: 2.369rem;
+			//}
 			ul li img {
 				margin-bottom: 0.5rem;
 				border-radius: 12px;
@@ -88,6 +88,11 @@ const posts = (await getCollection('media'))
 	<body>
 		<Header />
 		<main>
+			<center>
+				<img alt="Mya speaking" src="/img/media.jpg"/>
+			</center>
+			<br/><br/>
+
 			<section>
 				<ul>
 					{
