@@ -14,11 +14,11 @@ version: 22.5.7
 appVersion: 2.11.1
 dependencies:
   - name: litestream
-    version: 22.4.2
+    version: 22.4.4
     repository: https://mya.sh
     condition: litestream.enabled
   - name: redis-queue
-    version: 22.4.4
+    version: 22.4.6
     repository: https://mya.sh
     condition: redis-queue.enabled
 annotations:
