@@ -1,6 +1,6 @@
 # maddy
 
-![Version: 22.4.11](https://img.shields.io/badge/Version-22.4.11-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.5.4](https://img.shields.io/badge/AppVersion-0.5.4-informational?style=flat-square)
+![Version: 22.4.12](https://img.shields.io/badge/Version-22.4.12-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.7.1](https://img.shields.io/badge/AppVersion-0.7.1-informational?style=flat-square)
 
 Easily deploy and configure a maddy mail server. This chart handles a fair bit of setup, however, additional work
 needs to be done to properly configure all the DNS records. For a complete guide on setting up DNS for maddy, see the
@@ -43,7 +43,7 @@ user guide: https://maddy.email/tutorials/setting-up/
 | fullnameOverride                             | string | `""`                         | Override the full name of the release.                                                                                  |
 | image.pullPolicy                             | string | `"IfNotPresent"`             | The pull policy to use for the image.                                                                                   |
 | image.repository                             | string | `"foxcpp/maddy"`             | The repository hosting the email server image.                                                                          |
-| image.tag                                    | string | `"0.5.4"`                    | Overrides the image tag whose default is the chart appVersion.                                                          |
+| image.tag                                    | string | `"0.7.1"`                    | Overrides the image tag whose default is the chart appVersion.                                                          |
 | imagePullSecrets                             | list   | `[]`                         | Specify the secret containing the registry credentials.                                                                 |
 | litestream.enabled                           | bool   | `false`                      | Whether to enable litestream for SQLite backup, recovery, and replication.                                              |
 | litestream.extraVolumeMounts[0].mountPath    | string | `"/data"`                    | The path where the databases can be located.                                                                            |

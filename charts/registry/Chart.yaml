@@ -10,8 +10,8 @@ sources:
 maintainers:
   - name: Mya Pitzeruse
     url: https://mya.sh
-version: 22.4.10
-appVersion: 2.8.0
+version: 22.4.11
+appVersion: 2.8.3
 dependencies:
   - name: auth
     version: "*"
