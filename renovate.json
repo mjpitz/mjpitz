@@ -4,64 +4,82 @@
   ],
   "packageRules": [
     {
-      "matchCategories": ["helm"],
-      "matchUpdateTypes": ["patch", "minor"],
-      "groupName": "Helm (non-major)",
-      "groupSlug": "helm-non-major"
-    },
-    {
-      "matchCategories": ["helm"],
-      "matchUpdateTypes": ["major"],
-      "groupName": "Helm (major)",
-      "groupSlug": "helm-major"
-    },
-    {
-      "matchCategories": ["docker"],
-      "matchUpdateTypes": ["patch", "minor"],
-      "groupName": "Docker (non-major)",
-      "groupSlug": "docker-non-major"
-    },
-    {
-      "matchCategories": ["docker"],
-      "matchUpdateTypes": ["major"],
-      "groupName": "Docker (major)",
-      "groupSlug": "docker-major"
-    },
-    {
-      "matchCategories": ["terraform"],
-      "matchUpdateTypes": ["patch", "minor"],
-      "groupName": "Terraform (non-major)",
-      "groupSlug": "terraform-non-major"
-    },
-    {
-      "matchCategories": ["terraform"],
-      "matchUpdateTypes": ["major"],
-      "groupName": "Terraform (major)",
-      "groupSlug": "terraform-major"
-    },
-    {
-      "matchCategories": ["js"],
-      "matchUpdateTypes": ["patch", "minor"],
-      "groupName": "JS (non-major)",
-      "groupSlug": "js-non-major"
-    },
-    {
-      "matchCategories": ["js"],
-      "matchUpdateTypes": ["major"],
-      "groupName": "JS (major)",
-      "groupSlug": "js-major"
-    },
-    {
       "matchCategories": ["ci"],
       "matchUpdateTypes": ["patch", "minor"],
-      "groupName": "CI (non-major)",
+      "groupName": "ci (non-major)",
       "groupSlug": "ci-non-major"
     },
     {
       "matchCategories": ["ci"],
       "matchUpdateTypes": ["major"],
-      "groupName": "CI (major)",
+      "groupName": "ci (major)",
       "groupSlug": "ci-major"
+    },
+    {
+      "matchFileNames": ["charts/**"],
+      "matchCategories": ["helm"],
+      "matchUpdateTypes": ["patch", "minor"],
+      "groupName": "helm (non-major)",
+      "groupSlug": "helm-non-major"
+    },
+    {
+      "matchFileNames": ["charts/**"],
+      "matchCategories": ["helm"],
+      "matchUpdateTypes": ["major"],
+      "groupName": "helm (major)",
+      "groupSlug": "helm-major"
+    },
+    {
+      "matchCategories": ["docker"],
+      "matchUpdateTypes": ["patch", "minor"],
+      "groupName": "docker (non-major)",
+      "groupSlug": "docker-non-major"
+    },
+    {
+      "matchCategories": ["docker"],
+      "matchUpdateTypes": ["major"],
+      "groupName": "docker (major)",
+      "groupSlug": "docker-major"
+    },
+    {
+      "matchFileNames": ["infra/**"],
+      "matchCategories": ["helm"],
+      "matchUpdateTypes": ["patch", "minor"],
+      "groupName": "infra helm (non-major)",
+      "groupSlug": "infra-helm-non-major"
+    },
+    {
+      "matchFileNames": ["infra/**"],
+      "matchCategories": ["helm"],
+      "matchUpdateTypes": ["major"],
+      "groupName": "infra helm (major)",
+      "groupSlug": "infra-helm-major"
+    },
+    {
+      "matchFileNames": ["infra/**"],
+      "matchCategories": ["terraform"],
+      "matchUpdateTypes": ["patch", "minor"],
+      "groupName": "infra terraform (non-major)",
+      "groupSlug": "infra-terraform-non-major"
+    },
+    {
+      "matchFileNames": ["infra/**"],
+      "matchCategories": ["terraform"],
+      "matchUpdateTypes": ["major"],
+      "groupName": "infra terraform (major)",
+      "groupSlug": "infra-terraform-major"
+    },
+    {
+      "matchFileNames": ["site/**"],
+      "matchUpdateTypes": ["patch", "minor"],
+      "groupName": "site (non-major)",
+      "groupSlug": "site-non-major"
+    },
+    {
+      "matchFileNames": ["site/**"],
+      "matchUpdateTypes": ["major"],
+      "groupName": "site (major)",
+      "groupSlug": "site-major"
     }
   ]
 }
