@@ -3,7 +3,6 @@ title: "Status: A Java Library For Robust System Status Health Checks"
 pubDate: "July 10 2015"
 heroImage: '/img/blog-placeholder-2.jpg'
 description: ""
-
 canonical: https://engineering.indeedblog.com/blog/2015/07/status-java-library-for-system-status-health-checks/
 slug: 2015/07/10/status-java-library-for-system-status-health-checks
 tags:

@@ -12,5 +12,6 @@ export default defineConfig({
 	],
 	markdown: {
 		syntaxHighlight: 'shiki',
+		gfm: true,
 	},
 });

@@ -13,6 +13,7 @@ const common = z.object({
 		.optional()
 		.transform((str: string) => (str ? new Date(str) : undefined)),
 	heroImage: z.string().optional(),
+	canonical: z.string().optional(),
 });
 
 export const collections = {

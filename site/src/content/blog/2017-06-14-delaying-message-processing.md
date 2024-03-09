@@ -3,9 +3,8 @@ title: "Delaying Asynchronous Message Processing"
 pubDate: "June 14 2017"
 heroImage: '/img/blog-placeholder-4.jpg'
 description: ""
-
-slug: 2017/06/14/delaying-message-processing
 canonical: https://engineering.indeedblog.com/blog/2017/06/delaying-messages/
+slug: 2017/06/14/delaying-message-processing
 tags:
   - software development
 
@@ -27,6 +26,8 @@ Over time, the team needed to implement several resilience patterns around this 
 * Tracing messages from production to consumption
 * Delaying message processing when expected errors occur
 * Sending messages that cannot be processed completely to a dead letter queue
+
+[RabbitMQ]: https://www.rabbitmq.com/
 
 ## Implementing a delay queue
 

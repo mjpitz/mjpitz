@@ -3,9 +3,8 @@ title: "Gracefully Degrading Functionality Using Status"
 pubDate: "January 19 2017"
 heroImage: '/img/blog-placeholder-5.jpg'
 description: ""
-
+canonical: https://engineering.indeedblog.com/blog/2017/01/degrade-functionality/
 slug: 2017/01/19/gracefully-degrading-functionality-using-status
-canonical: http://engineering.indeedblog.com/blog/2017/01/degrade-functionality/
 tags:
   - software development
 
