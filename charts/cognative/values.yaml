@@ -1,0 +1,393 @@
+clickhouse:
+  # -- Enable a single instance, clickhouse deployment.
+  enabled: true
+
+  auth:
+    # -- Specify the username used to authenticate with the clickhouse cluster.
+    username: clickhouse
+    # -- Specify the password used to authenticate with the clickhouse cluster.
+    password: clickhouse
+
+collector:
+  # -- Enable the collector process which is responsible for interfacing with the underlying Clickhouse deployment.
+  enabled: true
+
+  # -- @ignore
+  mode: deployment
+
+  # -- The number of collector instances to run.
+  replicaCount: 1
+
+  config:
+    # -- @ignore
+    processors:
+      batch:
+        timeout: 5s
+        send_batch_size: 100000
+
+    exporters:
+      clickhouse:
+        # -- Specify the location of the clickhouse deployment.
+        endpoint: "tcp://{{ .Release.Name }}-clickhouse:9000?dial_timeout=10s&compress=lz4"
+        # -- Specify the username used to authenticate with the clickhouse cluster.
+        username: clickhouse
+        # -- Specify the password used to authenticate with the clickhouse cluster.
+        password: clickhouse
+        # -- Configure how long logs, metrics, and traces are preserved for.
+        ttl: 72h
+        # -- @ignore
+        database: otel
+        # -- @ignore
+        logs_table_name: otel_logs
+        # -- @ignore
+        traces_table_name: otel_traces
+        # -- @ignore
+        metrics_table_name: otel_metrics
+        # -- @ignore
+        timeout: 5s
+        # -- @ignore
+        retry_on_failure:
+          enabled: true
+          initial_interval: 5s
+          max_interval: 30s
+          max_elapsed_time: 300s
+
+    # -- @ignore
+    service:
+      pipelines:
+        logs:
+          exporters:
+            - clickhouse
+        metrics:
+          exporters:
+            - clickhouse
+        traces:
+          exporters:
+            - clickhouse
+
+cluster:
+  # -- Enable the cluster-agent process that monitors and collects metrics for the control plane of your cluster.
+  enabled: true
+
+  # -- @ignore
+  mode: deployment
+
+  # -- @ignore
+  nameOverride: "cluster-agent"
+
+  # -- The number of cluster-agent instances to run.
+  replicaCount: 1
+
+  # -- @ignore
+  presets:
+    kubernetesEvents:
+      enabled: true
+    clusterMetrics:
+      enabled: true
+
+  # -- @ignore
+  clusterRole:
+    create: true
+    rules:
+      - verbs: [ "*" ]
+        resources: [ "*" ]
+        apiGroups: [ "*" ]
+      - verbs: [ "*" ]
+        nonResourceURLs: [ "*" ]
+
+  config:
+    # -- @ignore
+    receivers:
+      #== cluster
+      k8s_cluster:
+        collection_interval: 10s
+        node_conditions_to_report: [ Ready, MemoryPressure,DiskPressure,NetworkUnavailable ]
+        allocatable_types_to_report: [ cpu, memory, storage, ephemeral-storage ]
+
+      #== events
+      k8s_events:
+        auth_type: "serviceAccount"
+
+      #== control-plane things
+      prometheus:
+        config:
+          scrape_configs:
+            #== cadvisor
+            - job_name: kubernetes/cadvisor
+              bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+              kubernetes_sd_configs:
+                - role: node
+              relabel_configs:
+                - replacement: kubernetes.default.svc.cluster.local:443
+                  target_label: __address__
+                - regex: (.+)
+                  replacement: /api/v1/nodes/$${1}/proxy/metrics/cadvisor
+                  source_labels:
+                    - __meta_kubernetes_node_name
+                  target_label: __metrics_path__
+              scheme: https
+              tls_config:
+                ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+                insecure_skip_verify: false
+                server_name: kubernetes
+
+            #== more kubelet
+            - job_name: kubernetes/kubelet
+              bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+              kubernetes_sd_configs:
+                - role: node
+              relabel_configs:
+                - replacement: kubernetes.default.svc.cluster.local:443
+                  target_label: __address__
+                - regex: (.+)
+                  replacement: /api/v1/nodes/$${1}/proxy/metrics
+                  source_labels:
+                    - __meta_kubernetes_node_name
+                  target_label: __metrics_path__
+              scheme: https
+              tls_config:
+                ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+                insecure_skip_verify: false
+                server_name: kubernetes
+
+            #== API
+            - job_name: kubernetes/apiservers
+              kubernetes_sd_configs:
+                - role: endpoints
+                  namespaces:
+                    names:
+                      - default
+              scheme: https
+              tls_config:
+                ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+                insecure_skip_verify: true
+              bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+              relabel_configs:
+                - source_labels: [ __meta_kubernetes_service_name, __meta_kubernetes_endpoint_port_name ]
+                  action: keep
+                  regex: kubernetes;https
+                - action: replace
+                  source_labels:
+                    - __meta_kubernetes_namespace
+                  target_label: Namespace
+                - action: replace
+                  source_labels:
+                    - __meta_kubernetes_service_name
+                  target_label: Service
+
+      # disable these...
+      otlp: null
+      jaeger: null
+      zipkin: null
+
+    # -- @ignore
+    processors:
+      memory_limiter:
+        check_interval: 3s
+        limit_mib: 1500
+        spike_limit_mib: 500
+      resourcedetection/system:
+        detectors: [ env, system, gcp, eks ]
+        timeout: 2s
+        override: false
+      batch:
+        send_batch_size: 10000
+        timeout: 200ms
+
+    exporters:
+      otlp/2:
+        # -- Specify the location of the collector deployment.
+        endpoint: "{{ .Release.Name }}-collector:4317"
+        # -- @ignore
+        tls:
+          insecure: true
+
+    # -- @ignore
+    service:
+      pipelines:
+        traces: null
+        metrics:
+          exporters:
+            - otlp/2
+          processors:
+            - memory_limiter
+            - resourcedetection/system
+            - batch
+          receivers:
+            - k8s_cluster
+            - prometheus
+        logs:
+          exporters:
+            - otlp/2
+          processors:
+            - memory_limiter
+            - resourcedetection/system
+            - batch
+          receivers:
+            - k8s_events
+
+node:
+  # -- Enable the node-agent process that monitors and collects metrics for each host in your cluster.
+  enabled: true
+
+  # -- @ignore
+  mode: daemonset
+
+  # -- @ignore
+  presets:
+    logsCollection:
+      enabled: true
+    hostMetrics:
+      enabled: true
+    kubernetesAttributes:
+      enabled: true
+    kubeletMetrics:
+      enabled: true
+
+  # -- @ignore
+  extraEnvs:
+    - name: K8S_NODE_NAME
+      valueFrom:
+        fieldRef:
+          fieldPath: spec.nodeName
+
+  config:
+    # -- @ignore
+    receivers:
+      #== kubelet
+      kubeletstats:
+        collection_interval: 10s
+        auth_type: "serviceAccount"
+        endpoint: https://${env:K8S_NODE_NAME}:10250
+        insecure_skip_verify: true
+        metric_groups:
+          - container
+          - pod
+          - volume
+          - node
+        extra_metadata_labels:
+          - container.id
+
+      # disable these...
+      prometheus: null
+      otlp: null
+      jaeger: null
+      zipkin: null
+
+    # -- @ignore
+    processors:
+      memory_limiter:
+        check_interval: 3s
+        limit_mib: 1500
+        spike_limit_mib: 500
+      resourcedetection/system:
+        detectors: [ env, system, gcp, eks ]
+        timeout: 2s
+        override: false
+      k8sattributes:
+        auth_type: "serviceAccount"
+        passthrough: true
+        filter:
+          node_from_env_var: K8S_NODE_NAME
+        extract:
+          metadata:
+            - k8s.pod.name
+            - k8s.pod.uid
+            - k8s.deployment.name
+            - k8s.container.name
+            - k8s.namespace.name
+            - k8s.node.name
+            - k8s.pod.start_time
+      batch:
+        send_batch_size: 10000
+        timeout: 200ms
+
+    exporters:
+      otlp/2:
+        # -- Specify the location of the collector deployment.
+        endpoint: "{{ .Release.Name }}-collector:4317"
+        # -- @ignore
+        tls:
+          insecure: true
+
+    # -- @ignore
+    service:
+      pipelines:
+        traces: null
+        metrics:
+          exporters:
+            - otlp/2
+          processors:
+            - memory_limiter
+            - resourcedetection/system
+            - k8sattributes
+            - batch
+          receivers:
+            - hostmetrics
+            - kubeletstats
+        logs:
+          exporters:
+            - otlp/2
+          processors:
+            - memory_limiter
+            - resourcedetection/system
+            - k8sattributes
+            - batch
+          receivers:
+            - filelog
+
+grafana:
+  # -- Enable the grafana deployment.
+  enabled: true
+
+  # -- Current configuration does not support more than one replica. @ignore
+  replicas: 1
+
+  # -- Specify the username of the admin account.
+  adminUser: admin
+  # -- Specify the password used to authenticate the admin password.
+  adminPassword: admin
+
+  # -- Add additional plugins to install in your grafana deployment, but be sure to include the
+  #    grafana-clickhouse-datasource
+  plugins:
+    - grafana-clickhouse-datasource
+
+  datasources:
+    "clickhouse.yaml":
+      # -- @ignore
+      apiVersion: 1
+      datasources:
+        - jsonData:
+            # -- Specify the default database to connect to when communicating with the clickhouse cluster.
+            defaultDatabase: default
+            # -- Specify the location of the clickhouse deployment.
+            host: "{{ .Release.Name }}-clickhouse"
+            # -- Specify the port of the clickhouse deployment.
+            port: 9000
+            # -- Specify the username used to authenticate with the clickhouse cluster.
+            username: clickhouse
+            # -- Specify the protocol used to communicate with the clickhouse.
+            protocol: native
+            # -- @ignore
+            secure: false
+            # -- @ignore
+            logs:
+              defaultDatabase: otel
+              defaultTable: otel_logs
+              otelEnabled: true
+              otelVersion: latest
+            # -- @ignore
+            traces:
+              defaultDatabase: otel
+              defaultTable: otel_traces
+              otelEnabled: true
+              otelVersion: latest
+              durationUnit: milliseconds
+          secureJsonData:
+            # -- Specify the password used to authenticate with the clickhouse cluster.
+            password: clickhouse
+          # -- @ignore
+          name: ClickHouse
+          # -- @ignore
+          type: grafana-clickhouse-datasource

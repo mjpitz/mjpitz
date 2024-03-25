@@ -1,0 +1,83 @@
+apiVersion: v2
+type: application
+
+# -- Details
+
+name: cognative
+description: |
+  cognative is an opinionated, minimalistic approach to business intelligence 🧠 and operations 🚨. We strongly believe
+  companies should be able to own their own data, and many solutions out there leave organizations to the whims of 
+  third-party providers. Our goal is to reduce the complexity of traditional business intelligence and operations 
+  stacks, while seeking to maximize the efforts of everyday operations staff. This not only simplifies the process for 
+  operators, but also enhances the experience for less infrastructure-aware developers.
+  
+  (BETA) This chart provides an early access preview to the cogantive stack. It currently not suitable for production.
+  I'm hoping to iterate on this stack in the public, and am actively looking for help from others to push it forward.
+
+keywords:
+  - business intelligence
+  - business operations
+  - analytics
+  - monitoring
+  - alerting
+
+version: 0.2403.0
+
+# -- Where can I find additional information about the project?
+
+home: https://mjpitz.github.io/cognative/
+sources:
+  - https://github.com/mjpitz/cognative
+  - https://github.com/mjpitz/mjpitz/tree/main/charts/cognative
+
+# -- Who's behind the project?
+
+maintainers:
+  - name: Mya Pitzeruse
+    url: https://mya.sh
+  - name: The cognative authors
+    url: https://github.com/mjpitz/cognative
+
+# -- What systems make up this chart?
+
+dependencies:
+  - name: clickhouse
+    version: "*"
+    condition: clickhouse.enabled
+
+  # -- The collector intermediates telemetry data collected from various agents.
+
+  - name: opentelemetry-collector
+    repository: https://open-telemetry.github.io/opentelemetry-helm-charts
+    version: 0.84.0
+    alias: collector
+    condition: collector.enabled
+
+  # -- The cluster-agent is responsible for collecting metrics from the cluster's control-plane.
+
+  - name: opentelemetry-collector
+    repository: https://open-telemetry.github.io/opentelemetry-helm-charts
+    version: 0.84.0
+    alias: cluster
+    condition: cluster.enabled
+
+  # -- The node-agent is responsible for collecting metrics.
+
+  - name: opentelemetry-collector
+    repository: https://open-telemetry.github.io/opentelemetry-helm-charts
+    version: 0.84.0
+    alias: node
+    condition: node.enabled
+
+  # -- Grafana provides a single pane of glass to our data.
+
+  - name: grafana
+    repository: https://grafana.github.io/helm-charts
+    version: 7.3.7
+    condition: grafana.enabled
+
+annotations:
+  artifacthub.io/license: MIT
+  artifacthub.io/signKey: |
+    fingerprint: FD0F1E353074E15A4883BC630FCA5E3C09DFB314
+    url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x0fca5e3c09dfb314
