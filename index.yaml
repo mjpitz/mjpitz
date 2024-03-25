@@ -436,6 +436,70 @@ entries:
     urls:
     - https://github.com/mjpitz/mjpitz/releases/download/auth-1.6.0/auth-1.6.0.tgz
     version: 1.6.0
+  cognative:
+  - annotations:
+      artifacthub.io/license: MIT
+      artifacthub.io/signKey: |
+        fingerprint: FD0F1E353074E15A4883BC630FCA5E3C09DFB314
+        url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x0fca5e3c09dfb314
+    apiVersion: v2
+    created: "2024-03-25T04:06:54.585596869Z"
+    dependencies:
+    - condition: clickhouse.enabled
+      name: clickhouse
+      repository: ""
+      version: '*'
+    - alias: collector
+      condition: collector.enabled
+      name: opentelemetry-collector
+      repository: https://open-telemetry.github.io/opentelemetry-helm-charts
+      version: 0.84.0
+    - alias: cluster
+      condition: cluster.enabled
+      name: opentelemetry-collector
+      repository: https://open-telemetry.github.io/opentelemetry-helm-charts
+      version: 0.84.0
+    - alias: node
+      condition: node.enabled
+      name: opentelemetry-collector
+      repository: https://open-telemetry.github.io/opentelemetry-helm-charts
+      version: 0.84.0
+    - condition: grafana.enabled
+      name: grafana
+      repository: https://grafana.github.io/helm-charts
+      version: 7.3.7
+    description: "cognative is an opinionated, minimalistic approach to business intelligence
+      \U0001F9E0 and operations \U0001F6A8. We strongly believe companies should be
+      able to own their own data, and many solutions out there leave organizations
+      to the whims of  third-party providers. Our goal is to reduce the complexity
+      of traditional business intelligence and operations  stacks, while seeking to
+      maximize the efforts of everyday operations staff. This not only simplifies
+      the process for  operators, but also enhances the experience for less infrastructure-aware
+      developers.  (BETA) This chart provides an early access preview to the cogantive
+      stack. It currently not suitable for production. I'm hoping to iterate on this
+      stack in the public, and am actively looking for help from others to push it
+      forward. "
+    digest: 2eb94cbdb8375324708524549a580d02882b004d7f615149766d68296cd218c0
+    home: https://mjpitz.github.io/cognative/
+    keywords:
+    - business intelligence
+    - business operations
+    - analytics
+    - monitoring
+    - alerting
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mya.sh
+    - name: The cognative authors
+      url: https://github.com/mjpitz/cognative
+    name: cognative
+    sources:
+    - https://github.com/mjpitz/cognative
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/cognative
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/cognative-0.2403.0/cognative-0.2403.0.tgz
+    version: 0.2403.0
   drone:
   - annotations:
       artifacthub.io/category: integration-delivery
@@ -2744,4 +2808,4 @@ entries:
     urls:
     - https://github.com/mjpitz/mjpitz/releases/download/storj-22.3.0/storj-22.3.0.tgz
     version: 22.3.0
-generated: "2024-02-25T16:28:31.573500766Z"
+generated: "2024-03-25T04:06:54.585818975Z"
