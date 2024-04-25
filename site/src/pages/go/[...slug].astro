@@ -9,6 +9,13 @@ export async function getStaticPaths() {
         { slug: "msgdelay", destination: "https://engineering.indeedblog.com/blog/2017/06/delaying-messages/"},
         { slug: "ossna2019", destination: "https://www.youtube.com/watch?v=UkrFuGgxMu0"},
         { slug: "status", destination: "https://engineering.indeedblog.com/blog/2015/07/status-java-library-for-system-status-health-checks/"},
+        { slug: "linkedin", destination: "https://www.linkedin.com/in/mjpitz/"},
+        { slug: "github", destination: "https://github.com/mjpitz"},
+        { slug: "devopsdays2024", destination: "https://talks.devopsdays.org/devopsdays-austin-2024/talk/ZTCGCN/"},
+        { slug: "one-on-ones", destination: "https://crabnebula.dev/blog/remote-work-essentials-1-1s/"},
+        { slug: "storj-terraform", destination: "https://www.storj.io/blog/introducing-the-storj-terraform-provider"},
+        { slug: "kubecon2017", destination: "https://www.youtube.com/watch?v=aQ2d9iLDR8Y" },
+        { slug: "cognative", destination: "https://github.com/mjpitz/cognative"},
     ].map(
         (props) => ({
             params: {slug: props.slug},
