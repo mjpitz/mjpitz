@@ -12,8 +12,12 @@
 </p>
 
 <p align="center">
+    <a href="https://www.github.com/mjpitz">
+        <img alt="GitHub" src="https://img.shields.io/badge/-GitHub-gray?style=for-the-badge&logo=github" /></a>
     <a href="https://linkedin.com/in/mjpitz">
         <img alt="LinkedIn" src="https://img.shields.io/badge/-Linked%20In-gray?style=for-the-badge&logo=linkedin" /></a>
+    <a href="https://x.com/MsMyaDev">
+        <img alt="Twitter" src="https://img.shields.io/badge/-Twitter-gray?style=for-the-badge&logo=twitter" /></a>
 </p>
 
 <p align="center">
