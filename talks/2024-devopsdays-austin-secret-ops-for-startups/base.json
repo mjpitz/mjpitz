@@ -1,0 +1,5 @@
+{
+  "dda_postgres_version": "latest",
+  "dda_postgres_user": "op://DevOpsDays-demo-${TARGET_ENV}/postgres/username",
+  "dda_postgres_password": "op://DevOpsDays-demo-${TARGET_ENV}/postgres/password"
+}
