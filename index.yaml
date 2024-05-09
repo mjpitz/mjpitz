@@ -436,6 +436,28 @@ entries:
     urls:
     - https://github.com/mjpitz/mjpitz/releases/download/auth-1.6.0/auth-1.6.0.tgz
     version: 1.6.0
+  clickhouse:
+  - annotations:
+      artifacthub.io/license: MIT
+      artifacthub.io/signKey: |
+        fingerprint: FD0F1E353074E15A4883BC630FCA5E3C09DFB314
+        url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x0fca5e3c09dfb314
+    apiVersion: v2
+    created: "2024-05-09T13:23:52.395989697Z"
+    description: '(BETA) Deploy a standalone Clickhouse instance. ClickHouse is a
+      high-performance, column-oriented SQL database  management system (DBMS) for
+      online analytical processing (OLAP). '
+    digest: 741363ec8b986ae0a54cc020e2b64e2da281ec9da8caa8f345b799a764cd3907
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mya.sh
+    - name: The cognative authors
+      url: https://github.com/mjpitz/cognative
+    name: clickhouse
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/clickhouse-0.2403.0/clickhouse-0.2403.0.tgz
+    version: 0.2403.0
   cognative:
   - annotations:
       artifacthub.io/license: MIT
@@ -2808,4 +2830,4 @@ entries:
     urls:
     - https://github.com/mjpitz/mjpitz/releases/download/storj-22.3.0/storj-22.3.0.tgz
     version: 22.3.0
-generated: "2024-03-25T04:06:54.585818975Z"
+generated: "2024-05-09T13:23:52.396196406Z"
