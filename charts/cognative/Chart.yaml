@@ -21,7 +21,7 @@ keywords:
   - monitoring
   - alerting
 
-version: 0.2403.0
+version: 0.2403.1
 
 # -- Where can I find additional information about the project?
 
@@ -42,7 +42,8 @@ maintainers:
 
 dependencies:
   - name: clickhouse
-    version: "*"
+    repository: https://mya.sh
+    version: 0.2403.0
     condition: clickhouse.enabled
 
   # -- The collector intermediates telemetry data collected from various agents.
@@ -61,7 +62,7 @@ dependencies:
     alias: cluster
     condition: cluster.enabled
 
-  # -- The node-agent is responsible for collecting metrics.
+  # -- The node-agent is responsible for collecting metrics from the nodes..
 
   - name: opentelemetry-collector
     repository: https://open-telemetry.github.io/opentelemetry-helm-charts

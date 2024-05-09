@@ -1,5 +1,0 @@
-apiVersion: v2
-type: application
-name: clickhouse
-description: (BETA) Deploy a standalone clickhouse instance.
-version: 0.2403.0
