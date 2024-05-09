@@ -21,3 +21,9 @@ TARGET_ENV=prod op run --env-file 1password.env --no-masking printenv | grep DDA
 TARGET_ENV=qa op inject -i base.json
 TARGET_ENV=prod op inject -i base.json
 ```
+
+## Missing Values
+
+```
+TARGET_ENV=prod op run --env-file missing.env --no-masking echo 'uh oh!'
+```
