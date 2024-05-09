@@ -1,0 +1,99 @@
+# Default values for clickhouse.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+image:
+  # -- The repository hosting the clickhouse image.
+  repository: clickhouse/clickhouse-server
+  # -- The pull policy to use for the image.
+  pullPolicy: IfNotPresent
+  # -- Overrides the image tag whose default is the chart appVersion.
+  tag: 24.2
+
+# -- Specify the secret containing the registry credentials.
+imagePullSecrets: []
+# -- Override the name of the release.
+nameOverride: ""
+# -- Override the full name of the release.
+fullnameOverride: ""
+
+serviceAccount:
+  # -- Specifies whether a service account should be created.
+  create: true
+  # -- Annotations to add to the service account.
+  annotations: {}
+  # -- The name of the service account to use. If not set and create is true, a name is generated using the fullname
+  #    template.
+  name: ""
+
+# -- Annotations to add to the pod, typically used for assume roles.
+podAnnotations: {}
+
+# -- Specify the security context for the entire pod.
+podSecurityContext: {}
+  # fsGroup: 2000
+
+# -- Specify the security context for the `redis-raft` container.
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  # -- Annotations to add to the service, typically used for ingress control.
+  annotations: {}
+
+# -- Specify the resources for the pod.
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+# -- Specify the node selector used to control which nodes pods are deployed to.
+nodeSelector: {}
+
+# -- Specify taints that the pods are willing to tolerate.
+tolerations: []
+
+# -- Specify affinity rules for the pods.
+affinity: {}
+
+auth:
+  # -- Specify the username used to authenticate with the clickhouse cluster.
+  username: clickhouse
+
+  # -- Specify the password used to authenticate with the clickhouse cluster.
+  password: clickhouse
+
+persistence:
+  # -- Enable persistence for this deployment.
+  enabled: true
+
+  # -- Specify the name of an existing PersistentVolumeClaim to use.
+  existingClaim: ""
+
+  # -- Configure the access mode of the volume.
+  accessMode: ReadWriteOnce
+
+  resources:
+    # -- Specify the size of the volume.
+    storage: 10Gi
+
+  # -- Specify the storage class that should provision this claim.
+  storageClass: ""
+
+  # -- Provide additional labels to attach to the volume claim.
+  labels: {}
+
+  # -- Provide additional annotations to attach to the volume claim.
+  annotations: {}

@@ -1,0 +1,21 @@
+apiVersion: v2
+type: application
+
+name: clickhouse
+description: |
+  (BETA) Deploy a standalone Clickhouse instance. ClickHouse is a high-performance, column-oriented SQL database 
+  management system (DBMS) for online analytical processing (OLAP).
+
+version: 0.2403.0
+
+maintainers:
+  - name: Mya Pitzeruse
+    url: https://mya.sh
+  - name: The cognative authors
+    url: https://github.com/mjpitz/cognative
+
+annotations:
+  artifacthub.io/license: MIT
+  artifacthub.io/signKey: |
+    fingerprint: FD0F1E353074E15A4883BC630FCA5E3C09DFB314
+    url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x0fca5e3c09dfb314
