@@ -443,6 +443,27 @@ entries:
         fingerprint: FD0F1E353074E15A4883BC630FCA5E3C09DFB314
         url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x0fca5e3c09dfb314
     apiVersion: v2
+    created: "2024-05-27T17:45:33.199291055Z"
+    description: '(BETA) Deploy a standalone Clickhouse instance. ClickHouse is a
+      high-performance, column-oriented SQL database  management system (DBMS) for
+      online analytical processing (OLAP). '
+    digest: 73649ff6b45fa374ef843805b89457bd4a8814b9b9a700065527e7076a429c6e
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mya.sh
+    - name: The cognative authors
+      url: https://github.com/mjpitz/cognative
+    name: clickhouse
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/clickhouse-0.2403.1/clickhouse-0.2403.1.tgz
+    version: 0.2403.1
+  - annotations:
+      artifacthub.io/license: MIT
+      artifacthub.io/signKey: |
+        fingerprint: FD0F1E353074E15A4883BC630FCA5E3C09DFB314
+        url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x0fca5e3c09dfb314
+    apiVersion: v2
     created: "2024-05-09T13:23:52.395989697Z"
     description: '(BETA) Deploy a standalone Clickhouse instance. ClickHouse is a
       high-performance, column-oriented SQL database  management system (DBMS) for
@@ -459,6 +480,69 @@ entries:
     - https://github.com/mjpitz/mjpitz/releases/download/clickhouse-0.2403.0/clickhouse-0.2403.0.tgz
     version: 0.2403.0
   cognative:
+  - annotations:
+      artifacthub.io/license: MIT
+      artifacthub.io/signKey: |
+        fingerprint: FD0F1E353074E15A4883BC630FCA5E3C09DFB314
+        url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x0fca5e3c09dfb314
+    apiVersion: v2
+    created: "2024-05-27T17:45:33.300100764Z"
+    dependencies:
+    - condition: clickhouse.enabled
+      name: clickhouse
+      repository: https://mya.sh
+      version: 0.2403.0
+    - alias: collector
+      condition: collector.enabled
+      name: opentelemetry-collector
+      repository: https://open-telemetry.github.io/opentelemetry-helm-charts
+      version: 0.84.0
+    - alias: cluster
+      condition: cluster.enabled
+      name: opentelemetry-collector
+      repository: https://open-telemetry.github.io/opentelemetry-helm-charts
+      version: 0.84.0
+    - alias: node
+      condition: node.enabled
+      name: opentelemetry-collector
+      repository: https://open-telemetry.github.io/opentelemetry-helm-charts
+      version: 0.84.0
+    - condition: grafana.enabled
+      name: grafana
+      repository: https://grafana.github.io/helm-charts
+      version: 7.3.7
+    description: "cognative is an opinionated, minimalistic approach to business intelligence
+      \U0001F9E0 and operations \U0001F6A8. We strongly believe companies should be
+      able to own their own data, and many solutions out there leave organizations
+      to the whims of  third-party providers. Our goal is to reduce the complexity
+      of traditional business intelligence and operations  stacks, while seeking to
+      maximize the efforts of everyday operations staff. This not only simplifies
+      the process for  operators, but also enhances the experience for less infrastructure-aware
+      developers.  (BETA) This chart provides an early access preview to the cogantive
+      stack. It currently not suitable for production. I'm hoping to iterate on this
+      stack in the public, and am actively looking for help from others to push it
+      forward. "
+    digest: d36661b23f553285e2b630e6ee4248653e85519a5213a2b2238246f8d0bf7a8f
+    home: https://mjpitz.github.io/cognative/
+    keywords:
+    - business intelligence
+    - business operations
+    - analytics
+    - monitoring
+    - alerting
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mya.sh
+    - name: The cognative authors
+      url: https://github.com/mjpitz/cognative
+    name: cognative
+    sources:
+    - https://github.com/mjpitz/cognative
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/cognative
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/cognative-0.2403.1/cognative-0.2403.1.tgz
+    version: 0.2403.1
   - annotations:
       artifacthub.io/license: MIT
       artifacthub.io/signKey: |
@@ -2830,4 +2914,4 @@ entries:
     urls:
     - https://github.com/mjpitz/mjpitz/releases/download/storj-22.3.0/storj-22.3.0.tgz
     version: 22.3.0
-generated: "2024-05-09T13:23:52.396196406Z"
+generated: "2024-05-27T17:45:33.300335283Z"
