@@ -1,6 +1,6 @@
 # clickhouse
 
-![Version: 0.2403.0](https://img.shields.io/badge/Version-0.2403.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 0.2403.1](https://img.shields.io/badge/Version-0.2403.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 (BETA) Deploy a standalone Clickhouse instance. ClickHouse is a high-performance, column-oriented SQL database
 management system (DBMS) for online analytical processing (OLAP).
@@ -19,6 +19,7 @@ management system (DBMS) for online analytical processing (OLAP).
 | affinity                      | object | `{}`                             | Specify affinity rules for the pods.                                                                                    |
 | auth.password                 | string | `"clickhouse"`                   | Specify the password used to authenticate with the clickhouse cluster.                                                  |
 | auth.username                 | string | `"clickhouse"`                   | Specify the username used to authenticate with the clickhouse cluster.                                                  |
+| extra.config                  | object | `{}`                             | Provide additional XML configuration to the clickhouse system.                                                          |
 | fullnameOverride              | string | `""`                             | Override the full name of the release.                                                                                  |
 | image.pullPolicy              | string | `"IfNotPresent"`                 | The pull policy to use for the image.                                                                                   |
 | image.repository              | string | `"clickhouse/clickhouse-server"` | The repository hosting the clickhouse image.                                                                            |

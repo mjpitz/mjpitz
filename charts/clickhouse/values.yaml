@@ -97,3 +97,18 @@ persistence:
 
   # -- Provide additional annotations to attach to the volume claim.
   annotations: {}
+
+extra:
+  # -- Provide additional XML configuration to the clickhouse system.
+  config:
+    # -- @ignore
+    docker_related_config.xml: |
+      <clickhouse>
+        <listen_host>::</listen_host>
+        <listen_host>0.0.0.0</listen_host>
+        <listen_try>1</listen_try>
+      
+        <logger>
+          <console>1</console>
+        </logger>
+      </clickhouse>

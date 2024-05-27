@@ -6,7 +6,7 @@ description: |
   (BETA) Deploy a standalone Clickhouse instance. ClickHouse is a high-performance, column-oriented SQL database 
   management system (DBMS) for online analytical processing (OLAP).
 
-version: 0.2403.0
+version: 0.2403.1
 
 maintainers:
   - name: Mya Pitzeruse
