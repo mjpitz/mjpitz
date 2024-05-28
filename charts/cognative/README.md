@@ -1,6 +1,6 @@
 # cognative
 
-![Version: 0.2403.1](https://img.shields.io/badge/Version-0.2403.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 0.2403.2](https://img.shields.io/badge/Version-0.2403.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 cognative is an opinionated, minimalistic approach to business intelligence 🧠 and operations 🚨. We strongly believe
 companies should be able to own their own data, and many solutions out there leave organizations to the whims of
@@ -30,7 +30,7 @@ I'm hoping to iterate on this stack in the public, and am actively looking for h
 | Repository                                                 | Name                               | Version  |
 | ---------------------------------------------------------- | ---------------------------------- | -------- |
 | https://grafana.github.io/helm-charts                      | grafana                            | 7.3.7    |
-| https://mya.sh                                             | clickhouse                         | 0.2403.0 |
+| https://mya.sh                                             | clickhouse                         | 0.2403.1 |
 | https://open-telemetry.github.io/opentelemetry-helm-charts | collector(opentelemetry-collector) | 0.84.0   |
 | https://open-telemetry.github.io/opentelemetry-helm-charts | cluster(opentelemetry-collector)   | 0.84.0   |
 | https://open-telemetry.github.io/opentelemetry-helm-charts | node(opentelemetry-collector)      | 0.84.0   |

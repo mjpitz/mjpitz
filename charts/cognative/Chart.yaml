@@ -21,7 +21,7 @@ keywords:
   - monitoring
   - alerting
 
-version: 0.2403.1
+version: 0.2403.2
 
 # -- Where can I find additional information about the project?
 
@@ -43,7 +43,7 @@ maintainers:
 dependencies:
   - name: clickhouse
     repository: https://mya.sh
-    version: 0.2403.0
+    version: 0.2403.1
     condition: clickhouse.enabled
 
   # -- The collector intermediates telemetry data collected from various agents.
