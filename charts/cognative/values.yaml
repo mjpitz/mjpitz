@@ -176,9 +176,9 @@ cluster:
                   target_label: Service
 
       # disable these...
-      otlp: null
-      jaeger: null
-      zipkin: null
+      otlp: {}
+      jaeger: {}
+      zipkin: {}
 
     # -- @ignore
     processors:
@@ -205,7 +205,7 @@ cluster:
     # -- @ignore
     service:
       pipelines:
-        traces: null
+        traces: {}
         metrics:
           exporters:
             - otlp/2
@@ -269,10 +269,10 @@ node:
           - container.id
 
       # disable these...
-      prometheus: null
-      otlp: null
-      jaeger: null
-      zipkin: null
+      prometheus: {}
+      otlp: {}
+      jaeger: {}
+      zipkin: {}
 
     # -- @ignore
     processors:
@@ -313,7 +313,7 @@ node:
     # -- @ignore
     service:
       pipelines:
-        traces: null
+        traces: {}
         metrics:
           exporters:
             - otlp/2

@@ -1,6 +1,6 @@
 # cognative
 
-![Version: 0.2403.2](https://img.shields.io/badge/Version-0.2403.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 0.2403.3](https://img.shields.io/badge/Version-0.2403.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 cognative is an opinionated, minimalistic approach to business intelligence 🧠 and operations 🚨. We strongly believe
 companies should be able to own their own data, and many solutions out there leave organizations to the whims of
