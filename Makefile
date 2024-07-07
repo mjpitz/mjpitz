@@ -7,6 +7,7 @@ clean:			# clean up artifacts and compiled assets.
 #== CHARTS TARGETS
 
 charts/deps:		# update dependencies for helm charts.
+	@helm repo update
 	@cd charts && { \
 		find . -mindepth 1 -maxdepth 1 -type d -exec basename {} \; | xargs -I{} make deps TARGET={} ; \
 	}
@@ -31,8 +32,9 @@ docker/build:		# build docker images in this repo.
 #== INFRA TARGETS
 
 infra/helm/deps:	# update dependencies for helm charts.
+	@make charts/deps
 	@cd infra/helm && { \
-		find . -mindepth 1 -maxdepth 2 -name Chart.yaml -exec dirname {} \; | xargs -I{} bash -c 'echo "==> {}"; helm dep up {}' ; \
+		find . -mindepth 1 -maxdepth 2 -name Chart.yaml -exec dirname {} \; | xargs -I{} bash -c 'echo "==> {}"; helm dep up --skip-refresh {}' ; \
 	}
 
 #== MONITORING TARGETS

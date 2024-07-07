@@ -1,6 +1,6 @@
 deps:
 	@echo "==> installing dependencies $(TARGET)"
-	@helm dep up $(TARGET)
+	@helm dep up --skip-refresh $(TARGET)
 
 docs:
 	@echo "==> documenting $(TARGET)"
