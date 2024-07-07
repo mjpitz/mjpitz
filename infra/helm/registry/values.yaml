@@ -32,7 +32,7 @@ registry:
 
   metrics:
     serviceMonitor:
-      enabled: true
+      enabled: false
 
   config:
     storage:
@@ -128,7 +128,7 @@ registry:
         enabled: true
 
   ui:
-    enabled: true
+    enabled: false
 
     config:
       domain: img.pitz.tech

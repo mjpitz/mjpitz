@@ -19,7 +19,7 @@ maddy:
 
   metrics:
     serviceMonitor:
-      enabled: true
+      enabled: false
 
   extraVolumes:
     - name: tls

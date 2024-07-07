@@ -13,9 +13,9 @@ ingress-nginx:
     publishService:
       enabled: true
     metrics:
-      enabled: true
+      enabled: false
       serviceMonitor:
-        enabled: true
+        enabled: false
   defaultBackend:
     enabled: true
     replicaCount: 1

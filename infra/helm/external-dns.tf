@@ -3,10 +3,6 @@ data "external" "external_dns" {
 }
 
 resource "helm_release" "external_dns" {
-  depends_on = [
-    helm_release.kube_prometheus_stack,
-  ]
-
   chart     = "./external-dns"
   namespace = "ingress"
   name      = "external-dns"

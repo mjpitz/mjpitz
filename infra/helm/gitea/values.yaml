@@ -26,9 +26,9 @@ gitea:
       enabled: false
 
   metrics:
-    enabled: true
+    enabled: false
     serviceMonitor:
-      enabled: true
+      enabled: false
 
   config:
     repository:
@@ -75,9 +75,9 @@ gitea:
     enabled: true
 
     metrics:
-      enabled: true
+      enabled: false
       serviceMonitor:
-        enabled: true
+        enabled: false
 
     config:
       dbs:
@@ -95,7 +95,7 @@ gitea:
 
     metrics:
       serviceMonitor:
-        enabled: true
+        enabled: false
 
   # -- Cache data in redis.
   redis:
@@ -103,4 +103,4 @@ gitea:
 
     metrics:
       serviceMonitor:
-        enabled: true
+        enabled: false

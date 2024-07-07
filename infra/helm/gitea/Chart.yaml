@@ -4,5 +4,5 @@ name: gitea
 version: 23.8.9
 dependencies:
   - name: gitea
-    repository: file://../../../charts/gitea
-    version: 23.12.1
+    repository: https://mya.sh
+    version: 23.12.4

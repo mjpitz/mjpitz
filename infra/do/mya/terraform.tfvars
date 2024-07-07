@@ -13,7 +13,7 @@ clusters = [
     name : "mya-nyc",
     region : "nyc3",
     network : "mya-nyc",
-    kubernetes_version : "1.21",
+    kubernetes_version : "1.28",
     node_size : "s-4vcpu-8gb",
     node_count : 2,
     node_tags: [],
@@ -58,7 +58,7 @@ spaces = [
     acl: "private",
   },
   {
-    name: "mya-drone",
+    name: "mya-clickhouse",
     region: "nyc3",
     acl: "private",
   },

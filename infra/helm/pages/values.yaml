@@ -106,4 +106,5 @@ pages:
 
 metrics:
   serviceMonitor:
+    enabled: false
     interval: 10s

@@ -4,7 +4,6 @@ data "external" "ingress_nginx" {
 
 resource "helm_release" "ingress_nginx" {
   depends_on = [
-    helm_release.kube_prometheus_stack,
     helm_release.cert_manager,
     helm_release.external_dns,
   ]

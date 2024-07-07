@@ -3,10 +3,6 @@ data "external" "cert_manager" {
 }
 
 resource "helm_release" "cert_manager" {
-  depends_on = [
-    helm_release.kube_prometheus_stack,
-  ]
-
   chart     = "./cert-manager"
   namespace = "cert-manager"
   name      = "cert-manager"
