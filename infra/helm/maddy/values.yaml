@@ -32,7 +32,7 @@ maddy:
       readOnly: true
 
   persistence:
-    storageClass: "do-block-storage"
+    storageClass: longhorn
 
   config:
     domains:

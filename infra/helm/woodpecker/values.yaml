@@ -1,7 +1,7 @@
 nfs-server-provisioner:
   persistence:
     enabled: true
-    storageClass: do-block-storage
+    storageClass: longhorn
     accessMode: ReadWriteOnce
     size: 40Gi
   storageClass:
@@ -59,8 +59,11 @@ woodpecker:
       WOODPECKER_GITEA_SECRET: ""
       WOODPECKER_AGENT_SECRET: ""
       WOODPECKER_DATABASE_DRIVER: "sqlite3"
-      WOODPECKER_DATABASE_DATASOURCE: "woodpecker.sqlite"
+      WOODPECKER_DATABASE_DATASOURCE: "/var/lib/woodpecker/woodpecker.sqlite"
       WOODPECKER_ENCRYPTION_KEY: ""
+
+    persistentVolume:
+      storageClass: longhorn
 
     ingress:
       enabled: true
