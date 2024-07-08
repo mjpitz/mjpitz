@@ -14,7 +14,7 @@ data "external" "pages" {
 
 resource "helm_release" "pages" {
   depends_on = [
-    helm_release.ingress_nginx,
+    helm_release.cert_manager,
   ]
 
   chart     = "./pages"

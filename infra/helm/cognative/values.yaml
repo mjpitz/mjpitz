@@ -1,0 +1,101 @@
+cognative:
+  clickhouse:
+    enabled: true
+
+    persistence:
+      enabled: true
+      resources:
+        storage: 20Gi
+      storageClass: longhorn
+
+    extra:
+      config:
+        s3.xml: ""
+        zero-copy.xml: |
+          <clickhouse>
+            <merge_tree>
+              <allow_remote_fs_zero_copy_replication>false</allow_remote_fs_zero_copy_replication>
+            </merge_tree>
+          </clickhouse>
+
+  collector:
+    config:
+      exporters:
+        clickhouse:
+          ttl: 2160h # 90d * 24h/d
+
+  grafana:
+    enabled: true
+
+    replicas: 1
+    rbac:
+      pspEnabled: false
+
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: "nginx"
+        kubernetes.io/tls-acme: "true"
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+        nginx.ingress.kubernetes.io/ssl-redirect: "true"
+        external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
+      hosts:
+        - metrics.pitz.tech
+      tls:
+        - secretName: grafana-tls
+          hosts:
+            - metrics.pitz.tech
+
+    envFromSecret: grafana-env-secrets
+
+    grafana.ini:
+      server:
+        root_url: https://metrics.pitz.tech
+        disable_initial_admin_creation: true
+      auth:
+        disable_login_form: true
+      auth.generic_oauth:
+        enabled: true
+        name: "Gitea"
+        auth_url: https://code.pitz.tech/login/oauth/authorize
+        token_url: https://code.pitz.tech/login/oauth/access_token
+        api_url: https://code.pitz.tech/api/v1/user
+        auth_style: AutoDetect
+        scopes: user:email
+        allowed_organizations: ""
+        team_ids: ""
+        allow_sign_up: true
+      users:
+        auto_assign_org_role: Admin
+
+    oauth:
+      clientId: ""
+      clientSecret: ""
+
+    datasources:
+      "clickhouse.yaml":
+        apiVersion: 1
+        datasources:
+          - jsonData:
+              defaultDatabase: default
+              host: "{{ .Release.Name }}-clickhouse"
+              port: 9000
+              username: ""
+              protocol: native
+              secure: false
+              logs:
+                defaultDatabase: otel
+                defaultTable: otel_logs
+                otelEnabled: true
+                otelVersion: latest
+              traces:
+                defaultDatabase: otel
+                defaultTable: otel_traces
+                otelEnabled: true
+                otelVersion: latest
+                durationUnit: milliseconds
+            secureJsonData:
+              password: ""
+            uid: clickhouse
+            name: ClickHouse
+            type: grafana-clickhouse-datasource

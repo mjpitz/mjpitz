@@ -5,7 +5,7 @@ data "external" "maddy" {
 resource "helm_release" "maddy" {
   depends_on = [
     helm_release.cert_manager,
-    helm_release.external_dns,
+    helm_release.longhorn,
   ]
 
   chart     = "./maddy"

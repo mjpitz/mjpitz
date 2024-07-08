@@ -1,0 +1,8 @@
+apiVersion: v2
+type: application
+name: cognative
+version: 0.2403.3
+dependencies:
+  - name: cognative
+    repository: https://mya.sh
+    version: 0.2403.3

@@ -24,6 +24,8 @@ data "external" "woodpecker" {
 
 resource "helm_release" "woodpecker" {
   depends_on = [
+    helm_release.cert_manager,
+    helm_release.longhorn,
     helm_release.gitea,
   ]
 

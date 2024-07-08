@@ -34,7 +34,7 @@ data "external" "registry" {
 
 resource "helm_release" "registry" {
   depends_on = [
-    helm_release.ingress_nginx,
+    helm_release.cert_manager,
   ]
 
   chart     = "./registry"

@@ -34,7 +34,8 @@ data "external" "gitea" {
 
 resource "helm_release" "gitea" {
   depends_on = [
-    helm_release.ingress_nginx,
+    helm_release.cert_manager,
+    helm_release.longhorn,
   ]
 
   chart     = "./gitea"
