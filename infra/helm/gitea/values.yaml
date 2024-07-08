@@ -4,6 +4,13 @@ gitea:
   image:
     tag: nightly
 
+  securityContext:
+    runAsUser: 1000
+    runAsGroup: 1000
+
+  podSecurityContext:
+    fsGroup: 1000
+
   ingress:
     enabled: true
     annotations:
@@ -24,6 +31,15 @@ gitea:
   persistence:
     blobs:
       enabled: false
+      storageClass: longhorn
+
+    git:
+      enabled: true
+      storageClass: longhorn
+
+    # sqlite
+    enabled: true
+    storageClass: longhorn
 
   metrics:
     enabled: false
@@ -38,7 +54,7 @@ gitea:
 
     ui:
       overrides:
-        DEFAULT_THEME: arc-green
+        DEFAULT_THEME: gitea-dark
         USE_SERVICE_WORKER: true
 
     server:
@@ -74,6 +90,10 @@ gitea:
   litestream:
     enabled: true
 
+    securityContext:
+      runAsUser: 1000
+      runAsGroup: 1000
+
     metrics:
       enabled: false
       serviceMonitor:
@@ -92,6 +112,10 @@ gitea:
   # -- Use Redis-backed queues.
   redis-queue:
     enabled: true
+
+    persistence:
+      enabled: true
+      storageClass: longhorn
 
     metrics:
       serviceMonitor:
