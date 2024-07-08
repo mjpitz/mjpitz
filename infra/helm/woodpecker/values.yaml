@@ -31,6 +31,9 @@ woodpecker:
     extraSecretNamesForEnvFrom:
       - woodpecker-agent-secret
 
+    persistence:
+      storageClass: woodpecker-nfs
+
     secret:
       WOODPECKER_AGENT_SECRET: ""
 
