@@ -28,9 +28,12 @@
 
 I'm an Engineering Director at [CrabNebula][], one of the organizations behind the [Tauri][] project.
 
+<img height="64" alt="CrabNebula" title="CrabNebula" src="https://docs.crabnebula.dev/_astro/nova.Dh3m3o-r_Z16gVsb.webp" />&nbsp;
+<img width="96" height="64" alt="Tauri" title="Tauri" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tauri/tauri-original.svg" />&nbsp;
+
 Outside of work, I'm an avid hockey player, a parent to both humans and pets, and I volunteer for a state-wide search
-and rescue organization. Like many, I struggle with a wide range of mental health issues and am about to come off
-[FMLA][] and return to work here shortly.
+and rescue organization. Like many, I struggle with a wide range of mental health issues and rely heavily on screen
+readers. Over the last few months, I've been out on [FMLA][], but am excited and enthusiastic to return back to work.
 
 [CrabNebula]: https://crabnebula.dev
 [Tauri]: https://tauri.app/
@@ -107,9 +110,9 @@ to be a bit overkill for the cases I'm in these days. For now, I just rely on [T
 but look forward to being able to leverage ArgoCD once again.
 
 <br/>
-<img width="96" height="64" alt="Helm" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/helm/helm-original.svg" />&nbsp;
-<img width="96" height="64" alt="ArgoCD" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/argocd/argocd-original.svg" />&nbsp;
-<img width="96" height="64" alt="Terraform" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/terraform/terraform-original.svg" />&nbsp;
+<img width="96" height="64" alt="Helm" title="Helm" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/helm/helm-original.svg" />&nbsp;
+<img width="96" height="64" alt="ArgoCD" title="ArgoCD" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/argocd/argocd-original.svg" />&nbsp;
+<img width="96" height="64" alt="Terraform" title="Terraform" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/terraform/terraform-original.svg" />&nbsp;
 <br/>
 <br/>
 
