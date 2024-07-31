@@ -1,0 +1,3 @@
+[submodule "talks/grpc-on-kubernetes"]
+	path = talks/grpc-on-kubernetes
+	url = https://github.com/mjpitz/grpc-on-kubernetes.git
