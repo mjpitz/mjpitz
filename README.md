@@ -46,10 +46,10 @@ readers. Over the last few months, I've been out on [FMLA][], but am excited and
 [Go]: https://go.dev
 [Rust]: https://rust-lang.org
 
-When it comes to programming languages, I very much fall into the camp of "use the right tool for the job". Since
-starting my career on the front-end development side of the world, I'm fluent with JavaScript, NodeJS, TypeScript, and
-many other variants we've seen throughout the years. Since then, I've picked up a few more systems programming
-languages, including [Go][] and [Rust][].
+When it comes to programming languages, I fall into the camp of "use the right tool for the job". Since starting my 
+career on the front-end development side of the world, I'm fluent with JavaScript, NodeJS, TypeScript, and many other 
+variants we've seen throughout the years. Since then, I've picked up a few more systems programming languages, including
+[Go][] and [Rust][].
 
 <br/>
 <img width="96" height="64" alt="Go" title="Go" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/go/go-original-wordmark.svg" />&nbsp;
@@ -66,10 +66,10 @@ languages, including [Go][] and [Rust][].
 [OpenTelemetry]: https://opentelemetry.io
 [Grafana]: https://grafana.com
 
-I recently adopted [cognative][], a simplified technology stack that I've been developing to reduce the technical
-requirements for smaller organizations to own their own Business Intelligence and Operations (what I'm calling BIO) 
-technology stacks. It does this by collapsing the traditional "Business Intelligence" and "Operations" verticals into a
-single, common stack that offers a centralized location for ALL your information.
+I recently adopted [cognative][], a simplified stack that I've been developing to reduce the technical requirements for
+smaller organizations to own their own Business Intelligence and Operations (what I'm calling BIO). It does this by
+collapsing the traditional "Business Intelligence" and "Operations" verticals into a single, common stack that offers a
+centralized location for ALL your information.
 
 Cognative is composed of three systems: [ClickHouse][], [OpenTelemetry][], and [Grafana][].
 
