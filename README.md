@@ -7,8 +7,8 @@
 [![Name Pronunciation][]](https://www.google.com/search?q=pronunciation+maya)
 [![Pronouns: she / her][]](https://pronoun.is/she)
 
-[![Media][]](https://mya.sh/media/)
 [![LinkedIn][]](https://linkedin.com/in/mjpitz)
+[![YouTube][]](https://www.youtube.com/@Ms-Mya-Dev)
 [![Twitter][]](https://x.com/MsMyaDev)
 
 [![Blog][]](https://mya.sh/blog/)
@@ -17,8 +17,8 @@
 
 [Name Pronunciation]: https://img.shields.io/badge/Pronunciation%20%F0%9F%94%88-mai·uh-pink?style=for-the-badge&labelColor=silver
 [Pronouns: she / her]: https://img.shields.io/badge/Pronouns-she%2Fher-pink?style=for-the-badge&labelColor=silver
-[Media]: https://img.shields.io/badge/-media-gray?style=for-the-badge&logo=vlcmediaplayer
 [LinkedIn]: https://img.shields.io/badge/-Linked%20In-gray?style=for-the-badge&logo=linkedin
+[YouTube]: https://img.shields.io/badge/-youtube-gray?style=for-the-badge&logo=youtube
 [Twitter]: https://img.shields.io/badge/-Twitter-gray?style=for-the-badge&logo=x
 [Blog]: https://img.shields.io/badge/-blog-silver?style=for-the-badge
 [Helm Charts]: https://img.shields.io/badge/-helm_charts-silver?style=for-the-badge
@@ -31,9 +31,10 @@ I'm an Engineering Director at [CrabNebula][], one of the organizations behind t
 <img height="64" alt="CrabNebula" title="CrabNebula" src="https://docs.crabnebula.dev/_astro/nova.Dh3m3o-r_Z16gVsb.webp" />&nbsp;
 <img width="96" height="64" alt="Tauri" title="Tauri" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tauri/tauri-original.svg" />&nbsp;
 
-Outside of work, I'm an avid hockey player, a parent to both humans and pets, and I volunteer for a state-wide search
-and rescue organization. Like many, I struggle with a wide range of mental health issues and rely heavily on screen
-readers. Over the last few months, I've been out on [FMLA][], but am excited and enthusiastic to return back to work.
+Outside of work, I'm an avid hockey player, piano player, a parent to both humans and pets, and I volunteer for a
+state-wide search and rescue organization. Like many, I struggle with a wide range of mental health issues and rely
+heavily on screen readers. Over the last few months, I've been out on [FMLA][], but am excited and enthusiastic to
+return back to work.
 
 [CrabNebula]: https://crabnebula.dev
 [Tauri]: https://tauri.app/
