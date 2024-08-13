@@ -1,0 +1,45 @@
+---
+import HeaderLink from "./HeaderLink.astro";
+import ThemeToggle from "./ThemeToggle.astro";
+---
+
+<nav>
+    <div class="internal-links">
+        <HeaderLink href="/">About</HeaderLink>
+        <HeaderLink href="/blog">Blog</HeaderLink>
+        <HeaderLink href="/charts">Charts</HeaderLink>
+        <HeaderLink href="/media">Media</HeaderLink>
+        <HeaderLink href="/collab">Collaborate</HeaderLink>
+    </div>
+</nav>
+
+<style>
+    h2 {
+        margin: 0;
+        font-size: 1em;
+    }
+
+    h2 a,
+    h2 a.active {
+        text-decoration: none;
+    }
+
+    .internal-links {
+        display: flex;
+        flex-direction: row;
+        flex-flow: row;
+        justify-content: center;
+    }
+
+    .internal-links a {
+        padding: 1em 0.5em;
+        color: var(--color-text);
+        border-bottom: 4px solid transparent;
+        text-decoration: none;
+    }
+
+    .internal-links a.active {
+        text-decoration: none;
+        border-bottom-color: var(--accent);
+    }
+</style>

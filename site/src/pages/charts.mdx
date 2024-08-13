@@ -1,11 +1,15 @@
 ---
 layout: "../layouts/Page.astro"
-title: "Helm Charts | Mya Jaye"
+title: "Helm Charts"
 ---
 
-<center>
+export const helmProperties = {
+    "text-align": "center",
+}
+
+<div style={helmProperties}>
     <a href="https://helm.sh"><img alt="Helm logo" src="/img/helm.png"/></a>
-</center>
+</div>
 <br/>
 
 My personal helm charts are provided under the [MIT License][license]. While I'm the primary consumer of these charts, I

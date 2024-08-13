@@ -1,71 +1,65 @@
 ---
-import type { CollectionEntry } from 'astro:content';
+import {SITE_TITLE, SITE_AUTHOR} from "../consts";
+
 import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import FormattedDate from '../components/FormattedDate.astro';
+import Navigation from "../components/Navigation.astro";
+import Social from "../components/Social.astro";
+import ThemeToggle from "../components/ThemeToggle.astro";
 
-type Props = CollectionEntry<'blog'>['data'];
-
-const { title, description, heroImage } = Astro.props.frontmatter || Astro.props;
+const {title, description, canonical} = Astro.props.frontmatter || Astro.props;
+const today = new Date();
 ---
 
+<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<BaseHead title={title} description={description} />
-		<style>
-			main {
-				width: calc(100% - 2em);
-				max-width: 100%;
-				margin: 0;
-			}
-			.hero-image {
-				width: 100%;
-			}
-			.hero-image img {
-				display: block;
-				margin: 0 auto;
-				border-radius: 12px;
-				box-shadow: var(--box-shadow);
-			}
-			.prose {
-				width: 800px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
-				color: var(--color-text);
-			}
-			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
-				text-align: center;
-				line-height: 1;
-			}
-			.title h1 {
-				margin: 0 0 0.5em 0;
-			}
-			.date {
-				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
-			}
-			.last-updated-on {
-				font-style: italic;
-			}
-		</style>
-	</head>
+<head>
+    <BaseHead title={`${title} | ${SITE_TITLE}`} description={description} canonical={canonical}/>
+    <style>
+        main {
+            width: 960px;
+            max-width: calc(100% - 2em);
+            margin: 0 auto;
+        }
 
-	<body>
-		<Header />
-		<main>
-			<article>
-				<div class="hero-image">
-					{heroImage && <img width={1020} height={510} src={heroImage} alt="" />}
-				</div>
-				<div class="prose">
-					<slot />
-				</div>
-			</article>
-		</main>
-		<Footer />
-	</body>
+        div.prose {
+            width: 800px;
+            max-width: calc(100% - 2em);
+            margin: 4em auto 0;
+            color: var(--color-text);
+        }
+
+        footer {
+            padding: 2em 1em 6em 1em;
+            color: var(--color-text);
+            text-align: center;
+        }
+
+        .light-dark {
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="light-dark">
+        <ThemeToggle/>
+    </div>
+
+    <main>
+        <Social/>
+        <Navigation/>
+
+        <div class="prose">
+            <slot/>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; {today.getFullYear()}&nbsp;{SITE_AUTHOR}. All rights reserved.</p>
+        <Social/>
+    </footer>
+</body>
 </html>

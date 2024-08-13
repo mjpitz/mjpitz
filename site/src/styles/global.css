@@ -5,6 +5,7 @@
  */
 
 :root {
+	--heather-gray: #373737;
 	--accent: #8758ff;
 	--accent-dark: #8758ff;
 	--black: 15, 18, 25;
@@ -34,7 +35,7 @@
 }
 
 [data-theme="dark"] {
-	--color-bg: rgb(var(--black));
+	--color-bg: var(--heather-gray);
 	--color-text: rgb(var(--gray-light));
 	--bold-text: #fff;
 	--code: rgb(var(--gray-dark));
