@@ -21,12 +21,6 @@ export const collections = {
 		type: 'content',
 		schema: common,
 	}),
-	'go': defineCollection({
-		type: 'data',
-		schema: z.object({
-			redirect: z.string(),
-		}),
-	}),
 	'media': defineCollection({
 		type: 'content',
 		schema: common,
