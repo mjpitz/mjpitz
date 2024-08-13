@@ -7,8 +7,8 @@ import Navigation from "../components/Navigation.astro";
 import Social from "../components/Social.astro";
 import ThemeToggle from "../components/ThemeToggle.astro";
 
-const { title, description, pubDate, updatedDate, heroImage, canonical } = Astro.props.frontmatter || Astro.props;
 const today = new Date();
+const { title, description, pubDate, updatedDate, series, heroImage, canonical } = Astro.props.frontmatter || Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -100,6 +100,11 @@ const today = new Date();
 					)
 				}
 			</div>
+			{
+				series && (
+					<h3>{`${series.title} - ${series.subtitle}`}</h3>
+				)
+			}
 			<h1>{title}</h1>
 			<hr />
 		</div>

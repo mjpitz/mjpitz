@@ -3,6 +3,10 @@ import { defineCollection, z } from 'astro:content';
 const common = z.object({
 	title: z.string(),
 	description: z.string(),
+	series: z.object({
+		title: z.string(),
+		subtitle: z.string(),
+	}).optional(),
 	// Transform string to Date object
 	pubDate: z
 		.string()
