@@ -6,14 +6,14 @@ import Navigation from "../components/Navigation.astro";
 import Social from "../components/Social.astro";
 import ThemeToggle from "../components/ThemeToggle.astro";
 
-const {title, description, canonical} = Astro.props.frontmatter || Astro.props;
+const {title, description, heroImage, canonical} = Astro.props.frontmatter || Astro.props;
 const today = new Date();
 ---
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <BaseHead title={`${title} | ${SITE_TITLE}`} description={description} canonical={canonical}/>
+    <BaseHead title={`${title} | ${SITE_TITLE}`} description={description} image={heroImage} canonical={canonical}/>
     <style>
         main {
             width: 960px;

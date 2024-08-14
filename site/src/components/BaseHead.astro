@@ -6,11 +6,11 @@ import '../styles/global.css';
 interface Props {
 	title: string;
 	description: string;
-	image?: string;
+    image?: string;
     canonical?: string;
 }
 
-const { title, description, image = '/blog-placeholder-1.jpg', canonical } = Astro.props;
+const { title, description, image = '/img/blog-placeholder-2.jpg', canonical } = Astro.props;
 
 const canonicalURL = canonical ? canonical : new URL(Astro.url.pathname, Astro.site).href;
 ---
