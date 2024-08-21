@@ -106,7 +106,8 @@ members who don't stay in touch as often. An article I read back in May on how A
 because while there is often love and care between parents and their children, we know that alone doesn't necessarily
 lead to healthy, long-term relationships between them.
 
-Without commitment... well... I think that one's fairly self-explanatory (and yes, polyamory requires commitment too).
+Without commitment... well... I think that one's fairly self-explanatory (and yes, even polyamory and familial
+relationships require commitment too).
 
 [1]: https://www.additudemag.com/adhd-divorce-rate-marriage-help/amp/
 [2]: https://adhdaware.org.uk/living-with-adhd/how-does-adhd-affect-relationships-and-marriage/
@@ -151,7 +152,7 @@ help. Doing so helps us identify areas we may want to grow in the future.
 
 _My parting advice?_
 
-Celebrate your life and those who chose to be an active part of it. Cherish the moments you have together, and don't 
+Celebrate your life and those who choose to be an active part of it. Cherish the moments you have together, and don't 
 just let them pass you by. Take photos! I used to hate having my picture taken, and now I wish Ruby and I took more. 
 Finally, embrace self-love, but not at the expense of growth. Take accountability for your actions when you make a 
 mistake, even if that means accepting or acknowledging a limitation.
