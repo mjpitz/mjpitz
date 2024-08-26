@@ -26,7 +26,7 @@ so I had decided to volunteer for the Spring 4 upgrade while a colleague of mine
 In this post, I explain how I went about tackling the project, the tooling I implemented along the way, and how
 automation allowed me to kick back, relax, enjoy some lattes, and play some pool (billiards).
 
-## Some important context
+### Some important context
 
 _It's important to note that I cannot speak for Indeed's current library version management solution, and it's very
 likely to have changed since my time there as it was an active point of discussion in the Java guild._
@@ -41,7 +41,7 @@ accordingly. Few people at the company were able to perform such a task.
 I cannot speak to why things were done this way, only that it was the environment we were working in.
 
 
-## Problem 1: Identifying impacted projects
+### Problem 1: Identifying impacted projects
 
 At the time, code search was OK. [Atlassian Fisheye][] was the search tool of choice, but our deployment was unreliable.
 It wouldn't be until a year or so later that [Sourcegraph][] really starts to take off. With some creative thinking and
@@ -64,7 +64,7 @@ initially in scope that needed to get upgraded along in that process.
 [Charles Darwin]: https://en.wikipedia.org/wiki/Charles_Darwin
 
 
-## Problem 2: Identifying notable changes and their impact
+### Problem 2: Identifying notable changes and their impact
 
 Cool... so we know what the possible scope is, but we don't really have a great handle on what's actually changing.
 Reading the changelog is a great start to get insight into noteworthy changes, but it won't always capture the ones
@@ -118,7 +118,7 @@ of their compatability report. Green meant the upgrade was compatible and no cod
 some changes may be required based on usage. Finally, red meant that additional work needed to be done to the system.
 
 
-## Problem 3: Automating changes
+### Problem 3: Automating changes
 
 Now that we knew the scope of affected projects and which required more attention, we needed a way to patch, compile,
 test, and submit pull requests for all 800+ repositories. In addition to that, libraries needed to be published to a
@@ -142,7 +142,7 @@ answer that would send me a text anytime my patch failed.
 
 [NodeJS]: https://nodejs.org/en
 
-## Kick back, relax, and wait
+### Kick back, relax, and wait
 
 At this point, the only thing left to do was to sit back and wait. I brought my laptop down to the cafe with me so when
 I got a text, I could quickly hop on, resolve it, and resume the workflow. I'd grab a latte here or there, play a game
