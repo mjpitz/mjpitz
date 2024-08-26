@@ -19,7 +19,7 @@ upgrade Spring 3 to Spring 4, as well as Java 7 to Java 8. Each of these were a 
 so I had decided to volunteer for the Spring 4 upgrade while a colleague of mine took on the Java 8 effort.</p>
 <p>In this post, I explain how I went about tackling the project, the tooling I implemented along the way, and how
 automation allowed me to kick back, relax, enjoy some lattes, and play some pool (billiards).</p>
-<h2 id="some-important-context">Some important context</h2>
+<h3 id="some-important-context">Some important context</h3>
 <p><em>It’s important to note that I cannot speak for Indeed’s current library version management solution, and it’s very
 likely to have changed since my time there as it was an active point of discussion in the Java guild.</em></p>
 <p>Indeed had an interesting approach to software library version management. On one hand, it made things really easy to
@@ -29,7 +29,7 @@ last hold out, etc). Major version upgrades of core libraries were done all at o
 usually required extensive knowledge of the various subsystems, and expertise on how to run and debug the system
 accordingly. Few people at the company were able to perform such a task.</p>
 <p>I cannot speak to why things were done this way, only that it was the environment we were working in.</p>
-<h2 id="problem-1-identifying-impacted-projects">Problem 1: Identifying impacted projects</h2>
+<h3 id="problem-1-identifying-impacted-projects">Problem 1: Identifying impacted projects</h3>
 <p>At the time, code search was OK. <a href="https://www.atlassian.com/software/fisheye">Atlassian Fisheye</a> was the search tool of choice, but our deployment was unreliable.
 It wouldn’t be until a year or so later that <a href="https://sourcegraph.com/">Sourcegraph</a> really starts to take off. With some creative thinking and
 a nights worth of work, I built the initial version of a system to ONLY index our dependency graph. Internally, I named
@@ -42,7 +42,7 @@ reports to help inform the company about the potential impact and progress.</p>
 <p>Using this tool, I was able to identify more than 800 repositories that were within the scope of the upgrade (less than
 half of all repositories at the company). We were also able to identify other, third-party libraries that were not
 initially in scope that needed to get upgraded along in that process.</p>
-<h2 id="problem-2-identifying-notable-changes-and-their-impact">Problem 2: Identifying notable changes and their impact</h2>
+<h3 id="problem-2-identifying-notable-changes-and-their-impact">Problem 2: Identifying notable changes and their impact</h3>
 <p>Cool… so we know what the possible scope is, but we don’t really have a great handle on what’s actually changing.
 Reading the changelog is a great start to get insight into noteworthy changes, but it won’t always capture the ones
 that impact your projects.</p>
@@ -77,7 +77,7 @@ were going to be impacted the most. While I don’t have a screenshot, the gener
 with each library occupying a cell. Each cell linked to their associated report and were color coded based on the result
 of their compatability report. Green meant the upgrade was compatible and no code changes were required. Yellow meant
 some changes may be required based on usage. Finally, red meant that additional work needed to be done to the system.</p>
-<h2 id="problem-3-automating-changes">Problem 3: Automating changes</h2>
+<h3 id="problem-3-automating-changes">Problem 3: Automating changes</h3>
 <p>Now that we knew the scope of affected projects and which required more attention, we needed a way to patch, compile,
 test, and submit pull requests for all 800+ repositories. In addition to that, libraries needed to be published to a
 local artifact cache, so they could be resolved by subsequent builds (kind of like <code>npm links</code> but for <code>jar</code> files).</p>
@@ -94,7 +94,7 @@ script until that got old. At first, I tried using the built-in notification sys
 at my computer, I also wanted to be able to step away for a good portion of time. At the time, Twilio had a free
 low-volume solution that I was able to take advantage of. With a little more JavaScript and an existing SDK, I had an
 answer that would send me a text anytime my patch failed.</p>
-<h2 id="kick-back-relax-and-wait">Kick back, relax, and wait</h2>
+<h3 id="kick-back-relax-and-wait">Kick back, relax, and wait</h3>
 <p>At this point, the only thing left to do was to sit back and wait. I brought my laptop down to the cafe with me so when
 I got a text, I could quickly hop on, resolve it, and resume the workflow. I’d grab a latte here or there, play a game
 or two of pool with friends and catch up with them about their projects. I’d usually fill them in on how the upgrade was
