@@ -85,10 +85,9 @@ interface).
 
 <div align="center">
 
-![](https://www.baeldung.com/wp-content/uploads/2022/12/2_pkgdiff.png)
+![](/img/2024-08-26-spring-compatibility.png)
 
-_Figure 1: Example report showing high level differences between two versions of a library.<br/>
-Image courtesy of: https://www.baeldung.com/java-comparing-jar-files_
+_Figure 1: Example report showing high level differences between two versions of a library._
 
 </div>
 
@@ -107,16 +106,22 @@ Image courtesy of Guava Google group discussion_
 
 
 One thing that I really liked about this tool was that once you had a delta of the versions, you could create a 
-compatability report that outlined if and how changes in the library would impact systems that consumed that library.
-Using my newly developed API and a little scripting, I was able to automatically run a compatability report for every
+compatibility report that outlined if and how changes in the library would impact systems that consumed that library.
+Using my newly developed API and a little scripting, I was able to automatically run a compatibility report for every
 system at Indeed downstream of the Spring 3 core libraries.
 
 Add in a little XML parsing and the generation of an aggregated `index.html` view, and we could easily see which systems
-were going to be impacted the most. While I don't have a screenshot, the generated view was more or less a large grid
-with each library occupying a cell. Each cell linked to their associated report and were color coded based on the result
-of their compatability report. Green meant the upgrade was compatible and no code changes were required. Yellow meant
+were going to be impacted the most. Each cell linked to their associated report and were color coded based on the result
+of their compatibility report. Green meant the upgrade was compatible and no code changes were required. Yellow meant
 some changes may be required based on usage. Finally, red meant that additional work needed to be done to the system.
 
+<div align="center">
+
+![](/img/2024-08-26-aggregate-view.png)
+
+_Figure 3: The aggregated `index.html` view._
+
+</div>
 
 ### Problem 3: Automating changes
 
