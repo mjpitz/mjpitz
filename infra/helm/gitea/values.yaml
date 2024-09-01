@@ -47,6 +47,9 @@ gitea:
       enabled: false
 
   config:
+    actions:
+      enabled: true
+
     repository:
       overrides:
         DISABLE_STARS: true

@@ -69,17 +69,12 @@ pages:
           paths:
             - path: /
               pathType: Prefix
-        - host: cloud.pitz.tech
-          paths:
-            - path: /
-              pathType: Prefix
       tls:
         - secretName: pages-tls
           hosts:
             - mjpitz.com
             - mya.sh
             - go.pitz.tech
-            - cloud.pitz.tech
 
   config:
     sites:
@@ -91,10 +86,10 @@ pages:
         url: https://github.com/mjpitz/mjpitz.git
         branch: gh-pages
         interval: 5m
-      - domain: cloud.pitz.tech
+      - domain: c8labs.tech
         url: https://github.com/mjpitz/mjpitz.git
-        branch: cloud
-        interval: 30m
+        branch: c8-gh-pages
+        interval: 5m
       - domain: go.pitz.tech
         url: https://code.pitz.tech/pitz-tech/go.git
         branch: main
