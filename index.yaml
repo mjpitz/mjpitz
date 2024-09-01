@@ -968,6 +968,41 @@ entries:
         url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x0fca5e3c09dfb314
     apiVersion: v2
     appVersion: 1.21.6
+    created: "2024-09-01T19:14:08.504752946Z"
+    dependencies:
+    - condition: litestream.enabled
+      name: litestream
+      repository: https://mya.sh
+      version: 22.4.4
+    - condition: redis-queue.enabled
+      name: redis-queue
+      repository: https://mya.sh
+      version: 22.4.6
+    - condition: redis.enabled
+      name: redis
+      repository: https://mya.sh
+      version: 22.4.9
+    description: 'Git with a cup of tea. A painless, self-hosted Git Service. '
+    digest: 7528cff550513ee4cc198de2f29ebe3e559615415a178b770dbd9f7fd2aaab60
+    maintainers:
+    - name: Mya Pitzeruse
+      url: https://mya.sh
+    name: gitea
+    sources:
+    - https://github.com/go-gitea/gitea
+    - https://github.com/mjpitz/mjpitz/tree/main/charts/gitea
+    type: application
+    urls:
+    - https://github.com/mjpitz/mjpitz/releases/download/gitea-23.12.5/gitea-23.12.5.tgz
+    version: 23.12.5
+  - annotations:
+      artifacthub.io/category: integration-delivery
+      artifacthub.io/license: MIT
+      artifacthub.io/signKey: |
+        fingerprint: FD0F1E353074E15A4883BC630FCA5E3C09DFB314
+        url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x0fca5e3c09dfb314
+    apiVersion: v2
+    appVersion: 1.21.6
     created: "2024-02-25T16:28:31.370038569Z"
     dependencies:
     - condition: litestream.enabled
@@ -3040,4 +3075,4 @@ entries:
     urls:
     - https://github.com/mjpitz/mjpitz/releases/download/storj-22.3.0/storj-22.3.0.tgz
     version: 22.3.0
-generated: "2024-06-07T14:40:26.727361139Z"
+generated: "2024-09-01T19:14:08.504943262Z"
