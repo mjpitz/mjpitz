@@ -166,6 +166,10 @@ config:
   # -- Override configuration for the `DEFAULT` block of the configuration file.
   overrides: {}
 
+  actions:
+    # -- Enable Gitea Action support for CI/CD.
+    enabled: false
+
   repository:
     # -- Override configuration for the `repository` block of the configuration file.
     overrides: {}

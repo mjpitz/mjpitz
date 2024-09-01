@@ -13,6 +13,9 @@ RUN_USER: git
 {{ $key }} = {{ $value }}
 {{- end }}
 
+[actions]
+ENABLED = {{ .Values.config.actions.enabled }}
+
 [repository]
 ROOT = /data/git/repositories
 {{- range $key, $value := .Values.config.repository.overrides }}
