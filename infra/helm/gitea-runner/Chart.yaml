@@ -1,0 +1,9 @@
+apiVersion: v2
+type: application
+name: runner
+version: 23.12.5
+dependencies:
+  - name: 12factor
+    repository: file://../../../charts/12factor
+    version: "*"
+    alias: runner

@@ -1,0 +1,45 @@
+runner:
+  nameOverride: gitea-runner
+
+  image:
+    repository: gitea/act_runner
+    tag: nightly
+
+  deployment:
+    replicaCount: 2
+
+    application:
+      env:
+        DOCKER_HOST: tcp://localhost:2376
+        DOCKER_CERT_PATH: /certs/client
+        DOCKER_TLS_VERIFY: "1"
+        GITEA_INSTANCE_URL: http://gitea.vcs.svc.cluster.local
+        GITEA_RUNNER_REGISTRATION_TOKEN: ""
+
+      command: [ "sh", "-c", "while ! nc -z localhost 2376 </dev/null; do echo 'waiting for docker daemon...'; sleep 5; done; /sbin/tini -- /opt/act/run.sh" ]
+
+      volumeMounts:
+        - name: data
+          mountPath: /data
+        - name: certs
+          mountPath: /certs
+
+    sidecars:
+      - name: "docker"
+        securityContext:
+          privileged: true
+        image:
+          repository: docker
+          tag: 23.0.6-dind
+          pullPolicy: IfNotPresent
+        env:
+          DOCKER_TLS_CERTDIR: /certs
+        volumeMounts:
+          - name: certs
+            mountPath: /certs
+
+    volumes:
+      - name: data
+        emptyDir: {}
+      - name: certs
+        emptyDir: {}
