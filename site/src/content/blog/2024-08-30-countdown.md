@@ -18,7 +18,7 @@ clips from the UK game show "Countdown" and found myself really enjoying the mat
 
 For those unfamiliar with the game, you're given 6 numbers (a mix of both high and low values). Using these 6 numbers,
 you must construct an equation that produces a 3-digit random number or a value close to it. For example, given the
-values `50`, `25`, `75`, `100`, `8`, and `2`, you can produce `268` by `(100 + 75 + 8) * (50 / 25) + 2`.
+values `50`, `25`, `75`, `100`, `8`, and `2`, you can produce `368` by `(100 + 75 + 8) * (50 / 25) + 2`.
 
 Now, my kid is a bit of a math wiz and I thought that they may really enjoy this game. But I wanted to find a way to
 play without needing screens involved. Sure I could probably program it in an hour (7 random numbers and a UI), but I
