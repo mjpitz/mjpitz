@@ -1,8 +1,0 @@
-apiVersion: v2
-type: application
-name: maddy
-version: 23.8.9
-dependencies:
-  - name: maddy
-    repository: file://../../../charts/maddy
-    version: "*"

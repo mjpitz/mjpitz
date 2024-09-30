@@ -22,19 +22,7 @@ clusters = [
   },
 ]
 
-node_pools = [
-  {
-    cluster : "mya-nyc",
-    name : "mya-nyc-email",
-    node_size : "s-4vcpu-8gb",
-    node_count : 1,
-    node_tags: [],
-    node_labels: {
-      "node.pitz.tech/role" = "email",
-    },
-    tags: [],
-  },
-]
+node_pools = []
 
 spaces = [
   {

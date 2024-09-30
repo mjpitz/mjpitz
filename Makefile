@@ -6,6 +6,16 @@ clean:			# clean up artifacts and compiled assets.
 
 #== CHARTS TARGETS
 
+charts/sources:
+	@helm repo add mya https://mya.sh >/dev/null
+	@helm repo add minio https://charts.min.io/ >/dev/null
+	@helm repo add opentelemetry https://open-telemetry.github.io/opentelemetry-helm-charts >/dev/null
+	@helm repo add grafana https://grafana.github.io/helm-charts >/dev/null
+	@helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx >/dev/null
+	@helm repo add longhorn https://charts.longhorn.io >/dev/null
+	@helm repo add bitnami https://charts.bitnami.com/bitnami >/dev/null
+	@helm repo add cert-manager https://charts.jetstack.io >/dev/null
+
 charts/deps:		# update dependencies for helm charts.
 	@helm repo update
 	@cd charts && { \
