@@ -8,7 +8,7 @@ series:
   title: "Health and Healing"
   subtitle: "Part 2"
 pubDate: "August 21 2024"
-heroImage: '/img/blog-placeholder-3.jpg'
+heroImage: '/img/2024-08-21-health-and-healing-loss.png'
 
 slug: 2024/08/21/health-and-healing-loss
 

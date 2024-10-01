@@ -8,7 +8,7 @@ series:
   title: "Work Smarter, Not Harder"
   subtitle: "Part 1"
 pubDate: "August 26 2024"
-heroImage: '/img/blog-placeholder-4.jpg'
+heroImage: '/img/2024-08-26-work-smarter-not-harder.png'
 
 slug: 2024/08/26/work-smarter-not-harder
 
