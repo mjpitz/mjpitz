@@ -50,6 +50,11 @@ spaces = [
     region: "nyc3",
     acl: "private",
   },
+  {
+    name: "mya-backups",
+    region: "nyc3",
+    acl: "private",
+  }
 ]
 
 cdn = [

@@ -1,0 +1,16 @@
+longhorn:
+  # scale these down for the size of cluster we're in
+  csi:
+    attacherReplicaCount: 1
+    provisionerReplicaCount: 1
+    resizerReplicaCount: 1
+    snapshotterReplicaCount: 1
+
+  defaultSettings:
+    backupTarget: s3://mya-backups@ny3/
+    backupTargetCredentialSecret: longhorn-backup-credentials
+
+backup:
+  accessKeyID: ""
+  secretAccessKey: ""
+  endpoint: "https://nyc3.digitaloceanspaces.com"
