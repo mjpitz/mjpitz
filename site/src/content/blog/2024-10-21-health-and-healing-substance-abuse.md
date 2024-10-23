@@ -68,15 +68,15 @@ I eventually found [SMART][], a non-faith based recovery group that addresses th
 rather than narrowing in on specific substances. While our drugs of choice may vary, the cravings, the urges, our
 experiences, are all the same. SMART provides several tools that help manage cravings and urges, identify triggers,
 provide healthy coping strategies, work through irrational thoughts, and even promote changes in our behavior. Finally,
-SMART recognizes that lifelong sobriety isn’t the goal for everyone. Meetings are focused on living a sober life, but
-lifelong sobriety isn’t required for the program.
+SMART recognizes that abstinence isn’t the goal for everyone. Meetings are focused on living a sober life, but 
+abstinence isn’t required for the program.
 
 At first, I was reluctant to go and my first meeting definitely didn’t excite me. The hybrid format had issues, some
 folks definitely needed their own individual therapy session, and I struggled to see what I had in common with them. My
 second meeting was when things started to hit home. Little by little, I started to see what I had in common. The way
 they talked and thought about substances was similar to the way I talked and thought about them. With SMART, I was
-finally able to identify the triggers that led to patterns of substance abuse. While sobriety isn’t my lifelong goal, I
-do recognize that I need to be sober for now while I work on better managing my triggers.
+finally able to identify the triggers that led to patterns of substance abuse. While abstinence isn’t my lifelong goal,
+I do recognize that I need to be sober for now while I work on better managing my triggers.
 
 [SMART]: https://smartrecovery.org/
 
