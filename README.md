@@ -28,9 +28,25 @@
 
 ### 📚 Startup Resources
 
-[![Maturity Model][]](https://docs.google.com/spreadsheets/d/1uggl4JpiBKqJ0tNpMBYaJ762HNQHmxyBB0QgI1UWCKU)
+[Maturity Model](https://docs.google.com/spreadsheets/d/1uggl4JpiBKqJ0tNpMBYaJ762HNQHmxyBB0QgI1UWCKU)
 
-[Maturity Model]: https://img.shields.io/badge/-maturity_model-silver?style=for-the-badge
+#### Investment Networks
+
+[FindFunding](https://findfunding.vc/) •
+[SignalNFX](https://signal.nfx.com/)
+
+#### Cloud Credits
+
+[Amazon Web Services](https://aws.amazon.com/startups) •
+[Google Cloud Platform](https://cloud.google.com/startup/apply) •
+[Microsoft Azure](https://www.microsoft.com/en-us/startups)
+
+[Cloudflare](https://www.cloudflare.com/forstartups/) •
+[DigitalOcean](https://www.digitalocean.com/hatch)
+
+[Oracle](https://www.oracle.com/cloud/oracle-for-startups/) •
+[IBM](https://developer.ibm.com/startups/) •
+[Linode](https://www.linode.com/linode-for-startups/)
 
 <br/>
 
