@@ -9,7 +9,7 @@
 
 [![LinkedIn][]](https://linkedin.com/in/mjpitz)
 [![YouTube][]](https://www.youtube.com/@Ms-Mya-Dev)
-[![Twitter][]](https://x.com/MsMyaDev)
+[![BlueSky][]](https://bsky.app/profile/mya.sh)
 
 [![Blog][]](https://mya.sh/blog/)
 [![Helm Charts][]](https://mya.sh/charts/)
@@ -19,7 +19,7 @@
 [Pronouns: she / her]: https://img.shields.io/badge/Pronouns-she%2Fher-pink?style=for-the-badge&labelColor=silver
 [LinkedIn]: https://img.shields.io/badge/-Linked%20In-gray?style=for-the-badge&logo=linkedin
 [YouTube]: https://img.shields.io/badge/-youtube-gray?style=for-the-badge&logo=youtube
-[Twitter]: https://img.shields.io/badge/-Twitter-gray?style=for-the-badge&logo=x
+[BlueSky]: https://img.shields.io/badge/-BlueSky-gray?style=for-the-badge&logo=bluesky
 [Blog]: https://img.shields.io/badge/-blog-silver?style=for-the-badge
 [Helm Charts]: https://img.shields.io/badge/-helm_charts-silver?style=for-the-badge
 [Papers]: https://img.shields.io/badge/-papers-silver?style=for-the-badge
