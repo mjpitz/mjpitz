@@ -28,7 +28,8 @@
 
 ### 📚 Startup Resources
 
-[Maturity Model](https://docs.google.com/spreadsheets/d/1uggl4JpiBKqJ0tNpMBYaJ762HNQHmxyBB0QgI1UWCKU)
+[Maturity Model](https://docs.google.com/spreadsheets/d/1uggl4JpiBKqJ0tNpMBYaJ762HNQHmxyBB0QgI1UWCKU) •
+[SAFE Financing](https://www.ycombinator.com/documents)
 
 #### Investment Networks
 
