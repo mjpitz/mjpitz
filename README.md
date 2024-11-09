@@ -29,7 +29,8 @@
 ### 📚 Startup Resources
 
 [Maturity Model](https://docs.google.com/spreadsheets/d/1uggl4JpiBKqJ0tNpMBYaJ762HNQHmxyBB0QgI1UWCKU) •
-[SAFE Financing](https://www.ycombinator.com/documents)
+[SAFE Financing](https://www.ycombinator.com/documents) •
+[Pitch Decks](https://www.reddit.com/r/nocode/comments/wbscek/anyone_know_of_a_free_resource_of_a_collection_of/)
 
 #### Investment Networks
 
@@ -43,8 +44,7 @@
 [Microsoft Azure](https://www.microsoft.com/en-us/startups)
 
 [Cloudflare](https://www.cloudflare.com/forstartups/) •
-[DigitalOcean](https://www.digitalocean.com/hatch)
-
+[DigitalOcean](https://www.digitalocean.com/hatch) •
 [Oracle](https://www.oracle.com/cloud/oracle-for-startups/) •
 [IBM](https://developer.ibm.com/startups/) •
 [Linode](https://www.linode.com/linode-for-startups/)
