@@ -99,3 +99,8 @@ cognative:
             uid: clickhouse
             name: ClickHouse
             type: grafana-clickhouse-datasource
+
+    persistence:
+      enabled: true
+      size: 10Gi
+      storageClassName: longhorn
