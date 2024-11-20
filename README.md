@@ -8,7 +8,7 @@
 [![Pronouns: she / her][]](https://pronoun.is/she)
 
 [![LinkedIn][]](https://linkedin.com/in/mjpitz)
-[![YouTube][]](https://www.youtube.com/@Ms-Mya-Dev)
+[![YouTube][]](https://www.youtube.com/@MsMyaJaye)
 [![BlueSky][]](https://bsky.app/profile/mya.sh)
 
 [![Blog][]](https://mya.sh/blog/)
