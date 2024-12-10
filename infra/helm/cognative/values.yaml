@@ -52,8 +52,13 @@ cognative:
       server:
         root_url: https://metrics.pitz.tech
         disable_initial_admin_creation: true
+
       auth:
         disable_login_form: true
+        oauth_allow_insecure_email_lookup: true
+        disable_signout_menu: false
+        signout_redirect_url: ""
+
       auth.generic_oauth:
         enabled: true
         name: "Gitea"
@@ -61,10 +66,12 @@ cognative:
         token_url: https://code.pitz.tech/login/oauth/access_token
         api_url: https://code.pitz.tech/api/v1/user
         auth_style: AutoDetect
-        scopes: user:email
+        scopes: openid user:email
         allowed_organizations: ""
         team_ids: ""
         allow_sign_up: true
+        skip_org_role_sync: true
+
       users:
         auto_assign_org_role: Admin
 
