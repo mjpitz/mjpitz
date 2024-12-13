@@ -2,12 +2,12 @@ terraform {
   required_providers {
     digitalocean = {
       source  = "digitalocean/digitalocean"
-      version = "2.42.0"
+      version = "2.46.0"
     }
 
     helm = {
       source  = "hashicorp/helm"
-      version = "2.16.0"
+      version = "2.16.1"
     }
   }
 }
