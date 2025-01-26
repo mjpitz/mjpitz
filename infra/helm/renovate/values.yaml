@@ -1,4 +1,4 @@
-renovate:
+gitea:
   config:
     autodiscover: true
     endpoint: http://gitea.vcs.svc.cluster.local/api/v1
@@ -8,3 +8,16 @@ renovate:
     onboardingConfig:
       $schema: 'https://docs.renovatebot.com/renovate-schema.json'
       extends: ['config:base']
+
+c8labs:
+  image:
+    repository: "renovate/renovate"
+    tag: "39-full"
+  config:
+    platform: gitlab
+    autodiscover: true
+    autodiscoverNamespaces: ["c8labs"]
+    gitAuthor: "Renovate Bot <bot@renovateapp.com>"
+    onboardingConfig:
+      $schema: 'https://docs.renovatebot.com/renovate-schema.json'
+      extends: [ 'config:base' ]

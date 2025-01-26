@@ -1,9 +1,14 @@
-variable "renovate_token" {
+variable "renovate_token_gitea" {
   type      = string
   sensitive = true
 }
 
-variable "renovate_github_token" {
+variable "renovate_github_token_gitea" {
+  type      = string
+  sensitive = true
+}
+
+variable "renovate_token_c8labs" {
   type      = string
   sensitive = true
 }
@@ -26,13 +31,18 @@ resource "helm_release" "renovate" {
   ]
 
   set_sensitive {
-    name  = "renovate.config.token"
-    value = var.renovate_token
+    name  = "gitea.config.token"
+    value = var.renovate_token_gitea
   }
 
   set_sensitive {
-    name  = "renovate.github.token"
-    value = var.renovate_github_token
+    name  = "gitea.github.token"
+    value = var.renovate_github_token_gitea
+  }
+
+  set_sensitive {
+    name  = "c8labs.config.token"
+    value = var.renovate_token_c8labs
   }
 
   set {
