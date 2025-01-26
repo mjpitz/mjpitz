@@ -1,1 +1,5 @@
+
 User-agent: *
+Allow: /
+
+Sitemap: https://mya.sh/sitemap-index.xml
