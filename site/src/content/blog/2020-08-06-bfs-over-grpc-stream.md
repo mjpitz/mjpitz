@@ -1,8 +1,12 @@
 ---
 title: "Implementing Breadth-first Search Over gRPC"
-description: ""
 pubDate: "August 6 2020"
-heroImage: '/img/blog-placeholder-4.jpg'
+description: |
+  deps.cloud is an open source project that I started.
+  It's a tool that helps companies understand how their projects relate to one another.
+  While graph databases do exist, finding administrative and engineering support is often hard.
+  On the other hand, finding support for relational databases is easy.
+  In this post, I share lessons learned while implementing a graph system on top of common relational databases. 
 
 slug: 2020/08/06/bfs-over-grpc-stream
 tags:

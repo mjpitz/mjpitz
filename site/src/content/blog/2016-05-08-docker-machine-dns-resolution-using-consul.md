@@ -1,8 +1,11 @@
 ---
 title: "Docker Machine DNS Resolution using Consul"
 pubDate: "May 8 2016"
-heroImage: '/img/blog-placeholder-4.jpg'
-description: ""
+description: |
+  Developers at Indeed have recently switched over to using docker for local development.
+  Being one of the earlier adopters, I fell in love with the type of workflow that it enabled.
+  It allowed me to create seamless environments between both my desktop and portable workstation.
+  The tooling did this by allowing you to resolve container names as hosts in your web browser.
 
 slug: 2016/05/08/docker-machine-dns-resolution-using-consul
 tags:

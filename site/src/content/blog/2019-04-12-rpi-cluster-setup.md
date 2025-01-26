@@ -1,8 +1,10 @@
 ---
 title: "Raspberry Pi Cluster Setup"
-description: ""
 pubDate: "April 12 2019"
-heroImage: '/img/blog-placeholder-4.jpg'
+description: |
+  Previously, I talked about the different orchestration technologies that I've run on my Raspberry Pi cluster.
+  That post was rather high level and only contained details relating to k3s.
+  In this post, we'll take a more in depth look at my cluster setup and my management process around it.
 
 slug: 2019/04/12/rpi-cluster-setup
 tags:

@@ -1,10 +1,11 @@
 ---
 title: "Remote Work Essentials: One-on-ones"
-description: ""
 pubDate: "September 11 2023"
-heroImage: '/img/blog-placeholder-3.jpg'
-canonical: https://crabnebula.dev/blog/remote-work-essentials-1-1s/
+description: |
+  While peer one-on-ones can provide a lot of value, a big argument against them is that they require a lot of time and
+  can cost a lot of money. In this post, we’ll take a deeper look into the time commitment and cost for peer one-on-ones.
 
+canonical: https://crabnebula.dev/blog/remote-work-essentials-1-1s/
 slug: 2023/09/11/remote-work-essentials-1-1s
 
 ---

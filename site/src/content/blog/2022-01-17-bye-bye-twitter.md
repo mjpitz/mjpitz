@@ -1,8 +1,12 @@
 ---
 title: "Bye-Bye Twitter"
-description: ""
 pubDate: "January 16 2022"
-heroImage: '/img/blog-placeholder-5.jpg'
+description: |
+  I took my Twitter account that I reserved back in 2012 with hundreds of followers and deactivated it. Before
+  deactivation, I created a new account and invited folks to follow me there. This not only gave me a fresh start, but
+  it also gave me a chance to curate who I follow and who I allow to follow me a bit better than I had before. After
+  having it up for a few months, I finally decided to deactivate it. For good. Here's why, and how my life has been
+  better because of it.
 
 slug: 2022/01/16/bye-bye-twitter
 tags:

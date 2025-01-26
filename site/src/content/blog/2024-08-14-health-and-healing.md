@@ -1,14 +1,13 @@
 ---
 title: "The Best Investment I've Ever Made"
+pubDate: "August 14 2024"
+series:
+  title: "Health and Healing"
+  subtitle: "Part 1"
 description: |
   Today, I want to share with you the best investment that I decided to make in my life. The investment I made in me.
   Since the end of May, I've been on a journey piecing my puzzle back together. It was not a decision I took lightly and
   required great sacrifice along the way.
-series:
-  title: "Health and Healing"
-  subtitle: "Part 1"
-pubDate: "August 14 2024"
-heroImage: '/img/2024-08-14-health-and-healing.png'
 
 slug: 2024/08/14/health-and-healing
 

@@ -1,8 +1,11 @@
 ---
 title: "Tracking impressions on repositories"
-description: ""
 pubDate: "July 17 2020"
-heroImage: '/img/blog-placeholder-4.jpg'
+description: |
+  When working on open source projects, I often wonder how to improve the experience for my users.
+  In order to improve my users experience, I first need to be able to measure and monitor it.
+  On a website, I have Google Analytics which can help me understand my users paths through my site.
+  This capability isn't as accessible on GitHub or GitLab as it requires JavaScript execution.
 
 slug: 2020/07/17/repo-impression-tracking
 tags:

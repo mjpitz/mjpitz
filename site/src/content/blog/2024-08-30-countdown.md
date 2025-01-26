@@ -1,12 +1,11 @@
 ---
 title: 'Countdown - the Card Game'
+pubDate: "August 30 2024"
 description: |
   Over the summer, I made a more conscious effort to spend dedicated 1-1 time with my child. We often spend our time
   together playing board games, playing piano, watching movies, among other activities. Recently, I've been watching
   clips from the UK game show "Countdown" and found myself really enjoying the math portion. In this post, I discuss how
   my child and I came up with a way to play this game using a single deck of cards.
-pubDate: "August 30 2024"
-heroImage: '/img/2024-08-30-countdown.png'
 
 slug: 2024/08/30/countdown
 

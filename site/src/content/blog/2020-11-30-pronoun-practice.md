@@ -1,8 +1,14 @@
 ---
 title: "Pronoun Practice"
-description: ""
 pubDate: "November 30 2020"
-heroImage: '/img/blog-placeholder-5.jpg'
+description: |
+  Historically, my blog has largely been focused on technology.
+  This was because of where I was in my career.
+  And yet, my career doesn't solely reside in tech.
+  As a transgender individual, I frequently need to correct peoples use of my and other peoples pronouns.
+  Whenever a transgender person needs to correct someone, we pay an emotional tax.
+  While it might seem small at first, you need to consider that individuals full experience.
+  In this post, I share techniques I found effective at getting better with pronouns.
 
 slug: 2020/11/30/pronoun-practice
 tags:

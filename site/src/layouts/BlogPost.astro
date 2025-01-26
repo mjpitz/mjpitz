@@ -90,6 +90,12 @@ const { title, description, pubDate, updatedDate, series, heroImage, canonical }
 		</div>
 
 		<div class="title">
+			<h1>{title}</h1>
+			{
+				series && (
+					<h3>{`${series.title} - ${series.subtitle}`}</h3>
+				)
+			}
 			<div class="date">
 				<FormattedDate date={pubDate} />
 				{
@@ -100,12 +106,7 @@ const { title, description, pubDate, updatedDate, series, heroImage, canonical }
 					)
 				}
 			</div>
-			{
-				series && (
-					<h3>{`${series.title} - ${series.subtitle}`}</h3>
-				)
-			}
-			<h1>{title}</h1>
+			<br/>
 			<hr />
 		</div>
 

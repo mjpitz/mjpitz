@@ -1,8 +1,11 @@
 ---
 title: "Delaying Asynchronous Message Processing"
 pubDate: "June 14 2017"
-heroImage: '/img/blog-placeholder-4.jpg'
-description: ""
+description: |
+  At Indeed, we always consider what’s best for the job seeker.
+  When a job seeker applies for a job, we want them to have every opportunity to be hired.
+  It is unacceptable for a job seeker to miss an employment opportunity because their application was waiting to be processed while the employer makes a hire.
+
 canonical: https://engineering.indeedblog.com/blog/2017/06/delaying-messages/
 slug: 2017/06/14/delaying-message-processing
 tags:

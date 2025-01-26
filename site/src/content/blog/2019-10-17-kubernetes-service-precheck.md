@@ -1,8 +1,10 @@
 ---
 title: "Checking Service Dependencies in Kubernetes"
-description: ""
 pubDate: "October 17 2019"
-heroImage: '/img/blog-placeholder-4.jpg'
+description: |
+  Back in July, I found myself needing to better coordinate deployments of my applications to Kubernetes.
+  After searching around, I found many ways that people where trying to solve this problem.
+  Some used shell scripts to apply multiple YAML files with a fixed time sleep between them.
 
 slug: 2019/10/17/kubernetes-service-precheck
 tags:

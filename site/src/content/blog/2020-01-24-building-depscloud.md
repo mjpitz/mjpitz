@@ -1,8 +1,11 @@
 ---
 title: "Building deps.cloud"
-description: ""
 pubDate: "January 24 2020"
-heroImage: '/img/blog-placeholder-5.jpg'
+description: |
+  Over the last year, I've been heavily working on deps.cloud.
+  deps.cloud draws it's inspiration from a project that I worked on at Indeed.com.
+  Since it's original inception, there had been a heavy push to move it into the open source space.
+  In this post, I'll discuss the process and rationale I applied as I rewrote this project in the open.
 
 slug: 2020/01/24/building-depscloud
 tags:

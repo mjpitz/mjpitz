@@ -1,14 +1,13 @@
 ---
 title: "Loss and Love"
+pubDate: "August 21 2024"
+series:
+  title: "Health and Healing"
+  subtitle: "Part 2"
 description: |
   While it's not something that I actively sought support for during FMLA, loss and grief has been a fairly consistent
   theme throughout the last few years. From going no-contact with some family members, to saying goodbye to several key
   relationships in my life, to the death of a chosen family member.
-series:
-  title: "Health and Healing"
-  subtitle: "Part 2"
-pubDate: "August 21 2024"
-heroImage: '/img/2024-08-21-health-and-healing-loss.png'
 
 slug: 2024/08/21/health-and-healing-loss
 

@@ -1,8 +1,11 @@
 ---
 title: "Raspberry Pi Cluster Monitoring"
-description: ""
 pubDate: "April 21 2019"
-heroImage: '/img/blog-placeholder-5.jpg'
+description: |
+  In my last few posts, I talked a bit about my at home development cluster.
+  Due to the flexibility of my cluster, I wanted to provide a monitoring solution that was valuable across each technology I use.
+  In this post, I discuss how monitoring is setup on my cluster.
+  I'll walk through setting up each node, the Prometheus server, and the Graphana UI.
 
 slug: 2019/04/21/monitoring-rpi-cluster
 tags:

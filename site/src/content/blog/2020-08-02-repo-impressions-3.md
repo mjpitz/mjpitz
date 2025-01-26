@@ -1,8 +1,11 @@
 ---
 title: "Conclusion: Tracking impressions on repositories"
-description: ""
 pubDate: "August 2 2020"
-heroImage: '/img/blog-placeholder-2.jpg'
+description: |
+  In this post, I bring a conclusion to my recent series on tracking impressions on repositories.
+  While it's the last in the series, I will likely continue to post updates as time goes on.
+  For now, I feel my current approach has yielded a wealth of information that I'm still fully digesting.
+  In this conclusion, I will walk through how several of my metrics have changed since my original approach.
 
 slug: 2020/08/02/repo-impressions-3
 tags:

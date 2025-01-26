@@ -1,8 +1,12 @@
 ---
 title: "Show us Your Setup!"
-description: ""
 pubDate: "October 19 2020"
-heroImage: '/img/blog-placeholder-4.jpg'
+description: |
+  Indeed had an internal blog series called "Show us Your Setup."
+  It was a great way to get an idea of others workspaces, the equipment they use, and software they run.
+  Recently, I had noticed a few folks doing a walk through of their equipment.
+  In this post, I will show and walk through my setup.
+  I'll discuss the things I like, and the things I don't.
 
 slug: 2020/10/19/show-us-your-setup
 tags:

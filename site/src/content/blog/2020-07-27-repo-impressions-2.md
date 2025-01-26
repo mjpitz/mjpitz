@@ -1,8 +1,10 @@
 ---
 title: "Follow up: Tracking impressions on repositories"
-description: ""
 pubDate: "July 27 2020"
-heroImage: '/img/blog-placeholder-5.jpg'
+description: |
+  Last week, I put a tracking pixel on my GitHub repositories.
+  And I've got to say, the results have been really interesting.
+  In this post, I follow up on what I've learned since last week, changes I've made, and improvements I'm working through.
 
 slug: 2020/07/27/repo-impressions-2
 tags:

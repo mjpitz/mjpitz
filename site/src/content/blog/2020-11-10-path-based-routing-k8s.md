@@ -1,8 +1,12 @@
 ---
 title: "Adventures in Path Based Routing"
-description: ""
 pubDate: "November 10 2020"
-heroImage: '/img/blog-placeholder-3.jpg'
+description: |
+  Path based routing can be an extremely useful feature.
+  It enables you to serve a single page app and an API on the same domain.
+  This can often be helpful when starting a project, but don't want to handle things like cross-origin resource sharing.
+  In a recent project, I wanted to split traffic between a static site hosted on GitHub (or S3) and an API running in the cluster.
+  In this post, I'll demonstrate some less common approaches to path based routing using Kubernetes resources.
 
 slug: 2020/11/10/path-based-routing-k8s
 tags:

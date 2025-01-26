@@ -1,8 +1,9 @@
 ---
 title: "k3s on Raspberry Pi"
-description: ""
 pubDate: "April 10 2019"
-heroImage: '/img/blog-placeholder-3.jpg'
+description: |
+  Over the last few days, I've been revisiting Kubernetes on my Raspberry Pi cluster.
+  I hope to share what I learned in the process and some of the tooling that I discovered along the way.
 
 slug: 2019/04/10/k8s-k3s-rpi-oh-my
 tags:

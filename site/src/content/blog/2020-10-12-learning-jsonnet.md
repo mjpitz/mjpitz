@@ -1,8 +1,11 @@
 ---
 title: "Learning Jsonnet"
-description: ""
 pubDate: "October 12 2020"
-heroImage: '/img/blog-placeholder-3.jpg'
+description: |
+  Jsonnet is a powerful data templating language.
+  It extends JSON with variables, conditionals, functions, imports and more.
+  As an engineer who never touched the technology before, I often struggled to understand it.
+  In this post, I share my experience learning Jsonnet and my thoughts behind developing a starter.
 
 slug: 2020/10/12/learning-jsonnet
 tags:

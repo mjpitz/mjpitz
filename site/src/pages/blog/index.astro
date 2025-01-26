@@ -15,7 +15,6 @@ const posts = (await getCollection('blog'))
 				posts.map((post) => (
 					<li>
 						<a href={`/blog/${post.slug}/`}>
-							<img width={720} height={360} src={post.data.heroImage} alt="" />
 							<h4 class="title">{post.data.title}</h4>
 							{
 								post.data.series && (
@@ -25,6 +24,7 @@ const posts = (await getCollection('blog'))
 							<p class="date">
 								<FormattedDate date={post.data.pubDate} />
 							</p>
+							<p class="description">{post.data.description}</p>
 						</a>
 					</li>
 				))
@@ -35,7 +35,7 @@ const posts = (await getCollection('blog'))
 
 <style>
 	ul {
-		display: flex;
+		//display: flex;
 		flex-wrap: wrap;
 		gap: 2rem;
 		list-style-type: none;
@@ -44,26 +44,17 @@ const posts = (await getCollection('blog'))
 	}
 
 	ul li {
-		width: calc(50% - 1rem);
+		border-top: 1px solid var(--color-text);
+		padding: 2em 0 0;
+	}
+
+	ul li:first-child {
+		border-top: none;
 	}
 
 	ul li * {
 		text-decoration: none;
 		transition: 0.2s ease;
-	}
-
-	ul li:first-child {
-		width: 100%;
-		margin-bottom: 1rem;
-		text-align: center;
-	}
-
-	ul li:first-child img {
-		width: 100%;
-	}
-
-	ul li:first-child .title {
-		font-size: 2.369rem;
 	}
 
 	ul li img {
@@ -91,6 +82,10 @@ const posts = (await getCollection('blog'))
 		color: var(--color-text);
 	}
 
+	.description {
+		color: var(--color-text);
+	}
+
 	ul li a:hover .title,
 	ul li a:hover .series,
 	ul li a:hover .date {
@@ -99,24 +94,5 @@ const posts = (await getCollection('blog'))
 
 	ul a:hover img {
 		box-shadow: var(--box-shadow);
-	}
-
-	@media (max-width: 720px) {
-		ul {
-			gap: 0.5em;
-		}
-
-		ul li {
-			width: 100%;
-			text-align: center;
-		}
-
-		ul li:first-child {
-			margin-bottom: 0;
-		}
-
-		ul li:first-child .title {
-			font-size: 1.563em;
-		}
 	}
 </style>

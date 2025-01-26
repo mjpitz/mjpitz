@@ -1,8 +1,12 @@
 ---
 title: "Austin Tech Week Recap"
-description: ""
 pubDate: "November 1 2024"
-heroImage: '/img/2024-11-01-austin-tech-week-recap.png'
+description: |
+  Formally known as Austin Startup Week, Austin Tech Week provides founders, funders, and freelancers the opportunity
+  to meet, connect, and share with one another. This year was my first year in attendance and there were many things about
+  this conference that I liked better when compared to many others. I made a lot of new friends and connections around the
+  startup scene in Austin and learned a lot about sizing markets and strategies to approach fundraising. In this post, I
+  share a bit about my experience, the sessions I chose to attend, and some of my key takeaways from the conference.
 
 slug: 2024/11/01/austin-tech-week-recap
 

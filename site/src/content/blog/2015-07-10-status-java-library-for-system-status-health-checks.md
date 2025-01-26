@@ -1,8 +1,11 @@
 ---
 title: "Status: A Java Library For Robust System Status Health Checks"
 pubDate: "July 10 2015"
-heroImage: '/img/blog-placeholder-2.jpg'
-description: ""
+description: |
+  We are excited to highlight the open source availability of Status, a Java library that can report a system’s status in a readable format.
+  The Status library enables dynamic health checks and monitoring of system dependencies.
+  In this post, we will show how to add health checks to your applications.
+
 canonical: https://engineering.indeedblog.com/blog/2015/07/status-java-library-for-system-status-health-checks/
 slug: 2015/07/10/status-java-library-for-system-status-health-checks
 tags:

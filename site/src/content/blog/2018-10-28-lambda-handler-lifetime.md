@@ -1,8 +1,11 @@
 ---
 title: "AWS Lambda - Handler Lifetime"
 pubDate: "October 28 2018"
-heroImage: '/img/blog-placeholder-3.jpg'
-description: ""
+description: |
+  While working at Dosh, I had pretty heavy exposure to managing NodeJS services running in AWS Lambda.
+  During that time, I had learned a few things about the platform that can be leveraged when writing Lambda services.
+  Some of these lessons may influence how you write services but can also give you some performance boosts.
+  It’s important to note that some of the behaviors that I observed about AWS Lambda may not apply to other serverless technologies.
 
 slug: 2018/10/28/lambda-handler-lifetime
 tags:

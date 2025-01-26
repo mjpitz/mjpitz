@@ -1,8 +1,11 @@
 ---
 title: "Introducing LAAS"
 pubDate: "December 5 2015"
-heroImage: '/img/blog-placeholder-3.jpg'
-description: ""
+description: |
+  LAAS is an abbreviation for LevelDB as a service.
+  LevelDB is an implementation of a log structured merge tree (LSMTree) provided by Google.
+  This data structure aimed at providing a high write throughput.
+  When attempting to use LevelDB, I found it difficult to track down supported libraries in different languages.
 
 slug: 2015/12/05/introducing-laas
 tags:

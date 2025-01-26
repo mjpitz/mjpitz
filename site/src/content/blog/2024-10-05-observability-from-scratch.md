@@ -1,8 +1,13 @@
 ---
 title: "Observability from Scratch"
-description: ""
 pubDate: "October 5 2024"
-heroImage: '/img/2024-10-05-observability-from-scratch.png'
+description: |
+  Back in February, I found myself quite frustrated with many of the "modern" observability stacks on the open source
+  market. At my previous company, my infrastructure engineer spent a good amount of time fighting with the LGTP stack.
+  After work, I found myself venting to a friend about how unnecessarily complex the open source ecosystem has become.
+  Having worked at startups for the last 4 years, I've seen just how hard it can be to deploy a comprehensive
+  observability and business intelligence solution. In this post, I'll discuss my rationale for abandoning many popular
+  stacks out there today in favor of one of my own design.
 
 slug: 2024/10/05/observability-from-scratch
 

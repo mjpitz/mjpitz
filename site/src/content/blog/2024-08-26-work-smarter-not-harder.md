@@ -1,14 +1,13 @@
 ---
 title: '"Slacking-off" in 2016'
+pubDate: "August 26 2024"
+series:
+  title: "Work Smarter, Not Harder"
+  subtitle: "Part 1"
 description: |
   Let's take a slight detour from the health and healing series to talk a little more tech. Specifically, I want to
   share a story of a project I worked on back in the Summer of 2016 while at Indeed. It's a great example of where
   working smarter, and not harder, led to less hands-on work, and being able to spend my day playing pool (billiards).
-series:
-  title: "Work Smarter, Not Harder"
-  subtitle: "Part 1"
-pubDate: "August 26 2024"
-heroImage: '/img/2024-08-26-work-smarter-not-harder.png'
 
 slug: 2024/08/26/work-smarter-not-harder
 

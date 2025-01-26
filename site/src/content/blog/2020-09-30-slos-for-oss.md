@@ -1,8 +1,12 @@
 ---
 title: "SLOs for Open Source"
-description: ""
 pubDate: "September 30 2020"
-heroImage: '/img/blog-placeholder-2.jpg'
+description: |
+  Open source software has been used to build organizations for years.
+  From libraries to complex infrastructure systems, the open source landscape provides a vast sea of solutions.
+  For larger infrastructure projects, organizations are asking maintainers for service level objectives (SLOs).
+  Many do not publish or provide any, even when projects come from organizations who likely had SLOs in place.
+  In this post, I walk through my process for developing indicators and objectives for open source projects.
 
 slug: 2020/09/30/slos-for-oss
 tags:

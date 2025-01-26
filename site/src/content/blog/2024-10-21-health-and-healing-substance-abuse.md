@@ -1,11 +1,14 @@
 ---
 title: "Addressing Addiction without AA"
-description: ""
+pubDate: "October 21 2024"
 series:
   title: "Health and Healing"
   subtitle: "Part 4"
-pubDate: "October 21 2024"
-heroImage: '/img/2024-10-21-health-and-healing-substance-abuse.png'
+description: |
+  After 5 months since my last relapse, I figured it was a good time to check in on my recovery. In this post, I wanted to
+  share more about my journey and the challenges I’ve faced along the way, including finding a non-faith based group. Most
+  people refer to Alcoholics Anonymous (AA), but don’t understand just how religious (specifically Christian/Catholic)
+  those groups can be. While I’m still quite spiritual, this approach doesn’t work for me and many others.
 
 slug: 2024/10/21/health-and-healing-substance-abuse
 

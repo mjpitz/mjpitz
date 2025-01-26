@@ -1,8 +1,12 @@
 ---
 title: "Local Ingress Domains for your Kind Cluster"
-description: ""
 pubDate: "October 21 2020"
-heroImage: '/img/blog-placeholder-5.jpg'
+description: |
+  Tools like minikube and kind make it easy to get a kubernetes cluster up and running locally.
+  Unfortunately these tools are limited in their capabilities, namely a lack of load balancer support.
+  As a result, the community developed solutions like kubefwd and minikube tunnel to expose services.
+  While this approach works, keeping a dedicated terminal open during development can be tedeous.
+  In this post, I show how to set up an ingress controller in a kind cluster and pair it with a private, locally addressable domain.
 
 slug: 2020/10/21/local-ingress-domains-kind
 tags:

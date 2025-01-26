@@ -1,8 +1,12 @@
 ---
 title: "Extending my Security System with a Raspberry Pi Network Bridge"
-description: ""
 pubDate: "June 16 2021"
-heroImage: '/img/blog-placeholder-4.jpg'
+description: |
+  It doesn't happen a lot, but every so often I come across a device that isn't wi-fi supported.
+  This latest case was my security system.
+  On one hand, I like that my cameras aren't taking up bandwidth on my home network and that the system is largely a closed loop.
+  On the other, not having access to my security system without having it tethered into the router is a bit of a pain.
+  Today, I show how I set up and configured a Raspberry Pi to act as a WAN client for a connected device.
 
 slug: 2021/06/16/rpi-network-bridge
 tags:

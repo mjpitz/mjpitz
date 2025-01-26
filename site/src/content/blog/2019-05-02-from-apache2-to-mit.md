@@ -1,8 +1,8 @@
 ---
 title: "Moving Licenses - Apache 2.0 to MIT"
-description: ""
 pubDate: "May 2 2019"
-heroImage: '/img/blog-placeholder-2.jpg'
+description: |
+  Yesterday, I decided to switch the license that I apply to my personal projects.
 
 slug: 2019/05/02/from-apache2-to-mit
 tags:

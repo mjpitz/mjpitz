@@ -1,8 +1,11 @@
 ---
 title: "Using docker-buildx for Multi-architecture Containers"
-description: ""
 pubDate: "May 7 2019"
-heroImage: '/img/blog-placeholder-3.jpg'
+description: |
+  When you build a container image, it's typically only built for one platform (linux) and one architecture (amd64).
+  As the Internet of Things continues to grow, the demand for more arm images increased as well.
+  Traditionally, in order to produce an arm image, you need an arm device to do the build on.
+  As a result, most projects wind up missing arm support.
 
 slug: 2019/05/07/docker-buildx
 tags:

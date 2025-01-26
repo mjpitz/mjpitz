@@ -1,8 +1,11 @@
 ---
 title: "Working with Protocol Buffers"
-description: ""
 pubDate: "September 21 2020"
-heroImage: '/img/blog-placeholder-5.jpg'
+description: |
+  Google's Protocol Buffers can be a power piece of technology.
+  Yet, I often feel they are undervalued, underutilized, and underappreciated.
+  Since joining Indeed back in 2013, I've had a fair amount of experience working with them.
+  In this post, I discuss many of the benefits to using the technology.
 
 slug: 2020/09/21/protobuf-experience
 tags:

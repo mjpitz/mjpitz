@@ -1,8 +1,11 @@
 ---
 title: "NodeJS gRPC Code Reference"
 pubDate: "May 7 2018"
-heroImage: '/img/blog-placeholder-5.jpg'
-description: ""
+description: |
+  While working at Indeed, I did a fair amount with gRPC.
+  I became rather familiar with the Java, Go, NodeJS, and python implementations.
+  During my vacation between jobs, I decided to revisit one of my old projects and try to migrate it to using gRPC.
+  By doing so, I would be able to support a larger variety of request types (streaming, non-streaming, etc).
 
 slug: 2018/05/07/nodejs-grpc-code-reference
 tags:

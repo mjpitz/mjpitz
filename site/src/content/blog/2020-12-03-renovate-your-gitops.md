@@ -1,8 +1,13 @@
 ---
 title: "Renovate your GitOps"
-description: ""
 pubDate: "December 3 2020"
-heroImage: '/img/blog-placeholder-2.jpg'
+description: |
+  Recently, I noticed Renovate submit pull requests for dependencies in my Helm v3 charts.
+  This gave me an idea.
+  What if Renovate could automatically manage something like a GitOps repository?
+  This means organizations would no longer need to tediously query for newer versions of applications.
+  Instead, they'd automatically receive a pull request when an update becomes available.
+  In this blog post, I demonstrate how to set this up for an ArgoCD GitOps repository.
 
 slug: 2020/12/03/renovate-your-gitops
 tags:

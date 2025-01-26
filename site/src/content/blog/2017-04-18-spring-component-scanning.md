@@ -1,8 +1,10 @@
 ---
 title: "Component Scanning Library Code"
 pubDate: "April 18 2017"
-heroImage: '/img/blog-placeholder-3.jpg'
-description: ""
+description: |
+  Component scanning packages can be both your best friend and worst nightmare.
+  In this post, I will cover several bad practices when it comes to component scanning.
+  In detailing a few of these anti-patterns, I will also offer a few better patterns that are much cleaner to use.
 
 slug: 2017/04/18/spring-component-scanning
 tags:

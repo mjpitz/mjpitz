@@ -1,8 +1,13 @@
 ---
 title: "Reducing cost on DigitalOcean"
-description: ""
 pubDate: "August 3 2020"
-heroImage: '/img/blog-placeholder-3.jpg'
+description: |
+  In a Twitter thread between Vito Botta, Alex Ellis, and myself, 
+  we talked about how expensive DigitalOcean can be for personal projects.
+  You often start off small with just a cluster for compute.
+  Eventually you need a database to store your user's information.
+  As time goes on, these needs only continue to grow.
+  In this post, I share some cost-saving techniques I've used to reduce my bill.
 
 slug: 2020/08/03/digitalocean-setup
 tags:

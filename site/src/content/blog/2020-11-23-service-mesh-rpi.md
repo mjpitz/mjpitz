@@ -1,9 +1,13 @@
 ---
 title: "Running a Service Mesh on Raspberry Pis"
-description: ""
 pubDate: "November 23 2020"
-heroImage: '/img/blog-placeholder-4.jpg'
-
+description: |
+  Many people have asked how to support deploying service mesh to Raspberry Pis.
+  It wasn't until September that this started to be possible.
+  Linkerd recently released support for arm64, but has had support for it in edge versions since August.
+  Many envoy based service mesh have been blocked by support for an arm-compatible envoy image.
+  In this post, I'll demonstrate how to deploy Consul to support a service mesh on Raspberry Pis.
+  
 slug: 2020/11/23/service-mesh-rpi
 tags:
   - software development

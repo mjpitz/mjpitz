@@ -1,8 +1,11 @@
 ---
 title: "Returning to Indeed"
-description: ""
 pubDate: "January 27 2020"
-heroImage: '/img/blog-placeholder-2.jpg'
+description: |
+  In November 2018, I decided to return to Indeed.com.
+  The decision to return did not come easy.
+  Since then, I have frequently been asked about my reasons for rejoining.
+  In this post, I hope to cover my interviewing process and some reasons that I had for returning.
 
 slug: 2020/01/27/returning-to-indeed
 tags:

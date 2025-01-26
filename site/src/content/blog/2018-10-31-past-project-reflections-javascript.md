@@ -1,8 +1,10 @@
 ---
 title: "Reflecting on Past Projects - JavaScript"
-description: ""
 pubDate: "October 31 2018"
-heroImage: '/img/blog-placeholder-4.jpg'
+description: |
+  Every now and then, a friend of mine reaches out and discuss previous projects we had worked on together.
+  As we looked back at code, there was some obvious lessons that we took away from the project.
+  In this post, I reflect on several JavaScript projects that I have worked on over the course of my career.
 
 slug: 2018/10/31/past-project-reflections-javascript
 tags:

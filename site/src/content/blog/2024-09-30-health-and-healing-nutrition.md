@@ -1,11 +1,15 @@
 ---
 title: "Dismantling Decades of Diet Damage"
-description: ""
+pubDate: "September 30 2024"
 series:
   title: "Health and Healing"
   subtitle: "Part 3"
-pubDate: "September 30 2024"
-heroImage: '/img/2024-09-30-health-and-healing-nutrition.png'
+description: |
+  A few months back, I remember seeing some concerning discourse minimizing the impact eating disorders have on someone's
+  life. I wanted to say something at the time, but wasn't in a place where I could. For years, I've struggled with an
+  eating disorder that I didn't know was there. It's claimed months of time from my work over the years, and has sent me
+  to the emergency room on more than one occasion. Today, I share the many other ways a pervasive eating disorder impacts
+  my life on an ongoing basis.
 
 slug: 2024/09/30/health-and-healing-nutrition
 

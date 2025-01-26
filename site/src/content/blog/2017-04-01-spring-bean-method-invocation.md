@@ -1,8 +1,10 @@
 ---
 title: "Spring Bean Method Invocation"
 pubDate: "April 1 2017"
-heroImage: '/img/blog-placeholder-2.jpg'
-description: ""
+description: |
+  In my day to day development, I spend a fair bit of time working with Spring since it offers a lot of scaffolding to get a project off the ground.
+  At Indeed, I spent a fair bit of time upgrading us from Spring 3 to Spring 4 and came across many good uses of Spring and many bad ones too.
+  In this Bad Practices series, I will talk about some of these bad practices, why they should be avoided, and what you can do instead.
 
 slug: 2017/04/01/spring-bean-method-invocation
 tags:

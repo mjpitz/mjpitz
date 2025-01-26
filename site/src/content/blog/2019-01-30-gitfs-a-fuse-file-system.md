@@ -1,8 +1,10 @@
 ---
 title: "gitfs - A FUSE File System"
-description: ""
 pubDate: "January 30 2019"
-heroImage: '/img/blog-placeholder-5.jpg'
+description: |
+  During my first employment at Indeed, I cloned every repository down to my machine.
+  This approach worked for a while when the number of repositories was small.
+  As the organization has grown, the solution quickly became unmanageable.
 
 slug: 2019/01/30/gitfs-a-fuse-file-system
 tags:
