@@ -22,6 +22,6 @@
   },
   "devDependencies": {
     "@astrojs/preact": "^4.0.0",
-    "@astrojs/tailwind": "^5.0.0"
+    "@astrojs/tailwind": "^6.0.0"
   }
 }
