@@ -5,6 +5,7 @@
  */
 
 :root {
+	/* Colors */
 	--heather-gray: #373737;
 	--accent: #8758ff;
 	--accent-dark: #8758ff;
@@ -24,6 +25,22 @@
 	--slider-bg: #dddddd;
 	--slider-bg-before: #fff;
 	--slider-input-bg: #8758ff;
+	
+	/* Typography System - Based on a 1.25 scale (major third) */
+	--font-size-base: 1rem;          /* 16px */
+	--font-size-xs: 0.8rem;          /* 12.8px */
+	--font-size-sm: 0.875rem;        /* 14px */
+	--font-size-md: 1.125rem;        /* 18px */
+	--font-size-lg: 1.25rem;         /* 20px */
+	--font-size-xl: 1.563rem;        /* 25px */
+	--font-size-2xl: 1.953rem;       /* 31.25px */
+	--font-size-3xl: 2.441rem;       /* 39.06px */
+	--font-size-4xl: 3.052rem;       /* 48.83px */
+	
+	/* Line heights */
+	--line-height-tight: 1.2;
+	--line-height-normal: 1.5;
+	--line-height-relaxed: 1.7;
 }
 
 
@@ -68,8 +85,8 @@ body {
 	word-wrap: break-word;
 	overflow-wrap: break-word;
 	color: var(--color-text);
-	font-size: 20px;
-	line-height: 1.7;
+	font-size: var(--font-size-lg);
+	line-height: var(--line-height-relaxed);
 }
 
 main {
@@ -82,27 +99,31 @@ main {
 h1, h2, h3, h4, h5, h6 {
 	margin: 0 0 0.5rem 0;
 	color: rgb(var(--bold-text));
-	line-height: 1.2;
+	line-height: var(--line-height-tight);
 }
 
 h1 {
-	font-size: 3.052em;
+	font-size: var(--font-size-4xl);
 }
 
 h2 {
-	font-size: 2.441em;
+	font-size: var(--font-size-3xl);
 }
 
 h3 {
-	font-size: 1.953em;
+	font-size: var(--font-size-2xl);
 }
 
 h4 {
-	font-size: 1.563em;
+	font-size: var(--font-size-xl);
 }
 
 h5 {
-	font-size: 1.25em;
+	font-size: var(--font-size-lg);
+}
+
+h6 {
+	font-size: var(--font-size-md);
 }
 
 strong, b {
@@ -118,11 +139,11 @@ a:hover {
 }
 
 p {
-	margin-bottom: 1em;
+	margin-bottom: 0.85em;
 }
 
 .prose p {
-	margin-bottom: 2em;
+	margin-bottom: 1.5em;
 }
 
 textarea {
@@ -163,7 +184,7 @@ blockquote {
 	border-left: 4px solid var(--accent);
 	padding: 0 0 0 20px;
 	margin: 0px;
-	font-size: 1.333em;
+	font-size: var(--font-size-lg);
 }
 
 hr {
@@ -173,10 +194,26 @@ hr {
 
 @media (max-width: 720px) {
 	body {
-		font-size: 18px;
+		font-size: var(--font-size-md);
 	}
 	main {
 		padding: 1em;
+	}
+	
+	h1 {
+		font-size: var(--font-size-3xl);
+	}
+	
+	h2 {
+		font-size: var(--font-size-2xl);
+	}
+	
+	h3 {
+		font-size: var(--font-size-xl);
+	}
+	
+	blockquote {
+		font-size: var(--font-size-md);
 	}
 }
 
