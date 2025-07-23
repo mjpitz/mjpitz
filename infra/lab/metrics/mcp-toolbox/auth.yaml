@@ -1,0 +1,8 @@
+# Documentation: https://googleapis.github.io/genai-toolbox/resources/authservices/
+authServices: {}
+  # my_auth_app_1:
+  #   kind: google
+  #   clientId: ${YOUR_CLIENT_ID_1}
+  # my_auth_app_2:
+  #   kind: google
+  #   clientId: ${YOUR_CLIENT_ID_2}

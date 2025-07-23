@@ -15,6 +15,7 @@ volumes:
   metrics_grafana_data: {}
 
 services:
+  # http: 8123, native: 9000, mysql: 9004, postgres: 9005
   metrics-clickhouse:
     image: clickhouse/clickhouse-server:25.3 # amd64 + arm64
     restart: unless-stopped
@@ -84,3 +85,40 @@ services:
       - "homepage.icon=https://play.grafana.org/public/img/grafana_icon.svg"
       - "homepage.href=https://metrics.home.pitz.tech/"
       - "homepage.description=Open-source composable observability software"
+
+  # Enable the use of an MCP server to explore the database using AI.
+  #
+  # {
+  #   "mcpServers": {
+  #     "metrics": {
+  #       "url": "https://mcp-toolbox.home.pitz.tech/mcp/sse",
+  #       "disabled": false,
+  #       "autoApprove": []
+  #     }
+  #   },
+  # }
+  #
+  metrics-mcp-toolbox:
+    depends_on:
+      metrics-clickhouse:
+        condition: service_healthy
+    image:  us-central1-docker.pkg.dev/database-toolbox/toolbox/toolbox:0.9.0
+    restart: unless-stopped
+    command: 
+      - toolbox
+      - --tools-folder=/config
+      - --address=0.0.0.0
+      - --telemetry-otlp=collect.home.pitz.tech
+    volumes:
+      - ./mcp-toolbox:/config
+      - certs:/etc/ssl/certs
+    networks:
+      - shared
+    labels:
+      - "traefik.http.routers.metrics-mcp-toolbox.rule=Host(`mcp-toolbox.home.pitz.tech`)"
+      - "traefik.http.routers.metrics-mcp-toolbox.service=metrics-mcp-toolbox"
+      - "traefik.http.services.metrics-mcp-toolbox.loadbalancer.server.port=5000"
+      - "homepage.group=Metrics"
+      - "homepage.name=MCP Toolbox"
+      - "homepage.icon=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsZ8UIwgyRoBW3lWffxE5j-CRGoqqJKqvOag&s"
+      - "homepage.description=MCP Toolbox for Databases is an open source MCP server for databases"

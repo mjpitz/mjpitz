@@ -25,7 +25,10 @@ services:
       CONTAINERS: "1"
       POST: "0"
     volumes:
-      - ./homepage:/app/config
+      - ./homepage/bookmarks.yaml:/app/config/bookmarks.yaml:ro
+      - ./homepage/docker.yaml:/app/config/docker.yaml:ro
+      - ./homepage/services.yaml:/app/config/services.yaml:ro
+      - ./homepage/settings.yaml:/app/config/settings.yaml:ro
       - /var/run/docker.sock:/var/run/docker.sock
       - certs:/data/certs
     networks:

@@ -1,0 +1,10 @@
+# Documentation: https://googleapis.github.io/genai-toolbox/resources/sources/
+sources:
+  otel:
+    # We use the MySQL connector here because the PostgreSQL one doesn't support sslmode=disable
+    kind: mysql
+    host: metrics-clickhouse
+    port: 9004
+    database: otel
+    user: clickhouse
+    password: clickhouse

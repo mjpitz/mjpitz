@@ -8,7 +8,7 @@ tasks:
 
   push:
     desc: Pushes configuration to the remote server
-    cmd: rsync -avz --progress --exclude='node_modules' --exclude='.DS_Store' . 192.168.4.30:/home/lab/
+    cmd: rsync -avz --progress --ignore-times --exclude='node_modules' --exclude='.DS_Store' . 192.168.4.30:/home/lab/
 
   ###
 
