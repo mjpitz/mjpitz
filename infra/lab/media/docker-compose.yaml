@@ -1,0 +1,41 @@
+##===
+## Conventions:
+##  - networks should use underscores
+##  - volumes should use underscores
+##  - services should use hyphen
+##===
+name: lab
+
+networks:
+  shared: {}
+
+volumes:
+  certs: {}
+
+services:
+  # Run a private media server at home.
+  #
+  # [DOCUMENTATION]: https://jellyfin.org/docs/
+  #
+  media-jellyfin:
+    image: jellyfin/jellyfin
+    restart: unless-stopped
+    environment:
+      JELLYFIN_PublishedServerUrl: http://media.home.pitz.tech
+    volumes:
+      - /data/jellyfin/config:/config
+      - /data/jellyfin/cache:/cache
+      - /data/jellyfin/media:/media
+      - certs:/data/certs
+    networks:
+      - shared
+    labels:
+      - "traefik.http.routers.jellyfin.rule=Host(`media.home.pitz.tech`)"
+      - "traefik.http.routers.jellyfin.service=jellyfin"
+      - "traefik.http.services.jellyfin.loadbalancer.server.port=8096"
+      - "traefik.http.services.jellyfin.loadBalancer.passHostHeader=true"
+      - "homepage.group=Media"
+      - "homepage.name=Jellyfin"
+      - "homepage.icon=https://upload.wikimedia.org/wikipedia/commons/4/41/Jellyfin_-_icon-transparent.svg"
+      - "homepage.href=http://media.home.pitz.tech/"
+      - "homepage.description=Jellyfin media server"

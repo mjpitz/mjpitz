@@ -1,8 +1,0 @@
-apiVersion: v2
-type: application
-name: gitea
-version: 23.12.5
-dependencies:
-  - name: gitea
-    repository: https://mya.sh
-    version: 23.12.5

@@ -1,0 +1,46 @@
+##===
+## Conventions:
+##  - networks should use underscores
+##  - volumes should use underscores
+##  - services should use hyphen
+##===
+name: lab
+
+networks:
+  shared: {}
+
+volumes:
+  certs: {}
+
+services:
+  # Run a Java minecraft server at home.
+  #
+  # [DOCUMENTATION]: https://docker-minecraft-server.readthedocs.io/en/latest/
+  #
+  minecraft:
+    image: itzg/minecraft-server
+    restart: unless-stopped
+    environment:
+      EULA: "TRUE"
+      VERSION: "1.21.5"
+      # -- Kiddo prefers building peacefully.
+      DIFFICULTY: "peaceful"
+      # -- Don't spawn monsters.
+      SPAWN_MONSTERS: "false"
+      # -- Which mode is this server running in.
+      MODE: "creative"
+      # -- Switch between different world saves.
+      LEVEL: "creative"
+      # -- Resources
+      MEMORY: 4G
+      INIT_MEMORY: 4G
+      MAX_MEMORY: 4G
+    volumes:
+      - /data/minecraft:/data
+    ports:
+      - "25565:25565"
+    labels:
+      - "homepage.group=Gaming"
+      - "homepage.name=Minecraft"
+      - "homepage.icon=https://thumbs.dreamstime.com/b/minecraft-logo-online-game-dirt-block-illustrations-concept-design-isolated-186775550.jpg"
+      - "homepage.description=Private minecraft server for friends and fun"

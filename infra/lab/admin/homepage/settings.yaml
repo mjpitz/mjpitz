@@ -1,0 +1,14 @@
+title: Mya's Homelab
+startUrl: https://home.pitz.tech
+
+# Enable Docker provider for application auto-discovery
+providers:
+  docker:
+    # Enable automatic container discovery
+    enabled: true
+    # Use container labels for additional Homepage information
+    useLabels: true
+    # Show all running containers by default
+    showAll: true
+    # Allow Homepage to control containers (start/stop)
+    controlenabled: true

@@ -1,0 +1,52 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317
+      http:
+        endpoint: 0.0.0.0:4318
+
+  filelog:
+    include: ["/var/lib/docker/containers/*/*-json.log"]
+
+  prometheus:
+    config:
+      scrape_configs:
+        - job_name: otel-collector
+          scrape_interval: 5s
+          static_configs:
+            - targets: [localhost:8888]
+
+processors:
+  batch:
+    timeout: 5s
+    send_batch_size: 100000
+
+exporters:
+  clickhouse:
+    endpoint: tcp://metrics-clickhouse:9000?dial_timeout=10s&compress=lz4
+    database: otel
+    username: clickhouse
+    password: clickhouse
+    create_schema: true
+    timeout: 5s
+    retry_on_failure:
+      enabled: true
+      initial_interval: 5s
+      max_interval: 30s
+      max_elapsed_time: 300s
+
+service:
+  pipelines:
+    logs:
+      receivers: [filelog]
+      processors: [batch]
+      exporters: [clickhouse]
+    metrics:
+      receivers: [otlp, prometheus]
+      processors: [batch]
+      exporters: [clickhouse]
+    traces:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [clickhouse]

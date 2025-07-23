@@ -1,0 +1,86 @@
+##===
+## Conventions:
+##  - networks should use underscores
+##  - volumes should use underscores
+##  - services should use hyphen
+##===
+name: lab
+
+networks:
+  shared: {}
+
+volumes:
+  certs: {}
+  metrics_clickhouse_data: {}
+  metrics_grafana_data: {}
+
+services:
+  metrics-clickhouse:
+    image: clickhouse/clickhouse-server:25.3 # amd64 + arm64
+    restart: unless-stopped
+    environment:
+      CLICKHOUSE_DB: otel
+      CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: "1"
+      CLICKHOUSE_USER: clickhouse
+      CLICKHOUSE_PASSWORD: clickhouse
+    networks:
+      - shared
+    volumes:
+      - ./clickhouse:/etc/clickhouse-server/config.d
+      - metrics_clickhouse_data:/var/lib/clickhouse
+      - certs:/etc/ssl/certs
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider http://localhost:8123/ping || exit 1
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    labels:
+      - "homepage.group=Metrics"
+      - "homepage.name=Clickhouse"
+      - "homepage.icon=https://upload.wikimedia.org/wikipedia/commons/0/0e/Clickhouse.png"
+      - "homepage.description=Fast Open-Source OLAP DBMS"
+
+  metrics-collector:
+    depends_on:
+      metrics-clickhouse:
+        condition: service_healthy
+    image: otel/opentelemetry-collector-contrib:0.130.1 # amd64 + arm64
+    restart: unless-stopped
+    volumes:
+      - /var/lib/docker:/var/lib/docker:ro
+      - ./collector:/etc/otelcol-contrib
+      - certs:/etc/ssl/certs
+    networks:
+      - shared
+    labels:
+      - "traefik.http.routers.metrics-collector.rule=Host(`collect.home.pitz.tech`)"
+      - "traefik.http.routers.metrics-collector.service=metrics-collector"
+      - "traefik.http.services.metrics-collector.loadbalancer.server.port=4318"
+      - "homepage.group=Metrics"
+      - "homepage.name=OpenTelementry Collector"
+      - "homepage.icon=https://images.seeklogo.com/logo-png/43/3/opentelemetry-logo-png_seeklogo-430977.png"
+      - "homepage.description=High-quality, ubiquitous, and portable telemetry to enable effective observability"
+
+  metrics-grafana:
+    depends_on:
+      metrics-clickhouse:
+        condition: service_healthy
+    image: grafana/grafana-oss:11.5.2 # amd64 + arm64
+    restart: unless-stopped
+    environment:
+      GF_INSTALL_PLUGINS: "grafana-clickhouse-datasource,yesoreyeram-infinity-datasource"
+    volumes:
+      - ./grafana:/etc/grafana
+      - metrics_grafana_data:/var/lib/grafana
+      - certs:/etc/ssl/certs
+    networks:
+      - shared
+    labels:
+      - "traefik.http.routers.metrics-grafana.rule=Host(`metrics.home.pitz.tech`)"
+      - "traefik.http.routers.metrics-grafana.service=metrics-grafana"
+      - "traefik.http.services.metrics-grafana.loadbalancer.server.port=3000"
+      - "homepage.group=Metrics"
+      - "homepage.name=Grafana"
+      - "homepage.icon=https://play.grafana.org/public/img/grafana_icon.svg"
+      - "homepage.href=https://metrics.home.pitz.tech/"
+      - "homepage.description=Open-source composable observability software"

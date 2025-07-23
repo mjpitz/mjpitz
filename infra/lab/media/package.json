@@ -1,0 +1,14 @@
+{
+  "name": "@mjpitz/lab-media",
+  "description": "Manage services responsible for routing communication to our backend systems.",
+  "private": true,
+  "devDependencies": {
+    "concurrently": "^9.0.0"
+  },
+  "scripts": {
+    "clean": "rm -rf node_modules",
+    "docker:start": "docker compose up -d",
+    "docker:stop": "docker compose stop",
+    "docker:remove": "docker compose rm -fs"
+  }
+}

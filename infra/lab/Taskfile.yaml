@@ -1,0 +1,33 @@
+# https://taskfile.dev
+version: "3"
+
+tasks:
+  pull:
+    desc: Pulls configuration from the remote server
+    cmd: rsync -avz --progress --exclude='node_modules' 192.168.4.30:/home/lab/ .
+
+  push:
+    desc: Pushes configuration to the remote server
+    cmd: rsync -avz --progress --exclude='node_modules' --exclude='.DS_Store' . 192.168.4.30:/home/lab/
+
+  ###
+
+  install:
+    desc: Install dependencies
+    cmd: pnpm install
+  
+  prep:
+    desc: Install dependencies
+    cmd: pnpm -r docker:prep
+
+  start:
+    desc: Start the homelab ecosystem
+    cmds:
+      - pnpm -r --filter '@mjpitz/lab-ingress' docker:start
+      - pnpm -r --filter '!@mjpitz/lab-ingress' docker:start
+
+  stop:
+    desc: Stop the homelab ecosystem
+    cmds:      
+      - pnpm -r --filter '!@mjpitz/lab-ingress' docker:stop
+      - pnpm -r --filter '@mjpitz/lab-ingress' docker:stop

@@ -15,6 +15,10 @@ spec:
             apiTokenSecretRef:
               name: cloudflare-api-token
               key: cloudflare_api_token
+      - http01:
+          ingress:
+            ingressClassName: nginx
+
 ---
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
@@ -32,3 +36,6 @@ spec:
             apiTokenSecretRef:
               name: cloudflare-api-token
               key: cloudflare_api_token
+      - http01:
+          ingress:
+            ingressClassName: nginx

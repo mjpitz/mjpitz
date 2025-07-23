@@ -6,8 +6,4 @@ dependencies:
   - name: renovate
     repository: file://../../../charts/renovate
     version: "*"
-    alias: "gitea"
-  - name: renovate
-    repository: file://../../../charts/renovate
-    version: "*"
     alias: "c8labs"

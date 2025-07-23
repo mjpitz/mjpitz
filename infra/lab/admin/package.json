@@ -1,0 +1,14 @@
+{
+  "name": "@mjpitz/lab-admin",
+  "description": "Manage services responsible for administering my homelab.",
+  "private": true,
+  "devDependencies": {
+    "concurrently": "^9.0.0"
+  },
+  "scripts": {
+    "clean": "rm -rf node_modules",
+    "docker:start": "docker compose up -d",
+    "docker:stop": "docker compose stop",
+    "docker:remove": "docker compose rm -fs"
+  }
+}

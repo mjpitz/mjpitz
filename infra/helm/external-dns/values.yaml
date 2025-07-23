@@ -1,13 +1,11 @@
 external-dns:
   logLevel: debug
   domainFilters:
-    - deps.cloud
-    - mjpitz.com
     - mya.sh
     - pitz.tech
   txtOwnerId: "mya-nyc"
   txtPrefix: "mya-nyc."
-  policy: sync
+  policy: upsert-only
   provider: cloudflare
   cloudflare:
     secretName: "cloudflare-api-token"

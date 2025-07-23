@@ -19,7 +19,6 @@ data "external" "renovate" {
 
 resource "helm_release" "renovate" {
   depends_on = [
-    helm_release.gitea,
   ]
 
   chart     = "./renovate"

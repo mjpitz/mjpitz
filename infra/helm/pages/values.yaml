@@ -53,14 +53,7 @@ pages:
         nginx.ingress.kubernetes.io/ssl-redirect: "true"
         nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
         nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
-        nginx.ingress.kubernetes.io/connection-proxy-header: "keep-alive,Upgrade"
-        nginx.ingress.kubernetes.io/configuration-snippet: |
-          proxy_set_header Upgrade "websocket";
       hosts:
-        - host: mjpitz.com
-          paths:
-            - path: /
-              pathType: Prefix
         - host: mya.sh
           paths:
             - path: /
@@ -72,16 +65,11 @@ pages:
       tls:
         - secretName: pages-tls
           hosts:
-            - mjpitz.com
             - mya.sh
             - go.pitz.tech
 
   config:
     sites:
-      - domain: mjpitz.com
-        url: https://github.com/mjpitz/mjpitz.git
-        branch: gh-pages
-        interval: 5m
       - domain: mya.sh
         url: https://github.com/mjpitz/mjpitz.git
         branch: gh-pages

@@ -1,0 +1,42 @@
+##===
+## Conventions:
+##  - networks should use underscores
+##  - volumes should use underscores
+##  - services should use hyphen
+##===
+name: lab
+
+networks:
+  shared: {}
+
+volumes:
+  certs: {}
+
+services:
+  # Run a Homepage for easy viewing and navigation.
+  #
+  # [DOCUMENTATION]: https://gethomepage.dev/configs/
+  #
+  admin-homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    restart: unless-stopped
+    environment:
+      HOMEPAGE_ALLOWED_HOSTS: home.pitz.tech
+      CONTAINERS: "1"
+      POST: "0"
+    volumes:
+      - ./homepage:/app/config
+      - /var/run/docker.sock:/var/run/docker.sock
+      - certs:/data/certs
+    networks:
+      - shared
+    labels:
+      - "traefik.http.routers.homepage.rule=Host(`home.pitz.tech`)"
+      - "traefik.http.routers.homepage.service=homepage"
+      - "traefik.http.services.homepage.loadbalancer.server.port=3000"
+      - "traefik.http.services.homepage.loadBalancer.passHostHeader=true"
+      - "homepage.group=Infrastructure"
+      - "homepage.name=Homepage"
+      - "homepage.href=https://home.pitz.tech/"
+      - "homepage.icon=https://user-images.githubusercontent.com/88257202/194461324-cd562d2d-2a96-4fbc-8e93-80085c514f0d.png"
+      - "homepage.description=Homelab service catalog"

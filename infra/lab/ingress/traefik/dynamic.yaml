@@ -1,0 +1,14 @@
+tls:
+  certificates:
+    - certFile: /opt/traefik/etc/certs/traefik.cert.pem
+      keyFile: /opt/traefik/etc/certs/traefik.key.pem
+
+http:
+  middlewares:
+    geoblock:
+      plugin:
+        geoblock:
+          enabled: true
+          databaseFilePath: /plugins-local/src/github.com/nscuro/traefik-plugin-geoblock/IP2LOCATION-LITE-DB1.IPV6.BIN
+          blockedCountries: ["RU"]
+          defaultAllow: true

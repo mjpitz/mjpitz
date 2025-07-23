@@ -1,0 +1,43 @@
+log:
+  level: DEBUG
+
+api:
+  insecure: true
+
+experimental:
+  plugins:
+    geoblock:
+      moduleName: github.com/nscuro/traefik-plugin-geoblock
+      version: "v0.14.0"
+
+providers:
+  docker: {}
+  file:
+    filename: /opt/traefik/etc/dynamic.yaml
+    watch: true
+
+entryPoints:
+  http:
+    address: ":80"
+    http:
+      redirections:
+        entrypoint:
+          to: https
+          scheme: https
+  https:
+    address: ":443"
+    http:
+      tls:
+        options: default
+
+metrics:
+  otlp:
+    grpc:
+      endpoint: metrics-collector:4317
+      insecure: true
+
+tracing:
+  otlp:
+    grpc:
+      endpoint: metrics-collector:4317
+      insecure: true

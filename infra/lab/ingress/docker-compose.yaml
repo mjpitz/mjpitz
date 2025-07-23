@@ -1,0 +1,85 @@
+##===
+## Conventions:
+##  - networks should use underscores
+##  - volumes should use underscores
+##  - services should use hyphen
+##===
+name: lab
+
+networks:
+  shared: {}
+
+volumes:
+  certs: {}
+
+services:
+  ingress-traefik-certs:
+    image: mjpitz/traefik-certs:latest
+    pull_policy: never
+    build:
+      dockerfile_inline: |
+        FROM ubuntu:latest
+        RUN apt update -y && apt upgrade -y
+        RUN apt install -y ca-certificates
+    command: |
+      bash -c 'cp /etc/ssl/certs/* /data/certs/; cp /etc/certs/traefik.cert.pem /data/certs/traefik.cert.pem'
+    volumes:
+      - ./traefik/certs:/etc/certs
+      - certs:/data/certs
+    networks:
+      - shared
+    labels:
+      - "homepage.group=Infrastructure"
+      - "homepage.name=Traefik - Certificates"
+      - "homepage.icon=https://icon.icepanel.io/Technology/svg/Traefik-Proxy.svg"
+      - "homepage.description=Job that copies certificates into shared volume"
+
+  ingress-traefik:
+    image: traefik:v3.3
+    restart: unless-stopped
+    depends_on:
+      ingress-traefik-certs:
+        condition: service_completed_successfully
+    ports:
+      - 80:80
+      - 443:443
+    command:
+      - --configFile=/opt/traefik/etc/config.yaml
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik:/opt/traefik/etc
+      - certs:/data/certs
+    networks:
+      shared:
+        aliases:
+          - home.pitz.tech
+          - traefik.home.pitz.tech
+          - collect.home.pitz.tech
+          - metrics.home.pitz.tech
+    labels:
+      - "traefik.http.routers.ingress-traefik.rule=Host(`traefik.home.pitz.tech`)"
+      - "traefik.http.routers.ingress-traefik.service=ingress-traefik"
+      - "traefik.http.services.ingress-traefik.loadbalancer.server.port=8080"
+      - "homepage.group=Infrastructure"
+      - "homepage.name=Traefik"
+      - "homepage.icon=https://icon.icepanel.io/Technology/svg/Traefik-Proxy.svg"
+      - "homepage.href=https://traefik.home.pitz.tech/"
+      - "homepage.description=The cloud-native application proxy"
+
+  ingress-assets:
+    image: nginx:alpine
+    restart: unless-stopped
+    volumes:
+      - ./assets:/usr/share/nginx/html
+    labels:
+      - "traefik.http.routers.ingress-assets.rule=HostRegexp(`{host:.*}`) && ( \
+        Path(`/robots.txt`) || \
+        Path(`/favicon.ico`) \
+        )"
+      - "traefik.http.routers.ingress-assets.priority=99"
+      - "homepage.group=Infrastructure"
+      - "homepage.name=Traefik - Assets"
+      - "homepage.icon=https://icon.icepanel.io/Technology/svg/Traefik-Proxy.svg"
+      - "homepage.description=Serves common assets such as robots.txt"
+    networks:
+      - shared
