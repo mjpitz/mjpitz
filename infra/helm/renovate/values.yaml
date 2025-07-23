@@ -1,7 +1,7 @@
 c8labs:
   image:
     repository: "renovate/renovate"
-    tag: "39-full"
+    tag: "41-full"
   schedule: "@daily"
   config:
     platform: gitlab
