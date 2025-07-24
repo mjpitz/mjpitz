@@ -11,7 +11,7 @@ image:
   # -- The pull policy to use for the image.
   pullPolicy: IfNotPresent
   # -- Overrides the image tag whose default is the chart appVersion.
-  tag: 0.7.1
+  tag: 0.8.1
 
 # -- Specify the secret containing the registry credentials.
 imagePullSecrets: []
@@ -151,7 +151,7 @@ mta_sts:
     # -- The pull policy to use for the nginx image.
     pullPolicy: IfNotPresent
     # -- Configure the version of nginx to run.
-    tag: 1.25-alpine
+    tag: 1.29-alpine
 
   ingress:
     # -- Configure an ingress for the MTA-STS well-known configuration.

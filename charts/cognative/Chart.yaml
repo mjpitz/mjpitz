@@ -21,7 +21,7 @@ keywords:
   - monitoring
   - alerting
 
-version: 0.2403.3
+version: 0.2403.4
 
 # -- Where can I find additional information about the project?
 
@@ -50,7 +50,7 @@ dependencies:
 
   - name: opentelemetry-collector
     repository: https://open-telemetry.github.io/opentelemetry-helm-charts
-    version: 0.84.0
+    version: 0.129.0
     alias: collector
     condition: collector.enabled
 
@@ -58,7 +58,7 @@ dependencies:
 
   - name: opentelemetry-collector
     repository: https://open-telemetry.github.io/opentelemetry-helm-charts
-    version: 0.84.0
+    version: 0.129.0
     alias: cluster
     condition: cluster.enabled
 
@@ -66,7 +66,7 @@ dependencies:
 
   - name: opentelemetry-collector
     repository: https://open-telemetry.github.io/opentelemetry-helm-charts
-    version: 0.84.0
+    version: 0.129.0
     alias: node
     condition: node.enabled
 
@@ -74,7 +74,7 @@ dependencies:
 
   - name: grafana
     repository: https://grafana.github.io/helm-charts
-    version: 7.3.7
+    version: 7.3.12
     condition: grafana.enabled
 
 annotations:

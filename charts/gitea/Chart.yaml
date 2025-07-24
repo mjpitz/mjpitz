@@ -9,11 +9,11 @@ sources:
 maintainers:
   - name: Mya Pitzeruse
     url: https://mya.sh
-version: 23.12.5
+version: 23.12.6
 appVersion: 1.21.6
 dependencies:
   - name: litestream
-    version: 22.4.4
+    version: 22.4.5
     repository: https://mya.sh
     condition: litestream.enabled
   - name: redis-queue
@@ -21,7 +21,7 @@ dependencies:
     repository: https://mya.sh
     condition: redis-queue.enabled
   - name: redis
-    version: 22.4.9
+    version: 22.4.10
     repository: https://mya.sh
     condition: redis.enabled
 annotations:
