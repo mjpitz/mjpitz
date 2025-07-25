@@ -95,7 +95,7 @@ In this post, I share some cost-saving techniques I&apos;ve used to reduce my bi
 It&apos;s a tool that helps companies understand how their projects relate to one another.
 While graph databases do exist, finding administrative and engineering support is often hard.
 On the other hand, finding support for relational databases is easy.
-In this post, I share lessons learned while implementing a graph system on top of common relational databases. 
+In this post, I share lessons learned while implementing a graph system on top of common relational databases.
 </description><pubDate>Thu, 06 Aug 2020 00:00:00 GMT</pubDate></item><item><title>Working with Protocol Buffers</title><link>https://mya.sh/blog/2020/09/21/protobuf-experience/</link><guid isPermaLink="true">https://mya.sh/blog/2020/09/21/protobuf-experience/</guid><description>Google&apos;s Protocol Buffers can be a power piece of technology.
 Yet, I often feel they are undervalued, underutilized, and underappreciated.
 Since joining Indeed back in 2013, I&apos;ve had a fair amount of experience working with them.
