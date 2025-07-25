@@ -9,6 +9,18 @@ receivers:
   filelog:
     include: ["/var/lib/docker/containers/*/*-json.log"]
 
+  hostmetrics:
+    scrapers:
+      cpu:
+      disk:
+      filesystem:
+      load:
+      memory:
+      network:
+      process:
+      processes:
+      paging:
+
   prometheus:
     config:
       scrape_configs:
@@ -43,7 +55,7 @@ service:
       processors: [batch]
       exporters: [clickhouse]
     metrics:
-      receivers: [otlp, prometheus]
+      receivers: [otlp, hostmetrics, prometheus]
       processors: [batch]
       exporters: [clickhouse]
     traces:

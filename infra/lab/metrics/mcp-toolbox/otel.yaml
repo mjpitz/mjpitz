@@ -1,0 +1,639 @@
+# Documentation: https://googleapis.github.io/genai-toolbox/resources/sources/
+sources:
+  otel:
+    # We use the MySQL connector here because the PostgreSQL one doesn't support sslmode=disable
+    kind: mysql
+    host: metrics-clickhouse
+    port: 9004
+    database: otel
+    user: clickhouse
+    password: clickhouse
+
+
+# Documentation: https://googleapis.github.io/genai-toolbox/resources/tools/
+tools:
+  otel_list_tables:
+    kind: mysql-sql
+    source: otel
+    statement: |
+      SHOW TABLES
+    description: |
+      Lists all OpenTelemetry (otel) database tables for schema discovery, query planning, monitoring analysis, 
+      and telemetry exploration; executes 'SHOW TABLES' returning tabular results without parameters.
+
+  # Schema discovery tools
+  otel_describe_table:
+    kind: mysql-sql
+    source: otel
+    statement: |
+      SHOW CREATE TABLE {{.table_name}}
+    description: |
+      Shows the CREATE TABLE statement for a specific OpenTelemetry table.
+      This provides detailed schema information including column types, indexes, and storage settings.
+      Example:
+      {{
+          "table_name": "otel_logs"
+      }}
+    templateParameters:
+      - name: table_name
+        type: string
+        description: Name of the table to describe (e.g., otel_logs, otel_traces, otel_metrics_gauge)
+
+  otel_table_columns:
+    kind: mysql-sql
+    source: otel
+    statement: |
+      SELECT 
+        name AS column_name, 
+        type AS data_type,
+        default_expression AS default_value,
+        comment AS description
+      FROM system.columns
+      WHERE database = 'otel' AND table = '{{.table_name}}'
+      ORDER BY position
+    description: |
+      Lists all columns in a specific OpenTelemetry table with their data types and descriptions.
+      This helps understand the structure and meaning of the data stored in the table.
+      Example:
+      {{
+          "table_name": "otel_logs"
+      }}
+    templateParameters:
+      - name: table_name
+        type: string
+        description: Name of the table to analyze (e.g., otel_logs, otel_traces, otel_metrics_gauge)
+
+  # Trace Analysis Tools
+  otel_list_services:
+    kind: mysql-sql
+    source: otel
+    statement: |
+      SELECT DISTINCT ServiceName
+      FROM otel_traces
+      ORDER BY ServiceName
+    description: |
+      Lists all unique service names found in the traces data.
+      This provides an overview of all instrumented services sending telemetry data.
+
+  otel_top_operations:
+    kind: mysql-sql
+    source: otel
+    statement: |
+      SELECT 
+        ServiceName,
+        SpanName AS operation_name,
+        count() AS call_count
+      FROM otel_traces
+      GROUP BY ServiceName, SpanName
+      ORDER BY call_count DESC
+      LIMIT 20
+    description: |
+      Shows the top 20 most frequently called operations across all services.
+      This helps identify the most common operations in your system.
+
+  otel_trace_duration_stats:
+    kind: mysql-sql
+    source: otel
+    statement: |
+      SELECT 
+        ServiceName,
+        SpanName AS operation_name,
+        count() AS call_count,
+        round(avg(Duration) / 1000000, 2) AS avg_duration_ms,
+        round(min(Duration) / 1000000, 2) AS min_duration_ms,
+        round(max(Duration) / 1000000, 2) AS max_duration_ms,
+        round(quantile(0.95)(Duration) / 1000000, 2) AS p95_duration_ms,
+        round(quantile(0.99)(Duration) / 1000000, 2) AS p99_duration_ms
+      FROM otel_traces
+      WHERE Timestamp >= subtractHours(now(), 24)
+      GROUP BY ServiceName, SpanName
+      HAVING call_count > 10
+      ORDER BY avg_duration_ms DESC
+      LIMIT 20
+    description: |
+      Provides duration statistics for operations over the last 24 hours.
+      Shows average, min, max, 95th, and 99th percentile durations in milliseconds.
+      Helps identify slow operations that might need optimization.
+
+  otel_error_traces:
+    kind: mysql-sql
+    source: otel
+    statement: |
+      SELECT 
+        TraceId,
+        ServiceName,
+        SpanName AS operation_name,
+        Timestamp AS start_time,
+        Duration,
+        StatusCode,
+        StatusMessage,
+        SpanAttributes
+      FROM otel_traces
+      WHERE StatusCode = 'ERROR'
+      AND Timestamp >= subtractHours(now(), 24)
+      ORDER BY Timestamp DESC
+      LIMIT 20
+    description: |
+      Lists the most recent traces with ERROR status from the last 24 hours.
+      This helps identify failed operations and troubleshoot issues in your system.
+      The results include trace details such as service name, operation name, timings, and error message.
+      
+  otel_trace_id_lookup:
+    kind: mysql-sql
+    source: otel
+    statement: |
+      SELECT 
+        TraceId,
+        Start,
+        End
+      FROM otel_traces_trace_id_ts
+      WHERE TraceId = '{{.trace_id}}'
+    description: |
+      Looks up timestamp information for a specific trace ID.
+      This helps quickly determine when a trace was recorded.
+      Example:
+      {{
+          "trace_id": "1234567890abcdef1234567890abcdef"
+      }}
+    templateParameters:
+      - name: trace_id
+        type: string
+        description: Trace ID to look up
+      
+  # Metric Analysis Tools
+  otel_list_metric_names:
+    kind: mysql-sql
+    source: otel
+    statement: |
+      SELECT DISTINCT MetricName
+      FROM otel_metrics_gauge
+      UNION DISTINCT
+      SELECT DISTINCT MetricName
+      FROM otel_metrics_sum
+      UNION DISTINCT
+      SELECT DISTINCT MetricName
+      FROM otel_metrics_histogram
+      UNION DISTINCT
+      SELECT DISTINCT MetricName
+      FROM otel_metrics_exponential_histogram
+      UNION DISTINCT
+      SELECT DISTINCT MetricName
+      FROM otel_metrics_summary
+      ORDER BY MetricName
+    description: |
+      Lists all unique metric names across all metric types (gauge, sum, histogram, exponential histogram, summary).
+      This provides an overview of available metrics for analysis.
+
+  otel_metric_gauge_values:
+    kind: mysql-sql
+    source: otel
+    statement: |
+      SELECT 
+        TimeUnix,
+        MetricName,
+        Attributes,
+        Value,
+        ServiceName
+      FROM otel_metrics_gauge
+      WHERE MetricName = '{{.metric_name}}'
+      AND TimeUnix >= parseDateTimeBestEffort('{{.start_time}}')
+      AND TimeUnix <= parseDateTimeBestEffort('{{.end_time}}')
+      ORDER BY TimeUnix DESC
+      LIMIT {{.limit}}
+    description: |
+      Retrieves gauge metric data for a specific metric within a time range.
+      The results include timestamp, metric name, attributes, value, and service name.
+      Example:
+      {{
+          "metric_name": "system.cpu.usage",
+          "start_time": "2023-01-01T00:00:00Z",
+          "end_time": "2023-01-01T01:00:00Z",
+          "limit": 100
+      }}
+    templateParameters:
+      - name: metric_name
+        type: string
+        description: Name of the metric to query
+      - name: start_time
+        type: string
+        description: Start time in ISO 8601 format (e.g., '2023-01-01T00:00:00Z')
+      - name: end_time
+        type: string
+        description: End time in ISO 8601 format (e.g., '2023-01-01T01:00:00Z')
+      - name: limit
+        type: integer
+        description: Maximum number of data points to return
+
+  otel_metric_sum_values:
+    kind: mysql-sql
+    source: otel
+    statement: |
+      SELECT 
+        TimeUnix,
+        MetricName,
+        Attributes,
+        Value,
+        IsMonotonic,
+        AggregationTemporality
+      FROM otel_metrics_sum
+      WHERE MetricName = '{{.metric_name}}'
+      AND TimeUnix >= parseDateTimeBestEffort('{{.start_time}}')
+      AND TimeUnix <= parseDateTimeBestEffort('{{.end_time}}')
+      ORDER BY TimeUnix DESC
+      LIMIT {{.limit}}
+    description: |
+      Retrieves sum metric data for a specific metric within a time range.
+      The results include timestamp, metric name, attributes, value, monotonicity, and aggregation temporality.
+      Example:
+      {{
+          "metric_name": "http.server.request.count",
+          "start_time": "2023-01-01T00:00:00Z",
+          "end_time": "2023-01-01T01:00:00Z",
+          "limit": 100
+      }}
+    templateParameters:
+      - name: metric_name
+        type: string
+        description: Name of the metric to query
+      - name: start_time
+        type: string
+        description: Start time in ISO 8601 format (e.g., '2023-01-01T00:00:00Z')
+      - name: end_time
+        type: string
+        description: End time in ISO 8601 format (e.g., '2023-01-01T01:00:00Z')
+      - name: limit
+        type: integer
+        description: Maximum number of data points to return
+
+  otel_metric_histogram_values:
+    kind: mysql-sql
+    source: otel
+    statement: |
+      SELECT 
+        TimeUnix,
+        MetricName,
+        Attributes,
+        Count,
+        Sum,
+        BucketCounts,
+        ExplicitBounds,
+        AggregationTemporality
+      FROM otel_metrics_histogram
+      WHERE MetricName = '{{.metric_name}}'
+      AND TimeUnix >= parseDateTimeBestEffort('{{.start_time}}')
+      AND TimeUnix <= parseDateTimeBestEffort('{{.end_time}}')
+      ORDER BY TimeUnix DESC
+      LIMIT {{.limit}}
+    description: |
+      Retrieves histogram metric data for a specific metric within a time range.
+      The results include timestamp, metric name, attributes, count, sum, bucket counts, and bucket boundaries.
+      Example:
+      {{
+          "metric_name": "http.server.request.duration",
+          "start_time": "2023-01-01T00:00:00Z",
+          "end_time": "2023-01-01T01:00:00Z",
+          "limit": 100
+      }}
+    templateParameters:
+      - name: metric_name
+        type: string
+        description: Name of the metric to query
+      - name: start_time
+        type: string
+        description: Start time in ISO 8601 format (e.g., '2023-01-01T00:00:00Z')
+      - name: end_time
+        type: string
+        description: End time in ISO 8601 format (e.g., '2023-01-01T01:00:00Z')
+      - name: limit
+        type: integer
+        description: Maximum number of data points to return
+
+  otel_metric_exponential_histogram_values:
+    kind: mysql-sql
+    source: otel
+    statement: |
+      SELECT 
+        TimeUnix,
+        MetricName,
+        Attributes,
+        Count,
+        Sum,
+        Scale,
+        ZeroCount,
+        PositiveOffset,
+        PositiveBucketCounts,
+        NegativeOffset,
+        NegativeBucketCounts
+      FROM otel_metrics_exponential_histogram
+      WHERE MetricName = '{{.metric_name}}'
+      AND TimeUnix >= parseDateTimeBestEffort('{{.start_time}}')
+      AND TimeUnix <= parseDateTimeBestEffort('{{.end_time}}')
+      ORDER BY TimeUnix DESC
+      LIMIT {{.limit}}
+    description: |
+      Retrieves exponential histogram metric data for a specific metric within a time range.
+      Exponential histograms provide higher precision than regular histograms with more efficient storage.
+      Example:
+      {{
+          "metric_name": "http.server.request.duration",
+          "start_time": "2023-01-01T00:00:00Z",
+          "end_time": "2023-01-01T01:00:00Z",
+          "limit": 100
+      }}
+    templateParameters:
+      - name: metric_name
+        type: string
+        description: Name of the metric to query
+      - name: start_time
+        type: string
+        description: Start time in ISO 8601 format (e.g., '2023-01-01T00:00:00Z')
+      - name: end_time
+        type: string
+        description: End time in ISO 8601 format (e.g., '2023-01-01T01:00:00Z')
+      - name: limit
+        type: integer
+        description: Maximum number of data points to return
+
+  otel_metric_summary_values:
+    kind: mysql-sql
+    source: otel
+    statement: |
+      SELECT 
+        TimeUnix,
+        MetricName,
+        Attributes,
+        Count,
+        Sum,
+        QuantileValues
+      FROM otel_metrics_summary
+      WHERE MetricName = '{{.metric_name}}'
+      AND TimeUnix >= parseDateTimeBestEffort('{{.start_time}}')
+      AND TimeUnix <= parseDateTimeBestEffort('{{.end_time}}')
+      ORDER BY TimeUnix DESC
+      LIMIT {{.limit}}
+    description: |
+      Retrieves summary metric data for a specific metric within a time range.
+      Summary metrics provide pre-calculated quantiles of a distribution.
+      Example:
+      {{
+          "metric_name": "http.server.request.duration",
+          "start_time": "2023-01-01T00:00:00Z",
+          "end_time": "2023-01-01T01:00:00Z",
+          "limit": 100
+      }}
+    templateParameters:
+      - name: metric_name
+        type: string
+        description: Name of the metric to query
+      - name: start_time
+        type: string
+        description: Start time in ISO 8601 format (e.g., '2023-01-01T00:00:00Z')
+      - name: end_time
+        type: string
+        description: End time in ISO 8601 format (e.g., '2023-01-01T01:00:00Z')
+      - name: limit
+        type: integer
+        description: Maximum number of data points to return
+
+  # Log Analysis Tools
+  otel_list_log_sources:
+    kind: mysql-sql
+    source: otel
+    statement: |
+      SELECT DISTINCT ServiceName
+      FROM otel_logs
+      ORDER BY ServiceName
+    description: |
+      Lists all unique log sources (services) in the system.
+      This provides an overview of services generating logs.
+
+  otel_logs_by_severity:
+    kind: mysql-sql
+    source: otel
+    statement: |
+      SELECT 
+        Timestamp,
+        TimestampTime,
+        SeverityText,
+        SeverityNumber,
+        ServiceName,
+        Body,
+        ResourceAttributes,
+        LogAttributes
+      FROM otel_logs
+      WHERE SeverityNumber <= {{.severity_level}}
+        AND Timestamp >= parseDateTimeBestEffort('{{.start_time}}')
+        AND Timestamp <= parseDateTimeBestEffort('{{.end_time}}')
+      ORDER BY Timestamp DESC
+      LIMIT {{.limit}}
+    description: |
+      Retrieves logs filtered by maximum severity level within a time range.
+      This helps focus on logs of a particular importance level (e.g., errors, warnings).
+      Lower severity numbers represent more severe issues (e.g., 1-4 for fatal/error, 5-8 for warn, 9-12 for info).
+      Example:
+      {{
+          "severity_level": 4,
+          "start_time": "2023-01-01T00:00:00Z",
+          "end_time": "2023-01-01T01:00:00Z",
+          "limit": 100
+      }}
+    templateParameters:
+      - name: severity_level
+        type: integer
+        description: Maximum severity number (1-24, where lower numbers are more severe)
+      - name: start_time
+        type: string
+        description: Start time in ISO 8601 format (e.g., '2023-01-01T00:00:00Z')
+      - name: end_time
+        type: string
+        description: End time in ISO 8601 format (e.g., '2023-01-01T01:00:00Z')
+      - name: limit
+        type: integer
+        description: Maximum number of logs to return
+
+  otel_logs_by_service:
+    kind: mysql-sql
+    source: otel
+    statement: |
+      SELECT 
+        Timestamp,
+        TimestampTime,
+        SeverityText,
+        SeverityNumber,
+        Body,
+        TraceId,
+        SpanId,
+        LogAttributes
+      FROM otel_logs
+      WHERE ServiceName = '{{.service_name}}'
+        AND Timestamp >= parseDateTimeBestEffort('{{.start_time}}')
+        AND Timestamp <= parseDateTimeBestEffort('{{.end_time}}')
+      ORDER BY Timestamp DESC
+      LIMIT {{.limit}}
+    description: |
+      Retrieves logs for a specific service within a time range.
+      This helps analyze the behavior of a particular service.
+      Example:
+      {{
+          "service_name": "api-gateway",
+          "start_time": "2023-01-01T00:00:00Z",
+          "end_time": "2023-01-01T01:00:00Z",
+          "limit": 100
+      }}
+    templateParameters:
+      - name: service_name
+        type: string
+        description: Name of the service to query logs for
+      - name: start_time
+        type: string
+        description: Start time in ISO 8601 format (e.g., '2023-01-01T00:00:00Z')
+      - name: end_time
+        type: string
+        description: End time in ISO 8601 format (e.g., '2023-01-01T01:00:00Z')
+      - name: limit
+        type: integer
+        description: Maximum number of logs to return
+
+  otel_search_logs:
+    kind: mysql-sql
+    source: otel
+    statement: |
+      SELECT 
+        Timestamp,
+        TimestampTime,
+        ServiceName,
+        SeverityText,
+        Body,
+        TraceId,
+        LogAttributes
+      FROM otel_logs
+      WHERE positionCaseInsensitive(Body, '{{.search_text}}') > 0
+        AND Timestamp >= parseDateTimeBestEffort('{{.start_time}}')
+        AND Timestamp <= parseDateTimeBestEffort('{{.end_time}}')
+      ORDER BY Timestamp DESC
+      LIMIT {{.limit}}
+    description: |
+      Searches for logs containing a specific text in the message body.
+      This helps find logs related to specific events, errors, or activities.
+      Example:
+      {{
+          "search_text": "error",
+          "start_time": "2023-01-01T00:00:00Z",
+          "end_time": "2023-01-01T01:00:00Z",
+          "limit": 100
+      }}
+    templateParameters:
+      - name: search_text
+        type: string
+        description: Text to search for in log messages
+      - name: start_time
+        type: string
+        description: Start time in ISO 8601 format (e.g., '2023-01-01T00:00:00Z')
+      - name: end_time
+        type: string
+        description: End time in ISO 8601 format (e.g., '2023-01-01T01:00:00Z')
+      - name: limit
+        type: integer
+        description: Maximum number of logs to return
+
+  # Correlation Tools
+  otel_trace_logs:
+    kind: mysql-sql
+    source: otel
+    statement: |
+      SELECT 
+        Timestamp,
+        TimestampTime,
+        ServiceName,
+        SeverityText,
+        Body,
+        LogAttributes
+      FROM otel_logs
+      WHERE TraceId = '{{.trace_id}}'
+      ORDER BY Timestamp
+    description: |
+      Retrieves logs associated with a specific trace ID.
+      This helps correlate logs with traces for end-to-end analysis.
+      Example:
+      {{
+          "trace_id": "1234567890abcdef1234567890abcdef"
+      }}
+    templateParameters:
+      - name: trace_id
+        type: string
+        description: Trace ID to find related logs for
+
+  otel_service_health:
+    kind: mysql-sql
+    source: otel
+    statement: |
+      WITH 
+        error_traces AS (
+          SELECT 
+            count() AS error_count
+          FROM otel_traces
+          WHERE ServiceName = '{{.service_name}}'
+            AND StatusCode = 'ERROR'
+            AND Timestamp >= parseDateTimeBestEffort('{{.start_time}}')
+            AND Timestamp <= parseDateTimeBestEffort('{{.end_time}}')
+        ),
+        total_traces AS (
+          SELECT 
+            count() AS total_count
+          FROM otel_traces
+          WHERE ServiceName = '{{.service_name}}'
+            AND Timestamp >= parseDateTimeBestEffort('{{.start_time}}')
+            AND Timestamp <= parseDateTimeBestEffort('{{.end_time}}')
+        ),
+        durations AS (
+          SELECT 
+            avg(Duration) AS avg_duration_ns,
+            quantile(0.95)(Duration) AS p95_duration_ns,
+            quantile(0.99)(Duration) AS p99_duration_ns
+          FROM otel_traces
+          WHERE ServiceName = '{{.service_name}}'
+            AND Timestamp >= parseDateTimeBestEffort('{{.start_time}}')
+            AND Timestamp <= parseDateTimeBestEffort('{{.end_time}}')
+        ),
+        log_errors AS (
+          SELECT 
+            count() AS log_error_count
+          FROM otel_logs
+          WHERE ServiceName = '{{.service_name}}'
+            AND SeverityNumber <= 4  -- Error or worse
+            AND Timestamp >= parseDateTimeBestEffort('{{.start_time}}')
+            AND Timestamp <= parseDateTimeBestEffort('{{.end_time}}')
+        )
+      SELECT 
+        '{{.service_name}}' AS service_name,
+        total_traces.total_count,
+        error_traces.error_count,
+        if(total_traces.total_count > 0, round(error_traces.error_count / total_traces.total_count * 100, 2), 0) AS error_rate_percent,
+        round(durations.avg_duration_ns / 1000000, 2) AS avg_duration_ms,
+        round(durations.p95_duration_ns / 1000000, 2) AS p95_duration_ms,
+        round(durations.p99_duration_ns / 1000000, 2) AS p99_duration_ms,
+        log_errors.log_error_count
+      FROM 
+        error_traces,
+        total_traces,
+        durations,
+        log_errors
+    description: |
+      Provides a comprehensive health overview for a specific service by analyzing traces and logs.
+      The results include error rates, request durations, and log error counts.
+      Example:
+      {{
+          "service_name": "api-gateway",
+          "start_time": "2023-01-01T00:00:00Z",
+          "end_time": "2023-01-01T01:00:00Z"
+      }}
+    templateParameters:
+      - name: service_name
+        type: string
+        description: Name of the service to analyze
+      - name: start_time
+        type: string
+        description: Start time in ISO 8601 format (e.g., '2023-01-01T00:00:00Z')
+      - name: end_time
+        type: string
+        description: End time in ISO 8601 format (e.g., '2023-01-01T01:00:00Z')

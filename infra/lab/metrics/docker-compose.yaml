@@ -47,8 +47,11 @@ services:
         condition: service_healthy
     image: otel/opentelemetry-collector-contrib:0.130.1 # amd64 + arm64
     restart: unless-stopped
+    privileged: true
+    user: 0:0
     volumes:
-      - /var/lib/docker:/var/lib/docker:ro
+      - /etc/passwd:/etc/passwd
+      - /var/lib/docker/containers/:/var/lib/docker/containers/
       - ./collector:/etc/otelcol-contrib
       - certs:/etc/ssl/certs
     networks:
@@ -110,12 +113,12 @@ services:
       - --address=0.0.0.0
       - --telemetry-otlp=collect.home.pitz.tech
     volumes:
-      - ./mcp-toolbox:/config
+      - ./mcp-toolbox:/config:ro
       - certs:/etc/ssl/certs
     networks:
       - shared
     labels:
-      - "traefik.http.routers.metrics-mcp-toolbox.rule=Host(`mcp-toolbox.home.pitz.tech`)"
+      - "traefik.http.routers.metrics-mcp-toolbox.rule=Host(`mcp-otel.home.pitz.tech`)"
       - "traefik.http.routers.metrics-mcp-toolbox.service=metrics-mcp-toolbox"
       - "traefik.http.services.metrics-mcp-toolbox.loadbalancer.server.port=5000"
       - "homepage.group=Metrics"
