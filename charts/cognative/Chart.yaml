@@ -21,7 +21,7 @@ keywords:
   - monitoring
   - alerting
 
-version: 0.2403.3
+version: 0.2404.0
 
 # -- Where can I find additional information about the project?
 
@@ -74,7 +74,7 @@ dependencies:
 
   - name: grafana
     repository: https://grafana.github.io/helm-charts
-    version: 7.3.7
+    version: 9.3.0
     condition: grafana.enabled
 
 annotations:
