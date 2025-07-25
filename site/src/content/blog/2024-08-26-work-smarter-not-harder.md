@@ -10,10 +10,9 @@ description: |
   working smarter, and not harder, led to less hands-on work, and being able to spend my day playing pool (billiards).
 
 slug: 2024/08/26/work-smarter-not-harder
-
 ---
 
-I used to highlight this project in my resumé, but I've found that it doesn't really fit the format of a traditional 
+I used to highlight this project in my resumé, but I've found that it doesn't really fit the format of a traditional
 resumé very well. While it's definitely an accomplishment, it's very narrative driven and requires more context than a
 single page.
 
@@ -39,7 +38,6 @@ accordingly. Few people at the company were able to perform such a task.
 
 I cannot speak to why things were done this way, only that it was the environment we were working in.
 
-
 ### Problem 1: Identifying impacted projects
 
 At the time, code search was OK. [Atlassian Fisheye][] was the search tool of choice, but our deployment was unreliable.
@@ -62,12 +60,11 @@ initially in scope that needed to get upgraded along in that process.
 [Darwin]: https://mya.sh/blog/2020/01/24/building-depscloud/
 [Charles Darwin]: https://en.wikipedia.org/wiki/Charles_Darwin
 
-
 ### Problem 2: Identifying notable changes and their impact
 
 Cool... so we know what the possible scope is, but we don't really have a great handle on what's actually changing.
-Reading the changelog is a great start to get insight into noteworthy changes, but it won't always capture the ones
-that impact your projects. 
+Reading the changelog is a great start to get insight into noteworthy changes, but it won't always capture the ones that
+impact your projects.
 
 While major library versions often include breaking changes, intuition suggested that for the majority of use cases,
 there will be few changes required to upgrade a library version (especially for an established project like Spring).
@@ -98,13 +95,12 @@ patch for the change from the description alone.
 
 ![](https://groups.google.com/group/guava-discuss/attach/1249a22b5d7f7/Screen%20Shot%202021-01-25%20at%2015.01.49.png?part=0.1&view=1)
 
-_Figure 2: Example report showing high level differences between two versions of a library.<br/>
-Image courtesy of Guava Google group discussion_
+_Figure 2: Example report showing high level differences between two versions of a library.<br/> Image courtesy of Guava
+Google group discussion_
 
 </div>
 
-
-One thing that I really liked about this tool was that once you had a delta of the versions, you could create a 
+One thing that I really liked about this tool was that once you had a delta of the versions, you could create a
 compatibility report that outlined if and how changes in the library would impact systems that consumed that library.
 Using my newly developed API and a little scripting, I was able to automatically run a compatibility report for every
 system at Indeed downstream of the Spring 3 core libraries.
@@ -151,8 +147,7 @@ answer that would send me a text anytime my patch failed.
 At this point, the only thing left to do was to sit back and wait. I brought my laptop down to the cafe with me so when
 I got a text, I could quickly hop on, resolve it, and resume the workflow. I'd grab a latte here or there, play a game
 or two of pool with friends and catch up with them about their projects. I'd usually fill them in on how the upgrade was
-going. The day the pipeline had finished was the day that the real work for this project had begun. 
-
+going. The day the pipeline had finished was the day that the real work for this project had begun.
 
 Stay tuned for my next post, where I cover the remaining 20% of this project and the challenges involved in coordinated
 a large-scale effort to merge and publish changes across an entire company. ~ Ciao bella!

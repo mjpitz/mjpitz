@@ -11,9 +11,7 @@ description: |
   those groups can be. While I’m still quite spiritual, this approach doesn’t work for me and many others.
 
 slug: 2024/10/21/health-and-healing-substance-abuse
-
 ---
-
 
 _Trigger Warning // mental health, depression, self-harm/suicide, and substance abuse._
 
@@ -28,8 +26,8 @@ those groups can be. While I’m still quite spiritual, this approach doesn’t 
 
 _History of addiction_
 
-I started abusing alcohol 20 years ago, and eventually moved onto marijuana. It enabled me to ignore trauma from my 
-childhood, suppress guilt I felt surrounding my parents divorce, and even hide myself from shame instilled by religion. 
+I started abusing alcohol 20 years ago, and eventually moved onto marijuana. It enabled me to ignore trauma from my
+childhood, suppress guilt I felt surrounding my parents divorce, and even hide myself from shame instilled by religion.
 At the time, I didn’t see my use as abuse. To me, I was just enjoying a break from the intensity of reality (a sentiment
 expressed by many in my group). I even saw its benefits as a social lubricant while partying with some of the folks from
 the high school hockey team. Places I once felt extremely uncomfortable in, were now accessible to me. This pattern of
@@ -71,7 +69,7 @@ I eventually found [SMART][], a non-faith based recovery group that addresses th
 rather than narrowing in on specific substances. While our drugs of choice may vary, the cravings, the urges, our
 experiences, are all the same. SMART provides several tools that help manage cravings and urges, identify triggers,
 provide healthy coping strategies, work through irrational thoughts, and even promote changes in our behavior. Finally,
-SMART recognizes that abstinence isn’t the goal for everyone. Meetings are focused on living a sober life, but 
+SMART recognizes that abstinence isn’t the goal for everyone. Meetings are focused on living a sober life, but
 abstinence isn’t required for the program.
 
 At first, I was reluctant to go and my first meeting definitely didn’t excite me. The hybrid format had issues, some
@@ -90,7 +88,7 @@ _Challenges today_
 Alcohol is everywhere in our culture today, and avoiding it can prove to be difficult, especially at tech companies and
 startups. Numerous organizations I’ve worked at have had alcohol on tap and available out in the open. When forced to
 work from these spaces, resisting urges to drink is an active practice that can be exhausting. While I continue to
-leverage the tools and techniques that I’ve picked up from SMART, it’s not the only tool I’ve been using from my tool 
+leverage the tools and techniques that I’ve picked up from SMART, it’s not the only tool I’ve been using from my tool
 belt. Both [EMDR][] and [Ketamine therapy][] have also shown promise in addressing triggers related to substance abuse.
 Finally, I recognize there’s a lot of trust to rebuild since my relapse. While I’ve learned to show myself a great deal
 of compassion, you cannot expect others to turn the page so easily.

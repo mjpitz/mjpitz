@@ -9,13 +9,12 @@ description: |
   share a bit about my experience, the sessions I chose to attend, and some of my key takeaways from the conference.
 
 slug: 2024/11/01/austin-tech-week-recap
-
 ---
 
 Formally known as Austin Startup Week, [Austin Tech Week][] provides founders, funders, and freelancers the opportunity
 to meet, connect, and share with one another. This year was my first year in attendance and there were many things about
 this conference that I liked better when compared to many others. I made a lot of new friends and connections around the
-startup scene in Austin and learned a lot about sizing markets and strategies to approach fundraising. In this post, I 
+startup scene in Austin and learned a lot about sizing markets and strategies to approach fundraising. In this post, I
 share a bit about my experience, the sessions I chose to attend, and some of my key takeaways from the conference.
 
 [Austin Tech Week]: https://www.austintech.com/
@@ -27,13 +26,13 @@ only able to make it to a couple of events. After a quick look, I decided to att
 split off into smaller groups and talked about specific areas of interest.
 
 Since I showed up to the first session late, I wasn’t sure where I should go. The spaces weren’t marked for late-comers,
-so I dropped in on one of the smaller groups which wound up discussing BioTech in Austin. While I didn’t have much to 
-contribute, it was interesting hearing about the different opportunities available such as
-[ACC’s BioScience Incubator][].
+so I dropped in on one of the smaller groups which wound up discussing BioTech in Austin. While I didn’t have much to
+contribute, it was interesting hearing about the different opportunities available such as [ACC’s BioScience
+Incubator][].
 
 For the second breakout session, I went to the solopreneurship group as it’s very relevant to me. After a quick round of
 introductions, the facilitators opened the space up to questions and my hand shot up. I was particularly interested in
-opportunities and tools for non-dilutive funding. [Natalie Poindexter][] (who specializes in this space) pointed us to 
+opportunities and tools for non-dilutive funding. [Natalie Poindexter][] (who specializes in this space) pointed us to
 her website which contains tons of resources for approaching grant writing and [Greta][], her AI chatbot that can help.
 I was curious how Greta compared to other solutions, so I decided to compare the results of a few different LLMs. Greta
 is more succinct and provides more insight than existing models.
@@ -59,7 +58,7 @@ example, a user on Instagram is more likely to engage with a carousel than read 
 
 <br/>
 
-Most of Day 3 for me was spent on fundraising. After spending a couple of months speaking with VC firms and angel 
+Most of Day 3 for me was spent on fundraising. After spending a couple of months speaking with VC firms and angel
 investors from across the country, hearing from partners on a panel offered a unique insight into fundraising. I really
 enjoyed the [New VCs on the block][] panel (composed both of men and women) as they dove into a number of different
 topics from what they invest in, what the ideal stage is for each firm, their average check size, how they evaluate
@@ -73,10 +72,10 @@ amd accelerators, VC firms, and angel investors (but more on this another time).
 Day 4 was another short day for me, but I got a lot of value out of the sessions I attended. The first was a diverse
 panel of partners from both big and small investment firms. They shared a bit about where they see AI going and what
 they look for when [investing in AI][] based startups. I think many people expect these startups to be developing new
-solutions but many investors are looking to see how companies leverage AI to build their startups, particularly in the 
+solutions but many investors are looking to see how companies leverage AI to build their startups, particularly in the
 early days of the company.
 
-One speaker talked about approaching things from first principles (something I very much agree with when it comes to 
+One speaker talked about approaching things from first principles (something I very much agree with when it comes to
 startups). I had the opportunity at the end to ask him how to advocate for that when pretty much every investor wants to
 see SaaS and doesn’t seem interested in anything else. Their advice was to go deep into education mode and try to
 educate as much as possible. It wasn’t quite the answer I was looking for as it doesn’t address the behavior from the
@@ -85,7 +84,7 @@ investor side.
 Later in the day, I attended a colleague's session on expanding to international markets. Despite the title sounding
 very enterprise-y, the content was very much geared toward smaller startups, spanning from the idea phase all the way to
 those who are established. We learned about [Global Chamber][], a network of businesses around the world, and how it can
-help our companies expand into different markets. A particularly useful piece of advice was to consider how your brand 
+help our companies expand into different markets. A particularly useful piece of advice was to consider how your brand
 can be positioned in any market around the world. “Think global, but start local” was something that immediately came to
 mind.
 

@@ -10,15 +10,12 @@ description: |
   relationships in my life, to the death of a chosen family member.
 
 slug: 2024/08/21/health-and-healing-loss
-
 ---
-
-
 
 _Trigger Warning // mental health, suicide, loss, and grief._
 
-This will probably be one of the shorter posts in this series. While it's not something that I actively sought support 
-for during [FMLA][], loss and grief has been a fairly consistent theme throughout the last few years. From going 
+This will probably be one of the shorter posts in this series. While it's not something that I actively sought support
+for during [FMLA][], loss and grief has been a fairly consistent theme throughout the last few years. From going
 no-contact with some family members, to saying goodbye to several key relationships in my life, to the death of a chosen
 family member.
 
@@ -38,7 +35,7 @@ ended and took accountability for his part in the matter.
 In June 2023, I lost one of the most influential women in my life. Ruby was my closest friend and one of the few members
 of my chosen family. We had drifted apart for a short period of time, and our relationship strained after I took a
 second job in 2022. There wasn't a single thing that happened in my life that she didn't know about. When news of her
-passing reached me, I collapsed in grief and disbelief. The space she held in my life remains vacant today. A week 
+passing reached me, I collapsed in grief and disbelief. The space she held in my life remains vacant today. A week
 later, a partner at the time would attempt suicide. Definitely one of the top 5 worst summers for me... (sorry, there's
 that dark humor again...).
 
@@ -56,10 +53,10 @@ _What grief taught me about love_
 
 Loss seldom comes at an opportune time.
 
-Ruby passed away just as our friendship was starting to rekindle. We had dinner the week before, and I was going to 
-reach out to her about spending time together that weekend. I spent a lot of time regretting not making more time for 
-her. 8 months later, I finally forgave myself and let go of the regret that I held on to. For the first time since she 
-passed, I was able to talk about her without crying or having a meltdown. My memories of her still bring up strong 
+Ruby passed away just as our friendship was starting to rekindle. We had dinner the week before, and I was going to
+reach out to her about spending time together that weekend. I spent a lot of time regretting not making more time for
+her. 8 months later, I finally forgave myself and let go of the regret that I held on to. For the first time since she
+passed, I was able to talk about her without crying or having a meltdown. My memories of her still bring up strong
 feelings, but they don't overwhelm me to a point of inoperability.
 
 Adler passed away at the peak of my recovery. By the time I was able to grieve his loss, I could only remember how
@@ -91,7 +88,7 @@ Regardless of the relationship dynamic, a healthy, long-term relationship requir
 active participation and commitment from all parties involved. And I don't mean commitment in the sense of an
 "engagement or obligation", but rather a "dedication to a cause".
 
-Sometimes, we reach a point in life where we realize that the other party in our relationship does not have the 
+Sometimes, we reach a point in life where we realize that the other party in our relationship does not have the
 physical, mental, or emotional bandwidth to choose your relationship, even when they love and care about you. As hard as
 it may be, you may need to accept that despite the love you have for one another. Recognizing this is difficult, but you
 deserve a relationship built on reciprocity and commitment, regardless of how your relationship is structured.
@@ -151,9 +148,9 @@ help. Doing so helps us identify areas we may want to grow in the future.
 
 _My parting advice?_
 
-Celebrate your life and those who choose to be an active part of it. Cherish the moments you have together, and don't 
-just let them pass you by. Take photos! I used to hate having my picture taken, and now I wish Ruby and I took more. 
-Finally, embrace self-love, but not at the expense of growth. Take accountability for your actions when you make a 
+Celebrate your life and those who choose to be an active part of it. Cherish the moments you have together, and don't
+just let them pass you by. Take photos! I used to hate having my picture taken, and now I wish Ruby and I took more.
+Finally, embrace self-love, but not at the expense of growth. Take accountability for your actions when you make a
 mistake, even if that means accepting or acknowledging a limitation.
 
 Remember, you deserve relationships built on reciprocity and commitment. Until next time. ~ Ciao bella!

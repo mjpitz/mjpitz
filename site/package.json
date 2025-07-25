@@ -9,7 +9,9 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "test": ""
+    "test": "",
+    "lint": "prettier --check .",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@astrojs/check": "^0.9.0",
@@ -22,6 +24,7 @@
   },
   "devDependencies": {
     "@astrojs/preact": "^4.0.0",
-    "@astrojs/tailwind": "^5.0.0"
+    "@astrojs/tailwind": "^5.0.0",
+    "prettier": "^3.6.2"
   }
 }

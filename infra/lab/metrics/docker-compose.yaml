@@ -118,7 +118,7 @@ services:
     networks:
       - shared
     labels:
-      - "traefik.http.routers.metrics-mcp-toolbox.rule=Host(`mcp-otel.home.pitz.tech`)"
+      - "traefik.http.routers.metrics-mcp-toolbox.rule=Host(`mcp-metrics.home.pitz.tech`)"
       - "traefik.http.routers.metrics-mcp-toolbox.service=metrics-mcp-toolbox"
       - "traefik.http.services.metrics-mcp-toolbox.loadbalancer.server.port=5000"
       - "homepage.group=Metrics"

@@ -10,26 +10,23 @@ description: |
 slug: 2018/10/28/lambda-handler-lifetime
 tags:
   - software development
-
 ---
 
-While working at Dosh, I had pretty heavy exposure to managing NodeJS services running in AWS Lambda.
-During that time, I had learned a few things about the platform that can be leveraged when writing Lambda services.
-Some of these lessons may influence how you write services but can also give you some performance boosts.
-It’s important to note that some of the behaviors that I observed about AWS Lambda may not apply to other serverless technologies.
+While working at Dosh, I had pretty heavy exposure to managing NodeJS services running in AWS Lambda. During that time,
+I had learned a few things about the platform that can be leveraged when writing Lambda services. Some of these lessons
+may influence how you write services but can also give you some performance boosts. It’s important to note that some of
+the behaviors that I observed about AWS Lambda may not apply to other serverless technologies.
 
 <!--more-->
 <hr/>
 
-When I first began working on AWS Lambda, I was skeptical.
-I remember a conversation with my manager where I made the comment about how Lambda feels like we are writing PHP transaction scripts all over again.
-As time went on, I learned a few things about the way that AWS Lambda manages it’s containers under the hood.
-By far, the biggest thing I took away was how long the lifespan of a Lambda function actually is.
-Consider the following Typescript handler:
-<br/><br/>
+When I first began working on AWS Lambda, I was skeptical. I remember a conversation with my manager where I made the
+comment about how Lambda feels like we are writing PHP transaction scripts all over again. As time went on, I learned a
+few things about the way that AWS Lambda manages it’s containers under the hood. By far, the biggest thing I took away
+was how long the lifespan of a Lambda function actually is. Consider the following Typescript handler: <br/><br/>
 
 ```typescript
-import { APIGatewayEvent, Callback, Context, Handler } from 'aws-lambda';
+import { APIGatewayEvent, Callback, Context, Handler } from "aws-lambda";
 import * as uuidv4 from "uuid/v4";
 
 const instanceId = uuidv4();
@@ -38,17 +35,17 @@ export const hello: Handler = (event: APIGatewayEvent, context: Context, cb: Cal
   const response = {
     statusCode: 200,
     headers: {
-        "Content-Type": "application/json",
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      message: 'Go Serverless Webpack (Typescript) v1.0! Your function executed successfully!',
+      message: "Go Serverless Webpack (Typescript) v1.0! Your function executed successfully!",
       instanceId,
       input: event,
     }),
   };
 
   cb(null, response);
-}
+};
 ```
 
 <br/>
@@ -98,18 +95,16 @@ When a request completes, its container is returned to the pool for reuse.
 After some idle time, containers are shut down to keep resources to a minimum.
 In practice, this process is distributed across a cluster of machines so that there is no single point of failure.
 
-From an engineering standpoint, this means that we can write lambda functions a lot like how we write your typical HTTP server.
-Services that load some data at start up can continue to benefit by doing that once and then re-using the loaded data for subsequent requests.
-Many of our reliability patterns can continue to be applied, such as circuit breaking, persistent connections, and distributed tracing.
-All in all, working in AWS Lambda isn't all that different from your typical application development.
-<br/><br/>
+From an engineering standpoint, this means that we can write lambda functions a lot like how we write your typical HTTP
+server. Services that load some data at start up can continue to benefit by doing that once and then re-using the loaded
+data for subsequent requests. Many of our reliability patterns can continue to be applied, such as circuit breaking,
+persistent connections, and distributed tracing. All in all, working in AWS Lambda isn't all that different from your
+typical application development. <br/><br/>
 
 _Update: 2018-10-29_
 
-I went and took a look at some larger windows of time.
-Over a 24 hour window, I found some lambda's running all day and even all night.
-The image below shows a provisioned lambda running from 9pm to 2am US Central Time.
-<br/><br/>
+I went and took a look at some larger windows of time. Over a 24 hour window, I found some lambda's running all day and
+even all night. The image below shows a provisioned lambda running from 9pm to 2am US Central Time. <br/><br/>
 
 <div class="row">
     <div style="text-align:center">

@@ -3,17 +3,17 @@ layout: "../layouts/Page.astro"
 title: "Media"
 ---
 
-import { YouTube } from 'astro-embed';
-export const featured="ccd9RZoW6xQ"
-export const playlist="PLa04_J9h9AKxJfGH2Qgdw5JH8yhbiV4_h"
-export const params=`list=${playlist}`
-export const link=`https://www.youtube.com/playlist?list=${playlist}`
+import { YouTube } from "astro-embed";
+export const featured = "ccd9RZoW6xQ";
+export const playlist = "PLa04_J9h9AKxJfGH2Qgdw5JH8yhbiV4_h";
+export const params = `list=${playlist}`;
+export const link = `https://www.youtube.com/playlist?list=${playlist}`;
 
 <p>
-  I maintain a <a href={link}>Youtube playlist</a> for most of my media appearances. I will note that this is missing a
-  couple of appearances that happened before channels stared cross-posting to multiple mediums.
+    I maintain a <a href={link}>Youtube playlist</a> for most of my media appearances. I will note that this is missing
+    a couple of appearances that happened before channels stared cross-posting to multiple mediums.
 </p>
 
 <center>
-  <YouTube id={featured} posterQuality="high" params={params}/>
+    <YouTube id={featured} posterQuality="high" params={params} />
 </center>

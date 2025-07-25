@@ -12,9 +12,7 @@ description: |
   my life on an ongoing basis.
 
 slug: 2024/09/30/health-and-healing-nutrition
-
 ---
-
 
 _Trigger Warning // mental health, disordered eating, near-death experiences._
 
@@ -24,11 +22,11 @@ eating disorder that I didn't know was there. It's claimed months of time from m
 to the emergency room on more than one occasion. Today, I share the many other ways a pervasive eating disorder impacts
 my life on an ongoing basis.
 
-In 2023, I was diagnosed with [Bulimia Nervosa][] by my psychologist, and more specifically classified with 
-[Orthorexia Nervosa][] in 2024 by my nutritionist. The way this manifests in my life is with a hyper focus on 
-restricting the number of "unhealthy" foods, over-exercising by spending too much time at the gym or on the ice, and 
-then going through periods of binges and purges during nutrient deficits. In those moments, many wrongfully assume that 
-we have full control over our actions. The truth is far more complicated.
+In 2023, I was diagnosed with [Bulimia Nervosa][] by my psychologist, and more specifically classified with [Orthorexia
+Nervosa][] in 2024 by my nutritionist. The way this manifests in my life is with a hyper focus on restricting the number
+of "unhealthy" foods, over-exercising by spending too much time at the gym or on the ice, and then going through periods
+of binges and purges during nutrient deficits. In those moments, many wrongfully assume that we have full control over
+our actions. The truth is far more complicated.
 
 [Bulimia Nervosa]: https://en.wikipedia.org/wiki/Bulimia_nervosa
 [Orthorexia Nervosa]: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6370446/
@@ -37,9 +35,9 @@ we have full control over our actions. The truth is far more complicated.
 
 _What's in a meal?_
 
-The first big thing I needed to address was my notion of what a proper meal was. I grew up in the 90's when we were 
-being force-fed the [food pyramid][] and never felt like I got proper education when it came to what "nutrition" looked 
-like. When I first started seeing my therapist and nutritionist, they had me describe what I would eat on a given day. 
+The first big thing I needed to address was my notion of what a proper meal was. I grew up in the 90's when we were
+being force-fed the [food pyramid][] and never felt like I got proper education when it came to what "nutrition" looked
+like. When I first started seeing my therapist and nutritionist, they had me describe what I would eat on a given day.
 At the time, my daily routine was something like this:
 
 - A cup of coffee in the morning.
@@ -119,7 +117,8 @@ But sure enough, she was right. As my nutrition improved, moments where I find m
 decreased as my orthostatic tests returned to a healthy range. I'm by no means out of the fall-risk realm yet, but I am
 doing much better than I was.
 
-[orthostatic test]: https://www.ahrq.gov/patient-safety/settings/hospital/fall-prevention/toolkit/orthostatic-vital-sign.html
+[orthostatic test]:
+  https://www.ahrq.gov/patient-safety/settings/hospital/fall-prevention/toolkit/orthostatic-vital-sign.html
 
 <br/>
 
@@ -139,7 +138,7 @@ place where I can trust that system again.
 
 <br/>
 
-So. Eating disorders are no laughing matter. The damage they do have lingering effects that last years and years to 
+So. Eating disorders are no laughing matter. The damage they do have lingering effects that last years and years to
 come. They should be treated as serious as many other life-threatening conditions (because they are). Just because
 someone's experience with them is very shallow, doesn't mean it has life-altering consequences for others.
 

@@ -10,10 +10,7 @@ description: |
   required great sacrifice along the way.
 
 slug: 2024/08/14/health-and-healing
-
 ---
-
-
 
 _Trigger Warning // mental health, depression, self-harm/suicide, and substance abuse._
 
@@ -38,8 +35,8 @@ _Hitting rock bottom..._
 
 I can't talk about the work I've been doing without talking about what happened. I'll try and keep this short.
 
-Early 2021 brought on the start to a major depressive episode that I wouldn't be able to acknowledge until recently. 
-Since then, there have been a number of life-changing events that worsened my depressive episode, including lingering 
+Early 2021 brought on the start to a major depressive episode that I wouldn't be able to acknowledge until recently.
+Since then, there have been a number of life-changing events that worsened my depressive episode, including lingering
 trauma, the loss of close friends, and multiple near-death experiences. Eventually, everything caught up with me back in
 May. I was the lowest I had been since college, I questioned everything I knew, and I was burnt out. After 3 years of
 sobriety and 3 months of healthy moderation, I relapsed. I repeatedly self-harmed and almost took my own life. I needed
@@ -124,9 +121,9 @@ have advanced quickly since.
 
 _Why write or talk about this at all? Isn't your reason for going on leave protected?_
 
-Medical leave can vary greatly for anyone who takes it, especially for those who take it for mental health recovery 
+Medical leave can vary greatly for anyone who takes it, especially for those who take it for mental health recovery
 reasons. Our lives are influenced by our experiences and while our problems may be similar, their manifestations seldom
-are. What works for one person, doesn't necessarily work for others. It wasn't until December that I had learned that 
+are. What works for one person, doesn't necessarily work for others. It wasn't until December that I had learned that
 thoughts of suicidal ideation and planning weren't normal. I used to think that I didn't struggle with mental health
 issues. So I look forward to sharing my journey to acceptance and hope that it inspires someone to recognize and take
 the time they need for themselves.
@@ -137,7 +134,7 @@ perspective and knowledge of the situations. By sharing these stories, we can ch
 as well as combat stigma associated with mental health and its various treatments.
 
 Finally, there’s a lot for people to learn about the process of going on medical leave. It’s not always as easy as it’s
-made out to be. I thought I covered all my bases, and I was still caught off guard when I was denied unemployment. I 
+made out to be. I thought I covered all my bases, and I was still caught off guard when I was denied unemployment. I
 later learned this was due to a delay in processing paperwork from my EOR. By the time I received this paperwork, I was
 already starting to look at returning to work since my funds had run dry.
 

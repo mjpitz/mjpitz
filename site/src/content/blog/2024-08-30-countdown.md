@@ -1,5 +1,5 @@
 ---
-title: 'Countdown - the Card Game'
+title: "Countdown - the Card Game"
 pubDate: "August 30 2024"
 description: |
   Over the summer, I made a more conscious effort to spend dedicated 1-1 time with my child. We often spend our time
@@ -8,7 +8,6 @@ description: |
   my child and I came up with a way to play this game using a single deck of cards.
 
 slug: 2024/08/30/countdown
-
 ---
 
 Over the summer, I made a more conscious effort to spend dedicated one-on-one time with my child. We often spend our
@@ -37,9 +36,9 @@ With a little creativity, we were able to find a way to play without any electri
 ### Set-up
 
 1. Separate the standard deck of cards into two piles.
-   * Pile 1 should contain all face cards (J, Q, K, A). This will be our "high value" deck (25, 50, 75, 100,
+   - Pile 1 should contain all face cards (J, Q, K, A). This will be our "high value" deck (25, 50, 75, 100,
      respectively).
-   * Pile 2 should contain all numeric cards (2 - 10). This will be our "low value" deck (value shown on card).
+   - Pile 2 should contain all numeric cards (2 - 10). This will be our "low value" deck (value shown on card).
 2. If you're using a second deck of cards instead of a random generator, only use the A - 9 cards.
 3. Shuffle each pile of cards, separately.
 

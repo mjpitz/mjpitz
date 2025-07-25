@@ -7,7 +7,6 @@ description: |
 
 canonical: https://crabnebula.dev/blog/remote-work-essentials-1-1s/
 slug: 2023/09/11/remote-work-essentials-1-1s
-
 ---
 
 [Camille Fournier]: https://www.linkedin.com/in/camille-fournier-9011812
@@ -37,13 +36,13 @@ We do this by simply enumerating the meeting pairs that occur.
 
 <div align="center">
 
-| Team Size  | Team Members  | Number of 1-on-1s | Meeting Pairs                              |
-|:-----------|:--------------|:------------------|:-------------------------------------------|
-| 0          |               | 0                 |                                            |
-| 1          | (A)           | 0                 |                                            |
-| 2          | (A, B)        | 1                 | (**A:B**)                                  |
-| 3          | (A, B, C)     | 3                 | (A:B, **A:B**, **B:C**)                    |
-| 4          | (A, B, C, D)  | 6                 | (A:B, A:B, B:C, **A:D**, **B:D**, **C:D**) |
+| Team Size | Team Members | Number of 1-on-1s | Meeting Pairs                              |
+| :-------- | :----------- | :---------------- | :----------------------------------------- |
+| 0         |              | 0                 |                                            |
+| 1         | (A)          | 0                 |                                            |
+| 2         | (A, B)       | 1                 | (**A:B**)                                  |
+| 3         | (A, B, C)    | 3                 | (A:B, **A:B**, **B:C**)                    |
+| 4         | (A, B, C, D) | 6                 | (A:B, A:B, B:C, **A:D**, **B:D**, **C:D**) |
 
 _Figure 1: A table showing changes in team size and their total number of one-on-ones._
 
@@ -79,7 +78,7 @@ look at time.
 We can think of time commitment in one of two ways: for an individual, or for the collective team. To show this, let us
 consider the following equation which computes the time commitment based on values for the collective team.
 
-`T(t, x, H) = (f(x) * t * 2) / (x * H * 60)` where `t` is the duration of one-on-ones (in minutes), `x` is the team 
+`T(t, x, H) = (f(x) * t * 2) / (x * H * 60)` where `t` is the duration of one-on-ones (in minutes), `x` is the team
 size, `H` is the number of hours in a given week, and `f(x)` is the number of one-on-ones.
 
 As you can tell, this equation is a bit complicated. Luckily, we can plug in our `f(x)` equation and reduce it to get a
@@ -94,14 +93,13 @@ Using this simplified equation, we can now compute time commitment given an asso
 
 ![](/img/2023-09-11-remote-work-essentials-time-vs-team-size.svg)
 
-_Figure 3: Time Commitment vs Team Size<br/>
-t = 30 minute one-on-ones, H = 32 hour week_
+_Figure 3: Time Commitment vs Team Size<br/> t = 30 minute one-on-ones, H = 32 hour week_
 
 </div>
 
 It is important to note that while this graph appears linear, it is not. Using this chart, we can now estimate the time
 commitment required for a given team size. For example, if you have a 4-person team plus a manager you’re looking at
-spending about 6.25% of your time in one-on-ones. If your company has a [32 hour work week like CrabNebula][], that 
+spending about 6.25% of your time in one-on-ones. If your company has a [32 hour work week like CrabNebula][], that
 comes out to be 2 hours per person, or 10 hours across the entire team.
 
 [32 hour work week like CrabNebula]: https://crabnebula.dev/blog/4-day-work-week-works
@@ -113,8 +111,7 @@ distribute along the graph.
 
 ![](/img/2023-09-11-remote-work-essentials-time-vs-1-1s.svg)
 
-_Figure 4: Time Commitment vs Number of one-on-ones<br/>
-t = 30 minute one-on-ones, H = 32 hour week_
+_Figure 4: Time Commitment vs Number of one-on-ones<br/> t = 30 minute one-on-ones, H = 32 hour week_
 
 </div>
 
@@ -133,8 +130,7 @@ salary, we can compute monthly cost as a function of the team size.
 
 ![](/img/2023-09-11-remote-work-essentials-cost-vs-team-size.svg)
 
-_Figure 5: Monthly Cost vs Team Size<br/>
-Based on an average salary of $100k USD_
+_Figure 5: Monthly Cost vs Team Size<br/> Based on an average salary of $100k USD_
 
 </div>
 
@@ -146,8 +142,7 @@ increase or decrease in one-on-ones.
 
 ![](/img/2023-09-11-remote-work-essentials-cost-vs-1-1s.svg)
 
-_Figure 6: Monthly Cost vs Number of one-on-ones<br/>
-Based on an average salary of $100k USD_
+_Figure 6: Monthly Cost vs Number of one-on-ones<br/> Based on an average salary of $100k USD_
 
 </div>
 
@@ -156,7 +151,7 @@ graph is insufficient on their own. We need to balance cost against time.
 
 ## Balance
 
-How many is too many? Some might say that the amount of time spent in meetings would be the biggest influencer in 
+How many is too many? Some might say that the amount of time spent in meetings would be the biggest influencer in
 determining when a team is too large. Others may argue that the cost involved is the major influencing factor. Using the
 data we charted in the two previous sections, we can plot cost and time as a function of both team size and number of
 one-on-ones. Using these graphs we can balance the time commitment against the associated cost.
@@ -165,9 +160,8 @@ one-on-ones. Using these graphs we can balance the time commitment against the a
 
 ![](/img/2023-09-11-remote-work-essentials-cost-time-vs-team-size.svg)
 
-_Figure 7: Monthly Cost and Time Commitment vs Team Size<br/>
-t = 30 minute one-on-ones, H = 32 hour week<br/>
-Based on an average salary of $100k USD_
+_Figure 7: Monthly Cost and Time Commitment vs Team Size<br/> t = 30 minute one-on-ones, H = 32 hour week<br/> Based on
+an average salary of $100k USD_
 
 </div>
 
@@ -182,7 +176,7 @@ to a maximum of 15.
 
 Given these two data points, let’s estimate that most "2 pizza teams" fall around 8 people. An 8-person team would have
 a total of 28 one-on-one meetings, thus an estimated time commitment of 10.94%, and an estimated cost of $7291.67.
-Assuming a 32-hour work week, members of a "2 pizza team" should expect to spend about 3.5 hours of their time in 
+Assuming a 32-hour work week, members of a "2 pizza team" should expect to spend about 3.5 hours of their time in
 one-on-one meetings.
 
 It’s important to remember that this value represents a relative maximum time commitment and cost. This is due to
@@ -195,9 +189,8 @@ changes in time commitment and cost relative to the number of one-on-ones.
 
 ![](/img/2023-09-11-remote-work-essentials-cost-time-vs-1-1s.svg)
 
-_Figure 8: Monthly Cost and Time Commitment vs Number of one-on-ones<br/>
-t = 30 minute one-on-ones, H = 32 hour week<br/>
-Based on an average salary of $100k USD_
+_Figure 8: Monthly Cost and Time Commitment vs Number of one-on-ones<br/> t = 30 minute one-on-ones, H = 32 hour
+week<br/> Based on an average salary of $100k USD_
 
 </div>
 
