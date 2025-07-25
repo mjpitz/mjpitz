@@ -35,7 +35,7 @@ services:
       - "homepage.description=Job that copies certificates into shared volume"
 
   ingress-traefik:
-    image: traefik:v3.3
+    image: traefik:v3.5
     restart: unless-stopped
     depends_on:
       ingress-traefik-certs:
