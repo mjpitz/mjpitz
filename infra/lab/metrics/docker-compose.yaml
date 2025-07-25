@@ -94,7 +94,7 @@ services:
   # {
   #   "mcpServers": {
   #     "metrics": {
-  #       "url": "https://mcp-toolbox.home.pitz.tech/mcp/sse",
+  #       "url": "https://mcp-metrics.home.pitz.tech/mcp/sse",
   #       "disabled": false,
   #       "autoApprove": []
   #     }
@@ -111,7 +111,7 @@ services:
       - toolbox
       - --tools-folder=/config
       - --address=0.0.0.0
-      - --telemetry-otlp=collect.home.pitz.tech
+      - --telemetry-otlp=metrics-collector:4318
     volumes:
       - ./mcp-toolbox:/config:ro
       - certs:/etc/ssl/certs

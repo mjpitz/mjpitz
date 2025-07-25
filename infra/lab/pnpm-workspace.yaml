@@ -1,5 +1,2 @@
 packages:
-  - admin
-  - ingress
-  - media
-  - metrics
+  - '*'

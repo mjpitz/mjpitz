@@ -1,5 +1,5 @@
 {
-  "name": "@mjpitz/lab-metrics",
+  "name": "@mjpitz/lab-single-pain",
   "private": true,
   "devDependencies": {
     "concurrently": "^9.0.0"

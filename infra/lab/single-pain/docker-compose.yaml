@@ -1,0 +1,72 @@
+##===
+## Conventions:
+##  - networks should use underscores
+##  - volumes should use underscores
+##  - services should use hyphen
+##===
+name: lab
+
+networks:
+  shared: {}
+
+volumes:
+  certs: {}
+  singlepain_n8n_data: {}
+  singlepain_valkey_data: {}
+
+services:
+  
+  singlepain-n8n:
+    image: docker.n8n.io/n8nio/n8n
+    restart: unless-stopped
+    environment:
+      N8N_HOST: workflows.home.pitz.tech
+      N8N_PORT: 5678
+      N8N_PROTOCOL: HTTPS
+      NODE_ENV: production
+      WEBHOOK_URL: https://workflows.home.pitz.tech/
+    networks:
+      - shared
+    volumes:
+      - ./n8n:/files
+      - singlepain_n8n_data:/home/node/.n8n
+      - certs:/etc/ssl/certs
+    labels:
+      - "traefik.http.routers.n8n.rule=Host(`workflows.home.pitz.tech`)"
+      - "traefik.http.routers.n8n.service=n8n"
+      - traefik.http.routers.n8n.middlewares=n8n@docker
+      - "traefik.http.services.n8n.loadbalancer.server.port=5678"
+      - "traefik.http.services.n8n.loadBalancer.passHostHeader=true"
+      - traefik.http.middlewares.n8n.headers.SSLRedirect=true
+      - traefik.http.middlewares.n8n.headers.STSSeconds=315360000
+      - traefik.http.middlewares.n8n.headers.browserXSSFilter=true
+      - traefik.http.middlewares.n8n.headers.contentTypeNosniff=true
+      - traefik.http.middlewares.n8n.headers.forceSTSHeader=true
+      - traefik.http.middlewares.n8n.headers.SSLHost=home.pitz.tech
+      - traefik.http.middlewares.n8n.headers.STSIncludeSubdomains=true
+      - traefik.http.middlewares.n8n.headers.STSPreload=true
+      - "homepage.group=SinglePainPod"
+      - "homepage.name=n8n"
+      - "homepage.icon=https://pbs.twimg.com/profile_images/1536335358803251202/-gASF0c6_400x400.png"
+      - "homepage.href=https://workflows.home.pitz.tech/"
+      - "homepage.description=n8n workflows"
+
+  singlepain-valkey:
+    image: valkey/valkey:latest
+    restart: unless-stopped
+    networks:
+      - shared
+    volumes:
+      - singlepain_valkey_data:/data
+      - certs:/etc/ssl/certs
+    healthcheck:
+      test: ["CMD", "valkey-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+    labels:
+      - "homepage.group=SinglePainPod"
+      - "homepage.name=Valkey"
+      - "homepage.icon=https://valkey.io/logo.svg"
+      - "homepage.description=Valkey key-value store"

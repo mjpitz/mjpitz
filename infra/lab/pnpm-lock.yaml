@@ -6,6 +6,12 @@ settings:
 
 importers:
 
+  admin:
+    devDependencies:
+      concurrently:
+        specifier: ^9.0.0
+        version: 9.2.0
+
   ingress:
     devDependencies:
       concurrently:
@@ -19,6 +25,12 @@ importers:
         version: 9.2.0
 
   metrics:
+    devDependencies:
+      concurrently:
+        specifier: ^9.0.0
+        version: 9.2.0
+
+  single-pain:
     devDependencies:
       concurrently:
         specifier: ^9.0.0

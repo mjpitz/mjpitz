@@ -1,6 +1,5 @@
 {
   "name": "@mjpitz/lab-media",
-  "description": "Manage services responsible for routing communication to our backend systems.",
   "private": true,
   "devDependencies": {
     "concurrently": "^9.0.0"

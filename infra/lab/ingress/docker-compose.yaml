@@ -56,7 +56,9 @@ services:
           - traefik.home.pitz.tech
           - collect.home.pitz.tech
           - metrics.home.pitz.tech
-          - mcp-toolbox.home.pitz.tech
+          - mcp-metrics.home.pitz.tech
+          - media.home.pitz.tech
+          - workflows.home.pitz.tech
     labels:
       - "traefik.http.routers.ingress-traefik.rule=Host(`traefik.home.pitz.tech`)"
       - "traefik.http.routers.ingress-traefik.service=ingress-traefik"

@@ -1,6 +1,5 @@
 {
   "name": "@mjpitz/lab-admin",
-  "description": "Manage services responsible for administering my homelab.",
   "private": true,
   "devDependencies": {
     "concurrently": "^9.0.0"
