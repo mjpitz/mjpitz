@@ -1,0 +1,104 @@
+flowchart TD
+    subgraph "Infrastructure Environments"
+        digitalOcean["Digital Ocean\n(infra/do/)"]
+        kubernetes["Kubernetes\n(infra/helm/)"]
+        homelab["Homelab\n(infra/lab/)"]
+    end
+    
+    subgraph "Digital Ocean Components"
+        doAdmin["Administrative Resources\n(infra/do/admin/)"]
+        doMya["Personal Projects\n(infra/do/mya/)"]
+        doDatabase["Database Services"]
+        doK8s["Kubernetes Clusters"]
+        doStorage["Storage Solutions"]
+        doNetworking["Networking Components"]
+    end
+    
+    subgraph "Kubernetes Components"
+        helmCharts["Helm Charts\n(deployed via Terraform)"]
+        
+        certManager["cert-manager\nTLS Certificates"]
+        externalDNS["external-dns\nDNS Management"]
+        ingressNginx["ingress-nginx\nNetwork Ingress"]
+        longhorn["longhorn\nDistributed Storage"]
+        
+        pages["pages\nStatic Site Hosting"]
+        registry["registry\nContainer Registry"]
+        renovate["renovate\nDependency Updates"]
+    end
+    
+    subgraph "Homelab Components"
+        labAdmin["Admin Tools\n(infra/lab/admin/)"]
+        labIngress["Ingress Services\n(infra/lab/ingress/)"]
+        labMedia["Media Services\n(infra/lab/media/)"]
+        labMetrics["Metrics Collection\n(infra/lab/metrics/)"]
+        labSinglePain["Additional Services\n(infra/lab/single-pain/)"]
+        
+        dockerCompose["Docker Compose\nContainer Orchestration"]
+        pnpmWorkspaces["PNPM Workspaces\nPackage Management"]
+        taskfileAutomation["Taskfile\nOperation Automation"]
+    end
+    
+    subgraph "External Dependencies"
+        helm["Helm Package Manager"]
+        terraform["Terraform IaC"]
+        onePassword["1Password\nSecret Management"]
+        dockerHub["Docker Hub\nContainer Images"]
+        githubPages["GitHub Pages\nHosting"]
+    end
+    
+    %% Main infrastructure relationships
+    digitalOcean --> doAdmin
+    digitalOcean --> doMya
+    doAdmin --> doK8s
+    doMya --> doDatabase
+    doMya --> doStorage
+    doMya --> doNetworking
+    
+    kubernetes --> helmCharts
+    helmCharts --> certManager
+    helmCharts --> externalDNS
+    helmCharts --> ingressNginx
+    helmCharts --> longhorn
+    helmCharts --> pages
+    helmCharts --> registry
+    helmCharts --> renovate
+    
+    homelab --> labAdmin
+    homelab --> labIngress
+    homelab --> labMedia
+    homelab --> labMetrics
+    homelab --> labSinglePain
+    homelab --> dockerCompose
+    homelab --> pnpmWorkspaces
+    homelab --> taskfileAutomation
+    
+    %% Cross-environment relationships
+    kubernetes -->|"can deploy to"| doK8s
+    kubernetes -->|"manages certs for"| digitalOcean
+    
+    %% External dependency relationships
+    terraform -->|"manages"| kubernetes
+    helm -->|"package format for"| kubernetes
+    onePassword -->|"provides secrets for"| kubernetes
+    onePassword -->|"provides secrets for"| digitalOcean
+    dockerHub -->|"provides images for"| kubernetes
+    dockerHub -->|"provides images for"| homelab
+    githubPages -->|"hosts"| pages
+    
+    %% Operational flows
+    labIngress -->|"started first"| labAdmin
+    labIngress -->|"started first"| labMedia
+    labIngress -->|"started first"| labMetrics
+    
+    ingressNginx -->|"routes to"| certManager
+    ingressNginx -->|"routes to"| pages
+    ingressNginx -->|"routes to"| registry
+    
+    certManager -->|"secures"| externalDNS
+    certManager -->|"secures"| pages
+    certManager -->|"secures"| registry
+    
+    externalDNS -->|"configures DNS for"| ingressNginx
+    
+    longhorn -->|"provides storage for"| registry

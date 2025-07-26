@@ -1,84 +1,64 @@
 # Lab Infrastructure
 
-This directory contains configuration for a personal homelab infrastructure managed through Docker Compose, PNPM workspaces, 
-and Taskfile automation. The lab environment is organized into modular components for admin, ingress, media, and metrics 
-services.
+This directory contains configurations for my personal homelab infrastructure, managed through Docker Compose, PNPM workspaces, and Taskfile automation.
 
-<!-- 
-Chain of Density Summaries are hidden in this comment.
+## Overview
 
-```yaml
-- missing_entities: [Docker Compose, PNPM workspaces, Taskfile, Remote synchronization, Service configuration]
-  denser_summary: >-
-    The infra/lab directory contains configuration for a homelab infrastructure using Docker Compose, with task 
-    automation through Taskfile, and package management via PNPM workspaces. It has infrastructure for admin, 
-    ingress, media, and metrics services.
+The lab environment provides a modular, containerized infrastructure running on local hardware. It's designed for flexibility, ease of management, and reliable operation with minimal intervention.
 
-- missing_entities: [rsync for remote sync, service start/stop order, Docker volumes, container networking, configuration structure]
-  denser_summary: >-
-    This homelab setup uses Docker Compose for containerization, Taskfile for automation, and PNPM workspaces
-    for managing admin, ingress, media, and metrics services. It includes rsync-based remote synchronization
-    with a lab server and implements specific startup procedures prioritizing ingress services.
+## Directory Structure
 
-- missing_entities: [resource allocation, homepage integration, persistent data storage, port configuration, restart policies]
-  denser_summary: >-
-    This modular homelab infrastructure uses Docker Compose, Taskfile automation, and PNPM workspaces to manage
-    services across admin, ingress, media, and metrics domains. It synchronizes with a remote server via rsync,
-    orchestrates service startup order, and provides persistent storage and homepage integration for services.
+- [admin](admin/) - Administration tools and services
+- [ingress](ingress/) - Network ingress configuration
+- [media](media/) - Media-related services
+- [metrics](metrics/) - Monitoring and metrics collection
+- [single-pain](single-pain/) - Additional service configuration
 
-- missing_entities: [conventional naming standards, Docker labels, service accessibility, configuration versioning, dependency management]
-  denser_summary: >-
-    This homelab infrastructure employs Docker Compose with conventional naming standards, Taskfile for
-    orchestration, and PNPM workspaces for modular service management across admin, ingress, media, and
-    metrics domains. It features bidirectional rsync synchronization, prioritized service startup, persistent
-    storage, port exposure, and homepage integration via Docker labels.
+## Component Details
 
-- missing_entities: [specific port mappings, code organization principles, remote IP address, excluded files during sync, task dependencies]
-  denser_summary: >-
-    This homelab infrastructure orchestrates containerized services via Docker Compose with standardized
-    naming conventions, PNPM workspaces for modular organization, and Taskfile automation for bidirectional
-    synchronization with a remote server (192.168.4.30), excluding node_modules. It manages service
-    dependencies across admin, ingress, media, and metrics domains with specific startup sequencing,
-    persistent storage, and homepage integration for deployed services.
-```
--->
+### Infrastructure Components
 
-## Usage
+- **Docker Compose**: Used for container orchestration with standardized naming conventions:
+  - Networks use underscores in naming
+  - Volumes use underscores in naming
+  - Services use hyphens in naming
 
-The lab environment can be managed using the following Taskfile commands:
+- **PNPM Workspaces**: Package management for JavaScript/Node.js components
+
+- **Taskfile**: Task automation for common operations
+
+### Service Categories
+
+- **Admin**: Tools for infrastructure management and administration
+- **Ingress**: Network traffic management (started first, stopped last)
+- **Media**: Services for media storage, streaming, and management
+- **Metrics**: Monitoring, alerting, and observability tooling
+
+## Management
+
+The lab environment is managed using Taskfile commands that provide simplified automation:
 
 ```bash
-# Pull configuration from remote server
-task pull
+# Remote Synchronization
+task pull       # Pull configuration from remote server
+task push       # Push configuration to remote server
 
-# Push configuration to remote server
-task push
+# Setup and Installation
+task install    # Install dependencies
+task prep       # Prepare Docker environments
 
-# Install dependencies
-task install
-
-# Prepare Docker environments
-task prep
-
-# Start services (ingress first, then others)
-task start
-
-# Stop services (others first, then ingress)
-task stop
+# Service Management
+task start      # Start services (ingress first, then others)
+task stop       # Stop services (others first, then ingress)
 ```
 
-## Components
+## Remote Synchronization
 
-- **admin**: Administration tools and services
-- **ingress**: Network ingress configuration (started first, stopped last)
-- **media**: Media-related services
-- **metrics**: Monitoring and metrics collection
+The configuration synchronizes bidirectionally with a remote lab server, allowing for centralized management while maintaining local copies.
 
-## Docker Configuration
+## Getting Started
 
-The environment uses Docker Compose with the following conventions:
-- Networks use underscores in naming
-- Volumes use underscores in naming
-- Services use hyphens in naming
-
-See `docker-compose.yaml` for specific service configurations.
+1. Review the `docker-compose.yaml` file for service configurations
+2. Use the Taskfile commands to manage the environment
+3. Remember the service startup order (ingress first, others after)
+4. Reference the specific component directories for detailed configuration

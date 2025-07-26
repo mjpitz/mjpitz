@@ -1,0 +1,89 @@
+flowchart TD
+    subgraph "Development Workflows"
+        direction TB
+        
+        %% Chart Development Workflow
+        chartDev["Chart Development"]
+        chartDev --> chartDeps["make charts/deps\nUpdate Dependencies"]
+        chartDeps --> chartEdit["Edit Chart Files"]
+        chartEdit --> chartLint["make charts/lint\nValidate Charts"]
+        chartLint --> chartDoc["make charts/docs\nGenerate Documentation"]
+        chartDoc --> chartTest["Local Testing\nhelm template/install"]
+        chartTest --> chartPR["Create Pull Request"]
+        
+        %% Docker Development Workflow
+        dockerDev["Docker Development"]
+        dockerDev --> dockerEdit["Edit Dockerfile\nand Config Files"]
+        dockerEdit --> dockerBuild["make docker/build\nBuild Images"]
+        dockerBuild --> dockerTest["Test Container Locally"]
+        dockerTest --> dockerPR["Create Pull Request"]
+        
+        %% Infrastructure Development Workflow
+        infraDev["Infrastructure Development"]
+        infraDev --> infraType["Select Infrastructure Type"]
+        
+        infraType --> doInfra["Digital Ocean\n(infra/do/)"]
+        doInfra --> doEdit["Edit DO Configurations"]
+        doEdit --> doApply["Apply via DO Console\nor API"]
+        
+        infraType --> k8sInfra["Kubernetes\n(infra/helm/)"]
+        k8sInfra --> k8sDeps["make infra/helm/deps\nUpdate Dependencies"]
+        k8sDeps --> k8sEdit["Edit Terraform Files"]
+        k8sEdit --> k8sPlan["op run -- terraform plan"]
+        k8sPlan --> k8sApply["op run -- terraform apply"]
+        
+        infraType --> labInfra["Homelab\n(infra/lab/)"]
+        labInfra --> labPull["task pull\nGet Latest Config"]
+        labPull --> labEdit["Edit Compose Files"]
+        labEdit --> labStart["task start\nStart Services"]
+        labStart --> labTest["Test Changes"]
+        labTest --> labPush["task push\nSync to Server"]
+        
+        %% Monitoring Development Workflow
+        monDev["Monitoring Development"]
+        monDev --> monDeps["make monitoring/deps\nInstall Dependencies"]
+        monDeps --> monEdit["Edit Jsonnet Files"]
+        monEdit --> monFormat["make monitoring/format\nFormat Files"]
+        monFormat --> monLint["make monitoring/lint\nLint Files"]
+        monLint --> monBuild["make monitoring/build\nGenerate Artifacts"]
+        monBuild --> monSync["make monitoring/sync\nDeploy to Monitoring Stack"]
+        
+        %% Website Development Workflow
+        siteDev["Website Development"]
+        siteDev --> siteDeps["make site/deps\nInstall Dependencies"]
+        siteDeps --> siteServe["make site/serve\nStart Dev Server"]
+        siteServe --> siteEdit["Edit Content/Code"]
+        siteEdit --> siteTest["make site/test\nTest Site"]
+        siteTest --> siteBuild["make site/build\nBuild for Production"]
+        siteBuild --> sitePR["Create Pull Request"]
+    end
+    
+    subgraph "Common Development Tasks"
+        direction TB
+        
+        %% Git Workflow
+        gitClone["git clone Repository"]
+        gitClone --> gitBranch["Create Feature Branch"]
+        gitBranch --> devWork["Perform Development Work"]
+        devWork --> gitCommit["Commit Changes"]
+        gitCommit --> gitPush["Push to GitHub"]
+        gitPush --> createPR["Create Pull Request"]
+        createPR --> reviewProcess["Review Process"]
+        reviewProcess --> mergePR["Merge to main"]
+        
+        %% CI/CD Integration
+        mergePR --> cicdTrigger["CI/CD Workflows Triggered"]
+        cicdTrigger --> chartCICD["Chart Lint/Test/Publish"]
+        cicdTrigger --> siteCICD["Site Build/Deploy"]
+    end
+    
+    %% Connect the workflows to the common tasks
+    chartPR --> createPR
+    dockerPR --> createPR
+    sitePR --> createPR
+    
+    %% Special cases for infrastructure which may not always use PRs
+    k8sApply -.-> gitCommit
+    doApply -.-> gitCommit
+    labPush -.-> gitCommit
+    monSync -.-> gitCommit

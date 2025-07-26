@@ -1,0 +1,44 @@
+flowchart TD
+    subgraph "Repository Components"
+        charts["Helm Charts\n(charts/)"]
+        docker["Docker Containers\n(docker/)"]
+        infra["Infrastructure\n(infra/)"]
+        monitoring["Monitoring\n(monitoring/)"]
+        site["Website\n(site/)"]
+    end
+
+    subgraph "External Services"
+        ghpages["GitHub Pages"]
+        digitalocean["DigitalOcean Cloud"]
+        k8s["Kubernetes Clusters"]
+        homelab["Homelab Server"]
+        grafana["Grafana Dashboards"]
+        prometheus["Prometheus Alerts"]
+    end
+
+    %% Integration lines
+    docker -->|"Referenced in"| charts
+    charts -->|"Documentation published to"| site
+    charts -->|"Used in"| infra
+    monitoring -->|"Observes"| infra
+    monitoring -->|"Generates assets for"| grafana
+    monitoring -->|"Generates alerts for"| prometheus
+    
+    %% Deployment paths
+    charts -->|"Published to"| ghpages
+    charts -->|"Deployed to"| k8s
+    site -->|"Deployed to"| ghpages
+    infra -->|"Configures"| digitalocean
+    infra -->|"Configures"| k8s
+    infra -->|"Configures"| homelab
+    docker -->|"Used in"| homelab
+    docker -->|"Used in"| k8s
+    
+    %% Additional Relationships
+    site -->|"Hosts content about"| charts
+    site -->|"Hosts content about"| papers["Papers\n(papers/)"]
+    
+    infra -->|"Uses"| docker
+    k8s -->|"Monitored by"| monitoring
+    homelab -->|"Monitored by"| monitoring
+    digitalocean -->|"Monitored by"| monitoring

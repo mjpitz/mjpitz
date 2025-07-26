@@ -1,0 +1,71 @@
+graph TD
+    root["mjpitz/mjpitz Repository"]
+    
+    root --> charts["charts/"]
+    root --> docker["docker/"]
+    root --> infra["infra/"]
+    root --> monitoring["monitoring/"]
+    root --> papers["papers/"]
+    root --> site["site/"]
+    root --> context[".context/"]
+    root --> github[".github/"]
+    
+    charts --> chart1["12factor"]
+    charts --> chart2["cognative"]
+    charts --> chart3["drone"]
+    charts --> chart4["gitea"]
+    charts --> chart5["litestream"]
+    charts --> chart6["maddy"]
+    charts --> chart7["raw"]
+    charts --> chart8["redis (variants)"]
+    charts --> chart9["registry"]
+    charts --> chart10["renovate"]
+    charts --> chart11["storj"]
+    
+    docker --> docker1["drone-server"]
+    docker --> docker2["presto"]
+    docker --> docker3["redis"]
+    docker --> docker4["redis-raft"]
+    docker --> docker5["rspamd"]
+    docker --> docker6["taky"]
+    
+    infra --> infra1["do/ (Digital Ocean)"]
+    infra --> infra2["helm/ (Kubernetes)"]
+    infra --> infra3["lab/ (Homelab)"]
+    
+    infra1 --> do1["admin/"]
+    infra1 --> do2["mya/"]
+    
+    infra2 --> helm1["cert-manager/"]
+    infra2 --> helm2["external-dns/"]
+    infra2 --> helm3["ingress-nginx/"]
+    infra2 --> helm4["longhorn/"]
+    infra2 --> helm5["pages/"]
+    
+    infra3 --> lab1["admin/"]
+    infra3 --> lab2["ingress/"]
+    infra3 --> lab3["media/"]
+    infra3 --> lab4["metrics/"]
+    
+    monitoring --> mon1["drone/"]
+    monitoring --> mon2["gitea/"]
+    monitoring --> mon3["go/"]
+    monitoring --> mon4["grpc/"]
+    monitoring --> mon5["ingress-nginx/"]
+    monitoring --> mon6["litestream/"]
+    monitoring --> mon7["maddy/"]
+    monitoring --> mon8["redis/"]
+    monitoring --> mon9["registry/"]
+    
+    site --> site1["src/"]
+    site --> site2["public/"]
+    
+    context --> context1["README.md"]
+    context --> context2["prompts/"]
+    context --> context3["diagrams/"]
+    
+    github --> github1["workflows/"]
+    
+    github1 --> workflow1["charts-lint-and-test.yaml"]
+    github1 --> workflow2["charts-publish.yaml"]
+    github1 --> workflow3["pages-build.yaml"]

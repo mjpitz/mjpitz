@@ -1,0 +1,40 @@
+flowchart TD
+    subgraph "Chart Development"
+        chartDev["Chart Changes"] --> prCharts["Pull Request\n(Changes to charts/*)"]
+        prCharts --> chartLint["charts-lint-and-test.yaml\nLint & Validate Charts"]
+        chartLint -->|"PR Approved\n& Merged"| mainCharts["Main Branch\n(charts/* updated)"]
+        mainCharts --> chartRelease["charts-publish.yaml\nPackage & Publish Charts"]
+        chartRelease --> chartGhPages["Upload to GitHub Pages"]
+        chartGhPages --> helmRepo["Available at mya.sh\nhelm repo add mya https://mya.sh"]
+    end
+
+    subgraph "Website Development"
+        siteDev["Website Changes"] --> prSite["Pull Request\n(Changes to site/*)"]
+        prSite --> siteBuildTest["pages-build.yaml\nBuild & Test Website"]
+        siteBuildTest -->|"PR Approved\n& Merged"| mainSite["Main Branch\n(site/* updated)"]
+        mainSite --> siteBuild["pages-build.yaml\nBuild Website"]
+        siteBuild --> siteDeploy["Deploy to GitHub Pages"]
+        siteDeploy --> siteAvailable["Available at mya.sh"]
+    end
+
+    subgraph "Infrastructure Deployment"
+        infraChanges["Infrastructure Changes"] --> terraformPlan["Terraform Plan"]
+        terraformPlan --> reviewChanges["Review Changes"]
+        reviewChanges --> terraform1p["1Password Secret Integration"]
+        terraform1p --> terraformApply["Terraform Apply"]
+        terraformApply --> infraDeployed["Infrastructure Updated"]
+    end
+
+    subgraph "Local Development"
+        local["Local Development"] --> makeTarget["Make Target Execution"]
+        makeTarget --> lintTest["Lint & Test"]
+        lintTest --> buildLocal["Build Locally"]
+    end
+
+    subgraph "Homelab Deployment"
+        labChanges["Homelab Changes"] --> taskPull["task pull\n(Get Latest Config)"]
+        taskPull --> makeChanges["Make Changes"]
+        makeChanges --> taskStart["task start\n(Start Services)"]
+        taskStart --> testChanges["Test Changes"]
+        testChanges --> taskPush["task push\n(Push to Lab Server)"]
+    end

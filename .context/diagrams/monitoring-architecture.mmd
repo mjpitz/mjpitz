@@ -1,0 +1,124 @@
+flowchart TD
+    subgraph "Monitoring Components"
+        jsonnet["Jsonnet Templates\n(monitoring/)"]
+        commonLib["Common Libraries\n(monitoring/common/)"]
+        
+        droneMonitoring["Drone Monitoring\n(monitoring/drone/)"]
+        giteaMonitoring["Gitea Monitoring\n(monitoring/gitea/)"]
+        goMonitoring["Go Monitoring\n(monitoring/go/)"]
+        grpcMonitoring["gRPC Monitoring\n(monitoring/grpc/)"]
+        ingressMonitoring["Ingress-Nginx Monitoring\n(monitoring/ingress-nginx/)"]
+        litestreamMonitoring["Litestream Monitoring\n(monitoring/litestream/)"]
+        maddyMonitoring["Maddy Monitoring\n(monitoring/maddy/)"]
+        redisMonitoring["Redis Monitoring\n(monitoring/redis/)"]
+        registryMonitoring["Registry Monitoring\n(monitoring/registry/)"]
+    end
+    
+    subgraph "External Libraries"
+        grafonnet["Grafonnet Library\n(grafonnet-lib)"]
+        grafanaBuilder["Grafana Builder\n(grafana-builder)"]
+    end
+    
+    subgraph "Build Process"
+        makeMonDeps["make monitoring/deps"]
+        makeMonFormat["make monitoring/format"]
+        makeMonLint["make monitoring/lint"]
+        makeMonBuild["make monitoring/build"]
+        makeMonSync["make monitoring/sync"]
+    end
+    
+    subgraph "Generated Artifacts"
+        dashboards["Grafana Dashboards"]
+        alertRules["Prometheus Alert Rules"]
+        recordingRules["Prometheus Recording Rules"]
+        serviceMonitors["Kubernetes ServiceMonitors"]
+    end
+    
+    subgraph "Monitored Services"
+        droneService["Drone CI"]
+        giteaService["Gitea"]
+        goApps["Go Applications"]
+        grpcServices["gRPC Services"]
+        ingressController["Ingress-Nginx"]
+        litestreamService["Litestream"]
+        maddyService["Maddy Mail Server"]
+        redisService["Redis"]
+        registryService["Container Registry"]
+    end
+    
+    subgraph "Observability Stack"
+        prometheus["Prometheus"]
+        grafana["Grafana"]
+        alertmanager["Alertmanager"]
+    end
+    
+    %% External libraries relationships
+    grafonnet --> jsonnet
+    grafanaBuilder --> jsonnet
+    
+    %% Common library relationships
+    commonLib --> droneMonitoring
+    commonLib --> giteaMonitoring
+    commonLib --> goMonitoring
+    commonLib --> grpcMonitoring
+    commonLib --> ingressMonitoring
+    commonLib --> litestreamMonitoring
+    commonLib --> maddyMonitoring
+    commonLib --> redisMonitoring
+    commonLib --> registryMonitoring
+    
+    %% Build process flow
+    makeMonDeps --> makeMonFormat
+    makeMonFormat --> makeMonLint
+    makeMonLint --> makeMonBuild
+    makeMonBuild --> makeMonSync
+    
+    %% Monitoring to generated artifacts
+    droneMonitoring --> dashboards
+    giteaMonitoring --> dashboards
+    goMonitoring --> dashboards
+    grpcMonitoring --> dashboards
+    ingressMonitoring --> dashboards
+    litestreamMonitoring --> dashboards
+    maddyMonitoring --> dashboards
+    redisMonitoring --> dashboards
+    registryMonitoring --> dashboards
+    
+    droneMonitoring --> alertRules
+    giteaMonitoring --> alertRules
+    goMonitoring --> alertRules
+    grpcMonitoring --> alertRules
+    ingressMonitoring --> alertRules
+    litestreamMonitoring --> alertRules
+    maddyMonitoring --> alertRules
+    redisMonitoring --> alertRules
+    registryMonitoring --> alertRules
+    
+    droneMonitoring --> recordingRules
+    giteaMonitoring --> recordingRules
+    goMonitoring --> recordingRules
+    grpcMonitoring --> recordingRules
+    ingressMonitoring --> recordingRules
+    litestreamMonitoring --> recordingRules
+    maddyMonitoring --> recordingRules
+    redisMonitoring --> recordingRules
+    registryMonitoring --> recordingRules
+    
+    %% Generated artifacts to observability stack
+    dashboards --> grafana
+    alertRules --> prometheus
+    recordingRules --> prometheus
+    serviceMonitors --> prometheus
+    prometheus --> alertmanager
+    prometheus --> grafana
+    
+    %% Monitored services relationships
+    droneService --> droneMonitoring
+    giteaService --> giteaMonitoring
+    goApps --> goMonitoring
+    grpcServices --> grpcMonitoring
+    ingressController --> ingressMonitoring
+    litestreamService --> litestreamMonitoring
+    maddyService --> maddyMonitoring
+    redisService --> redisMonitoring
+    registryService --> registryMonitoring
