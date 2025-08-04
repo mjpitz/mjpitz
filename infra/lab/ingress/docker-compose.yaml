@@ -56,10 +56,11 @@ services:
           - traefik.home.pitz.tech
           - collect.home.pitz.tech
           - metrics.home.pitz.tech
-          - mcp-metrics.home.pitz.tech
           - media.home.pitz.tech
           - workflows.home.pitz.tech
     labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.ingress-traefik.entrypoints=https"
       - "traefik.http.routers.ingress-traefik.rule=Host(`traefik.home.pitz.tech`)"
       - "traefik.http.routers.ingress-traefik.service=ingress-traefik"
       - "traefik.http.services.ingress-traefik.loadbalancer.server.port=8080"
@@ -75,6 +76,8 @@ services:
     volumes:
       - ./assets:/usr/share/nginx/html
     labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.ingress-assets.entrypoints=https"
       - "traefik.http.routers.ingress-assets.rule=HostRegexp(`{host:.*}`) && ( \
         Path(`/robots.txt`) || \
         Path(`/favicon.ico`) \

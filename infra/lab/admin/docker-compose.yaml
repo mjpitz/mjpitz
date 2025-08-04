@@ -34,10 +34,12 @@ services:
     networks:
       - shared
     labels:
-      - "traefik.http.routers.homepage.rule=Host(`home.pitz.tech`)"
-      - "traefik.http.routers.homepage.service=homepage"
-      - "traefik.http.services.homepage.loadbalancer.server.port=3000"
-      - "traefik.http.services.homepage.loadBalancer.passHostHeader=true"
+      - "traefik.enable=true"
+      - "traefik.http.routers.admin-homepage.entrypoints=https"
+      - "traefik.http.routers.admin-homepage.rule=Host(`home.pitz.tech`)"
+      - "traefik.http.routers.admin-homepage.service=admin-homepage"
+      - "traefik.http.services.admin-homepage.loadbalancer.server.port=3000"
+      - "traefik.http.services.admin-homepage.loadBalancer.passHostHeader=true"
       - "homepage.group=Infrastructure"
       - "homepage.name=Homepage"
       - "homepage.href=https://home.pitz.tech/"

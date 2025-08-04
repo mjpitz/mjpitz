@@ -32,6 +32,8 @@ services:
       - singlepain_n8n_data:/home/node/.n8n
       - certs:/etc/ssl/certs
     labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.n8n.entrypoints=https"
       - "traefik.http.routers.n8n.rule=Host(`workflows.home.pitz.tech`)"
       - "traefik.http.routers.n8n.service=n8n"
       - traefik.http.routers.n8n.middlewares=n8n@docker

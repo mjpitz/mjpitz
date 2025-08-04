@@ -30,10 +30,12 @@ services:
     networks:
       - shared
     labels:
-      - "traefik.http.routers.jellyfin.rule=Host(`media.home.pitz.tech`)"
-      - "traefik.http.routers.jellyfin.service=jellyfin"
-      - "traefik.http.services.jellyfin.loadbalancer.server.port=8096"
-      - "traefik.http.services.jellyfin.loadBalancer.passHostHeader=true"
+      - "traefik.enable=true"
+      - "traefik.http.routers.media-jellyfin.entrypoints=https"
+      - "traefik.http.routers.media-jellyfin.rule=Host(`media.home.pitz.tech`)"
+      - "traefik.http.routers.media-jellyfin.service=media-jellyfin"
+      - "traefik.http.services.media-jellyfin.loadbalancer.server.port=8096"
+      - "traefik.http.services.media-jellyfin.loadBalancer.passHostHeader=true"
       - "homepage.group=Media"
       - "homepage.name=Jellyfin"
       - "homepage.icon=https://upload.wikimedia.org/wikipedia/commons/4/41/Jellyfin_-_icon-transparent.svg"

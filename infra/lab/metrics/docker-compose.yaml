@@ -57,6 +57,8 @@ services:
     networks:
       - shared
     labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.metrics-collector.entrypoints=https"
       - "traefik.http.routers.metrics-collector.rule=Host(`collect.home.pitz.tech`)"
       - "traefik.http.routers.metrics-collector.service=metrics-collector"
       - "traefik.http.services.metrics-collector.loadbalancer.server.port=4318"
@@ -80,6 +82,8 @@ services:
     networks:
       - shared
     labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.metrics-grafana.entrypoints=https"
       - "traefik.http.routers.metrics-grafana.rule=Host(`metrics.home.pitz.tech`)"
       - "traefik.http.routers.metrics-grafana.service=metrics-grafana"
       - "traefik.http.services.metrics-grafana.loadbalancer.server.port=3000"
@@ -94,7 +98,7 @@ services:
   # {
   #   "mcpServers": {
   #     "metrics": {
-  #       "url": "https://mcp-metrics.home.pitz.tech/mcp/sse",
+  #       "url": "https://metrics.home.pitz.tech/mcp/sse",
   #       "disabled": false,
   #       "autoApprove": []
   #     }
@@ -118,7 +122,9 @@ services:
     networks:
       - shared
     labels:
-      - "traefik.http.routers.metrics-mcp-toolbox.rule=Host(`mcp-metrics.home.pitz.tech`)"
+      - "traefik.enable=true"
+      - "traefik.http.routers.metrics-mcp-toolbox.entrypoints=https"
+      - "traefik.http.routers.metrics-mcp-toolbox.rule=Host(`metrics.home.pitz.tech`) && PathPrefix(`/mcp`)"
       - "traefik.http.routers.metrics-mcp-toolbox.service=metrics-mcp-toolbox"
       - "traefik.http.services.metrics-mcp-toolbox.loadbalancer.server.port=5000"
       - "homepage.group=Metrics"
