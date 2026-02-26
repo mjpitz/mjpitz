@@ -1,7 +1,10 @@
 ---
 title: "Confronting CPTSD"
 pubDate: "February 26 2026"
-description: ""
+description: |
+  After struggling with treatment-resistant depression, I sought out EMDR and Ketamine therapy to address the underlying
+  trauma and Complex PTSD. In this post, I share my experience with both treatments, how they complemented each other,
+  and what it means to confront the broken parts of myself while embracing growth and healing.
 series:
   title: "Health and Healing"
   subtitle: "Part 5"
