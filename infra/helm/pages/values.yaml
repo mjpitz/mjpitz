@@ -79,10 +79,9 @@ pages:
         branch: c8-gh-pages
         interval: 5m
       - domain: go.pitz.tech
-        url: https://code.pitz.tech/pitz-tech/go.git
-        branch: main
+        url: https://github.com/mjpitz/myago.git
+        branch: site
         interval: 30m
-        directory: site
     admin:
       username: ""
       password: ""
