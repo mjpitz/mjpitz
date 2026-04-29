@@ -1,6 +1,6 @@
 <div align="center">
 
-![Banner](https://mya.sh/img/banner.png)
+![Banner](https://mya.sh/img/banner2.jpg)
 
 ### 👋 Welcome! My name is Mya.
 
