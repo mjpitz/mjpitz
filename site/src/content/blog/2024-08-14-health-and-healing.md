@@ -85,7 +85,7 @@ including helping me navigate my neurodivergence; my nutritionist is focused on 
 an athlete; my EMDR specialist was focused on past trauma and pulling me out of the fawn and freeze states.
 
 From my doctors to my friends, I have had an amazing team of women supporting me along the way. (A special shout-out to
-Tabitha, Bonnie, Wendy, Amy, Rachel, Amanda, Nicole, Sidney, and Vicki - y'all have been wonderful and I appreciate the
+Tabitha, Bonnie, Wendy, Rachel, Amanda, Nicole, and Vicki - y'all have been wonderful and I appreciate the
 help, advice, and support you've given along the way ❤️.)
 
 [SMART Recovery]: https://smartrecovery.org/
