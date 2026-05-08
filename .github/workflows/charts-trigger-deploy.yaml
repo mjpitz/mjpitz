@@ -1,20 +1,25 @@
-name: pages-build
+name: charts-trigger-deploy
+
+# This workflow triggers a site deployment when the Helm chart index.yaml is updated
+# by the charts-publish workflow
 
 on:
-  pull_request:
-    branches:
-      - main
-    paths:
-      - .github/workflows/pages-build.yaml
-      - site/**
   push:
     branches:
       - main
     paths:
-      - .github/workflows/pages-build.yaml
-      - site/**
+      - site/public/index.yaml
 
 jobs:
+  trigger-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger site deployment
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          event-type: charts-updated
+          
   build:
     runs-on: ubuntu-latest
     steps:
@@ -32,7 +37,6 @@ jobs:
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/pages-action@v1
-        if: github.ref == 'refs/heads/main'
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
