@@ -53,23 +53,24 @@ jobs:
 
       - name: Copy index.yaml to site public directory
         run: |
-          # Chart releaser creates .cr-release-packages/index.yaml
+          # Chart releaser only creates index.yaml when charts are actually released
           if [ -f .cr-release-packages/index.yaml ]; then
             cp .cr-release-packages/index.yaml site/public/index.yaml
             echo "Copied index.yaml to site/public/"
           else
-            echo "Warning: index.yaml not found in .cr-release-packages/"
-            exit 1
+            echo "No index.yaml generated (no chart releases in this run)"
           fi
 
       - name: Commit index.yaml to repository
         run: |
-          git config user.name "$GITHUB_ACTOR"
-          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-          git add site/public/index.yaml
-          if git diff --staged --quiet; then
-            echo "No changes to index.yaml"
-          else
+          # Only commit if index.yaml was updated
+          if [ -f site/public/index.yaml ] && ! git diff --quiet site/public/index.yaml; then
+            git config user.name "$GITHUB_ACTOR"
+            git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+            git add site/public/index.yaml
             git commit -m "chore: update helm chart index.yaml"
             git push
+            echo "Committed and pushed updated index.yaml"
+          else
+            echo "No changes to commit"
           fi
