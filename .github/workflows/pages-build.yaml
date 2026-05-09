@@ -25,8 +25,7 @@ jobs:
 
       - name: Build
         env:
-          HUGO_VERSION: 0.69.1
-          HUGO_ENV: production
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
         run: |
           make site/deps site/build site/test
 
