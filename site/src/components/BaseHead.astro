@@ -16,6 +16,14 @@ const { title, description, image = '/img/blog-placeholder-2.jpg', canonical } =
 const canonicalURL = canonical ? canonical : new URL(Astro.url.pathname, Astro.site).href;
 ---
 
+<!-- Prevent theme flicker - must run before any content renders -->
+<script is:inline>
+	const theme = localStorage.getItem('theme');
+	if (theme) {
+		document.documentElement.setAttribute('data-theme', theme);
+	}
+</script>
+
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />

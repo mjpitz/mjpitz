@@ -41,9 +41,10 @@ const arpeggiosVideos = await getPlaylistVideos(PLAYLISTS.arpeggios.id);
     }
 
     .cta-text {
-        color: var(--accent);
+        color: var(--color-text);
         font-weight: 500;
         margin-top: 1.5em;
+        opacity: 0.9;
     }
 
     /* Video Gallery Styles */
@@ -77,12 +78,10 @@ const arpeggiosVideos = await getPlaylistVideos(PLAYLISTS.arpeggios.id);
 
     :global(.tab:hover) {
         border-bottom-color: var(--accent);
-        color: var(--accent);
     }
 
     :global(.tab.active) {
         border-bottom-color: var(--accent);
-        color: var(--accent);
         font-weight: 700;
     }
 

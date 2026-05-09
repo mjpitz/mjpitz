@@ -1,6 +1,5 @@
 ---
 import {SITE_TITLE, SITE_AUTHOR} from "../consts";
-import { ViewTransitions } from 'astro:transitions';
 
 import BaseHead from '../components/BaseHead.astro';
 import Navigation from "../components/Navigation.astro";
@@ -12,10 +11,16 @@ const today = new Date();
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light" transition:animate="none">
 <head>
     <BaseHead title={`${title} | ${SITE_TITLE}`} description={description} image={heroImage} canonical={canonical}/>
-    <ViewTransitions />
+    <script is:inline>
+        // Prevent theme flicker during View Transitions
+        document.addEventListener('astro:before-swap', (ev) => {
+            const theme = localStorage.getItem('theme') || 'light';
+            ev.newDocument.documentElement.setAttribute('data-theme', theme);
+        });
+    </script>
     <style>
         main {
             width: 960px;

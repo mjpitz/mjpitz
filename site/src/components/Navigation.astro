@@ -38,7 +38,10 @@ const currentPath = Astro.url.pathname;
     }
 
     .desktop-nav {
-        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
     }
 
     .mobile-nav {
@@ -50,6 +53,7 @@ const currentPath = Astro.url.pathname;
         flex-direction: row;
         flex-flow: row;
         justify-content: center;
+        flex: 1;
     }
 
     .internal-links a {
