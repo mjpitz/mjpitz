@@ -31,6 +31,12 @@
     --color-text: rgb(var(--gray-dark));
     --bold-text: rgb(var(--black));
     --code: rgb(var(--gray-light));
+    
+    /* Sidebar colors for light mode */
+    --color-bg-secondary: #f8f9fa;
+    --color-text-secondary: #666;
+    --color-border: #e0e0e0;
+    --color-accent-light: rgba(135, 88, 255, 0.1);
 }
 
 [data-theme="dark"] {
@@ -38,6 +44,12 @@
     --color-text: rgb(var(--gray-light));
     --bold-text: #fff;
     --code: rgb(var(--gray-dark));
+    
+    /* Sidebar colors for dark mode */
+    --color-bg-secondary: #2a2a2a;
+    --color-text-secondary: #aaa;
+    --color-border: #4a4a4a;
+    --color-accent-light: rgba(135, 88, 255, 0.2);
 }
 
 @font-face {

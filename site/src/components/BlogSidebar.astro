@@ -1,0 +1,205 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import FormattedDate from './FormattedDate.astro';
+
+interface Props {
+    seriesPosts?: CollectionEntry<'blog'>[];
+    relatedPosts?: CollectionEntry<'blog'>[];
+    currentSlug: string;
+}
+
+const { seriesPosts = [], relatedPosts = [], currentSlug } = Astro.props;
+const showSeries = seriesPosts.length > 0;
+const showRelated = !showSeries && relatedPosts.length > 0;
+
+// Debug output
+console.log('=== BlogSidebar Debug ===');
+console.log('currentSlug:', currentSlug);
+console.log('seriesPosts.length:', seriesPosts.length);
+console.log('relatedPosts.length:', relatedPosts.length);
+console.log('showSeries:', showSeries);
+console.log('showRelated:', showRelated);
+if (seriesPosts.length > 0) {
+    console.log('Series posts:', seriesPosts.map(p => ({ slug: p.slug, title: p.data.title })));
+}
+---
+
+{showSeries || showRelated ? (
+    <aside class="blog-sidebar">
+        {showSeries && (
+            <div class="sidebar-section series-section">
+                <h3 class="sidebar-title">{seriesPosts[0]?.data.series?.title}</h3>
+                <ol class="series-list">
+                    {seriesPosts.map((post) => (
+                        <li class={post.slug === currentSlug ? 'current-post' : ''}>
+                            {post.slug === currentSlug ? (
+                                <div class="series-item-content">
+                                    <span class="series-subtitle">{post.data.series?.subtitle}</span>
+                                    <span class="series-title">{post.data.title}</span>
+                                </div>
+                            ) : (
+                                <a href={`/blog/${post.slug}`}>
+                                    <div class="series-item-content">
+                                        <span class="series-subtitle">{post.data.series?.subtitle}</span>
+                                        <span class="series-title">{post.data.title}</span>
+                                    </div>
+                                </a>
+                            )}
+                        </li>
+                    ))}
+                </ol>
+            </div>
+        )}
+        
+        {showRelated && (
+            <div class="sidebar-section related-section">
+                <h3 class="sidebar-title">Related Articles</h3>
+                <ul class="related-list">
+                    {relatedPosts.map((post) => (
+                        <li>
+                            <a href={`/blog/${post.slug}`}>
+                                <div class="related-item-content">
+                                    <span class="related-title">{post.data.title}</span>
+                                    <span class="related-date">
+                                        <FormattedDate date={post.data.pubDate} />
+                                    </span>
+                                </div>
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        )}
+    </aside>
+) : null}
+
+<style>
+    .blog-sidebar {
+        background-color: var(--color-bg-secondary);
+        border-radius: 8px;
+        padding: 1.5rem;
+        height: fit-content;
+        border: 1px solid var(--color-border);
+    }
+
+    .sidebar-section {
+        margin-bottom: 0;
+    }
+
+    .sidebar-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-top: 0;
+        margin-bottom: 1rem;
+        color: var(--bold-text);
+        border-bottom: 2px solid var(--accent);
+        padding-bottom: 0.5rem;
+    }
+
+    /* Series Styles */
+    .series-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .series-list li {
+        margin-bottom: 0.75rem;
+        padding: 0.5rem;
+        margin-left: -0.5rem;
+        margin-right: -0.5rem;
+        border-radius: 4px;
+        border-left: 3px solid transparent;
+    }
+
+    .series-list li.current-post {
+        font-weight: 600;
+        background-color: var(--color-accent-light);
+        border-left: 3px solid var(--accent);
+    }
+
+    .series-list a {
+        color: var(--color-text);
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+
+    .series-list a:hover {
+        color: var(--accent);
+    }
+
+    .series-item-content {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .series-subtitle {
+        font-size: 0.75rem;
+        color: var(--color-text-secondary);
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .series-title {
+        font-size: 0.95rem;
+        line-height: 1.3;
+    }
+
+    /* Related Styles */
+    .related-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .related-list li {
+        margin-bottom: 1rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    .related-list li:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+    }
+
+    .related-list a {
+        color: var(--color-text);
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+
+    .related-list a:hover {
+        color: var(--accent);
+    }
+
+    .related-list a:hover .related-title {
+        text-decoration: underline;
+    }
+
+    .related-item-content {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .related-title {
+        font-size: 0.95rem;
+        font-weight: 500;
+        line-height: 1.3;
+    }
+
+    .related-date {
+        font-size: 0.8rem;
+        color: var(--color-text-secondary);
+    }
+
+    @media (max-width: 768px) {
+        .blog-sidebar {
+            margin-top: 2rem;
+        }
+    }
+</style>

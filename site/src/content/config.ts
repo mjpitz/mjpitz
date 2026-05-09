@@ -9,6 +9,7 @@ const common = z.object({
             subtitle: z.string(),
         })
         .optional(),
+    tags: z.array(z.string()).optional(),
     // Transform string to Date object
     pubDate: z
         .string()
@@ -17,7 +18,7 @@ const common = z.object({
     updatedDate: z
         .string()
         .optional()
-        .transform((str: string) => (str ? new Date(str) : undefined)),
+        .transform((str: string | undefined) => (str ? new Date(str) : undefined)),
     heroImage: z.string().optional(),
     canonical: z.string().optional(),
 });

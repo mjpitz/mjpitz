@@ -1,14 +1,39 @@
 ---
 import { SITE_TITLE, SITE_AUTHOR } from "../consts";
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 
 import BaseHead from '../components/BaseHead.astro';
 import FormattedDate from "../components/FormattedDate.astro";
 import Navigation from "../components/Navigation.astro";
 import Social from "../components/Social.astro";
 import ThemeToggle from "../components/ThemeToggle.astro";
+import BlogSidebar from "../components/BlogSidebar.astro";
+import { getSeriesPosts, getRelatedPosts } from "../utils/relatedContent";
 
 const today = new Date();
-const { title, description, pubDate, updatedDate, series, heroImage, canonical } = Astro.props.frontmatter || Astro.props;
+const { title, description, pubDate, updatedDate, series, heroImage, canonical, post } = Astro.props.frontmatter || Astro.props;
+
+// Get all blog posts for series/related content
+const allBlogPosts = await getCollection('blog');
+const currentPost = post as CollectionEntry<'blog'>;
+
+// Determine what to show in sidebar
+let seriesPosts: CollectionEntry<'blog'>[] = [];
+let relatedPosts: CollectionEntry<'blog'>[] = [];
+
+console.log('=== BlogPost Debug ===');
+console.log('currentPost.slug:', currentPost.slug);
+console.log('series:', series);
+console.log('allBlogPosts.length:', allBlogPosts.length);
+
+if (series) {
+    seriesPosts = getSeriesPosts(allBlogPosts, currentPost);
+    console.log('Found', seriesPosts.length, 'posts in series');
+} else {
+    relatedPosts = getRelatedPosts(allBlogPosts, currentPost, 5);
+    console.log('Found', relatedPosts.length, 'related posts');
+}
 ---
 
 <!DOCTYPE html>
@@ -24,15 +49,28 @@ const { title, description, pubDate, updatedDate, series, heroImage, canonical }
 	</script>
 	<style>
 		main {
-			width: 960px;
-			max-width: calc(100% - 2em);
+			width: 100%;
+			max-width: 1200px;
 			margin: 0 auto;
+			padding: 0 1em;
+		}
+
+		.content-wrapper {
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: 2rem;
+			margin-top: 2rem;
+		}
+
+		@media (min-width: 1024px) {
+			.content-wrapper {
+				grid-template-columns: 1fr 320px;
+			}
 		}
 
 		div.prose {
-			width: 800px;
-			max-width: calc(100% - 2em);
-			margin: 2em auto 0;
+			width: 100%;
+			max-width: 800px;
 			color: var(--color-text);
 		}
 
@@ -117,10 +155,17 @@ const { title, description, pubDate, updatedDate, series, heroImage, canonical }
 			<hr />
 		</div>
 
-		<div class="prose">
-			<article>
-				<slot/>
-			</article>
+		<div class="content-wrapper">
+			<div class="prose">
+				<article>
+					<slot/>
+				</article>
+			</div>
+			<BlogSidebar 
+				seriesPosts={seriesPosts}
+				relatedPosts={relatedPosts}
+				currentSlug={currentPost.slug}
+			/>
 		</div>
 	</main>
 
