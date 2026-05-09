@@ -10,8 +10,12 @@ description: |
 
 slug: 2021/06/16/rpi-network-bridge
 tags:
-  - software development
-  - homestead
+  - raspberry-pi
+  - networking
+  - homelab
+  - linux
+  - hardware
+  - security
 ---
 
 It doesn't happen a lot, but every so often I come across a device that isn't wi-fi supported. This latest case was my

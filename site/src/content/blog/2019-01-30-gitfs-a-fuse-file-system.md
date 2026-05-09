@@ -8,7 +8,12 @@ description: |
 
 slug: 2019/01/30/gitfs-a-fuse-file-system
 tags:
-  - software development
+  - golang
+  - fuse
+  - filesystem
+  - git
+  - open-source
+  - devtools
 ---
 
 During my first employment at Indeed, I cloned every repository down to my machine. This approach worked for a while

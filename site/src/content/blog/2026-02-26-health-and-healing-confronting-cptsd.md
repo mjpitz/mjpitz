@@ -10,6 +10,15 @@ series:
   subtitle: "Part 5"
 
 slug: 2026/02/26/health-and-healing-confronting-cptsd
+tags:
+  - mental-health
+  - trauma
+  - therapy
+  - recovery
+  - emdr
+  - ketamine-therapy
+  - cptsd
+  - healing
 ---
 
 _Trigger Warning // mental health, depression, self-harm/suicide, substance abuse, psychedelics._

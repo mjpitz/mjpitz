@@ -9,7 +9,12 @@ description: |
 
 slug: 2020/09/21/protobuf-experience
 tags:
-  - software development
+  - protobuf
+  - grpc
+  - api-design
+  - microservices
+  - backend
+  - distributed-systems
 ---
 
 Google's [Protocol Buffers] can be a power piece of technology. Yet, I often feel they are undervalued, underutilized,

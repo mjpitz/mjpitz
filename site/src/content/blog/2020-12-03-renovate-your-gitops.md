@@ -11,7 +11,12 @@ description: |
 
 slug: 2020/12/03/renovate-your-gitops
 tags:
-  - software development
+  - gitops
+  - argocd
+  - automation
+  - kubernetes
+  - devops
+  - ci-cd
 ---
 
 Every engineering organization struggles to stay up to date with the latest versions of applications they run. When an

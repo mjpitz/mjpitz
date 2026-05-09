@@ -9,7 +9,12 @@ description: |
 
 slug: 2019/05/07/docker-buildx
 tags:
-  - software development
+  - docker
+  - containers
+  - multi-arch
+  - buildkit
+  - ci-cd
+  - raspberry-pi
 ---
 
 When you build a container image, it's typically only built for one platform (`linux`) and one architecture (`amd64`).

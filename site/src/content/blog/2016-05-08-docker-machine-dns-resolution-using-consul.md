@@ -9,7 +9,13 @@ description: |
 
 slug: 2016/05/08/docker-machine-dns-resolution-using-consul
 tags:
-  - software development
+  - docker
+  - consul
+  - dns
+  - networking
+  - devops
+  - infrastructure
+  - indeed
 ---
 
 Developers at [Indeed] have _recently_ switched over to using docker for local development. Being one of the earlier

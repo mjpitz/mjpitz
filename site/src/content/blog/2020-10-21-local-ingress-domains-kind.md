@@ -10,7 +10,12 @@ description: |
 
 slug: 2020/10/21/local-ingress-domains-kind
 tags:
-  - software development
+  - kubernetes
+  - kind
+  - networking
+  - local-development
+  - devops
+  - dns
 ---
 
 Tools like [minikube] and [kind] make it easy to get a [kubernetes] cluster up and running locally. Unfortunately these

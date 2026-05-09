@@ -11,7 +11,12 @@ description: |
 
 slug: 2020/08/03/digitalocean-setup
 tags:
-  - software development
+  - kubernetes
+  - digitalocean
+  - infrastructure
+  - cost-optimization
+  - devops
+  - cloud
 ---
 
 In a [Twitter thread] between [Vito Botta], [Alex Ellis], and [myself], we talked about how expensive [DigitalOcean] can

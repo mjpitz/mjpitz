@@ -8,7 +8,12 @@ description: |
 
 slug: 2019/10/17/kubernetes-service-precheck
 tags:
-  - software development
+  - kubernetes
+  - devops
+  - containers
+  - reliability
+  - gitops
+  - helm
 ---
 
 Back in July, I found myself needing to better coordinate deployments of my applications to

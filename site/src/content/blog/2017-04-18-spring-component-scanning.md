@@ -8,7 +8,12 @@ description: |
 
 slug: 2017/04/18/spring-component-scanning
 tags:
-  - software development
+  - java
+  - spring
+  - best-practices
+  - software-engineering
+  - architecture
+  - anti-patterns
 ---
 
 Component scanning packages can be both your best friend and worst nightmare. In this post, I will cover several bad

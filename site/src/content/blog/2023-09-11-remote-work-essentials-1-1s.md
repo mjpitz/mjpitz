@@ -7,6 +7,13 @@ description: |
 
 canonical: https://crabnebula.dev/blog/remote-work-essentials-1-1s/
 slug: 2023/09/11/remote-work-essentials-1-1s
+tags:
+  - remote-work
+  - management
+  - team-culture
+  - communication
+  - productivity
+  - leadership
 ---
 
 [Camille Fournier]: https://www.linkedin.com/in/camille-fournier-9011812

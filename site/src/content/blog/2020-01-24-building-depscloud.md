@@ -9,7 +9,12 @@ description: |
 
 slug: 2020/01/24/building-depscloud
 tags:
-  - software development
+  - open-source
+  - golang
+  - typescript
+  - grpc
+  - project-management
+  - architecture
 ---
 
 Over the last year, I've been heavily working on [deps.cloud](https://deps.cloud). deps.cloud draws it's inspiration

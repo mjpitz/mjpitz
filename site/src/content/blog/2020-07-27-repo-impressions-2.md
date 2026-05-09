@@ -8,7 +8,12 @@ description: |
 
 slug: 2020/07/27/repo-impressions-2
 tags:
-  - software development
+  - github
+  - analytics
+  - open-source
+  - marketing
+  - metrics
+  - google-analytics
 ---
 
 Last week, I put a [tracking pixel](/blog/2020/07/17/repo-impression-tracking) on my GitHub repositories. And I've got

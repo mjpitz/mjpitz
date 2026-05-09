@@ -9,7 +9,12 @@ description: |
 
 slug: 2015/12/05/introducing-laas
 tags:
-  - software development
+  - nodejs
+  - database
+  - leveldb
+  - open-source
+  - rest-api
+  - javascript
 ---
 
 [LAAS][] is an abbreviation for [LevelDB][] as a service. [LevelDB][] is an implementation of a [log structured merge

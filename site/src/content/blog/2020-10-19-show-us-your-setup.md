@@ -10,8 +10,12 @@ description: |
 
 slug: 2020/10/19/show-us-your-setup
 tags:
-  - software development
-  - work from home
+  - hardware
+  - homelab
+  - workspace
+  - remote-work
+  - productivity
+  - raspberry-pi
 ---
 
 Indeed had an internal blog series called "Show us Your Setup." It was a great way to get an idea of others workspaces,

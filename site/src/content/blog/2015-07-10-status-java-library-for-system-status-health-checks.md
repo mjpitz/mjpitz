@@ -9,7 +9,14 @@ description: |
 canonical: https://engineering.indeedblog.com/blog/2015/07/status-java-library-for-system-status-health-checks/
 slug: 2015/07/10/status-java-library-for-system-status-health-checks
 tags:
-  - software development
+  - java
+  - open-source
+  - monitoring
+  - health-checks
+  - microservices
+  - spring
+  - indeed
+  - library
 ---
 
 We are excited to highlight the open source availability of [Status], a Java library that can report a system’s status

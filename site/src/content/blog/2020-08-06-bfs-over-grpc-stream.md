@@ -10,7 +10,12 @@ description: |
 
 slug: 2020/08/06/bfs-over-grpc-stream
 tags:
-  - software development
+  - grpc
+  - algorithms
+  - graph-database
+  - golang
+  - backend
+  - distributed-systems
 ---
 
 [deps.cloud] is an open source project that I started. It's a tool that helps companies understand how their projects

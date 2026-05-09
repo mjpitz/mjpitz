@@ -9,7 +9,12 @@ description: |
 
 slug: 2018/10/28/lambda-handler-lifetime
 tags:
-  - software development
+  - aws
+  - lambda
+  - serverless
+  - nodejs
+  - architecture
+  - performance
 ---
 
 While working at Dosh, I had pretty heavy exposure to managing NodeJS services running in AWS Lambda. During that time,

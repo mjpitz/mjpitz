@@ -10,6 +10,13 @@ description: |
   required great sacrifice along the way.
 
 slug: 2024/08/14/health-and-healing
+tags:
+  - mental-health
+  - recovery
+  - personal-growth
+  - therapy
+  - wellness
+  - self-care
 ---
 
 _Trigger Warning // mental health, depression, self-harm/suicide, and substance abuse._

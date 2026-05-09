@@ -8,6 +8,12 @@ description: |
   my child and I came up with a way to play this game using a single deck of cards.
 
 slug: 2024/08/30/countdown
+tags:
+  - games
+  - family
+  - math
+  - entertainment
+  - creativity
 ---
 
 Over the summer, I made a more conscious effort to spend dedicated one-on-one time with my child. We often spend our

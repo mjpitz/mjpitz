@@ -8,7 +8,12 @@ description: |
 
 slug: 2017/04/01/spring-bean-method-invocation
 tags:
-  - software development
+  - java
+  - spring
+  - best-practices
+  - software-engineering
+  - indeed
+  - architecture
 ---
 
 In my day to day development, I spend a fair bit of time working with [Spring] since it offers a lot of scaffolding to

@@ -10,7 +10,12 @@ description: |
 
 slug: 2020/11/10/path-based-routing-k8s
 tags:
-  - software development
+  - kubernetes
+  - networking
+  - ingress
+  - architecture
+  - devops
+  - cloud
 ---
 
 Path based routing can be an extremely useful feature. It enables you to serve a single page app and an API on the same

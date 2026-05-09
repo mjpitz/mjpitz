@@ -9,7 +9,12 @@ description: |
 
 slug: 2020/07/17/repo-impression-tracking
 tags:
-  - software development
+  - github
+  - analytics
+  - open-source
+  - marketing
+  - metrics
+  - google-analytics
 ---
 
 When working on open source projects, I often wonder how to improve the experience for my users. In order to improve my

@@ -9,7 +9,12 @@ description: |
 
 slug: 2020/08/02/repo-impressions-3
 tags:
-  - software development
+  - github
+  - analytics
+  - open-source
+  - marketing
+  - metrics
+  - google-analytics
 ---
 
 In this post, I bring a conclusion to my recent series on tracking impressions on repositories. While it's the last in

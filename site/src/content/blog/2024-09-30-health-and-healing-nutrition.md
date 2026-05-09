@@ -12,6 +12,13 @@ description: |
   my life on an ongoing basis.
 
 slug: 2024/09/30/health-and-healing-nutrition
+tags:
+  - mental-health
+  - nutrition
+  - eating-disorders
+  - recovery
+  - wellness
+  - self-care
 ---
 
 _Trigger Warning // mental health, disordered eating, near-death experiences._

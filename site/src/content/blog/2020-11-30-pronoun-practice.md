@@ -12,9 +12,12 @@ description: |
 
 slug: 2020/11/30/pronoun-practice
 tags:
-  - management
+  - diversity
   - inclusion
   - pronouns
+  - management
+  - workplace
+  - communication
 ---
 
 Historically, my blog has largely been focused on technology. This was because of where I was in my career. And yet, my

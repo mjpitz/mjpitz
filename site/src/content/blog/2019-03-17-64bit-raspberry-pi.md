@@ -9,7 +9,12 @@ description: |
 
 slug: 2019/03/17/64bit-raspberry-pi
 tags:
-  - software development
+  - raspberry-pi
+  - linux
+  - ubuntu
+  - arm64
+  - homelab
+  - hardware
 ---
 
 I was quite surprised to see how under documented installing a 64-bit operating system onto a Raspberry Pi is. Many

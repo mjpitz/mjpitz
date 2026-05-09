@@ -7,7 +7,12 @@ description: |
 
 slug: 2019/04/10/k8s-k3s-rpi-oh-my
 tags:
-  - software development
+  - kubernetes
+  - k3s
+  - raspberry-pi
+  - homelab
+  - devops
+  - infrastructure
 ---
 
 Over the last few days, I've been revisiting [Kubernetes](https://kubernetes.io) on my Raspberry Pi cluster. I hope to

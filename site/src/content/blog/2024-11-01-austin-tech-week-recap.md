@@ -9,6 +9,13 @@ description: |
   share a bit about my experience, the sessions I chose to attend, and some of my key takeaways from the conference.
 
 slug: 2024/11/01/austin-tech-week-recap
+tags:
+  - conferences
+  - startups
+  - networking
+  - fundraising
+  - entrepreneurship
+  - community
 ---
 
 Formally known as Austin Startup Week, [Austin Tech Week][] provides founders, funders, and freelancers the opportunity

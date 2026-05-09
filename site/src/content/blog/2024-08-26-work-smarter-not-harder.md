@@ -10,6 +10,13 @@ description: |
   working smarter, and not harder, led to less hands-on work, and being able to spend my day playing pool (billiards).
 
 slug: 2024/08/26/work-smarter-not-harder
+tags:
+  - automation
+  - project-management
+  - java
+  - spring
+  - efficiency
+  - software-engineering
 ---
 
 I used to highlight this project in my resumé, but I've found that it doesn't really fit the format of a traditional

@@ -10,7 +10,14 @@ description: |
 canonical: https://engineering.indeedblog.com/blog/2017/01/degrade-functionality/
 slug: 2017/01/19/gracefully-degrading-functionality-using-status
 tags:
-  - software development
+  - java
+  - open-source
+  - monitoring
+  - health-checks
+  - microservices
+  - reliability
+  - indeed
+  - library
 ---
 
 In a previous [blog post](/blog/2015/07/10/status-java-library-for-system-status-health-checks/), we described how to

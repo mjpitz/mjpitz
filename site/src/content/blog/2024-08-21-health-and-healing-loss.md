@@ -10,6 +10,13 @@ description: |
   relationships in my life, to the death of a chosen family member.
 
 slug: 2024/08/21/health-and-healing-loss
+tags:
+  - mental-health
+  - grief
+  - relationships
+  - personal-growth
+  - loss
+  - healing
 ---
 
 _Trigger Warning // mental health, suicide, loss, and grief._

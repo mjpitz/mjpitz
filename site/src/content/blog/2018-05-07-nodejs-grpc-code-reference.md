@@ -9,7 +9,12 @@ description: |
 
 slug: 2018/05/07/nodejs-grpc-code-reference
 tags:
-  - software development
+  - nodejs
+  - grpc
+  - javascript
+  - microservices
+  - api
+  - reference
 ---
 
 While working at Indeed, I did a fair amount with [gRPC](https://grpc.io/). I became rather familiar with the Java, Go,

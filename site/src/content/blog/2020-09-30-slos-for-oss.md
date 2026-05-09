@@ -10,7 +10,12 @@ description: |
 
 slug: 2020/09/30/slos-for-oss
 tags:
-  - software development
+  - sre
+  - reliability
+  - open-source
+  - monitoring
+  - devops
+  - operations
 ---
 
 Open source software has been used to build organizations for years. From libraries to complex infrastructure systems,

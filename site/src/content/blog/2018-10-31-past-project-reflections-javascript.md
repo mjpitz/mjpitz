@@ -8,7 +8,12 @@ description: |
 
 slug: 2018/10/31/past-project-reflections-javascript
 tags:
+  - javascript
+  - typescript
+  - nodejs
   - reflection
+  - career
+  - software-engineering
 ---
 
 Every now and then, a friend of mine reaches out and discuss previous projects we had worked on together. As we looked

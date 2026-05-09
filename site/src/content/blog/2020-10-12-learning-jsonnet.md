@@ -9,7 +9,12 @@ description: |
 
 slug: 2020/10/12/learning-jsonnet
 tags:
-  - software development
+  - jsonnet
+  - monitoring
+  - prometheus
+  - grafana
+  - devops
+  - configuration
 ---
 
 [Jsonnet] is a powerful data templating language. It extends JSON with variables, conditionals, functions, imports and

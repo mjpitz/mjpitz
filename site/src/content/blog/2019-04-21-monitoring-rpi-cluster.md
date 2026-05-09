@@ -9,7 +9,12 @@ description: |
 
 slug: 2019/04/21/monitoring-rpi-cluster
 tags:
-  - software development
+  - raspberry-pi
+  - monitoring
+  - prometheus
+  - grafana
+  - homelab
+  - observability
 ---
 
 In my last few posts, I talked a bit about my at home development cluster. Due to the flexibility of my cluster, I

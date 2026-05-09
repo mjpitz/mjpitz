@@ -9,7 +9,13 @@ description: |
 canonical: https://engineering.indeedblog.com/blog/2017/06/delaying-messages/
 slug: 2017/06/14/delaying-message-processing
 tags:
-  - software development
+  - rabbitmq
+  - messaging
+  - architecture
+  - reliability
+  - microservices
+  - indeed
+  - queue
 ---
 
 At Indeed, we always consider what’s best for the job seeker. When a job seeker applies for a job, we want them to have

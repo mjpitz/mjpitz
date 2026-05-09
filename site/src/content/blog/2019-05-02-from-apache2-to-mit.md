@@ -6,7 +6,10 @@ description: |
 
 slug: 2019/05/02/from-apache2-to-mit
 tags:
-  - software development
+  - open-source
+  - licensing
+  - legal
+  - software-engineering
 ---
 
 Yesterday, I decided to switch the license that I apply to my personal projects. Many open source projects use the

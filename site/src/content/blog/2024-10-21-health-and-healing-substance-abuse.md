@@ -11,6 +11,13 @@ description: |
   those groups can be. While I’m still quite spiritual, this approach doesn’t work for me and many others.
 
 slug: 2024/10/21/health-and-healing-substance-abuse
+tags:
+  - mental-health
+  - addiction
+  - recovery
+  - sobriety
+  - therapy
+  - wellness
 ---
 
 _Trigger Warning // mental health, depression, self-harm/suicide, and substance abuse._

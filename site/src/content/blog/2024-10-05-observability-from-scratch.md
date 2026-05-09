@@ -10,6 +10,14 @@ description: |
   stacks out there today in favor of one of my own design.
 
 slug: 2024/10/05/observability-from-scratch
+tags:
+  - observability
+  - monitoring
+  - clickhouse
+  - opentelemetry
+  - grafana
+  - infrastructure
+  - devops
 ---
 
 Back in February, I found myself quite frustrated with many of the "modern" observability stacks on the open source

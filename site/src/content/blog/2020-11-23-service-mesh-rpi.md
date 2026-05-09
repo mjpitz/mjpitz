@@ -10,7 +10,12 @@ description: |
 
 slug: 2020/11/23/service-mesh-rpi
 tags:
-  - software development
+  - service-mesh
+  - consul
+  - kubernetes
+  - raspberry-pi
+  - networking
+  - infrastructure
 ---
 
 Many people have asked how to support deploying service mesh to Raspberry Pis. It wasn't until September that this

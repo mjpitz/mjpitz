@@ -9,7 +9,11 @@ description: |
 
 slug: 2020/01/27/returning-to-indeed
 tags:
+  - career
   - reflection
+  - personal-growth
+  - decision-making
+  - work-life-balance
 ---
 
 In November 2018, I decided to return to [Indeed.com](https://indeed.com). The decision to return did not come easy.

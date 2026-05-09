@@ -8,7 +8,12 @@ description: |
 
 slug: 2019/04/12/rpi-cluster-setup
 tags:
-  - software development
+  - raspberry-pi
+  - kubernetes
+  - k3s
+  - docker
+  - homelab
+  - infrastructure
 ---
 
 Previously, I talked about the different orchestration technologies that I've run on my Raspberry Pi cluster. That post
