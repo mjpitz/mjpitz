@@ -1,76 +1,122 @@
 ---
 layout: "../layouts/Page.astro"
 title: "Helm Charts"
-heroImage: "/img/helm.png"
 ---
 
-My personal helm charts are provided under the [MIT License][license]. While I'm the primary consumer of these charts, I
-have made them generally available for others to use. You may be able to find some of these charts elsewhere, but many
-of my deployments vary quite a bit from existing ones.
+<div class="intro">
+My personal helm charts are provided under the [MIT License][license]. While I'm the primary consumer of these charts, I have made them generally available for others to use.
 
 ```shell
 helm repo add mya https://mya.sh
 ```
 
 [license]: https://github.com/mjpitz/mjpitz/tree/main/charts/LICENSE
+</div>
 
-<br />
+<div class="security-section">
 
-## Provenance and Integrity
+### 🔐 Provenance and Integrity
 
-I recently introduced GPG signing to my helm charts. If you'd like to verify signatures before deployment, you can
-receive my GPG public key from [Ubuntu's Keyserver][] using the following command:
+Charts are GPG signed for security. Verify signatures before deployment:
 
 ```shell
 gpg --recv-keys 0x0fca5e3c09dfb314
+helm install --verify ...
 ```
 
-Once you've received my GPG key, you can verify charts during install using the `helm install --verify`.
+[Get my GPG key from Ubuntu's Keyserver →](https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xfd0f1e353074e15a4883bc630fca5e3c09dfb314)
 
-[Ubuntu's Keyserver]: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xfd0f1e353074e15a4883bc630fca5e3c09dfb314
+</div>
 
-## Contents
+## Available Charts
 
-[`12factor`](https://github.com/mjpitz/mjpitz/tree/main/charts/12factor)<br/>
+<div class="charts-grid">
+
+[**`12factor`**](https://github.com/mjpitz/mjpitz/tree/main/charts/12factor)  
 Easily deploy an application that conforms to 12factor application patterns.
 
-[`cognative`](https://github.com/mjpitz/mjpitz/tree/main/charts/cognative)<br/>
+[**`cognative`**](https://github.com/mjpitz/mjpitz/tree/main/charts/cognative)  
 Deploy the [Cognative][] business intelligence and operations platform.
 
-[`drone`](https://github.com/mjpitz/mjpitz/tree/main/charts/drone)<br/>
+[**`drone`**](https://github.com/mjpitz/mjpitz/tree/main/charts/drone)  
 Deploys a [Drone][] server and optionally configure a `digitalocean` or `kubernetes` runner.
 
-[`gitea`](https://github.com/mjpitz/mjpitz/tree/main/charts/gitea)<br/>
+[**`gitea`**](https://github.com/mjpitz/mjpitz/tree/main/charts/gitea)  
 Git with a cup of tea. [Gitea][] is a painless, self-hosted Git Service.
 
-[`litestream`](https://github.com/mjpitz/mjpitz/tree/main/charts/litestream)<br/>
+[**`litestream`**](https://github.com/mjpitz/mjpitz/tree/main/charts/litestream)  
 Easily add a [Litestream][] sidecar to any `Deployment`, `DaemonSet`, or `StatefulSet`.
 
-[`maddy`](https://github.com/mjpitz/mjpitz/tree/main/charts/maddy)<br/>
+[**`maddy`**](https://github.com/mjpitz/mjpitz/tree/main/charts/maddy)  
 Deploys a single-tenant Maddy email server.
 
-[`raw`](https://github.com/mjpitz/mjpitz/tree/main/charts/raw)<br/>
+[**`raw`**](https://github.com/mjpitz/mjpitz/tree/main/charts/raw)  
 Deploys raw Kubernetes resources to the cluster.
 
-[`redis`](https://github.com/mjpitz/mjpitz/tree/main/charts/redis)<br/>
+[**`redis`**](https://github.com/mjpitz/mjpitz/tree/main/charts/redis)  
 Deploys an inconsistent Redis cluster, intended to be fronted by an [Envoy][] sidecar.
 
-[`redis-queue`](https://github.com/mjpitz/mjpitz/tree/main/charts/redis-queue)<br/>
+[**`redis-queue`**](https://github.com/mjpitz/mjpitz/tree/main/charts/redis-queue)  
 Deploy a single durable Redis instance, intended to be used as a work queue.
 
-[`redis-raft`](https://github.com/mjpitz/mjpitz/tree/main/charts/redis-raft)<br/>
+[**`redis-raft`**](https://github.com/mjpitz/mjpitz/tree/main/charts/redis-raft)  
 Deploy a consistent, partition-tolerant Redis cluster backed by the Raft consensus protocol.
 
-[`registry`](https://github.com/mjpitz/mjpitz/tree/main/charts/registry)<br/>
+[**`registry`**](https://github.com/mjpitz/mjpitz/tree/main/charts/registry)  
 Deploys a replicated container registry, with optional caching provided by `redis`.
 
-[`renovate`](https://github.com/mjpitz/mjpitz/tree/main/charts/renovate)<br/>
+[**`renovate`**](https://github.com/mjpitz/mjpitz/tree/main/charts/renovate)  
 Deploys Renovate for automatically managing your software dependencies.
 
-[`storj`](https://github.com/mjpitz/mjpitz/tree/main/charts/storj)<br/>
+[**`storj`**](https://github.com/mjpitz/mjpitz/tree/main/charts/storj)  
 Easily add a Storj S3 Gateway as a sidecar to any `Deployment`, `DaemonSet`, or `StatefulSet`.
 
-<br />
+</div>
+
+<style>{`
+.intro {
+  margin-bottom: 2em;
+}
+
+.security-section {
+  background: rgba(var(--gray-light), 0.1);
+  padding: 1.5em;
+  border-radius: 12px;
+  margin: 2em 0;
+  border-left: 4px solid var(--accent);
+}
+
+.security-section h3 {
+  margin-top: 0;
+}
+
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin: 1em 0;
+}
+
+.charts-grid > p {
+  padding: 1.25rem;
+  background: rgba(var(--gray-light), 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(var(--gray-light), 0.2);
+  transition: all 0.2s ease;
+  margin: 0;
+}
+
+.charts-grid > p:hover {
+  box-shadow: 0 4px 12px rgba(var(--gray), 0.1);
+  border-color: var(--accent);
+}
+
+@media (max-width: 720px) {
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+`}</style>
 
 [Cognative]: https://mjpitz.github.io/cognative
 [Drone]: https://www.drone.io

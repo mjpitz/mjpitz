@@ -1,0 +1,331 @@
+---
+import Page from "../layouts/Page.astro";
+import VideoGallery from "../components/VideoGallery";
+import { getPlaylistVideos, PLAYLISTS } from "../lib/youtube";
+
+const algorithmsVideos = await getPlaylistVideos(PLAYLISTS.algorithms.id);
+const arpeggiosVideos = await getPlaylistVideos(PLAYLISTS.arpeggios.id);
+---
+
+<Page title="Media" description="My coding work (Algorithms) and piano performances (Arpeggios)">
+    <div class="media-intro">
+        <p>
+            Welcome to my creative space! Here you'll find two distinct collections that showcase different aspects of my passions:
+        </p>
+        <ul class="collection-list">
+            <li><strong>💻 Algorithms</strong> - My coding work, technical talks, and software engineering projects</li>
+            <li><strong>🎹 Arpeggios</strong> - My piano performances and musical pieces</li>
+        </ul>
+        <p class="cta-text">Select a tab below to explore each collection.</p>
+    </div>
+
+    <VideoGallery 
+        client:load
+        algorithmsVideos={algorithmsVideos} 
+        arpeggiosVideos={arpeggiosVideos} 
+    />
+</Page>
+
+<style>
+    .media-intro {
+        margin-bottom: 2em;
+    }
+
+    .collection-list {
+        margin: 1.5em 0;
+        padding-left: 1.5em;
+    }
+
+    .collection-list li {
+        margin: 0.5em 0;
+    }
+
+    .cta-text {
+        color: var(--accent);
+        font-weight: 500;
+        margin-top: 1.5em;
+    }
+
+    /* Video Gallery Styles */
+    :global(.video-gallery) {
+        margin-top: 2em;
+    }
+
+    :global(.tabs) {
+        display: flex;
+        gap: 1rem;
+        border-bottom: 2px solid rgb(var(--gray-light));
+        margin-bottom: 2em;
+        flex-wrap: wrap;
+    }
+
+    :global(.tab) {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 1rem 1.5rem;
+        background: transparent;
+        border: none;
+        border-bottom: 3px solid transparent;
+        cursor: pointer;
+        font-size: 1.1rem;
+        font-family: "Atkinson", sans-serif;
+        color: var(--color-text);
+        transition: all 0.2s ease;
+        margin-bottom: -2px;
+    }
+
+    :global(.tab:hover) {
+        border-bottom-color: var(--accent);
+        color: var(--accent);
+    }
+
+    :global(.tab.active) {
+        border-bottom-color: var(--accent);
+        color: var(--accent);
+        font-weight: 700;
+    }
+
+    :global(.tab-icon) {
+        font-size: 1.5rem;
+    }
+
+    :global(.tab-count) {
+        background: var(--accent);
+        color: white;
+        padding: 0.2rem 0.6rem;
+        border-radius: 12px;
+        font-size: 0.85rem;
+        font-weight: 700;
+    }
+
+    :global(.playlist-description) {
+        text-align: center;
+        margin-bottom: 2em;
+        font-style: italic;
+        color: var(--color-text);
+        opacity: 0.9;
+    }
+
+    :global(.video-player-container) {
+        margin: 2em 0;
+        padding: 2em;
+        background: rgba(var(--gray-light), 0.1);
+        border-radius: 12px;
+        animation: slideIn 0.3s ease-out;
+        scroll-margin-top: 2rem;
+    }
+
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    :global(.video-player) {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        height: 0;
+        overflow: hidden;
+        border-radius: 8px;
+        margin-bottom: 1em;
+    }
+
+    :global(.video-player iframe) {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    :global(.close-video) {
+        display: block;
+        margin: 0 auto;
+        padding: 0.75rem 1.5rem;
+        background: var(--accent);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-family: "Atkinson", sans-serif;
+        font-size: 1rem;
+        transition: all 0.2s ease;
+    }
+
+    :global(.close-video:hover) {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(135, 88, 255, 0.3);
+    }
+
+    :global(.video-grid) {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2em;
+    }
+
+    :global(.video-card) {
+        cursor: pointer;
+        border-radius: 12px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        background: var(--color-bg);
+        border: 1px solid rgba(var(--gray-light), 0.2);
+    }
+
+    :global(.video-card:hover) {
+        transform: translateY(-4px);
+        box-shadow: var(--box-shadow);
+    }
+
+    :global(.video-card:focus) {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+    }
+
+    :global(.video-thumbnail) {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        overflow: hidden;
+        background: rgb(var(--gray-dark));
+    }
+
+    :global(.video-thumbnail img) {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    :global(.play-overlay) {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.3);
+        opacity: 0;
+        transition: opacity 0.2s ease;
+    }
+
+    :global(.video-card:hover .play-overlay) {
+        opacity: 1;
+    }
+
+    :global(.play-icon) {
+        width: 64px;
+        height: 64px;
+        color: white;
+        filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
+    }
+
+    :global(.video-info) {
+        padding: 1.25rem;
+        min-height: 120px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    :global(.video-title) {
+        font-size: 1.05rem;
+        margin: 0 0 0.75rem 0;
+        color: var(--bold-text);
+        line-height: 1.5;
+        font-weight: 600;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        flex-shrink: 0;
+    }
+
+    :global(.video-description) {
+        font-size: 0.9rem;
+        color: var(--color-text);
+        margin: 0;
+        line-height: 1.6;
+        opacity: 0.75;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    :global(.no-videos) {
+        text-align: center;
+        color: var(--color-text);
+        font-style: italic;
+        padding: 2em;
+    }
+
+    /* Carousel Controls */
+    :global(.carousel-info) {
+        text-align: center;
+        margin-bottom: 1.5em;
+        color: var(--color-text);
+        opacity: 0.8;
+    }
+
+    :global(.page-indicator) {
+        font-size: 0.95rem;
+    }
+
+    :global(.carousel-nav) {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 2em;
+    }
+
+    :global(.nav-button) {
+        padding: 0.75rem 1.5rem;
+        background: var(--accent);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-family: "Atkinson", sans-serif;
+        font-size: 1rem;
+        transition: all 0.2s ease;
+        font-weight: 600;
+    }
+
+    :global(.nav-button:hover:not(:disabled)) {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(135, 88, 255, 0.3);
+    }
+
+    :global(.nav-button:disabled) {
+        background: rgba(var(--gray-light), 0.3);
+        color: var(--color-text);
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    @media (max-width: 720px) {
+        :global(.video-grid) {
+            grid-template-columns: 1fr;
+        }
+
+        :global(.tab) {
+            flex: 1;
+            justify-content: center;
+            min-width: 120px;
+        }
+
+        :global(.tab-text) {
+            display: none;
+        }
+    }
+</style>

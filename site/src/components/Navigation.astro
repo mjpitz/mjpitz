@@ -1,16 +1,24 @@
 ---
 import HeaderLink from "./HeaderLink.astro";
 import ThemeToggle from "./ThemeToggle.astro";
+import MobileMenu from "./MobileMenu";
+
+const currentPath = Astro.url.pathname;
 ---
 
 <nav>
-    <div class="internal-links">
-        <HeaderLink href="/">About</HeaderLink>
-        <HeaderLink href="/blog">Blog</HeaderLink>
-        <HeaderLink href="/charts">Charts</HeaderLink>
-        <HeaderLink href="/media">Media</HeaderLink>
-        <HeaderLink href="/collab">Collaborate</HeaderLink>
-        <HeaderLink href="/ai">AI</HeaderLink>
+    <div class="desktop-nav">
+        <div class="internal-links">
+            <HeaderLink href="/">About</HeaderLink>
+            <HeaderLink href="/blog">Blog</HeaderLink>
+            <HeaderLink href="/charts">Charts</HeaderLink>
+            <HeaderLink href="/media">Media</HeaderLink>
+            <HeaderLink href="/collab">Collaborate</HeaderLink>
+            <HeaderLink href="/ai">AI</HeaderLink>
+        </div>
+    </div>
+    <div class="mobile-nav">
+        <MobileMenu client:load currentPath={currentPath} />
     </div>
 </nav>
 
@@ -25,6 +33,18 @@ import ThemeToggle from "./ThemeToggle.astro";
         text-decoration: none;
     }
 
+    nav {
+        position: relative;
+    }
+
+    .desktop-nav {
+        display: block;
+    }
+
+    .mobile-nav {
+        display: none;
+    }
+
     .internal-links {
         display: flex;
         flex-direction: row;
@@ -37,10 +57,136 @@ import ThemeToggle from "./ThemeToggle.astro";
         color: var(--color-text);
         border-bottom: 4px solid transparent;
         text-decoration: none;
+        transition: all 0.2s ease;
+    }
+
+    .internal-links a:hover {
+        border-bottom-color: var(--accent);
     }
 
     .internal-links a.active {
         text-decoration: none;
         border-bottom-color: var(--accent);
+        font-weight: 700;
+    }
+
+    @media (max-width: 768px) {
+        .desktop-nav {
+            display: none;
+        }
+
+        .mobile-nav {
+            display: block;
+        }
+    }
+
+    /* Mobile Menu Styles */
+    :global(.mobile-menu) {
+        position: relative;
+    }
+
+    :global(.hamburger) {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 2rem;
+        height: 2rem;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        z-index: 10;
+        margin: 0 auto;
+    }
+
+    :global(.hamburger span) {
+        width: 2rem;
+        height: 0.25rem;
+        background: var(--color-text);
+        border-radius: 10px;
+        transition: all 0.3s linear;
+        position: relative;
+        transform-origin: 1px;
+    }
+
+    :global(.hamburger span.open:nth-child(1)) {
+        transform: rotate(45deg);
+    }
+
+    :global(.hamburger span.open:nth-child(2)) {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+
+    :global(.hamburger span.open:nth-child(3)) {
+        transform: rotate(-45deg);
+    }
+
+    :global(.menu-overlay) {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        animation: fadeIn 0.2s ease;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    :global(.menu-content) {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: var(--color-bg);
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: var(--box-shadow);
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        min-width: 250px;
+        animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translate(-50%, -40%);
+        }
+        to {
+            opacity: 1;
+            transform: translate(-50%, -50%);
+        }
+    }
+
+    :global(.menu-content a) {
+        padding: 1rem;
+        color: var(--color-text);
+        text-decoration: none;
+        font-size: 1.2rem;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+        text-align: center;
+    }
+
+    :global(.menu-content a:hover) {
+        background: rgba(var(--accent), 0.1);
+        color: var(--accent);
+    }
+
+    :global(.menu-content a.active) {
+        background: var(--accent);
+        color: white;
+        font-weight: 700;
     }
 </style>

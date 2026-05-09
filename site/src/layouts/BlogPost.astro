@@ -1,5 +1,6 @@
 ---
 import { SITE_TITLE, SITE_AUTHOR } from "../consts";
+import { ViewTransitions } from 'astro:transitions';
 
 import BaseHead from '../components/BaseHead.astro';
 import FormattedDate from "../components/FormattedDate.astro";
@@ -15,6 +16,7 @@ const { title, description, pubDate, updatedDate, series, heroImage, canonical }
 <html lang="en">
 <head>
 	<BaseHead title={`${title} | ${SITE_TITLE}`} description={description} image={heroImage} canonical={canonical} />
+	<ViewTransitions />
 	<style>
 		main {
 			width: 960px;

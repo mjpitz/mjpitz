@@ -1,5 +1,6 @@
 ---
 import {SITE_TITLE, SITE_AUTHOR} from "../consts";
+import { ViewTransitions } from 'astro:transitions';
 
 import BaseHead from '../components/BaseHead.astro';
 import Navigation from "../components/Navigation.astro";
@@ -14,6 +15,7 @@ const today = new Date();
 <html lang="en">
 <head>
     <BaseHead title={`${title} | ${SITE_TITLE}`} description={description} image={heroImage} canonical={canonical}/>
+    <ViewTransitions />
     <style>
         main {
             width: 960px;

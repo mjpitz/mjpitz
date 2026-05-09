@@ -3,33 +3,53 @@ layout: "../layouts/Page.astro"
 title: "AI Usage"
 ---
 
-**Last Modified:** January 26, 2025
+**Last Modified:** May 8, 2026
 
-Before getting into how I use artificial intelligence (AI) on my website, I first want to call out that I do _ALL_ of
-my writing myself. Since I first started writing technically in 2014, I have never been comfortable working with
-ghostwriters or have other people write / speak on my behalf. So why would I treat AI any different? I don't believe AI
-is as trustworthy as a ghostwriter would be, so I've been very selective about how it gets incorporated into my work.
+Before getting into how I use artificial intelligence (AI), I first want to call out that I do _ALL_ of my writing 
+myself. Since I first started writing technically in 2014, I have never been comfortable working with ghostwriters or 
+having other people write or speak on my behalf. So why would I treat AI any different? I don't believe AI is as 
+trustworthy as a ghostwriter would be, so I've been very selective about how it gets incorporated into my work.
 
 ### Technology
 
-I am fortunate enough to have experimented around with a number of different technologies and have sufficient resources
-on my local development machine to be able to run a number of different models. While the cloud hosted solutions offer
-a lot of value, I don't have an infinite amount of money to throw at dozens of different solutions.
+I am fortunate enough to have experimented with a number of different technologies and have sufficient resources on my 
+local development machine to run various models. While cloud-hosted solutions offer a lot of value, I don't have an 
+infinite amount of money to throw at dozens of different solutions.
 
-For a short period of time, I paid for [MidJourney][] to generate images but recently stopped since I no longer have a
-strong need for them. In the future, I may resume this service but for now it's served its purpose.
+For anything text-related, I leverage [Ollama][] and various AI assistants like [Claude][] and [Cline][] for development work.
 
-For anything related to text, I leverage [Ollama][] and [Enchanted][] locally.
-
-[MidJourney]: https://www.midjourney.com/
 [Ollama]: https://ollama.com/
-[Enchanted]: https://github.com/gluonfield/enchanted
+[Claude]: https://claude.ai/
+[Cline]: https://github.com/cline/cline
 
-### Editing Process
+### How I Use AI
 
-I predominantly use AI to help edit my own writing. This includes:
+My AI usage has evolved significantly over time. Here's how I incorporate it into my workflow:
+
+#### Writing & Editing
+
+I use AI to help edit my own writing, but never to generate it. This includes:
 
 - Exploring alternative wordings for sentences to reduce complexity
 - Iterating on statements to improve clarity and strength
-- Identifying problematic areas of articles that may need further detail
+- Identifying problematic areas that may need further detail
 - Turning text into speech when proofreading articles
+
+#### Development & Prototyping
+
+This is where AI has become invaluable to my workflow:
+
+- **Rapid Prototyping**: Building proof-of-concept implementations quickly to validate ideas
+- **DevOps Tooling**: Creating automation scripts, CI/CD pipelines, and infrastructure code
+- **Boilerplate Generation**: Speeding up the creation of repetitive code structures
+- **Code Review**: Getting suggestions for improvements and identifying potential issues
+- **Documentation**: Generating initial drafts of technical documentation that I then refine
+
+The key distinction is that I treat AI-generated code as a starting point that requires my review, understanding, and 
+refinement. I never blindly accept AI suggestions without comprehending what they do and ensuring they align with best 
+practices and my specific requirements.
+
+### My Philosophy
+
+AI is a tool, not a replacement for critical thinking and expertise. I use it to accelerate certain tasks and explore 
+possibilities faster, but the final decisions, implementations, and especially all written content remain authentically mine.

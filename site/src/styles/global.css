@@ -68,6 +68,7 @@ body {
     color: var(--color-text);
     font-size: 20px;
     line-height: 1.7;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 main {
@@ -115,10 +116,12 @@ b {
 
 a {
     color: var(--accent);
+    transition: color 0.2s ease;
 }
 
 a:hover {
     color: var(--accent);
+    opacity: 0.8;
 }
 
 p {
@@ -146,6 +149,40 @@ img {
     max-width: 100%;
     height: auto;
     border-radius: 8px;
+    transition: transform 0.2s ease;
+}
+
+/* Allow inline images to stay inline - but only in divs with styled images */
+.prose div[align="center"]:has(img[style]) img {
+    display: inline-block !important;
+    vertical-align: middle;
+}
+
+.prose div[align="center"]:has(img[style]) img[style*="max-width"] {
+    max-width: 192px !important;
+    max-height: 96px !important;
+    width: auto !important;
+    height: auto !important;
+    margin: 0 20px !important;
+}
+
+/* Hide break tags between inline tech icons */
+.prose div[align="center"]:has(img[style]) br {
+    display: none;
+}
+
+.prose div[align="center"]:has(img[style]) * {
+    display: inline-block !important;
+    vertical-align: middle;
+}
+
+img:hover {
+    transform: scale(1.01);
+}
+
+/* Don't scale logo/icon images on hover */
+.prose div[align="center"]:has(img[style]) img:hover {
+    transform: none;
 }
 
 code {
@@ -168,6 +205,9 @@ blockquote {
     padding: 0 0 0 20px;
     margin: 0px;
     font-size: 1.333em;
+    background: rgba(var(--gray-light), 0.05);
+    padding: 1em 1em 1em 20px;
+    border-radius: 0 8px 8px 0;
 }
 
 hr {
