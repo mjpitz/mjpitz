@@ -23,16 +23,22 @@ let seriesPosts: CollectionEntry<'blog'>[] = [];
 let relatedPosts: CollectionEntry<'blog'>[] = [];
 
 console.log('=== BlogPost Debug ===');
-console.log('currentPost.slug:', currentPost.slug);
-console.log('series:', series);
-console.log('allBlogPosts.length:', allBlogPosts.length);
 
-if (series) {
-    seriesPosts = getSeriesPosts(allBlogPosts, currentPost);
-    console.log('Found', seriesPosts.length, 'posts in series');
+// Safety check for papers or other content that doesn't have a slug
+if (!currentPost || !currentPost.slug) {
+    console.log('No currentPost or slug, skipping related content');
 } else {
-    relatedPosts = getRelatedPosts(allBlogPosts, currentPost, 5);
-    console.log('Found', relatedPosts.length, 'related posts');
+    console.log('currentPost.slug:', currentPost.slug);
+    console.log('series:', series);
+    console.log('allBlogPosts.length:', allBlogPosts.length);
+
+    if (series) {
+        seriesPosts = getSeriesPosts(allBlogPosts, currentPost);
+        console.log('Found', seriesPosts.length, 'posts in series');
+    } else {
+        relatedPosts = getRelatedPosts(allBlogPosts, currentPost, 5);
+        console.log('Found', relatedPosts.length, 'related posts');
+    }
 }
 ---
 
@@ -164,7 +170,7 @@ if (series) {
 			<BlogSidebar 
 				seriesPosts={seriesPosts}
 				relatedPosts={relatedPosts}
-				currentSlug={currentPost.slug}
+				currentSlug={currentPost?.slug || ''}
 			/>
 		</div>
 	</main>
