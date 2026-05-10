@@ -1,6 +1,8 @@
 name: pages-build
 
 on:
+  schedule:
+    - cron: '0 0 * * *'  # Runs daily at midnight UTC
   pull_request:
     branches:
       - main

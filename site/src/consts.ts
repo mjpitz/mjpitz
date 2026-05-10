@@ -4,6 +4,6 @@
 export const SITE_BASE_URL = "https://mya.sh";
 export const SITE_TITLE = "Mya Jaye";
 export const SITE_AUTHOR = "Mya Jaye";
-export const SITE_DESCRIPTION = "Mom | Homesteader | Software Engineer";
+export const SITE_DESCRIPTION = "Platform engineer with deep experience in distributed systems and startup infrastructure. Writing on technical architecture, observability, SRE practices, team dynamics, and personal experiences navigating mental health and recovery.";
 
 export const REPO_GIT_URL = "https://github.com/mjpitz/mjpitz";
