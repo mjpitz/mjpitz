@@ -20,18 +20,25 @@ export default function MobileMenu({ currentPath }: MobileMenuProps) {
         <div className="mobile-menu">
             <button
                 className="hamburger"
-                onClick={() => setIsOpen(!isOpen)}
-                aria-label="Toggle menu"
+                onClick={() => setIsOpen(true)}
+                aria-label="Open menu"
                 aria-expanded={isOpen}
             >
-                <span className={isOpen ? "open" : ""}></span>
-                <span className={isOpen ? "open" : ""}></span>
-                <span className={isOpen ? "open" : ""}></span>
+                <span></span>
+                <span></span>
+                <span></span>
             </button>
 
             {isOpen && (
                 <div className="menu-overlay" onClick={() => setIsOpen(false)}>
                     <nav className="menu-content" onClick={(e: any) => e.stopPropagation()}>
+                        <button
+                            className="menu-close"
+                            onClick={() => setIsOpen(false)}
+                            aria-label="Close menu"
+                        >
+                            ✕
+                        </button>
                         {links.map((link) => (
                             <a
                                 key={link.href}

@@ -99,7 +99,8 @@ const currentPath = Astro.url.pathname;
         border: none;
         cursor: pointer;
         padding: 0;
-        z-index: 10;
+        position: relative;
+        z-index: 1000;
         margin: 0 auto;
     }
 
@@ -108,22 +109,7 @@ const currentPath = Astro.url.pathname;
         height: 0.25rem;
         background: var(--color-text);
         border-radius: 10px;
-        transition: all 0.3s linear;
         position: relative;
-        transform-origin: 1px;
-    }
-
-    :global(.hamburger span.open:nth-child(1)) {
-        transform: rotate(45deg);
-    }
-
-    :global(.hamburger span.open:nth-child(2)) {
-        opacity: 0;
-        transform: translateX(20px);
-    }
-
-    :global(.hamburger span.open:nth-child(3)) {
-        transform: rotate(-45deg);
     }
 
     :global(.menu-overlay) {
@@ -151,7 +137,7 @@ const currentPath = Astro.url.pathname;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        background: var(--color-bg);
+        background: var(--color-bg-secondary);
         border-radius: 12px;
         padding: 2rem;
         box-shadow: var(--box-shadow);
@@ -159,6 +145,7 @@ const currentPath = Astro.url.pathname;
         flex-direction: column;
         gap: 1rem;
         min-width: 250px;
+        z-index: 1000;
         animation: slideIn 0.3s ease;
     }
 
@@ -192,5 +179,23 @@ const currentPath = Astro.url.pathname;
         background: var(--accent);
         color: white;
         font-weight: 700;
+    }
+
+    :global(.menu-close) {
+        align-self: flex-end;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        font-size: 1.2rem;
+        color: var(--color-text);
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        transition: all 0.2s ease;
+        line-height: 1;
+    }
+
+    :global(.menu-close:hover) {
+        background: var(--color-accent-light);
+        color: var(--accent);
     }
 </style>
