@@ -17,7 +17,7 @@ volumes:
 services:
   # http: 8123, native: 9000, mysql: 9004, postgres: 9005
   metrics-clickhouse:
-    image: clickhouse/clickhouse-server:25.3 # amd64 + arm64
+    image: clickhouse/clickhouse-server:25.12 # amd64 + arm64
     restart: unless-stopped
     environment:
       CLICKHOUSE_DB: otel
@@ -45,7 +45,7 @@ services:
     depends_on:
       metrics-clickhouse:
         condition: service_healthy
-    image: otel/opentelemetry-collector-contrib:0.130.1 # amd64 + arm64
+    image: otel/opentelemetry-collector-contrib:0.152.0 # amd64 + arm64
     restart: unless-stopped
     privileged: true
     user: 0:0
@@ -71,7 +71,7 @@ services:
     depends_on:
       metrics-clickhouse:
         condition: service_healthy
-    image: grafana/grafana-oss:11.5.2 # amd64 + arm64
+    image: grafana/grafana-oss:11.6.5 # amd64 + arm64
     restart: unless-stopped
     environment:
       GF_INSTALL_PLUGINS: "grafana-clickhouse-datasource,yesoreyeram-infinity-datasource"
@@ -109,7 +109,7 @@ services:
     depends_on:
       metrics-clickhouse:
         condition: service_healthy
-    image:  us-central1-docker.pkg.dev/database-toolbox/toolbox/toolbox:0.9.0
+    image:  us-central1-docker.pkg.dev/database-toolbox/toolbox/toolbox:0.32.0
     restart: unless-stopped
     command: 
       - toolbox
