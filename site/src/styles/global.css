@@ -162,6 +162,7 @@ img {
     height: auto;
     border-radius: 8px;
     transition: transform 0.2s ease;
+    display: block;
 }
 
 /* Allow inline images to stay inline - but only in divs with styled images */
@@ -233,6 +234,14 @@ hr {
     }
     main {
         padding: 3em 1em 1em;
+    }
+    div.prose {
+        overflow-x: hidden;
+        max-width: 100%;
+    }
+    .blog-post-layout .prose img {
+        max-width: 100%;
+        width: 100%;
     }
 }
 
