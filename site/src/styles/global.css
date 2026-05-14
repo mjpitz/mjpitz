@@ -193,6 +193,10 @@ img:hover {
     transform: scale(1.01);
 }
 
+.badges img {
+    display: inline-block;
+}
+
 /* Don't scale logo/icon images on hover */
 .prose div[align="center"]:has(img[style]) img:hover {
     transform: none;
