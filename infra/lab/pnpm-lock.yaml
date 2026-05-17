@@ -10,31 +10,31 @@ importers:
     devDependencies:
       concurrently:
         specifier: ^9.0.0
-        version: 9.2.0
+        version: 9.2.1
 
   ingress:
     devDependencies:
       concurrently:
         specifier: ^9.0.0
-        version: 9.2.0
+        version: 9.2.1
 
   media:
     devDependencies:
       concurrently:
         specifier: ^9.0.0
-        version: 9.2.0
+        version: 9.2.1
 
   metrics:
     devDependencies:
       concurrently:
         specifier: ^9.0.0
-        version: 9.2.0
+        version: 9.2.1
 
   single-pain:
     devDependencies:
       concurrently:
         specifier: ^9.0.0
-        version: 9.2.0
+        version: 9.2.1
 
 packages:
 
@@ -61,8 +61,8 @@ packages:
   color-name@1.1.4:
     resolution: {integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==}
 
-  concurrently@9.2.0:
-    resolution: {integrity: sha512-IsB/fiXTupmagMW4MNp2lx2cdSN2FfZq78vF90LBB+zZHArbIQZjQtzXCiXnvTxCZSvXanTqFLWBjw2UkLx1SQ==}
+  concurrently@9.2.1:
+    resolution: {integrity: sha512-fsfrO0MxV64Znoy8/l1vVIjjHa29SZyyqPgQBwhiDcaW8wJc2W3XWVOGx4M3oJBnv/zdUZIIp1gDeS98GzP8Ng==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -84,9 +84,6 @@ packages:
   is-fullwidth-code-point@3.0.0:
     resolution: {integrity: sha512-zymm5+u+sCsSWyD9qNaejV3DFvhCKclKdizYaJUuHA83RLjb7nSuGnddCHGv0hk+KY7BMAlsWeK4Ueg6EV6XQg==}
     engines: {node: '>=8'}
-
-  lodash@4.17.21:
-    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
 
   require-directory@2.1.1:
     resolution: {integrity: sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q==}
@@ -163,10 +160,9 @@ snapshots:
 
   color-name@1.1.4: {}
 
-  concurrently@9.2.0:
+  concurrently@9.2.1:
     dependencies:
       chalk: 4.1.2
-      lodash: 4.17.21
       rxjs: 7.8.2
       shell-quote: 1.8.3
       supports-color: 8.1.1
@@ -182,8 +178,6 @@ snapshots:
   has-flag@4.0.0: {}
 
   is-fullwidth-code-point@3.0.0: {}
-
-  lodash@4.17.21: {}
 
   require-directory@2.1.1: {}
 
