@@ -1,0 +1,79 @@
+traefik:
+  # Configure the Traefik deployment
+  deployment:
+    kind: Deployment
+    replicas: 2
+
+  # Global configuration
+  globalArguments: []
+
+  # Entrypoints configuration
+  ports:
+    web:
+      port: 8000
+      hostPort: 80
+      protocol: TCP
+      # Redirect HTTP to HTTPS
+      redirectTo:
+        entrypoint: websecure
+    websecure:
+      port: 8443
+      hostPort: 443
+      protocol: TCP
+      tls:
+        enabled: true
+
+  # Service configuration
+  service:
+    type: LoadBalancer
+    externalTrafficPolicy: Local
+    # Preserve real client IPs from Cloudflare
+    spec:
+      loadBalancerSourceRanges: []
+
+  # IngressClass configuration
+  ingressClass:
+    enabled: true
+    isDefaultClass: true
+    name: traefik
+
+  # Providers
+  providers:
+    kubernetesCRD:
+      enabled: true
+      # Allow cross-namespace references for IngressRoutes
+      allowCrossNamespace: true
+    kubernetesIngress:
+      enabled: true
+      # Use the traefik IngressClass
+      ingressClass: traefik
+      allowExternalNameServices: true
+
+  # Disable Traefik's built-in ACME
+  # cert-manager handles certificate issuance instead
+  certificatesResolvers: {}
+
+  # Metrics (optional, disabled by default)
+  metrics:
+    prometheus:
+      enabled: false
+
+  # Disable dashboard by default
+  api:
+    dashboard: false
+    debug: false
+
+  # Resource limits
+  resources:
+    requests:
+      cpu: 100m
+      memory: 50Mi
+    limits:
+      cpu: 200m
+      memory: 100Mi
+
+  # Pod security context
+  podSecurityContext:
+    runAsNonRoot: true
+    runAsUser: 65532
+    fsGroup: 65532

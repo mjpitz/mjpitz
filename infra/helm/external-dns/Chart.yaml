@@ -1,8 +1,8 @@
 apiVersion: v2
 type: application
 name: external-dns
-version: 23.8.9
+version: 1.14.0
 dependencies:
   - name: external-dns
-    repository: https://charts.bitnami.com/bitnami
-    version: 8.7.6
+    repository: https://kubernetes-sigs.github.io/external-dns/
+    version: 1.14.0

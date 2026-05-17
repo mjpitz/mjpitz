@@ -10,14 +10,16 @@ spec:
     privateKeySecretRef:
       name: letsencrypt-dev
     solvers:
+      # Primary: DNS-01 via Cloudflare (for Cloudflare-proxied domains)
       - dns01:
           cloudflare:
             apiTokenSecretRef:
               name: cloudflare-api-token
               key: cloudflare_api_token
+      # Fallback: HTTP-01 via Traefik (for non-proxied domains)
       - http01:
           ingress:
-            ingressClassName: nginx
+            ingressClassName: traefik
 
 ---
 apiVersion: cert-manager.io/v1
@@ -31,11 +33,13 @@ spec:
     privateKeySecretRef:
       name: letsencrypt-prod
     solvers:
+      # Primary: DNS-01 via Cloudflare (for Cloudflare-proxied domains)
       - dns01:
           cloudflare:
             apiTokenSecretRef:
               name: cloudflare-api-token
               key: cloudflare_api_token
+      # Fallback: HTTP-01 via Traefik (for non-proxied domains)
       - http01:
           ingress:
-            ingressClassName: nginx
+            ingressClassName: traefik

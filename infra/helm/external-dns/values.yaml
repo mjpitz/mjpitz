@@ -1,15 +1,33 @@
 external-dns:
   logLevel: debug
+  
+  # Provider configuration
+  provider:
+    name: cloudflare
+  
+  # Cloudflare authentication via environment variables
+  # (the cloudflare-api-token secret is created by templates/secret-cloudflare-api-token.yaml)
+  env:
+    - name: CF_API_TOKEN
+      valueFrom:
+        secretKeyRef:
+          name: cloudflare-api-token
+          key: cloudflare_api_token
+  
+  # Domain filtering
   domainFilters:
     - mya.sh
-    - pitz.tech
+  
+  # Owner ID and prefix for TXT records
   txtOwnerId: "mya-nyc"
   txtPrefix: "mya-nyc."
+  
+  # DNS record policy
   policy: upsert-only
-  provider: cloudflare
-  cloudflare:
-    secretName: "cloudflare-api-token"
-    proxied: false
+  
+  # Cloudflare-specific settings
+  extraArgs:
+    - --cloudflare-proxied
 
 cloudflare:
   apiToken: ""

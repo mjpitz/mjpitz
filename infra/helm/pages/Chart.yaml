@@ -1,9 +1,0 @@
-apiVersion: v2
-type: application
-name: pages
-version: 23.8.9
-dependencies:
-  - name: 12factor
-    repository: file://../../../charts/12factor
-    version: "*"
-    alias: pages

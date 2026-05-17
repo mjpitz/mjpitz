@@ -1,0 +1,62 @@
+---
+# Helmfile for Kubernetes deployments via Helm
+# Manages cluster services including cert-manager, external-dns, and longhorn storage
+
+helmDefaults:
+  atomic: true
+  wait: false
+
+repositories:
+  - name: jetstack
+    url: https://charts.jetstack.io
+  - name: external-dns
+    url: https://kubernetes-sigs.github.io/external-dns/
+  - name: traefik
+    url: https://traefik.github.io/charts
+  - name: longhorn
+    url: https://charts.longhorn.io
+
+releases:
+  - name: cert-manager
+    namespace: cert-manager
+    chart: ./cert-manager
+    createNamespace: true
+    values:
+      - ./cert-manager/values.yaml
+    set:
+      - name: cloudflare.apiToken
+        value: {{ requiredEnv "CLOUDFLARE_API_TOKEN" | quote }}
+
+  - name: external-dns
+    namespace: ingress
+    chart: ./external-dns
+    createNamespace: true
+    values:
+      - ./external-dns/values.yaml
+    set:
+      - name: cloudflare.apiToken
+        value: {{ requiredEnv "CLOUDFLARE_API_TOKEN" | quote }}
+
+  - name: traefik
+    namespace: ingress
+    chart: ./traefik
+    needs:
+      - cert-manager/cert-manager
+      - ingress/external-dns
+    createNamespace: true
+    values:
+      - ./traefik/values.yaml
+    atomic: false
+    wait: false
+
+  - name: longhorn
+    namespace: longhorn-system
+    chart: ./longhorn
+    createNamespace: true
+    values:
+      - ./longhorn/values.yaml
+    set:
+      - name: backup.accessKeyID
+        value: {{ requiredEnv "LONGHORN_BACKUP_ACCESS_KEY_ID" | quote }}
+      - name: backup.secretAccessKey
+        value: {{ requiredEnv "LONGHORN_BACKUP_SECRET_ACCESS_KEY" | quote }}
