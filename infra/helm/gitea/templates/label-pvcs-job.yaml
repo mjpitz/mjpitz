@@ -1,0 +1,80 @@
+---
+# ServiceAccount used by the PVC labeling job below.
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: gitea-pvc-labeler
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    "helm.sh/hook": post-install,post-upgrade
+    "helm.sh/hook-weight": "-5"
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
+---
+# Role granting the minimum permissions needed to label PVCs in this namespace.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: gitea-pvc-labeler
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    "helm.sh/hook": post-install,post-upgrade
+    "helm.sh/hook-weight": "-5"
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
+rules:
+  - apiGroups: [""]
+    resources: ["persistentvolumeclaims"]
+    verbs: ["get", "list", "patch", "update"]
+---
+# Bind the role to the service account.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: gitea-pvc-labeler
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    "helm.sh/hook": post-install,post-upgrade
+    "helm.sh/hook-weight": "-5"
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: gitea-pvc-labeler
+subjects:
+  - kind: ServiceAccount
+    name: gitea-pvc-labeler
+    namespace: {{ .Release.Namespace }}
+---
+# One-shot Job (post-install and post-upgrade hook) that labels the two
+# Longhorn-backed Gitea PVCs so the RecurringJob picks them up for backups.
+# Blobs are stored in S3 and do not have a PVC.
+# PVC names follow the StatefulSet volumeClaimTemplate naming convention:
+#   {template-name}-{statefulset-name}-{ordinal}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: gitea-label-pvcs
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    "helm.sh/hook": post-install,post-upgrade
+    "helm.sh/hook-weight": "0"
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
+spec:
+  template:
+    spec:
+      serviceAccountName: gitea-pvc-labeler
+      restartPolicy: OnFailure
+      containers:
+        - name: label-pvcs
+          image: bitnami/kubectl:latest
+          command:
+            - sh
+            - -c
+            - |
+              set -e
+              NAMESPACE="{{ .Release.Namespace }}"
+              LABEL="recurring-job-group.longhorn.io/gitea=enabled"
+              for PVC in gitea-gitea-0 git-gitea-0; do
+                echo "Labeling PVC ${PVC} in ${NAMESPACE}..."
+                kubectl label pvc "${PVC}" -n "${NAMESPACE}" "${LABEL}" --overwrite
+              done
+              echo "Done."

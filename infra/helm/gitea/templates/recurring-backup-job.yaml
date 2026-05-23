@@ -1,0 +1,20 @@
+---
+# RecurringJob instructs Longhorn to snapshot and back up all volumes in the
+# "gitea" group every 6 hours, retaining the last 14 backups. Volumes are
+# opted into this group by labeling their PVCs with:
+#   recurring-job-group.longhorn.io/gitea: enabled
+# The label-pvcs-job.yaml hook applies this label automatically after install.
+apiVersion: longhorn.io/v1beta2
+kind: RecurringJob
+metadata:
+  name: gitea-backup
+  namespace: longhorn-system
+spec:
+  name: gitea-backup
+  cron: "0 */6 * * *"
+  task: backup
+  groups:
+    - gitea
+  retain: 14
+  concurrency: 1
+  labels: {}

@@ -22,6 +22,12 @@ traefik:
       protocol: TCP
       tls:
         enabled: true
+    # SSH TCP entrypoint for Gitea. Traefik listens on 2222 internally
+    # and the LoadBalancer exposes it as port 22 externally.
+    ssh:
+      port: 2222
+      exposedPort: 22
+      protocol: TCP
 
   # Service configuration
   service:

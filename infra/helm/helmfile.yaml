@@ -15,6 +15,8 @@ repositories:
     url: https://traefik.github.io/charts
   - name: longhorn
     url: https://charts.longhorn.io
+  - name: mya
+    url: https://mya.sh
 
 releases:
   - name: cert-manager
@@ -60,3 +62,22 @@ releases:
         value: {{ requiredEnv "LONGHORN_BACKUP_ACCESS_KEY_ID" | quote }}
       - name: backup.secretAccessKey
         value: {{ requiredEnv "LONGHORN_BACKUP_SECRET_ACCESS_KEY" | quote }}
+
+  - name: gitea
+    namespace: code
+    chart: ./gitea
+    needs:
+      - longhorn-system/longhorn
+      - ingress/traefik
+    createNamespace: true
+    values:
+      - ./gitea/values.yaml
+    set:
+      - name: gitea.config.security.secretKey
+        value: {{ requiredEnv "GITEA_SECRET_KEY" | quote }}
+      - name: gitea.config.security.internalToken
+        value: {{ requiredEnv "GITEA_INTERNAL_TOKEN" | quote }}
+      - name: gitea.config.blobs.accessKeyId
+        value: {{ requiredEnv "GITEA_BLOBS_ACCESS_KEY_ID" | quote }}
+      - name: gitea.config.blobs.secretAccessKey
+        value: {{ requiredEnv "GITEA_BLOBS_SECRET_ACCESS_KEY" | quote }}

@@ -1,0 +1,23 @@
+---
+# IngressRouteTCP routes external SSH traffic (port 22 on the LoadBalancer,
+# mapped to the "ssh" Traefik entrypoint) through to Gitea's SSH Service on
+# port 22 (which the Service forwards to the pod's containerPort 2222).
+#
+# NOTE: HostSNI matching requires TLS, because SNI is carried in the TLS
+# ClientHello handshake. Plain SSH does not use TLS, so there is no SNI field
+# for Traefik to inspect. HostSNI(`*`) is the only valid matcher for non-TLS
+# TCP routes. This is safe because the "ssh" entrypoint is exclusively dedicated
+# to Gitea — effectively equivalent to matching on code.mya.sh.
+apiVersion: traefik.io/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: gitea-ssh
+  namespace: {{ .Release.Namespace }}
+spec:
+  entryPoints:
+    - ssh
+  routes:
+    - match: HostSNI(`*`)
+      services:
+        - name: gitea
+          port: 22
