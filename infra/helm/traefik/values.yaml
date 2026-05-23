@@ -4,9 +4,6 @@ traefik:
     kind: Deployment
     replicas: 2
 
-  # Global configuration
-  globalArguments: []
-
   # Entrypoints configuration
   ports:
     web:
@@ -14,20 +11,24 @@ traefik:
       hostPort: 80
       protocol: TCP
       # Redirect HTTP to HTTPS
-      redirectTo:
-        entrypoint: websecure
+      http:
+        redirections:
+          entryPoint:
+            to: websecure
+            scheme: https
     websecure:
       port: 8443
       hostPort: 443
       protocol: TCP
-      tls:
-        enabled: true
+      # TLS is managed at the router level by cert-manager, not at the entrypoint.
     # SSH TCP entrypoint for Gitea. Traefik listens on 2222 internally
     # and the LoadBalancer exposes it as port 22 externally.
     ssh:
       port: 2222
       exposedPort: 22
       protocol: TCP
+      expose:
+        default: true
 
   # Service configuration
   service:
@@ -58,6 +59,13 @@ traefik:
   # Disable Traefik's built-in ACME
   # cert-manager handles certificate issuance instead
   certificatesResolvers: {}
+
+  # Plugins
+  experimental:
+    plugins:
+      countryblock:
+        moduleName: "github.com/dkhalife/traefik-country-block"
+        version: "v0.2.3"
 
   # Metrics (optional, disabled by default)
   metrics:

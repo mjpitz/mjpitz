@@ -8,10 +8,12 @@ gitea:
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-prod
       external-dns.alpha.kubernetes.io/hostname: code.mya.sh
+      # Disable Cloudflare proxy so SSH (port 22) traffic reaches the cluster directly.
+      # HTTPS still works — cert-manager handles TLS at the cluster level.
+      external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
       # SSL redirect is already handled globally by Traefik's web→websecure entrypoint redirect.
-      # CORS and unlimited request body size are applied via Traefik Middlewares defined in
-      # templates/middlewares.yaml. Reference format: {namespace}-{middleware-name}@kubernetescrd
-      traefik.ingress.kubernetes.io/router.middlewares: code-cors@kubernetescrd,code-buffering@kubernetescrd
+      # Middleware order: countryblock → rate-limit → cors → buffering
+      traefik.ingress.kubernetes.io/router.middlewares: code-countryblock@kubernetescrd,code-rate-limit@kubernetescrd,code-cors@kubernetescrd,code-buffering@kubernetescrd
     hosts:
       - host: code.mya.sh
     tls:

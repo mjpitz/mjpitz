@@ -32,3 +32,34 @@ spec:
   buffering:
     maxRequestBodyBytes: 0
     maxResponseBodyBytes: 0
+---
+# Block high-risk countries. Uses traefik-country-block plugin which performs
+# all lookups locally with embedded IP2Location data — no external API calls.
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: countryblock
+  namespace: {{ .Release.Namespace }}
+spec:
+  plugin:
+    countryblock:
+      mode: blocklist
+      defaultAction: "403"
+      allowPrivateRanges: true
+      blockedCountries:
+        - RU  # Russia
+        - BY  # Belarus
+        - KP  # North Korea
+        - IR  # Iran
+        - CN  # China
+---
+# Global rate limit: 100 avg req/s with a burst of 200.
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: rate-limit
+  namespace: {{ .Release.Namespace }}
+spec:
+  rateLimit:
+    average: 100
+    burst: 200
