@@ -44,11 +44,52 @@ subjects:
     name: gitea-pvc-labeler
     namespace: {{ .Release.Namespace }}
 ---
+# ClusterRole granting access to the Longhorn Volume CRs (cluster-wide) and
+# PersistentVolumes (also cluster-scoped). The recurring-job controller queries
+# volumes.longhorn.io labels — not PV/PVC labels — so we must label these CRs
+# directly. They are auto-created by the Longhorn CSI driver and share the same
+# name as the backing PV.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: gitea-pvc-labeler
+  annotations:
+    "helm.sh/hook": post-install,post-upgrade
+    "helm.sh/hook-weight": "-5"
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
+rules:
+  - apiGroups: ["longhorn.io"]
+    resources: ["volumes"]
+    verbs: ["get", "list", "patch", "update"]
+---
+# Bind the ClusterRole to the service account in the release namespace.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: gitea-pvc-labeler
+  annotations:
+    "helm.sh/hook": post-install,post-upgrade
+    "helm.sh/hook-weight": "-5"
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: gitea-pvc-labeler
+subjects:
+  - kind: ServiceAccount
+    name: gitea-pvc-labeler
+    namespace: {{ .Release.Namespace }}
+---
 # One-shot Job (post-install and post-upgrade hook) that labels the two
 # Longhorn-backed Gitea PVCs so the RecurringJob picks them up for backups.
 # Blobs are stored in S3 and do not have a PVC.
 # PVC names follow the StatefulSet volumeClaimTemplate naming convention:
 #   {template-name}-{statefulset-name}-{ordinal}
+#
+# Longhorn's recurring-job controller queries volumes.longhorn.io CRs (not PVs
+# or PVCs) for the recurring-job labels. These CRs are auto-created by the CSI
+# driver and named after the PV. We label both the PVC and the Longhorn Volume
+# CR so that either sync path works going forward.
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -72,9 +113,23 @@ spec:
             - |
               set -e
               NAMESPACE="{{ .Release.Namespace }}"
-              LABEL="recurring-job-group.longhorn.io/gitea=enabled"
               for PVC in gitea-gitea-0 git-gitea-0; do
                 echo "Labeling PVC ${PVC} in ${NAMESPACE}..."
-                kubectl label pvc "${PVC}" -n "${NAMESPACE}" "${LABEL}" --overwrite
+                kubectl label pvc "${PVC}" -n "${NAMESPACE}" \
+                  recurring-job.longhorn.io/gitea-backup=enabled \
+                  recurring-job-group.longhorn.io/gitea=enabled \
+                  --overwrite
+
+                echo "Looking up Longhorn Volume CR for PVC ${PVC}..."
+                VOLUME=$(kubectl get pvc "${PVC}" -n "${NAMESPACE}" -o jsonpath='{.spec.volumeName}')
+                if [ -n "${VOLUME}" ]; then
+                  echo "Labeling Longhorn Volume CR ${VOLUME}..."
+                  kubectl label volumes.longhorn.io "${VOLUME}" -n longhorn-system \
+                    recurring-job.longhorn.io/gitea-backup=enabled \
+                    recurring-job-group.longhorn.io/gitea=enabled \
+                    --overwrite
+                else
+                  echo "WARNING: No volume name found on PVC ${PVC}, skipping Longhorn Volume CR label."
+                fi
               done
               echo "Done."
