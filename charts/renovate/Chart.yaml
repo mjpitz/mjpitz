@@ -7,8 +7,9 @@ sources:
   - https://github.com/mjpitz/mjpitz/tree/main/charts/auth
 maintainers:
   - name: Mya Pitzeruse
+    email: charts@mya.sh
     url: https://mya.sh
-version: 23.10.2
+version: 23.10.3
 appVersion: 35.14.4
 annotations:
   artifacthub.io/category: integration-delivery

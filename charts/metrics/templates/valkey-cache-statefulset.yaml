@@ -1,0 +1,97 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "metrics.valkey.cache.fullname" . }}
+  labels:
+    {{- include "metrics.labels" (dict "component" "cache" "root" .) | nindent 4 }}
+  {{- with .Values.commonAnnotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  replicas: 1
+  serviceName: {{ include "metrics.valkey.cache.fullname" . }}
+  {{- if and .Values.grafana.cache.persistence.enabled (not .Values.grafana.cache.persistence.existingClaim) }}
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+        {{- with .Values.grafana.cache.persistence.labels }}
+        labels:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
+        {{- with .Values.grafana.cache.persistence.annotations }}
+        annotations:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
+      spec:
+        accessModes:
+          - {{ .Values.grafana.cache.persistence.accessMode }}
+        resources:
+          requests:
+            storage: {{ .Values.grafana.cache.persistence.resources.storage }}
+        {{- with .Values.grafana.cache.persistence.storageClass }}
+        storageClassName: {{ . }}
+        {{- end }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "metrics.selectorLabels" (dict "component" "cache" "root" .) | nindent 6 }}
+  template:
+    metadata:
+      annotations:
+        checksum/config: {{ include "metrics.valkey.cache.config" . | sha256sum }}
+        {{- with .Values.grafana.cache.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+      labels:
+        {{- include "metrics.selectorLabels" (dict "component" "cache" "root" .) | nindent 8 }}
+        {{- with .Values.grafana.cache.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "metrics.valkey.cache.serviceAccountName" . }}
+      containers:
+        - name: valkey
+          image: "{{ .Values.grafana.cache.image.repository }}:{{ .Values.grafana.cache.image.tag }}"
+          imagePullPolicy: {{ .Values.grafana.cache.image.pullPolicy }}
+          command:
+            - valkey-server
+            - /etc/valkey/valkey.conf
+          ports:
+            - name: valkey
+              containerPort: 6379
+              protocol: TCP
+          livenessProbe:
+            tcpSocket:
+              port: valkey
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          readinessProbe:
+            tcpSocket:
+              port: valkey
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          resources:
+            {{- toYaml .Values.grafana.cache.resources | nindent 12 }}
+          volumeMounts:
+            - mountPath: /data
+              name: data
+            - mountPath: /etc/valkey
+              name: config
+              readOnly: true
+      volumes:
+        - name: config
+          secret:
+            secretName: {{ include "metrics.valkey.cache.fullname" . }}-config
+        {{- if not .Values.grafana.cache.persistence.enabled }}
+        - name: data
+          emptyDir: {}
+        {{- else if .Values.grafana.cache.persistence.existingClaim }}
+        - name: data
+          persistentVolumeClaim:
+            claimName: {{ .Values.grafana.cache.persistence.existingClaim }}
+        {{- end }}

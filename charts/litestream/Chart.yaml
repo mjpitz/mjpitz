@@ -9,8 +9,9 @@ sources:
   - https://github.com/mjpitz/mjpitz/tree/main/charts/litestream
 maintainers:
   - name: Mya Pitzeruse
+    email: charts@mya.sh
     url: https://mya.sh
-version: 22.4.5
+version: 22.4.6
 appVersion: 0.3.13
 annotations:
   artifacthub.io/category: database

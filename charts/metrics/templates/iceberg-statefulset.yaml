@@ -1,0 +1,88 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "metrics.iceberg.fullname" . }}
+  labels:
+    {{- include "metrics.labels" (dict "component" "iceberg" "root" .) | nindent 4 }}
+  {{- with .Values.commonAnnotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  replicas: 1
+  serviceName: {{ include "metrics.iceberg.fullname" . }}
+  {{- if and .Values.iceberg.persistence.enabled (not .Values.iceberg.persistence.existingClaim) }}
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+        {{- with .Values.iceberg.persistence.labels }}
+        labels:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
+        {{- with .Values.iceberg.persistence.annotations }}
+        annotations:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
+      spec:
+        accessModes:
+          - {{ .Values.iceberg.persistence.accessMode }}
+        resources:
+          requests:
+            storage: {{ .Values.iceberg.persistence.resources.storage }}
+        {{- with .Values.iceberg.persistence.storageClass }}
+        storageClassName: {{ . }}
+        {{- end }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "metrics.selectorLabels" (dict "component" "iceberg" "root" .) | nindent 6 }}
+  template:
+    metadata:
+      annotations:
+        checksum/config: {{ include "metrics.iceberg.config" . | sha256sum }}
+        {{- with .Values.iceberg.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+      labels:
+        {{- include "metrics.selectorLabels" (dict "component" "iceberg" "root" .) | nindent 8 }}
+        {{- with .Values.iceberg.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "metrics.iceberg.serviceAccountName" . }}
+      containers:
+        - name: iceberg
+          image: "{{ .Values.iceberg.image.repository }}:{{ .Values.iceberg.image.tag }}"
+          imagePullPolicy: {{ .Values.iceberg.image.pullPolicy }}
+          args:
+            - server
+            - --config
+            - /etc/ice/config.yaml
+          ports:
+            - name: http
+              containerPort: 5000
+              protocol: TCP
+          resources:
+            {{- toYaml .Values.iceberg.resources | nindent 12 }}
+          volumeMounts:
+            - mountPath: /var/lib/ice
+              name: data
+            - mountPath: /etc/ice
+              name: config
+              readOnly: true
+      volumes:
+        - name: config
+          secret:
+            secretName: {{ include "metrics.iceberg.fullname" . }}-config
+        {{- if not .Values.iceberg.persistence.enabled }}
+        - name: data
+          emptyDir: {}
+        {{- else if .Values.iceberg.persistence.existingClaim }}
+        - name: data
+          persistentVolumeClaim:
+            claimName: {{ .Values.iceberg.persistence.existingClaim }}
+        {{- end }}

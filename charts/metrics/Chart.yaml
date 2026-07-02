@@ -1,0 +1,17 @@
+apiVersion: v2
+type: application
+name: metrics
+description: |
+  (BETA) Iceberg-backed analytics stack: Altinity ice REST catalog, Altinity ClickHouse (Antalya build),
+  Grafana with a Valkey remote cache. Replaces the standalone clickhouse + cognative charts.
+
+version: 1.2607.1
+appVersion: ""
+
+maintainers:
+  - name: Mya Pitzeruse
+    email: charts@mya.sh
+    url: https://mya.sh
+
+annotations:
+  artifacthub.io/license: MIT

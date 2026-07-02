@@ -243,11 +243,9 @@ networking:
     portName: http
 
     hosts:
-      - # -- The host the ingress should route to this deployment.
-        host: chart-example.local
+      - host: chart-example.local
         paths:
-          - # -- The path to match on.
-            path: /
+          - path: /
             # -- Configure the behavior of the ingress route. This defaults to ImplementationSpecific for backwards
             #    compatibility.
             pathType: ImplementationSpecific
@@ -267,8 +265,7 @@ metrics:
   enabled: false
 
   endpoints:
-    - # -- The name of the container port hosting the metrics endpoint.
-      portName: metrics
+    - portName: metrics
 
       # -- Extra configuration to supply the podMetricsEndpoint entry. To get an idea of what additional configuration may
       #    be specified, see `kubectl explain podmonitor.spec.podMetricsEndpoints`.

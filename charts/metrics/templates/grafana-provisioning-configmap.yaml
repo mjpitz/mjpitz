@@ -1,0 +1,34 @@
+{{- $prov := .Values.grafana.provisioning -}}
+{{- if or $prov.dashboardProviders $prov.dashboards $prov.alerting $prov.notifiers }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "metrics.grafana.fullname" . }}-provisioning
+  labels:
+    {{- include "metrics.labels" (dict "component" "grafana" "root" .) | nindent 4 }}
+  {{- with .Values.commonAnnotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+data:
+  {{- with $prov.dashboardProviders }}
+  dashboards_providers.yaml: |
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  {{- range $name, $content := $prov.dashboards }}
+  {{ printf "dashboards_files_%s" $name }}: |
+    {{- if kindIs "string" $content }}
+    {{- tpl $content $ | nindent 4 }}
+    {{- else }}
+    {{- toJson $content | nindent 4 }}
+    {{- end }}
+  {{- end }}
+  {{- with $prov.alerting }}
+  alerting.yaml: |
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  {{- with $prov.notifiers }}
+  notifiers.yaml: |
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+{{- end }}

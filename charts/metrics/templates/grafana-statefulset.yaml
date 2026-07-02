@@ -1,0 +1,156 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "metrics.grafana.fullname" . }}
+  labels:
+    {{- include "metrics.labels" (dict "component" "grafana" "root" .) | nindent 4 }}
+  {{- with .Values.commonAnnotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  replicas: 1
+  serviceName: {{ include "metrics.grafana.fullname" . }}
+  {{- if and .Values.grafana.persistence.enabled (not .Values.grafana.persistence.existingClaim) }}
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+        {{- with .Values.grafana.persistence.labels }}
+        labels:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
+        {{- with .Values.grafana.persistence.annotations }}
+        annotations:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
+      spec:
+        accessModes:
+          - {{ .Values.grafana.persistence.accessMode }}
+        resources:
+          requests:
+            storage: {{ .Values.grafana.persistence.resources.storage }}
+        {{- with .Values.grafana.persistence.storageClass }}
+        storageClassName: {{ . }}
+        {{- end }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "metrics.selectorLabels" (dict "component" "grafana" "root" .) | nindent 6 }}
+  template:
+    metadata:
+      annotations:
+        checksum/config: {{ include "metrics.grafana.ini" . | cat (include "metrics.grafana.datasource" .) | cat (include "metrics.grafana.extraDatasources" .) | cat (toYaml .Values.grafana.provisioning) | cat (join "," .Values.grafana.plugins) | sha256sum }}
+        {{- with .Values.grafana.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+      labels:
+        {{- include "metrics.selectorLabels" (dict "component" "grafana" "root" .) | nindent 8 }}
+        {{- with .Values.grafana.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "metrics.grafana.serviceAccountName" . }}
+      securityContext:
+        fsGroup: 472
+        runAsUser: 472
+      containers:
+        - name: grafana
+          image: "{{ .Values.grafana.image.repository }}:{{ .Values.grafana.image.tag }}"
+          imagePullPolicy: {{ .Values.grafana.image.pullPolicy }}
+          envFrom:
+            - secretRef:
+                name: {{ include "metrics.grafana.fullname" . }}-config
+          {{- with .Values.grafana.extraEnv }}
+          env:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          ports:
+            - name: http
+              containerPort: 3000
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /api/health
+              port: http
+            initialDelaySeconds: 60
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /api/health
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          resources:
+            {{- toYaml .Values.grafana.resources | nindent 12 }}
+          volumeMounts:
+            - mountPath: /var/lib/grafana
+              name: data
+            - mountPath: /etc/grafana/grafana.ini
+              name: config
+              subPath: grafana.ini
+              readOnly: true
+            - mountPath: /etc/grafana/provisioning/datasources/clickhouse.yaml
+              name: config
+              subPath: clickhouse.yaml
+              readOnly: true
+            {{- if .Values.grafana.extraDatasources }}
+            - mountPath: /etc/grafana/provisioning/datasources/extras.yaml
+              name: config
+              subPath: extras.yaml
+              readOnly: true
+            {{- end }}
+            {{- with .Values.grafana.provisioning.dashboardProviders }}
+            - mountPath: /etc/grafana/provisioning/dashboards/providers.yaml
+              name: provisioning
+              subPath: dashboards_providers.yaml
+              readOnly: true
+            {{- end }}
+            {{- range $name, $_ := .Values.grafana.provisioning.dashboards }}
+            - mountPath: /etc/grafana/provisioning/dashboards/files/{{ $name }}
+              name: provisioning
+              subPath: dashboards_files_{{ $name }}
+              readOnly: true
+            {{- end }}
+            {{- with .Values.grafana.provisioning.alerting }}
+            - mountPath: /etc/grafana/provisioning/alerting/alerting.yaml
+              name: provisioning
+              subPath: alerting.yaml
+              readOnly: true
+            {{- end }}
+            {{- with .Values.grafana.provisioning.notifiers }}
+            - mountPath: /etc/grafana/provisioning/notifiers/notifiers.yaml
+              name: provisioning
+              subPath: notifiers.yaml
+              readOnly: true
+            {{- end }}
+      volumes:
+        - name: config
+          secret:
+            secretName: {{ include "metrics.grafana.fullname" . }}-config
+            items:
+              - key: grafana.ini
+                path: grafana.ini
+              - key: clickhouse.yaml
+                path: clickhouse.yaml
+              {{- if .Values.grafana.extraDatasources }}
+              - key: extras.yaml
+                path: extras.yaml
+              {{- end }}
+        {{- $prov := .Values.grafana.provisioning }}
+        {{- if or $prov.dashboardProviders $prov.dashboards $prov.alerting $prov.notifiers }}
+        - name: provisioning
+          configMap:
+            name: {{ include "metrics.grafana.fullname" . }}-provisioning
+        {{- end }}
+        {{- if not .Values.grafana.persistence.enabled }}
+        - name: data
+          emptyDir: {}
+        {{- else if .Values.grafana.persistence.existingClaim }}
+        - name: data
+          persistentVolumeClaim:
+            claimName: {{ .Values.grafana.persistence.existingClaim }}
+        {{- end }}

@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "metrics.clickhouse.fullname" . }}
+  labels:
+    {{- include "metrics.labels" (dict "component" "clickhouse" "root" .) | nindent 4 }}
+  {{- with .Values.commonAnnotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 8123
+      protocol: TCP
+      targetPort: http
+    - name: clickhouse
+      port: 9000
+      protocol: TCP
+      targetPort: clickhouse
+  selector:
+    {{- include "metrics.selectorLabels" (dict "component" "clickhouse" "root" .) | nindent 4 }}

@@ -9,8 +9,9 @@ sources:
   - https://github.com/mjpitz/mjpitz/tree/main/charts/storj
 maintainers:
   - name: Mya Pitzeruse
+    email: charts@mya.sh
     url: https://mya.sh
-version: 22.4.5
+version: 22.4.6
 appVersion: latest
 annotations:
   artifacthub.io/category: integration-delivery

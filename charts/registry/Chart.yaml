@@ -2,15 +2,16 @@ apiVersion: v2
 type: application
 name: registry
 description: |
-  Easily deploy and configure a production-ready container registry backed by your favorite cloud storage provider. 
+  Easily deploy and configure a production-ready container registry backed by your favorite cloud storage provider.
   Optionally add a highly-available, partition-tolerant Redis cache that's fronted by Envoy.
 sources:
   - https://github.com/distribution/distribution
   - https://github.com/mjpitz/mjpitz/tree/main/charts/registry
 maintainers:
   - name: Mya Pitzeruse
+    email: charts@mya.sh
     url: https://mya.sh
-version: 22.4.11
+version: 22.4.13
 appVersion: 2.8.3
 dependencies:
   - name: auth

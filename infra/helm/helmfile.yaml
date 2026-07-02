@@ -73,6 +73,16 @@ releases:
     values:
       - ./gitea/values.yaml
     set:
+      - name: gitea.config.email.host
+        value: {{ requiredEnv "GITEA_EMAIL_HOST" | quote }}
+      - name: gitea.config.email.port
+        value: {{ requiredEnv "GITEA_EMAIL_PORT" | quote }}
+      - name: gitea.config.email.from
+        value: {{ requiredEnv "GITEA_EMAIL_FROM" | quote }}
+      - name: gitea.config.email.username
+        value: {{ requiredEnv "GITEA_EMAIL_USERNAME" | quote }}
+      - name: gitea.config.email.password
+        value: {{ requiredEnv "GITEA_EMAIL_PASSWORD" | quote }}
       - name: gitea.config.security.secretKey
         value: {{ requiredEnv "GITEA_SECRET_KEY" | quote }}
       - name: gitea.config.security.internalToken

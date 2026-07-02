@@ -7,8 +7,9 @@ sources:
   - https://github.com/mjpitz/mjpitz/tree/main/charts/raw
 maintainers:
   - name: Mya Pitzeruse
+    email: charts@mya.sh
     url: https://mya.sh
-version: 22.9.2
+version: 22.9.3
 appVersion: ""
 annotations:
   artifacthub.io/category: integration-delivery

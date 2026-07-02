@@ -1,0 +1,355 @@
+# Default values for metrics.
+# This is a YAML-formatted file.
+
+# -- Registry pull secrets.
+imagePullSecrets: []
+# -- Override the chart name portion of the release name.
+nameOverride: ""
+# -- Override the fully qualified release name.
+fullnameOverride: ""
+
+# -- Labels merged into metadata.labels of every resource in this chart.
+commonLabels: {}
+# -- Annotations merged into metadata.annotations of every resource in this chart.
+commonAnnotations: {}
+
+# The Iceberg warehouse bucket. Explicitly shared between components: iceberg
+# writes data files here, clickhouse reads them via the iceberg named_collection
+# and DataLakeCatalog engine. Lives at the top level (not under iceberg) because
+# it's not owned by either component alone.
+warehouse:
+  s3:
+    # -- S3 endpoint URL (e.g. https://ny3.digitaloceanspaces.com).
+    endpoint: ""
+    # -- S3 region.
+    region: ""
+    # -- Bucket name for Iceberg data files.
+    bucket: ""
+    # -- Use path-style addressing. Required for most non-AWS S3-compatible providers.
+    pathStyleAccess: true
+    # -- Access key id used by both ice (to write) and clickhouse (to read via named_collection).
+    accessKeyId: ""
+    # -- Secret access key paired with accessKeyId.
+    secretAccessKey: ""
+
+iceberg:
+  image:
+    # -- Iceberg REST catalog image repository.
+    repository: altinity/ice-rest-catalog
+    # -- Iceberg REST catalog image tag.
+    tag: "0.17.0"
+    # -- Image pull policy.
+    pullPolicy: IfNotPresent
+
+  serviceAccount:
+    # -- Annotations to add to the iceberg service account (e.g. IRSA role ARNs).
+    annotations: {}
+    # -- Override the iceberg service account name. Defaults to `<release>-iceberg`.
+    name: ""
+
+  auth:
+    # -- Bearer token clickhouse presents to the REST catalog. If empty, a
+    #    deterministic default is derived from the release name.
+    bearerToken: ""
+
+  storage:
+    # Iceberg metadata (table snapshots, manifest lists). If this bucket differs
+    # from the top-level `warehouse`, the chart wires it in as the
+    # `write.metadata.path` catalog property. Set to the same values as
+    # `warehouse.s3` to co-locate metadata with data files.
+    meta:
+      s3:
+        # -- Metadata bucket S3 endpoint URL.
+        endpoint: ""
+        # -- Metadata bucket S3 region.
+        region: ""
+        # -- Metadata bucket name. Same as `warehouse.s3.bucket` co-locates metadata with data.
+        bucket: ""
+        # -- Use path-style addressing.
+        pathStyleAccess: true
+        # -- Metadata bucket access key id.
+        accessKeyId: ""
+        # -- Metadata bucket secret access key.
+        secretAccessKey: ""
+
+  # -- Container resource requests/limits for the iceberg pod.
+  resources: {}
+  # -- Additional labels on the iceberg pod.
+  podLabels: {}
+  # -- Additional annotations on the iceberg pod.
+  podAnnotations: {}
+
+  persistence:
+    # -- Enable the SQLite PVC for the iceberg REST catalog.
+    enabled: true
+    # -- Use an existing PVC instead of creating one from `volumeClaimTemplates`.
+    existingClaim: ""
+    # -- PVC access mode.
+    accessMode: ReadWriteOnce
+    resources:
+      # -- PVC size for the iceberg SQLite database.
+      storage: 5Gi
+    # -- StorageClass for the iceberg PVC.
+    storageClass: ""
+    # -- Additional labels on the iceberg PVC.
+    labels: {}
+    # -- Additional annotations on the iceberg PVC.
+    annotations: {}
+
+clickhouse:
+  image:
+    # -- ClickHouse image repository. Must be Altinity's Antalya build for DataLakeCatalog support.
+    repository: altinity/clickhouse-server
+    # -- ClickHouse image tag. Pin an explicit `*.altinityantalya` version.
+    tag: "25.8.22.20001.altinityantalya"
+    # -- Image pull policy.
+    pullPolicy: IfNotPresent
+
+  serviceAccount:
+    # -- Annotations to add to the clickhouse service account. Reused by the init Job.
+    annotations: {}
+    # -- Override the clickhouse service account name. Defaults to `<release>-clickhouse`.
+    name: ""
+
+  # Bootstrap admin. Rendered into users.d/admin.xml with a SHA256-hashed password and
+  # access_management privilege. Exists solely to run the init Job's DDL.
+  admin:
+    # -- Admin username. Written to users.d/admin.xml with the `access_management` privilege.
+    username: admin
+    # -- Admin password (plaintext in values, SHA256-hashed at render time). Required.
+    password: ""
+
+  # -- Named permission bundles. Map of role name to `{grants: [SQL fragment, ...]}`. Rendered
+  #    as `CREATE ROLE IF NOT EXISTS` + `GRANT` statements in init.sql. Users reference roles
+  #    via `clickhouse.users.<name>.roles`.
+  roles:
+    reader:
+      grants:
+        - "SELECT ON default.*"
+        - "SELECT ON iceberg.*"
+    writer:
+      grants:
+        - "SELECT, INSERT ON default.*"
+    ingest:
+      grants:
+        - "SELECT, INSERT, ALTER ON default.*"
+        - "CREATE TABLE, DROP TABLE ON default.*"
+
+  # -- Application users. Map of user name to `{password, profile, hostRule, roles}`. Passwords
+  #    are SHA256-hashed at chart render time. Users are SQL-managed via local_directory storage,
+  #    so passwords can be rotated (and users added/removed) without pod restarts. `password` is
+  #    required per user; `roles` references entries in `clickhouse.roles`.
+  users:
+    grafana:
+      password: ""
+      profile: readonly
+      hostRule: ANY
+      roles:
+        - reader
+
+  # -- ClickHouse settings profiles. Map of profile name to a map of setting name → value.
+  #    Rendered into users.d/profiles.xml so profiles exist before any user in init.sql
+  #    references them. Values must be strings so large integers keep their exact form
+  #    (10000000000, not 1e+10) — ClickHouse's XML parser doesn't accept scientific notation.
+  profiles:
+    default:
+      max_memory_usage: "10000000000"
+      use_uncompressed_cache: "0"
+      load_balancing: random
+    readonly:
+      readonly: "1"
+      max_memory_usage: "10000000000"
+
+  # -- Databases created by the post-install/post-upgrade Job. Map of database name to
+  #    `{engine, engineArgs, settings}`. Each entry becomes:
+  #      CREATE DATABASE IF NOT EXISTS <name>
+  #        ENGINE = <engine>(<engineArgs...>)
+  #        SETTINGS <k1>='<v1>', <k2>='<v2>', ...;
+  #    `engineArgs` and `settings` are optional. All string fields are tpl-rendered against
+  #    the chart's context, so you can reference `include` helpers and `.Values`.
+  databases:
+    default:
+      engine: Atomic
+    iceberg:
+      engine: DataLakeCatalog
+      engineArgs:
+        - 'http://{{ include "metrics.iceberg.fullname" . }}:5000'
+      settings:
+        catalog_type: rest
+        auth_header: 'Authorization: Bearer {{ include "metrics.iceberg.bearerToken" . }}'
+        warehouse: 's3://{{ .Values.warehouse.s3.bucket }}/'
+
+  # -- Extra SQL statements run after `databases` but before roles/users. Each entry is
+  #    tpl-rendered. Use for CREATE TABLE, ALTER, materialized views, or any DDL not
+  #    expressible as a `databases` map entry.
+  extraSql: []
+
+  storage:
+    # ClickHouse MergeTree tiered storage. Only used when enabled: true.
+    # Independent of iceberg storage — iceberg-on-S3 works regardless of this
+    # setting. Only affects MergeTree tables you create later.
+    cold:
+      # -- Enable MergeTree tiered storage. When true, renders `storage_configuration` +
+      #    `s3_tiered` policy in config.d/s3.xml.
+      enabled: false
+      s3:
+        # -- Cold-tier S3 endpoint URL.
+        endpoint: ""
+        # -- Cold-tier S3 region.
+        region: ""
+        # -- Cold-tier bucket name.
+        bucket: ""
+        # -- Use path-style addressing.
+        pathStyleAccess: true
+        # -- Cold-tier access key id.
+        accessKeyId: ""
+        # -- Cold-tier secret access key.
+        secretAccessKey: ""
+
+  # -- Container resource requests/limits for the clickhouse pod.
+  resources: {}
+  # -- Additional labels on the clickhouse pod.
+  podLabels: {}
+  # -- Additional annotations on the clickhouse pod.
+  podAnnotations: {}
+
+  persistence:
+    # -- Enable the clickhouse data PVC.
+    enabled: true
+    # -- Use an existing PVC instead of creating one from `volumeClaimTemplates`.
+    existingClaim: ""
+    # -- PVC access mode.
+    accessMode: ReadWriteOnce
+    resources:
+      # -- PVC size for clickhouse local data (system tables, cache, access storage).
+      storage: 20Gi
+    # -- StorageClass for the clickhouse PVC.
+    storageClass: ""
+    # -- Additional labels on the clickhouse PVC.
+    labels: {}
+    # -- Additional annotations on the clickhouse PVC.
+    annotations: {}
+
+grafana:
+  image:
+    # -- Grafana image repository.
+    repository: grafana/grafana
+    # -- Grafana image tag.
+    tag: "11.5.0"
+    # -- Image pull policy.
+    pullPolicy: IfNotPresent
+
+  serviceAccount:
+    # -- Annotations to add to the grafana service account.
+    annotations: {}
+    # -- Override the grafana service account name. Defaults to `<release>-grafana`.
+    name: ""
+
+  # -- Additional `grafana.ini` sections merged over chart defaults. Each top-level
+  #    key is an INI section; nested keys become `key = value` lines. User-provided
+  #    keys override chart defaults for the same section (e.g. add `auth.generic_oauth`
+  #    to wire up OAuth, since the chart disables the built-in admin by default).
+  ini: {}
+  # -- Plugins installed via `GF_INSTALL_PLUGINS`. Keep the ClickHouse datasource
+  #    plugin unless you have a specific reason to remove it.
+  plugins:
+    - grafana-clickhouse-datasource
+  # -- Additional env vars appended to the grafana container. Accepts entries with
+  #    either `value` or `valueFrom` (secretKeyRef/configMapKeyRef).
+  extraEnv: []
+  # -- Additional datasources appended alongside the built-in ClickHouse datasource.
+  #    Each entry is a full Grafana datasource object. Rendered into
+  #    `/etc/grafana/provisioning/datasources/extras.yaml`.
+  extraDatasources: []
+  # File-based provisioning. Content is non-sensitive and served via a ConfigMap;
+  # use `extraEnv` with `valueFrom` for anything that needs a Secret indirection.
+  provisioning:
+    # -- Content of `/etc/grafana/provisioning/dashboards/providers.yaml`
+    #    (a full Grafana dashboard providers config). Set alongside `dashboards`
+    #    to actually load JSON files from `/etc/grafana/provisioning/dashboards/files/`.
+    dashboardProviders: {}
+    # -- Dashboards to bake in. Map of filename → dashboard JSON (string or object).
+    #    Files land under `/etc/grafana/provisioning/dashboards/files/<filename>`.
+    dashboards: {}
+    # -- Content of `/etc/grafana/provisioning/alerting/alerting.yaml`.
+    alerting: {}
+    # -- Content of `/etc/grafana/provisioning/notifiers/notifiers.yaml` (legacy notifiers).
+    notifiers: {}
+
+  ingress:
+    # -- Enable the grafana Ingress. Grafana is the only externally exposed component.
+    enabled: true
+    # -- Annotations on the Ingress (cert-manager, external-dns, traefik middlewares, etc.).
+    annotations: {}
+    # -- Ingress hosts (e.g. `[{ host: metrics.mya.sh }]`).
+    hosts: []
+    # -- Ingress TLS entries (e.g. `[{ secretName: metrics-tls, hosts: [metrics.mya.sh] }]`).
+    tls: []
+
+  # -- Container resource requests/limits for the grafana pod.
+  resources: {}
+  # -- Additional labels on the grafana pod.
+  podLabels: {}
+  # -- Additional annotations on the grafana pod.
+  podAnnotations: {}
+
+  persistence:
+    # -- Enable the grafana data PVC (holds `/var/lib/grafana` with the SQLite DB + plugins).
+    enabled: true
+    # -- Use an existing PVC instead of creating one from `volumeClaimTemplates`.
+    existingClaim: ""
+    # -- PVC access mode.
+    accessMode: ReadWriteOnce
+    resources:
+      # -- PVC size for grafana data.
+      storage: 10Gi
+    # -- StorageClass for the grafana PVC.
+    storageClass: ""
+    # -- Additional labels on the grafana PVC.
+    labels: {}
+    # -- Additional annotations on the grafana PVC.
+    annotations: {}
+
+  # Valkey backing grafana's [remote_cache].
+  cache:
+    image:
+      # -- Valkey image repository.
+      repository: valkey/valkey
+      # -- Valkey image tag.
+      tag: "8.0-alpine"
+      # -- Image pull policy.
+      pullPolicy: IfNotPresent
+
+    serviceAccount:
+      # -- Annotations to add to the valkey service account.
+      annotations: {}
+      # -- Override the valkey service account name. Defaults to `<release>-cache`.
+      name: ""
+
+    auth:
+      # -- Valkey password. Empty = no auth (cluster-internal only).
+      password: ""
+
+    # -- Container resource requests/limits for the valkey pod.
+    resources: {}
+    # -- Additional labels on the valkey pod.
+    podLabels: {}
+    # -- Additional annotations on the valkey pod.
+    podAnnotations: {}
+
+    persistence:
+      # -- Enable the valkey AOF PVC.
+      enabled: true
+      # -- Use an existing PVC instead of creating one from `volumeClaimTemplates`.
+      existingClaim: ""
+      # -- PVC access mode.
+      accessMode: ReadWriteOnce
+      resources:
+        # -- PVC size for the valkey AOF. Session cache is regenerable so this can stay small.
+        storage: 1Gi
+      # -- StorageClass for the valkey PVC.
+      storageClass: ""
+      # -- Additional labels on the valkey PVC.
+      labels: {}
+      # -- Additional annotations on the valkey PVC.
+      annotations: {}

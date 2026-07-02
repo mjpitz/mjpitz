@@ -1,0 +1,53 @@
+{{- if .Values.grafana.ingress.enabled -}}
+{{- $fullName := include "metrics.grafana.fullname" . -}}
+{{- $v1Networking := semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion -}}
+{{- if $v1Networking -}}
+apiVersion: networking.k8s.io/v1
+{{- else if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
+apiVersion: networking.k8s.io/v1beta1
+{{- else -}}
+apiVersion: extensions/v1beta1
+{{- end }}
+kind: Ingress
+metadata:
+  name: {{ $fullName }}
+  labels:
+    {{- include "metrics.labels" (dict "component" "grafana" "root" .) | nindent 4 }}
+  {{- $extra := .Values.grafana.ingress.annotations | default dict }}
+  {{- $common := .Values.commonAnnotations | default dict }}
+  {{- with mergeOverwrite (deepCopy $common) $extra }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  {{- with .Values.grafana.ingress.tls }}
+  tls:
+    {{- range . }}
+    - hosts:
+        {{- range .hosts }}
+        - {{ . | quote }}
+        {{- end }}
+      secretName: {{ .secretName }}
+    {{- end }}
+  {{- end }}
+  rules:
+    {{- range .Values.grafana.ingress.hosts }}
+    - host: {{ .host | quote }}
+      http:
+        paths:
+        {{- if $v1Networking }}
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ $fullName }}
+                port:
+                  name: http
+        {{- else }}
+          - path: /
+            backend:
+              serviceName: {{ $fullName }}
+              servicePort: 3000
+        {{- end }}
+    {{- end }}
+{{- end }}

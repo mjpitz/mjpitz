@@ -10,8 +10,9 @@ sources:
   - https://github.com/mjpitz/mjpitz/tree/main/charts/maddy
 maintainers:
   - name: Mya Pitzeruse
+    email: charts@mya.sh
     url: https://mya.sh
-version: 22.4.12
+version: 22.4.13
 appVersion: 0.7.1
 dependencies:
   - name: litestream

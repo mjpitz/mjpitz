@@ -1,6 +1,6 @@
 # litestream
 
-![Version: 22.4.5](https://img.shields.io/badge/Version-22.4.5-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.3.13](https://img.shields.io/badge/AppVersion-0.3.13-informational?style=flat-square)
+![Version: 22.4.6](https://img.shields.io/badge/Version-22.4.6-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.3.13](https://img.shields.io/badge/AppVersion-0.3.13-informational?style=flat-square)
 
 Easily add litestream to any sqlite backed application as a sidecar. This chart optionally deploys the required
 configuration and provides template functions that render the necessary init and sidecar containers.
@@ -15,7 +15,7 @@ fetch the dependency before installing.
 dependencies:
   # ...
   - name: litestream
-    version: 22.4.5
+    version: 22.4.6
     repository: https://mya.sh
     condition: litestream.enabled
 ```
@@ -70,9 +70,9 @@ That should be it.
 
 ## Maintainers
 
-| Name          | Email | Url              |
-| ------------- | ----- | ---------------- |
-| Mya Pitzeruse |       | <https://mya.sh> |
+| Name          | Email           | Url              |
+| ------------- | --------------- | ---------------- |
+| Mya Pitzeruse | <charts@mya.sh> | <https://mya.sh> |
 
 ## Source Code
 

@@ -48,6 +48,13 @@ gitea:
     actions:
       enabled: true
     
+    email:
+      host: ""
+      port: 465
+      from: ""
+      username: ""
+      password: ""
+
     repository:
       overrides:
         DISABLE_STARS: true

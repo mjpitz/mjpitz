@@ -1,0 +1,63 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "metrics.clickhouse.fullname" . }}-init
+  labels:
+    {{- include "metrics.labels" (dict "component" "clickhouse-init" "root" .) | nindent 4 }}
+  annotations:
+    "helm.sh/hook": post-install,post-upgrade
+    "helm.sh/hook-weight": "5"
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
+    {{- with .Values.commonAnnotations }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+spec:
+  backoffLimit: 3
+  template:
+    metadata:
+      labels:
+        {{- include "metrics.selectorLabels" (dict "component" "clickhouse-init" "root" .) | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "metrics.clickhouse.serviceAccountName" . }}
+      restartPolicy: OnFailure
+      containers:
+        - name: init
+          image: "{{ .Values.clickhouse.image.repository }}:{{ .Values.clickhouse.image.tag }}"
+          imagePullPolicy: {{ .Values.clickhouse.image.pullPolicy }}
+          envFrom:
+            - secretRef:
+                name: {{ include "metrics.clickhouse.fullname" . }}-init
+          command:
+            - sh
+            - -c
+            - |
+              set -e
+              # Wait for clickhouse to accept connections.
+              for i in $(seq 1 60); do
+                if clickhouse-client --host {{ include "metrics.clickhouse.fullname" . }} --port 9000 \
+                     --user "$CLICKHOUSE_ADMIN_USER" --password "$CLICKHOUSE_ADMIN_PASSWORD" \
+                     --query "SELECT 1" >/dev/null 2>&1; then
+                  break
+                fi
+                echo "waiting for clickhouse..."
+                sleep 2
+              done
+              clickhouse-client --host {{ include "metrics.clickhouse.fullname" . }} --port 9000 \
+                --user "$CLICKHOUSE_ADMIN_USER" --password "$CLICKHOUSE_ADMIN_PASSWORD" \
+                --multiquery --queries-file /etc/init/init.sql
+          resources: {}
+          volumeMounts:
+            - mountPath: /etc/init
+              name: init
+              readOnly: true
+      volumes:
+        - name: init
+          secret:
+            secretName: {{ include "metrics.clickhouse.fullname" . }}-init
+            items:
+              - key: init.sql
+                path: init.sql

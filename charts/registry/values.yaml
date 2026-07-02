@@ -57,8 +57,7 @@ ingress:
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
-    - # -- Specify the domain host for the ingress.
-      host: chart-example.local
+    - host: chart-example.local
 
   # -- Configure TLS for the ingress.
   tls: []

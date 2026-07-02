@@ -1,0 +1,106 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "metrics.clickhouse.fullname" . }}
+  labels:
+    {{- include "metrics.labels" (dict "component" "clickhouse" "root" .) | nindent 4 }}
+  {{- with .Values.commonAnnotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  replicas: 1
+  serviceName: {{ include "metrics.clickhouse.fullname" . }}
+  {{- if and .Values.clickhouse.persistence.enabled (not .Values.clickhouse.persistence.existingClaim) }}
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+        {{- with .Values.clickhouse.persistence.labels }}
+        labels:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
+        {{- with .Values.clickhouse.persistence.annotations }}
+        annotations:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
+      spec:
+        accessModes:
+          - {{ .Values.clickhouse.persistence.accessMode }}
+        resources:
+          requests:
+            storage: {{ .Values.clickhouse.persistence.resources.storage }}
+        {{- with .Values.clickhouse.persistence.storageClass }}
+        storageClassName: {{ . }}
+        {{- end }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "metrics.selectorLabels" (dict "component" "clickhouse" "root" .) | nindent 6 }}
+  template:
+    metadata:
+      annotations:
+        checksum/configd: {{ include "metrics.clickhouse.dockerConfig" . | cat (include "metrics.clickhouse.s3Config" .) (include "metrics.clickhouse.userDirectoriesConfig" .) | sha256sum }}
+        checksum/users: {{ include "metrics.clickhouse.adminUser" . | cat (include "metrics.clickhouse.profiles" .) | sha256sum }}
+        {{- with .Values.clickhouse.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+      labels:
+        {{- include "metrics.selectorLabels" (dict "component" "clickhouse" "root" .) | nindent 8 }}
+        {{- with .Values.clickhouse.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "metrics.clickhouse.serviceAccountName" . }}
+      containers:
+        - name: clickhouse
+          image: "{{ .Values.clickhouse.image.repository }}:{{ .Values.clickhouse.image.tag }}"
+          imagePullPolicy: {{ .Values.clickhouse.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 8123
+              protocol: TCP
+            - name: clickhouse
+              containerPort: 9000
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /ping
+              port: http
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /ping
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          resources:
+            {{- toYaml .Values.clickhouse.resources | nindent 12 }}
+          volumeMounts:
+            - mountPath: /var/lib/clickhouse
+              name: data
+            - mountPath: /etc/clickhouse-server/config.d
+              name: configd
+              readOnly: true
+            - mountPath: /etc/clickhouse-server/users.d
+              name: usersd
+              readOnly: true
+      volumes:
+        - name: configd
+          secret:
+            secretName: {{ include "metrics.clickhouse.fullname" . }}-configd
+        - name: usersd
+          secret:
+            secretName: {{ include "metrics.clickhouse.fullname" . }}-users
+        {{- if not .Values.clickhouse.persistence.enabled }}
+        - name: data
+          emptyDir: {}
+        {{- else if .Values.clickhouse.persistence.existingClaim }}
+        - name: data
+          persistentVolumeClaim:
+            claimName: {{ .Values.clickhouse.persistence.existingClaim }}
+        {{- end }}
