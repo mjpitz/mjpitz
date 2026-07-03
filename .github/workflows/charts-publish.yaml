@@ -54,8 +54,8 @@ jobs:
       - name: Copy index.yaml to site public directory
         run: |
           # Chart releaser only creates index.yaml when charts are actually released
-          if [ -f .cr-release-packages/index.yaml ]; then
-            cp .cr-release-packages/index.yaml site/public/index.yaml
+          if [ -f .cr-index/index.yaml ]; then
+            cp .cr-index/index.yaml site/public/index.yaml
             echo "Copied index.yaml to site/public/"
           else
             echo "No index.yaml generated (no chart releases in this run)"

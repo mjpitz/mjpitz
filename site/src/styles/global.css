@@ -349,3 +349,20 @@ input:checked + .slider .feather-sun {
     opacity: 0;
     transform: translateX(-4px);
 }
+
+.plot-figure {
+    --plot-fg: var(--color-text);
+    --plot-grid: var(--color-border);
+    width: 100%;
+}
+
+.plot-figure svg {
+    color: var(--plot-fg);
+    background: transparent;
+}
+
+.plot-figure [aria-label="y-grid"] line,
+.plot-figure [aria-label="x-grid"] line {
+    stroke: var(--plot-grid);
+}
+
