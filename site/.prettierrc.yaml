@@ -7,6 +7,7 @@ printWidth: 120
 overrides:
   - files:
       - "*.md"
+      - "*.mdx"
     options:
       proseWrap: always
 

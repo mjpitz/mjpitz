@@ -69,11 +69,6 @@ export default function Plot({ options, marks, className, ariaLabel }: PlotProps
     }, [options, marks, width]);
 
     return (
-        <div
-            ref={containerRef}
-            className={`plot-figure ${className ?? ""}`.trim()}
-            role="img"
-            aria-label={ariaLabel}
-        />
+        <div ref={containerRef} className={`plot-figure ${className ?? ""}`.trim()} role="img" aria-label={ariaLabel} />
     );
 }

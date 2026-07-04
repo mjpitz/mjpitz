@@ -18,7 +18,6 @@ tags:
   - leadership
 ---
 
-
 I know we're halfway through 2026 at this point, but a lot happened for me in 2025. While I failed to accomplish half of
 the goals I set out for, I often feel it's important to celebrate the wins when you find them.
 

@@ -25,10 +25,7 @@ interface PlaylistResponse {
     nextPageToken?: string;
 }
 
-export async function getPlaylistVideos(
-    playlistId: string,
-    maxResults: number = 50
-): Promise<YouTubeVideo[]> {
+export async function getPlaylistVideos(playlistId: string, maxResults: number = 50): Promise<YouTubeVideo[]> {
     const apiKey = import.meta.env.YOUTUBE_API_KEY;
 
     if (!apiKey) {
@@ -37,9 +34,7 @@ export async function getPlaylistVideos(
     }
 
     try {
-        const url = new URL(
-            "https://www.googleapis.com/youtube/v3/playlistItems"
-        );
+        const url = new URL("https://www.googleapis.com/youtube/v3/playlistItems");
         url.searchParams.set("part", "snippet");
         url.searchParams.set("playlistId", playlistId);
         url.searchParams.set("maxResults", maxResults.toString());
@@ -48,9 +43,7 @@ export async function getPlaylistVideos(
         const response = await fetch(url.toString());
 
         if (!response.ok) {
-            throw new Error(
-                `YouTube API error: ${response.status} ${response.statusText}`
-            );
+            throw new Error(`YouTube API error: ${response.status} ${response.statusText}`);
         }
 
         const data: PlaylistResponse = await response.json();

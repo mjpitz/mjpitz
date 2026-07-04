@@ -5,10 +5,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 const ASCENDING_PUBDATE = (a, b) => a.pubDate.valueOf() - b.pubDate.valueOf();
 
 export async function GET(context) {
-    const [blog, papers] = await Promise.all([
-        getCollection("blog"),
-        getCollection("papers"),
-    ]);
+    const [blog, papers] = await Promise.all([getCollection("blog"), getCollection("papers")]);
 
     let all = [].concat(
         blog.map((p) => ({ ...p.data, link: `/blog/${p.slug}/` })),

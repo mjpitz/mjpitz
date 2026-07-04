@@ -31,7 +31,7 @@
     --color-text: rgb(var(--gray-dark));
     --bold-text: rgb(var(--black));
     --code: rgb(var(--gray-light));
-    
+
     /* Sidebar colors for light mode */
     --color-bg-secondary: #f8f9fa;
     --color-text-secondary: #666;
@@ -44,7 +44,7 @@
     --color-text: rgb(var(--gray-light));
     --bold-text: #fff;
     --code: rgb(var(--gray-dark));
-    
+
     /* Sidebar colors for dark mode */
     --color-bg-secondary: #2a2a2a;
     --color-text-secondary: #aaa;
@@ -80,7 +80,9 @@ body {
     color: var(--color-text);
     font-size: 20px;
     line-height: 1.7;
-    transition: background 0.3s ease, color 0.3s ease;
+    transition:
+        background 0.3s ease,
+        color 0.3s ease;
 }
 
 main {
@@ -153,8 +155,37 @@ input {
     font-size: 16px;
 }
 
-table {
-    width: 100%;
+.prose table {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+    margin: 1em 0 2em;
+    font-size: 0.9em;
+    line-height: 1.5;
+}
+
+.prose thead {
+    background-color: var(--color-bg-secondary);
+    border-bottom: 2px solid var(--color-border);
+}
+
+.prose th,
+.prose td {
+    padding: 0.6em 0.9em;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.prose th {
+    color: var(--bold-text);
+    font-weight: 700;
+}
+
+.prose tbody tr:last-child td {
+    border-bottom: none;
 }
 
 img {
@@ -354,6 +385,11 @@ input:checked + .slider .feather-sun {
     --plot-fg: var(--color-text);
     --plot-grid: var(--color-border);
     width: 100%;
+    padding-bottom: 1em;
+}
+
+.plot-figure h2 {
+    font-size: x-large;
 }
 
 .plot-figure svg {
@@ -365,4 +401,3 @@ input:checked + .slider .feather-sun {
 .plot-figure [aria-label="x-grid"] line {
     stroke: var(--plot-grid);
 }
-

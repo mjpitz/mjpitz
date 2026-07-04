@@ -14,21 +14,15 @@ interface VideoGalleryProps {
     arpeggiosVideos: Video[];
 }
 
-export default function VideoGallery({
-    algorithmsVideos,
-    arpeggiosVideos,
-}: VideoGalleryProps) {
-    const [activeTab, setActiveTab] = useState<"algorithms" | "arpeggios">(
-        "algorithms"
-    );
+export default function VideoGallery({ algorithmsVideos, arpeggiosVideos }: VideoGalleryProps) {
+    const [activeTab, setActiveTab] = useState<"algorithms" | "arpeggios">("algorithms");
     const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
     const [currentPage, setCurrentPage] = useState(0);
     const videoPlayerRef = useRef<HTMLDivElement>(null);
 
     const VIDEOS_PER_PAGE = 4;
-    const currentVideos =
-        activeTab === "algorithms" ? algorithmsVideos : arpeggiosVideos;
-    
+    const currentVideos = activeTab === "algorithms" ? algorithmsVideos : arpeggiosVideos;
+
     const totalPages = Math.ceil(currentVideos.length / VIDEOS_PER_PAGE);
     const startIndex = currentPage * VIDEOS_PER_PAGE;
     const displayedVideos = currentVideos.slice(startIndex, startIndex + VIDEOS_PER_PAGE);
@@ -104,11 +98,7 @@ export default function VideoGallery({
                             allowFullscreen
                         ></iframe>
                     </div>
-                    <button
-                        className="close-video"
-                        onClick={() => setSelectedVideo(null)}
-                        aria-label="Close video"
-                    >
+                    <button className="close-video" onClick={() => setSelectedVideo(null)} aria-label="Close video">
                         ✕ Close Video
                     </button>
                 </div>
@@ -134,17 +124,9 @@ export default function VideoGallery({
                             aria-label={`Play ${video.title}`}
                         >
                             <div className="video-thumbnail">
-                                <img
-                                    src={video.thumbnail}
-                                    alt={video.title}
-                                    loading="lazy"
-                                />
+                                <img src={video.thumbnail} alt={video.title} loading="lazy" />
                                 <div className="play-overlay">
-                                    <svg
-                                        className="play-icon"
-                                        viewBox="0 0 24 24"
-                                        fill="currentColor"
-                                    >
+                                    <svg className="play-icon" viewBox="0 0 24 24" fill="currentColor">
                                         <path d="M8 5v14l11-7z" />
                                     </svg>
                                 </div>
@@ -184,7 +166,6 @@ export default function VideoGallery({
                             Next →
                         </button>
                     </div>
-
 
                     {/* Carousel Info */}
                     <div className="carousel-info">
