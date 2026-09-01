@@ -235,7 +235,7 @@ grafana:
     # -- Grafana image repository.
     repository: grafana/grafana
     # -- Grafana image tag.
-    tag: "11.5.0"
+    tag: "13.2.1"
     # -- Image pull policy.
     pullPolicy: IfNotPresent
 
@@ -316,7 +316,7 @@ grafana:
       # -- Valkey image repository.
       repository: valkey/valkey
       # -- Valkey image tag.
-      tag: "8.0-alpine"
+      tag: "9.1-alpine"
       # -- Image pull policy.
       pullPolicy: IfNotPresent
 
