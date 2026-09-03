@@ -37,7 +37,7 @@ iceberg:
     # -- Iceberg REST catalog image repository.
     repository: altinity/ice-rest-catalog
     # -- Iceberg REST catalog image tag.
-    tag: "0.17.0"
+    tag: "0.21.0"
     # -- Image pull policy.
     pullPolicy: IfNotPresent
 
@@ -235,7 +235,7 @@ grafana:
     # -- Grafana image repository.
     repository: grafana/grafana
     # -- Grafana image tag.
-    tag: "11.5.0"
+    tag: "11.6.16"
     # -- Image pull policy.
     pullPolicy: IfNotPresent
 
@@ -316,7 +316,7 @@ grafana:
       # -- Valkey image repository.
       repository: valkey/valkey
       # -- Valkey image tag.
-      tag: "8.0-alpine"
+      tag: "8.1-alpine"
       # -- Image pull policy.
       pullPolicy: IfNotPresent
 
