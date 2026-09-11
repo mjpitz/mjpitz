@@ -1,7 +1,7 @@
 gitea:
   image:
     repository: gitea/gitea
-    tag: 1.26.2
+    tag: 1.27.3
 
   ingress:
     enabled: true
