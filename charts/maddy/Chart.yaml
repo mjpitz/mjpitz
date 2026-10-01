@@ -12,11 +12,11 @@ maintainers:
   - name: Mya Pitzeruse
     email: charts@mya.sh
     url: https://mya.sh
-version: 22.4.13
+version: 22.4.14
 appVersion: 0.7.1
 dependencies:
   - name: litestream
-    version: 22.4.4
+    version: 22.4.5
     repository: https://mya.sh
     condition: litestream.enabled
 annotations:
