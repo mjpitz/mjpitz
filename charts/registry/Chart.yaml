@@ -11,7 +11,7 @@ maintainers:
   - name: Mya Pitzeruse
     email: charts@mya.sh
     url: https://mya.sh
-version: 22.4.13
+version: 22.4.14
 appVersion: 2.8.3
 dependencies:
   - name: auth
@@ -19,7 +19,7 @@ dependencies:
     condition: auth.enabled
   - name: redis
     repository: https://mya.sh
-    version: 22.4.9
+    version: 22.4.10
     condition: redis.enabled
   - name: storj
     repository: https://mya.sh
