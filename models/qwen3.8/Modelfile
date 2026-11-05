@@ -1,2 +1,0 @@
-FROM qwen3.8:27b
-PARAMETER num_predict -1

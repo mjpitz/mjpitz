@@ -1,2 +1,0 @@
-FROM ornith:9b-bf16
-PARAMETER num_predict -1
