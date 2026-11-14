@@ -3,31 +3,30 @@ layout: "../layouts/Page.astro"
 title: "AI Usage"
 ---
 
-**Last Modified:** May 8, 2026
+**Last Modified:** November 14, 2026
 
-Before getting into how I use artificial intelligence (AI), I first want to call out that I do _ALL_ of my writing
-myself. Since I first started writing technically in 2014, I have never been comfortable working with ghostwriters or
-having other people write or speak on my behalf. So why would I treat AI any different? I don't believe AI is as
-trustworthy as a ghostwriter would be, so I've been very selective about how it gets incorporated into my work.
+I still do all of my writing myself. Since I started writing technically in 2014, I've never been comfortable having
+someone else write or speak on my behalf. What has changed is my view on AI's trustworthiness. Early on, I didn't
+think it was reliable enough to lean on heavily. Now that I can get agents to return the sources they're drawing on,
+I have a lot more confidence in where the information is coming from and when to push back on it.
 
 ### Technology
 
-I am fortunate enough to have experimented with a number of different technologies and have sufficient resources on my
-local development machine to run various models. While cloud-hosted solutions offer a lot of value, I don't have an
-infinite amount of money to throw at dozens of different solutions.
+My setup has shifted a lot since I last updated this page. [Claude][] has become my primary assistant for most
+day-to-day work. For anything I want to iterate on privately or offline, I self-host a [gemma4:26b][] model via
+[Ollama][]. A recent upgrade to a gaming rig has made local hosting significantly more practical than it used to be.
 
-For anything text-related, I leverage [Ollama][] and various AI assistants like [Claude][] and [Cline][] for development
-work.
+For self-hosted model access, I've moved away from [Cline][] as my driver. I now use GoModel as a gateway, with
+[ZooCode][] and [pi.dev][] as my primary clients depending on what I'm working on.
 
-[Ollama]: https://ollama.com/
 [Claude]: https://claude.ai/
-[Cline]: https://github.com/cline/cline
+[Cline]: https://cline.bot
+[Ollama]: https://ollama.com/
+[gemma4:26b]: https://ollama.com/library/gemma4
+[ZooCode]: https://zoocode.dev/
+[pi.dev]: https://pi.dev/
 
-### How I Use AI
-
-My AI usage has evolved significantly over time. Here's how I incorporate it into my workflow:
-
-#### Writing & Editing
+### Writing & Editing
 
 I use AI to help edit my own writing, but never to generate it. This includes:
 
@@ -36,22 +35,21 @@ I use AI to help edit my own writing, but never to generate it. This includes:
 - Identifying problematic areas that may need further detail
 - Turning text into speech when proofreading articles
 
-#### Development & Prototyping
+<br/>
 
-This is where AI has become invaluable to my workflow:
+### Research
 
-- **Rapid Prototyping**: Building proof-of-concept implementations quickly to validate ideas
-- **DevOps Tooling**: Creating automation scripts, CI/CD pipelines, and infrastructure code
-- **Boilerplate Generation**: Speeding up the creation of repetitive code structures
-- **Code Review**: Getting suggestions for improvements and identifying potential issues
-- **Documentation**: Generating initial drafts of technical documentation that I then refine
+I've started leaning on Claude for spot research. It's a fast way to get oriented on a topic, but I verify everything
+along the way. AI gets things wrong with a lot of confidence, so I treat its output as a starting point and confirm
+sources and facts before acting on them.
 
-The key distinction is that I treat AI-generated code as a starting point that requires my review, understanding, and
-refinement. I never blindly accept AI suggestions without comprehending what they do and ensuring they align with best
-practices and my specific requirements.
+### Development & Prototyping
+
+I use it for rapid prototyping, writing automation scripts, generating boilerplate, and getting a second read on code
+I've written. Whatever it produces, I read it, understand it, and make sure it actually fits before it goes anywhere.
 
 ### My Philosophy
 
-AI is a tool, not a replacement for critical thinking and expertise. I use it to accelerate certain tasks and explore
-possibilities faster, but the final decisions, implementations, and especially all written content remain authentically
-mine.
+I see AI as something that speeds up parts of my work, not something that does my work for me. The decisions,
+implementations, and all written content are mine. That accountability doesn't go away just because a model was
+involved somewhere in the process.
