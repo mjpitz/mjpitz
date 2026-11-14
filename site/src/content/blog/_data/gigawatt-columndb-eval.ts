@@ -1,5 +1,5 @@
 export const writeThroughput = [
-    { platform: "Cassandra", metric: "min", wps: 7804.60 },
+    { platform: "Cassandra", metric: "min", wps: 7804.6 },
     { platform: "Cassandra", metric: "median", wps: 12710.63 },
     { platform: "Cassandra", metric: "max", wps: 17815.62 },
     { platform: "ClickHouse", metric: "min", wps: 165948.68 },
@@ -23,7 +23,7 @@ export const insertionTime = [
     { platform: "Iceberg", metric: "median", ms: 1324.89 },
     { platform: "Iceberg", metric: "p95", ms: 2670.27 },
     { platform: "Iceberg", metric: "p99", ms: 2801.19 },
-    { platform: "TimescaleDB", metric: "median", ms: 485.40 },
+    { platform: "TimescaleDB", metric: "median", ms: 485.4 },
     { platform: "TimescaleDB", metric: "p95", ms: 1060.59 },
     { platform: "TimescaleDB", metric: "p99", ms: 1336.77 },
 ];
@@ -71,4 +71,4 @@ export const timescaleQueryBreakdown = [
     { scenario: "version-history", metric: "median", ms: 0.621666 },
     { scenario: "version-history", metric: "p95", ms: 0.777625 },
     { scenario: "version-history", metric: "p99", ms: 0.878291 },
-]
+];

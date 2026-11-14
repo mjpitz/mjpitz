@@ -44,6 +44,7 @@
     --color-text: rgb(var(--gray-light));
     --bold-text: #fff;
     --code: rgb(var(--gray-dark));
+    --accent: #b39dfa;
 
     /* Sidebar colors for dark mode */
     --color-bg-secondary: #2a2a2a;
