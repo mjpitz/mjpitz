@@ -1,10 +1,17 @@
 ---
 title: "Teaching AI About RFCs"
-pubDate: "April 14 2025"
+pubDate: "April 12 2025"
 description: |
    Exploring how MCP servers can enhance AI's understanding of technical protocols through RFC integration.
 
-slug: 2025/04/14/ai-and-rfcs
+slug: 2025/04/12/ai-and-rfcs
+tags:
+  - ai
+  - mcp
+  - rfc
+  - developer-tools
+  - open-source
+  - tooling
 ---
 
 In March 2025, I found myself immersed in the world of the [Model Context Protocol (MCP)][mcp-intro] as I started a new
