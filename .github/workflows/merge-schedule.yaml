@@ -1,0 +1,26 @@
+name: merge-schedule
+
+on:
+  schedule:
+    - cron: '0 1 * * *'
+  pull_request:
+    paths:
+      - site/**
+    types:
+      - opened
+      - edited
+      - synchronize
+
+jobs:
+  merge-schedule:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: gr2m/merge-schedule-action@v2
+        with:
+          merge_method: squash
+          require_statuses_success: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
