@@ -24,6 +24,15 @@ const posts = (await getCollection('blog'))
 							<p class="date">
 								<FormattedDate date={post.data.pubDate} />
 							</p>
+							{
+								post.data.tags && post.data.tags.length > 0 && (
+									<div class="tags">
+										{post.data.tags.map((tag) => (
+											<span class="tag">{tag}</span>
+										))}
+									</div>
+								)
+							}
 							<p class="description">{post.data.description}</p>
 						</a>
 					</li>
@@ -94,5 +103,24 @@ const posts = (await getCollection('blog'))
 
 	ul a:hover img {
 		box-shadow: var(--box-shadow);
+	}
+
+	.tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.4rem;
+		margin: 0.5rem 0 0.75rem;
+		padding: 0;
+	}
+
+	.tag {
+		display: inline-flex;
+		align-items: center;
+		background: var(--color-accent-light);
+		color: var(--accent);
+		border: 1px solid var(--accent);
+		border-radius: 999px;
+		font-size: 0.75rem;
+		padding: 0.2rem 0.6rem;
 	}
 </style>
