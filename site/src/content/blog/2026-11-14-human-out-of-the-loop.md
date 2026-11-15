@@ -19,7 +19,7 @@ requests accepted. Issues filed by agents. It's a real thing they shipped.
 
 My reaction wasn't awe. _Of course that's what they did._ I wanted to know where the gaps were.
 
-*My stake in this*
+_My stake in this_
 
 I've worked on projects built on AWS for years. Lambda, SQS, DynamoDB, S3, the whole stack. I know firsthand how much
 time gets eaten by round-trips to a real environment during development. Local emulation means shorter feedback loops,
@@ -31,7 +31,7 @@ removing myself from the loop. The goal isn't to automate anyone away. It's to g
 
 So while I want a solution like this to work, I'm skeptical about how it was built.
 
-*How it was built*
+_How it was built_
 
 Three specialized agent teams (one that tests, one that finds failures, one that fixes them) work against API models
 derived from hundreds of AWS API definitions. Humans don't write or merge any of the code. What they own is the spec.
@@ -40,7 +40,7 @@ That means defining what "correct" behavior looks like for each service, and wha
 The reporting on scale varies ([InfoWorld counts 426 services][infoworld-emulator], [AWS says 200+][AWS Emulator]), but
 the model is clear. The engineer's job became authoring the definition of "done." Everything after that is agents.
 
-*Where the gate leaks*
+_Where the gate leaks_
 
 The merge gate is real. It merges nothing that doesn't pass. But specs don't cover what nobody thought to write down.
 
@@ -65,7 +65,7 @@ trust AI output when it's easy to verify. [METR][] found that experienced develo
 AI on complex tasks. Not because AI produces worse code, but because verifying it takes longer than writing it. Remove
 the verifier and you don't remove the problem. You defer it to whoever hits the bug in production.
 
-*The open-source question*
+_The open-source question_
 
 I tried LocalStack in 2018 during some Lambda development and [wrote about it at the time][lambda-local]. I got it
 running, hit a bug deploying Lambda functions, filed a report, and moved on. LocalStack has matured a lot since then and
@@ -84,7 +84,7 @@ an agent pipeline and will scale to new services faster. We'll see which advanta
 doesn't automatically mean more accurate than what the community has built. Their docs' track record alone gives me
 pause.
 
-*What to borrow*
+_What to borrow_
 
 The parts of the model worth borrowing don't require removing humans from the loop:
 
