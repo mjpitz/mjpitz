@@ -1,6 +1,7 @@
 {
   "name": "@mjpitz/mjpitz",
   "private": true,
+  "packageManager": "pnpm@11.8.0",
   "scripts": {
     "clean": "rm -rf site/dist/",
     "charts:sources": "pnpm -C charts run sources",
@@ -14,6 +15,7 @@
     "monitoring:format": "pnpm -C monitoring run format",
     "monitoring:lint": "pnpm -C monitoring run lint",
     "monitoring:build": "pnpm -C monitoring run build",
+    "monitoring:sync": "pnpm -C monitoring run sync",
     "site:deps": "pnpm -C site install",
     "site:serve": "pnpm -C site run start",
     "site:build": "pnpm -C site run build",
