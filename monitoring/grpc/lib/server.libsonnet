@@ -8,7 +8,9 @@ local prometheus = grafana.prometheus;
       '  sum(rate(grpc_server_handled_total{grpc_code="Unknown",%s}[5m])) by (grpc_service, grpc_method, instance) ) / ' +
       'sum(rate(grpc_server_handled_total{%s}[5m])) by (grpc_service, grpc_method, instance)'
     ) % [
-      selector, selector, selector,
+      selector,
+      selector,
+      selector,
     ],
   ),
 

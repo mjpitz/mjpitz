@@ -1,0 +1,10 @@
+{
+  "name": "@mjpitz/charts",
+  "private": true,
+  "scripts": {
+    "sources": "helm repo add mya https://mya.sh && helm repo add minio https://charts.min.io/ && helm repo add opentelemetry https://open-telemetry.github.io/opentelemetry-helm-charts && helm repo add grafana https://grafana.github.io/helm-charts && helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx && helm repo add longhorn https://charts.longhorn.io && helm repo add bitnami https://charts.bitnami.com/bitnami && helm repo add cert-manager https://charts.jetstack.io",
+    "deps": "helm repo update && find . -mindepth 1 -maxdepth 1 -type d -exec basename {} \\; | xargs -I{} helm dep up --skip-refresh {}",
+    "docs": "find . -mindepth 1 -maxdepth 1 -type d -exec basename {} \\; | xargs -I{} sh -c 'helm-docs -c {} --dry-run | prettier --parser markdown > {}/README.md'",
+    "lint": "find . -mindepth 1 -maxdepth 1 -type d -exec basename {} \\; | xargs -I{} ct lint --config ct.yaml --charts {}"
+  }
+}

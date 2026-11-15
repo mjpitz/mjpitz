@@ -45,7 +45,7 @@ local registry = import '../lib/registry.libsonnet';
       ))
       .addRow(
         row.new(
-          title = "Overview",
+          title='Overview',
           showTitle=true,
           collapse=false,
         )
@@ -60,7 +60,7 @@ local registry = import '../lib/registry.libsonnet';
       )
       .addRow(
         row.new(
-          title = "Request Details",
+          title='Request Details',
           showTitle=true,
           collapse=false,
         )
@@ -121,7 +121,7 @@ local registry = import '../lib/registry.libsonnet';
       )
       .addRow(
         row.new(
-          title = "Response Details",
+          title='Response Details',
           showTitle=true,
           collapse=false,
         )
@@ -160,7 +160,7 @@ local registry = import '../lib/registry.libsonnet';
       )
       .addRow(
         row.new(
-          title = "Storage Details",
+          title='Storage Details',
           showTitle=true,
           collapse=false,
         )
@@ -199,6 +199,6 @@ local registry = import '../lib/registry.libsonnet';
             format='short',
           ).addTarget(registry.storage_cache_rate(selector))
         )
-      )
+      ),
   },
 }

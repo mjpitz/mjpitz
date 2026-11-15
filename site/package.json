@@ -9,7 +9,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "test": "",
+    "test": "true",
     "lint": "prettier --check .",
     "format": "prettier --write ."
   },

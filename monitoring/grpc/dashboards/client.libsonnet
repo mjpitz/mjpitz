@@ -107,5 +107,5 @@ local client = import '../lib/client.libsonnet';
           min=0,
         ).addTarget(client.message_received_rate(selector=selector))
       )
-    )
+    ),
 }

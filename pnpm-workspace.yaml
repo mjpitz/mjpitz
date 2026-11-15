@@ -1,0 +1,8 @@
+packages:
+  - 'site'
+  - 'charts'
+  - 'docker'
+  - 'monitoring'
+allowBuilds:
+  esbuild: true
+  sharp: true

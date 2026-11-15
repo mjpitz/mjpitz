@@ -1,0 +1,22 @@
+{
+  "name": "@mjpitz/mjpitz",
+  "private": true,
+  "scripts": {
+    "clean": "rm -rf site/dist/",
+    "charts:sources": "pnpm -C charts run sources",
+    "charts:deps": "pnpm -C charts run deps",
+    "charts:docs": "pnpm -C charts run docs",
+    "charts:lint": "pnpm -C charts run lint",
+    "docker:build": "pnpm -C docker run build",
+    "docker:release": "pnpm -C docker run release",
+    "infra:helm:deps": "pnpm run charts:deps && cd infra/helm && find . -mindepth 1 -maxdepth 2 -name Chart.yaml -exec dirname {} \\; | xargs -I{} bash -c 'echo \"==> {}\"; helm dep up --skip-refresh {}'",
+    "monitoring:deps": "pnpm -C monitoring run deps",
+    "monitoring:format": "pnpm -C monitoring run format",
+    "monitoring:lint": "pnpm -C monitoring run lint",
+    "monitoring:build": "pnpm -C monitoring run build",
+    "site:deps": "pnpm -C site install",
+    "site:serve": "pnpm -C site run start",
+    "site:build": "pnpm -C site run build",
+    "site:test": "pnpm -C site run test"
+  }
+}

@@ -115,7 +115,7 @@ local server = import '../lib/server.libsonnet';
           datasource='$datasource',
           span=4,
           format='s',
-        ).addTarget(server.request_duration(selector=selector,percentile=0.90))
+        ).addTarget(server.request_duration(selector=selector, percentile=0.90))
       )
       .addPanel(
         graphPanel.new(
@@ -123,7 +123,7 @@ local server = import '../lib/server.libsonnet';
           datasource='$datasource',
           span=4,
           format='s',
-        ).addTarget(server.request_duration(selector=selector,percentile=0.95))
+        ).addTarget(server.request_duration(selector=selector, percentile=0.95))
       )
       .addPanel(
         graphPanel.new(
@@ -131,7 +131,7 @@ local server = import '../lib/server.libsonnet';
           datasource='$datasource',
           span=4,
           format='s',
-        ).addTarget(server.request_duration(selector=selector,percentile=0.99))
+        ).addTarget(server.request_duration(selector=selector, percentile=0.99))
       )
-    )
+    ),
 }

@@ -1,0 +1,11 @@
+{
+  "name": "@mjpitz/monitoring",
+  "private": true,
+  "scripts": {
+    "deps": "jb install",
+    "format": "find . -mindepth 1 -maxdepth 1 -type d -exec basename {} \\; | grep -Ev 'common|out|vendor' | xargs -I{} sh -c 'find {} -type f | xargs -n 1 -- jsonnetfmt -i'",
+    "lint": "find . -mindepth 1 -maxdepth 1 -type d -exec basename {} \\; | grep -Ev 'common|out|vendor' | xargs -I{} sh -c 'find {} -type f | while read f; do jsonnetfmt \"$f\" | diff -u \"$f\" -; done'",
+    "build": "find . -mindepth 1 -maxdepth 1 -type d -exec basename {} \\; | grep -Ev 'common|out|vendor' | while read d; do mkdir -p out/$d && jsonnet -J vendor -V output=alerts -S $d/gen.jsonnet > out/$d/prometheus_alerts.yaml && jsonnet -J vendor -V output=dashboards -m out/$d $d/gen.jsonnet 1>/dev/null && jsonnet -J vendor -V output=rules -S $d/gen.jsonnet > out/$d/prometheus_rules.yaml; done",
+    "sync": "find . -mindepth 1 -maxdepth 1 -type d -exec basename {} \\; | grep -Ev 'common|out|vendor' | xargs -I{} bash common/sync.sh {}"
+  }
+}

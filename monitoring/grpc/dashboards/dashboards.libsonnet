@@ -3,7 +3,7 @@ local server = import './server.libsonnet';
 
 {
   grafanaDashboards+:: {
-    "grpc-client": client.dashboard($),
-    "grpc-server": server.dashboard($),
+    'grpc-client': client.dashboard($),
+    'grpc-server': server.dashboard($),
   },
 }

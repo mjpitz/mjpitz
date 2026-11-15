@@ -25,11 +25,20 @@ jobs:
         with:
           submodules: 'recursive'
 
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
       - name: Build
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
         run: |
-          make site/deps site/build site/test
+          pnpm run site:deps && pnpm run site:build && pnpm run site:test
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3

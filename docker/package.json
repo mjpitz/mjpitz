@@ -1,0 +1,8 @@
+{
+  "name": "@mjpitz/docker",
+  "private": true,
+  "scripts": {
+    "build": "find . -mindepth 1 -maxdepth 1 -type d -exec basename {} \\; | grep -v scripts | xargs -I{} bash -c 'cd {} && bash ../scripts/build.sh build'",
+    "release": "find . -mindepth 1 -maxdepth 1 -type d -exec basename {} \\; | grep -v scripts | xargs -I{} bash -c 'cd {} && bash ../scripts/build.sh release'"
+  }
+}

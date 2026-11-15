@@ -10,19 +10,22 @@ local prometheus = grafana.prometheus;
 
   request_duration(selector, percentile=0.95):: prometheus.target(
     'histogram_quantile(%f, sum(rate(registry_http_request_duration_seconds_bucket{%s}[5m])) by (le, handler, method))' % [
-      percentile, selector,
+      percentile,
+      selector,
     ],
   ),
 
   request_size(selector, percentile=0.95):: prometheus.target(
     'histogram_quantile(%f, sum(rate(registry_http_request_size_bytes_bucket{%s}[5m])) by (le, handler))' % [
-      percentile, selector,
+      percentile,
+      selector,
     ],
   ),
 
   response_size(selector, percentile=0.95):: prometheus.target(
     'histogram_quantile(%f, sum(rate(registry_http_response_size_bytes_bucket{%s}[5m])) by (le, handler))' % [
-      percentile, selector,
+      percentile,
+      selector,
     ],
   ),
 
@@ -34,7 +37,8 @@ local prometheus = grafana.prometheus;
 
   storage_action_duration(selector, percentile=0.95):: prometheus.target(
     'histogram_quantile(%f, sum(rate(registry_storage_action_seconds_bucket{%s}[5m])) by (le, action, driver))' % [
-      percentile, selector,
+      percentile,
+      selector,
     ],
   ),
 
