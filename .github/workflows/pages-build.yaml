@@ -3,6 +3,10 @@ name: pages-build
 on:
   schedule:
     - cron: '0 0 * * *'  # Runs daily at midnight UTC
+  workflow_run:
+    workflows: ["merge-schedule"]
+    types:
+      - completed
   pull_request:
     branches:
       - main
