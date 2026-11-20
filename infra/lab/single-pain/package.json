@@ -2,7 +2,7 @@
   "name": "@mjpitz/lab-single-pain",
   "private": true,
   "devDependencies": {
-    "concurrently": "^9.0.0"
+    "concurrently": "^10.0.0"
   },
   "scripts": {
     "clean": "rm -rf node_modules collector/schema",
