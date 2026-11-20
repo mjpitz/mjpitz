@@ -1,5 +1,5 @@
 ---
-title: 'A leadership failure in disguise'
+title: "A leadership failure in disguise"
 pubDate: "November 16 2026"
 description: |
   Qualcomm cut over 1,000 roles in India and called it a "performance-focused reduction."
@@ -21,7 +21,7 @@ driven the decision.
 
 The company's public framing and what affected employees reported do not line up. That's what we're here to discuss.
 
-*Where the label came from*
+_Where the label came from_
 
 The template was set at Meta on January 14, 2025. Zuckerberg sent an internal memo announcing that Meta would cut about
 5% of its workforce, targeting its lowest performers. [He wrote,][cnbc-meta] "I've decided to raise the bar on
@@ -40,7 +40,7 @@ reduction." It signals workforce discipline, a commitment to excellence, the kin
 earnings narrative rather than a difficult quarterly press release. It doesn't signal a revenue problem or a strategy
 shift. The label spread through 2025 and into 2026 because it worked for the audience that cared most about hearing it.
 
-*What the label actually requires*
+_What the label actually requires_
 
 A performance termination has prerequisites. You have to have managed performance first. That means documented feedback
 delivered to the employee, clear expectations set in advance, and a genuine opportunity to meet them. Without that
@@ -58,7 +58,7 @@ notices arrived. The engineer who expected a promotion hadn't been counseled, pu
 When a company applies the performance label without having run the performance process, the label isn't describing a
 decision. It's managing a narrative.
 
-*What was actually happening*
+_What was actually happening_
 
 Qualcomm's Q4 FY2026 results told a clear story. [Handset revenue fell 26% year-over-year.][tradingkey] [Automotive
 revenue jumped 89%][grafa], hitting Qualcomm's first $2 billion automotive quarter. Those aren't the numbers of a
@@ -75,7 +75,7 @@ longer fit the direction, and that the decision wasn't about individual output. 
 an earnings call, because it invites questions about whether the company saw the shift coming and planned for it. But
 it's accurate.
 
-*The damage the label does*
+_The damage the label does_
 
 Three distinct things happen when the label doesn't match reality.
 
@@ -99,7 +99,7 @@ that noise. Nobody believes the label anymore, because it has been used too many
 company that reaches for it without the underlying work to support it makes the signal slightly less useful for everyone
 else.
 
-*What honest looks like*
+_What honest looks like_
 
 There's a fear that "restructuring" sounds like an admission that leadership didn't anticipate the shift. Sometimes
 that's true. But that's an accountability the company can absorb. The alternative is to distribute the cost to the
